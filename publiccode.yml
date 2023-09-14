@@ -1,0 +1,174 @@
+# This repository adheres to the publiccode.yml standard by including this 
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+applicationSuite: MOOn
+categories:
+  - digital-citizenship
+  - collaboration
+description:
+  it:
+    apiDocumentation: 'https://github.com/csipiemonte/moon/'
+    documentation: 'https://github.com/csipiemonte/moon/'
+    features:
+      - Disegno e pubblicazione moduli per cittadini e P.A.
+      - Gestione processo di gestione dati raccolti
+      - Integrazione con servizi di notifica
+      - Integrazione con sistema di pagamento PagoPA
+      - Protocollazione delle istanze inviate al sistema
+    genericName: Modulistica On Line
+    localisedName: MOOn
+    longDescription: |
+      MOOn ha come obiettivo gestire tutto il ciclo della modulistica delle
+
+      Pubblica Amministrazione dalla creazione del modulo alla relativa
+
+      pubblicazione online.
+
+
+
+      Consente ai cittadini di compilare online le richieste su particolari
+
+      servizi che la P.A. mette a disposizione e digitalizza l'intero processo
+
+      di gestione delle richieste.
+
+
+
+      Poiché l'accesso ai servizi avviene tramite internet, MOOn minimizza
+
+      l'accesso fisico allo sportello da parte dei cittadini e consente la
+
+      gestione della richiesta da parte dell'area preposta mediante apposito
+
+      back-office.
+
+
+
+      L'obiettivo del progetto è quello di consentire alle pubbliche
+
+      amministrazione di digitalizzare i servizi rivolti ai cittadini elevando
+
+      il livello di trasparenza verso questi ultimi.
+
+
+
+      Il prodotto è composto dalle componenti:
+
+
+
+      - [**moonfowcl**](https://github.com/csipiemonte/moon/moonfowcl):
+
+      componente frontend che realizza l'interfaccia utilizzata dai cittadini
+
+      per accedere ai servizi messi a disposizione dalla P.A. Realizzata come
+
+      SAP (Single Page Application) mediante il framework Angular;
+
+
+      - [**moonfobl**](https://github.com/csipiemonte/moon/moonfobl):  contiene
+
+      i servizi che realizzano la logica di business utilizzati dalla componente
+
+      front-end dei cittadini;
+
+
+      - [**moonbowcl**](https://github.com/csipiemonte/moon/moonbowcl):
+
+      componente front-end che realizza l'interfaccia utilizzata dalla pubblica
+
+      amministrazione per gestire le richieste pervenute. Realizzata come SAP
+
+      (Single Page Application) mediante il framework Angular;
+
+
+      - [**moonbobl**](https://github.com/csipiemonte/moon/moonbobl): contiene i
+
+      servizi che realizzano la logica di business utilizzati dalla componente
+
+      front-end della pubblica amministrazione;
+
+
+      - [**moonsrv**](https://github.com/csipiemonte/moon/moonsrv): realizza i
+
+      servizi comuni alle componenti relative ai cittadini ed alla pubblica
+
+      amministrazione;
+
+
+      - [**moonprint**](https://github.com/csipiemonte/moon/moonprint):
+
+      componente per la stampa delle istanze;
+
+
+      - [**moondb**](https://github.com/csipiemonte/moon/moondb): script per la
+
+      creazione del database utilizzato dalla piattaforma
+
+
+
+      ​
+    screenshots:
+      - |-
+        https://raw.githubusercontent.com/csipiemonte/moon/master/risorse/screen-lista-istanze.png
+      - |-
+        https://raw.githubusercontent.com/csipiemonte/moon/master/risorse/screen-nuova_istanza.png
+      - |-
+        https://raw.githubusercontent.com/csipiemonte/moon/master/risorse/screen-dettaglio_istanza.png
+      - |-
+        https://raw.githubusercontent.com/csipiemonte/moon/master/risorse/screen-compilazione_istanza.png
+    shortDescription: Modulistica On Line
+developmentStatus: stable
+intendedAudience:
+  countries:
+    - it
+  scope:
+    - government
+    - local-authorities
+    - society
+it:
+  conforme:
+    gdpr: true
+    lineeGuidaDesign: true
+    misureMinimeSicurezza: true
+    modelloInteroperabilita: false
+  countryExtensionVersion: '0.2'
+  piattaforme:
+    anpr: false
+    cie: false
+    pagopa: false
+    spid: false
+  riuso:
+    codiceIPA: csi_piem
+legal:
+  license: EUPL-1.2
+  mainCopyrightOwner: Consorzio per il sistema informativo CSI-Piemonte
+  repoOwner: Consorzio per il sistema informativo CSI-Piemonte
+localisation:
+  availableLanguages:
+    - it
+  localisationReady: false
+logo: |-
+  https://raw.githubusercontent.com/csipiemonte/moon/master/risorse/logo_moon_ufficiale.png
+maintenance:
+  contacts:
+    - email: supporto.moon@csi.it
+      name: Supporto MOOn
+  type: internal
+name: MOOn
+platforms:
+  - web
+  - linux
+releaseDate: '2023-08-31'
+softwareType: standalone/web
+softwareVersion: 3.0.0
+url: 'https://github.com/csipiemonte/moon'
+usedBy:
+  - Regione Piemonte
+  - Consiglio Regionale del Piemonte
+  - Città Metropolitana di Torino
+  - Città di Torino
+  - CSI Piemonte
+  - AFC Torino Servizi Cimiteriali
+  - Agenzia Piemonte Lavoro
