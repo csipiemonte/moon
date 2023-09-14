@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+@import 'assets/styles/custom.scss';
+@import 'assets/styles/switch-toggle.scss';
+
+// $fa-font-path: '../node_modules/font-awesome/fonts';
+@import '~font-awesome/scss/font-awesome';
+@import "~jsoneditor/dist/jsoneditor.min.css";
+/* fixme @import "~@davebaol/angular-formio-editor/styles.css"; */
+.dropdown-list {
+    /*position:fixed !important;*/
+    width: 600px !important;
+    font-size: 15px !important;
+    padding: 4px !important;
+}
+
+.dropdown-btn {
+    font-size: 0.8em !important;
+    padding: 4px !important;
+}
+
+.multiselect-item-checkbox {
+    font-size: 0.8em !important;
+}
+
+.multiselect-select-all {
+    font-size: 0.8em !important;
+}
+
+.multiselect-dropdown {
+    line-height: 1.9 !important;
+}
+
+.dropdown-btn {
+    line-height: 1.9 !important;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+    padding: .5rem 1rem;
+    font-weight: 700;
+}
+
+body .alert {
+    display: list-item;
+    min-height: 2rem !important;
+    padding: 1em!important;
+}
+
+// body .alert.alert-danger {
+//     padding-left: 2rem !important;
+// }

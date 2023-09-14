@@ -1,0 +1,28 @@
+<div>
+    <h1 class="text-center">Profilo</h1>
+    <p>{{currentUser?.nome}} {{currentUser?.cognome}}
+        <br>{{currentUser?.codFisc}}
+        <br>{{currentUser?.tipoUtente?.descrizione}}
+    </p>
+
+    <div class="table-responsive" style="margin-top: 50px !important;">
+        <table id="entiAreeRuoli" class="table table-bordered table-striped">
+            <thead>
+                <th>Ente</th>
+                <th>Area</th>
+                <th>Ruolo</th>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let e of currentUser?.entiAreeRuoli">
+                    <tr *ngFor="let ar of e?.areeRuoli">
+                        <td>{{e.nomeEnte}} ({{e.codiceEnte}})<span *ngIf="isAdmin"> [{{e.idEnte}}]</span></td>
+                        <td>{{ar.nomeArea}} ({{ar.codiceArea}})<span *ngIf="isAdmin"> [{{ar.idArea}}]</span></td>
+                        <td>{{ar.nomeRuolo}} ({{ar.codiceRuolo}})<span *ngIf="isAdmin"> [{{ar.idRuolo}}]</span></td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<app-moon-spinner></app-moon-spinner>

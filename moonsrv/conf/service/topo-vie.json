@@ -1,0 +1,2541 @@
+{"vie":
+[
+{"codice":99925,"denominazione_corrente_2":"PONTE PRINCIPESSA CLOTILDE"}
+,{"codice":99926,"denominazione_corrente_2":"CORSO LIGURIA VENARIA REALE"}
+,{"codice":99927,"denominazione_corrente_2":"PONTE PRINCIPESSA ISABELLA"}
+,{"codice":99928,"denominazione_corrente_2":"VIA CASTAGNERI VENARIA REALE"}
+,{"codice":99929,"denominazione_corrente_2":"PONTE CANDIDO RAMELLO"}
+,{"codice":99930,"denominazione_corrente_2":"PONTE DOMENICO CARPANINI"}
+,{"codice":99931,"denominazione_corrente_2":"PONTE REGINA MARGHERITA"}
+,{"codice":99932,"denominazione_corrente_2":"PASSERELLA ALEX LANGER"}
+,{"codice":99933,"denominazione_corrente_2":"PONTE ROSSINI"}
+,{"codice":99935,"denominazione_corrente_2":"PONTE DI SASSI"}
+,{"codice":99937,"denominazione_corrente_2":"PONTE UMBERTO I"}
+,{"codice":99939,"denominazione_corrente_2":"PONTE VITTORIO EMANUELE I"}
+,{"codice":99941,"denominazione_corrente_2":"PONTE VITTORIO  EMANUELE II"}
+,{"codice":99943,"denominazione_corrente_2":"PONTE GEORGE WASHINGTON"}
+,{"codice":99945,"denominazione_corrente_2":"GIARDINO ALFONSO LAMARMORA"}
+,{"codice":99947,"denominazione_corrente_2":"AIUOLA CESARE BALBO"}
+,{"codice":99949,"denominazione_corrente_2":"STRADA DEL RIVO FREDDO"}
+,{"codice":99951,"denominazione_corrente_2":"STRADA ALLA VILLA D'ORMEA"}
+,{"codice":99961,"denominazione_corrente_2":"RONDO' RIVELLA"}
+,{"codice":99962,"denominazione_corrente_2":"RONDO' DELLA FORCA"}
+,{"codice":99963,"denominazione_corrente_2":"PIAZZALE TORINO ESPOSIZIONI"}
+,{"codice":99964,"denominazione_corrente_2":"PIAZZA D'ARMI"}
+,{"codice":99965,"denominazione_corrente_2":"PIAZZALE ALDO MORO"}
+,{"codice":99966,"denominazione_corrente_2":"PIAZZALE TERMINAL BUS"}
+,{"codice":99967,"denominazione_corrente_2":"PIAZZALE CIMITERO MONUMENTALE"}
+,{"codice":99968,"denominazione_corrente_2":"PIAZZALE CIMITERO SUD"}
+,{"codice":99969,"denominazione_corrente_2":"BORGO MEDIOEVALE"}
+,{"codice":99970,"denominazione_corrente_2":"VIALE MARCHESA"}
+,{"codice":99971,"denominazione_corrente_2":"STADIO DELLE ALPI"}
+,{"codice":99972,"denominazione_corrente_2":"PARCO PIETRO COLLETTA"}
+,{"codice":99973,"denominazione_corrente_2":"PALAZZO DEL LAVORO"}
+,{"codice":99974,"denominazione_corrente_2":"PONTE SANGONE"}
+,{"codice":99975,"denominazione_corrente_2":"SVINCOLO TANGENZIALE"}
+,{"codice":99976,"denominazione_corrente_2":"VIALE TORINO NICHELINO"}
+,{"codice":99977,"denominazione_corrente_2":"VIALE XXV APRILE NICHELINO"}
+,{"codice":99978,"denominazione_corrente_2":"RONDO' BERNARDO NICHELINO"}
+,{"codice":99979,"denominazione_corrente_2":"RONDO' STUPINIGI NICHELINO"}
+,{"codice":99980,"denominazione_corrente_2":"PARCO RUSTICO NICHELINO"}
+,{"codice":99981,"denominazione_corrente_2":"SVINCOLO TANGENZIALE NICHELINO"}
+,{"codice":99982,"denominazione_corrente_2":"STRADA DRUENTO VENARIA REALE"}
+,{"codice":99983,"denominazione_corrente_2":"CORSO GARIBALDI VENARIA REALE"}
+,{"codice":99984,"denominazione_corrente_2":"CORSO ALESSANDRIA VENARIA REALE"}
+,{"codice":99985,"denominazione_corrente_2":"VIA AOSTA VENARIA REALE"}
+,{"codice":99986,"denominazione_corrente_2":"SVINCOLO TANGENZIALE VENARIA REALE"}
+,{"codice":99987,"denominazione_corrente_2":"PIAZZALE MON.AMEDEO DI SAVOIA"}
+,{"codice":99988,"denominazione_corrente_2":"PIAZZALE SANT'ELIGIO"}
+,{"codice":99989,"denominazione_corrente_2":"VIA MOSELE VENARIA REALE"}
+,{"codice":99990,"denominazione_corrente_2":"PALAZZO MADAMA"}
+,{"codice":99991,"denominazione_corrente_2":"TEATRO REGIO"}
+,{"codice":99992,"denominazione_corrente_2":"PORTA SUSA"}
+,{"codice":99993,"denominazione_corrente_2":"PORTA NUOVA"}
+,{"codice":99994,"denominazione_corrente_2":"CAVALCAVIA PORTA SUSA"}
+,{"codice":99995,"denominazione_corrente_2":"PONTE STURA"}
+,{"codice":99996,"denominazione_corrente_2":"PARCO ROBERTO CRESCENZIO"}
+,{"codice":99997,"denominazione_corrente_2":"CORSO CUNEO VENARIA REALE"}
+,{"codice":99998,"denominazione_corrente_2":"PONTE DEI CARBONI"}
+,{"codice":99999,"denominazione_corrente_2":"VIA DEI (PINO SOPERGA) COLLI"}
+,{"codice":44,"denominazione_corrente_2":"STRADA DELL' ABBADIA DI STURA"}
+,{"codice":55,"denominazione_corrente_2":"VIA CARLO ABARTH"}
+,{"codice":66,"denominazione_corrente_2":"VIA AUGUSTO ABEGG"}
+,{"codice":77,"denominazione_corrente_2":"VIA DEGLI ABETI"}
+,{"codice":101,"denominazione_corrente_2":"VIA ACCADEMIA ALBERTINA"}
+,{"codice":110,"denominazione_corrente_2":"PIAZZETTA ACCADEMIA MILITARE"}
+,{"codice":121,"denominazione_corrente_2":"VIA ACCADEMIA DELLE SCIENZE"}
+,{"codice":143,"denominazione_corrente_2":"VIA DEGLI ACERI"}
+,{"codice":165,"denominazione_corrente_2":"VIA ACQUI"}
+,{"codice":187,"denominazione_corrente_2":"VIA VITTORIO ACTIS"}
+,{"codice":202,"denominazione_corrente_2":"VIA ADAMELLO"}
+,{"codice":220,"denominazione_corrente_2":"VIA ADDA"}
+,{"codice":242,"denominazione_corrente_2":"VIA ADIGE"}
+,{"codice":264,"denominazione_corrente_2":"PIAZZA ADRIANO"}
+,{"codice":286,"denominazione_corrente_2":"CORSO ADRIATICO"}
+,{"codice":303,"denominazione_corrente_2":"PIAZZALE ADUA"}
+,{"codice":321,"denominazione_corrente_2":"STRADA DELL' AEROPORTO"}
+,{"codice":341,"denominazione_corrente_2":"VIA AGLIE'"}
+,{"codice":363,"denominazione_corrente_2":"CORSO GIOVANNI AGNELLI"}
+,{"codice":462,"denominazione_corrente_2":"VIA AGOSTINO DA MONTEFELTRO"}
+,{"codice":484,"denominazione_corrente_2":"VIA ATTILIO AGRICOLA"}
+,{"codice":505,"denominazione_corrente_2":"LUNGO DORA AGRIGENTO"}
+,{"codice":523,"denominazione_corrente_2":"VIA TOMMASO AGUDIO"}
+,{"codice":561,"denominazione_corrente_2":"VIA AIRASCA"}
+,{"codice":583,"denominazione_corrente_2":"VIA ALA DI STURA"}
+,{"codice":624,"denominazione_corrente_2":"VIA ALAGNA"}
+,{"codice":633,"denominazione_corrente_2":"VIA OSVALDO ALASONATTI"}
+,{"codice":642,"denominazione_corrente_2":"VIA ALASSIO"}
+,{"codice":660,"denominazione_corrente_2":"VIA ALBA"}
+,{"codice":682,"denominazione_corrente_2":"VIA ALBENGA"}
+,{"codice":725,"denominazione_corrente_2":"PIAZZA DON PAOLO ALBERA"}
+,{"codice":743,"denominazione_corrente_2":"STRADA DEGLI ALBERONI"}
+,{"codice":826,"denominazione_corrente_2":"VIA LEON BATTISTA ALBERTI"}
+,{"codice":844,"denominazione_corrente_2":"VIA ALBISOLA"}
+,{"codice":862,"denominazione_corrente_2":"VIA ALBUGNANO"}
+,{"codice":880,"denominazione_corrente_2":"VIA GIUSEPPE ALBY"}
+,{"codice":909,"denominazione_corrente_2":"VIA ALEARDO ALEARDI"}
+,{"codice":918,"denominazione_corrente_2":"VIA VASILE ALECSANDRI"}
+,{"codice":927,"denominazione_corrente_2":"VIA ALESSANDRIA"}
+,{"codice":945,"denominazione_corrente_2":"VIA ALFIANO"}
+,{"codice":963,"denominazione_corrente_2":"VIA VITTORIO ALFIERI"}
+,{"codice":981,"denominazione_corrente_2":"CORSO CANONICO GIUSEPPE ALLAMANO"}
+,{"codice":990,"denominazione_corrente_2":"VIA BARBARA ALLASON"}
+,{"codice":1067,"denominazione_corrente_2":"PIAZZALE GIUSEPPE ALLIEVO"}
+,{"codice":1089,"denominazione_corrente_2":"VIA CARLO ALLIONI"}
+,{"codice":1100,"denominazione_corrente_2":"VIA ALMESE"}
+,{"codice":1122,"denominazione_corrente_2":"VIA ALPETTE"}
+,{"codice":1144,"denominazione_corrente_2":"VIA DELLE ALPI"}
+,{"codice":1166,"denominazione_corrente_2":"VIA ALPIGNANO"}
+,{"codice":1188,"denominazione_corrente_2":"STRADA DI ALTESSANO"}
+,{"codice":1265,"denominazione_corrente_2":"VIA G. ANTONIO AMADEO"}
+,{"codice":1287,"denominazione_corrente_2":"VIA AMALFI"}
+,{"codice":1302,"denominazione_corrente_2":"VIA MICHELE AMARI"}
+,{"codice":1342,"denominazione_corrente_2":"VIA LUIGI AMBROSINI"}
+,{"codice":0,"denominazione_corrente_2":"VIA INESISTENTE"}
+,{"codice":22,"denominazione_corrente_2":"PIAZZA GIUSEPPE CESARE ABBA"}
+,{"codice":67254,"denominazione_corrente_2":"AIUOLA GIORGIO MUNTEANU"}
+,{"codice":67265,"denominazione_corrente_2":"VIA ANGELO FRAMMARTINO"}
+,{"codice":67276,"denominazione_corrente_2":"CORSO GAETANO SCIREA"}
+,{"codice":67287,"denominazione_corrente_2":"PIAZZALE TORINO GRANDE"}
+,{"codice":67298,"denominazione_corrente_2":"VIA LUDOVICO GEYMONAT"}
+,{"codice":67320,"denominazione_corrente_2":"GIARDINO DI MADONNA DI CAMPAGNA CADUTI DEL BOMBARDAMENTO"}
+,{"codice":67331,"denominazione_corrente_2":"GIARDINO MARISA BELLISARIO"}
+,{"codice":67342,"denominazione_corrente_2":"GIARDINO VITTIME DELLE FOIBE"}
+,{"codice":67353,"denominazione_corrente_2":"AIUOLA NATALIA LEVI GINZBURG"}
+,{"codice":67364,"denominazione_corrente_2":"GIARDINO VITTIME DI FEMMINICIDIO"}
+,{"codice":67375,"denominazione_corrente_2":"GIARDINO JAN PALACH"}
+,{"codice":67386,"denominazione_corrente_2":"GALLERIA ENZO TORTORA"}
+,{"codice":67397,"denominazione_corrente_2":"GIARDINO MAGISTRATI CADUTI NELLA DIFESA DELLO STATO"}
+,{"codice":67403,"denominazione_corrente_2":"PIAZZETTA UMBERTO TERRACINI"}
+,{"codice":67412,"denominazione_corrente_2":"GIARDINO FRANCESCO SCAGLIONE"}
+,{"codice":67421,"denominazione_corrente_2":"GIARDINO FRANCESCO LOMONACO"}
+,{"codice":67430,"denominazione_corrente_2":"AREA PEDONALE VITTIME IMMIGRAZIONE"}
+,{"codice":90009,"denominazione_corrente_2":"RESIDENTE ESTERO"}
+,{"codice":99000,"denominazione_corrente_2":"EVENTO OCCASIONALE"}
+,{"codice":99011,"denominazione_corrente_2":"VIA CENSIMENTO"}
+,{"codice":99022,"denominazione_corrente_2":"VIA DELLA CASA COMUNALE"}
+,{"codice":99899,"denominazione_corrente_2":"PASSERELLA THURIN MARATHON"}
+,{"codice":99900,"denominazione_corrente_2":"PONTE REGIO PARCO"}
+,{"codice":99901,"denominazione_corrente_2":"PONTE ALBERTO DEL BELGIO"}
+,{"codice":99902,"denominazione_corrente_2":"AEROPORTO CASELLE ARRIVI"}
+,{"codice":99903,"denominazione_corrente_2":"PONTE AMEDEO VIII"}
+,{"codice":99904,"denominazione_corrente_2":"AEROPORTO CASELLE PARTENZE"}
+,{"codice":99905,"denominazione_corrente_2":"PONTE AMEDEO IX"}
+,{"codice":99906,"denominazione_corrente_2":"VIA CANAPRILI NICHELINO"}
+,{"codice":99907,"denominazione_corrente_2":"PONTE FRANCO BALBIS"}
+,{"codice":99908,"denominazione_corrente_2":"SOTTOPASSAGGIO MICHELE LANZA"}
+,{"codice":99909,"denominazione_corrente_2":"PONTE BOLOGNA"}
+,{"codice":99910,"denominazione_corrente_2":"SOTTOPASSAGGIO MINA VINCENZO"}
+,{"codice":99911,"denominazione_corrente_2":"PONTE CARLO EMANUELE I"}
+,{"codice":99912,"denominazione_corrente_2":"SOTTOPASSAGGIO C.SO REGINA-FF.SS."}
+,{"codice":99913,"denominazione_corrente_2":"PONTE CARLO EMANUELE III"}
+,{"codice":99914,"denominazione_corrente_2":"SOTTOPASSAGGIO PORTA NUOVA"}
+,{"codice":99915,"denominazione_corrente_2":"PONTE DUCA DEGLI ABRUZZI"}
+,{"codice":99916,"denominazione_corrente_2":"VIA PRETEGIANI VENARIA REALE"}
+,{"codice":99917,"denominazione_corrente_2":"PONTE EMANUELE FILIBERTO"}
+,{"codice":99918,"denominazione_corrente_2":"VIA PAGANELLI VENARIA REALE"}
+,{"codice":99919,"denominazione_corrente_2":"PONTE FERDINANDO DI SAVOIA"}
+,{"codice":99920,"denominazione_corrente_2":"CORSO LOMBARDIA VENARIA REALE"}
+,{"codice":99921,"denominazione_corrente_2":"PONTE MOSCA"}
+,{"codice":99922,"denominazione_corrente_2":"VIA COLOMBO VENARIA REALE"}
+,{"codice":99923,"denominazione_corrente_2":"PONTE PIETRO II"}
+,{"codice":99924,"denominazione_corrente_2":"CORSO PIEMONTE VENARIA REALE"}
+,{"codice":66693,"denominazione_corrente_2":"GIARDINO WALTER FERRAROTTI"}
+,{"codice":66707,"denominazione_corrente_2":"VIA MADONNA DELLE SALETTE"}
+,{"codice":66725,"denominazione_corrente_2":"VIA RODOLFO MORANDI"}
+,{"codice":66743,"denominazione_corrente_2":"VIA GIOVANNI PASTRONE"}
+,{"codice":66761,"denominazione_corrente_2":"VIA TIMOTEO RIBOLI"}
+,{"codice":66770,"denominazione_corrente_2":"VIA GIOVANNI BOVIO"}
+,{"codice":66781,"denominazione_corrente_2":"VIA ONORATO CASTELLINO"}
+,{"codice":66792,"denominazione_corrente_2":"CORSO ROMANIA"}
+,{"codice":66817,"denominazione_corrente_2":"VIA AMEDEO UGOLINI"}
+,{"codice":66826,"denominazione_corrente_2":"VIA MARIO PANNUNZIO"}
+,{"codice":66835,"denominazione_corrente_2":"VIA FULVIO CROCE"}
+,{"codice":66844,"denominazione_corrente_2":"VIA GINO MARINUZZI"}
+,{"codice":66853,"denominazione_corrente_2":"PIAZZETTA CARLO MOLLINO"}
+,{"codice":66862,"denominazione_corrente_2":"GIARDINO CADUTI DI CEFALONIA E CORFU'"}
+,{"codice":66871,"denominazione_corrente_2":"VIA GUIDO FUBINI"}
+,{"codice":66880,"denominazione_corrente_2":"VIA MODESTO PANETTI"}
+,{"codice":66891,"denominazione_corrente_2":"PIAZZALE CORNELIO TACITO"}
+,{"codice":66909,"denominazione_corrente_2":"VIA SIBILLA ALERAMO"}
+,{"codice":66918,"denominazione_corrente_2":"PIAZZETTA LUCIANO JONA"}
+,{"codice":66927,"denominazione_corrente_2":"VIA PANCALIERI"}
+,{"codice":66936,"denominazione_corrente_2":"VIA ISOLABELLA"}
+,{"codice":66945,"denominazione_corrente_2":"GIARDINO ANDREA GUGLIELMINETTI"}
+,{"codice":66954,"denominazione_corrente_2":"VIA RUBENS FATTORELLI"}
+,{"codice":66963,"denominazione_corrente_2":"VIA CORNELIANO D'ALBA"}
+,{"codice":66972,"denominazione_corrente_2":"GIARDINO GIUSEPPE LEVI"}
+,{"codice":66981,"denominazione_corrente_2":"PIAZZETTA LEVI PRIMO"}
+,{"codice":67023,"denominazione_corrente_2":"AIUOLA PIA SECONDO"}
+,{"codice":67034,"denominazione_corrente_2":"LARGO ROSARIO BERARDI"}
+,{"codice":67045,"denominazione_corrente_2":"AIUOLA TORREMAGGIORE"}
+,{"codice":67056,"denominazione_corrente_2":"GIARDINO TERENZIO GRANDI"}
+,{"codice":67067,"denominazione_corrente_2":"VIA GIUSEPPE FENOGLIO"}
+,{"codice":67078,"denominazione_corrente_2":"VIA PININFARINA"}
+,{"codice":67089,"denominazione_corrente_2":"VIA RENZO GANDOLFO"}
+,{"codice":67100,"denominazione_corrente_2":"VIA PIER LUIGI NERVI"}
+,{"codice":67111,"denominazione_corrente_2":"VIA FRANCESCO COGNASSO"}
+,{"codice":67122,"denominazione_corrente_2":"GIARDINO FERGAT"}
+,{"codice":67133,"denominazione_corrente_2":"VIA CADUTI DI EL ALAMEIN"}
+,{"codice":67144,"denominazione_corrente_2":"GIARDINO SALVATORE DI SALVO"}
+,{"codice":67155,"denominazione_corrente_2":"VIA DEI LAVANDAI"}
+,{"codice":67166,"denominazione_corrente_2":"GIARDINO CARLO LEVI"}
+,{"codice":67177,"denominazione_corrente_2":"GIARDINO PIERO COGGIOLA"}
+,{"codice":67188,"denominazione_corrente_2":"GIARDINO SILVIO GEUNA"}
+,{"codice":67199,"denominazione_corrente_2":"VIALE CADUTI DISPERSI IN GUERRA"}
+,{"codice":67210,"denominazione_corrente_2":"PARCO VITTIME DEL ROGO 6\/12\/2007"}
+,{"codice":67221,"denominazione_corrente_2":"AIUOLA VITTIME DEL CINEMA STATUTO"}
+,{"codice":67232,"denominazione_corrente_2":"GIARDINO DONATORI DI ORGANI"}
+,{"codice":67243,"denominazione_corrente_2":"GIARDINO VITTIME DI BESLAN"}
+,{"codice":61647,"denominazione_corrente_2":"VIA ANDREA VOCHIERI"}
+,{"codice":61665,"denominazione_corrente_2":"LUNGO DORA VOGHERA"}
+,{"codice":61766,"denominazione_corrente_2":"STRADA GUIDO VOLANTE"}
+,{"codice":61775,"denominazione_corrente_2":"PIAZZALE VOLGOGRAD"}
+,{"codice":61821,"denominazione_corrente_2":"VIA MELCHIORRE VOLI"}
+,{"codice":61849,"denominazione_corrente_2":"VIA VOLPIANO"}
+,{"codice":61867,"denominazione_corrente_2":"VIA ALESSANDRO VOLTA"}
+,{"codice":61885,"denominazione_corrente_2":"VIA VOLTURNO"}
+,{"codice":61904,"denominazione_corrente_2":"VIA VOLVERA"}
+,{"codice":61913,"denominazione_corrente_2":"GIARDINO SIMON WIESENTHAL"}
+,{"codice":61922,"denominazione_corrente_2":"VIA RENATO WUILLERMIN"}
+,{"codice":61931,"denominazione_corrente_2":"GIARDINO GIANCARLO PAJETTA"}
+,{"codice":61940,"denominazione_corrente_2":"CORSO UNDICI FEBBRAIO"}
+,{"codice":61968,"denominazione_corrente_2":"PIAZZA DICIOTTO DICEMBRE"}
+,{"codice":61986,"denominazione_corrente_2":"VIA VENTI SETTEMBRE"}
+,{"codice":62004,"denominazione_corrente_2":"VIALE VENTICINQUE APRILE"}
+,{"codice":62123,"denominazione_corrente_2":"VIA GIOVANNI ZAMBELLI"}
+,{"codice":62141,"denominazione_corrente_2":"GIARDINO LAZZARO LODOVICO ZAMENHOF"}
+,{"codice":62161,"denominazione_corrente_2":"VIA GIACOMO ZANELLA"}
+,{"codice":62183,"denominazione_corrente_2":"PIAZZA ZARA"}
+,{"codice":62206,"denominazione_corrente_2":"VIA ZINO GIACOMO ZINI"}
+,{"codice":62242,"denominazione_corrente_2":"VIA ZUBIENA"}
+,{"codice":62260,"denominazione_corrente_2":"VIA ZUMAGLIA"}
+,{"codice":62282,"denominazione_corrente_2":"VIA GIANFRANCO ZURETTI"}
+,{"codice":62293,"denominazione_corrente_2":"GIARDINO GINO BARTALI"}
+,{"codice":63205,"denominazione_corrente_2":"VIA CARDINALE FOSSATI MAURILIO"}
+,{"codice":63223,"denominazione_corrente_2":"VIA GIOACHINO QUARELLO"}
+,{"codice":64341,"denominazione_corrente_2":"VIA RICCARDO ZANDONAI"}
+,{"codice":65708,"denominazione_corrente_2":"VIA ISERNIA"}
+,{"codice":65863,"denominazione_corrente_2":"VIA FILIPPO ACCIARINI"}
+,{"codice":65872,"denominazione_corrente_2":"GIARDINO RAOUL WALLENBERG"}
+,{"codice":65881,"denominazione_corrente_2":"VIA IGNAZIO COLLINO"}
+,{"codice":65900,"denominazione_corrente_2":"VIA ALFONSO OGLIARO"}
+,{"codice":65928,"denominazione_corrente_2":"VIA GIOVANNI BATTISTA GARDONCINI"}
+,{"codice":66404,"denominazione_corrente_2":"VIA GRAZIA DELEDDA"}
+,{"codice":66413,"denominazione_corrente_2":"GIARDINO GIUSEPPE DELFINO"}
+,{"codice":66422,"denominazione_corrente_2":"GIARDINO DI CALCUTTA MADRE TERESA"}
+,{"codice":66431,"denominazione_corrente_2":"GIARDINO DON LUIGI GIUSSANI"}
+,{"codice":66440,"denominazione_corrente_2":"GIARDINO GIORGIO ANGLESIO"}
+,{"codice":66451,"denominazione_corrente_2":"GIARDINO CADUTI DI EL ALAMEIN"}
+,{"codice":66462,"denominazione_corrente_2":"VIA CARLO MARTINOTTI"}
+,{"codice":66473,"denominazione_corrente_2":"GIARDINO TERENZIO MAGLIANO"}
+,{"codice":66484,"denominazione_corrente_2":"GIARDINO MARIO LATTES"}
+,{"codice":66541,"denominazione_corrente_2":"PARCO VALENTINO BORGO MEDIOEVALE"}
+,{"codice":66642,"denominazione_corrente_2":"VIA FRANCO ALFANO"}
+,{"codice":66660,"denominazione_corrente_2":"VIA ARTURO AMBROSIO"}
+,{"codice":66671,"denominazione_corrente_2":"VIA DA SETTIGNANO DI FRANCESCO AMEDEO"}
+,{"codice":66682,"denominazione_corrente_2":"VIA IGNAZIO ISLER"}
+,{"codice":60446,"denominazione_corrente_2":"STRADA VIGNE DI S. VITO"}
+,{"codice":60464,"denominazione_corrente_2":"VIA VIGONE"}
+,{"codice":60482,"denominazione_corrente_2":"VIA TOMMASO VILLA"}
+,{"codice":60501,"denominazione_corrente_2":"STRADA DI D'AGLIE' VILLA"}
+,{"codice":60510,"denominazione_corrente_2":"VIA MARIA ADELAIDE AGLIETTA"}
+,{"codice":60547,"denominazione_corrente_2":"VIA VILLA DELLA REGINA"}
+,{"codice":60565,"denominazione_corrente_2":"PIAZZALE VILLA DELLA REGINA"}
+,{"codice":60583,"denominazione_corrente_2":"VIALE VILLA DELLA REGINA"}
+,{"codice":60602,"denominazione_corrente_2":"PARCO VILLA GENERO"}
+,{"codice":60620,"denominazione_corrente_2":"VIA VILLA GIUSTI"}
+,{"codice":60648,"denominazione_corrente_2":"VIA VILLA GLORI"}
+,{"codice":60666,"denominazione_corrente_2":"VIA ALLA VILLA QUIETE"}
+,{"codice":60684,"denominazione_corrente_2":"STRADA ALLA VILLA ZANETTI"}
+,{"codice":60703,"denominazione_corrente_2":"VIA VILLADEATI"}
+,{"codice":60767,"denominazione_corrente_2":"VIA VILLAFRANCA PIEMONTE"}
+,{"codice":60785,"denominazione_corrente_2":"VIA VILLAR"}
+,{"codice":60804,"denominazione_corrente_2":"STRADA VILLAR DORA"}
+,{"codice":60840,"denominazione_corrente_2":"VIA VILLARBASSE"}
+,{"codice":60868,"denominazione_corrente_2":"STRADA DEL VILLARETTO"}
+,{"codice":60877,"denominazione_corrente_2":"STRADA NUOVA VILLARETTO"}
+,{"codice":60886,"denominazione_corrente_2":"STRADA DA VILLARETTO A BORGARO"}
+,{"codice":60941,"denominazione_corrente_2":"VIA VILLAR FOCCHIARDO"}
+,{"codice":60969,"denominazione_corrente_2":"PIAZZA PASQUALE VILLARI"}
+,{"codice":60987,"denominazione_corrente_2":"VIA VINADIO"}
+,{"codice":61005,"denominazione_corrente_2":"VIA VINOVO"}
+,{"codice":61023,"denominazione_corrente_2":"CORSO VINZAGLIO"}
+,{"codice":61041,"denominazione_corrente_2":"STRADA DELLA VIOLA"}
+,{"codice":61083,"denominazione_corrente_2":"VIA GIAMBATTISTA VIOTTI"}
+,{"codice":61106,"denominazione_corrente_2":"VIA VIPACCO"}
+,{"codice":61124,"denominazione_corrente_2":"VIALE VIRGILIO"}
+,{"codice":61142,"denominazione_corrente_2":"VIA GIOVANNI VIRGINIO"}
+,{"codice":61160,"denominazione_corrente_2":"VIA ALBERTO VIRIGLIO"}
+,{"codice":61182,"denominazione_corrente_2":"VIA VIRLE"}
+,{"codice":61207,"denominazione_corrente_2":"VIA VISCHE"}
+,{"codice":61216,"denominazione_corrente_2":"LARGO MAURIZIO VITALE"}
+,{"codice":61225,"denominazione_corrente_2":"VIA MARCHESE VISCONTI"}
+,{"codice":61243,"denominazione_corrente_2":"PIAZZETTA VISITAZIONE"}
+,{"codice":61261,"denominazione_corrente_2":"VIA VISTRORIO"}
+,{"codice":61344,"denominazione_corrente_2":"VIA VITERBO"}
+,{"codice":61353,"denominazione_corrente_2":"VIA VITTIME DI BOLOGNA"}
+,{"codice":61380,"denominazione_corrente_2":"VIA BERNARDO VITTONE"}
+,{"codice":61427,"denominazione_corrente_2":"VIA VITTORIA"}
+,{"codice":61445,"denominazione_corrente_2":"PIAZZA DELLA VITTORIA"}
+,{"codice":61463,"denominazione_corrente_2":"VIA VITTORIO AMEDEO II"}
+,{"codice":61481,"denominazione_corrente_2":"CORSO VITTORIO EMANUELE II"}
+,{"codice":61500,"denominazione_corrente_2":"LARGO VITTORIO EMANUELE II"}
+,{"codice":61546,"denominazione_corrente_2":"PIAZZA VITTORIO VENETO"}
+,{"codice":61564,"denominazione_corrente_2":"VIA ASCANIO VITTOZZI"}
+,{"codice":61582,"denominazione_corrente_2":"VIA VIU'"}
+,{"codice":61601,"denominazione_corrente_2":"VIA ANTONIO VIVALDI"}
+,{"codice":61610,"denominazione_corrente_2":"VIA ANNIE VIVANTI"}
+,{"codice":61629,"denominazione_corrente_2":"VIA VIVERONE"}
+,{"codice":58465,"denominazione_corrente_2":"VIA LUIGI VANVITELLI"}
+,{"codice":58487,"denominazione_corrente_2":"VIA VARAITA"}
+,{"codice":58502,"denominazione_corrente_2":"VIA VARALLO"}
+,{"codice":58520,"denominazione_corrente_2":"VIA ALFONSO VARANO"}
+,{"codice":58542,"denominazione_corrente_2":"VIA VARAZZE"}
+,{"codice":58564,"denominazione_corrente_2":"VIA VARESE"}
+,{"codice":58586,"denominazione_corrente_2":"VIA GIORGIO VASARI"}
+,{"codice":58603,"denominazione_corrente_2":"VIA VASCO FRATELLI"}
+,{"codice":58621,"denominazione_corrente_2":"VIA ABATE ANTONIO VASSALLI-EANDI"}
+,{"codice":58641,"denominazione_corrente_2":"VIA SAVERIO VEGEZZI"}
+,{"codice":58663,"denominazione_corrente_2":"VIA VEGLIA"}
+,{"codice":58740,"denominazione_corrente_2":"VIA VINCENZO VELA"}
+,{"codice":58762,"denominazione_corrente_2":"VIA VENALZIO"}
+,{"codice":58784,"denominazione_corrente_2":"VIA VENARIA"}
+,{"codice":58805,"denominazione_corrente_2":"STRADA ANTICA DELLA VENARIA"}
+,{"codice":58814,"denominazione_corrente_2":"GIARDINO MARIA VANOLI"}
+,{"codice":59015,"denominazione_corrente_2":"STRADA VENARIA"}
+,{"codice":59026,"denominazione_corrente_2":"VIA VENASCA"}
+,{"codice":59037,"denominazione_corrente_2":"GIARDINO VENCHI UNICA"}
+,{"codice":59048,"denominazione_corrente_2":"CORSO VENEZIA"}
+,{"codice":59082,"denominazione_corrente_2":"VIA VENTIMIGLIA"}
+,{"codice":59125,"denominazione_corrente_2":"VIA VERBANO"}
+,{"codice":59147,"denominazione_corrente_2":"VIA DELLE VERBENE"}
+,{"codice":59202,"denominazione_corrente_2":"CORSO VERCELLI"}
+,{"codice":59301,"denominazione_corrente_2":"VIA GIUSEPPE VERDI"}
+,{"codice":59345,"denominazione_corrente_2":"VIA GIOVANNI VERGA"}
+,{"codice":59367,"denominazione_corrente_2":"STRADA DELLA VERNA"}
+,{"codice":59488,"denominazione_corrente_2":"VIA GIUSEPPE VERNAZZA"}
+,{"codice":59501,"denominazione_corrente_2":"VIA VEROLENGO"}
+,{"codice":59642,"denominazione_corrente_2":"CORSO VERONA"}
+,{"codice":59664,"denominazione_corrente_2":"VIA PAOLO VERONESE"}
+,{"codice":59763,"denominazione_corrente_2":"VIA VERRES"}
+,{"codice":59804,"denominazione_corrente_2":"VIA ANDREA VERROCCHIO"}
+,{"codice":59822,"denominazione_corrente_2":"VIA VERRUA"}
+,{"codice":59840,"denominazione_corrente_2":"VIA VERZUOLO"}
+,{"codice":59862,"denominazione_corrente_2":"VIA AMERIGO VESPUCCI"}
+,{"codice":59884,"denominazione_corrente_2":"VIA VESTIGNE'"}
+,{"codice":59905,"denominazione_corrente_2":"PIAZZA VETTA D'ITALIA"}
+,{"codice":59923,"denominazione_corrente_2":"STRADA ALLA VETTA DELLA MADDALENA"}
+,{"codice":59941,"denominazione_corrente_2":"VIA VEZZOLANO"}
+,{"codice":59961,"denominazione_corrente_2":"VIA IGNAZIO VIAN"}
+,{"codice":59972,"denominazione_corrente_2":"VIA VIARIGI"}
+,{"codice":60006,"denominazione_corrente_2":"STRADA DELLA VIASSA"}
+,{"codice":60024,"denominazione_corrente_2":"VIA CANDIDO VIBERTI"}
+,{"codice":60042,"denominazione_corrente_2":"VIA VIBO'"}
+,{"codice":60060,"denominazione_corrente_2":"VIA GIUSEPPE VICARELLI"}
+,{"codice":60082,"denominazione_corrente_2":"VIA VICENZA"}
+,{"codice":60107,"denominazione_corrente_2":"VIA G. BATTISTA VICO"}
+,{"codice":60125,"denominazione_corrente_2":"VIA VICOFORTE"}
+,{"codice":60143,"denominazione_corrente_2":"VIA CARLO VIDUA"}
+,{"codice":60161,"denominazione_corrente_2":"CORSO VIGEVANO"}
+,{"codice":60170,"denominazione_corrente_2":"PIAZZOLA VIGILI DEL FUOCO"}
+,{"codice":60181,"denominazione_corrente_2":"VIA ONORATO VIGLIANI"}
+,{"codice":60381,"denominazione_corrente_2":"VIA VIGLIANO"}
+,{"codice":60400,"denominazione_corrente_2":"PIAZZA INNOCENZO VIGLIARDI PARAVIA"}
+,{"codice":60419,"denominazione_corrente_2":"PIAZZETTA ANDREA VIGLONGO"}
+,{"codice":60428,"denominazione_corrente_2":"VIA VIGNALE"}
+,{"codice":56522,"denominazione_corrente_2":"VIA TUNISI"}
+,{"codice":56623,"denominazione_corrente_2":"CORSO FILIPPO TURATI"}
+,{"codice":56641,"denominazione_corrente_2":"LARGO FILIPPO TURATI"}
+,{"codice":56706,"denominazione_corrente_2":"VIALE STEFANO TURR"}
+,{"codice":56724,"denominazione_corrente_2":"VIA UDINE"}
+,{"codice":56742,"denominazione_corrente_2":"VIA OTTORINO UFFREDUZZI"}
+,{"codice":56751,"denominazione_corrente_2":"VIA DEGLI ULIVI"}
+,{"codice":56760,"denominazione_corrente_2":"GALLERIA UMBERTO I"}
+,{"codice":56782,"denominazione_corrente_2":"CORSO UMBRIA"}
+,{"codice":56807,"denominazione_corrente_2":"PIAZZALE UMBRIA"}
+,{"codice":56825,"denominazione_corrente_2":"CORSO UNIONE SOVIETICA"}
+,{"codice":56834,"denominazione_corrente_2":"PONTE UNIONE EUROPEA"}
+,{"codice":56926,"denominazione_corrente_2":"CORSO UNITA' D'ITALIA"}
+,{"codice":56944,"denominazione_corrente_2":"LARGO UNITA' D'ITALIA"}
+,{"codice":56953,"denominazione_corrente_2":"PIAZZETTA UNIVERSITA' DEI MASTRI MINUSIERI"}
+,{"codice":56962,"denominazione_corrente_2":"VIA URBINO"}
+,{"codice":56980,"denominazione_corrente_2":"VIA LEOPOLDO USSEGLIO"}
+,{"codice":57002,"denominazione_corrente_2":"VIA VADO"}
+,{"codice":57024,"denominazione_corrente_2":"VIA VAGNONE"}
+,{"codice":57046,"denominazione_corrente_2":"VIA VAL DELLA TORRE"}
+,{"codice":57080,"denominazione_corrente_2":"VIA VAL LAGARINA"}
+,{"codice":57123,"denominazione_corrente_2":"STRADA VAL PATTONERA"}
+,{"codice":57420,"denominazione_corrente_2":"STRADA VAL S. MARTINO SUPERIORE"}
+,{"codice":57521,"denominazione_corrente_2":"STRADA VAL S. MARTINO"}
+,{"codice":57585,"denominazione_corrente_2":"STRADA VAL SALICE"}
+,{"codice":57761,"denominazione_corrente_2":"VIA VALDENGO"}
+,{"codice":57783,"denominazione_corrente_2":"VIA VALDIERI"}
+,{"codice":57806,"denominazione_corrente_2":"CORSO VALDOCCO"}
+,{"codice":57824,"denominazione_corrente_2":"VIA VALEGGIO"}
+,{"codice":57842,"denominazione_corrente_2":"PARCO VALENTINO"}
+,{"codice":57860,"denominazione_corrente_2":"VIA FRANCESCO VALENTINO"}
+,{"codice":57882,"denominazione_corrente_2":"VIA VALENZA"}
+,{"codice":57907,"denominazione_corrente_2":"VIA LORENZO VALERIO"}
+,{"codice":57925,"denominazione_corrente_2":"VIA VALFENERA"}
+,{"codice":57961,"denominazione_corrente_2":"VIA BEATO SEBASTIANO VALFRE'"}
+,{"codice":57981,"denominazione_corrente_2":"VIA VALGIOIE"}
+,{"codice":58003,"denominazione_corrente_2":"LARGO VALGIOIE"}
+,{"codice":58069,"denominazione_corrente_2":"VIA VALLARSA"}
+,{"codice":58081,"denominazione_corrente_2":"VIA TOMMASO VALLAURI"}
+,{"codice":58102,"denominazione_corrente_2":"STRADA DELLA VALLE DEI POMI"}
+,{"codice":58124,"denominazione_corrente_2":"VIA VALLE STRETTA"}
+,{"codice":58146,"denominazione_corrente_2":"VIA VALERIO VALLERO"}
+,{"codice":58168,"denominazione_corrente_2":"STRADA DELLE VALLETTE"}
+,{"codice":58180,"denominazione_corrente_2":"VIA CALUSO VALPERGA"}
+,{"codice":58201,"denominazione_corrente_2":"GIARDINO CESARE VALPERGA DI MASINO"}
+,{"codice":58223,"denominazione_corrente_2":"STRADA DI VALPIANA"}
+,{"codice":58245,"denominazione_corrente_2":"VIA VALPRATO"}
+,{"codice":58267,"denominazione_corrente_2":"VIA VALSUGANA"}
+,{"codice":58289,"denominazione_corrente_2":"VICOLO VALTORTA"}
+,{"codice":58300,"denominazione_corrente_2":"VIA VANCHIGLIA"}
+,{"codice":58322,"denominazione_corrente_2":"VIA VANDALINO"}
+,{"codice":58443,"denominazione_corrente_2":"VIA GIUSEPPE VANINETTI"}
+,{"codice":58454,"denominazione_corrente_2":"GIARDINO PIETRO IL PERUGINO VANNUCCI"}
+,{"codice":54780,"denominazione_corrente_2":"VIA PIETRO THERMIGNON"}
+,{"codice":54809,"denominazione_corrente_2":"VIA CONTE EMANUELE THESAURO"}
+,{"codice":54827,"denominazione_corrente_2":"VIA THONON"}
+,{"codice":54845,"denominazione_corrente_2":"VIA PIETRO THOUAR"}
+,{"codice":54863,"denominazione_corrente_2":"VIALE ENRICO THOVEZ"}
+,{"codice":54946,"denominazione_corrente_2":"VIA THURES"}
+,{"codice":54955,"denominazione_corrente_2":"VIA PELLEGRINO TIBALDI"}
+,{"codice":54964,"denominazione_corrente_2":"VIA DOMENICO TIBONE"}
+,{"codice":54982,"denominazione_corrente_2":"VIA TICINETO"}
+,{"codice":55000,"denominazione_corrente_2":"VIA TICINO"}
+,{"codice":55044,"denominazione_corrente_2":"VIA G. BATTISTA TIEPOLO"}
+,{"codice":55066,"denominazione_corrente_2":"VIA DEI TIGLI"}
+,{"codice":55088,"denominazione_corrente_2":"VIA TIMAVO"}
+,{"codice":55101,"denominazione_corrente_2":"VIA GIUSEPPE TIMERMANS"}
+,{"codice":55110,"denominazione_corrente_2":"VIA TINTORETTO"}
+,{"codice":55121,"denominazione_corrente_2":"VIA GEROLAMO TIRABOSCHI"}
+,{"codice":55143,"denominazione_corrente_2":"VIA TIRRENO"}
+,{"codice":55165,"denominazione_corrente_2":"LARGO TIRRENO"}
+,{"codice":55220,"denominazione_corrente_2":"VIA TIZIANO VECELLIO"}
+,{"codice":55242,"denominazione_corrente_2":"VIA TOCE"}
+,{"codice":55264,"denominazione_corrente_2":"VIA TOFANE"}
+,{"codice":55286,"denominazione_corrente_2":"VIA PALMIRO TOGLIATTI"}
+,{"codice":55303,"denominazione_corrente_2":"VIA TOLLEGNO"}
+,{"codice":55321,"denominazione_corrente_2":"VIA TOLMINO"}
+,{"codice":55385,"denominazione_corrente_2":"VIA NICOLO' TOMMASEO"}
+,{"codice":55404,"denominazione_corrente_2":"VIA TONALE"}
+,{"codice":55422,"denominazione_corrente_2":"VIA TONCO"}
+,{"codice":55440,"denominazione_corrente_2":"VIA MICHELANGELO TONELLO"}
+,{"codice":55462,"denominazione_corrente_2":"VIA TORRAZZA PIEMONTE"}
+,{"codice":55473,"denominazione_corrente_2":"VIA TORRE PELLICE"}
+,{"codice":55484,"denominazione_corrente_2":"VIA TORRICELLI EVANGELISTA"}
+,{"codice":55505,"denominazione_corrente_2":"CORSO TORTONA"}
+,{"codice":55523,"denominazione_corrente_2":"CORSO TOSCANA"}
+,{"codice":55541,"denominazione_corrente_2":"LARGO TOSCANA"}
+,{"codice":55743,"denominazione_corrente_2":"VIA ARTURO TOSCANINI"}
+,{"codice":55761,"denominazione_corrente_2":"PIAZZA GIOVANNI TOSELLI"}
+,{"codice":55781,"denominazione_corrente_2":"VIA PIETRO TOSELLI"}
+,{"codice":55808,"denominazione_corrente_2":"PIAZZA ENRICO TOTI"}
+,{"codice":55844,"denominazione_corrente_2":"STRADA AL TRAFORO DI PINO"}
+,{"codice":55927,"denominazione_corrente_2":"CORSO TRAIANO"}
+,{"codice":56067,"denominazione_corrente_2":"VIA TRANA"}
+,{"codice":56089,"denominazione_corrente_2":"CORSO TRAPANI"}
+,{"codice":56090,"denominazione_corrente_2":"CORSO TRATTATI DI ROMA"}
+,{"codice":56122,"denominazione_corrente_2":"STRADA DELLE TRAVERSE"}
+,{"codice":56144,"denominazione_corrente_2":"VIA TRAVERSELLA"}
+,{"codice":56166,"denominazione_corrente_2":"VIA TRAVES"}
+,{"codice":56188,"denominazione_corrente_2":"VIA TRE GALLINE"}
+,{"codice":56201,"denominazione_corrente_2":"VIA TRECATE"}
+,{"codice":56221,"denominazione_corrente_2":"CORSO TRENTO"}
+,{"codice":56243,"denominazione_corrente_2":"VIA TREVISO"}
+,{"codice":56265,"denominazione_corrente_2":"CORSO TRIESTE"}
+,{"codice":56287,"denominazione_corrente_2":"VIA DELLE TRINCEE"}
+,{"codice":56320,"denominazione_corrente_2":"VIA TRINITA'"}
+,{"codice":56342,"denominazione_corrente_2":"VIA TRINO"}
+,{"codice":56364,"denominazione_corrente_2":"VIA TRIPOLI"}
+,{"codice":56441,"denominazione_corrente_2":"VIA TRIVERO"}
+,{"codice":56463,"denominazione_corrente_2":"VIA TROFARELLO"}
+,{"codice":56485,"denominazione_corrente_2":"VIA TRONZANO"}
+,{"codice":56504,"denominazione_corrente_2":"VIA VINCENZO TROYA"}
+,{"codice":53103,"denominazione_corrente_2":"PIAZZA STATUTO"}
+,{"codice":53121,"denominazione_corrente_2":"VIA VINCENZO STEFFENONE"}
+,{"codice":53141,"denominazione_corrente_2":"VIA STELLONE"}
+,{"codice":53163,"denominazione_corrente_2":"VIA STELVIO"}
+,{"codice":53185,"denominazione_corrente_2":"VIA ANTONIO STOPPANI"}
+,{"codice":53204,"denominazione_corrente_2":"VIA STRADELLA"}
+,{"codice":53222,"denominazione_corrente_2":"LARGO STRADELLA"}
+,{"codice":53305,"denominazione_corrente_2":"VIA STRAMBINO"}
+,{"codice":53323,"denominazione_corrente_2":"VIA STRESA"}
+,{"codice":53341,"denominazione_corrente_2":"VIA STRONA"}
+,{"codice":53350,"denominazione_corrente_2":"CORSO DON LUIGI STURZO"}
+,{"codice":53361,"denominazione_corrente_2":"GALLERIA SUBALPINA"}
+,{"codice":53383,"denominazione_corrente_2":"VIA SUSA"}
+,{"codice":53424,"denominazione_corrente_2":"CORSO SVIZZERA"}
+,{"codice":53460,"denominazione_corrente_2":"VIA ODOARDO TABACCHI"}
+,{"codice":53482,"denominazione_corrente_2":"LARGO ODOARDO TABACCHI"}
+,{"codice":53525,"denominazione_corrente_2":"STRADA DEI TADINI"}
+,{"codice":53626,"denominazione_corrente_2":"VIA TAGGIA"}
+,{"codice":53662,"denominazione_corrente_2":"VIA CESARE TALLONE"}
+,{"codice":53680,"denominazione_corrente_2":"VIA GIUSEPPE TALUCCHI"}
+,{"codice":53691,"denominazione_corrente_2":"VIA FRANCESCO TAMAGNO"}
+,{"codice":53709,"denominazione_corrente_2":"VIA TANARO"}
+,{"codice":53727,"denominazione_corrente_2":"CORSO TARANTO"}
+,{"codice":53929,"denominazione_corrente_2":"VIA SEBASTIANO TARICCO"}
+,{"codice":53947,"denominazione_corrente_2":"VIA LUIGI TARINO"}
+,{"codice":53965,"denominazione_corrente_2":"VIA GIUSEPPE TARTINI"}
+,{"codice":54001,"denominazione_corrente_2":"VIA TARVISIO"}
+,{"codice":54010,"denominazione_corrente_2":"VIA ANGELO TASCA"}
+,{"codice":54021,"denominazione_corrente_2":"VIA TORQUATO TASSO"}
+,{"codice":54043,"denominazione_corrente_2":"CORSO ALESSANDRO TASSONI"}
+,{"codice":54102,"denominazione_corrente_2":"CORSO ENRICO TAZZOLI"}
+,{"codice":54186,"denominazione_corrente_2":"CORSO BERNARDINO TELESIO"}
+,{"codice":54197,"denominazione_corrente_2":"VIA STEFANO TEMPIA"}
+,{"codice":54241,"denominazione_corrente_2":"VIA TEMPIO PAUSANIA"}
+,{"codice":54285,"denominazione_corrente_2":"VIA TENDA"}
+,{"codice":54304,"denominazione_corrente_2":"VIA CARLO TENIVELLI"}
+,{"codice":54340,"denominazione_corrente_2":"VIA FRATEL TEODORETO"}
+,{"codice":54405,"denominazione_corrente_2":"VIA TEPICE"}
+,{"codice":54423,"denominazione_corrente_2":"VIA TERAMO"}
+,{"codice":54441,"denominazione_corrente_2":"STRADA DEL TERMO FORA'"}
+,{"codice":54461,"denominazione_corrente_2":"VIA TERNENGO"}
+,{"codice":54483,"denominazione_corrente_2":"VIA TERNI"}
+,{"codice":54494,"denominazione_corrente_2":"VIA GIOVANNI TOMMASO TERRANEO"}
+,{"codice":54506,"denominazione_corrente_2":"STRADA DELLE TERRAZZE"}
+,{"codice":54560,"denominazione_corrente_2":"VIA TESSO"}
+,{"codice":54582,"denominazione_corrente_2":"VIA FULVIO TESTI"}
+,{"codice":54607,"denominazione_corrente_2":"VIA TESTONA"}
+,{"codice":54625,"denominazione_corrente_2":"STRADA DEI TETTI BERTOGLIO"}
+,{"codice":54643,"denominazione_corrente_2":"STRADA AI TETTI GARIGLIO"}
+,{"codice":54661,"denominazione_corrente_2":"STRADA DEI TETTI GRAMAGLIA"}
+,{"codice":54681,"denominazione_corrente_2":"STRADA AI TETTI ROCCO"}
+,{"codice":54708,"denominazione_corrente_2":"STRADA DEI TETTI ROVEI"}
+,{"codice":54726,"denominazione_corrente_2":"STRADA DEI TETTI RUBINO"}
+,{"codice":54762,"denominazione_corrente_2":"VIALE PAOLO THAON DI REVEL"}
+,{"codice":53086,"denominazione_corrente_2":"CORSO STATI UNITI"}
+,{"codice":51619,"denominazione_corrente_2":"VIA GIUDITTA SIDOLI"}
+,{"codice":51628,"denominazione_corrente_2":"LUNGO DORA SIENA"}
+,{"codice":51646,"denominazione_corrente_2":"VIA LUCA SIGNORELLI"}
+,{"codice":51664,"denominazione_corrente_2":"VIA TELEMACO SIGNORINI"}
+,{"codice":51682,"denominazione_corrente_2":"VIA RICCARDO SINEO"}
+,{"codice":51747,"denominazione_corrente_2":"VIA LEONE SINIGAGLIA"}
+,{"codice":51756,"denominazione_corrente_2":"PIAZZOLA LEONE SINIGAGLIA"}
+,{"codice":51765,"denominazione_corrente_2":"CORSO SIRACUSA"}
+,{"codice":51820,"denominazione_corrente_2":"VIA GIUSEPPE SIRTORI"}
+,{"codice":51866,"denominazione_corrente_2":"VIA ANGELO SISMONDA"}
+,{"codice":51921,"denominazione_corrente_2":"VIA SCIPIO SLATAPER"}
+,{"codice":51949,"denominazione_corrente_2":"VIA SOANA"}
+,{"codice":51967,"denominazione_corrente_2":"VIA ASCANIO SOBRERO"}
+,{"codice":51985,"denominazione_corrente_2":"PIAZZA SOFIA"}
+,{"codice":52003,"denominazione_corrente_2":"VIA GIOELE SOLARI"}
+,{"codice":52021,"denominazione_corrente_2":"VIA PAOLO SOLAROLI DI BRIONA"}
+,{"codice":52030,"denominazione_corrente_2":"VIA MARIO SOLDATI"}
+,{"codice":52041,"denominazione_corrente_2":"VIA MARCELLO SOLERI"}
+,{"codice":52063,"denominazione_corrente_2":"VIA SOLERO"}
+,{"codice":52085,"denominazione_corrente_2":"PIAZZA SOLFERINO"}
+,{"codice":52104,"denominazione_corrente_2":"VIA SOMALIA"}
+,{"codice":52162,"denominazione_corrente_2":"VIA GIOVANNI SOMIS"}
+,{"codice":52184,"denominazione_corrente_2":"VIA SOMMACAMPAGNA"}
+,{"codice":52205,"denominazione_corrente_2":"VIA SOMMARIVA"}
+,{"codice":52223,"denominazione_corrente_2":"CORSO GERMANO SOMMEILLER"}
+,{"codice":52241,"denominazione_corrente_2":"VIA SONDRIO"}
+,{"codice":52261,"denominazione_corrente_2":"STRADA ALLA PARROCCHIA DI SOPERGA"}
+,{"codice":52283,"denominazione_corrente_2":"STRADA DELLA BASILICA DI SOPERGA"}
+,{"codice":52306,"denominazione_corrente_2":"STRADA DELLA FUNICOLARE DI SOPERGA"}
+,{"codice":52324,"denominazione_corrente_2":"STRADA DI SOPERGA"}
+,{"codice":52342,"denominazione_corrente_2":"STRADA ALLA FUNICOLARE DI SOPERGA"}
+,{"codice":52461,"denominazione_corrente_2":"VIA SORDEVOLO"}
+,{"codice":52481,"denominazione_corrente_2":"VIA SOSPELLO"}
+,{"codice":52627,"denominazione_corrente_2":"VIA SOSTEGNO"}
+,{"codice":52636,"denominazione_corrente_2":"SOTTOPASSAGGIO MICHELE LANZA"}
+,{"codice":52663,"denominazione_corrente_2":"VIA SPALATO"}
+,{"codice":52681,"denominazione_corrente_2":"VIA LAZZARO SPALLANZANI"}
+,{"codice":52700,"denominazione_corrente_2":"VIA GIOVANNI SPANO"}
+,{"codice":52782,"denominazione_corrente_2":"VIA MARTINO SPANZOTTI"}
+,{"codice":52801,"denominazione_corrente_2":"VIA SPARONE"}
+,{"codice":52829,"denominazione_corrente_2":"VIA BERTRANDO SPAVENTA"}
+,{"codice":52847,"denominazione_corrente_2":"VIA LUIGI SPAZZAPAN"}
+,{"codice":52865,"denominazione_corrente_2":"VIA TITO SPERI"}
+,{"codice":52883,"denominazione_corrente_2":"VIA CASIMIRO SPERINO"}
+,{"codice":52902,"denominazione_corrente_2":"CORSO SPEZIA"}
+,{"codice":52920,"denominazione_corrente_2":"VIA SPOLETO"}
+,{"codice":52948,"denominazione_corrente_2":"VIA GASPARE SPONTINI"}
+,{"codice":52966,"denominazione_corrente_2":"VIA SPOTORNO"}
+,{"codice":52984,"denominazione_corrente_2":"VIA STAFFARDA"}
+,{"codice":52993,"denominazione_corrente_2":"VIA GASPARA STAMPA"}
+,{"codice":53002,"denominazione_corrente_2":"PIAZZA STAMPALIA"}
+,{"codice":53020,"denominazione_corrente_2":"VIA STAMPATORI"}
+,{"codice":53042,"denominazione_corrente_2":"PIAZZA STAMPATORI"}
+,{"codice":53064,"denominazione_corrente_2":"VIA ETTORE STAMPINI"}
+,{"codice":50292,"denominazione_corrente_2":"GIARDINO GIUSEPPE SARAGAT"}
+,{"codice":50308,"denominazione_corrente_2":"LUNGO PO SARDEGNA"}
+,{"codice":50326,"denominazione_corrente_2":"VIA PAOLO SARPI"}
+,{"codice":50362,"denominazione_corrente_2":"VIA SARRE"}
+,{"codice":50380,"denominazione_corrente_2":"VIA SASSARI"}
+,{"codice":50409,"denominazione_corrente_2":"GIARDINO SASSARI"}
+,{"codice":50427,"denominazione_corrente_2":"STRADA DI SASSI"}
+,{"codice":50481,"denominazione_corrente_2":"PIAZZA NAZARIO SAURO"}
+,{"codice":50500,"denominazione_corrente_2":"VIA SAVIGLIANO"}
+,{"codice":50528,"denominazione_corrente_2":"VIA SAVIO FRATELLI"}
+,{"codice":50546,"denominazione_corrente_2":"PIAZZA SAVOIA"}
+,{"codice":50564,"denominazione_corrente_2":"LUNGO DORA SAVONA"}
+,{"codice":50582,"denominazione_corrente_2":"VIA GEROLAMO SAVONAROLA"}
+,{"codice":50591,"denominazione_corrente_2":"GIARDINO VITO SCAFIDI"}
+,{"codice":50601,"denominazione_corrente_2":"VIA SCALENGHE"}
+,{"codice":50629,"denominazione_corrente_2":"VIA GIOVANNI BATTISTA SCAPACINO"}
+,{"codice":50647,"denominazione_corrente_2":"STRADA SCARAFIOTTI"}
+,{"codice":50720,"denominazione_corrente_2":"VIA ALESSANDRO SCARLATTI"}
+,{"codice":50748,"denominazione_corrente_2":"VIA ANGELO SCARSELLINI"}
+,{"codice":50784,"denominazione_corrente_2":"PIAZZA MUZIO SCEVOLA"}
+,{"codice":50803,"denominazione_corrente_2":"VIA G. SCHIAPPARELLI"}
+,{"codice":50821,"denominazione_corrente_2":"GIARDINO G. SCHIAPPARELLI"}
+,{"codice":50849,"denominazione_corrente_2":"VIA MICHELE SCHINA"}
+,{"codice":50867,"denominazione_corrente_2":"VIA SCHIO"}
+,{"codice":50876,"denominazione_corrente_2":"VIA ANTONIO E VITTORIO SCIALOJA"}
+,{"codice":50885,"denominazione_corrente_2":"VIA SCIOLZE"}
+,{"codice":50904,"denominazione_corrente_2":"PIAZZA SCIPIONE L'AFRICANO"}
+,{"codice":50913,"denominazione_corrente_2":"VIA GAETANO SCIREA"}
+,{"codice":50922,"denominazione_corrente_2":"CORSO FEDERICO SCLOPIS"}
+,{"codice":50931,"denominazione_corrente_2":"VIA ROCCO SCOTELLARO"}
+,{"codice":50940,"denominazione_corrente_2":"VIA SCRIVIA"}
+,{"codice":50968,"denominazione_corrente_2":"CORSO SEBASTOPOLI"}
+,{"codice":50977,"denominazione_corrente_2":"PIAZZA GUIDO SECRETO"}
+,{"codice":51022,"denominazione_corrente_2":"VIA GIOVANNI SEGANTINI"}
+,{"codice":51040,"denominazione_corrente_2":"VIA CORRADO SEGRE"}
+,{"codice":51062,"denominazione_corrente_2":"VIA CATERINA SEGURANA"}
+,{"codice":51084,"denominazione_corrente_2":"STRADA ALLE SEI VILLE"}
+,{"codice":51105,"denominazione_corrente_2":"CORSO QUINTINO SELLA"}
+,{"codice":51123,"denominazione_corrente_2":"VIA SEMPIONE"}
+,{"codice":51141,"denominazione_corrente_2":"LARGO SEMPIONE"}
+,{"codice":51183,"denominazione_corrente_2":"VIALE SENECA"}
+,{"codice":51206,"denominazione_corrente_2":"SENZA FISSA DIMORA"}
+,{"codice":51215,"denominazione_corrente_2":"VIA MATILDE SERAO"}
+,{"codice":51224,"denominazione_corrente_2":"VIA SERRANO"}
+,{"codice":51242,"denominazione_corrente_2":"VIA GIOVANNI SERVAIS"}
+,{"codice":51325,"denominazione_corrente_2":"VIA SESIA"}
+,{"codice":51343,"denominazione_corrente_2":"VIA SESTRIERE"}
+,{"codice":51361,"denominazione_corrente_2":"VIA SETTE COMUNI"}
+,{"codice":51381,"denominazione_corrente_2":"CORSO LUIGI SETTEMBRINI"}
+,{"codice":51408,"denominazione_corrente_2":"STRADA DI SETTIMO"}
+,{"codice":51545,"denominazione_corrente_2":"VIALE SETTIMIO SEVERO"}
+,{"codice":51563,"denominazione_corrente_2":"VIA SFORZESCA"}
+,{"codice":51581,"denominazione_corrente_2":"CORSO GIUSEPPE SICCARDI"}
+,{"codice":51600,"denominazione_corrente_2":"CORSO SICILIA"}
+,{"codice":48763,"denominazione_corrente_2":"VIA S. RAFFAELE"}
+,{"codice":48785,"denominazione_corrente_2":"VIA SANREMO"}
+,{"codice":48822,"denominazione_corrente_2":"PIAZZA S. RITA DA CASCIA"}
+,{"codice":48840,"denominazione_corrente_2":"VIA S. ROCCHETTO"}
+,{"codice":48862,"denominazione_corrente_2":"VIA S. ROCCO"}
+,{"codice":48884,"denominazione_corrente_2":"VIA S. SEBASTIANO PO"}
+,{"codice":48905,"denominazione_corrente_2":"VIA S. SECONDO"}
+,{"codice":48923,"denominazione_corrente_2":"PIAZZA S. SECONDO"}
+,{"codice":48961,"denominazione_corrente_2":"VIA S. SIMONE"}
+,{"codice":48983,"denominazione_corrente_2":"VIA S. TERESA"}
+,{"codice":49005,"denominazione_corrente_2":"PIAZZETTA S. TERESA"}
+,{"codice":49027,"denominazione_corrente_2":"VIA S. TOMMASO"}
+,{"codice":49049,"denominazione_corrente_2":"STRADA S. VINCENZO"}
+,{"codice":49083,"denominazione_corrente_2":"STRADA ANTICA DI S. VITO"}
+,{"codice":49104,"denominazione_corrente_2":"STRADA OSPEDALE S. VITO"}
+,{"codice":49126,"denominazione_corrente_2":"STRADA S. VITO REVIGLIASCO"}
+,{"codice":49203,"denominazione_corrente_2":"VIA SABAUDIA"}
+,{"codice":49225,"denominazione_corrente_2":"PIAZZA SABOTINO"}
+,{"codice":49247,"denominazione_corrente_2":"VIA GASPARE SACCARELLI"}
+,{"codice":49269,"denominazione_corrente_2":"VIA PAOLO SACCHI"}
+,{"codice":49270,"denominazione_corrente_2":"CORSO SACCO E VANZETTI"}
+,{"codice":49281,"denominazione_corrente_2":"STRADA DELLA SAFFARONA"}
+,{"codice":49302,"denominazione_corrente_2":"VIA AURELIO SAFFI"}
+,{"codice":49324,"denominazione_corrente_2":"VIA SAGLIANO MICCA"}
+,{"codice":49346,"denominazione_corrente_2":"VIA SAGRA DI S. MICHELE"}
+,{"codice":49368,"denominazione_corrente_2":"VIA SAINT-BON"}
+,{"codice":49380,"denominazione_corrente_2":"VIA SALASSA"}
+,{"codice":49401,"denominazione_corrente_2":"VIA SALBERTRAND"}
+,{"codice":49467,"denominazione_corrente_2":"VIA SALERNO"}
+,{"codice":49478,"denominazione_corrente_2":"GIARDINO FRANCESCO SALERNO"}
+,{"codice":49489,"denominazione_corrente_2":"VIA EMILIO SALGARI"}
+,{"codice":49500,"denominazione_corrente_2":"VIA SALICETO"}
+,{"codice":49522,"denominazione_corrente_2":"STRADA DEL SALINO"}
+,{"codice":49544,"denominazione_corrente_2":"VIA SALUGGIA"}
+,{"codice":49566,"denominazione_corrente_2":"VIA SALUZZO"}
+,{"codice":49577,"denominazione_corrente_2":"VIA SALVANESCHI NINO"}
+,{"codice":49588,"denominazione_corrente_2":"LARGO SALUZZO"}
+,{"codice":49621,"denominazione_corrente_2":"CORSO GAETANO SALVEMINI"}
+,{"codice":49687,"denominazione_corrente_2":"VIA TOMMASO SALVINI"}
+,{"codice":49702,"denominazione_corrente_2":"VIA SAMONE"}
+,{"codice":49711,"denominazione_corrente_2":"PIAZZA SANTI APOSTOLI"}
+,{"codice":49720,"denominazione_corrente_2":"VIA SANDIGLIANO"}
+,{"codice":49742,"denominazione_corrente_2":"VIA SANFRONT"}
+,{"codice":49764,"denominazione_corrente_2":"VIA SANGANO"}
+,{"codice":49786,"denominazione_corrente_2":"VIA ANDREA SANSOVINO"}
+,{"codice":50041,"denominazione_corrente_2":"VIA ANTONIO SANT'ELIA"}
+,{"codice":50061,"denominazione_corrente_2":"VIA LUIGI SANTAGATA"}
+,{"codice":50106,"denominazione_corrente_2":"VIA PIETRO SANTAROSA"}
+,{"codice":50124,"denominazione_corrente_2":"VIA SANTORRE SANTAROSA"}
+,{"codice":50142,"denominazione_corrente_2":"VIA SANTENA"}
+,{"codice":50160,"denominazione_corrente_2":"VIA SANTHIA'"}
+,{"codice":50182,"denominazione_corrente_2":"VIA SAORGIO"}
+,{"codice":50207,"denominazione_corrente_2":"VIA GIUSEPPE SAPETO"}
+,{"codice":50225,"denominazione_corrente_2":"VIA SAPPONE"}
+,{"codice":50243,"denominazione_corrente_2":"VIA SAPRI"}
+,{"codice":50281,"denominazione_corrente_2":"CORSO GIUSEPPE SARACCO"}
+,{"codice":47201,"denominazione_corrente_2":"VIA RUFFINI FRATELLI"}
+,{"codice":47223,"denominazione_corrente_2":"PARCO FRANCESCO RUFFINI"}
+,{"codice":47245,"denominazione_corrente_2":"VIA MICHELANGELO RULFI"}
+,{"codice":47300,"denominazione_corrente_2":"VIA S. AGOSTINO"}
+,{"codice":47322,"denominazione_corrente_2":"VIA S. AMBROGIO"}
+,{"codice":47366,"denominazione_corrente_2":"STRADA S. ANNA"}
+,{"codice":47487,"denominazione_corrente_2":"VIA S. ANSELMO"}
+,{"codice":47502,"denominazione_corrente_2":"VIA S. ANTONINO"}
+,{"codice":47520,"denominazione_corrente_2":"VIA S. ANTONIO DA PADOVA"}
+,{"codice":47531,"denominazione_corrente_2":"PIAZZALE S. BENEDETTO"}
+,{"codice":47542,"denominazione_corrente_2":"VIA S. BENIGNO"}
+,{"codice":47564,"denominazione_corrente_2":"VIA S. BERNARDINO"}
+,{"codice":47575,"denominazione_corrente_2":"VIA DE LELLIS S. CAMILLO"}
+,{"codice":47586,"denominazione_corrente_2":"PIAZZA S. CARLO"}
+,{"codice":47603,"denominazione_corrente_2":"VIA S. CHIARA"}
+,{"codice":47621,"denominazione_corrente_2":"VIA S. CROCE"}
+,{"codice":47641,"denominazione_corrente_2":"VIA S. DALMAZZO"}
+,{"codice":47663,"denominazione_corrente_2":"VIA S. DOMENICO"}
+,{"codice":47685,"denominazione_corrente_2":"GIARDINO S. DOMENICO SAVIO"}
+,{"codice":47704,"denominazione_corrente_2":"VIA S. DONATO"}
+,{"codice":47722,"denominazione_corrente_2":"GALLERIA S. FEDERICO"}
+,{"codice":47740,"denominazione_corrente_2":"VIA S. FERMO"}
+,{"codice":47762,"denominazione_corrente_2":"VIA S. FRANCESCO D'ASSISI"}
+,{"codice":47805,"denominazione_corrente_2":"VIA S. FRANCESCO DA PAOLA"}
+,{"codice":47823,"denominazione_corrente_2":"PIAZZALE S. GABRIELE DI GORIZIA"}
+,{"codice":47841,"denominazione_corrente_2":"VIA S. GAETANO THIENE"}
+,{"codice":47861,"denominazione_corrente_2":"VIA S. GERMANO"}
+,{"codice":47883,"denominazione_corrente_2":"VIA S. GILLIO"}
+,{"codice":47906,"denominazione_corrente_2":"VIA S. GIORGIO CANAVESE"}
+,{"codice":47924,"denominazione_corrente_2":"PIAZZA S. GIOVANNI"}
+,{"codice":47942,"denominazione_corrente_2":"VIA S. GIULIA"}
+,{"codice":47960,"denominazione_corrente_2":"PIAZZA S. GIULIA"}
+,{"codice":48004,"denominazione_corrente_2":"VICOLO S. LEONE"}
+,{"codice":48026,"denominazione_corrente_2":"VICOLO S. LORENZO"}
+,{"codice":48048,"denominazione_corrente_2":"STRADA S. LUCIA"}
+,{"codice":48060,"denominazione_corrente_2":"STRADA S. MARGHERITA"}
+,{"codice":48103,"denominazione_corrente_2":"VIA S. MARIA"}
+,{"codice":48125,"denominazione_corrente_2":"VICOLO S. MARIA"}
+,{"codice":48136,"denominazione_corrente_2":"GIARDINO S. MARIA GORETTI"}
+,{"codice":48147,"denominazione_corrente_2":"VIA S. MARIA MAZZARELLO"}
+,{"codice":48181,"denominazione_corrente_2":"VIA S. MARINO"}
+,{"codice":48246,"denominazione_corrente_2":"CORSO S. MARTINO"}
+,{"codice":48257,"denominazione_corrente_2":"VIA S. MASSIMILIANO KOLBE"}
+,{"codice":48268,"denominazione_corrente_2":"VIA S. MASSIMO"}
+,{"codice":48280,"denominazione_corrente_2":"CORSO S. MAURIZIO"}
+,{"codice":48301,"denominazione_corrente_2":"STRADA S. MAURO"}
+,{"codice":48521,"denominazione_corrente_2":"VIA S. MICHELE DEL CARSO"}
+,{"codice":48543,"denominazione_corrente_2":"VIA S. OTTAVIO"}
+,{"codice":48587,"denominazione_corrente_2":"VIA S. PANCRAZIO"}
+,{"codice":48620,"denominazione_corrente_2":"VIA S. PAOLO"}
+,{"codice":48642,"denominazione_corrente_2":"LARGO S. PAOLO"}
+,{"codice":48703,"denominazione_corrente_2":"VIA S. PIETRO IN VINCOLI"}
+,{"codice":48721,"denominazione_corrente_2":"VIA S. PIO V"}
+,{"codice":48741,"denominazione_corrente_2":"VIA S. QUINTINO"}
+,{"codice":45540,"denominazione_corrente_2":"PIAZZA DI ROBILANT CARLO"}
+,{"codice":45562,"denominazione_corrente_2":"VIA DELLE ROBINIE"}
+,{"codice":45584,"denominazione_corrente_2":"VIA DELLA ROCCA"}
+,{"codice":45605,"denominazione_corrente_2":"VIA ROCCA DE' BALDI"}
+,{"codice":45623,"denominazione_corrente_2":"VIA ROCCABRUNA"}
+,{"codice":45641,"denominazione_corrente_2":"VIA ROCCAFORTE"}
+,{"codice":45661,"denominazione_corrente_2":"VIA ALESSANDRO ROCCATI"}
+,{"codice":45683,"denominazione_corrente_2":"VIA ROCCAVIONE CONTE DI"}
+,{"codice":45724,"denominazione_corrente_2":"VIA ROCCIAMELONE"}
+,{"codice":45742,"denominazione_corrente_2":"VIA ROCHEMOLLES"}
+,{"codice":45751,"denominazione_corrente_2":"GIARDINO GIANNI RODARI"}
+,{"codice":45760,"denominazione_corrente_2":"VIA RODI"}
+,{"codice":45782,"denominazione_corrente_2":"VIA ERCOLE TOMMASO ROERO DI CORTANZE"}
+,{"codice":45807,"denominazione_corrente_2":"VIA ROLANDO"}
+,{"codice":45825,"denominazione_corrente_2":"VIA ROMA"}
+,{"codice":45843,"denominazione_corrente_2":"VIA ROMAGNANO"}
+,{"codice":45861,"denominazione_corrente_2":"VIA GIANDOMENICO ROMAGNOSI"}
+,{"codice":45881,"denominazione_corrente_2":"VIA FELICE ROMANI"}
+,{"codice":45892,"denominazione_corrente_2":"VIA GIUSEPPE ROMITA"}
+,{"codice":45908,"denominazione_corrente_2":"PIAZZALE ROMOLO E REMO"}
+,{"codice":45926,"denominazione_corrente_2":"STRADA DEI RONCHI"}
+,{"codice":45944,"denominazione_corrente_2":"STRADA DAI RONCHI AI CUNIOLI ALTI"}
+,{"codice":46101,"denominazione_corrente_2":"VIA RONDISSONE"}
+,{"codice":46123,"denominazione_corrente_2":"VIA ROPPOLO"}
+,{"codice":46145,"denominazione_corrente_2":"VIA NORBERTO ROSA"}
+,{"codice":46156,"denominazione_corrente_2":"CORSO OTTONE ROSAI"}
+,{"codice":46167,"denominazione_corrente_2":"VIA ROSARIO SANTA FE'"}
+,{"codice":46200,"denominazione_corrente_2":"VIA ROSAZZA"}
+,{"codice":46222,"denominazione_corrente_2":"VIA DELLE ROSINE"}
+,{"codice":46244,"denominazione_corrente_2":"VIA ANTONIO ROSMINI"}
+,{"codice":46266,"denominazione_corrente_2":"VIA ROSSANA"}
+,{"codice":46277,"denominazione_corrente_2":"PIAZZA CARLO E SIGISMONDO ROSSARO"}
+,{"codice":46288,"denominazione_corrente_2":"CORSO CARLO E NELLO ROSSELLI"}
+,{"codice":46464,"denominazione_corrente_2":"VIA GABRIELE ROSSETTI"}
+,{"codice":46486,"denominazione_corrente_2":"VIA ERNESTO ROSSI"}
+,{"codice":46503,"denominazione_corrente_2":"VIA LAURO ROSSI"}
+,{"codice":46521,"denominazione_corrente_2":"VIA TEOFILO CONTE DI MONTELERA ROSSI"}
+,{"codice":46604,"denominazione_corrente_2":"VIA GIOACHINO ROSSINI"}
+,{"codice":46622,"denominazione_corrente_2":"VIA MEDARDO ROSSO"}
+,{"codice":46640,"denominazione_corrente_2":"VIA ROSTA"}
+,{"codice":46651,"denominazione_corrente_2":"PIAZZA AUGUSTO ROSTAGNI"}
+,{"codice":46662,"denominazione_corrente_2":"PIAZZALE MAURO ROSTAGNO"}
+,{"codice":46673,"denominazione_corrente_2":"PIAZZETTA VITTIME DELLO STADIO HEYSEL"}
+,{"codice":46684,"denominazione_corrente_2":"VIA GIUSEPPE DI ROVASENDA"}
+,{"codice":46705,"denominazione_corrente_2":"VIA GIOVANNI ROVEDA"}
+,{"codice":47003,"denominazione_corrente_2":"VIA ROVERETO"}
+,{"codice":47047,"denominazione_corrente_2":"VIA ROVIGO"}
+,{"codice":47069,"denominazione_corrente_2":"VIA DON MICHELE RUA"}
+,{"codice":47070,"denominazione_corrente_2":"PIAZZETTA MADRE FRANCESCA RUBATTO"}
+,{"codice":47081,"denominazione_corrente_2":"VIA RUBIANA"}
+,{"codice":47102,"denominazione_corrente_2":"VIA EDOARDO RUBINO"}
+,{"codice":47180,"denominazione_corrente_2":"VIA RUEGLIO"}
+,{"codice":43982,"denominazione_corrente_2":"LARGO RE UMBERTO"}
+,{"codice":44022,"denominazione_corrente_2":"STRADA DI REAGLIE"}
+,{"codice":44044,"denominazione_corrente_2":"PIAZZETTA REALE"}
+,{"codice":44066,"denominazione_corrente_2":"VIA REANO"}
+,{"codice":44088,"denominazione_corrente_2":"PIAZZA REBAUDENGO CONTI"}
+,{"codice":44121,"denominazione_corrente_2":"VIA CESARE REDUZZI"}
+,{"codice":44143,"denominazione_corrente_2":"VIA REFRANCORE"}
+,{"codice":44264,"denominazione_corrente_2":"VIA GIUSEPPE REGALDI"}
+,{"codice":44286,"denominazione_corrente_2":"VIA REGGIO"}
+,{"codice":44303,"denominazione_corrente_2":"CORSO REGINA MARGHERITA"}
+,{"codice":44321,"denominazione_corrente_2":"PIAZZALE REGINA MARGHERITA"}
+,{"codice":44341,"denominazione_corrente_2":"CORSO REGIO PARCO"}
+,{"codice":44363,"denominazione_corrente_2":"LARGO REGIO PARCO"}
+,{"codice":44385,"denominazione_corrente_2":"VIA GUGLIELMO REISS ROMOLI"}
+,{"codice":44440,"denominazione_corrente_2":"VIA GUIDO RENI"}
+,{"codice":44561,"denominazione_corrente_2":"VIA RODOLFO RENIER"}
+,{"codice":44606,"denominazione_corrente_2":"PIAZZA DELLA REPUBBLICA"}
+,{"codice":44615,"denominazione_corrente_2":"PARCO REPUBBLICHE PARTIGIANE PIEMONTESI"}
+,{"codice":44642,"denominazione_corrente_2":"PIAZZA OTTORINO RESPIGHI"}
+,{"codice":44660,"denominazione_corrente_2":"STRADA DELLA RESSIA"}
+,{"codice":44682,"denominazione_corrente_2":"VIA OTTAVIO REVEL"}
+,{"codice":44707,"denominazione_corrente_2":"VIA REVELLO"}
+,{"codice":44743,"denominazione_corrente_2":"STRADA ANTICA DI REVIGLIASCO"}
+,{"codice":44761,"denominazione_corrente_2":"STRADA DI REVIGLIASCO"}
+,{"codice":44808,"denominazione_corrente_2":"VIA GUIDO REY"}
+,{"codice":44826,"denominazione_corrente_2":"VIA ENRICO REYCEND"}
+,{"codice":44844,"denominazione_corrente_2":"VIA CARLO REYMOND"}
+,{"codice":44862,"denominazione_corrente_2":"VIA RIBERI"}
+,{"codice":44880,"denominazione_corrente_2":"VIA GIOVANNI RIBET"}
+,{"codice":44945,"denominazione_corrente_2":"VIA RIBORDONE"}
+,{"codice":44963,"denominazione_corrente_2":"VIA RICALDONE"}
+,{"codice":44981,"denominazione_corrente_2":"VIA BETTINO RICASOLI"}
+,{"codice":45001,"denominazione_corrente_2":"VIA GIUSEPPE RICCI"}
+,{"codice":45023,"denominazione_corrente_2":"VIA CAMILLO RICCIO"}
+,{"codice":45045,"denominazione_corrente_2":"VIA PROSPERO RICHELMY"}
+,{"codice":45089,"denominazione_corrente_2":"VIA ERCOLE RICOTTI"}
+,{"codice":45100,"denominazione_corrente_2":"VIA DEL RIDOTTO"}
+,{"codice":45122,"denominazione_corrente_2":"VIA RIETI"}
+,{"codice":45166,"denominazione_corrente_2":"STRADA DEL RIGHINO"}
+,{"codice":45188,"denominazione_corrente_2":"VIA FELICE RIGNON"}
+,{"codice":45199,"denominazione_corrente_2":"VIA GIUSEPPE RIGOLA"}
+,{"codice":45201,"denominazione_corrente_2":"VIA RIMINI"}
+,{"codice":45210,"denominazione_corrente_2":"GIARDINO DON FILIPPO RINALDI"}
+,{"codice":45243,"denominazione_corrente_2":"VIA RIO DE JANEIRO"}
+,{"codice":45265,"denominazione_corrente_2":"VIA FRANCESCO RISMONDO"}
+,{"codice":45342,"denominazione_corrente_2":"PIAZZA RISORGIMENTO"}
+,{"codice":45364,"denominazione_corrente_2":"VIA ADELAIDE RISTORI"}
+,{"codice":45386,"denominazione_corrente_2":"VIA RIVA DEL GARDA"}
+,{"codice":45403,"denominazione_corrente_2":"VIA RIVALTA"}
+,{"codice":45421,"denominazione_corrente_2":"VIA RIVARA"}
+,{"codice":45441,"denominazione_corrente_2":"VIA RIVAROLO"}
+,{"codice":45463,"denominazione_corrente_2":"VIA RIVAROSSA"}
+,{"codice":45485,"denominazione_corrente_2":"PIAZZA RIVOLI"}
+,{"codice":45504,"denominazione_corrente_2":"VIA ROASIO"}
+,{"codice":45522,"denominazione_corrente_2":"VIA ROBASSOMERO"}
+,{"codice":42763,"denominazione_corrente_2":"VIA GIOVANNI PRATI"}
+,{"codice":42781,"denominazione_corrente_2":"VIA PREMUDA"}
+,{"codice":42800,"denominazione_corrente_2":"VIA MARCELLO PRESTINARI"}
+,{"codice":42828,"denominazione_corrente_2":"VIA GAETANO PREVIATI"}
+,{"codice":42846,"denominazione_corrente_2":"VIALE PRIMO MAGGIO"}
+,{"codice":42864,"denominazione_corrente_2":"VIA DELLE PRIMULE"}
+,{"codice":42983,"denominazione_corrente_2":"VIA PRINCIPE AMEDEO"}
+,{"codice":43001,"denominazione_corrente_2":"VIA PRINCIPE D'ANHALT"}
+,{"codice":43021,"denominazione_corrente_2":"CORSO PRINCIPE EUGENIO"}
+,{"codice":43043,"denominazione_corrente_2":"CORSO PRINCIPE ODDONE"}
+,{"codice":43065,"denominazione_corrente_2":"VIA PRINCIPE TOMMASO"}
+,{"codice":43087,"denominazione_corrente_2":"VIA PRINCIPESSA CLOTILDE"}
+,{"codice":43102,"denominazione_corrente_2":"VIA PRINCIPESSA FELICITA DI SAVOIA"}
+,{"codice":43142,"denominazione_corrente_2":"VIA PRINCIPI D'ACAJA"}
+,{"codice":43164,"denominazione_corrente_2":"VIA DON LORENZO PRINOTTI"}
+,{"codice":43186,"denominazione_corrente_2":"VIA CLEMENTE DAMIANO PRIOCCA"}
+,{"codice":43241,"denominazione_corrente_2":"VIA CARLO PROMIS"}
+,{"codice":43263,"denominazione_corrente_2":"STRADA DELLA PRONDA"}
+,{"codice":43384,"denominazione_corrente_2":"VIA ANDREA PROVANA"}
+,{"codice":43405,"denominazione_corrente_2":"VIA GIACOMO PUCCINI"}
+,{"codice":43423,"denominazione_corrente_2":"VIA PUGLIA"}
+,{"codice":43432,"denominazione_corrente_2":"PIAZZETTA DON GIUSEPPE PUGLISI"}
+,{"codice":43441,"denominazione_corrente_2":"VIA GAETANO PUGNANI"}
+,{"codice":43461,"denominazione_corrente_2":"VIA GIOVAN BATTISTA QUADRONE"}
+,{"codice":43483,"denominazione_corrente_2":"VIA QUARNERO"}
+,{"codice":43506,"denominazione_corrente_2":"VIA QUART"}
+,{"codice":43524,"denominazione_corrente_2":"VIA DEI QUARTIERI"}
+,{"codice":43542,"denominazione_corrente_2":"VIA QUARTO DEI MILLE"}
+,{"codice":43560,"denominazione_corrente_2":"VIA QUASSOLO"}
+,{"codice":43571,"denominazione_corrente_2":"VIA DELLE QUERCE"}
+,{"codice":43582,"denominazione_corrente_2":"VIA QUINCINETTO"}
+,{"codice":43607,"denominazione_corrente_2":"VIA QUITTENGO"}
+,{"codice":43625,"denominazione_corrente_2":"VIA PAOLO RACAGNI"}
+,{"codice":43643,"denominazione_corrente_2":"CORSO RACCONIGI"}
+,{"codice":43661,"denominazione_corrente_2":"LARGO RACCONIGI"}
+,{"codice":43762,"denominazione_corrente_2":"CORSO RAFFAELLO"}
+,{"codice":43771,"denominazione_corrente_2":"VIA ERNESTO RAGAZZONI"}
+,{"codice":43780,"denominazione_corrente_2":"VIA RAGUSA"}
+,{"codice":43791,"denominazione_corrente_2":"VIA BERNARDINO RAMAZZINI"}
+,{"codice":43809,"denominazione_corrente_2":"VIA GIOVANNI RANDACCIO"}
+,{"codice":43827,"denominazione_corrente_2":"VIA RAPALLO"}
+,{"codice":43836,"denominazione_corrente_2":"GIARDINO MARIO RAPISARDA"}
+,{"codice":43845,"denominazione_corrente_2":"VIA URBANO RATTAZZI"}
+,{"codice":43863,"denominazione_corrente_2":"GIARDINO G. RATTI"}
+,{"codice":43872,"denominazione_corrente_2":"GIARDINO PIETRO RAVA"}
+,{"codice":43881,"denominazione_corrente_2":"VIA RAVENNA"}
+,{"codice":43890,"denominazione_corrente_2":"GIARDINO CAMILLA RAVERA"}
+,{"codice":43900,"denominazione_corrente_2":"VIA AMEDEO RAVINA"}
+,{"codice":43928,"denominazione_corrente_2":"VIA ALESSANDRINA RAVIZZA"}
+,{"codice":43946,"denominazione_corrente_2":"VIA GIANFRANCESCO RE"}
+,{"codice":43955,"denominazione_corrente_2":"GIARDINO NATALE RE"}
+,{"codice":43964,"denominazione_corrente_2":"CORSO RE UMBERTO"}
+,{"codice":41041,"denominazione_corrente_2":"VIA PISA"}
+,{"codice":41063,"denominazione_corrente_2":"VIA CARLO PISACANE"}
+,{"codice":41140,"denominazione_corrente_2":"VIA ANDREA PISANO"}
+,{"codice":41162,"denominazione_corrente_2":"VIA PISCINA"}
+,{"codice":41184,"denominazione_corrente_2":"VIA PISTOIA"}
+,{"codice":41205,"denominazione_corrente_2":"PIAZZA PITAGORA"}
+,{"codice":41214,"denominazione_corrente_2":"VIA CARLO PITTARA"}
+,{"codice":41223,"denominazione_corrente_2":"VIA ITALO PIZZI"}
+,{"codice":41283,"denominazione_corrente_2":"VIA CARLO PIZZORNO"}
+,{"codice":41306,"denominazione_corrente_2":"VIA GIOVANNI PLANA"}
+,{"codice":41324,"denominazione_corrente_2":"VIA GIAN GIACOMO PLANTERI"}
+,{"codice":41342,"denominazione_corrente_2":"VIA DEI PLATANI"}
+,{"codice":41360,"denominazione_corrente_2":"VIA PLAVA"}
+,{"codice":41508,"denominazione_corrente_2":"VIA PO"}
+,{"codice":41526,"denominazione_corrente_2":"VIA PODGORA"}
+,{"codice":41544,"denominazione_corrente_2":"VIA GIOVANNI POGGIO"}
+,{"codice":41580,"denominazione_corrente_2":"VIA POIRINO"}
+,{"codice":41609,"denominazione_corrente_2":"VIA POLA"}
+,{"codice":41627,"denominazione_corrente_2":"PIAZZALE POLA"}
+,{"codice":41645,"denominazione_corrente_2":"VIA POLIZIANO"}
+,{"codice":41654,"denominazione_corrente_2":"PIAZZALE DON GIUSEPPE POLLAROLO"}
+,{"codice":41663,"denominazione_corrente_2":"VIA POLLENZO"}
+,{"codice":41700,"denominazione_corrente_2":"VIA POLLONE"}
+,{"codice":41746,"denominazione_corrente_2":"VIA MARCO POLO"}
+,{"codice":41764,"denominazione_corrente_2":"VIA POLONGHERA"}
+,{"codice":41782,"denominazione_corrente_2":"CORSO POLONIA"}
+,{"codice":41801,"denominazione_corrente_2":"PIAZZA POLONIA"}
+,{"codice":41829,"denominazione_corrente_2":"VIA CARLO POMA"}
+,{"codice":41865,"denominazione_corrente_2":"VIA POMARETTO"}
+,{"codice":41984,"denominazione_corrente_2":"VIA POMARO"}
+,{"codice":42002,"denominazione_corrente_2":"VIA GIUSEPPE POMBA"}
+,{"codice":42020,"denominazione_corrente_2":"VIA PIETRO POMPONAZZI"}
+,{"codice":42042,"denominazione_corrente_2":"VIA AMILCARE PONCHIELLI"}
+,{"codice":42064,"denominazione_corrente_2":"VIA PONDERANO"}
+,{"codice":42086,"denominazione_corrente_2":"VIA PONT"}
+,{"codice":42103,"denominazione_corrente_2":"STRADA DEL PONTE ISABELLA A S. VITO"}
+,{"codice":42141,"denominazione_corrente_2":"STRADA PONTE VERDE"}
+,{"codice":42222,"denominazione_corrente_2":"VIA MICHELE PONZA"}
+,{"codice":42240,"denominazione_corrente_2":"VIA MARIO PONZIO"}
+,{"codice":42262,"denominazione_corrente_2":"VIA PORDENONE"}
+,{"codice":42284,"denominazione_corrente_2":"VIA NICOLA PORPORA"}
+,{"codice":42341,"denominazione_corrente_2":"VIA CARLO ANTONIO PORPORATI"}
+,{"codice":42361,"denominazione_corrente_2":"VIA VINCENZO PORRI"}
+,{"codice":42383,"denominazione_corrente_2":"VIA IGNAZIO PORRO"}
+,{"codice":42406,"denominazione_corrente_2":"VIA CARLO PORTA"}
+,{"codice":42424,"denominazione_corrente_2":"VIA PORTA PALATINA"}
+,{"codice":42442,"denominazione_corrente_2":"VIA PORTOFINO"}
+,{"codice":42460,"denominazione_corrente_2":"STRADA DEL PORTONE"}
+,{"codice":42482,"denominazione_corrente_2":"VIA PORTULA"}
+,{"codice":42507,"denominazione_corrente_2":"VIA POSTUMIA"}
+,{"codice":42543,"denominazione_corrente_2":"CORSO POTENZA"}
+,{"codice":42552,"denominazione_corrente_2":"VIA TANCREDI POZZI"}
+,{"codice":42561,"denominazione_corrente_2":"VIA ANDREA POZZO"}
+,{"codice":42581,"denominazione_corrente_2":"VIA POZZO STRADA"}
+,{"codice":42592,"denominazione_corrente_2":"GIARDINO VITTORIO POZZO"}
+,{"codice":42626,"denominazione_corrente_2":"VIA PRAGELATO"}
+,{"codice":42644,"denominazione_corrente_2":"VIA PRALI"}
+,{"codice":42662,"denominazione_corrente_2":"VIA PRALUNGO"}
+,{"codice":42680,"denominazione_corrente_2":"VIA PRAMOLLO"}
+,{"codice":42745,"denominazione_corrente_2":"VIA PRAROSTINO"}
+,{"codice":39545,"denominazione_corrente_2":"VIA PUBLIO ELVIO PERTINACE"}
+,{"codice":39567,"denominazione_corrente_2":"VIA PERUGIA"}
+,{"codice":39589,"denominazione_corrente_2":"STRADA DELLA PERUSSIA"}
+,{"codice":39600,"denominazione_corrente_2":"VIA DELLE PERVINCHE"}
+,{"codice":39903,"denominazione_corrente_2":"VIA PESARO"}
+,{"codice":39921,"denominazione_corrente_2":"VIA PESCARA"}
+,{"codice":39941,"denominazione_corrente_2":"VIA BELLOM PESCAROLO"}
+,{"codice":39963,"denominazione_corrente_2":"VIA MATTEO PESCATORE"}
+,{"codice":39985,"denominazione_corrente_2":"CORSO PESCHIERA"}
+,{"codice":40062,"denominazione_corrente_2":"VIA PESSINETTO"}
+,{"codice":40084,"denominazione_corrente_2":"VIA ILARIONE PETITTI"}
+,{"codice":40105,"denominazione_corrente_2":"VIA FRANCESCO PETRARCA"}
+,{"codice":40123,"denominazione_corrente_2":"VIA ERRICO PETRELLA"}
+,{"codice":40141,"denominazione_corrente_2":"VIA POLICARPO PETROCCHI"}
+,{"codice":40161,"denominazione_corrente_2":"VIA LUIGI PETTINATI"}
+,{"codice":40183,"denominazione_corrente_2":"VIA PETTINENGO"}
+,{"codice":40206,"denominazione_corrente_2":"VIA PEVERAGNO"}
+,{"codice":40224,"denominazione_corrente_2":"VIA AMEDEO PEYRON"}
+,{"codice":40242,"denominazione_corrente_2":"PIAZZA AMEDEO PEYRON"}
+,{"codice":40251,"denominazione_corrente_2":"GIARDINO ALFREDO PEZZANA"}
+,{"codice":40260,"denominazione_corrente_2":"VIA GIACINTA PEZZANA"}
+,{"codice":40271,"denominazione_corrente_2":"VIA PIACENZA"}
+,{"codice":40282,"denominazione_corrente_2":"CORSO CARLO PIAGGIA"}
+,{"codice":40307,"denominazione_corrente_2":"VIA PIANCERI"}
+,{"codice":40316,"denominazione_corrente_2":"STRADA PIANEZZA"}
+,{"codice":40325,"denominazione_corrente_2":"VIA PIANEZZA"}
+,{"codice":40361,"denominazione_corrente_2":"VIA PIANFEI"}
+,{"codice":40381,"denominazione_corrente_2":"VIA PIAVE"}
+,{"codice":40408,"denominazione_corrente_2":"VIA GIUSEPPE PIAZZI"}
+,{"codice":40417,"denominazione_corrente_2":"PIAZZALE AMELIA PICCININI"}
+,{"codice":40426,"denominazione_corrente_2":"CORSO ALBERTO PICCO"}
+,{"codice":40509,"denominazione_corrente_2":"VIA PICO DELLA MIRANDOLA"}
+,{"codice":40527,"denominazione_corrente_2":"VIA PIEDICAVALLO"}
+,{"codice":40545,"denominazione_corrente_2":"LUNGO PO PIEMONTE"}
+,{"codice":40554,"denominazione_corrente_2":"PARCO PIEMONTE"}
+,{"codice":40563,"denominazione_corrente_2":"VIA LUIGI PIETRACQUA"}
+,{"codice":40581,"denominazione_corrente_2":"VIA PIETRO PIFFETTI"}
+,{"codice":40600,"denominazione_corrente_2":"VIA ANTONIO PIGAFETTA"}
+,{"codice":40628,"denominazione_corrente_2":"VIA ROSOLINO PILO"}
+,{"codice":40646,"denominazione_corrente_2":"VIA PINASCA"}
+,{"codice":40664,"denominazione_corrente_2":"VIA CARLO PINCHIA"}
+,{"codice":40701,"denominazione_corrente_2":"VIA IPPOLITO PINDEMONTE"}
+,{"codice":40729,"denominazione_corrente_2":"VIA PIERDIONIGI PINELLI"}
+,{"codice":40747,"denominazione_corrente_2":"VIA PINEROLO"}
+,{"codice":40765,"denominazione_corrente_2":"VIA FILIBERTO PINGONE"}
+,{"codice":40774,"denominazione_corrente_2":"VIA PININFARINA- VECCHIA"}
+,{"codice":40783,"denominazione_corrente_2":"VIA PIO VII"}
+,{"codice":40792,"denominazione_corrente_2":"VIA PAOLO PIO PERAZZO"}
+,{"codice":40802,"denominazione_corrente_2":"VIA PIOBESI"}
+,{"codice":40866,"denominazione_corrente_2":"VIA DEI PIOPPI"}
+,{"codice":40884,"denominazione_corrente_2":"VIA PIOSSASCO"}
+,{"codice":40921,"denominazione_corrente_2":"VIA PIOVA'"}
+,{"codice":40949,"denominazione_corrente_2":"VIA LUIGI PIRANDELLO"}
+,{"codice":40967,"denominazione_corrente_2":"VIA PIRANO"}
+,{"codice":40976,"denominazione_corrente_2":"GIARDINO FILIPPO PIREDDA"}
+,{"codice":41021,"denominazione_corrente_2":"VIA RAFFAELE PIRIA"}
+,{"codice":38083,"denominazione_corrente_2":"STRADA DEL PANSA"}
+,{"codice":38104,"denominazione_corrente_2":"VIA PASQUALE PAOLI"}
+,{"codice":38126,"denominazione_corrente_2":"VIA FEDERICO PAOLINI"}
+,{"codice":38148,"denominazione_corrente_2":"VIA ALESSANDRO VITTORIO PAPACINO"}
+,{"codice":38160,"denominazione_corrente_2":"VIA ALESSANDRO PARAVIA"}
+,{"codice":38182,"denominazione_corrente_2":"VIA PARELLA"}
+,{"codice":38203,"denominazione_corrente_2":"VIA PARENZO"}
+,{"codice":38302,"denominazione_corrente_2":"VIA GIUSEPPE PARINI"}
+,{"codice":38324,"denominazione_corrente_2":"VIA ANDREA PARIS"}
+,{"codice":38346,"denominazione_corrente_2":"VIA PARMA"}
+,{"codice":38357,"denominazione_corrente_2":"VIA VITTORIO PARMENTOLA"}
+,{"codice":38368,"denominazione_corrente_2":"VIA MODESTO PAROLETTI"}
+,{"codice":38379,"denominazione_corrente_2":"PIAZZALE FERRUCCIO PARRI"}
+,{"codice":38380,"denominazione_corrente_2":"VIA ALLA PARROCCHIA"}
+,{"codice":38401,"denominazione_corrente_2":"VIALE DEI PARTIGIANI"}
+,{"codice":38423,"denominazione_corrente_2":"VIA PARUZZARO"}
+,{"codice":38445,"denominazione_corrente_2":"CORSO GIOVANNI PASCOLI"}
+,{"codice":38467,"denominazione_corrente_2":"STRADA DEL PASCOLO"}
+,{"codice":38588,"denominazione_corrente_2":"PIAZZA ALBERTO PASINI"}
+,{"codice":38599,"denominazione_corrente_2":"VIA PIEMONTESI 1655 PASQUE"}
+,{"codice":38601,"denominazione_corrente_2":"VIA GIUSEPPE LUIGI PASSALACQUA"}
+,{"codice":38621,"denominazione_corrente_2":"VIA PASSO BUOLE"}
+,{"codice":38702,"denominazione_corrente_2":"VIA PASSO DEL BRENNERO"}
+,{"codice":38711,"denominazione_corrente_2":"VIA MARIO E PIER LUIGI PASSONI"}
+,{"codice":38720,"denominazione_corrente_2":"VIA LUIGI PASTEUR"}
+,{"codice":38742,"denominazione_corrente_2":"VIA PASTRENGO"}
+,{"codice":38764,"denominazione_corrente_2":"VIA FEDERICO PATETTA"}
+,{"codice":38786,"denominazione_corrente_2":"STRADA DEL PAVARINO"}
+,{"codice":38797,"denominazione_corrente_2":"VIA PAVAROLO"}
+,{"codice":38821,"denominazione_corrente_2":"VIA CESARE PAVESE"}
+,{"codice":38863,"denominazione_corrente_2":"VIA PAVIA"}
+,{"codice":38885,"denominazione_corrente_2":"VIA PAVONE"}
+,{"codice":38904,"denominazione_corrente_2":"VIA GIUSEPPE PEANO"}
+,{"codice":38913,"denominazione_corrente_2":"PARCO AURELIO PECCEI"}
+,{"codice":38922,"denominazione_corrente_2":"STRADA DI PECETTO"}
+,{"codice":38931,"denominazione_corrente_2":"GIARDINO UGO PECCHIOLI"}
+,{"codice":39040,"denominazione_corrente_2":"VIA CARLO PEDROTTI"}
+,{"codice":39062,"denominazione_corrente_2":"VIA PELLIZZA DA VOLPEDO"}
+,{"codice":39084,"denominazione_corrente_2":"STRADA DELLA PELLERINA"}
+,{"codice":39127,"denominazione_corrente_2":"VIA PELLICE"}
+,{"codice":39149,"denominazione_corrente_2":"VIA SILVIO PELLICO"}
+,{"codice":39161,"denominazione_corrente_2":"VIA DELLE PEONIE"}
+,{"codice":39183,"denominazione_corrente_2":"VIA GUGLIELMO PEPE"}
+,{"codice":39226,"denominazione_corrente_2":"VIA GIAMBATTISTA PERGOLESI"}
+,{"codice":39237,"denominazione_corrente_2":"PIAZZETTA PERLASCA GIORGIO"}
+,{"codice":39381,"denominazione_corrente_2":"VIA ALESSANDRO PERNATI DI MOMO"}
+,{"codice":39402,"denominazione_corrente_2":"VIA PEROSA"}
+,{"codice":39424,"denominazione_corrente_2":"VIA LORENZO PEROSI"}
+,{"codice":39446,"denominazione_corrente_2":"PIAZZA GIUSEPPE PEROTTI"}
+,{"codice":39468,"denominazione_corrente_2":"VIA PERRERO"}
+,{"codice":39480,"denominazione_corrente_2":"VIA EDOARDO PERRONCITO"}
+,{"codice":39501,"denominazione_corrente_2":"VIA ETTORE PERRONE"}
+,{"codice":39523,"denominazione_corrente_2":"VIA PERTENGO"}
+,{"codice":36652,"denominazione_corrente_2":"VIA ARRIGO OLIVETTI"}
+,{"codice":36663,"denominazione_corrente_2":"VIA DEGLI OLMI"}
+,{"codice":36685,"denominazione_corrente_2":"VIA OMEGNA"}
+,{"codice":36704,"denominazione_corrente_2":"PIAZZA OMERO"}
+,{"codice":36713,"denominazione_corrente_2":"GIARDINO OPERAIE DELLA FABBRICA DI SUPERGA"}
+,{"codice":36722,"denominazione_corrente_2":"CORSO ORBASSANO"}
+,{"codice":36740,"denominazione_corrente_2":"LARGO ORBASSANO"}
+,{"codice":36906,"denominazione_corrente_2":"VIA ORBETELLO"}
+,{"codice":37026,"denominazione_corrente_2":"VIA DELLE ORFANE"}
+,{"codice":37048,"denominazione_corrente_2":"VIA ALFREDO ORIANI"}
+,{"codice":37060,"denominazione_corrente_2":"VIA DON LUIGI ORIONE"}
+,{"codice":37082,"denominazione_corrente_2":"VIA ORISTANO"}
+,{"codice":37125,"denominazione_corrente_2":"VIA ORMEA"}
+,{"codice":37147,"denominazione_corrente_2":"VIA LUIGI ORNATO"}
+,{"codice":37181,"denominazione_corrente_2":"VIA ORNAVASSO"}
+,{"codice":37202,"denominazione_corrente_2":"VIA OROPA"}
+,{"codice":37246,"denominazione_corrente_2":"VIA ORSIERA"}
+,{"codice":37268,"denominazione_corrente_2":"VIA ORTA"}
+,{"codice":37280,"denominazione_corrente_2":"VIA ORVIETO"}
+,{"codice":37301,"denominazione_corrente_2":"VIA OSASCO"}
+,{"codice":37323,"denominazione_corrente_2":"VIA OSLAVIA"}
+,{"codice":37345,"denominazione_corrente_2":"VIA OSOPPO"}
+,{"codice":37367,"denominazione_corrente_2":"VIA OULX"}
+,{"codice":37389,"denominazione_corrente_2":"VIA NINO OXILIA"}
+,{"codice":37400,"denominazione_corrente_2":"VIA FEDERICO OZANAM"}
+,{"codice":37422,"denominazione_corrente_2":"VIA OZEGNA"}
+,{"codice":37444,"denominazione_corrente_2":"VIA OZIERI"}
+,{"codice":37466,"denominazione_corrente_2":"VIA GIACINTO PACCHIOTTI"}
+,{"codice":37488,"denominazione_corrente_2":"VIA GIOVANNI PACINI"}
+,{"codice":37501,"denominazione_corrente_2":"VIA ANTONIO PACINOTTI"}
+,{"codice":37521,"denominazione_corrente_2":"VIA FRANCESCO PACIOTTO"}
+,{"codice":37532,"denominazione_corrente_2":"VIA PININ PACOT"}
+,{"codice":37543,"denominazione_corrente_2":"VIA PADOVA"}
+,{"codice":37565,"denominazione_corrente_2":"VIA PAESANA"}
+,{"codice":37587,"denominazione_corrente_2":"VIA NICOLO' PAGANINI"}
+,{"codice":37602,"denominazione_corrente_2":"LARGO NICOLO' PAGANINI"}
+,{"codice":37620,"denominazione_corrente_2":"VIA MARIO PAGANO"}
+,{"codice":37642,"denominazione_corrente_2":"VIA LUIGI PAGLIANI"}
+,{"codice":37653,"denominazione_corrente_2":"PIAZZETTA DON COSTANTINO PAGLIOTTI"}
+,{"codice":37664,"denominazione_corrente_2":"VIA PAGNO"}
+,{"codice":37686,"denominazione_corrente_2":"VIA GIOVANNI PAISIELLO"}
+,{"codice":37697,"denominazione_corrente_2":"VIA GIOVANNI PALATUCCI"}
+,{"codice":37763,"denominazione_corrente_2":"VIA PALAZZO DI CITTA'"}
+,{"codice":37785,"denominazione_corrente_2":"PIAZZA PALAZZO DI CITTA'"}
+,{"codice":37804,"denominazione_corrente_2":"PIAZZA PIETRO PALEOCAPA"}
+,{"codice":37822,"denominazione_corrente_2":"CORSO PALERMO"}
+,{"codice":37840,"denominazione_corrente_2":"LARGO PALERMO"}
+,{"codice":37862,"denominazione_corrente_2":"VIA PIER LUIGI PALESTRINA"}
+,{"codice":37905,"denominazione_corrente_2":"CORSO PALESTRO"}
+,{"codice":37923,"denominazione_corrente_2":"VIA ANDREA PALLADIO"}
+,{"codice":37961,"denominazione_corrente_2":"VIA PALLANZA"}
+,{"codice":37983,"denominazione_corrente_2":"VIA GIORGIO PALLAVICINO"}
+,{"codice":38005,"denominazione_corrente_2":"VIA NATALE PALLI"}
+,{"codice":38027,"denominazione_corrente_2":"VIA LUIGI PALMA DI CESNOLA"}
+,{"codice":38049,"denominazione_corrente_2":"VIA PALMANOVA"}
+,{"codice":38061,"denominazione_corrente_2":"VIA PIETRO PALMIERI"}
+,{"codice":38072,"denominazione_corrente_2":"VIA BARNABA PANIZZA"}
+,{"codice":35301,"denominazione_corrente_2":"VIA MOTTALCIATA"}
+,{"codice":35321,"denominazione_corrente_2":"VIA MOTTARONE"}
+,{"codice":35343,"denominazione_corrente_2":"VIALE DEI MUGHETTI"}
+,{"codice":35521,"denominazione_corrente_2":"VIA LODOVICO ANTONIO MURATORI"}
+,{"codice":35541,"denominazione_corrente_2":"VIA MURAZZANO"}
+,{"codice":35552,"denominazione_corrente_2":"VIA FERDINANDO (FRED) MURAZZI DEL PO BUSCAGLIONE"}
+,{"codice":35563,"denominazione_corrente_2":"VIA MURAZZI DEL PO"}
+,{"codice":35574,"denominazione_corrente_2":"VIA GIUSEPPE (GIPO) MURAZZI DEL PO FARASSINO"}
+,{"codice":35585,"denominazione_corrente_2":"VIA MURIAGLIO"}
+,{"codice":35604,"denominazione_corrente_2":"VIA DON LEONARDO MURIALDO"}
+,{"codice":35622,"denominazione_corrente_2":"VIA MURISENGO"}
+,{"codice":35640,"denominazione_corrente_2":"STRADA MURRONI"}
+,{"codice":35662,"denominazione_corrente_2":"VIA MUSINE'"}
+,{"codice":35673,"denominazione_corrente_2":"VIA MARIA MUSSO FERRARIS"}
+,{"codice":35684,"denominazione_corrente_2":"VIA MUZZANO"}
+,{"codice":35705,"denominazione_corrente_2":"VIA CARLO ALFONSO NALLINO"}
+,{"codice":35723,"denominazione_corrente_2":"VIA GIOVANNI FRANCESCO NAPIONE"}
+,{"codice":35732,"denominazione_corrente_2":"GIARDINO CLAUDIO NAPOLEONI"}
+,{"codice":35741,"denominazione_corrente_2":"LUNGO DORA NAPOLI"}
+,{"codice":35783,"denominazione_corrente_2":"VIA NARZOLE"}
+,{"codice":35794,"denominazione_corrente_2":"VIA GIULIO NATTA"}
+,{"codice":35806,"denominazione_corrente_2":"GALLERIA NAZIONALE"}
+,{"codice":35824,"denominazione_corrente_2":"VIA VINCENZO NAZZARO"}
+,{"codice":35842,"denominazione_corrente_2":"VIA CELESTE NEGARVILLE"}
+,{"codice":35925,"denominazione_corrente_2":"PIAZZA LUIGI NEGRELLI"}
+,{"codice":35934,"denominazione_corrente_2":"VIA ADA NEGRI"}
+,{"codice":35943,"denominazione_corrente_2":"VIA NETRO"}
+,{"codice":35961,"denominazione_corrente_2":"VIA G.B. NICCOLINI"}
+,{"codice":35981,"denominazione_corrente_2":"VIA NICHELINO"}
+,{"codice":35992,"denominazione_corrente_2":"VIA FEDERICO NIETZSCHE"}
+,{"codice":36003,"denominazione_corrente_2":"VIA IPPOLITO NIEVO"}
+,{"codice":36025,"denominazione_corrente_2":"VIA COSTANTINO NIGRA"}
+,{"codice":36036,"denominazione_corrente_2":"VIA FRANCESCO SAVERIO NITTI"}
+,{"codice":36047,"denominazione_corrente_2":"VIA NIZZA"}
+,{"codice":36069,"denominazione_corrente_2":"PIAZZA NIZZA"}
+,{"codice":36168,"denominazione_corrente_2":"VIA NOASCA"}
+,{"codice":36180,"denominazione_corrente_2":"STRADA DEL NOBILE"}
+,{"codice":36191,"denominazione_corrente_2":"PIAZZA TERESA NOCE"}
+,{"codice":36289,"denominazione_corrente_2":"VIA CARLO NOE'"}
+,{"codice":36300,"denominazione_corrente_2":"VIA NOLE"}
+,{"codice":36322,"denominazione_corrente_2":"VIA NOMAGLIO"}
+,{"codice":36344,"denominazione_corrente_2":"VIA AUGUSTO NOMIS DI COSSILLA"}
+,{"codice":36366,"denominazione_corrente_2":"VIA ALBERTO NOTA"}
+,{"codice":36388,"denominazione_corrente_2":"GIARDINO GIOVANNI NOTTA"}
+,{"codice":36401,"denominazione_corrente_2":"VIA NOVALESA"}
+,{"codice":36421,"denominazione_corrente_2":"CORSO NOVARA"}
+,{"codice":36465,"denominazione_corrente_2":"VIA NOVI"}
+,{"codice":36476,"denominazione_corrente_2":"GIARDINO FERRUCCIO NOVO"}
+,{"codice":36487,"denominazione_corrente_2":"VIA NUORO"}
+,{"codice":36502,"denominazione_corrente_2":"VIA NUOVA"}
+,{"codice":36520,"denominazione_corrente_2":"VIA GUGLIELMO OBERDAN"}
+,{"codice":36586,"denominazione_corrente_2":"VIA OCCIMIANO"}
+,{"codice":36603,"denominazione_corrente_2":"VIA OGLIANICO"}
+,{"codice":36621,"denominazione_corrente_2":"VIA OLEGGIO"}
+,{"codice":36641,"denominazione_corrente_2":"VIA PIER DOMENICO OLIVERO"}
+,{"codice":34067,"denominazione_corrente_2":"VIA MONTE CENGIO"}
+,{"codice":34188,"denominazione_corrente_2":"VIA MONTE CIMONE"}
+,{"codice":34201,"denominazione_corrente_2":"VIA MONTE CORNO"}
+,{"codice":34265,"denominazione_corrente_2":"VIA MONTE CRISTALLO"}
+,{"codice":34287,"denominazione_corrente_2":"CORSO MONTE CUCCO"}
+,{"codice":34320,"denominazione_corrente_2":"VIA MONTE DI PIETA'"}
+,{"codice":34342,"denominazione_corrente_2":"CORSO MONTE GRAPPA"}
+,{"codice":34353,"denominazione_corrente_2":"CORSO MONTE LUNGO"}
+,{"codice":34364,"denominazione_corrente_2":"VIA MONTE NOVEGNO"}
+,{"codice":34403,"denominazione_corrente_2":"VIA MONTE ORTIGARA"}
+,{"codice":34421,"denominazione_corrente_2":"VIA MONTE PASUBIO"}
+,{"codice":34441,"denominazione_corrente_2":"VIA MONTE PERTICA"}
+,{"codice":34463,"denominazione_corrente_2":"VIA MONTE ROSA"}
+,{"codice":34485,"denominazione_corrente_2":"VIA MONTE SANTO"}
+,{"codice":34504,"denominazione_corrente_2":"VIA MONTE SEI BUSI"}
+,{"codice":34540,"denominazione_corrente_2":"VIA MONTE TABOR"}
+,{"codice":34562,"denominazione_corrente_2":"PIAZZA MONTE TABOR"}
+,{"codice":34584,"denominazione_corrente_2":"VIA MONTE TORARO"}
+,{"codice":34605,"denominazione_corrente_2":"VIA MONTE VALDEROA"}
+,{"codice":34623,"denominazione_corrente_2":"VIA MONTE VODICE"}
+,{"codice":34641,"denominazione_corrente_2":"VIA MONTEBELLO"}
+,{"codice":34661,"denominazione_corrente_2":"LARGO MONTEBELLO"}
+,{"codice":34683,"denominazione_corrente_2":"VIA RAIMONDO MONTECUCCOLI"}
+,{"codice":34706,"denominazione_corrente_2":"VIA MONTELLO"}
+,{"codice":34724,"denominazione_corrente_2":"VIA MONTEMAGNO"}
+,{"codice":34742,"denominazione_corrente_2":"VIA MONTE NERO"}
+,{"codice":34760,"denominazione_corrente_2":"VIA MONTEPONI"}
+,{"codice":34807,"denominazione_corrente_2":"CORSO MONTEROTONDO"}
+,{"codice":34825,"denominazione_corrente_2":"VIA MONTESOGLIO"}
+,{"codice":34843,"denominazione_corrente_2":"VIA MONTEU DA PO"}
+,{"codice":34852,"denominazione_corrente_2":"PIAZZALE MONTE DEI CAPPUCCINI"}
+,{"codice":34861,"denominazione_corrente_2":"CORSO RODOLFO MONTEVECCHIO"}
+,{"codice":34881,"denominazione_corrente_2":"VIA RODOLFO MONTEVECCHIO"}
+,{"codice":34892,"denominazione_corrente_2":"VIA CLAUDIO MONTEVERDI"}
+,{"codice":34908,"denominazione_corrente_2":"VIA MONTEVIDEO"}
+,{"codice":34962,"denominazione_corrente_2":"VIA MONTEZEMOLO"}
+,{"codice":34971,"denominazione_corrente_2":"VIALE AUGUSTO MONTI"}
+,{"codice":34980,"denominazione_corrente_2":"VIA VINCENZO MONTI"}
+,{"codice":35002,"denominazione_corrente_2":"VIA MONTIGLIO"}
+,{"codice":35013,"denominazione_corrente_2":"GIARDINO CARLO MONTU'"}
+,{"codice":35024,"denominazione_corrente_2":"VIA MONZA"}
+,{"codice":35046,"denominazione_corrente_2":"VIA MORAZZONE"}
+,{"codice":35068,"denominazione_corrente_2":"VIA DOMENICO MORELLI"}
+,{"codice":35080,"denominazione_corrente_2":"VIA MORETTA"}
+,{"codice":35101,"denominazione_corrente_2":"VIA ODDINO MORGARI"}
+,{"codice":35123,"denominazione_corrente_2":"VIA MORGHEN"}
+,{"codice":35145,"denominazione_corrente_2":"VIA GIUSEPPE MORIS"}
+,{"codice":35167,"denominazione_corrente_2":"VIA FRANCESCO MOROSINI"}
+,{"codice":35189,"denominazione_corrente_2":"VIA MOROZZO"}
+,{"codice":35200,"denominazione_corrente_2":"STRADA DEL MOROZZO"}
+,{"codice":35244,"denominazione_corrente_2":"CORSO MORTARA"}
+,{"codice":35255,"denominazione_corrente_2":"GIARDINO FRANCESCA  LAURA MORVILLO"}
+,{"codice":35266,"denominazione_corrente_2":"VIA GAETANO MOSCA"}
+,{"codice":35288,"denominazione_corrente_2":"VIA ANGELO MOSSO"}
+,{"codice":32423,"denominazione_corrente_2":"LARGO GIOVANNI MIGLIARA"}
+,{"codice":32441,"denominazione_corrente_2":"VIA VINCENZO MARIA MIGLIETTI"}
+,{"codice":32450,"denominazione_corrente_2":"VIA MASSIMO MILA"}
+,{"codice":32461,"denominazione_corrente_2":"VIA MILANO"}
+,{"codice":32506,"denominazione_corrente_2":"VIA MILAZZO"}
+,{"codice":32524,"denominazione_corrente_2":"VIA MILLAURES"}
+,{"codice":32542,"denominazione_corrente_2":"VIA DEI MILLE"}
+,{"codice":32560,"denominazione_corrente_2":"VIA MILLEFONTI"}
+,{"codice":32582,"denominazione_corrente_2":"LARGO MILLEFONTI"}
+,{"codice":32643,"denominazione_corrente_2":"VIA DOMENICO MILLELIRE"}
+,{"codice":32661,"denominazione_corrente_2":"VIALE ENRICO MILLO"}
+,{"codice":32670,"denominazione_corrente_2":"GIARDINO FRANCO MILONE"}
+,{"codice":32681,"denominazione_corrente_2":"VIA FRANCESCO MILLIO"}
+,{"codice":32708,"denominazione_corrente_2":"VIA DON GIOVANNI MINZONI"}
+,{"codice":32726,"denominazione_corrente_2":"VIA MIRABELLO"}
+,{"codice":32762,"denominazione_corrente_2":"STRADA DI MIRAFIORI"}
+,{"codice":32863,"denominazione_corrente_2":"VIA MISERICORDIA"}
+,{"codice":32872,"denominazione_corrente_2":"VIA FRANCESCO MITTONE"}
+,{"codice":32881,"denominazione_corrente_2":"VIA MOCCHIE"}
+,{"codice":32900,"denominazione_corrente_2":"VIA MODANE"}
+,{"codice":32928,"denominazione_corrente_2":"VIA MODENA"}
+,{"codice":32946,"denominazione_corrente_2":"PIAZZA GUSTAVO MODENA"}
+,{"codice":32955,"denominazione_corrente_2":"VIA AMEDEO MODIGLIANI"}
+,{"codice":32964,"denominazione_corrente_2":"VIA MOGADISCIO"}
+,{"codice":32982,"denominazione_corrente_2":"VIA GIULIA MOLINO - COLOMBINI"}
+,{"codice":33000,"denominazione_corrente_2":"STRADA DEL MOLINO DEL VILLARETTO"}
+,{"codice":33022,"denominazione_corrente_2":"CORSO MOLISE"}
+,{"codice":33044,"denominazione_corrente_2":"VIA MOLLIERES"}
+,{"codice":33055,"denominazione_corrente_2":"VIA CARLO MOLLINO"}
+,{"codice":33066,"denominazione_corrente_2":"VIA MOMBARCARO"}
+,{"codice":33088,"denominazione_corrente_2":"VIA MOMBASIGLIO"}
+,{"codice":33101,"denominazione_corrente_2":"VIA MOMPELLATO"}
+,{"codice":33110,"denominazione_corrente_2":"PIAZZA DEL MONASTERO"}
+,{"codice":33121,"denominazione_corrente_2":"VIA MONASTIR"}
+,{"codice":33165,"denominazione_corrente_2":"CORSO MONCALIERI"}
+,{"codice":33363,"denominazione_corrente_2":"VIA MONCALVO"}
+,{"codice":33385,"denominazione_corrente_2":"LARGO MONCALVO"}
+,{"codice":33404,"denominazione_corrente_2":"PIAZZA MONCENISIO"}
+,{"codice":33422,"denominazione_corrente_2":"VIA MONCRIVELLO"}
+,{"codice":33462,"denominazione_corrente_2":"VIA MONDOVI'"}
+,{"codice":33484,"denominazione_corrente_2":"VIA MONDRONE"}
+,{"codice":33505,"denominazione_corrente_2":"VIA MONESIGLIO"}
+,{"codice":33523,"denominazione_corrente_2":"VIA MONFALCONE"}
+,{"codice":33561,"denominazione_corrente_2":"VIA MONFERRATO"}
+,{"codice":33583,"denominazione_corrente_2":"VIA MONFORTE"}
+,{"codice":33606,"denominazione_corrente_2":"VIA MONGINEVRO"}
+,{"codice":33761,"denominazione_corrente_2":"VIA MONGRANDO"}
+,{"codice":33781,"denominazione_corrente_2":"STRADA MONGRENO"}
+,{"codice":33792,"denominazione_corrente_2":"PIAZZA EUGENIO MONTALE"}
+,{"codice":33808,"denominazione_corrente_2":"STRADA ALTA DI MONGRENO"}
+,{"codice":33909,"denominazione_corrente_2":"VIA MONTALENGHE"}
+,{"codice":33927,"denominazione_corrente_2":"VIA MONTALTO"}
+,{"codice":33945,"denominazione_corrente_2":"PIAZZA CARLO MONTANARI"}
+,{"codice":33963,"denominazione_corrente_2":"VIA MONTANARO"}
+,{"codice":33981,"denominazione_corrente_2":"VIA MASSIMO MONTANO"}
+,{"codice":34001,"denominazione_corrente_2":"VIA MONTE ALBERGIAN"}
+,{"codice":34023,"denominazione_corrente_2":"VIA MONTE ASOLONE"}
+,{"codice":31240,"denominazione_corrente_2":"VIA MARTINETTO"}
+,{"codice":31262,"denominazione_corrente_2":"VIA LORENZO MARTINI"}
+,{"codice":31284,"denominazione_corrente_2":"GIARDINO LUIGI MARTINI"}
+,{"codice":31295,"denominazione_corrente_2":"VIA ENRICO MARTINI MAURI"}
+,{"codice":31305,"denominazione_corrente_2":"VIA MARTINIANA"}
+,{"codice":31314,"denominazione_corrente_2":"GIARDINO MARTIRI DELLA CAMERA DEL LAVORO"}
+,{"codice":31323,"denominazione_corrente_2":"VIA MARTIRI DELLA LIBERTA'"}
+,{"codice":31341,"denominazione_corrente_2":"VIA RENATO MARTORELLI"}
+,{"codice":31361,"denominazione_corrente_2":"VIA TOMMASO MASACCIO"}
+,{"codice":31383,"denominazione_corrente_2":"VIA PIETRO MASCAGNI"}
+,{"codice":31482,"denominazione_corrente_2":"VIA MASERA"}
+,{"codice":31507,"denominazione_corrente_2":"VIA MASSA"}
+,{"codice":31525,"denominazione_corrente_2":"VIA GIUSEPPE MASSARI"}
+,{"codice":31561,"denominazione_corrente_2":"PIAZZA MASSAUA"}
+,{"codice":31581,"denominazione_corrente_2":"VIA ANDREA MASSENA"}
+,{"codice":31608,"denominazione_corrente_2":"VIA MASSERANO"}
+,{"codice":31626,"denominazione_corrente_2":"VIA MATERA"}
+,{"codice":31635,"denominazione_corrente_2":"VIA GIACOMO MATTE' TRUCCO"}
+,{"codice":31644,"denominazione_corrente_2":"CORSO GIACOMO MATTEOTTI"}
+,{"codice":31662,"denominazione_corrente_2":"VIA CARLO MATTEUCCI"}
+,{"codice":31680,"denominazione_corrente_2":"VIA MATTIE"}
+,{"codice":31709,"denominazione_corrente_2":"VIALE PIER ANDREA MATTIOLI"}
+,{"codice":31727,"denominazione_corrente_2":"PIAZZA LUIGI MATTIROLO"}
+,{"codice":31745,"denominazione_corrente_2":"VIA MAZZE'"}
+,{"codice":31763,"denominazione_corrente_2":"VIA GIUSEPPE MAZZINI"}
+,{"codice":31781,"denominazione_corrente_2":"VIALE MEDAGLIE D'ORO"}
+,{"codice":31800,"denominazione_corrente_2":"VIA MEDAIL"}
+,{"codice":31828,"denominazione_corrente_2":"VIA GIACOMO MEDICI"}
+,{"codice":31864,"denominazione_corrente_2":"CORSO MEDITERRANEO"}
+,{"codice":31882,"denominazione_corrente_2":"VIA MEINA"}
+,{"codice":31901,"denominazione_corrente_2":"STRADA DEL MEISINO"}
+,{"codice":31947,"denominazione_corrente_2":"VIA MELEZET"}
+,{"codice":31956,"denominazione_corrente_2":"PASSERELLA FRANCO MELLANO"}
+,{"codice":31965,"denominazione_corrente_2":"VIA FEDERICO MENABREA"}
+,{"codice":31974,"denominazione_corrente_2":"PARCO PIETRO PAOLO MENNEA"}
+,{"codice":31983,"denominazione_corrente_2":"CORSO CIRO MENOTTI"}
+,{"codice":32001,"denominazione_corrente_2":"VIA MENTANA"}
+,{"codice":32021,"denominazione_corrente_2":"LARGO MENTANA"}
+,{"codice":32043,"denominazione_corrente_2":"PIAZZA MERANO"}
+,{"codice":32065,"denominazione_corrente_2":"VIA SAVERIO MERCADANTE"}
+,{"codice":32142,"denominazione_corrente_2":"VIA MERCANTI"}
+,{"codice":32164,"denominazione_corrente_2":"VIA LUIGI MERCANTINI"}
+,{"codice":32186,"denominazione_corrente_2":"VIA ANGELO MESSEDAGLIA"}
+,{"codice":32203,"denominazione_corrente_2":"VIA MESSINA"}
+,{"codice":32221,"denominazione_corrente_2":"VIA METASTASIO"}
+,{"codice":32263,"denominazione_corrente_2":"VIA ANTONIO MEUCCI"}
+,{"codice":32285,"denominazione_corrente_2":"VIA MEZZENILE"}
+,{"codice":32304,"denominazione_corrente_2":"VIA PIETRO MICCA"}
+,{"codice":32322,"denominazione_corrente_2":"VIA BUONARROTI MICHELANGELO"}
+,{"codice":32340,"denominazione_corrente_2":"VIA FERDINANDO MICHELI"}
+,{"codice":32362,"denominazione_corrente_2":"PARCO IGNAZIO MICHELOTTI"}
+,{"codice":32384,"denominazione_corrente_2":"VIALE SUOR GIOVANNA FRANCESCA MICHELOTTI"}
+,{"codice":32405,"denominazione_corrente_2":"VIA GIOVANNI MIGLIARA"}
+,{"codice":30223,"denominazione_corrente_2":"VIA MACRINO D'ALBA"}
+,{"codice":30261,"denominazione_corrente_2":"VIA MADAMA CRISTINA"}
+,{"codice":30283,"denominazione_corrente_2":"PIAZZA MADAMA CRISTINA"}
+,{"codice":30294,"denominazione_corrente_2":"GIARDINO MADAME CURIE"}
+,{"codice":30306,"denominazione_corrente_2":"VIA MADDALENE"}
+,{"codice":30324,"denominazione_corrente_2":"STRADA MADDALENE"}
+,{"codice":30342,"denominazione_corrente_2":"PIAZZETTA MADONNA DEGLI ANGELI"}
+,{"codice":30360,"denominazione_corrente_2":"VIA MADONNA DELLE ROSE"}
+,{"codice":30382,"denominazione_corrente_2":"VIALE MADONNA DI CAMPAGNA"}
+,{"codice":30393,"denominazione_corrente_2":"VIALE MAESTRI DEL LAVORO"}
+,{"codice":30407,"denominazione_corrente_2":"VIA FERDINANDO MAGELLANO"}
+,{"codice":30425,"denominazione_corrente_2":"VIA MAGENTA"}
+,{"codice":30443,"denominazione_corrente_2":"VIA MAGNANO"}
+,{"codice":30461,"denominazione_corrente_2":"VIA DELLE MAGNOLIE"}
+,{"codice":30481,"denominazione_corrente_2":"STRADA DELLA MAGRA"}
+,{"codice":30492,"denominazione_corrente_2":"VIALE OTTAVIO MARIO MAI"}
+,{"codice":30544,"denominazione_corrente_2":"STRADA DEL MAINERO"}
+,{"codice":30553,"denominazione_corrente_2":"GIARDINO LUIGI MAIOCCO"}
+,{"codice":30627,"denominazione_corrente_2":"VIA MALONE"}
+,{"codice":30645,"denominazione_corrente_2":"VIA MALTA"}
+,{"codice":30681,"denominazione_corrente_2":"VIA GOFFREDO MAMELI"}
+,{"codice":30700,"denominazione_corrente_2":"CORSO TERENZIO MAMIANI"}
+,{"codice":30728,"denominazione_corrente_2":"VIA LUCIANO MANARA"}
+,{"codice":30746,"denominazione_corrente_2":"VIA PASQUALE STANISLAO MANCINI"}
+,{"codice":30764,"denominazione_corrente_2":"STRADA ALLA MANIFATTURA TABACCHI"}
+,{"codice":30782,"denominazione_corrente_2":"VIA DANIELE MANIN"}
+,{"codice":30801,"denominazione_corrente_2":"PIAZZA GIUSEPPE MANNO"}
+,{"codice":30829,"denominazione_corrente_2":"STRADA DELLA MANTA"}
+,{"codice":30847,"denominazione_corrente_2":"VIA ANDREA MANTEGNA"}
+,{"codice":30865,"denominazione_corrente_2":"VIA MANTOVA"}
+,{"codice":30883,"denominazione_corrente_2":"VIA ALDO MANUZIO"}
+,{"codice":30902,"denominazione_corrente_2":"VIA ALESSANDRO MANZONI"}
+,{"codice":30920,"denominazione_corrente_2":"CORSO MARCHE"}
+,{"codice":30939,"denominazione_corrente_2":"VIA ADA MARCHESINI GOBETTI"}
+,{"codice":30966,"denominazione_corrente_2":"PIAZZA MARCO AURELIO"}
+,{"codice":30984,"denominazione_corrente_2":"CORSO GUGLIELMO MARCONI"}
+,{"codice":31002,"denominazione_corrente_2":"VIA CARLO MARENCO"}
+,{"codice":31011,"denominazione_corrente_2":"VIA MARENTINO"}
+,{"codice":31020,"denominazione_corrente_2":"VIA MARIA ADELAIDE"}
+,{"codice":31042,"denominazione_corrente_2":"VIA MARIA AUSILIATRICE"}
+,{"codice":31064,"denominazione_corrente_2":"PIAZZA MARIA AUSILIATRICE"}
+,{"codice":31086,"denominazione_corrente_2":"PIAZZA MARIA TERESA"}
+,{"codice":31097,"denominazione_corrente_2":"VIA MARIA TERESA"}
+,{"codice":31103,"denominazione_corrente_2":"VIA MARIA VITTORIA"}
+,{"codice":31112,"denominazione_corrente_2":"VIALE MARINAI D'ITALIA"}
+,{"codice":31121,"denominazione_corrente_2":"PIAZZA MARMOLADA"}
+,{"codice":31141,"denominazione_corrente_2":"VIA CARLO MAROCHETTI"}
+,{"codice":31163,"denominazione_corrente_2":"CORSO PIERO MARONCELLI"}
+,{"codice":31204,"denominazione_corrente_2":"VIA MARSALA"}
+,{"codice":31222,"denominazione_corrente_2":"VIA LUIGI FERDINANDO MARSIGLI"}
+,{"codice":31231,"denominazione_corrente_2":"VIA GIOVANNI MARTINA"}
+,{"codice":28732,"denominazione_corrente_2":"VIA LUIGI LAVAZZA"}
+,{"codice":28743,"denominazione_corrente_2":"LUNGO STURA LAZIO"}
+,{"codice":28787,"denominazione_corrente_2":"VIA LE CHIUSE"}
+,{"codice":28802,"denominazione_corrente_2":"CORSO LECCE"}
+,{"codice":28903,"denominazione_corrente_2":"VIA SILVESTRO LEGA"}
+,{"codice":28941,"denominazione_corrente_2":"VIA LEGNANO"}
+,{"codice":28963,"denominazione_corrente_2":"VIA LEMIE"}
+,{"codice":28985,"denominazione_corrente_2":"VIA FRANCESCO LEMMI"}
+,{"codice":29007,"denominazione_corrente_2":"VIA RUGGERO LEONCAVALLO"}
+,{"codice":29063,"denominazione_corrente_2":"VIA MARIO LEONI"}
+,{"codice":29085,"denominazione_corrente_2":"PARCO GIACOMO LEOPARDI"}
+,{"codice":29106,"denominazione_corrente_2":"CORSO LEPANTO"}
+,{"codice":29128,"denominazione_corrente_2":"VIA LERA"}
+,{"codice":29140,"denominazione_corrente_2":"VIA LESEGNO"}
+,{"codice":29162,"denominazione_corrente_2":"VIA LESNA"}
+,{"codice":29184,"denominazione_corrente_2":"VIA LESSOLO"}
+,{"codice":29205,"denominazione_corrente_2":"VIA MICHELE LESSONA"}
+,{"codice":29283,"denominazione_corrente_2":"VIA LEVANNA"}
+,{"codice":29294,"denominazione_corrente_2":"VIA LEVONE"}
+,{"codice":29304,"denominazione_corrente_2":"VIA LEINI'"}
+,{"codice":29326,"denominazione_corrente_2":"LUNGO DORA LIGURIA"}
+,{"codice":29348,"denominazione_corrente_2":"VIA LIMA"}
+,{"codice":29360,"denominazione_corrente_2":"VIA LIMONE"}
+,{"codice":29382,"denominazione_corrente_2":"SOTTOPASSAGGIO LINGOTTO"}
+,{"codice":29425,"denominazione_corrente_2":"CORSO LIONE"}
+,{"codice":29469,"denominazione_corrente_2":"STRADA DEL LIONETTO"}
+,{"codice":29481,"denominazione_corrente_2":"VIA GINO LISA"}
+,{"codice":29502,"denominazione_corrente_2":"VIA LIVORNO"}
+,{"codice":29524,"denominazione_corrente_2":"VIA LOANO"}
+,{"codice":29568,"denominazione_corrente_2":"VIA LOCANA"}
+,{"codice":29580,"denominazione_corrente_2":"VIA LODI"}
+,{"codice":29601,"denominazione_corrente_2":"VIA LODOVICA"}
+,{"codice":29623,"denominazione_corrente_2":"CORSO LOMBARDIA"}
+,{"codice":29689,"denominazione_corrente_2":"VIA LOMBARDORE"}
+,{"codice":29700,"denominazione_corrente_2":"VIA LOMBRIASCO"}
+,{"codice":29722,"denominazione_corrente_2":"VIA CESARE LOMBROSO"}
+,{"codice":29744,"denominazione_corrente_2":"VIA LOMELLINA"}
+,{"codice":29755,"denominazione_corrente_2":"PIAZZETTA DON PIETRO LONGO"}
+,{"codice":29766,"denominazione_corrente_2":"VIA CARLO LORENZINI"}
+,{"codice":29788,"denominazione_corrente_2":"VIA ACHILLE LORIA"}
+,{"codice":29801,"denominazione_corrente_2":"VIA ANNIBALE LOVERA DI MARIA"}
+,{"codice":29821,"denominazione_corrente_2":"VIA LUCCA"}
+,{"codice":29843,"denominazione_corrente_2":"VIA LUCENTO"}
+,{"codice":29854,"denominazione_corrente_2":"GIARDINO DOMENICO LUCIANO"}
+,{"codice":29887,"denominazione_corrente_2":"VIA ERNESTO LUGARO"}
+,{"codice":29902,"denominazione_corrente_2":"VIA BERNARDINO LUINI"}
+,{"codice":29920,"denominazione_corrente_2":"VIA G. BATTISTA LULLI"}
+,{"codice":29931,"denominazione_corrente_2":"GIARDINO SALVADOR EDWARD LURIA"}
+,{"codice":29942,"denominazione_corrente_2":"VIA LURISIA"}
+,{"codice":29964,"denominazione_corrente_2":"VIA EMANUELE LUSERNA DI RORA'"}
+,{"codice":30003,"denominazione_corrente_2":"VIA LUSSIMPICCOLO"}
+,{"codice":30021,"denominazione_corrente_2":"VIALE ALESSANDRO LUZIO"}
+,{"codice":30041,"denominazione_corrente_2":"VIA LUIGI LUZZATTI"}
+,{"codice":30063,"denominazione_corrente_2":"STRADA DEL MACALLE'"}
+,{"codice":30085,"denominazione_corrente_2":"VIALE MACALLE'"}
+,{"codice":30122,"denominazione_corrente_2":"VIA MACEDONIA"}
+,{"codice":30140,"denominazione_corrente_2":"VIA MACERATA"}
+,{"codice":30162,"denominazione_corrente_2":"VIA GIUSEPPE MACHERIONE"}
+,{"codice":30205,"denominazione_corrente_2":"LUNGO PO NICOLO' MACHIAVELLI"}
+,{"codice":27247,"denominazione_corrente_2":"VIA DOMENICO GUIDOBONO"}
+,{"codice":27269,"denominazione_corrente_2":"VIA GUIDO GUINICELLI"}
+,{"codice":27302,"denominazione_corrente_2":"VIA TOMMASO GULLI"}
+,{"codice":27324,"denominazione_corrente_2":"PIAZZA HERMADA"}
+,{"codice":27346,"denominazione_corrente_2":"VIALE LUIGI HUGUES"}
+,{"codice":27357,"denominazione_corrente_2":"GIARDINO GIUSEPPE IMPASTATO"}
+,{"codice":27368,"denominazione_corrente_2":"GIARDINO TERZO REGGIMENTO ALPINI"}
+,{"codice":27380,"denominazione_corrente_2":"VIA IMPERIA"}
+,{"codice":27401,"denominazione_corrente_2":"INDIRIZZO IMPRECISATO"}
+,{"codice":27423,"denominazione_corrente_2":"VIA DOMENICO GEROLAMO INDUNO"}
+,{"codice":27445,"denominazione_corrente_2":"VIA INDUSTRIA"}
+,{"codice":27467,"denominazione_corrente_2":"CORSO INGHILTERRA"}
+,{"codice":27478,"denominazione_corrente_2":"VIA INGRIA"}
+,{"codice":27489,"denominazione_corrente_2":"VIA INTRA"}
+,{"codice":27490,"denominazione_corrente_2":"VIA CAROLINA INVERNIZIO"}
+,{"codice":27500,"denominazione_corrente_2":"VIA INVORIO"}
+,{"codice":27522,"denominazione_corrente_2":"VIA ISONZO"}
+,{"codice":27566,"denominazione_corrente_2":"VIA ISSIGLIO"}
+,{"codice":27588,"denominazione_corrente_2":"LUNGO STURA ISTRIA"}
+,{"codice":27601,"denominazione_corrente_2":"VIA QUATTRO MARZO"}
+,{"codice":27621,"denominazione_corrente_2":"LARGO QUATTRO MARZO"}
+,{"codice":27643,"denominazione_corrente_2":"CORSO QUATTRO NOVEMBRE"}
+,{"codice":27665,"denominazione_corrente_2":"VIA IVREA"}
+,{"codice":27676,"denominazione_corrente_2":"GIARDINO GIACOMO JAQUERIO"}
+,{"codice":27687,"denominazione_corrente_2":"VIA JONIO"}
+,{"codice":27702,"denominazione_corrente_2":"VIA FILIPPO JUVARRA"}
+,{"codice":27720,"denominazione_corrente_2":"VIA MICHELE KERBAKER"}
+,{"codice":27742,"denominazione_corrente_2":"CORSO LUIGI KOSSUTH"}
+,{"codice":27841,"denominazione_corrente_2":"VIA LA LOGGIA"}
+,{"codice":27940,"denominazione_corrente_2":"VIA S. GIOVANNI BATTISTA LA SALLE"}
+,{"codice":27962,"denominazione_corrente_2":"VIA LA THUILE"}
+,{"codice":28028,"denominazione_corrente_2":"VIA ANTONIO LABRIOLA"}
+,{"codice":28040,"denominazione_corrente_2":"VIA FRANCESCO LADETTO"}
+,{"codice":28062,"denominazione_corrente_2":"VIA LAGNASCO"}
+,{"codice":28084,"denominazione_corrente_2":"VIA GIUSEPPE LUIGI LAGRANGE"}
+,{"codice":28105,"denominazione_corrente_2":"PIAZZA GIUSEPPE LUIGI LAGRANGE"}
+,{"codice":28149,"denominazione_corrente_2":"VIA LAJOLO FRATELLI"}
+,{"codice":28161,"denominazione_corrente_2":"VIA ALFONSO LAMARMORA"}
+,{"codice":28183,"denominazione_corrente_2":"VIA RAFFAELLO LAMBRUSCHINI"}
+,{"codice":28204,"denominazione_corrente_2":"VIA LAMPORO"}
+,{"codice":28226,"denominazione_corrente_2":"VIA VINCENZO LANCIA"}
+,{"codice":28237,"denominazione_corrente_2":"VIA LEOPOLDO LANFRANCO"}
+,{"codice":28248,"denominazione_corrente_2":"LARGO VINCENZO LANCIA"}
+,{"codice":28325,"denominazione_corrente_2":"VIA FRANCESCO LANFRANCHI"}
+,{"codice":28347,"denominazione_corrente_2":"VIA BERNARDINO LANINO"}
+,{"codice":28369,"denominazione_corrente_2":"VIA LANUSEI"}
+,{"codice":28381,"denominazione_corrente_2":"CORSO GIOVANNI LANZA"}
+,{"codice":28424,"denominazione_corrente_2":"VIA LANZO"}
+,{"codice":28446,"denominazione_corrente_2":"STRADA LANZO"}
+,{"codice":28622,"denominazione_corrente_2":"VIA LASCARIS"}
+,{"codice":28633,"denominazione_corrente_2":"VIA LATINA"}
+,{"codice":28644,"denominazione_corrente_2":"STRADA DELLA LAURETTA"}
+,{"codice":28666,"denominazione_corrente_2":"VIA LAURIANO"}
+,{"codice":28688,"denominazione_corrente_2":"STRADA DEL LAURO"}
+,{"codice":28721,"denominazione_corrente_2":"VIA LAVAGNA"}
+,{"codice":25841,"denominazione_corrente_2":"VIA CARLO GOLDONI"}
+,{"codice":25861,"denominazione_corrente_2":"VIA GOLETTA"}
+,{"codice":25883,"denominazione_corrente_2":"VIA FRANCESCO GONIN"}
+,{"codice":25894,"denominazione_corrente_2":"VIA PAOLO GORINI"}
+,{"codice":25906,"denominazione_corrente_2":"VIA GORIZIA"}
+,{"codice":26004,"denominazione_corrente_2":"VIA GASPARE GORRESIO"}
+,{"codice":26026,"denominazione_corrente_2":"VIA GOTTARDO"}
+,{"codice":26048,"denominazione_corrente_2":"LARGO GOTTARDO"}
+,{"codice":26147,"denominazione_corrente_2":"VIA ENRICO GOTTI"}
+,{"codice":26169,"denominazione_corrente_2":"VIA GOVERNOLO"}
+,{"codice":26181,"denominazione_corrente_2":"CORSO GIUSEPPE GOVONE"}
+,{"codice":26202,"denominazione_corrente_2":"VIA LUIGI GOYTRE"}
+,{"codice":26224,"denominazione_corrente_2":"PIAZZA GUIDO GOZZANO"}
+,{"codice":26246,"denominazione_corrente_2":"VIA GASPARE GOZZI"}
+,{"codice":26268,"denominazione_corrente_2":"VIA BENOZZO GOZZOLI"}
+,{"codice":26280,"denominazione_corrente_2":"VIA GRADISCA"}
+,{"codice":26323,"denominazione_corrente_2":"VIA GRADO"}
+,{"codice":26345,"denominazione_corrente_2":"PIAZZA ARTURO GRAF"}
+,{"codice":26367,"denominazione_corrente_2":"VIA GRAGLIA"}
+,{"codice":26389,"denominazione_corrente_2":"VIA LUIGI GRAMEGNA"}
+,{"codice":26400,"denominazione_corrente_2":"VIA ANTONIO GRAMSCI"}
+,{"codice":26422,"denominazione_corrente_2":"PIAZZA GRAN MADRE DI DIO"}
+,{"codice":26444,"denominazione_corrente_2":"VIA GRAN PARADISO"}
+,{"codice":26501,"denominazione_corrente_2":"VIA GRAN S. BERNARDO"}
+,{"codice":26521,"denominazione_corrente_2":"VIA GRAN SASSO"}
+,{"codice":26532,"denominazione_corrente_2":"CORSO GRANDE TORINO"}
+,{"codice":26543,"denominazione_corrente_2":"VIA SEBASTIANO GRANDIS"}
+,{"codice":26565,"denominazione_corrente_2":"VIA GIOVANNI MICHELE GRANERI"}
+,{"codice":26587,"denominazione_corrente_2":"VIA GIUSEPPE GRASSI"}
+,{"codice":26602,"denominazione_corrente_2":"VIA SEVERINO GRATTONI"}
+,{"codice":26620,"denominazione_corrente_2":"VIA GRAVERE"}
+,{"codice":26642,"denominazione_corrente_2":"VIA DON BARTOLOMEO GRAZIOLI"}
+,{"codice":26653,"denominazione_corrente_2":"GIARDINO NICHOLAS GREEN"}
+,{"codice":26664,"denominazione_corrente_2":"VIA GRESSONEY"}
+,{"codice":26686,"denominazione_corrente_2":"VIA DON GIOVANNI GRIOLI"}
+,{"codice":26703,"denominazione_corrente_2":"VIA GRIVOLA"}
+,{"codice":26721,"denominazione_corrente_2":"VIA GIAMBATTISTA GROPELLO"}
+,{"codice":26730,"denominazione_corrente_2":"GIARDINO NICOLA GROSA"}
+,{"codice":26741,"denominazione_corrente_2":"VIA GROSCAVALLO"}
+,{"codice":26763,"denominazione_corrente_2":"CORSO GROSSETO"}
+,{"codice":26923,"denominazione_corrente_2":"VIA TOMMASO GROSSI"}
+,{"codice":26941,"denominazione_corrente_2":"VICOLO GROSSO"}
+,{"codice":26961,"denominazione_corrente_2":"VIA GIACOMO GROSSO"}
+,{"codice":26972,"denominazione_corrente_2":"VIA GIUSEPPE GROSSO"}
+,{"codice":26983,"denominazione_corrente_2":"STRADA ANTICA DI GRUGLIASCO"}
+,{"codice":27027,"denominazione_corrente_2":"VIA PIETRO FRANCESCO GUALA"}
+,{"codice":27049,"denominazione_corrente_2":"PIAZZA PIETRO FRANCESCO GUALA"}
+,{"codice":27104,"denominazione_corrente_2":"VIA GUARINO GUARINI"}
+,{"codice":27126,"denominazione_corrente_2":"VIA GUASTALLA"}
+,{"codice":27148,"denominazione_corrente_2":"VIA GUBBIO"}
+,{"codice":27182,"denominazione_corrente_2":"CORSO FRANCESCO GUERRAZZI"}
+,{"codice":27193,"denominazione_corrente_2":"VIA AMALIA GUGLIELMINETTI"}
+,{"codice":27203,"denominazione_corrente_2":"VIA FRANCESCO GIUSEPPE GUICCIARDINI"}
+,{"codice":27225,"denominazione_corrente_2":"VIA CAMILLO GUIDI"}
+,{"codice":24723,"denominazione_corrente_2":"VIA GIUSEPPE GENE'"}
+,{"codice":24741,"denominazione_corrente_2":"VIA GENOLA"}
+,{"codice":24761,"denominazione_corrente_2":"VIA GENOVA"}
+,{"codice":24882,"denominazione_corrente_2":"VIA ANTONIO GENOVESI"}
+,{"codice":24907,"denominazione_corrente_2":"VIA SIGISMONDO GERDIL"}
+,{"codice":24925,"denominazione_corrente_2":"VIA GERMAGNANO"}
+,{"codice":24943,"denominazione_corrente_2":"VIA GERMANASCA"}
+,{"codice":24961,"denominazione_corrente_2":"VIA ANASTASIO GERMONIO"}
+,{"codice":24981,"denominazione_corrente_2":"VIA ROMOLO GESSI"}
+,{"codice":24992,"denominazione_corrente_2":"VIA GIORGIO GHEDINI"}
+,{"codice":25003,"denominazione_corrente_2":"VIA GHEMME"}
+,{"codice":25047,"denominazione_corrente_2":"STRADA DELLE GHIACCIAIE"}
+,{"codice":25069,"denominazione_corrente_2":"VIA LORENZO GHIBERTI"}
+,{"codice":25070,"denominazione_corrente_2":"VIA EMILIO GHIONE"}
+,{"codice":25081,"denominazione_corrente_2":"PIAZZA GHIRLANDAIO"}
+,{"codice":25102,"denominazione_corrente_2":"VIA ERRICO GIACHINO"}
+,{"codice":25124,"denominazione_corrente_2":"LARGO ERRICO GIACHINO"}
+,{"codice":25146,"denominazione_corrente_2":"PIAZZA CARLO GIACOMINI"}
+,{"codice":25168,"denominazione_corrente_2":"VIA GIUSEPPE GIACOSA"}
+,{"codice":25180,"denominazione_corrente_2":"VIA GIAGLIONE"}
+,{"codice":25201,"denominazione_corrente_2":"CORSO EUSEBIO GIAMBONE"}
+,{"codice":25245,"denominazione_corrente_2":"VIA GIULIO GIANELLI"}
+,{"codice":25267,"denominazione_corrente_2":"VIA PIETRO GIANNONE"}
+,{"codice":25289,"denominazione_corrente_2":"VIA GAETANO GIARDINO"}
+,{"codice":25300,"denominazione_corrente_2":"VIA GIAVENO"}
+,{"codice":25322,"denominazione_corrente_2":"GIARDINO LEONE GINZBURG"}
+,{"codice":25344,"denominazione_corrente_2":"VIA VITTORIO AMEDEO GIOANETTI"}
+,{"codice":25366,"denominazione_corrente_2":"VIA VINCENZO GIOBERTI"}
+,{"codice":25401,"denominazione_corrente_2":"VIA MELCHIORRE GIOIA"}
+,{"codice":25421,"denominazione_corrente_2":"VIA GIOVANNI GIOLITTI"}
+,{"codice":25443,"denominazione_corrente_2":"VIA CARLO GIORDANA"}
+,{"codice":25454,"denominazione_corrente_2":"VIA UMBERTO GIORDANO"}
+,{"codice":25465,"denominazione_corrente_2":"VIA GIOTTO"}
+,{"codice":25487,"denominazione_corrente_2":"PIAZZA GIOVANNI DALLE BANDE NERE"}
+,{"codice":25498,"denominazione_corrente_2":"PIAZZA GIOVANNI PAOLO II"}
+,{"codice":25502,"denominazione_corrente_2":"PIAZZA GIOVANNI XXIII"}
+,{"codice":25520,"denominazione_corrente_2":"VIA GIULIA DI BAROLO"}
+,{"codice":25542,"denominazione_corrente_2":"VIA GIUSEPPE GIULIETTI"}
+,{"codice":25564,"denominazione_corrente_2":"VIA CARLO IGNAZIO GIULIO"}
+,{"codice":25586,"denominazione_corrente_2":"CORSO GIULIO CESARE"}
+,{"codice":25603,"denominazione_corrente_2":"LARGO GIULIO CESARE"}
+,{"codice":25641,"denominazione_corrente_2":"VIA PIETRO GIURIA"}
+,{"codice":25652,"denominazione_corrente_2":"PARCO GIUSEPPE DI VITTORIO"}
+,{"codice":25663,"denominazione_corrente_2":"VIA GIUSSANO ALBERTO DA"}
+,{"codice":25674,"denominazione_corrente_2":"VIALE DEI GIUSTI"}
+,{"codice":25685,"denominazione_corrente_2":"VIA GIUSEPPE GIUSTI"}
+,{"codice":25704,"denominazione_corrente_2":"VIA GIVOLETTO"}
+,{"codice":25722,"denominazione_corrente_2":"VIA DEI GLADIOLI"}
+,{"codice":25762,"denominazione_corrente_2":"VIA DELLE GLICINI"}
+,{"codice":25773,"denominazione_corrente_2":"GIARDINO DON CARLO GNOCCHI"}
+,{"codice":25784,"denominazione_corrente_2":"VIA PIERO GOBETTI"}
+,{"codice":25805,"denominazione_corrente_2":"STRADA DEI GOFFI"}
+,{"codice":25823,"denominazione_corrente_2":"VIA GOITO"}
+,{"codice":23210,"denominazione_corrente_2":"GIARDINO ALFREDO FRASSATI"}
+,{"codice":23221,"denominazione_corrente_2":"VIA PIER GIORGIO FRASSATI"}
+,{"codice":23243,"denominazione_corrente_2":"VIA FRASSINETO"}
+,{"codice":23265,"denominazione_corrente_2":"VIA DEI FRASSINI"}
+,{"codice":23287,"denominazione_corrente_2":"VIA PIETRO FRATTINI"}
+,{"codice":23320,"denominazione_corrente_2":"PIAZZA CARLO FREGUGLIA"}
+,{"codice":23342,"denominazione_corrente_2":"VIA FREIDOUR"}
+,{"codice":23364,"denominazione_corrente_2":"VIA FREJUS"}
+,{"codice":23403,"denominazione_corrente_2":"VIA GIROLAMO FRESCOBALDI"}
+,{"codice":23421,"denominazione_corrente_2":"VIA FRINCO"}
+,{"codice":23441,"denominazione_corrente_2":"VIA CONTE SECONDO FROLA"}
+,{"codice":23452,"denominazione_corrente_2":"VIA FRONT"}
+,{"codice":23463,"denominazione_corrente_2":"VIA FROSINONE"}
+,{"codice":23485,"denominazione_corrente_2":"VIA FROSSASCO"}
+,{"codice":23504,"denominazione_corrente_2":"VIA FRUGAROLO"}
+,{"codice":23513,"denominazione_corrente_2":"PIAZZALE VALDO FUSI"}
+,{"codice":23522,"denominazione_corrente_2":"VIA ARNALDO FUSINATO"}
+,{"codice":23540,"denominazione_corrente_2":"CORSO GIUSEPPE GABETTI"}
+,{"codice":23562,"denominazione_corrente_2":"GIARDINO FERDINANDO GABOTTO"}
+,{"codice":23584,"denominazione_corrente_2":"VIA GAETA"}
+,{"codice":23605,"denominazione_corrente_2":"VIA GAGLIANICO"}
+,{"codice":23623,"denominazione_corrente_2":"VIA PAOLO GAIDANO"}
+,{"codice":23742,"denominazione_corrente_2":"CORSO GALILEO GALILEI"}
+,{"codice":23760,"denominazione_corrente_2":"PIAZZA TANCREDI GALIMBERTI"}
+,{"codice":23782,"denominazione_corrente_2":"VIA GALLARATE"}
+,{"codice":23807,"denominazione_corrente_2":"VIA GIUSEPPE GALLIANO"}
+,{"codice":23825,"denominazione_corrente_2":"VIA BERNARDINO GALLIARI"}
+,{"codice":23843,"denominazione_corrente_2":"VIA GALLIATE"}
+,{"codice":23861,"denominazione_corrente_2":"VIA GIACINTO GALLINA"}
+,{"codice":23908,"denominazione_corrente_2":"VIA PASQUALE GALLUPPI"}
+,{"codice":23980,"denominazione_corrente_2":"PIAZZA FILIPPO GALVAGNO"}
+,{"codice":24002,"denominazione_corrente_2":"VIA LUIGI GALVANI"}
+,{"codice":24046,"denominazione_corrente_2":"VIA GAMALERO"}
+,{"codice":24057,"denominazione_corrente_2":"GIARDINO ANTONIO GAMBA"}
+,{"codice":24068,"denominazione_corrente_2":"CORSO ENRICO GAMBA"}
+,{"codice":24080,"denominazione_corrente_2":"VIA GAMBASCA"}
+,{"codice":24091,"denominazione_corrente_2":"GIARDINO CARMELO GAMUZZA"}
+,{"codice":24101,"denominazione_corrente_2":"VIA GIOVANNI BATTISTA GANDINO"}
+,{"codice":24145,"denominazione_corrente_2":"VIA FEDERICO GARELLI"}
+,{"codice":24167,"denominazione_corrente_2":"VIA GARESSIO"}
+,{"codice":24288,"denominazione_corrente_2":"VIA GIUSEPPE GARIBALDI"}
+,{"codice":24301,"denominazione_corrente_2":"VIA EUSEBIO GARIZIO"}
+,{"codice":24321,"denominazione_corrente_2":"VIA FEDERICO GARLANDA"}
+,{"codice":24332,"denominazione_corrente_2":"SALITA MICHELANGELO GAROVE"}
+,{"codice":24343,"denominazione_corrente_2":"VIA GARRONE FRATELLI"}
+,{"codice":24503,"denominazione_corrente_2":"VIA GARZIGLIANA"}
+,{"codice":24521,"denominazione_corrente_2":"VIA GASSINO"}
+,{"codice":24541,"denominazione_corrente_2":"VIA ANDREA GASTALDI"}
+,{"codice":24563,"denominazione_corrente_2":"VIA LUIGI GATTI"}
+,{"codice":24604,"denominazione_corrente_2":"VIA GATTICO"}
+,{"codice":24622,"denominazione_corrente_2":"VIA GATTINARA"}
+,{"codice":24640,"denominazione_corrente_2":"VIA GAUNA"}
+,{"codice":24662,"denominazione_corrente_2":"VIA GIUSEPPE GAVELLO"}
+,{"codice":24684,"denominazione_corrente_2":"PIAZZALE ALBERTO GEISSER"}
+,{"codice":24705,"denominazione_corrente_2":"VIA DEI GELSI"}
+,{"codice":21582,"denominazione_corrente_2":"VIA VITTORIO FERRERO"}
+,{"codice":21593,"denominazione_corrente_2":"GIARDINO FELICITA FERRERO"}
+,{"codice":21607,"denominazione_corrente_2":"CORSO FRANCESCO FERRUCCI"}
+,{"codice":21625,"denominazione_corrente_2":"VIA FIANO"}
+,{"codice":21643,"denominazione_corrente_2":"VIA FIDIA"}
+,{"codice":21661,"denominazione_corrente_2":"VIA ETTORE FIERAMOSCA"}
+,{"codice":21670,"denominazione_corrente_2":"VIA FIESOLE"}
+,{"codice":21681,"denominazione_corrente_2":"VIA FIGLIE DEI MILITARI"}
+,{"codice":21708,"denominazione_corrente_2":"VIA FILADELFIA"}
+,{"codice":21964,"denominazione_corrente_2":"VIA GAETANO FILANGIERI"}
+,{"codice":21982,"denominazione_corrente_2":"VIA ALESSANDRO FILIPPA"}
+,{"codice":21991,"denominazione_corrente_2":"GIARDINO NUNZIO FILOGAMO"}
+,{"codice":22000,"denominazione_corrente_2":"PIAZZA FABIO FILZI"}
+,{"codice":22022,"denominazione_corrente_2":"VIA FINALMARINA"}
+,{"codice":22044,"denominazione_corrente_2":"STRADA DEL FIOCCARDO"}
+,{"codice":22121,"denominazione_corrente_2":"VIA GIANFRANCESCO FIOCHETTO"}
+,{"codice":22143,"denominazione_corrente_2":"VIA FIORANO"}
+,{"codice":22165,"denominazione_corrente_2":"LUNGO DORA FIRENZE"}
+,{"codice":22176,"denominazione_corrente_2":"GIARDINO LUIGI FIRPO"}
+,{"codice":22187,"denominazione_corrente_2":"CORSO FIUME"}
+,{"codice":22202,"denominazione_corrente_2":"VIALE ORAZIO FLACCO"}
+,{"codice":22220,"denominazione_corrente_2":"VIA GIOVANNI FLECCHIA"}
+,{"codice":22231,"denominazione_corrente_2":"VIA ALESSANDRO FLEMING"}
+,{"codice":22242,"denominazione_corrente_2":"VIA PIO FOA'"}
+,{"codice":22264,"denominazione_corrente_2":"VIA FOBELLO"}
+,{"codice":22286,"denominazione_corrente_2":"VIA ANTONIO FOGAZZARO"}
+,{"codice":22303,"denominazione_corrente_2":"VIA FOGGIA"}
+,{"codice":22321,"denominazione_corrente_2":"VIA FOGLIZZO"}
+,{"codice":22341,"denominazione_corrente_2":"VIA FOLIGNO"}
+,{"codice":22440,"denominazione_corrente_2":"STRADA LEONE FONTANA"}
+,{"codice":22462,"denominazione_corrente_2":"VIA FONTANELLA"}
+,{"codice":22484,"denominazione_corrente_2":"VIA ANTONIO FONTANESI"}
+,{"codice":22505,"denominazione_corrente_2":"PIAZZA ANTONIO FONTANESI"}
+,{"codice":22523,"denominazione_corrente_2":"STRADA CESARE MEANO"}
+,{"codice":22541,"denominazione_corrente_2":"VIA FORESTO"}
+,{"codice":22561,"denominazione_corrente_2":"VIA CARLO FORLANINI"}
+,{"codice":22583,"denominazione_corrente_2":"VIA FORLI'"}
+,{"codice":22594,"denominazione_corrente_2":"VIA ANGELO FORTUNATO FORMIGGINI"}
+,{"codice":22624,"denominazione_corrente_2":"VIA FORNACA FRATELLI"}
+,{"codice":22642,"denominazione_corrente_2":"VIA DEI FORNELLI"}
+,{"codice":22660,"denominazione_corrente_2":"STRADA DEI FORNI"}
+,{"codice":22682,"denominazione_corrente_2":"STRADA DEI FORNI E GOFFI"}
+,{"codice":22761,"denominazione_corrente_2":"VIA FORNO CANAVESE"}
+,{"codice":22781,"denominazione_corrente_2":"VIA JACOPO FORONI"}
+,{"codice":22808,"denominazione_corrente_2":"STRADA DEL FORTINO"}
+,{"codice":22826,"denominazione_corrente_2":"VIA GIUSTINO FORTUNATO"}
+,{"codice":22844,"denominazione_corrente_2":"VIA UGO FOSCOLO"}
+,{"codice":22862,"denominazione_corrente_2":"VIA FOSSANO"}
+,{"codice":22880,"denominazione_corrente_2":"VIA FOSSATA"}
+,{"codice":22945,"denominazione_corrente_2":"VIA FRABOSA"}
+,{"codice":22963,"denominazione_corrente_2":"STRADA DEL FRANCESE"}
+,{"codice":23001,"denominazione_corrente_2":"CORSO FRANCIA"}
+,{"codice":23023,"denominazione_corrente_2":"LARGO FRANCIA"}
+,{"codice":23201,"denominazione_corrente_2":"VIA AUGUSTO FRANZOJ"}
+,{"codice":21560,"denominazione_corrente_2":"VIA FERRERE"}
+,{"codice":20442,"denominazione_corrente_2":"VIA ELEONORA DUSE"}
+,{"codice":20460,"denominazione_corrente_2":"VIA EGEO"}
+,{"codice":20482,"denominazione_corrente_2":"VIA PIETRO EGIDI"}
+,{"codice":20507,"denominazione_corrente_2":"CORSO LUIGI EINAUDI"}
+,{"codice":20525,"denominazione_corrente_2":"VIA ELBA"}
+,{"codice":20543,"denominazione_corrente_2":"VIA ELLERO"}
+,{"codice":20561,"denominazione_corrente_2":"VIA ELVO"}
+,{"codice":20581,"denominazione_corrente_2":"VIA GIOVANNI EMANUEL"}
+,{"codice":20608,"denominazione_corrente_2":"PIAZZA EMANUELE FILIBERTO"}
+,{"codice":20626,"denominazione_corrente_2":"CORSO EMILIA"}
+,{"codice":20644,"denominazione_corrente_2":"VIA ENNA"}
+,{"codice":20662,"denominazione_corrente_2":"VIA ENTRACQUE"}
+,{"codice":20680,"denominazione_corrente_2":"VIA ENVIE"}
+,{"codice":20691,"denominazione_corrente_2":"VIA ERASMO DA ROTTERDAM"}
+,{"codice":20709,"denominazione_corrente_2":"VIA ERITREA"}
+,{"codice":20727,"denominazione_corrente_2":"PARCO EUROPA"}
+,{"codice":20745,"denominazione_corrente_2":"VIA EXILLES"}
+,{"codice":20763,"denominazione_corrente_2":"VIA FAA' DI BRUNO FRATELLI"}
+,{"codice":20800,"denominazione_corrente_2":"VIA FABBRICHE"}
+,{"codice":20828,"denominazione_corrente_2":"CORSO FABIO MASSIMO"}
+,{"codice":20846,"denominazione_corrente_2":"VIA NICOLA FABRIZI"}
+,{"codice":20864,"denominazione_corrente_2":"LARGO NICOLA FABRIZI"}
+,{"codice":20929,"denominazione_corrente_2":"VIA ANTONIO FABRO"}
+,{"codice":20938,"denominazione_corrente_2":"GIARDINO CESARE FACCIANI"}
+,{"codice":20947,"denominazione_corrente_2":"VIA ARISTIDE FACCIOLI"}
+,{"codice":20965,"denominazione_corrente_2":"VIA DEI FAGGI"}
+,{"codice":20983,"denominazione_corrente_2":"VIA GIUSEPPE FAGNANO"}
+,{"codice":21001,"denominazione_corrente_2":"PIAZZA FALCHERA"}
+,{"codice":21021,"denominazione_corrente_2":"VIALE FALCHERA"}
+,{"codice":21032,"denominazione_corrente_2":"VIA GIOVANNI FALCONE"}
+,{"codice":21065,"denominazione_corrente_2":"STRADA DELLA FALCONERA"}
+,{"codice":21102,"denominazione_corrente_2":"STRADA DEI FALCONIERI"}
+,{"codice":21111,"denominazione_corrente_2":"PIAZZALE CARLO TANCREDI FALLETTI DI BAROLO"}
+,{"codice":21120,"denominazione_corrente_2":"VIA MANFREDO FANTI"}
+,{"codice":21142,"denominazione_corrente_2":"VIA FARIGLIANO"}
+,{"codice":21153,"denominazione_corrente_2":"GIARDINO NINO (GIUSEPPE) FARINA"}
+,{"codice":21164,"denominazione_corrente_2":"VIA SALVATORE FARINA"}
+,{"codice":21186,"denominazione_corrente_2":"VIA ARTURO FARINELLI"}
+,{"codice":21203,"denominazione_corrente_2":"CORSO CARLO LUIGI FARINI"}
+,{"codice":21212,"denominazione_corrente_2":"VIA FATEBENEFRATELLI"}
+,{"codice":21221,"denominazione_corrente_2":"VIA GIOVANNI FATTORI"}
+,{"codice":21241,"denominazione_corrente_2":"VIA FAVRIA"}
+,{"codice":21263,"denominazione_corrente_2":"VIA LEONARDO FEA"}
+,{"codice":21304,"denominazione_corrente_2":"VIA FEBO"}
+,{"codice":21322,"denominazione_corrente_2":"VIA FELETTO"}
+,{"codice":21340,"denominazione_corrente_2":"VIA FELIZZANO"}
+,{"codice":21362,"denominazione_corrente_2":"STRADA DI FENESTRELLE"}
+,{"codice":21373,"denominazione_corrente_2":"VIA ENRICO FERMI"}
+,{"codice":21384,"denominazione_corrente_2":"VIA GIOVANNI BATTISTA FEROGGIO"}
+,{"codice":21441,"denominazione_corrente_2":"CORSO FERRARA"}
+,{"codice":21483,"denominazione_corrente_2":"VIA GAUDENZIO FERRARI"}
+,{"codice":21506,"denominazione_corrente_2":"VIA PAOLO FERRARI"}
+,{"codice":21524,"denominazione_corrente_2":"CORSO GALILEO FERRARIS"}
+,{"codice":21542,"denominazione_corrente_2":"AIUOLA LUIGI FERRARIS"}
+,{"codice":21551,"denominazione_corrente_2":"GIARDINO MARINO FERRARO"}
+,{"codice":19129,"denominazione_corrente_2":"VIA ANDREA DEL SARTO"}
+,{"codice":19141,"denominazione_corrente_2":"VIA PAOLO DELLA CELLA"}
+,{"codice":19185,"denominazione_corrente_2":"PIAZZA PIERO DELLA FRANCESCA"}
+,{"codice":19206,"denominazione_corrente_2":"VIA CARLO DELLA PORTA"}
+,{"codice":19228,"denominazione_corrente_2":"VIA LUCA DELLA ROBBIA"}
+,{"codice":19240,"denominazione_corrente_2":"LARGO LUCA DELLA ROBBIA"}
+,{"codice":19262,"denominazione_corrente_2":"VIA FRANCESCO DELLALA"}
+,{"codice":19284,"denominazione_corrente_2":"VIA LORENZO DELLEANI"}
+,{"codice":19305,"denominazione_corrente_2":"VIA FRANCESCO DEMARGHERITA"}
+,{"codice":19327,"denominazione_corrente_2":"VIA DEMONTE"}
+,{"codice":19349,"denominazione_corrente_2":"VIA CARLO DENINA"}
+,{"codice":19361,"denominazione_corrente_2":"VIA PADRE FRANCESCO DENZA"}
+,{"codice":19383,"denominazione_corrente_2":"VIA GIUSEPPE DEPANIS"}
+,{"codice":19426,"denominazione_corrente_2":"PIAZZA DERNA"}
+,{"codice":19482,"denominazione_corrente_2":"VIA LUIGI DES AMBROIS"}
+,{"codice":19503,"denominazione_corrente_2":"VIA DESANA"}
+,{"codice":19569,"denominazione_corrente_2":"VIA GIOVANNI DESTEFANIS"}
+,{"codice":19581,"denominazione_corrente_2":"VIA DANTE DI NANNI"}
+,{"codice":19592,"denominazione_corrente_2":"GIARDINO DISPERSI FRONTE RUSSO"}
+,{"codice":19624,"denominazione_corrente_2":"GIARDINO DI SAMBUY"}
+,{"codice":19646,"denominazione_corrente_2":"LUNGO PO ARMANDO DIAZ"}
+,{"codice":19657,"denominazione_corrente_2":"GIARDINO DICIASSETTE FEBBRAIO 1848"}
+,{"codice":19668,"denominazione_corrente_2":"VIA DIGIONE"}
+,{"codice":19680,"denominazione_corrente_2":"VIA GIACOMO DINA"}
+,{"codice":19822,"denominazione_corrente_2":"CORSO DIOCLEZIANO"}
+,{"codice":19844,"denominazione_corrente_2":"VIA DOBERDO'"}
+,{"codice":19866,"denominazione_corrente_2":"VIALE DOGALI"}
+,{"codice":19888,"denominazione_corrente_2":"VIA DOGLIANI"}
+,{"codice":19899,"denominazione_corrente_2":"CORSO ACHILLE MARIO DOGLIOTTI"}
+,{"codice":19901,"denominazione_corrente_2":"VIA DOMODOSSOLA"}
+,{"codice":19910,"denominazione_corrente_2":"SOTTOPASSAGGIO CARLO DONAT - CATTIN"}
+,{"codice":19921,"denominazione_corrente_2":"AIUOLA DONATELLO"}
+,{"codice":19943,"denominazione_corrente_2":"VIA VITALIANO DONATI"}
+,{"codice":19954,"denominazione_corrente_2":"PIAZZA DEL DONATORE DI SANGUE"}
+,{"codice":19965,"denominazione_corrente_2":"VIA GAETANO DONIZETTI"}
+,{"codice":19987,"denominazione_corrente_2":"VIA TOMMASO DORE'"}
+,{"codice":20002,"denominazione_corrente_2":"VIA ANDREA DORIA"}
+,{"codice":20020,"denominazione_corrente_2":"VIA DRONERO"}
+,{"codice":20042,"denominazione_corrente_2":"STRADA DEL DROSSO"}
+,{"codice":20185,"denominazione_corrente_2":"VIA BERNARDINO DROVETTI"}
+,{"codice":20204,"denominazione_corrente_2":"VIA DRUENTO"}
+,{"codice":20222,"denominazione_corrente_2":"STRADA DRUENTO"}
+,{"codice":20240,"denominazione_corrente_2":"VIA DRUSACCO"}
+,{"codice":20262,"denominazione_corrente_2":"CORSO DUCA D'AOSTA"}
+,{"codice":20284,"denominazione_corrente_2":"PIAZZALE DUCA D'AOSTA"}
+,{"codice":20305,"denominazione_corrente_2":"CORSO DUCA DEGLI ABRUZZI"}
+,{"codice":20323,"denominazione_corrente_2":"VIA DUCHESSA JOLANDA"}
+,{"codice":20341,"denominazione_corrente_2":"VIA DUINO"}
+,{"codice":20361,"denominazione_corrente_2":"VIA GIOVANNI DUPRE'"}
+,{"codice":20383,"denominazione_corrente_2":"VIA JACOPO DURANDI"}
+,{"codice":20406,"denominazione_corrente_2":"VIA GIACOMO DURANDO"}
+,{"codice":20424,"denominazione_corrente_2":"STRADA DEL DURIO"}
+,{"codice":17886,"denominazione_corrente_2":"VIA VINCENZO CUOCO"}
+,{"codice":17903,"denominazione_corrente_2":"VIA CUORGNE'"}
+,{"codice":17930,"denominazione_corrente_2":"STRADA CUORGNE'"}
+,{"codice":17941,"denominazione_corrente_2":"VIA CURINO"}
+,{"codice":17963,"denominazione_corrente_2":"VIALE GIACOMO CURRENO"}
+,{"codice":18029,"denominazione_corrente_2":"VIA CURTATONE"}
+,{"codice":18041,"denominazione_corrente_2":"CORSO LUIGI D'ALBERTIS"}
+,{"codice":18063,"denominazione_corrente_2":"VIA D'ALLERY"}
+,{"codice":18106,"denominazione_corrente_2":"VIA ALFREDO D'ANDRADE"}
+,{"codice":18128,"denominazione_corrente_2":"VIA ELEONORA D'ARBOREA"}
+,{"codice":18139,"denominazione_corrente_2":"VIA ADOLPHE DAUBRE'E"}
+,{"codice":18162,"denominazione_corrente_2":"CORSO MASSIMO D'AZEGLIO"}
+,{"codice":18184,"denominazione_corrente_2":"STRADA D'HARCOURT"}
+,{"codice":18261,"denominazione_corrente_2":"VIA ENRICO D'OVIDIO"}
+,{"codice":18283,"denominazione_corrente_2":"VIA GIOVANNI DA VERAZZANO"}
+,{"codice":18294,"denominazione_corrente_2":"GIARDINO GIUSEPPE GIROTTI"}
+,{"codice":18304,"denominazione_corrente_2":"VIA LEONARDO DA VINCI"}
+,{"codice":18315,"denominazione_corrente_2":"GIARDINO ORESTE LEONARDI"}
+,{"codice":18326,"denominazione_corrente_2":"VIA FRANCESCO DALL'ONGARO"}
+,{"codice":18337,"denominazione_corrente_2":"PIAZZA GEN. CARLO ALBERTO DALLA CHIESA"}
+,{"codice":18348,"denominazione_corrente_2":"VIA DALMAZIA"}
+,{"codice":18360,"denominazione_corrente_2":"VIA LUIGI DAMIANO"}
+,{"codice":18382,"denominazione_corrente_2":"VIA ENRICO DANDOLO"}
+,{"codice":18425,"denominazione_corrente_2":"VIA EDOARDO DANEO"}
+,{"codice":18436,"denominazione_corrente_2":"VIA GABRIELE D'ANNUNZIO"}
+,{"codice":18469,"denominazione_corrente_2":"CORSO DANTE"}
+,{"codice":18470,"denominazione_corrente_2":"GIARDINO AUGUSTO DAOLIO"}
+,{"codice":18481,"denominazione_corrente_2":"VIA DAUN"}
+,{"codice":18524,"denominazione_corrente_2":"VIA CHIARO DAVANZATI"}
+,{"codice":18546,"denominazione_corrente_2":"PIAZZA EDMONDO DE AMICIS"}
+,{"codice":18568,"denominazione_corrente_2":"VIA BERNARDO DE CANAL"}
+,{"codice":18579,"denominazione_corrente_2":"STRADA DECIMA"}
+,{"codice":18580,"denominazione_corrente_2":"VIA TOMMASO DE CRISTOFORIS"}
+,{"codice":18591,"denominazione_corrente_2":"VIA DEFENDENTE DE FERRARI"}
+,{"codice":18601,"denominazione_corrente_2":"CORSO ALCIDE DE GASPERI"}
+,{"codice":18623,"denominazione_corrente_2":"VIA GIORGIO DE GENEYS"}
+,{"codice":18645,"denominazione_corrente_2":"VIA ANGELO DE GUBERNATIS"}
+,{"codice":18667,"denominazione_corrente_2":"VIA DE MAISTRE FRATELLI"}
+,{"codice":18678,"denominazione_corrente_2":"GIARDINO ENRICO DEMARCHI"}
+,{"codice":18689,"denominazione_corrente_2":"VIA EMILIO DE MARCHI"}
+,{"codice":18700,"denominazione_corrente_2":"CORSO ENRICO DE NICOLA"}
+,{"codice":18722,"denominazione_corrente_2":"VIA GIOVANNI BATTISTA DE ROLANDIS"}
+,{"codice":18733,"denominazione_corrente_2":"VIA FERNANDO DE ROSA"}
+,{"codice":18744,"denominazione_corrente_2":"VIA FRANCESCO DE SANCTIS"}
+,{"codice":18788,"denominazione_corrente_2":"VIA ETTORE DE SONNAZ"}
+,{"codice":18801,"denominazione_corrente_2":"VIA LAMBERTO DE BERNARDI"}
+,{"codice":18843,"denominazione_corrente_2":"VIA DEGO"}
+,{"codice":18865,"denominazione_corrente_2":"VIA LUISA DEL CARRETTO"}
+,{"codice":18876,"denominazione_corrente_2":"PIAZZA DON FRANCO DELPIANO"}
+,{"codice":18920,"denominazione_corrente_2":"VIA CARLO DEL PRETE"}
+,{"codice":16511,"denominazione_corrente_2":"STRADA CONTINASSA"}
+,{"codice":16522,"denominazione_corrente_2":"VIALE INNOCENZO CONTINI"}
+,{"codice":16544,"denominazione_corrente_2":"VIA LUIGI CONTRATTI"}
+,{"codice":16555,"denominazione_corrente_2":"GIARDINO FAUSTO COPPI"}
+,{"codice":16566,"denominazione_corrente_2":"VIA MICHELE COPPINO"}
+,{"codice":16665,"denominazione_corrente_2":"VIA FELICE CORDERO DI PAMPARATO"}
+,{"codice":16676,"denominazione_corrente_2":"GIARDINO EDERA CORDIALE"}
+,{"codice":16687,"denominazione_corrente_2":"VIA ARCANGELO CORELLI"}
+,{"codice":16702,"denominazione_corrente_2":"VIA CORIO"}
+,{"codice":16720,"denominazione_corrente_2":"PIAZZA CORIOLANO"}
+,{"codice":16742,"denominazione_corrente_2":"VIA CORMONS"}
+,{"codice":16753,"denominazione_corrente_2":"GIARDINO CORPO ITALIANO DI LIBERAZIONE"}
+,{"codice":16786,"denominazione_corrente_2":"PIAZZA CORPUS DOMINI"}
+,{"codice":16803,"denominazione_corrente_2":"VIA CORRADO CORRADINO"}
+,{"codice":16821,"denominazione_corrente_2":"VIA CORREGGIO"}
+,{"codice":16841,"denominazione_corrente_2":"CORSO CESARE CORRENTI"}
+,{"codice":16863,"denominazione_corrente_2":"CORSO CORSICA"}
+,{"codice":17006,"denominazione_corrente_2":"VIA CORTE D'APPELLO"}
+,{"codice":17028,"denominazione_corrente_2":"VIA CORTEMILIA"}
+,{"codice":17040,"denominazione_corrente_2":"CORSO COSENZA"}
+,{"codice":17062,"denominazione_corrente_2":"VIA UMBERTO COSMO"}
+,{"codice":17084,"denominazione_corrente_2":"VIA PIETRO COSSA"}
+,{"codice":17183,"denominazione_corrente_2":"VIA COSSERIA"}
+,{"codice":17204,"denominazione_corrente_2":"VIA COSSILA"}
+,{"codice":17226,"denominazione_corrente_2":"VIA NINO COSTA"}
+,{"codice":17237,"denominazione_corrente_2":"VIA ANDREA COSTAGUTA"}
+,{"codice":17248,"denominazione_corrente_2":"PIAZZALE COSTANTINO IL GRANDE"}
+,{"codice":17260,"denominazione_corrente_2":"VIA COSTIGLIOLE"}
+,{"codice":17282,"denominazione_corrente_2":"VIA S. GIUSEPPE BENEDETTO COTTOLENGO"}
+,{"codice":17303,"denominazione_corrente_2":"VIA COURMAYEUR"}
+,{"codice":17325,"denominazione_corrente_2":"VIA GIOVANNI CRAVERO"}
+,{"codice":17446,"denominazione_corrente_2":"VIA CREA"}
+,{"codice":17468,"denominazione_corrente_2":"VIA CREMONA"}
+,{"codice":17480,"denominazione_corrente_2":"VIA CRESCENTINO"}
+,{"codice":17491,"denominazione_corrente_2":"VIA ROBERTO CRESCENZIO"}
+,{"codice":17501,"denominazione_corrente_2":"STRADA DEL CRESTO"}
+,{"codice":17545,"denominazione_corrente_2":"STRADA DELLA CREUSA"}
+,{"codice":17567,"denominazione_corrente_2":"STRADA DALLA CREUSA ALLA VAL PATTONERA"}
+,{"codice":17600,"denominazione_corrente_2":"VIA CREVACUORE"}
+,{"codice":17622,"denominazione_corrente_2":"VIA CRIMEA"}
+,{"codice":17644,"denominazione_corrente_2":"PIAZZA CRIMEA"}
+,{"codice":17666,"denominazione_corrente_2":"VIA MARIO CRIMI"}
+,{"codice":17688,"denominazione_corrente_2":"PIAZZA FRANCESCO CRISPI"}
+,{"codice":17701,"denominazione_corrente_2":"VIA CRISSOLO"}
+,{"codice":17721,"denominazione_corrente_2":"VIA CRISTALLIERA"}
+,{"codice":17732,"denominazione_corrente_2":"CORSO BENEDETTO CROCE"}
+,{"codice":17743,"denominazione_corrente_2":"VICOLO CROCETTA"}
+,{"codice":17754,"denominazione_corrente_2":"VIA GIOVANNI BATTISTA CROSATO"}
+,{"codice":17765,"denominazione_corrente_2":"VIA ALESSANDRO CRUTO"}
+,{"codice":17802,"denominazione_corrente_2":"VIA CUMIANA"}
+,{"codice":17820,"denominazione_corrente_2":"VIA CUNEO"}
+,{"codice":17842,"denominazione_corrente_2":"VIA VITTORIO CUNIBERTI"}
+,{"codice":17864,"denominazione_corrente_2":"STRADA CUNIOLI ALTI"}
+,{"codice":15301,"denominazione_corrente_2":"STRADA CIMITERO DI CAVORETTO"}
+,{"codice":15323,"denominazione_corrente_2":"STRADA CIMITERO DI LUCENTO"}
+,{"codice":15345,"denominazione_corrente_2":"STRADA CIMITERO DI MADONNA DEL PILONE"}
+,{"codice":15367,"denominazione_corrente_2":"STRADA CIMITERO DI MADONNA DI CAMPAGNA"}
+,{"codice":15389,"denominazione_corrente_2":"STRADA CIMITERO DI POZZO STRADA"}
+,{"codice":15400,"denominazione_corrente_2":"STRADA CIMITERO DI SASSI"}
+,{"codice":15422,"denominazione_corrente_2":"CORSO L. QUINZIO CINCINNATO"}
+,{"codice":15488,"denominazione_corrente_2":"VIA CINZANO"}
+,{"codice":15499,"denominazione_corrente_2":"VIA GIUSEPPE CIOTTA"}
+,{"codice":15501,"denominazione_corrente_2":"VIA CARLO CIPOLLA"}
+,{"codice":15521,"denominazione_corrente_2":"VIA CIRENAICA"}
+,{"codice":15565,"denominazione_corrente_2":"PIAZZA CIRENE"}
+,{"codice":15602,"denominazione_corrente_2":"CORSO CIRIE'"}
+,{"codice":15620,"denominazione_corrente_2":"VIA CIRIE'"}
+,{"codice":15642,"denominazione_corrente_2":"VIA FRANCESCO CIRIO"}
+,{"codice":15664,"denominazione_corrente_2":"VIA ANDREA CISI"}
+,{"codice":15686,"denominazione_corrente_2":"VIA DELLA CITTADELLA"}
+,{"codice":15703,"denominazione_corrente_2":"VIA CLAVIERE"}
+,{"codice":15721,"denominazione_corrente_2":"VIA STEFANO CLEMENTE"}
+,{"codice":15741,"denominazione_corrente_2":"VIA MUZIO CLEMENTI"}
+,{"codice":15763,"denominazione_corrente_2":"VIA COAZZE"}
+,{"codice":15785,"denominazione_corrente_2":"VIA DON GIOVANNI COCCHI"}
+,{"codice":15804,"denominazione_corrente_2":"VIA COCCONATO"}
+,{"codice":15813,"denominazione_corrente_2":"VIA DOMENICO COGGIOLA"}
+,{"codice":15822,"denominazione_corrente_2":"VIA COGNE"}
+,{"codice":15840,"denominazione_corrente_2":"VIA SALVATORE COGNETTI DE MARTIIS"}
+,{"codice":15862,"denominazione_corrente_2":"VIA COL DI LANA"}
+,{"codice":15873,"denominazione_corrente_2":"VIA POMPEO COLAJANNI"}
+,{"codice":15884,"denominazione_corrente_2":"VIA ARTURO COLAUTTI"}
+,{"codice":15905,"denominazione_corrente_2":"VIA COLLEASCA"}
+,{"codice":15923,"denominazione_corrente_2":"STRADA ANTICA DI COLLEGNO"}
+,{"codice":15941,"denominazione_corrente_2":"VIA GIACINTO COLLEGNO"}
+,{"codice":16148,"denominazione_corrente_2":"LUNGO DORA PIETRO COLLETTA"}
+,{"codice":16182,"denominazione_corrente_2":"VIA LUIGI COLLI"}
+,{"codice":16203,"denominazione_corrente_2":"VIA CRISTOFORO COLOMBO"}
+,{"codice":16225,"denominazione_corrente_2":"GIARDINO CRISTOFORO COLOMBO"}
+,{"codice":16269,"denominazione_corrente_2":"VIA VITTORIA COLONNA"}
+,{"codice":16270,"denominazione_corrente_2":"GIARDINO GUSTAVO COLONNETTI"}
+,{"codice":16281,"denominazione_corrente_2":"STRADA DELLA COMMENDA"}
+,{"codice":16324,"denominazione_corrente_2":"VIA COMO"}
+,{"codice":16335,"denominazione_corrente_2":"GIARDINO CARLO COMPANS DE BRICHANTEAU"}
+,{"codice":16346,"denominazione_corrente_2":"VIA CONDOVE"}
+,{"codice":16357,"denominazione_corrente_2":"PIAZZA TERESA CONFALONIERI"}
+,{"codice":16368,"denominazione_corrente_2":"VIA CONFIENZA"}
+,{"codice":16380,"denominazione_corrente_2":"VIA CONI ZUGNA"}
+,{"codice":16423,"denominazione_corrente_2":"VIA DELLA CONSOLATA"}
+,{"codice":16445,"denominazione_corrente_2":"PIAZZA DELLA CONSOLATA"}
+,{"codice":16467,"denominazione_corrente_2":"VICOLO DELLA CONSOLATA"}
+,{"codice":16489,"denominazione_corrente_2":"VIA CONTE ROSSO"}
+,{"codice":16500,"denominazione_corrente_2":"VIA CONTE VERDE"}
+,{"codice":13783,"denominazione_corrente_2":"VIA CERES"}
+,{"codice":13794,"denominazione_corrente_2":"VIA UGO CERESERO"}
+,{"codice":13806,"denominazione_corrente_2":"VIA CERESOLE"}
+,{"codice":13815,"denominazione_corrente_2":"PIAZZETTA CERIGNOLA"}
+,{"codice":13824,"denominazione_corrente_2":"VIA CERNAIA"}
+,{"codice":13842,"denominazione_corrente_2":"VIA CERRIONE"}
+,{"codice":13860,"denominazione_corrente_2":"VIA CERVIGNASCO"}
+,{"codice":13882,"denominazione_corrente_2":"VIA CERVINO"}
+,{"codice":13907,"denominazione_corrente_2":"VIA ANDREA CESALPINO"}
+,{"codice":13925,"denominazione_corrente_2":"VIA CESANA"}
+,{"codice":13943,"denominazione_corrente_2":"PIAZZA CESARE AUGUSTO"}
+,{"codice":13961,"denominazione_corrente_2":"VIA CEVA"}
+,{"codice":13981,"denominazione_corrente_2":"VIA CHABERTON"}
+,{"codice":14003,"denominazione_corrente_2":"VIA CHALLANT"}
+,{"codice":14047,"denominazione_corrente_2":"VIA CHAMBERY"}
+,{"codice":14168,"denominazione_corrente_2":"VIA PIETRO ABATE CHANOUX"}
+,{"codice":14201,"denominazione_corrente_2":"VIA CHATILLON"}
+,{"codice":14245,"denominazione_corrente_2":"VIA CHERASCO"}
+,{"codice":14267,"denominazione_corrente_2":"VIA CHERSO"}
+,{"codice":14289,"denominazione_corrente_2":"VIA LUIGI SALVATORE CHERUBINI"}
+,{"codice":14322,"denominazione_corrente_2":"VIA GIOVANNI CHEVALLEY"}
+,{"codice":14344,"denominazione_corrente_2":"VIA GABRIELE CHIABRERA"}
+,{"codice":14366,"denominazione_corrente_2":"VIA LUIGI CHIALA"}
+,{"codice":14421,"denominazione_corrente_2":"VIA CHIALAMBERTO"}
+,{"codice":14443,"denominazione_corrente_2":"VIA CHIANOCCO"}
+,{"codice":14465,"denominazione_corrente_2":"PIAZZA DESIDERATO CHIAVES"}
+,{"codice":14502,"denominazione_corrente_2":"CORSO CHIERI"}
+,{"codice":14641,"denominazione_corrente_2":"VIA ALLA CHIESA"}
+,{"codice":14663,"denominazione_corrente_2":"VIA DAMIANO CHIESA"}
+,{"codice":14685,"denominazione_corrente_2":"LARGO DAMIANO CHIESA"}
+,{"codice":14704,"denominazione_corrente_2":"VIA CHIESA DELLA SALUTE"}
+,{"codice":14722,"denominazione_corrente_2":"PIAZZA CHIESA DELLA SALUTE"}
+,{"codice":14823,"denominazione_corrente_2":"CORSO CHIETI"}
+,{"codice":14832,"denominazione_corrente_2":"GIARDINO LUIGI CHIGNOLI"}
+,{"codice":14841,"denominazione_corrente_2":"VIA CHIOMONTE"}
+,{"codice":14850,"denominazione_corrente_2":"PIAZZALE ANTONIO CHIRIBIRI"}
+,{"codice":14861,"denominazione_corrente_2":"PIAZZA GIAMPIETRO CHIRONI"}
+,{"codice":14883,"denominazione_corrente_2":"VIA CHISOLA"}
+,{"codice":14906,"denominazione_corrente_2":"VIA CHISONE"}
+,{"codice":14924,"denominazione_corrente_2":"VIA CHIUSELLA"}
+,{"codice":14942,"denominazione_corrente_2":"VIA CHIVASSO"}
+,{"codice":14960,"denominazione_corrente_2":"VICOLO CHIVASSO"}
+,{"codice":14982,"denominazione_corrente_2":"VIA ENRICO CIALDINI"}
+,{"codice":15004,"denominazione_corrente_2":"VIA CIAMARELLA"}
+,{"codice":15060,"denominazione_corrente_2":"VIA LUIGI CIBRARIO"}
+,{"codice":15082,"denominazione_corrente_2":"LARGO LUIGI CIBRARIO"}
+,{"codice":15103,"denominazione_corrente_2":"VIA DEI CICLAMINI"}
+,{"codice":15125,"denominazione_corrente_2":"VIA CIGLIANO"}
+,{"codice":15147,"denominazione_corrente_2":"VIA FRANCESCO CIGNA"}
+,{"codice":15169,"denominazione_corrente_2":"LARGO FRANCESCO CIGNA"}
+,{"codice":15181,"denominazione_corrente_2":"VIA VITTORIO AMEDEO CIGNAROLI"}
+,{"codice":15202,"denominazione_corrente_2":"VIA FRANCESCO CILEA"}
+,{"codice":15224,"denominazione_corrente_2":"VIA CIMABUE"}
+,{"codice":15246,"denominazione_corrente_2":"VIA DOMENICO CIMAROSA"}
+,{"codice":15268,"denominazione_corrente_2":"PIAZZA DOMENICO CIMAROSA"}
+,{"codice":13761,"denominazione_corrente_2":"VIA CERCENASCO"}
+,{"codice":12342,"denominazione_corrente_2":"STRADA DELLE CASCINETTE"}
+,{"codice":12364,"denominazione_corrente_2":"STRADA DEL CASCINOTTO"}
+,{"codice":12441,"denominazione_corrente_2":"VIA CASELETTE"}
+,{"codice":12463,"denominazione_corrente_2":"VIA ALFREDO CASELLA"}
+,{"codice":12485,"denominazione_corrente_2":"VIA CASELLE"}
+,{"codice":12504,"denominazione_corrente_2":"VIA CASERTA"}
+,{"codice":12513,"denominazione_corrente_2":"VIA FELICE CASORATI"}
+,{"codice":12522,"denominazione_corrente_2":"VIA GIAN DOMENICO CASSINI"}
+,{"codice":12540,"denominazione_corrente_2":"LARGO GIAN DOMENICO CASSINI"}
+,{"codice":12584,"denominazione_corrente_2":"VIA CASTAGNETO"}
+,{"codice":12605,"denominazione_corrente_2":"VIA CASTAGNEVIZZA"}
+,{"codice":12623,"denominazione_corrente_2":"VIA CASTEGGIO"}
+,{"codice":12641,"denominazione_corrente_2":"VIA CASTELDELFINO"}
+,{"codice":12661,"denominazione_corrente_2":"LARGO CASTELDELFINO"}
+,{"codice":12706,"denominazione_corrente_2":"CORSO CASTELFIDARDO"}
+,{"codice":12724,"denominazione_corrente_2":"VIA CASTELGOMBERTO"}
+,{"codice":12782,"denominazione_corrente_2":"VIA CASTELLAMONTE"}
+,{"codice":12793,"denominazione_corrente_2":"PIAZZA CASTELLO PALAZZO MADAMA"}
+,{"codice":12807,"denominazione_corrente_2":"PIAZZA CASTELLO"}
+,{"codice":12816,"denominazione_corrente_2":"PIAZZA CASTELLO PALAZZO REALE"}
+,{"codice":12825,"denominazione_corrente_2":"STRADA CASTELLO DI MIRAFIORI"}
+,{"codice":12908,"denominazione_corrente_2":"VIA CASTELNUOVO"}
+,{"codice":12926,"denominazione_corrente_2":"VIA CARLO CASTELNUOVO DELLE LANZE"}
+,{"codice":12944,"denominazione_corrente_2":"VIA CASTIGLIONE"}
+,{"codice":12980,"denominazione_corrente_2":"VIA ALFREDO CATALANI"}
+,{"codice":13002,"denominazione_corrente_2":"VIA CATANIA"}
+,{"codice":13024,"denominazione_corrente_2":"VIA CATANZARO"}
+,{"codice":13046,"denominazione_corrente_2":"VIALE MARCO PORZIO CATONE"}
+,{"codice":13068,"denominazione_corrente_2":"PIAZZA RICCARDO CATTANEO"}
+,{"codice":13080,"denominazione_corrente_2":"VIA GIORGIO CATTI"}
+,{"codice":13091,"denominazione_corrente_2":"VIA AGOSTINO LUIGI CAUCHY"}
+,{"codice":13101,"denominazione_corrente_2":"VIA ENRICO CAVAGLIA'"}
+,{"codice":13123,"denominazione_corrente_2":"VIA CAVAGNOLO"}
+,{"codice":13189,"denominazione_corrente_2":"VIA GUIDO CAVALCANTI"}
+,{"codice":13200,"denominazione_corrente_2":"PIAZZA GUIDO CAVALCANTI"}
+,{"codice":13233,"denominazione_corrente_2":"PARCO CAVALIERI DI VITTORIO VENETO"}
+,{"codice":13266,"denominazione_corrente_2":"VIA CAVALLERMAGGIORE"}
+,{"codice":13288,"denominazione_corrente_2":"VIA GIOVANNI CARLO CAVALLI"}
+,{"codice":13299,"denominazione_corrente_2":"GIARDINO FELICE CAVALLOTTI"}
+,{"codice":13301,"denominazione_corrente_2":"VIA PIETRO CAVEZZALE"}
+,{"codice":13321,"denominazione_corrente_2":"STRADA DI CAVORETTO"}
+,{"codice":13420,"denominazione_corrente_2":"VIA CAVOUR"}
+,{"codice":13442,"denominazione_corrente_2":"PIAZZA CAVOUR"}
+,{"codice":13464,"denominazione_corrente_2":"STRADA DELLA CEBROSA"}
+,{"codice":13486,"denominazione_corrente_2":"VIA ANTONIO CECCHI"}
+,{"codice":13497,"denominazione_corrente_2":"PIAZZALE CEIRANO F.LLI"}
+,{"codice":13541,"denominazione_corrente_2":"VIA BENVENUTO CELLINI"}
+,{"codice":13563,"denominazione_corrente_2":"VIA GIOVANNI CENA"}
+,{"codice":13604,"denominazione_corrente_2":"VIA CENISCHIA"}
+,{"codice":13662,"denominazione_corrente_2":"VIA CENTALLO"}
+,{"codice":13723,"denominazione_corrente_2":"VIALE CARLO CEPPI"}
+,{"codice":13741,"denominazione_corrente_2":"VIA CERANO"}
+,{"codice":10863,"denominazione_corrente_2":"VIA GINO CAPPONI"}
+,{"codice":10881,"denominazione_corrente_2":"VIA CAPRERA"}
+,{"codice":10928,"denominazione_corrente_2":"VIA CAPRIE"}
+,{"codice":10946,"denominazione_corrente_2":"VIA LUIGI CAPRIOLO"}
+,{"codice":10982,"denominazione_corrente_2":"VIA CAPUA"}
+,{"codice":10991,"denominazione_corrente_2":"VIA LUIGI CAPUANA"}
+,{"codice":11000,"denominazione_corrente_2":"VIA CARAGLIO"}
+,{"codice":11088,"denominazione_corrente_2":"VIA CARAMAGNA"}
+,{"codice":11099,"denominazione_corrente_2":"VIA CARANDO F.LLI"}
+,{"codice":11101,"denominazione_corrente_2":"VIA CARAVAGGIO"}
+,{"codice":11121,"denominazione_corrente_2":"VIA GIULIO CARCANO"}
+,{"codice":11143,"denominazione_corrente_2":"VIA CARDEZZA"}
+,{"codice":11165,"denominazione_corrente_2":"VIA GUGLIELMO CARDINALE MASSAIA"}
+,{"codice":11187,"denominazione_corrente_2":"LARGO GUGLIELMO CARDINALE MASSAIA"}
+,{"codice":11198,"denominazione_corrente_2":"GIARDINO MICHELE CARDINALE PELLEGRINO"}
+,{"codice":11242,"denominazione_corrente_2":"VIA CARDINALE MAURIZIO"}
+,{"codice":11264,"denominazione_corrente_2":"VIA GAETANO CARDINALE ALIMONDA"}
+,{"codice":11286,"denominazione_corrente_2":"VIA GIOVANNI CARDINALE CAGLIERO"}
+,{"codice":11303,"denominazione_corrente_2":"PIAZZA GIOSUE' CARDUCCI"}
+,{"codice":11312,"denominazione_corrente_2":"VIA CAREMA"}
+,{"codice":11321,"denominazione_corrente_2":"VIA GIACINTO CARENA"}
+,{"codice":11341,"denominazione_corrente_2":"VIA CARESANA"}
+,{"codice":11363,"denominazione_corrente_2":"PIAZZA CARIGNANO"}
+,{"codice":11385,"denominazione_corrente_2":"VIA CARISIO"}
+,{"codice":11404,"denominazione_corrente_2":"VIA GIUSEPPE E ANTONIO CARLE"}
+,{"codice":11422,"denominazione_corrente_2":"VIA CARLO ALBERTO"}
+,{"codice":11440,"denominazione_corrente_2":"PIAZZA CARLO ALBERTO"}
+,{"codice":11462,"denominazione_corrente_2":"PIAZZA CARLO EMANUELE II"}
+,{"codice":11484,"denominazione_corrente_2":"PIAZZA CARLO FELICE"}
+,{"codice":11505,"denominazione_corrente_2":"VIA CARMAGNOLA"}
+,{"codice":11523,"denominazione_corrente_2":"VIA DEL CARMINE"}
+,{"codice":11541,"denominazione_corrente_2":"VIA CARNIA"}
+,{"codice":11561,"denominazione_corrente_2":"VIA CARO ANNIBAL"}
+,{"codice":11606,"denominazione_corrente_2":"STRADA DEL CAROSSETTO"}
+,{"codice":11624,"denominazione_corrente_2":"STRADA DEL CAROSSIO"}
+,{"codice":11642,"denominazione_corrente_2":"PIAZZA FRANCESCO CARRARA"}
+,{"codice":11660,"denominazione_corrente_2":"PARCO MARIO CARRARA"}
+,{"codice":11682,"denominazione_corrente_2":"VIA VALENTINO CARRERA"}
+,{"codice":11693,"denominazione_corrente_2":"VIA ROSALBA CARRIERA"}
+,{"codice":11761,"denominazione_corrente_2":"VIA ALESSANDRO CARROCCIO"}
+,{"codice":11781,"denominazione_corrente_2":"VIA CARRU'"}
+,{"codice":11808,"denominazione_corrente_2":"VIA CARSO"}
+,{"codice":11826,"denominazione_corrente_2":"STRADA DEL CARTMAN"}
+,{"codice":11927,"denominazione_corrente_2":"VIA DOMENICO CARUTTI"}
+,{"codice":11945,"denominazione_corrente_2":"VIA CASALBORGONE"}
+,{"codice":11963,"denominazione_corrente_2":"CORSO CASALE"}
+,{"codice":11981,"denominazione_corrente_2":"LARGO CASALE"}
+,{"codice":11990,"denominazione_corrente_2":"VIA MARIO CASALEGGIO"}
+,{"codice":12001,"denominazione_corrente_2":"VIA CARLO CASALEGNO"}
+,{"codice":12265,"denominazione_corrente_2":"VIA GOFFREDO CASALIS"}
+,{"codice":12287,"denominazione_corrente_2":"VIA SEVERINO CASANA"}
+,{"codice":12302,"denominazione_corrente_2":"VIA CASAPINTA"}
+,{"codice":12320,"denominazione_corrente_2":"VIA GAETANO CASATI"}
+,{"codice":9450,"denominazione_corrente_2":"PIAZZA BRUNO CACCIA"}
+,{"codice":9548,"denominazione_corrente_2":"CORSO CADORE"}
+,{"codice":9625,"denominazione_corrente_2":"LUNGO PO LUIGI CADORNA"}
+,{"codice":9647,"denominazione_corrente_2":"VIA RAFFAELE CADORNA"}
+,{"codice":9658,"denominazione_corrente_2":"PARCO CADUTI DEI LAGER NAZISTI"}
+,{"codice":9669,"denominazione_corrente_2":"CORSO CADUTI SUL LAVORO"}
+,{"codice":9681,"denominazione_corrente_2":"VIA CAFASSE"}
+,{"codice":9702,"denominazione_corrente_2":"VIA GIUSEPPE BEATO CAFASSO"}
+,{"codice":9713,"denominazione_corrente_2":"GIARDINO FRANCESCO BEATO FAA' DI BRUNO"}
+,{"codice":9724,"denominazione_corrente_2":"VIA CAGLIARI"}
+,{"codice":9746,"denominazione_corrente_2":"VIALE UMBERTO CAGNI"}
+,{"codice":9757,"denominazione_corrente_2":"SALITA CAI TORINO"}
+,{"codice":9768,"denominazione_corrente_2":"PIAZZALE CAIO MARIO"}
+,{"codice":9780,"denominazione_corrente_2":"CORSO CAIO PLINIO"}
+,{"codice":9801,"denominazione_corrente_2":"CORSO CAIROLI"}
+,{"codice":9845,"denominazione_corrente_2":"VIA CALABRIA"}
+,{"codice":9867,"denominazione_corrente_2":"VIA CALANDRA FRATELLI"}
+,{"codice":9900,"denominazione_corrente_2":"VIA CALATAFIMI"}
+,{"codice":9922,"denominazione_corrente_2":"STRADA DEI CALLERI"}
+,{"codice":9988,"denominazione_corrente_2":"VIA CALTANISSETTA"}
+,{"codice":10001,"denominazione_corrente_2":"VIA CALUSO"}
+,{"codice":10021,"denominazione_corrente_2":"VIA PIER FORTUNATO CALVI"}
+,{"codice":10032,"denominazione_corrente_2":"GIARDINO ITALO CALVINO"}
+,{"codice":10043,"denominazione_corrente_2":"VIA EDOARDO CALVO"}
+,{"codice":10065,"denominazione_corrente_2":"VIA CAMANDONA"}
+,{"codice":10087,"denominazione_corrente_2":"VIA CAMBIANO"}
+,{"codice":10102,"denominazione_corrente_2":"VIA CAMBURZANO"}
+,{"codice":10120,"denominazione_corrente_2":"VIA GIOVANNI CAMERANA"}
+,{"codice":10142,"denominazione_corrente_2":"VIA GIUSEPPE CAMINO"}
+,{"codice":10164,"denominazione_corrente_2":"VIA CAMOGLI"}
+,{"codice":10186,"denominazione_corrente_2":"STRADA DELLA CAMPAGNA"}
+,{"codice":10241,"denominazione_corrente_2":"STRADA DELLA CAMPAGNETTE"}
+,{"codice":10263,"denominazione_corrente_2":"STRADA DEL CAMPAGNINO"}
+,{"codice":10304,"denominazione_corrente_2":"VIA FEDERICO CAMPANA"}
+,{"codice":10322,"denominazione_corrente_2":"PIAZZA TOMMASO CAMPANELLA"}
+,{"codice":10362,"denominazione_corrente_2":"VIA CAMPERTOGNO"}
+,{"codice":10384,"denominazione_corrente_2":"VIA CAMPIGLIA"}
+,{"codice":10405,"denominazione_corrente_2":"VIA CAMPIGLIONE"}
+,{"codice":10423,"denominazione_corrente_2":"VIA DEL CAMPO"}
+,{"codice":10441,"denominazione_corrente_2":"VIA CAMPOBASSO"}
+,{"codice":10461,"denominazione_corrente_2":"VIA CANDELO"}
+,{"codice":10483,"denominazione_corrente_2":"VIA CANDIA"}
+,{"codice":10506,"denominazione_corrente_2":"VIA CANDIOLO"}
+,{"codice":10643,"denominazione_corrente_2":"VIA CANELLI"}
+,{"codice":10652,"denominazione_corrente_2":"VIA PIETRO CANONICA"}
+,{"codice":10661,"denominazione_corrente_2":"VIA CANONICO TANCREDI"}
+,{"codice":10681,"denominazione_corrente_2":"VIA ANTONIO CANOVA"}
+,{"codice":10708,"denominazione_corrente_2":"VIA CANTALUPO"}
+,{"codice":10726,"denominazione_corrente_2":"STRADA DEL CANTELLO"}
+,{"codice":10744,"denominazione_corrente_2":"VIA CANTOIRA"}
+,{"codice":10762,"denominazione_corrente_2":"VIA ANTONIO CANTORE"}
+,{"codice":10780,"denominazione_corrente_2":"VIA CESARE CANTU'"}
+,{"codice":10809,"denominazione_corrente_2":"VIA CARLO CAPELLI"}
+,{"codice":10827,"denominazione_corrente_2":"VIA DOMENICO CAPELLINA"}
+,{"codice":10845,"denominazione_corrente_2":"VIA CAPPEL VERDE"}
+,{"codice":8228,"denominazione_corrente_2":"VIA PAOLO BRACCINI"}
+,{"codice":8239,"denominazione_corrente_2":"GIARDINO LOUIS BRAILLE"}
+,{"codice":8262,"denominazione_corrente_2":"STRADA DEL BRAMAFAME"}
+,{"codice":8327,"denominazione_corrente_2":"CORSO BRAMANTE"}
+,{"codice":8361,"denominazione_corrente_2":"VIA BRANDIZZO"}
+,{"codice":8383,"denominazione_corrente_2":"VIA GIUSEPPE BRAVIN"}
+,{"codice":8404,"denominazione_corrente_2":"VIA BREGLIO"}
+,{"codice":8426,"denominazione_corrente_2":"VIA BRENTA"}
+,{"codice":8448,"denominazione_corrente_2":"CORSO BRESCIA"}
+,{"codice":8460,"denominazione_corrente_2":"LARGO BRESCIA"}
+,{"codice":8482,"denominazione_corrente_2":"CORSO BRIANZA"}
+,{"codice":8503,"denominazione_corrente_2":"VIA MARIA BRICCA"}
+,{"codice":8525,"denominazione_corrente_2":"VIA FELICE BRICCARELLO"}
+,{"codice":8547,"denominazione_corrente_2":"VIA GIOV. BATTISTA BRICHERASIO"}
+,{"codice":8558,"denominazione_corrente_2":"PARCO BRIGATA ALPINA TAURINENSE"}
+,{"codice":8569,"denominazione_corrente_2":"VIA COSTANTINO E MARIA BRIGHENTI"}
+,{"codice":8581,"denominazione_corrente_2":"CORSO BENEDETTO BRIN"}
+,{"codice":8602,"denominazione_corrente_2":"VIA BRINDISI"}
+,{"codice":8624,"denominazione_corrente_2":"VIA BRIONE"}
+,{"codice":8646,"denominazione_corrente_2":"VIA BRISSOGNE"}
+,{"codice":8668,"denominazione_corrente_2":"VIA DELLA BROCCA"}
+,{"codice":8680,"denominazione_corrente_2":"VIA ANGELO BROFFERIO"}
+,{"codice":8701,"denominazione_corrente_2":"VIA BRONI"}
+,{"codice":8712,"denominazione_corrente_2":"PIAZZETTA MANLIO BROSIO"}
+,{"codice":8723,"denominazione_corrente_2":"VIA BROSSO"}
+,{"codice":8745,"denominazione_corrente_2":"VIA CARLO GIOVANNI BRUGNONE"}
+,{"codice":8767,"denominazione_corrente_2":"VIA BRUINO"}
+,{"codice":8789,"denominazione_corrente_2":"CORSO FILIPPO BRUNELLESCHI"}
+,{"codice":8844,"denominazione_corrente_2":"VIA BRUNETTA"}
+,{"codice":8866,"denominazione_corrente_2":"VIA BRUNO GIORDANO"}
+,{"codice":8888,"denominazione_corrente_2":"VIA LORENZO BRUNO"}
+,{"codice":8943,"denominazione_corrente_2":"VIA EMILIO BRUSA"}
+,{"codice":8965,"denominazione_corrente_2":"VIA DELLA BRUSA'"}
+,{"codice":8987,"denominazione_corrente_2":"VIA BRUSNENGO"}
+,{"codice":9009,"denominazione_corrente_2":"VIA BUENOS AIRES"}
+,{"codice":9065,"denominazione_corrente_2":"VIA CARLO BUFFA DI PERRERO"}
+,{"codice":9087,"denominazione_corrente_2":"VIA MICHELE BUNIVA"}
+,{"codice":9108,"denominazione_corrente_2":"VIA BRUNO BUOZZI"}
+,{"codice":9120,"denominazione_corrente_2":"VIALE BURDIN"}
+,{"codice":9142,"denominazione_corrente_2":"VIA BURIASCO"}
+,{"codice":9229,"denominazione_corrente_2":"VIA BURONZO"}
+,{"codice":9241,"denominazione_corrente_2":"VIA FILIPPO BURZIO"}
+,{"codice":9263,"denominazione_corrente_2":"VIA BUSANO"}
+,{"codice":9285,"denominazione_corrente_2":"VIA BUSCA"}
+,{"codice":9296,"denominazione_corrente_2":"GIARDINO BUSCAGLIONE FERDINANDO"}
+,{"codice":9306,"denominazione_corrente_2":"VIA CARLO MICHELE BUSCALIONI"}
+,{"codice":9328,"denominazione_corrente_2":"VIA BUSSOLENO"}
+,{"codice":9340,"denominazione_corrente_2":"VIA BUTTIGLIERA"}
+,{"codice":9362,"denominazione_corrente_2":"PIAZZA (COMITATO LIBERAZIONE NAZIONALE) C.L.N."}
+,{"codice":9384,"denominazione_corrente_2":"PIAZZALE (C.R.I.) CROCE ROSSA ITALIANA"}
+,{"codice":9395,"denominazione_corrente_2":"GIARDINO CROCE VERDE"}
+,{"codice":9405,"denominazione_corrente_2":"VIA SEBASTIANO CABOTO"}
+,{"codice":9427,"denominazione_corrente_2":"VIA FRANCESCA SAVERIA CABRINI"}
+,{"codice":9449,"denominazione_corrente_2":"STRADA DELLE CACCE"}
+,{"codice":6820,"denominazione_corrente_2":"VIA PIER CARLO BOGGIO"}
+,{"codice":6842,"denominazione_corrente_2":"VIA CONTE GIAMBATTISTA BOGINO"}
+,{"codice":6864,"denominazione_corrente_2":"VIA BOGNANCO"}
+,{"codice":6886,"denominazione_corrente_2":"VIALE MATTEO MARIA BOIARDO"}
+,{"codice":6903,"denominazione_corrente_2":"VIA ARRIGO BOITO"}
+,{"codice":6921,"denominazione_corrente_2":"VIA BOLLENGO"}
+,{"codice":6941,"denominazione_corrente_2":"VIA BOLOGNA"}
+,{"codice":6985,"denominazione_corrente_2":"CORSO BOLZANO"}
+,{"codice":7007,"denominazione_corrente_2":"VIA BARTOLOMEO BONA"}
+,{"codice":7029,"denominazione_corrente_2":"VIA ALFONSO BONAFOUS"}
+,{"codice":7041,"denominazione_corrente_2":"VIA CARLO BONCOMPAGNI DI MOMBELLO"}
+,{"codice":7063,"denominazione_corrente_2":"VIA FRANCO BONELLI"}
+,{"codice":7085,"denominazione_corrente_2":"VIA PIETRO BONFANTE"}
+,{"codice":7106,"denominazione_corrente_2":"PIAZZA RUGGERO BONGHI"}
+,{"codice":7128,"denominazione_corrente_2":"VIA EMILIO BONGIOVANNI"}
+,{"codice":7140,"denominazione_corrente_2":"VIA FERDINANDO BONSIGNORE"}
+,{"codice":7162,"denominazione_corrente_2":"VIA GIUSEPPE MARIA BONZANIGO"}
+,{"codice":7184,"denominazione_corrente_2":"VIA BONZO"}
+,{"codice":7227,"denominazione_corrente_2":"VIA BORDIGHERA"}
+,{"codice":7249,"denominazione_corrente_2":"VIA GIACINTO BORELLI"}
+,{"codice":7261,"denominazione_corrente_2":"VIA CARMELO BORG PISANI"}
+,{"codice":7283,"denominazione_corrente_2":"VIA BORGARO"}
+,{"codice":7304,"denominazione_corrente_2":"LARGO BORGARO"}
+,{"codice":7382,"denominazione_corrente_2":"VIA BORGO DORA"}
+,{"codice":7403,"denominazione_corrente_2":"PIAZZA BORGO DORA"}
+,{"codice":7425,"denominazione_corrente_2":"VIA BORGOFRANCO"}
+,{"codice":7469,"denominazione_corrente_2":"VIA BORGOMANERO"}
+,{"codice":7481,"denominazione_corrente_2":"VIA BORGOMASINO"}
+,{"codice":7502,"denominazione_corrente_2":"VIA BORGONE"}
+,{"codice":7524,"denominazione_corrente_2":"VIA BORGOSESIA"}
+,{"codice":7546,"denominazione_corrente_2":"VIA BORGO TICINO"}
+,{"codice":7568,"denominazione_corrente_2":"VIA BORMIDA"}
+,{"codice":7580,"denominazione_corrente_2":"VIA BORRIANA"}
+,{"codice":7601,"denominazione_corrente_2":"PIAZZA FRANCESCO BORROMINI"}
+,{"codice":7612,"denominazione_corrente_2":"VIA PAOLO BORSELLINO"}
+,{"codice":7623,"denominazione_corrente_2":"VIA GIOSUE' BORSI"}
+,{"codice":7667,"denominazione_corrente_2":"VIA S. GIOVANNI BOSCO"}
+,{"codice":7689,"denominazione_corrente_2":"VIA BOSCONERO"}
+,{"codice":7700,"denominazione_corrente_2":"VIA PAOLO BOSELLI"}
+,{"codice":7722,"denominazione_corrente_2":"VIA CARLO BOSSI"}
+,{"codice":7744,"denominazione_corrente_2":"VIA BOSSOLASCO"}
+,{"codice":7766,"denominazione_corrente_2":"VIA CARLO BOSSOLI"}
+,{"codice":7788,"denominazione_corrente_2":"VIA BOSTON"}
+,{"codice":7920,"denominazione_corrente_2":"VIA GIOVANNI BOTERO"}
+,{"codice":7942,"denominazione_corrente_2":"VIA CARLO BOTTA"}
+,{"codice":7964,"denominazione_corrente_2":"VIA VITTORIO BOTTEGO"}
+,{"codice":7986,"denominazione_corrente_2":"GIARDINO GIOVAN BATTISTA BOTTERO"}
+,{"codice":8008,"denominazione_corrente_2":"PIAZZA GIOVANNI BOTTESINI"}
+,{"codice":8020,"denominazione_corrente_2":"VIA SANDRO BOTTICELLI"}
+,{"codice":8107,"denominazione_corrente_2":"STRADA DEL BOTTONE"}
+,{"codice":8129,"denominazione_corrente_2":"VIA CARLO BOUCHERON"}
+,{"codice":8141,"denominazione_corrente_2":"VIA GIACOMO BOVE"}
+,{"codice":8163,"denominazione_corrente_2":"VIA BOVES"}
+,{"codice":8174,"denominazione_corrente_2":"VIA GIOVANNI BOVETTI"}
+,{"codice":8185,"denominazione_corrente_2":"PIAZZA CAMILLO BOZZOLO"}
+,{"codice":8206,"denominazione_corrente_2":"VIA BRA"}
+,{"codice":5478,"denominazione_corrente_2":"VIA BERRUTI E FERRERO"}
+,{"codice":5489,"denominazione_corrente_2":"VIA VITTORIO BERSEZIO"}
+,{"codice":5500,"denominazione_corrente_2":"VIA AUGUSTO BERTA"}
+,{"codice":5511,"denominazione_corrente_2":"VIA AGOSTINO BERTANI"}
+,{"codice":5522,"denominazione_corrente_2":"VIA CLAUDIO LUIGI BERTHOLLET"}
+,{"codice":5544,"denominazione_corrente_2":"VIA DOMENICO BERTI"}
+,{"codice":5566,"denominazione_corrente_2":"VIA BERTINI"}
+,{"codice":5588,"denominazione_corrente_2":"VIA ANTONIO GIUSEPPE BERTOLA"}
+,{"codice":5601,"denominazione_corrente_2":"STRADA BERTOLLA"}
+,{"codice":5621,"denominazione_corrente_2":"STRADA DA BERTOLLA ALL'ABBADIA DI STURA"}
+,{"codice":5803,"denominazione_corrente_2":"VIA DAVIDE BERTOLOTTI"}
+,{"codice":5821,"denominazione_corrente_2":"VIA GIOVANNI AMBROGIO BERTRANDI"}
+,{"codice":5841,"denominazione_corrente_2":"VIA BESSANESE"}
+,{"codice":5863,"denominazione_corrente_2":"VIA RODOLFO BETTAZZI"}
+,{"codice":5885,"denominazione_corrente_2":"VIA DELLE BETULLE"}
+,{"codice":5904,"denominazione_corrente_2":"VIA QUINTO BEVILACQUA"}
+,{"codice":5962,"denominazione_corrente_2":"VIA BEZZECCA"}
+,{"codice":5984,"denominazione_corrente_2":"VIA ETTORE BIAMINO"}
+,{"codice":6006,"denominazione_corrente_2":"VIA GIUSEPPE BIAMONTI"}
+,{"codice":6028,"denominazione_corrente_2":"VIA UMBERTO BIANCAMANO"}
+,{"codice":6040,"denominazione_corrente_2":"VIA NICOMEDE BIANCHI"}
+,{"codice":6127,"denominazione_corrente_2":"PIAZZA DANTE LIVIO BIANCO"}
+,{"codice":6138,"denominazione_corrente_2":"VIA CARLO BIANCO"}
+,{"codice":6149,"denominazione_corrente_2":"VIA BIANZE'"}
+,{"codice":6161,"denominazione_corrente_2":"STRADA DEI BIASONETTI"}
+,{"codice":6183,"denominazione_corrente_2":"STRADA DEI BIASONI"}
+,{"codice":6260,"denominazione_corrente_2":"VIA BIBIANA"}
+,{"codice":6282,"denominazione_corrente_2":"VIA BICOCCA"}
+,{"codice":6303,"denominazione_corrente_2":"VIA GIORGIO BIDONE"}
+,{"codice":6325,"denominazione_corrente_2":"VIA BIELLA"}
+,{"codice":6347,"denominazione_corrente_2":"VIA GIULIO BIGLIERI"}
+,{"codice":6369,"denominazione_corrente_2":"VIA BIOGLIO"}
+,{"codice":6381,"denominazione_corrente_2":"VIA BIONAZ"}
+,{"codice":6424,"denominazione_corrente_2":"VIA BISALTA"}
+,{"codice":6446,"denominazione_corrente_2":"VIA ROBERTO BISCARETTI DI RUFFIA"}
+,{"codice":6468,"denominazione_corrente_2":"VIA GIOVANNI BATTISTA E CARLO FELICE BISCARRA"}
+,{"codice":6501,"denominazione_corrente_2":"VIA BISTAGNO"}
+,{"codice":6523,"denominazione_corrente_2":"VIALE LEONARDO BISTOLFI"}
+,{"codice":6545,"denominazione_corrente_2":"VIA NINO BIXIO"}
+,{"codice":6567,"denominazione_corrente_2":"VIA GIULIO BIZZOZERO"}
+,{"codice":6589,"denominazione_corrente_2":"VIA BLIGNY"}
+,{"codice":6600,"denominazione_corrente_2":"VIA BOBBIO"}
+,{"codice":6622,"denominazione_corrente_2":"VIA FERDINANDO BOCCA"}
+,{"codice":6644,"denominazione_corrente_2":"VIA GIOVANNI BOCCACCIO"}
+,{"codice":6666,"denominazione_corrente_2":"LARGO GIOVANNI BOCCACCIO"}
+,{"codice":6701,"denominazione_corrente_2":"VIA GIOVANNI MICHELE BOCCARDO"}
+,{"codice":6721,"denominazione_corrente_2":"VIA LUIGI BOCCHERINI"}
+,{"codice":6732,"denominazione_corrente_2":"GIARDINO UMBERTO BOCCIONI"}
+,{"codice":6743,"denominazione_corrente_2":"VIA GIAMBATTISTA BODONI"}
+,{"codice":6765,"denominazione_corrente_2":"PIAZZA GIAMBATTISTA BODONI"}
+,{"codice":6787,"denominazione_corrente_2":"VIA GABRIELE BOGETTO"}
+,{"codice":6802,"denominazione_corrente_2":"VIA GUIDO BOGGIANI"}
+,{"codice":4334,"denominazione_corrente_2":"VIA EUGENIO BARSANTI"}
+,{"codice":4345,"denominazione_corrente_2":"VIA MATTEO BARTOLI"}
+,{"codice":4367,"denominazione_corrente_2":"VIA LORENZO BARTOLINI"}
+,{"codice":4389,"denominazione_corrente_2":"VIA DELLA BASILICA"}
+,{"codice":4400,"denominazione_corrente_2":"PIAZZA BASILICATA"}
+,{"codice":4422,"denominazione_corrente_2":"VIA BASSANO"}
+,{"codice":4444,"denominazione_corrente_2":"STRADA BASSE DEL LINGOTTO"}
+,{"codice":4466,"denominazione_corrente_2":"STRADA BASSE DI DORA"}
+,{"codice":4521,"denominazione_corrente_2":"STRADA BASSE DI STURA"}
+,{"codice":4543,"denominazione_corrente_2":"VIA CESARE BATTISTI"}
+,{"codice":4554,"denominazione_corrente_2":"GIARDINO FERDINANDO BATTISTINI"}
+,{"codice":4565,"denominazione_corrente_2":"VIA ENRICO BAUDI DI VESME"}
+,{"codice":4587,"denominazione_corrente_2":"VIA EUSEBIO BAVA"}
+,{"codice":4602,"denominazione_corrente_2":"VIA BAVENO"}
+,{"codice":4620,"denominazione_corrente_2":"VIA GIOVANNI ANTONIO BAZZI"}
+,{"codice":4642,"denominazione_corrente_2":"VIA ANGELICO BEATO"}
+,{"codice":4664,"denominazione_corrente_2":"VIA BEAULARD"}
+,{"codice":4686,"denominazione_corrente_2":"VIA CLAUDIO BEAUMONT"}
+,{"codice":4703,"denominazione_corrente_2":"CORSO GIAMBATTISTA BECCARIA"}
+,{"codice":4712,"denominazione_corrente_2":"PIAZZA ALERAMO BECCUTI"}
+,{"codice":4721,"denominazione_corrente_2":"VIA CRISTOFORO BEGGIAMO"}
+,{"codice":4741,"denominazione_corrente_2":"VIA BEINASCO"}
+,{"codice":4763,"denominazione_corrente_2":"VIA BEINETTE"}
+,{"codice":4785,"denominazione_corrente_2":"VIA BELFIORE"}
+,{"codice":4804,"denominazione_corrente_2":"CORSO BELGIO"}
+,{"codice":4822,"denominazione_corrente_2":"LARGO BELGIO"}
+,{"codice":4840,"denominazione_corrente_2":"VIA CRISTINA BELGIOIOSO"}
+,{"codice":4862,"denominazione_corrente_2":"VIA BELGIRATE"}
+,{"codice":4884,"denominazione_corrente_2":"STRADA BELLACOMBA"}
+,{"codice":4923,"denominazione_corrente_2":"VIA LUDOVICO BELLARDI"}
+,{"codice":4983,"denominazione_corrente_2":"STRADA DEL BELLARDO"}
+,{"codice":5049,"denominazione_corrente_2":"VIA GIAN FRANCESCO BELLEZIA"}
+,{"codice":5061,"denominazione_corrente_2":"VIA PIETRINO BELLI"}
+,{"codice":5083,"denominazione_corrente_2":"VIA VINCENZO BELLINI"}
+,{"codice":5104,"denominazione_corrente_2":"VIA BELLINZONA"}
+,{"codice":5126,"denominazione_corrente_2":"VIA GIORGIO BELLONO"}
+,{"codice":5148,"denominazione_corrente_2":"VIA LUIGI BELLOTTI BON"}
+,{"codice":5160,"denominazione_corrente_2":"VIA BELLUNO"}
+,{"codice":5182,"denominazione_corrente_2":"VIA BELMONTE"}
+,{"codice":5203,"denominazione_corrente_2":"VIA BATTISTA BENA"}
+,{"codice":5225,"denominazione_corrente_2":"VIA BENACO"}
+,{"codice":5247,"denominazione_corrente_2":"VIA BENE VAGIENNA"}
+,{"codice":5269,"denominazione_corrente_2":"VICOLO CESARE BENEVELLO"}
+,{"codice":5281,"denominazione_corrente_2":"VIA BENEVENTO"}
+,{"codice":5324,"denominazione_corrente_2":"PIAZZA BENGASI"}
+,{"codice":5335,"denominazione_corrente_2":"VIA PAOLO BENTIVOGLIO"}
+,{"codice":5346,"denominazione_corrente_2":"VIA GIOVANNI BERCHET"}
+,{"codice":5368,"denominazione_corrente_2":"VIA BERGAMO"}
+,{"codice":5379,"denominazione_corrente_2":"VIA LUIGI BERGERA"}
+,{"codice":5380,"denominazione_corrente_2":"VIA MICHELE BERRINO"}
+,{"codice":5423,"denominazione_corrente_2":"STRADA BERLIA"}
+,{"codice":5445,"denominazione_corrente_2":"PIAZZA LORENZO BERNINI"}
+,{"codice":5467,"denominazione_corrente_2":"VIA GIUSEPPE BERRUTI"}
+,{"codice":4323,"denominazione_corrente_2":"VIA ANTON GIULIO BARRILI"}
+,{"codice":2934,"denominazione_corrente_2":"PIAZZA GIOVANNI ASTENGO"}
+,{"codice":2943,"denominazione_corrente_2":"VIA ASTI"}
+,{"codice":2952,"denominazione_corrente_2":"VICOLO GIOVANNA ASTRUA"}
+,{"codice":2961,"denominazione_corrente_2":"VIA ASUNCION"}
+,{"codice":2970,"denominazione_corrente_2":"GIARDINO ATLETI AZZURRI D'ITALIA"}
+,{"codice":3003,"denominazione_corrente_2":"VIA AVELLINO"}
+,{"codice":3025,"denominazione_corrente_2":"VIA GIACINTO AVET"}
+,{"codice":3047,"denominazione_corrente_2":"VIA GIUSEPPE AVEZZANA"}
+,{"codice":3069,"denominazione_corrente_2":"VIA AVIGLIANA"}
+,{"codice":3168,"denominazione_corrente_2":"VIA AMEDEO AVOGADRO"}
+,{"codice":3180,"denominazione_corrente_2":"VIA VITTORIO AVONDO"}
+,{"codice":3201,"denominazione_corrente_2":"VIA ALBERTO AZUNI"}
+,{"codice":3223,"denominazione_corrente_2":"VIA FRANCESCO AZZI"}
+,{"codice":3234,"denominazione_corrente_2":"VIA DONATO BACHI"}
+,{"codice":3245,"denominazione_corrente_2":"PISTA CICLABILE ROBERT BADEN-POWELL"}
+,{"codice":3289,"denominazione_corrente_2":"VIA ALFONSO BADINI CONFALONIERI"}
+,{"codice":3300,"denominazione_corrente_2":"VIA PIETRO BAGETTI"}
+,{"codice":3322,"denominazione_corrente_2":"VIA BAGNASCO"}
+,{"codice":3344,"denominazione_corrente_2":"VIA PIETRO BAIARDI"}
+,{"codice":3366,"denominazione_corrente_2":"VIA BAINSIZZA"}
+,{"codice":3421,"denominazione_corrente_2":"VIA BAIRO"}
+,{"codice":3443,"denominazione_corrente_2":"VIA BALANGERO"}
+,{"codice":3465,"denominazione_corrente_2":"VIA GIAMBATTISTA BALBIS"}
+,{"codice":3487,"denominazione_corrente_2":"VIA CESARE BALBO"}
+,{"codice":3502,"denominazione_corrente_2":"PIAZZA ANTONIO GENERALE BALDISSERA"}
+,{"codice":3520,"denominazione_corrente_2":"VIA BALDISSERO"}
+,{"codice":3542,"denominazione_corrente_2":"VIA UMBERTO BALESTRERI"}
+,{"codice":3553,"denominazione_corrente_2":"VIA GIACOMO BALLA"}
+,{"codice":3586,"denominazione_corrente_2":"VIA BALME"}
+,{"codice":3603,"denominazione_corrente_2":"VIALE DIEGO BALSAMO CRIVELLI"}
+,{"codice":3621,"denominazione_corrente_2":"VIA BALTEA"}
+,{"codice":3641,"denominazione_corrente_2":"VIA BALTIMORA"}
+,{"codice":3652,"denominazione_corrente_2":"VIA ALFONSO BALZICO"}
+,{"codice":3740,"denominazione_corrente_2":"VIA BANCHETTE"}
+,{"codice":3762,"denominazione_corrente_2":"VIA MATTEO BANDELLO"}
+,{"codice":3784,"denominazione_corrente_2":"VIA BANDIERA FRATELLI"}
+,{"codice":3805,"denominazione_corrente_2":"VIA ANTONIO BANFO"}
+,{"codice":3823,"denominazione_corrente_2":"VIA FRANCESCO BARACCA"}
+,{"codice":3841,"denominazione_corrente_2":"VIA BARBANIA"}
+,{"codice":3861,"denominazione_corrente_2":"VIA BARBARESCO"}
+,{"codice":3906,"denominazione_corrente_2":"VIA ALDO BARBARO"}
+,{"codice":3924,"denominazione_corrente_2":"VIA GIUSEPPE BARBAROUX"}
+,{"codice":3942,"denominazione_corrente_2":"VIA GASPERO BARBERA"}
+,{"codice":3960,"denominazione_corrente_2":"STRADA DELLA BARBERINA"}
+,{"codice":4004,"denominazione_corrente_2":"VIA NICOLO' BARBERIS"}
+,{"codice":4026,"denominazione_corrente_2":"PIAZZALE BARCELLONA"}
+,{"codice":4048,"denominazione_corrente_2":"VIA BARD"}
+,{"codice":4103,"denominazione_corrente_2":"VIA BARDASSANO"}
+,{"codice":4125,"denominazione_corrente_2":"VIA BARDONECCHIA"}
+,{"codice":4147,"denominazione_corrente_2":"LARGO BARDONECCHIA"}
+,{"codice":4181,"denominazione_corrente_2":"VIA GIUSEPPE BARETTI"}
+,{"codice":4202,"denominazione_corrente_2":"VIA BARGE"}
+,{"codice":4224,"denominazione_corrente_2":"VIA BARI"}
+,{"codice":4246,"denominazione_corrente_2":"VIA BARLETTA"}
+,{"codice":4280,"denominazione_corrente_2":"STRADA DEL BAROCCHIO"}
+,{"codice":1403,"denominazione_corrente_2":"VIA GIOVANNI AMENDOLA"}
+,{"codice":1412,"denominazione_corrente_2":"GIARDINO GIORGIO AMENDOLA"}
+,{"codice":1421,"denominazione_corrente_2":"VIA GIOVENALE ANCINA"}
+,{"codice":1441,"denominazione_corrente_2":"VIA ANCONA"}
+,{"codice":1452,"denominazione_corrente_2":"VIA ANDEZENO"}
+,{"codice":1463,"denominazione_corrente_2":"VIA ANDORNO"}
+,{"codice":1485,"denominazione_corrente_2":"VIA VITTORIO ANDREIS"}
+,{"codice":1540,"denominazione_corrente_2":"VIA CECCO ANGIOLIERI"}
+,{"codice":1562,"denominazione_corrente_2":"VIA ANGIOLINO"}
+,{"codice":1573,"denominazione_corrente_2":"VIA MARTINO ANGLESIO"}
+,{"codice":1584,"denominazione_corrente_2":"VIA ANGROGNA"}
+,{"codice":1605,"denominazione_corrente_2":"VIA GIAN CARLO ANSELMETTI"}
+,{"codice":1623,"denominazione_corrente_2":"VIA ORAZIO ANTINORI"}
+,{"codice":1641,"denominazione_corrente_2":"STRADA DELLA ANTIOCA"}
+,{"codice":1661,"denominazione_corrente_2":"LUNGO PO ALESSANDRO ANTONELLI"}
+,{"codice":1683,"denominazione_corrente_2":"VIA ANTONELLO DA MESSINA"}
+,{"codice":1706,"denominazione_corrente_2":"VIA AOSTA"}
+,{"codice":1742,"denominazione_corrente_2":"VIA APORTI FERRANTE"}
+,{"codice":1760,"denominazione_corrente_2":"CORSO APPIO CLAUDIO"}
+,{"codice":1825,"denominazione_corrente_2":"VIA DEGLI APPROCCI"}
+,{"codice":1843,"denominazione_corrente_2":"VIA AQUILA"}
+,{"codice":1861,"denominazione_corrente_2":"VIA AQUILEIA"}
+,{"codice":1881,"denominazione_corrente_2":"PIAZZA VINCENZO ARBARELLO"}
+,{"codice":1908,"denominazione_corrente_2":"VIA ARBE"}
+,{"codice":1926,"denominazione_corrente_2":"VIA ARBORIO"}
+,{"codice":1944,"denominazione_corrente_2":"VIA DELL' ARCIVESCOVADO"}
+,{"codice":1962,"denominazione_corrente_2":"VIA ROBERTO ARDIGO'"}
+,{"codice":2002,"denominazione_corrente_2":"VIA ARDUINO"}
+,{"codice":2024,"denominazione_corrente_2":"VIA AREZZO"}
+,{"codice":2046,"denominazione_corrente_2":"VIA GIOVANNI ARGENTERO"}
+,{"codice":2068,"denominazione_corrente_2":"VIA ARGONNE"}
+,{"codice":2080,"denominazione_corrente_2":"CORSO GIUSEPPE ARIMONDI"}
+,{"codice":2101,"denominazione_corrente_2":"VIA LODOVICO ARIOSTO"}
+,{"codice":2145,"denominazione_corrente_2":"VIA ARNALDO DA BRESCIA"}
+,{"codice":2167,"denominazione_corrente_2":"VIA ARNAZ"}
+,{"codice":2189,"denominazione_corrente_2":"VIA RICCARDO ARNO'"}
+,{"codice":2200,"denominazione_corrente_2":"VIA ALBERTO ARNULFI"}
+,{"codice":2222,"denominazione_corrente_2":"VIA ARONA"}
+,{"codice":2233,"denominazione_corrente_2":"VIA GIOVANNI ARPINO"}
+,{"codice":2244,"denominazione_corrente_2":"VIA ARQUATA"}
+,{"codice":2420,"denominazione_corrente_2":"STRADA DELL' ARRIVORE"}
+,{"codice":2442,"denominazione_corrente_2":"VIA ARSENALE"}
+,{"codice":2453,"denominazione_corrente_2":"GIARDINO DEGLI ARTIGLIERI DA MONTAGNA"}
+,{"codice":2464,"denominazione_corrente_2":"VIA ARTISTI"}
+,{"codice":2486,"denominazione_corrente_2":"VIA EMANUELE ARTOM"}
+,{"codice":2585,"denominazione_corrente_2":"VIA ARVIER"}
+,{"codice":2604,"denominazione_corrente_2":"VIA GRAZIADIO ASCOLI"}
+,{"codice":2622,"denominazione_corrente_2":"VIA ASIAGO"}
+,{"codice":2723,"denominazione_corrente_2":"VIA ASIGLIANO VERCELLESE"}
+,{"codice":2741,"denominazione_corrente_2":"VIA ALL' ASILO"}
+,{"codice":2761,"denominazione_corrente_2":"VIA VITTORIO ASINARI DI BERNEZZO"}
+,{"codice":2842,"denominazione_corrente_2":"PIAZZA ASMARA"}
+,{"codice":2860,"denominazione_corrente_2":"VIA ASPROMONTE"}
+,{"codice":2882,"denominazione_corrente_2":"VIA OTTAVIO ASSAROTTI"}
+,{"codice":2907,"denominazione_corrente_2":"VIA ASSIETTA"}
+,{"codice":2925,"denominazione_corrente_2":"VIA ASSISI"}
+]}

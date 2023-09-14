@@ -1,0 +1,56 @@
+.input-group-text,
+select,
+input {
+    font-size: 0.8em
+}
+
+.input-group {
+    /* margin-bottom: 8px; */
+    margin-bottom: 0px
+}
+
+button {
+    width: 120px
+}
+
+.overlay {
+    z-index: 100;
+}
+
+.bg_grey {
+    background-color: #ECEEEF;
+}
+
+label{
+  margin-right: 0.5em
+}
+
+fieldset {
+  display: flex;
+  flex-wrap:wrap
+}
+
+.btn-toggle{
+  background-color: #80BCF4 !important; 
+  border-radius: 0 !important
+ }
+/*
+.input-group > .input-group-prepend > .input-group-text {  
+    font-size: 0.8em;
+  }
+  body .form-control, body .form-control-text, select {
+    font-size: 1.6rem;
+    width: 90%;
+    padding: .875rem .75rem;
+  }
+  .table-responsive, .page-link {
+    font-size:1em;
+  }
+  .btn-primary, .btn-danger {
+    padding-left: 1px !important;
+    padding-top: 1px !important;
+    padding-right: 1px !important;
+    padding-bottom: 1px !important;
+  }
+  
+  */

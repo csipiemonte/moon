@@ -1,0 +1,11 @@
+p {
+    color: red;
+    font-size: medium;
+    font-style: normal;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #000000;
+    padding: 2px 2px 2px 6px;
+}
+
+

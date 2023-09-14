@@ -1,0 +1,17 @@
+<h1 class="h2">Cambia ente</h1>
+
+<form #scegliEnte="ngForm" class="form-group mt-5 col-12 col-lg-6 p-0">
+    <label for="enteSel">Seleziona un ente:</label>
+    <select #enteSel="ngModel" (change)="selezionaEnte($event.target.value)" [(ngModel)]="idEnte" class="form-control" id="enteSel" name="enteSel" required>
+
+      <option *ngFor="let ente of elencoEnti" value="{{ente.idEnte}}">{{ente.nomeEnte}}</option>
+    </select>
+
+    <div *ngIf="enteSel.invalid && (enteSel.dirty || enteSel.touched)" class="alert alert-danger">Ente obbligatorio
+    </div>
+
+    <div class="mt-5">
+      <button (click)=scegliEnte.reset() class="mb-2 me-2 btn btn-outline-primary" aria-label="Annulla selezione" type="submit">Annulla</button>
+      <button (click)=aggiornaEnte() [disabled]="enteSel.invalid"  aria-label="Conferma selezione" class="mb-2 btn btn-primary" type="submit">Conferma</button>
+    </div>
+  </form>

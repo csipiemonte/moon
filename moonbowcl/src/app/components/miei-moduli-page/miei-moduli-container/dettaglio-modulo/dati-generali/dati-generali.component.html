@@ -1,0 +1,240 @@
+<ng-container [ngSwitch]="currTemplate">
+    <ng-container *ngSwitchCase="'datiGenerali'">
+    <div *ngIf="!editMode">
+        <div *ngIf="isAdmin || currentUser?.hasRuoloOperatorMinADV()" style="position:absolute; top: 4.5rem; right: 8px; z-index: 1;">
+            <button type="button" class="btn btn-outline-primary" (click)="editMode=true;">Edit Dati Generali</button>
+        </div>
+        <div>
+            <div class="row">
+                <div class=".col-12 col-md-11 align-self-start">{{modulo.oggettoModulo}} ({{modulo.codiceModulo}})<span *ngIf="isAdmin"> [{{modulo.idModulo}}]</span></div>
+                <div class=".col-12 col-md-1">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class=".col-12 col-md-11 align-self-start">{{modulo.descrizioneModulo}}</div>
+                <div class=".col-12 col-md-1">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class=".col-12 col-md-12">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class=".col-12 col-md-3 align-self-start">Codice Istanze:</div>
+                <div class=".col-12 col-md-9">{{tipoCodiceIstanza.descrizioneTipo}}<span *ngIf="isAdmin"> [{{modulo.idTipoCodiceIstanza}}]</span></div>
+            </div>
+            <div class="row">
+                <div class=".col-12 col-md-3 align-self-start">Tipo Modulo:</div>
+                <div class=".col-12 col-md-9">{{modulo.tipoStruttura}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">Categoria:</div>
+                <div class="col-md-9">{{modulo.categoria.descrizione}}<span *ngIf="isAdmin"> [{{modulo.categoria.idCategoria}}]</span></div>
+            </div>
+            <div class="row" *ngIf="modulo && modulo.portali && modulo.portali.length>0">
+                <div class="col-md-3">Portali:</div>
+                <div class="col-md-9">
+                    <span *ngFor="let portale of modulo.portali; let isLast=last">
+                        {{ portale.nomePortale }}<span *ngIf="isAdmin"> [{{ portale.idPortale }}]</span>{{isLast ? '' : ', '}}
+                    </span>
+                </div>
+            </div>
+            <div class="row" *ngIf="!modulo || !modulo.portali || (modulo.portali && modulo.portali.length==0)">
+                <div class="col-md-3">Portali:</div>
+                <div class="col-md-9">NOT-DEFINED</div>
+            </div>
+            <div class="row" *ngIf="modulo && modulo.processo" title="{{modulo.processo?.descProcesso}}">
+                <div class="col-md-3">Processo:</div>
+                <div class="col-md-9">{{modulo.processo?.nomeProcesso}} ({{modulo.processo?.codiceProcesso}})<span *ngIf="isAdmin">
+                    [{{modulo.processo?.idProcesso}}]</span>&nbsp;<a href="" data-toggle="modal" data-target="#image-processo" title="visualizza lo schema del processo"
+                        (click)="caricaImageProcesso()">
+                        <fa-icon [icon]="faSearchPlus"></fa-icon>
+                    </a>
+                </div>
+            </div>
+            <div class="row" *ngIf="modulo && sommaValutazioni>0" data-html="true" title="{{titleValutazioni}}">
+                <div class="col-md-3">Valutazione:</div>
+                <div class="progress valutazione-bar">
+                    <ng-container *ngFor="let v of valutazioni; let i=index">
+                    <div *ngIf="v['numeroIstanze'] < 2" class="progress-bar" style="width: {{ v['percent'] }}%; background-color:{{ colorsValutazione[i] }}" title="{{ v['descValutazione'] }} {{ v['numeroIstanze'] }} istanza ({{ v['percent'] | number : '1.0-2' }}%)"></div>
+                    <div *ngIf="v['numeroIstanze'] >=2" class="progress-bar" style="width: {{ v['percent'] }}%; background-color:{{ colorsValutazione[i] }}" title="{{ v['descValutazione'] }} {{ v['numeroIstanze'] }} istanze ({{ v['percent'] | number : '1.0-2' }}%)"></div>
+                    </ng-container>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="!modulo || !modulo.processo">
+                <div class="col-md-3">Processo:</div>
+                <div class="col-md-9">NOT-DEFINED</div>
+            </div>
+        </div>
+
+    <!--
+            <db-angular-tree-grid [data]="versioniData" [configs]="versioniConfigs"></db-angular-tree-grid>
+        -->
+    <div class="table-responsive" style="margin-top: 50px !important;">
+        <table id="mytable" class="table table-bordered table-striped">
+            <thead>
+                <th>Versioni</th>
+                <th>Dt. Agg</th>
+                <th>Attore Agg.</th>
+                <th>Stato</th>
+                <th>Dt. Inizio Validit&agrave;</th>
+                <th>Operazione</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let v of modulo.versioni">
+                    <td>{{v?.versioneModulo}}</td>
+                    <td>{{v?.dataUpd | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+                    <td>{{ mapOperatori.get(v?.attoreUpd) ? (mapOperatori.get(v?.attoreUpd) | formatUtente: 'NC') : v?.attoreUpd }}</td>
+                    <td><span title="{{v?.descrizione}}">{{v?.codice}}</span></td>
+                    <td>{{v?.dataInizioValidita | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+                    <td style="white-space: nowrap">
+                        <a *ngIf="isAdmin" [routerLink]="[]" ngbTooltip="Cambia Stato"
+                            (click)="cambiaStato(v)">
+                            <fa-icon style="margin-left: 5px" [icon]="faSync"></fa-icon>
+                        </a>
+                        <a *ngIf="isModificabile" [routerLink]="[]" ngbTooltip="Modifica Modulo"
+                            (click)="editFormIo(v)">
+                            <fa-icon style="margin-left: 20px" [icon]="faEdit"></fa-icon>
+                        </a>
+                        <a *ngIf="v.codice==='INIT' && modulo.versioni.length==1 " [routerLink]="[]" ngbTooltip="Elimina Modulo"
+                            (click)="eliminaModulo(v)">
+                            <fa-icon style="margin-left: 20px; color: red" [icon]="faTrashAlt"></fa-icon>
+                        </a>
+                        <a *ngIf="v.codice==='INIT' && modulo.versioni.length!==1 " [routerLink]="[]" ngbTooltip="Elimina Versione Modulo"
+                            (click)="eliminaVersioneModulo(v)">
+                            <fa-icon style="margin-left: 20px; color: red" [icon]="faTrashAlt"></fa-icon>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+    </div>
+    <div *ngIf="editMode">
+        <alert id="alert-moduli-dati-generali"></alert>
+        <form>
+            <div class="form-group">
+                <label for="codiceModulo"> Codice:</label>
+                <input type="text" [(ngModel)]="moduloEdit.codiceModulo" id="codiceModulo" name="codiceModulo"
+                    class="form-control" readonly #codiceModulo="ngModel"/>
+            </div>
+            <div class="form-group">
+                <label for="oggetto"> Oggetto:</label>
+                <input type="text" [(ngModel)]="moduloEdit.oggettoModulo" id="oggettoModulo" name="oggettoModulo"  size="50"
+                    class="form-control" #oggettoModulo="ngModel"/>
+            </div>
+
+            <div class="form-group">
+                <label for="descrizione"> Descrizione:</label>
+                <textarea [(ngModel)]="moduloEdit.descrizioneModulo" id="descrizioneModulo" name="descrizioneModulo" rows="4" cols="25"
+                     class="form-control" #descrizioneModulo="ngModel"> </textarea>
+            </div>
+            <div class="form-group">
+                <label for="tipoCodiceIstanza">Tipo Codice Istanze:</label>
+                <select [(ngModel)]="moduloEdit.idTipoCodiceIstanza" name="tipoCodiceIstanza" id="tipoCodiceIstanza" class="form-control"
+                    #tipoStruttura="ngModel">
+                    <option *ngFor="let t of elencoTipoCodiceIstanza" [ngValue]="t.idTipoCodiceIstanza">{{t.descrizioneTipo}} <span *ngIf="isAdmin"> [{{t.idTipoCodiceIstanza}}]</span></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tipoStruttura">Tipo Struttura:</label>
+                <select [(ngModel)]="moduloEdit.tipoStruttura" name="tipoStruttura" id="tipoStruttura"
+                    class="form-control" #tipoStruttura="ngModel">
+                    <option *ngFor="let t of formTypes" [ngValue]="t.tipo">{{t.descrizione}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="categoria">Categoria:</label>
+                <select [(ngModel)]="moduloEdit.categoria.idCategoria" name="categoria" id="categoria"
+                    class="form-control" #categoria="ngModel">
+                    <option *ngFor="let c of elencoCategorie" [ngValue]="c.idCategoria">{{ c.descrizione }}<span *ngIf="isAdmin"> [{{ c.idCategoria }}]</span></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="portali">Portali:</label>
+                <select multiple [(ngModel)]="moduloEditIdPortali" name="portali" id="portali" class="form-control"
+                    #portali="ngModel">
+                    <option *ngFor="let p of elencoPortali" [ngValue]="p.idPortale">{{ p.nomePortale }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="processo">Processo:</label>
+                <select [(ngModel)]="moduloEdit.processo.idProcesso" name="processo" id="processo" class="form-control" #processo="ngModel">
+                    <option *ngFor="let p of elencoProcessi" [ngValue]="p.idProcesso">{{p.codiceProcesso}}-{{p.descProcesso}}<span *ngIf="isAdmin"> [{{ p.idProcesso }}]</span></option>
+                </select>
+            </div>
+            <div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-light" (click)="editMode=false;" style="float:left">Annulla</button>
+                <button type="button" class="btn btn-success" (click)="salva()" style="float:right">Salva</button>
+            </div>
+        </form>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'cambiaStato'">
+        <app-miei-moduli-cambia-stato
+            [moduloInLavorazione]="moduloInModifica" 
+            [options]="{isbuttonIcon:false}"
+            (backEvent)="backOperazione($event)"
+            (alertService)="getAlert($event)">
+        </app-miei-moduli-cambia-stato>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'modificaModulo'">
+        <app-formio-editor [modulo]="moduloInModifica"
+                           [options]="{isbuttonIcon:false}"
+                           [isUserAdmin]="currentUser.isTipoADMIN()"
+                           (backEvent)="backOperazione($event)"
+                           (alertService)="getAlert($event)">
+        </app-formio-editor>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </ng-container>
+
+</ng-container>
+
+<!-- Modale Image Processo -->
+<div class="modal fade" id="image-processo" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 1000px;height: 1000px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title custom_align" id="Heading">Schema del processo</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="fa fa-remove" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img [src]="thumbnailProcesso" style="width: 100%; height: auto;" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">chiudi</button>
+            </div>
+        </div>
+    </div>
+</div>

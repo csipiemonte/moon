@@ -1,0 +1,196 @@
+<div *ngIf="!editMode">
+    <div *ngIf="isAdmin" style="position:absolute; top: 4.5rem; right: 8px; z-index: 1;">
+        <button type="button" class="btn btn-outline-primary" (click)="editMode=true;">Edit Cosmo</button>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col col-md-2"><span title="{{ titleUpd.get('PSIT_COSMO') }}">Cosmo:</span></div>
+            <div class="col col-md-10">{{maCosmo['valore']}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-2"><span title="{{ titleUpd.get('PSIT_COSMO_CONF') }}">Cosmo overwrite Conf:</span></div>
+            <div class="col col-md-10"><span title="{{attrCosmoConf|json}}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-code-square"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z">
+                        </path>
+                        <path
+                            d="M6.854 4.646a.5.5 0 0 1 0 .708L4.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0z">
+                        </path>
+                    </svg></span>
+            </div>
+        </div>
+        <div class="row" *ngIf="attrCosmoConf['include_allegati']">
+            <div class="col col-md-2">include_allegati:</div>
+            <div class="col col-md-10">{{attrCosmoConf['include_allegati'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCosmoConf['allegato_figlio']">
+            <div class="col col-md-2">allegato_figlio:</div>
+            <div class="col col-md-10">{{attrCosmoConf['allegato_figlio'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCosmoConf['idPratica']">
+            <div class="col col-md-2">idPratica:</div>
+            <div class="col col-md-10">{{attrCosmoConf['idPratica'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCosmoConf['codiceTipologia']">
+            <div class="col col-md-2">codiceTipologia:</div>
+            <div class="col col-md-10">{{attrCosmoConf['codiceTipologia'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCosmoConf['oggetto']">
+            <div class="col col-md-2">oggetto:</div>
+            <div class="col col-md-10">{{attrCosmoConf['oggetto'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCosmoConf['codiceIpaEnte']">
+            <div class="col col-md-2">codiceIpaEnte:</div>
+            <div class="col col-md-10">{{attrCosmoConf['codiceIpaEnte'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCosmoConf['riassunto']">
+            <div class="col col-md-2">riassunto:</div>
+            <div class="col col-md-10">{{attrCosmoConf['riassunto'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCosmoConf['utenteCreazione']">
+            <div class="col col-md-2">utenteCreazione:</div>
+            <div class="col col-md-10">{{attrCosmoConf['utenteCreazione'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCosmoConf['codiceTipoDocIstanza']">
+            <div class="col col-md-2">codiceTipoDocIstanza:</div>
+            <div class="col col-md-10">{{attrCosmoConf['codiceTipoDocIstanza'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCosmoConf['codiceTipoDocAllegato']">
+            <div class="col col-md-2">codiceTipoDocAllegato:</div>
+            <div class="col col-md-10">{{attrCosmoConf['codiceTipoDocAllegato'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCosmoConf['codiceTipoDocIntegrazione']">
+            <div class="col col-md-2">codiceTipoDocIntegrazione:</div>
+            <div class="col col-md-10">{{attrCosmoConf['codiceTipoDocIntegrazione'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCosmoConf['codiceTipoDocIntegrazioneAllegato']">
+            <div class="col col-md-2">codiceTipoDocIntegrazioneAllegato:</div>
+            <div class="col col-md-10">{{attrCosmoConf['codiceTipoDocIntegrazioneAllegato'] }}</div>
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+<div *ngIf="editMode">
+    <alert id="alert-moduli-attr-wf-cosmo"></alert>
+    <form>
+        <div class="form-group">
+            <label for="attrCosmoEdit">Cosmo:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Abilitazione alla creazione di una pratica ed avvio processo su COSMO [S|N]"></i></label>
+            <div>
+                <ui-switch [(ngModel)]="maCosmoEditT" [ngModelOptions]="{standalone: true}">
+                </ui-switch>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="include_allegati">include_allegati:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Flag per includere gli allegati nell'invio a Cosmo. Non valorizzare per mantere il valore di default 'true'. [true|false]"></i></label>
+            <input type="text" [(ngModel)]="attrCosmoConfEdit['include_allegati']" id="include_allegati" name="include_allegati" class="form-control" #include_allegati="ngModel" placeholder="true" />
+        </div>
+        <div class="form-group">
+            <label for="allegato_figlio">allegato_figlio:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Flag per posizionare gli allegati come figlio del PDF dell'istanza. Non valorizzare per mantere il valore di default 'fale'. [true|false]"></i></label>
+            <input type="text" [(ngModel)]="attrCosmoConfEdit['allegato_figlio']" id="allegato_figlio" name="allegato_figlio" class="form-control" #allegato_figlio="ngModel" placeholder="false" />
+        </div>
+        <div class="form-group">
+            <label for="idPratica">idPratica:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="ID della pratica su Cosmo. Non valorizzare per mantere il valore di default '@@CODICE_ISTANZA@@'."></i></label>
+            <input type="text" [(ngModel)]="attrCosmoConfEdit['idPratica']" id="idPratica" name="idPratica" class="form-control" #idPratica="ngModel" placeholder="@@CODICE_ISTANZA@@" />
+        </div>
+        <div class="form-group">
+            <label for="codiceTipologia">codiceTipologia:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Codice Tipologia. Non valorizzare per mantere il valore di default '@@CODICE_MODULO@@'."></i></label>
+            <input type="text" [(ngModel)]="attrCosmoConfEdit['codiceTipologia']" id="codiceTipologia" name="codiceTipologia" class="form-control" #codiceTipologia="ngModel" placeholder="@@CODICE_MODULO@@" />
+        </div>
+        <div class="form-group">
+            <label for="oggetto">oggetto:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Codice Tipologia della pratica. Non valorizzare per mantere il valore di default '@@CODICE_ISTANZA@@ @@COGNOME@@ @@Nome@@'."></i></label>
+            <input type="text" [(ngModel)]="attrCosmoConfEdit['oggetto']" id="oggetto" name="oggetto" class="form-control" #oggetto="ngModel" placeholder="@@CODICE_ISTANZA@@ @@COGNOME@@ @@Nome@@" />
+        </div>
+        <div class="form-group">
+            <label for="codiceIpaEnte">codiceIpaEnte:&nbsp;<i class="fa fa-question-circle text-muted" 
+                ngbTooltip="Codice IPA Ente. Non valorizzare per mantere il valore di default '@@CODICE_IPA_ENTE@@'."></i></label>
+            <input type="text" [(ngModel)]="attrCosmoConfEdit['codiceIpaEnte']" id="codiceIpaEnte" name="codiceIpaEnte" class="form-control" #codiceIpaEnte="ngModel" placeholder="@@CODICE_IPA_ENTE@@" />
+        </div>
+        <div class="form-group">
+            <label for="riassunto">riassunto:&nbsp;<i class="fa fa-question-circle text-muted" 
+                ngbTooltip="Riassunto della pratica. Non valorizzare per mantere il valore di default 'Istanza MOON @@CODICE_ISTANZA@@ (idIstanza:@@ID_ISTANZA@@)&lt;br /&gt;Modulo @@CODICE_MODULO@@
+@@VERSIONE_MODULO@@ @@OGGETTO_MODULO@@ (idModulo:@@ID_MODULO@@)&lt;br /&gt;Ente @@CODICE_ENTE@@ @@NOME_ENTE@@&lt;br /&gt;Compilato
+da @@CODICE_FISCALE@@ @@COGNOME@@ @@Nome@@&lt;br /&gt;@@ATTORE_INS_CONTO_TERZI@@ @@COGNOME_CONTO_TERZI@@
+@@Nome_CONTO_TERZI@@'."></i></label>
+            <textarea [(ngModel)]="attrCosmoConfEdit['riassunto']" id="riassunto" name="riassunto" rows="5" cols="25" class="form-control" #riassunto="ngModel" placeholder="Istanza MOON @@CODICE_ISTANZA@@ (idIstanza:@@ID_ISTANZA@@)&lt;br /&gt;Modulo @@CODICE_MODULO@@
+@@VERSIONE_MODULO@@ @@OGGETTO_MODULO@@ (idModulo:@@ID_MODULO@@)&lt;br /&gt;Ente @@CODICE_ENTE@@ @@NOME_ENTE@@&lt;br /&gt;Compilato
+da @@CODICE_FISCALE@@ @@COGNOME@@ @@Nome@@&lt;br /&gt;@@ATTORE_INS_CONTO_TERZI@@ @@COGNOME_CONTO_TERZI@@
+@@Nome_CONTO_TERZI@@"> </textarea>
+        </div>
+        <div class="form-group">
+            <label for="utenteCreazione">utenteCreazione:&nbsp;<i class="fa fa-question-circle text-muted" 
+                ngbTooltip="Utente Creazione della pratica. Non valorizzare per mantere il valore di default '@@CODICE_FISCALE@@'."></i></label>
+            <input type="text" [(ngModel)]="attrCosmoConfEdit['utenteCreazione']" id="utenteCreazione" name="utenteCreazione" class="form-control" #utenteCreazione="ngModel" placeholder="@@CODICE_FISCALE@@" />
+        </div>
+        <div class="form-group">
+            <label for="codiceTipoDocIstanza">codiceTipoDocIstanza:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Codice Tipologia Documento su invio dell'istanza principale. Non valorizzare per mantere il valore di default 'CODICE_TIPO_DOC_ISTANZA'."></i></label>
+            <input type="text" [(ngModel)]="attrCosmoConfEdit['codiceTipoDocIstanza']" id="codiceTipoDocIstanza" 
+                name="codiceTipoDocIstanza" class="form-control" #codiceTipoDocIstanza="ngModel" 
+                placeholder="CODICE_TIPO_DOC_ISTANZA" />
+        </div>
+        <div class="form-group">
+            <label for="codiceTipoDocAllegato">codiceTipoDocAllegato:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Codice Tipologia Documento su invio degli allegati dell'istanza principale. Non valorizzare per mantere il valore di default 'CODICE_TIPO_DOC_ALLEGATO'."></i></label>
+            <input type="text" [(ngModel)]="attrCosmoConfEdit['codiceTipoDocAllegato']" id="codiceTipoDocAllegato" 
+                name="codiceTipoDocAllegato" class="form-control" #codiceTipoDocAllegato="ngModel" 
+                placeholder="CODICE_TIPO_DOC_ALLEGATO" />
+        </div>
+        <div class="form-group">
+            <label for="codiceTipoDocIntegrazione">codiceTipoDocIntegrazione:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Codice Tipologia Documento su invio dell'istanza principale. Non valorizzare per mantere il valore di default 'CODICE_TIPO_DOC_INTEGRAZIONE'."></i></label>
+            <input type="text" [(ngModel)]="attrCosmoConfEdit['codiceTipoDocIntegrazione']" id="codiceTipoDocIntegrazione"
+                name="codiceTipoDocIntegrazione" class="form-control" #codiceTipoDocIntegrazione="ngModel"
+                placeholder="CODICE_TIPO_DOC_INTEGRAZIONE" />
+        </div>
+        <div class="form-group">
+            <label for="codiceTipoDocIntegrazioneAllegato">codiceTipoDocIntegrazioneAllegato:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Codice Tipologia Documento su invio degli allegati dell'istanza principale. Non valorizzare per mantere il valore di default 'CODICE_TIPO_DOC_INTEGRAZIONE_ALLEGATO'."></i></label>
+            <input type="text" [(ngModel)]="attrCosmoConfEdit['codiceTipoDocIntegrazioneAllegato']" id="codiceTipoDocIntegrazioneAllegato"
+                name="codiceTipoDocIntegrazioneAllegato" class="form-control" #codiceTipoDocIntegrazioneAllegato="ngModel"
+                placeholder="CODICE_TIPO_DOC_INTEGRAZIONE_ALLEGATO" />
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-light" (click)="editMode=false;" style="float:left">Annulla</button>
+            <button type="button" class="btn btn-success" (click)="salva()" style="float:right">Salva</button>
+        </div>
+    </form>
+</div>
+<div>&nbsp;</div>
+<div>Default conf:&nbsp;
+    <pre>
+"include_allegati": true,
+"allegato_figlio": false,
+"idPratica": "@@CODICE_ISTANZA@@",
+"codiceTipologia": "@@CODICE_MODULO@@",
+"oggetto": "@@CODICE_ISTANZA@@ @@COGNOME@@ @@Nome@@",
+"codiceIpaEnte": "@@CODICE_IPA_ENTE@@",
+"riassunto": "Istanza MOON @@CODICE_ISTANZA@@ (idIstanza:@@ID_ISTANZA@@)&lt;br /&gt;Modulo @@CODICE_MODULO@@
+@@VERSIONE_MODULO@@ @@OGGETTO_MODULO@@ (idModulo:@@ID_MODULO@@)&lt;br /&gt;Ente @@CODICE_ENTE@@ @@NOME_ENTE@@&lt;br /&gt;Compilato
+da @@CODICE_FISCALE@@ @@COGNOME@@ @@Nome@@&lt;br /&gt;@@ATTORE_INS_CONTO_TERZI@@ @@COGNOME_CONTO_TERZI@@
+@@Nome_CONTO_TERZI@@",
+"utenteCreazione": "@@CODICE_FISCALE@@",
+"codiceTipoDocIstanza": "CODICE_TIPO_DOC_ISTANZA",
+"codiceTipoDocAllegato": "CODICE_TIPO_DOC_ALLEGATO",
+"codiceTipoDocIntegrazione": "CODICE_TIPO_DOC_INTEGRAZIONE",
+"codiceTipoDocIntegrazioneAllegato": "CODICE_TIPO_DOC_INTEGRAZIONE_ALLEGATO"
+    </pre>
+</div>

@@ -1,0 +1,142 @@
+<alert id="alert-miei-moduli-dettaglio_modulo"></alert>  
+<div style="margin: 0 auto;">
+    <div style="margin: 0 auto;">
+        <h3 style="text-align:center;"><span title="{{spanTitleModulo}}">Modulo {{moduloSelezionato.codiceModulo}}</span>&nbsp;
+<!--
+            <div style="position: relative;  float: right;">
+                <a *ngIf="isModificabile" [routerLink]="[]" ngbTooltip="Modifica Modulo" (click)="modificaModulo($event)">
+                    <fa-icon style="margin-left: 15px" [icon]="faEdit"></fa-icon>
+                </a>
+                <a *ngIf="isAdmin" [routerLink]="[]" ngbTooltip="Duplica" (click)="duplicaModulo($event)">
+                    <fa-icon style="margin-left: 15px" [icon]="faClone"></fa-icon>
+                </a>
+                <a *ngIf="modulo.stato?.codice==='INIT'" [routerLink]="[]" ngbTooltip="Elimina Modulo" (click)="eliminaModulo($event)">
+                    <fa-icon style="margin-left: 20px; color: red" [icon]="faTrashAlt"></fa-icon>
+                </a>
+            </div>
+-->
+        </h3>
+        <div>&nbsp;</div>
+    </div>
+    <div class="d-flex">
+        <ul ngbNav #navVert="ngbNav" [(activeId)]="navVertActive" class="nav-pills justify-content-start" orientation="vertical">
+            <li ngbNavItem="dati-generali">
+                <a ngbNavLink>Dati Generali</a>
+                <ng-template ngbNavContent>
+                    <app-miei-moduli-dettaglio-dati-generali 
+                        [moduloSelezionato]="moduloSelezionato" 
+                        [elencoCategorie]="elencoCategorie" 
+                        [elencoProcessi]="elencoProcessi"
+                        [elencoPortali]="elencoPortali" 
+                        [elencoTipoCodiceIstanza]="elencoTipoCodiceIstanza"
+                        (eventCambiaStato)="cambiaStato($event)"
+                        (eventModificaModulo)="modificaModulo($event)"
+                        (eventEliminaModulo)="eliminaModulo($event)"
+                        (alertService)="getAlert($event)"
+                        >
+                    </app-miei-moduli-dettaglio-dati-generali>
+                </ng-template>
+            </li>
+            <li ngbNavItem="versioni">
+                <a ngbNavLink>Versioni</a>
+                <ng-template ngbNavContent>
+                    <app-miei-moduli-dettaglio-versioni [moduloSelezionato]="moduloSelezionato" (alertService)="getAlert($event)"></app-miei-moduli-dettaglio-versioni>
+                </ng-template>
+            </li>
+            <li ngbNavItem="attr-generali">
+                <a ngbNavLink>Attributi</a>
+                <ng-template ngbNavContent>
+                    <app-miei-moduli-dettaglio-attributi [moduloSelezionato]="moduloSelezionato"  (alertService)="getAlert($event)"></app-miei-moduli-dettaglio-attributi>
+                </ng-template>
+            </li>
+            <li ngbNavItem="modulistica">
+                <a ngbNavLink>Modulistica</a>
+                <ng-template ngbNavContent>
+                    <app-miei-moduli-dettaglio-modulistica
+                        [moduloSelezionato]="moduloSelezionato"
+                        [elencoPortali]="elencoPortali" 
+                        (alertService)="getAlert($event)">
+                    </app-miei-moduli-dettaglio-modulistica>
+                </ng-template>
+            </li>
+            <li ngbNavItem="attr-email">
+                <a ngbNavLink>Email</a>
+                <ng-template ngbNavContent>
+                    <app-miei-moduli-dettaglio-attr-email [moduloSelezionato]="moduloSelezionato"  (alertService)="getAlert($event)"></app-miei-moduli-dettaglio-attr-email>
+                </ng-template>
+            </li>
+            <li ngbNavItem="attr-notificatore" *ngIf="envModuliDettaglioTabEnable.notificatore">
+                <a ngbNavLink>Notificatore</a>
+                <ng-template ngbNavContent>
+                    <app-miei-moduli-dettaglio-attr-notificatore [moduloSelezionato]="moduloSelezionato" (alertService)="getAlert($event)"></app-miei-moduli-dettaglio-attr-notificatore>
+                </ng-template>
+            </li>
+            <li ngbNavItem="attr-protocollo" *ngIf="envModuliDettaglioTabEnable.protocollo">
+                <a ngbNavLink>Protocollo</a>
+                <ng-template ngbNavContent>
+                    <app-miei-moduli-dettaglio-attr-protocollo [moduloSelezionato]="moduloSelezionato" (alertService)="getAlert($event)"></app-miei-moduli-dettaglio-attr-protocollo>
+                </ng-template>
+            </li>
+            <li ngbNavItem="attr-wf-cosmo" *ngIf="envModuliDettaglioTabEnable.wfCosmo">
+                <a ngbNavLink>WF Cosmo</a>
+                <ng-template ngbNavContent>
+                    <app-miei-moduli-dettaglio-attr-wf-cosmo [moduloSelezionato]="moduloSelezionato" (alertService)="getAlert($event)"></app-miei-moduli-dettaglio-attr-wf-cosmo>
+                </ng-template>
+            </li>
+            <li ngbNavItem="attr-wf-azioni" *ngIf="envModuliDettaglioTabEnable.wfAzioni">
+                <a ngbNavLink>WF Azione</a>
+                <ng-template ngbNavContent>
+                    <app-miei-moduli-dettaglio-attr-wf-azioni [moduloSelezionato]="moduloSelezionato" (alertService)="getAlert($event)"></app-miei-moduli-dettaglio-attr-wf-azioni>
+                </ng-template>
+            </li>
+            <li ngbNavItem="attr-estrai-dich" *ngIf="envModuliDettaglioTabEnable.estraiDich">
+                <a ngbNavLink>Estrai Dich.</a>
+                <ng-template ngbNavContent>
+                    <app-miei-moduli-dettaglio-attr-estrai-dich [moduloSelezionato]="moduloSelezionato" (alertService)="getAlert($event)"></app-miei-moduli-dettaglio-attr-estrai-dich>
+                </ng-template>
+            </li>
+            <li ngbNavItem="attr-crm" *ngIf="envModuliDettaglioTabEnable.crm">
+                <a ngbNavLink>CRM</a>
+                <ng-template ngbNavContent>
+                    <app-miei-moduli-dettaglio-attr-crm [moduloSelezionato]="moduloSelezionato" (alertService)="getAlert($event)"></app-miei-moduli-dettaglio-attr-crm>
+                </ng-template>
+            </li>
+            <li ngbNavItem="attr-epay" *ngIf="envModuliDettaglioTabEnable.epay">
+                <a ngbNavLink>EPAY</a>
+                <ng-template ngbNavContent>
+                    <app-miei-moduli-dettaglio-attr-epay [moduloSelezionato]="moduloSelezionato" (alertService)="getAlert($event)">
+                    </app-miei-moduli-dettaglio-attr-epay>
+                </ng-template>
+            </li>
+            <li ngbNavItem="info-replace">
+                <a ngbNavLink>Info Replace</a>
+                <ng-template ngbNavContent>
+                    <app-miei-moduli-dettaglio-info-replace ></app-miei-moduli-dettaglio-info-replace>
+                </ng-template>
+            </li>
+            <li ngbNavItem="attr-api">
+                <a ngbNavLink>API</a>
+                <ng-template ngbNavContent>
+                    <app-miei-moduli-dettaglio-attr-api [moduloSelezionato]="moduloSelezionato" >
+                    </app-miei-moduli-dettaglio-attr-api>
+                </ng-template>
+            </li>
+            <li ngbNavItem="utenti-abilitati">
+                <a ngbNavLink>Utenti</a>
+                <ng-template ngbNavContent>
+                    <app-miei-moduli-dettaglio-utenti-abilitati [moduloSelezionato]="moduloSelezionato" >
+                    </app-miei-moduli-dettaglio-utenti-abilitati>
+                </ng-template>
+            </li>
+        </ul>
+        <div [ngbNavOutlet]="navVert" class="ml-4"></div>
+    </div>
+<!-- <pre>Debug Active navVertActive: {{ navVertActive }}</pre> -->
+
+    <div>&nbsp;</div>
+    <div style="margin: 0 auto;">
+        <button type="button" class="btn btn-primary" style="width: 70px;float:left" (click)="back()">
+            <fa-icon style='font-size: 22px' [icon]="faHome"></fa-icon>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+<div style="margin: 0 auto;">
+
+    <div class="form-group" style="margin: 0 auto;">
+        <h3 style="text-align:center;">Cambio stato</h3>
+        <div>&nbsp;</div>
+        <alert id="alert-cambia-stato"></alert>
+        <div> {{moduloInLavorazione.oggettoModulo}} ({{moduloInLavorazione.codiceModulo}})<span *ngIf="isAdmin"> [{{moduloInLavorazione.idModulo}}]</span></div>
+        <div> {{moduloInLavorazione.descrizioneModulo}}</div>
+        <div>&nbsp;</div>
+        <div>Versione : <b>{{moduloInLavorazione.versioneModulo}}</b></div>
+        <div>Stato attuale: <b>{{moduloInLavorazione.stato.descrizione}}</b></div>
+        <div>&nbsp;</div>
+        <div>
+            <label for="nuovoStato">Seleziona il nuovo stato:</label>
+
+            <select #nuovoStato='ngModel' name="nuovoStato" id="nuovoStato" class="form-control" required [(ngModel)]="statoModuloSelezionato" (change)="selezionaStato($event.target.value)">
+                <option *ngFor="let s of elencoStatiAmmissibili" [value]="s.codice">{{ s.descrizione }}</option>
+            </select>
+            <div *ngIf="statoRequired" class="alert alert-danger">
+                Nuovo stato obbligatorio
+            </div>
+        </div>
+        <div>&nbsp;</div>
+        <div *ngIf="showData">
+            <label for="dataStato">Seleziona la data di sospensione:</label>
+            <div *ngIf="lastDateTime">
+                <input placeholder="Data:" [(ngModel)]="dateTime" [owlDateTimeTrigger]="dt" [owlDateTime]="dt" #dtError="ngModel" [min]="minDateTime" required class="form-control">
+                <owl-date-time #dt></owl-date-time>
+                <span class="alert alert-danger" *ngIf="dtError.invalid && dtError.errors.owlDateTimeParse">
+                    Date non valida
+                </span>
+                <!-- <span class="alert alert-danger" *ngIf="dtError.required">
+                    Date obbligatoria
+                </span> -->
+                <span class="alert alert-danger" *ngIf="dateRequired">
+                    Data obbligatoria
+                </span>
+            </div>
+            <div *ngIf="!lastDateTime">
+                <input placeholder="Data:" [(ngModel)]="dateTime" [owlDateTimeTrigger]="dt" [owlDateTime]="dt" #dtError="ngModel" [min]="minDateTime" class="form-control">
+                <owl-date-time #dt></owl-date-time>
+                <span class="alert alert-danger" *ngIf="dtError.invalid && dtError.errors.owlDateTimeParse">
+                    Date non valida
+                </span>
+            </div>
+
+            <!-- <div>&nbsp;</div>
+            <div *ngIf="isDataMinCurrent">La data minima del cambio stato deve essere maggiore della data odierna o nulla</div>
+            <div *ngIf="!isDataMinCurrent"> Data minima cambio stato: <b>{{lastDateTime | date: 'dd/MM/yyyy hh:mm' }}</b></div>
+            <div>&nbsp;</div> -->
+
+            <div>&nbsp;</div>
+            <div *ngIf="tipoDataMin === TIPO_DATE.CURRENT">La data minima del cambio stato deve essere maggiore della data odierna o nulla</div>
+            <div *ngIf="tipoDataMin === TIPO_DATE.DATE_FUT"> Data minima cambio stato: <b>{{lastDateTime | date: 'dd/MM/yyyy hh:mm' }}</b></div>
+            <div>&nbsp;</div>
+        </div>
+
+        <!-- TIMER: {{subscribeTimer}} -->
+
+        <!-- <ul class="list-inline">
+            <li class="list-inline-item">
+                <button class="btn btn-primary" style="width: 70px;margin-right:10px" (click)="back()">
+                    <fa-icon style='font-size: 18px' [icon]="faHome"></fa-icon>
+                </button>
+                <button class="btn btn-primary" style="width: 70px;margin-right:10px" (click)="salva()" [disabled]="modeError">
+                    <fa-icon style='font-size: 18px' [icon]="faSave"></fa-icon>
+                </button>
+            </li>
+        </ul> -->
+
+    </div>
+
+    <div class="form-group" style="margin: 0 auto;margin-bottom:20px">
+        <span style="float:left" *ngIf="isMenuCollapsed">
+            <a [routerLink]="[]" (click)="isMenuCollapsed=! isMenuCollapsed" title="apri storico">
+                <fa-icon [icon]="faAngleDown" style="color: red;"></fa-icon>
+            </a>
+        </span>
+        <span style="float:left" *ngIf="!isMenuCollapsed">
+            <a [routerLink]="[]" (click)="isMenuCollapsed=! isMenuCollapsed" title="chiudi storico">
+                <fa-icon [icon]="faAngleUp" style="color: red;"></fa-icon>
+            </a>
+        </span>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="mb-3">Storico stati</h4>
+                <div [ngbCollapse]="isMenuCollapsed " class="collapse navbar-collapse">
+                    <table id="mytable" class="table table-bordered table-striped" style="font-size:0.8em;">
+                        <thead>
+                            <th>Codice</th>
+                            <th>Descrizione</th>
+                            <th>Data inizio validità</th>
+                            <th>Data fine validità</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let storico of elencoStorico">
+                                <td>{{storico.codice}}</td>
+                                <td>{{storico.descrizione}}</td>
+                                <td>{{storico.dataInizioValidita | date: 'dd/MM/yyyy hh:mm'}}</td>
+                                <td>{{storico.dataFineValidita | date: 'dd/MM/yyyy hh:mm'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngIf="opt?.isbuttonIcon" class="form-group" style="margin: 0 auto; ">
+        <button class="btn btn-primary " style="width: 70px;float:left " (click)="back()">
+            <fa-icon style='font-size: 18px' [icon]="faHome "></fa-icon>
+        </button>
+        <button class="btn btn-primary " style="width: 70px;float:right " (click)="salva() " [disabled]="modeError ">
+            <fa-icon style='font-size: 18px' [icon]="faSave "></fa-icon>
+        </button>
+    </div>
+    <div *ngIf="!opt?.isbuttonIcon" class="form-group">
+        <button type="button" class="btn btn-light" (click)="back()" style="float:left">Annulla</button>
+        <button type="button" class="btn btn-success" (click)="salva()" style="float:right" [disabled]="modeError ">Salva</button>
+    </div>
+
+    <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+</div>

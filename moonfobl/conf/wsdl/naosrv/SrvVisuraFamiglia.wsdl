@@ -1,0 +1,1650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="urn:SrvVisuraFamiglia" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="urn:SrvVisuraFamiglia" xmlns:intf="urn:SrvVisuraFamiglia" xmlns:tns1="http://wrapper.csi.csi.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Nov 13, 2013 (09:13:21 GMT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="urn:SrvVisuraFamiglia" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://wrapper.csi.csi.it"/>
+   <element name="testataFamigliePerID">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="in0" type="xsd:int"/>
+      <element minOccurs="0" name="in1" type="impl:DatiProfilati"/>
+      <element minOccurs="0" name="in2" type="impl:UtenteServizio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="DatiProfilati">
+    <sequence>
+     <element name="flgPaternitaMaternita" type="xsd:boolean"/>
+     <element name="flgProtocolliRiservatiE" type="xsd:boolean"/>
+     <element name="flgProtocolliRiservatiQ" type="xsd:boolean"/>
+     <element name="flgRettificheGeneralita" type="xsd:boolean"/>
+     <element name="flgSoggettiCancellati" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="Identita">
+    <sequence>
+     <element name="codFiscale" nillable="true" type="xsd:string"/>
+     <element name="cognome" nillable="true" type="xsd:string"/>
+     <element name="idProvider" nillable="true" type="xsd:string"/>
+     <element name="livelloAutenticazione" type="xsd:int"/>
+     <element name="mac" nillable="true" type="xsd:string"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="rappresentazioneInterna" nillable="true" type="xsd:string"/>
+     <element name="timestamp" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="UtenteServizio">
+    <sequence>
+     <element name="codiceUtente" nillable="true" type="xsd:string"/>
+     <element name="identita" nillable="true" type="impl:Identita"/>
+    </sequence>
+   </complexType>
+   <element name="testataFamigliePerIDResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="testataFamigliePerIDReturn" type="impl:TestataFamiglia"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="IndirizzoInterno">
+    <sequence>
+     <element name="bisTer" nillable="true" type="xsd:string"/>
+     <element name="bisTerInterno1" nillable="true" type="xsd:string"/>
+     <element name="bisTerInterno2" nillable="true" type="xsd:string"/>
+     <element name="cap" nillable="true" type="xsd:int"/>
+     <element name="codVia" nillable="true" type="xsd:int"/>
+     <element name="codicePiano" nillable="true" type="xsd:string"/>
+     <element name="denominazioneCompattaVia" nillable="true" type="xsd:string"/>
+     <element name="denominazioneCorrente" nillable="true" type="xsd:string"/>
+     <element name="denominazioneSecondariaVia" nillable="true" type="xsd:string"/>
+     <element name="denominazioneVia" nillable="true" type="xsd:string"/>
+     <element name="descCircoscrizione" nillable="true" type="xsd:string"/>
+     <element name="descDistrettoAssistenza" nillable="true" type="xsd:string"/>
+     <element name="descPiano" nillable="true" type="xsd:string"/>
+     <element name="descSezioneVigiliUrbani" nillable="true" type="xsd:string"/>
+     <element name="idCircoscrizione" nillable="true" type="xsd:int"/>
+     <element name="idCivico" nillable="true" type="xsd:int"/>
+     <element name="idDistrettoAssistenza" nillable="true" type="xsd:int"/>
+     <element name="idSezioneVigiliUrbani" nillable="true" type="xsd:int"/>
+     <element name="idUiu" nillable="true" type="xsd:int"/>
+     <element name="indicatoreAcquisizione" nillable="true" type="xsd:string"/>
+     <element name="interno1" nillable="true" type="xsd:string"/>
+     <element name="interno2" nillable="true" type="xsd:string"/>
+     <element name="nui" nillable="true" type="xsd:int"/>
+     <element name="numeroCompleto" nillable="true" type="xsd:string"/>
+     <element name="numeroPrimario" nillable="true" type="xsd:int"/>
+     <element name="numeroRadice" nillable="true" type="xsd:int"/>
+     <element name="scala" nillable="true" type="xsd:string"/>
+     <element name="secondario" nillable="true" type="xsd:string"/>
+     <element name="sedime" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Generalita">
+    <sequence>
+     <element name="codiceFiscale" nillable="true" type="xsd:string"/>
+     <element name="cognome" nillable="true" type="xsd:string"/>
+     <element name="dataNascita" nillable="true" type="xsd:string"/>
+     <element name="dataNascitaOriginale" nillable="true" type="xsd:string"/>
+     <element name="idSoggetto" type="xsd:int"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="nomeCompleto" nillable="true" type="xsd:string"/>
+     <element name="numeroIndividuale" nillable="true" type="xsd:string"/>
+     <element name="oraMinutiNascita" nillable="true" type="xsd:string"/>
+     <element name="protocolloRiservato" type="xsd:int"/>
+     <element name="sesso" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Genitore">
+    <sequence>
+     <element name="codRuolo" nillable="true" type="xsd:string"/>
+     <element name="cognome" nillable="true" type="xsd:string"/>
+     <element name="cognomeDichiarato" nillable="true" type="xsd:string"/>
+     <element name="dataFineValidita" nillable="true" type="xsd:string"/>
+     <element name="dataInizioValidita" nillable="true" type="xsd:string"/>
+     <element name="descRuolo" nillable="true" type="xsd:string"/>
+     <element name="flgCognomeNomeCorretti" type="xsd:boolean"/>
+     <element name="genitoreDocumentato" nillable="true" type="xsd:boolean"/>
+     <element name="idRuolo" type="xsd:int"/>
+     <element name="idSoggetto" type="xsd:int"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="nomeDichiarato" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfGenitore">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Genitore"/>
+    </sequence>
+   </complexType>
+   <complexType name="Luogo">
+    <sequence>
+     <element name="capComune" nillable="true" type="xsd:string"/>
+     <element name="codCatComune" nillable="true" type="xsd:string"/>
+     <element name="codCatNazione" nillable="true" type="xsd:string"/>
+     <element name="codCieNazione" nillable="true" type="xsd:string"/>
+     <element name="codIstatComune" nillable="true" type="xsd:string"/>
+     <element name="codIstatNazione" nillable="true" type="xsd:string"/>
+     <element name="codIstatProvincia" nillable="true" type="xsd:string"/>
+     <element name="codMctcNazione" nillable="true" type="xsd:string"/>
+     <element name="codMinisteroInterniNazione" nillable="true" type="xsd:int"/>
+     <element name="codTerritorioNazione" nillable="true" type="xsd:string"/>
+     <element name="codiceMFLuogo" nillable="true" type="xsd:string"/>
+     <element name="codiceMFNazione" nillable="true" type="xsd:string"/>
+     <element name="codiceMinisteroComune" nillable="true" type="xsd:string"/>
+     <element name="dataFineValiditaLuogo" nillable="true" type="xsd:string"/>
+     <element name="dataInizioValiditaLuogo" nillable="true" type="xsd:string"/>
+     <element name="descLuogo" nillable="true" type="xsd:string"/>
+     <element name="descNazione" nillable="true" type="xsd:string"/>
+     <element name="descProvincia" nillable="true" type="xsd:string"/>
+     <element name="flgAppartenenzaUENazione" type="xsd:boolean"/>
+     <element name="idLuogo" nillable="true" type="xsd:int"/>
+     <element name="idNazione" nillable="true" type="xsd:int"/>
+     <element name="idProvincia" nillable="true" type="xsd:int"/>
+     <element name="siglaProvincia" nillable="true" type="xsd:string"/>
+     <element name="statoLuogo" type="xsd:int"/>
+     <element name="tipoLuogo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="SoggettoFamiglia">
+    <sequence>
+     <element name="codiceIstatRapportoParentela" nillable="true" type="xsd:string"/>
+     <element name="dataIngressoInFamiglia" nillable="true" type="xsd:string"/>
+     <element name="dataUscitaDaFamiglia" nillable="true" type="xsd:string"/>
+     <element name="descBreveRapportoParentela" nillable="true" type="xsd:string"/>
+     <element name="descRapportoParentela" nillable="true" type="xsd:string"/>
+     <element name="numeroFamiglia" nillable="true" type="xsd:string"/>
+     <element name="tipoMovimentazione" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="StatoSoggetto">
+    <sequence>
+     <element name="descBreveStato" nillable="true" type="xsd:string"/>
+     <element name="descBreveStatoAnagrafico" nillable="true" type="xsd:string"/>
+     <element name="descStato" nillable="true" type="xsd:string"/>
+     <element name="descStatoAnagrafico" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Soggetto">
+    <sequence>
+     <element name="generalita" nillable="true" type="impl:Generalita"/>
+     <element name="genitori" nillable="true" type="impl:ArrayOfGenitore"/>
+     <element name="luogoNascita" nillable="true" type="impl:Luogo"/>
+     <element name="soggettoFamiglia" nillable="true" type="impl:SoggettoFamiglia"/>
+     <element name="statoSoggetto" nillable="true" type="impl:StatoSoggetto"/>
+    </sequence>
+   </complexType>
+   <complexType name="BloccoCertificabilitaANA">
+    <sequence>
+     <element name="descBlocco" nillable="true" type="xsd:string"/>
+     <element name="descBreveBlocco" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Cittadinanza">
+    <sequence>
+     <element name="codCIE" nillable="true" type="xsd:string"/>
+     <element name="codIstat" nillable="true" type="xsd:string"/>
+     <element name="descFemminile" nillable="true" type="xsd:string"/>
+     <element name="descMaschile" nillable="true" type="xsd:string"/>
+     <element name="flagAppartenenzaUE" type="xsd:boolean"/>
+     <element name="flagBuonVicinato" type="xsd:boolean"/>
+     <element name="flagSpazioEconomicoEuropeo" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="Documento">
+    <sequence>
+     <element name="codice" nillable="true" type="xsd:string"/>
+     <element name="dataCessazione" nillable="true" type="xsd:string"/>
+     <element name="dataRilascio" nillable="true" type="xsd:string"/>
+     <element name="idStato" type="xsd:int"/>
+     <element name="stato" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="CodiceFiscale">
+    <complexContent>
+     <extension base="impl:Documento">
+      <sequence>
+       <element name="dataValidazione" nillable="true" type="xsd:string"/>
+       <element name="descStatoCodiceFiscale" nillable="true" type="xsd:string"/>
+       <element name="flgModificato" nillable="true" type="xsd:boolean"/>
+       <element name="flgValidato" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Coniuge">
+    <sequence>
+     <element name="cognome" nillable="true" type="xsd:string"/>
+     <element name="dataCessazioneMatrimonio" nillable="true" type="xsd:string"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="numeroIndividuale" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="IndirizzoEsterno">
+    <sequence>
+     <element name="capEstero" nillable="true" type="xsd:string"/>
+     <element name="descrizioneIndirizzoPrimaParte" nillable="true" type="xsd:string"/>
+     <element name="descrizioneIndirizzoSecondaParte" nillable="true" type="xsd:string"/>
+     <element name="luogo" nillable="true" type="impl:Luogo"/>
+    </sequence>
+   </complexType>
+   <complexType name="DatiAIRE">
+    <sequence>
+     <element name="dataCancellazioneAIRE" nillable="true" type="xsd:string"/>
+     <element name="dataIngressoIndirizzo" nillable="true" type="xsd:string"/>
+     <element name="dataIscrizioneAIRE" nillable="true" type="xsd:string"/>
+     <element name="descMotivoCancellazione" nillable="true" type="xsd:string"/>
+     <element name="descMotivoIscrizione" nillable="true" type="xsd:string"/>
+     <element name="indirizzoResidenza" nillable="true" type="impl:IndirizzoEsterno"/>
+     <element name="numeroIndividualeAIRE" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="EventoEmigrazione">
+    <sequence>
+     <element name="annoPraticaEmigrazione" nillable="true" type="xsd:string"/>
+     <element name="dataEvento" nillable="true" type="xsd:string"/>
+     <element name="descTipoPraticaEmigrazione" nillable="true" type="xsd:string"/>
+     <element name="flgExAIRE" type="xsd:boolean"/>
+     <element name="indirizzoEmigrazione" nillable="true" type="impl:IndirizzoEsterno"/>
+     <element name="numeroPraticaEmigrazione" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="PraticaAnagrafe">
+    <sequence>
+     <element name="annoPratica" nillable="true" type="xsd:string"/>
+     <element name="dataApertura" nillable="true" type="xsd:string"/>
+     <element name="dataChiusura" nillable="true" type="xsd:string"/>
+     <element name="descBreveStatoPratica" nillable="true" type="xsd:string"/>
+     <element name="descBreveTipoPratica" nillable="true" type="xsd:string"/>
+     <element name="descStatoPratica" nillable="true" type="xsd:string"/>
+     <element name="descTipoPratica" nillable="true" type="xsd:string"/>
+     <element name="numeroPratica" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="PraticaEmigrazione">
+    <complexContent>
+     <extension base="impl:PraticaAnagrafe">
+      <sequence>
+       <element name="flagRichiestaAccertamento" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="StatoCivile">
+    <sequence>
+     <element name="dataInizioValidita" nillable="true" type="xsd:string"/>
+     <element name="descBreveStatoCivile" nillable="true" type="xsd:string"/>
+     <element name="descBreveStatoCivileDichiarato" nillable="true" type="xsd:string"/>
+     <element name="descStatoCivile" nillable="true" type="xsd:string"/>
+     <element name="descStatoCivileDichiarato" nillable="true" type="xsd:string"/>
+     <element name="idConiugeDichiarato" nillable="true" type="xsd:int"/>
+     <element name="statoCivileAttualeDocumentato" nillable="true" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="DettaglioEventoEmigrazione">
+    <complexContent>
+     <extension base="impl:EventoEmigrazione">
+      <sequence>
+       <element name="pratica" nillable="true" type="impl:PraticaEmigrazione"/>
+       <element name="statoCivileAllEmigrazione" nillable="true" type="impl:StatoCivile"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="VisuraSoggetto">
+    <complexContent>
+     <extension base="impl:Soggetto">
+      <sequence>
+       <element name="bloccoCertificabilita" nillable="true" type="impl:BloccoCertificabilitaANA"/>
+       <element name="cittadinanza" nillable="true" type="impl:Cittadinanza"/>
+       <element name="codiceFiscale" nillable="true" type="impl:CodiceFiscale"/>
+       <element name="coniuge" nillable="true" type="impl:Coniuge"/>
+       <element name="dataIngressoIndirizzo" nillable="true" type="xsd:string"/>
+       <element name="dataResidenza" nillable="true" type="xsd:string"/>
+       <element name="datiAire" nillable="true" type="impl:DatiAIRE"/>
+       <element name="descBreveStatoResidenza" nillable="true" type="xsd:string"/>
+       <element name="descBreveTutelaInterdizione" nillable="true" type="xsd:string"/>
+       <element name="descrizioneStatoResidenza" nillable="true" type="xsd:string"/>
+       <element name="descrizioneTutelaInterdizione" nillable="true" type="xsd:string"/>
+       <element name="eventoEmigrazione" nillable="true" type="impl:EventoEmigrazione"/>
+       <element name="flgBloccoCINVE" type="xsd:boolean"/>
+       <element name="flgPraticheInCorso" type="xsd:boolean"/>
+       <element name="indirizzoDomicilio" nillable="true" type="impl:IndirizzoInterno"/>
+       <element name="indirizzoResidenzaInterno" nillable="true" type="impl:IndirizzoInterno"/>
+       <element name="numeroTesseraElettoraleAttuale" nillable="true" type="xsd:string"/>
+       <element name="statoCivile" nillable="true" type="impl:StatoCivile"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="TestataFamiglia">
+    <sequence>
+     <element name="dataFineValiditaFamiglia" nillable="true" type="xsd:string"/>
+     <element name="dataInizioValiditaFamiglia" nillable="true" type="xsd:string"/>
+     <element name="flgFamigliaAIRE" type="xsd:boolean"/>
+     <element name="idFamiglia" nillable="true" type="xsd:int"/>
+     <element name="indirizzoResidenzaFamiglia" nillable="true" type="impl:IndirizzoInterno"/>
+     <element name="intestatarioScheda" nillable="true" type="impl:VisuraSoggetto"/>
+     <element name="numComponentiAttivi" nillable="true" type="xsd:int"/>
+     <element name="numeroFamiglia" nillable="true" type="xsd:string"/>
+     <element name="tipoProtocolloRiservato" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ServiceException">
+    <complexContent>
+     <extension base="tns1:UserException">
+      <sequence>
+       <element name="message" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="FormalException">
+    <complexContent>
+     <extension base="impl:ServiceException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault" type="impl:FormalException"/>
+   <element name="fault1" type="impl:ServiceException"/>
+   <complexType name="SystemException">
+    <complexContent>
+     <extension base="tns1:SystemException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault2" type="impl:SystemException"/>
+   <complexType name="FamigliaNotFoundException">
+    <complexContent>
+     <extension base="impl:ServiceException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault3" type="impl:FamigliaNotFoundException"/>
+   <complexType name="TooManyItemException">
+    <complexContent>
+     <extension base="impl:FormalException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault4" type="impl:TooManyItemException"/>
+   <complexType name="UnauthorizedException">
+    <complexContent>
+     <extension base="impl:ServiceException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault5" type="impl:UnauthorizedException"/>
+   <element name="dettaglioFamigliaPerID">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:int"/>
+      <element minOccurs="0" name="in1" type="impl:DatiProfilati"/>
+      <element minOccurs="0" name="in2" type="impl:UtenteServizio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dettaglioFamigliaPerIDResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="dettaglioFamigliaPerIDReturn" type="impl:DettaglioFamiglia"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfVisuraSoggetto">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:VisuraSoggetto"/>
+    </sequence>
+   </complexType>
+   <complexType name="DettaglioFamiglia">
+    <complexContent>
+     <extension base="impl:TestataFamiglia">
+      <sequence>
+       <element name="componentiFamiglia" nillable="true" type="impl:ArrayOfVisuraSoggetto"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="dettaglioFamigliaPerNumeroFamiglia">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+      <element minOccurs="0" name="in1" type="impl:DatiProfilati"/>
+      <element minOccurs="0" name="in2" type="impl:UtenteServizio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dettaglioFamigliaPerNumeroFamigliaResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="dettaglioFamigliaPerNumeroFamigliaReturn" type="impl:DettaglioFamiglia"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dettaglioFamigliaPerIdSoggetto">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:int"/>
+      <element minOccurs="0" name="in1" type="impl:DatiProfilati"/>
+      <element minOccurs="0" name="in2" type="impl:UtenteServizio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dettaglioFamigliaPerIdSoggettoResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="dettaglioFamigliaPerIdSoggettoReturn" type="impl:DettaglioFamiglia"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dettaglioFamigliaPerNumeroIndividuale">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+      <element minOccurs="0" name="in1" type="impl:DatiProfilati"/>
+      <element minOccurs="0" name="in2" type="impl:UtenteServizio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dettaglioFamigliaPerNumeroIndividualeResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="dettaglioFamigliaPerNumeroIndividualeReturn" type="impl:DettaglioFamiglia"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dettaglioFamigliaPerCartaIdentita">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+      <element minOccurs="0" name="in1" type="impl:DatiProfilati"/>
+      <element minOccurs="0" name="in2" type="impl:UtenteServizio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dettaglioFamigliaPerCartaIdentitaResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="dettaglioFamigliaPerCartaIdentitaReturn" type="impl:DettaglioFamiglia"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dettaglioFamigliaPerCodiceFiscale">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+      <element minOccurs="0" name="in1" type="impl:DatiProfilati"/>
+      <element minOccurs="0" name="in2" type="impl:UtenteServizio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dettaglioFamigliaPerCodiceFiscaleResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="dettaglioFamigliaPerCodiceFiscaleReturn" type="impl:DettaglioFamiglia"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="visuraFamiglieInCoabitazione">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:int"/>
+      <element minOccurs="0" name="in1" type="xsd:dateTime"/>
+      <element minOccurs="0" name="in2" type="impl:DatiProfilati"/>
+      <element minOccurs="0" name="in3" type="impl:UtenteServizio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="visuraFamiglieInCoabitazioneResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="visuraFamiglieInCoabitazioneReturn" type="impl:FamigliaInCoabitazione"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="DettaglioMinimoSoggetto">
+    <sequence>
+     <element name="cessato" type="xsd:boolean"/>
+     <element name="codiceIstatRapportoParentela" nillable="true" type="xsd:string"/>
+     <element name="descBreveRapportoParentela" nillable="true" type="xsd:string"/>
+     <element name="descBreveStatoResidenza" nillable="true" type="xsd:string"/>
+     <element name="descRapportoParentela" nillable="true" type="xsd:string"/>
+     <element name="descrizioneStatoResidenza" nillable="true" type="xsd:string"/>
+     <element name="generalita" nillable="true" type="impl:Generalita"/>
+     <element name="statoSoggetto" nillable="true" type="impl:StatoSoggetto"/>
+     <element name="ultimoIndirizzoComeFamiglia" type="xsd:boolean"/>
+     <element name="ultimoIndirizzoInterno" nillable="true" type="impl:IndirizzoInterno"/>
+    </sequence>
+   </complexType>
+   <complexType name="FamigliaInCoabitazione">
+    <sequence>
+     <element name="dataInizioCoabitazione" nillable="true" type="xsd:string"/>
+     <element name="idFamiglia" type="xsd:int"/>
+     <element name="intestatarioScheda" nillable="true" type="impl:DettaglioMinimoSoggetto"/>
+     <element name="numeroFamiglia" nillable="true" type="xsd:string"/>
+     <element name="principale" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <element name="visuraFamigliaAllaDataPerIdSoggetto">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:int"/>
+      <element minOccurs="0" name="in1" type="xsd:dateTime"/>
+      <element minOccurs="0" name="in2" type="impl:DatiProfilati"/>
+      <element minOccurs="0" name="in3" type="impl:UtenteServizio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="visuraFamigliaAllaDataPerIdSoggettoResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="visuraFamigliaAllaDataPerIdSoggettoReturn" type="impl:DettaglioFamigliaStorico"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ComponenteFamigliaStorico">
+    <sequence>
+     <element name="codiceIstatRapportoParentela" nillable="true" type="xsd:string"/>
+     <element name="descBreveRapportoParentela" nillable="true" type="xsd:string"/>
+     <element name="descRapportoParentela" nillable="true" type="xsd:string"/>
+     <element name="generalitaSoggettoAllaData" nillable="true" type="impl:Generalita"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfComponenteFamigliaStorico">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:ComponenteFamigliaStorico"/>
+    </sequence>
+   </complexType>
+   <complexType name="DettaglioFamigliaStorico">
+    <sequence>
+     <element name="componentiFamigliaAllaData" nillable="true" type="impl:ArrayOfComponenteFamigliaStorico"/>
+     <element name="dataInizioValiditaFamiglia" nillable="true" type="xsd:string"/>
+     <element name="flagFamigliaAIRE" type="xsd:boolean"/>
+     <element name="idFamiglia" type="xsd:int"/>
+     <element name="indirizzoEsternoAllaData" nillable="true" type="impl:IndirizzoEsterno"/>
+     <element name="indirizzoInternoAllaData" nillable="true" type="impl:IndirizzoInterno"/>
+     <element name="numComponentiAttivi" nillable="true" type="xsd:int"/>
+     <element name="numeroFamiglia" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="visuraFamigliaAllaDataPerIdFamiglia">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:int"/>
+      <element minOccurs="0" name="in1" type="xsd:dateTime"/>
+      <element minOccurs="0" name="in2" type="impl:DatiProfilati"/>
+      <element minOccurs="0" name="in3" type="impl:UtenteServizio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="visuraFamigliaAllaDataPerIdFamigliaResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="visuraFamigliaAllaDataPerIdFamigliaReturn" type="impl:DettaglioFamigliaStorico"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="visuraFamigliaAllaDataPerNumeroFamiglia">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+      <element minOccurs="0" name="in1" type="xsd:dateTime"/>
+      <element minOccurs="0" name="in2" type="impl:DatiProfilati"/>
+      <element minOccurs="0" name="in3" type="impl:UtenteServizio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="visuraFamigliaAllaDataPerNumeroFamigliaResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="visuraFamigliaAllaDataPerNumeroFamigliaReturn" type="impl:DettaglioFamigliaStorico"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dettaglioMinimoFamigliePerID">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="in0" type="xsd:int"/>
+      <element name="in1" type="xsd:boolean"/>
+      <element minOccurs="0" name="in2" type="impl:DatiProfilati"/>
+      <element minOccurs="0" name="in3" type="impl:UtenteServizio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dettaglioMinimoFamigliePerIDResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="dettaglioMinimoFamigliePerIDReturn" type="impl:DettaglioMinimoFamiglia"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOfDettaglioMinimoSoggetto">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:DettaglioMinimoSoggetto"/>
+    </sequence>
+   </complexType>
+   <complexType name="DettaglioMinimoFamiglia">
+    <sequence>
+     <element name="componenti" nillable="true" type="impl:ArrayOfDettaglioMinimoSoggetto"/>
+     <element name="idFamiglia" type="xsd:int"/>
+     <element name="indirizzoInterno" nillable="true" type="impl:IndirizzoInterno"/>
+     <element name="numeroFamiglia" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://wrapper.csi.csi.it" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="urn:SrvVisuraFamiglia"/>
+   <complexType name="CSIException">
+    <sequence>
+     <element name="nestedExcClassName" nillable="true" type="xsd:string"/>
+     <element name="nestedExcMsg" nillable="true" type="xsd:string"/>
+     <element name="stackTraceMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="UserException">
+    <complexContent>
+     <extension base="tns1:CSIException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="SystemException">
+    <complexContent>
+     <extension base="tns1:CSIException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="visuraFamigliaAllaDataPerIdFamigliaResponse">
+
+      <wsdl:part element="impl:visuraFamigliaAllaDataPerIdFamigliaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="dettaglioFamigliaPerCartaIdentitaRequest">
+
+      <wsdl:part element="impl:dettaglioFamigliaPerCartaIdentita" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="visuraFamiglieInCoabitazioneRequest">
+
+      <wsdl:part element="impl:visuraFamiglieInCoabitazione" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="dettaglioFamigliaPerNumeroFamigliaResponse">
+
+      <wsdl:part element="impl:dettaglioFamigliaPerNumeroFamigliaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="visuraFamigliaAllaDataPerIdSoggettoRequest">
+
+      <wsdl:part element="impl:visuraFamigliaAllaDataPerIdSoggetto" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="dettaglioMinimoFamigliePerIDRequest">
+
+      <wsdl:part element="impl:dettaglioMinimoFamigliePerID" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="SystemException">
+
+      <wsdl:part element="impl:fault2" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="dettaglioFamigliaPerNumeroFamigliaRequest">
+
+      <wsdl:part element="impl:dettaglioFamigliaPerNumeroFamiglia" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="visuraFamigliaAllaDataPerIdSoggettoResponse">
+
+      <wsdl:part element="impl:visuraFamigliaAllaDataPerIdSoggettoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="visuraFamigliaAllaDataPerNumeroFamigliaResponse">
+
+      <wsdl:part element="impl:visuraFamigliaAllaDataPerNumeroFamigliaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="dettaglioFamigliaPerCodiceFiscaleResponse">
+
+      <wsdl:part element="impl:dettaglioFamigliaPerCodiceFiscaleResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="dettaglioFamigliaPerIDRequest">
+
+      <wsdl:part element="impl:dettaglioFamigliaPerID" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="FamigliaNotFoundException">
+
+      <wsdl:part element="impl:fault3" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="FormalException">
+
+      <wsdl:part element="impl:fault" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="testataFamigliePerIDResponse">
+
+      <wsdl:part element="impl:testataFamigliePerIDResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="visuraFamigliaAllaDataPerNumeroFamigliaRequest">
+
+      <wsdl:part element="impl:visuraFamigliaAllaDataPerNumeroFamiglia" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="dettaglioFamigliaPerIDResponse">
+
+      <wsdl:part element="impl:dettaglioFamigliaPerIDResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="dettaglioFamigliaPerNumeroIndividualeRequest">
+
+      <wsdl:part element="impl:dettaglioFamigliaPerNumeroIndividuale" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="testataFamigliePerIDRequest">
+
+      <wsdl:part element="impl:testataFamigliePerID" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="visuraFamiglieInCoabitazioneResponse">
+
+      <wsdl:part element="impl:visuraFamiglieInCoabitazioneResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="visuraFamigliaAllaDataPerIdFamigliaRequest">
+
+      <wsdl:part element="impl:visuraFamigliaAllaDataPerIdFamiglia" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="dettaglioFamigliaPerIdSoggettoRequest">
+
+      <wsdl:part element="impl:dettaglioFamigliaPerIdSoggetto" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="dettaglioMinimoFamigliePerIDResponse">
+
+      <wsdl:part element="impl:dettaglioMinimoFamigliePerIDResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="UnauthorizedException">
+
+      <wsdl:part element="impl:fault5" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ServiceException">
+
+      <wsdl:part element="impl:fault1" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="dettaglioFamigliaPerNumeroIndividualeResponse">
+
+      <wsdl:part element="impl:dettaglioFamigliaPerNumeroIndividualeResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="dettaglioFamigliaPerCodiceFiscaleRequest">
+
+      <wsdl:part element="impl:dettaglioFamigliaPerCodiceFiscale" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="TooManyItemException">
+
+      <wsdl:part element="impl:fault4" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="dettaglioFamigliaPerCartaIdentitaResponse">
+
+      <wsdl:part element="impl:dettaglioFamigliaPerCartaIdentitaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="dettaglioFamigliaPerIdSoggettoResponse">
+
+      <wsdl:part element="impl:dettaglioFamigliaPerIdSoggettoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="JavaServiceDesc">
+
+      <wsdl:operation name="testataFamigliePerID">
+
+         <wsdl:input message="impl:testataFamigliePerIDRequest" name="testataFamigliePerIDRequest"/>
+
+         <wsdl:output message="impl:testataFamigliePerIDResponse" name="testataFamigliePerIDResponse"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:UnauthorizedException" name="UnauthorizedException"/>
+
+         <wsdl:fault message="impl:FamigliaNotFoundException" name="FamigliaNotFoundException"/>
+
+         <wsdl:fault message="impl:TooManyItemException" name="TooManyItemException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+         <wsdl:fault message="impl:FormalException" name="FormalException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dettaglioFamigliaPerID">
+
+         <wsdl:input message="impl:dettaglioFamigliaPerIDRequest" name="dettaglioFamigliaPerIDRequest"/>
+
+         <wsdl:output message="impl:dettaglioFamigliaPerIDResponse" name="dettaglioFamigliaPerIDResponse"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:UnauthorizedException" name="UnauthorizedException"/>
+
+         <wsdl:fault message="impl:FamigliaNotFoundException" name="FamigliaNotFoundException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+         <wsdl:fault message="impl:FormalException" name="FormalException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dettaglioFamigliaPerNumeroFamiglia">
+
+         <wsdl:input message="impl:dettaglioFamigliaPerNumeroFamigliaRequest" name="dettaglioFamigliaPerNumeroFamigliaRequest"/>
+
+         <wsdl:output message="impl:dettaglioFamigliaPerNumeroFamigliaResponse" name="dettaglioFamigliaPerNumeroFamigliaResponse"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:UnauthorizedException" name="UnauthorizedException"/>
+
+         <wsdl:fault message="impl:FamigliaNotFoundException" name="FamigliaNotFoundException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+         <wsdl:fault message="impl:FormalException" name="FormalException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dettaglioFamigliaPerIdSoggetto">
+
+         <wsdl:input message="impl:dettaglioFamigliaPerIdSoggettoRequest" name="dettaglioFamigliaPerIdSoggettoRequest"/>
+
+         <wsdl:output message="impl:dettaglioFamigliaPerIdSoggettoResponse" name="dettaglioFamigliaPerIdSoggettoResponse"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:UnauthorizedException" name="UnauthorizedException"/>
+
+         <wsdl:fault message="impl:FamigliaNotFoundException" name="FamigliaNotFoundException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+         <wsdl:fault message="impl:FormalException" name="FormalException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dettaglioFamigliaPerNumeroIndividuale">
+
+         <wsdl:input message="impl:dettaglioFamigliaPerNumeroIndividualeRequest" name="dettaglioFamigliaPerNumeroIndividualeRequest"/>
+
+         <wsdl:output message="impl:dettaglioFamigliaPerNumeroIndividualeResponse" name="dettaglioFamigliaPerNumeroIndividualeResponse"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:UnauthorizedException" name="UnauthorizedException"/>
+
+         <wsdl:fault message="impl:FamigliaNotFoundException" name="FamigliaNotFoundException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+         <wsdl:fault message="impl:FormalException" name="FormalException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dettaglioFamigliaPerCartaIdentita">
+
+         <wsdl:input message="impl:dettaglioFamigliaPerCartaIdentitaRequest" name="dettaglioFamigliaPerCartaIdentitaRequest"/>
+
+         <wsdl:output message="impl:dettaglioFamigliaPerCartaIdentitaResponse" name="dettaglioFamigliaPerCartaIdentitaResponse"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:UnauthorizedException" name="UnauthorizedException"/>
+
+         <wsdl:fault message="impl:FamigliaNotFoundException" name="FamigliaNotFoundException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+         <wsdl:fault message="impl:FormalException" name="FormalException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dettaglioFamigliaPerCodiceFiscale">
+
+         <wsdl:input message="impl:dettaglioFamigliaPerCodiceFiscaleRequest" name="dettaglioFamigliaPerCodiceFiscaleRequest"/>
+
+         <wsdl:output message="impl:dettaglioFamigliaPerCodiceFiscaleResponse" name="dettaglioFamigliaPerCodiceFiscaleResponse"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:UnauthorizedException" name="UnauthorizedException"/>
+
+         <wsdl:fault message="impl:FamigliaNotFoundException" name="FamigliaNotFoundException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+         <wsdl:fault message="impl:FormalException" name="FormalException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="visuraFamiglieInCoabitazione">
+
+         <wsdl:input message="impl:visuraFamiglieInCoabitazioneRequest" name="visuraFamiglieInCoabitazioneRequest"/>
+
+         <wsdl:output message="impl:visuraFamiglieInCoabitazioneResponse" name="visuraFamiglieInCoabitazioneResponse"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+         <wsdl:fault message="impl:FormalException" name="FormalException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="visuraFamigliaAllaDataPerIdSoggetto">
+
+         <wsdl:input message="impl:visuraFamigliaAllaDataPerIdSoggettoRequest" name="visuraFamigliaAllaDataPerIdSoggettoRequest"/>
+
+         <wsdl:output message="impl:visuraFamigliaAllaDataPerIdSoggettoResponse" name="visuraFamigliaAllaDataPerIdSoggettoResponse"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:UnauthorizedException" name="UnauthorizedException"/>
+
+         <wsdl:fault message="impl:FamigliaNotFoundException" name="FamigliaNotFoundException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+         <wsdl:fault message="impl:FormalException" name="FormalException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="visuraFamigliaAllaDataPerIdFamiglia">
+
+         <wsdl:input message="impl:visuraFamigliaAllaDataPerIdFamigliaRequest" name="visuraFamigliaAllaDataPerIdFamigliaRequest"/>
+
+         <wsdl:output message="impl:visuraFamigliaAllaDataPerIdFamigliaResponse" name="visuraFamigliaAllaDataPerIdFamigliaResponse"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:UnauthorizedException" name="UnauthorizedException"/>
+
+         <wsdl:fault message="impl:FamigliaNotFoundException" name="FamigliaNotFoundException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+         <wsdl:fault message="impl:FormalException" name="FormalException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="visuraFamigliaAllaDataPerNumeroFamiglia">
+
+         <wsdl:input message="impl:visuraFamigliaAllaDataPerNumeroFamigliaRequest" name="visuraFamigliaAllaDataPerNumeroFamigliaRequest"/>
+
+         <wsdl:output message="impl:visuraFamigliaAllaDataPerNumeroFamigliaResponse" name="visuraFamigliaAllaDataPerNumeroFamigliaResponse"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:UnauthorizedException" name="UnauthorizedException"/>
+
+         <wsdl:fault message="impl:FamigliaNotFoundException" name="FamigliaNotFoundException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+         <wsdl:fault message="impl:FormalException" name="FormalException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dettaglioMinimoFamigliePerID">
+
+         <wsdl:input message="impl:dettaglioMinimoFamigliePerIDRequest" name="dettaglioMinimoFamigliePerIDRequest"/>
+
+         <wsdl:output message="impl:dettaglioMinimoFamigliePerIDResponse" name="dettaglioMinimoFamigliePerIDResponse"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:UnauthorizedException" name="UnauthorizedException"/>
+
+         <wsdl:fault message="impl:TooManyItemException" name="TooManyItemException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+         <wsdl:fault message="impl:FormalException" name="FormalException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SrvVisuraFamigliaSoapBinding" type="impl:JavaServiceDesc">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="testataFamigliePerID">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="testataFamigliePerIDRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="testataFamigliePerIDResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UnauthorizedException">
+
+            <wsdlsoap:fault name="UnauthorizedException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FamigliaNotFoundException">
+
+            <wsdlsoap:fault name="FamigliaNotFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="TooManyItemException">
+
+            <wsdlsoap:fault name="TooManyItemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FormalException">
+
+            <wsdlsoap:fault name="FormalException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dettaglioFamigliaPerID">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="dettaglioFamigliaPerIDRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="dettaglioFamigliaPerIDResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UnauthorizedException">
+
+            <wsdlsoap:fault name="UnauthorizedException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FamigliaNotFoundException">
+
+            <wsdlsoap:fault name="FamigliaNotFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FormalException">
+
+            <wsdlsoap:fault name="FormalException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dettaglioFamigliaPerNumeroFamiglia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="dettaglioFamigliaPerNumeroFamigliaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="dettaglioFamigliaPerNumeroFamigliaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UnauthorizedException">
+
+            <wsdlsoap:fault name="UnauthorizedException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FamigliaNotFoundException">
+
+            <wsdlsoap:fault name="FamigliaNotFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FormalException">
+
+            <wsdlsoap:fault name="FormalException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dettaglioFamigliaPerIdSoggetto">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="dettaglioFamigliaPerIdSoggettoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="dettaglioFamigliaPerIdSoggettoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UnauthorizedException">
+
+            <wsdlsoap:fault name="UnauthorizedException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FamigliaNotFoundException">
+
+            <wsdlsoap:fault name="FamigliaNotFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FormalException">
+
+            <wsdlsoap:fault name="FormalException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dettaglioFamigliaPerNumeroIndividuale">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="dettaglioFamigliaPerNumeroIndividualeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="dettaglioFamigliaPerNumeroIndividualeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UnauthorizedException">
+
+            <wsdlsoap:fault name="UnauthorizedException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FamigliaNotFoundException">
+
+            <wsdlsoap:fault name="FamigliaNotFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FormalException">
+
+            <wsdlsoap:fault name="FormalException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dettaglioFamigliaPerCartaIdentita">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="dettaglioFamigliaPerCartaIdentitaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="dettaglioFamigliaPerCartaIdentitaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UnauthorizedException">
+
+            <wsdlsoap:fault name="UnauthorizedException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FamigliaNotFoundException">
+
+            <wsdlsoap:fault name="FamigliaNotFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FormalException">
+
+            <wsdlsoap:fault name="FormalException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dettaglioFamigliaPerCodiceFiscale">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="dettaglioFamigliaPerCodiceFiscaleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="dettaglioFamigliaPerCodiceFiscaleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UnauthorizedException">
+
+            <wsdlsoap:fault name="UnauthorizedException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FamigliaNotFoundException">
+
+            <wsdlsoap:fault name="FamigliaNotFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FormalException">
+
+            <wsdlsoap:fault name="FormalException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="visuraFamiglieInCoabitazione">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="visuraFamiglieInCoabitazioneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="visuraFamiglieInCoabitazioneResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FormalException">
+
+            <wsdlsoap:fault name="FormalException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="visuraFamigliaAllaDataPerIdSoggetto">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="visuraFamigliaAllaDataPerIdSoggettoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="visuraFamigliaAllaDataPerIdSoggettoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UnauthorizedException">
+
+            <wsdlsoap:fault name="UnauthorizedException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FamigliaNotFoundException">
+
+            <wsdlsoap:fault name="FamigliaNotFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FormalException">
+
+            <wsdlsoap:fault name="FormalException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="visuraFamigliaAllaDataPerIdFamiglia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="visuraFamigliaAllaDataPerIdFamigliaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="visuraFamigliaAllaDataPerIdFamigliaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UnauthorizedException">
+
+            <wsdlsoap:fault name="UnauthorizedException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FamigliaNotFoundException">
+
+            <wsdlsoap:fault name="FamigliaNotFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FormalException">
+
+            <wsdlsoap:fault name="FormalException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="visuraFamigliaAllaDataPerNumeroFamiglia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="visuraFamigliaAllaDataPerNumeroFamigliaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="visuraFamigliaAllaDataPerNumeroFamigliaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UnauthorizedException">
+
+            <wsdlsoap:fault name="UnauthorizedException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FamigliaNotFoundException">
+
+            <wsdlsoap:fault name="FamigliaNotFoundException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FormalException">
+
+            <wsdlsoap:fault name="FormalException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="dettaglioMinimoFamigliePerID">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="dettaglioMinimoFamigliePerIDRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="dettaglioMinimoFamigliePerIDResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UnauthorizedException">
+
+            <wsdlsoap:fault name="UnauthorizedException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="TooManyItemException">
+
+            <wsdlsoap:fault name="TooManyItemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FormalException">
+
+            <wsdlsoap:fault name="FormalException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="JavaServiceDescService">
+
+      <wsdl:port binding="impl:SrvVisuraFamigliaSoapBinding" name="SrvVisuraFamiglia">
+
+         <wsdlsoap:address location="https://tst-applogic.comune.torino.it:1444/wsfad_naosrv_wsicompliant/services/SrvVisuraFamiglia"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

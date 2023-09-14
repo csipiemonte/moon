@@ -1,0 +1,29 @@
+.btn__float {
+    width: 40px;
+    height: 40px;
+    padding: 0px;
+    bottom: 16px;
+    left: 16px;
+}
+
+.nav-link {
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+
+@media screen and (max-width:991px){
+    .nav__float {
+        position: fixed;
+        bottom: 0px;
+        left: 0;
+        padding: 0px;
+        top: auto;
+        height: auto;
+        z-index: 1;
+        width: 100%;
+    }
+}

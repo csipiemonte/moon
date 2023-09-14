@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.csi.it/stardas/wso2/StardasService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:cmn="http://www.csi.it/stardas/services/StardasCommonTypes" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.csi.it/stardas/wso2/StardasService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified">
+         <xsd:import namespace="http://www.csi.it/stardas/wso2/StardasService" schemaLocation="StardasServiceProxy?xsd=StardasWso2ServiceTypes.xsd"/>
+         <xsd:import namespace="http://www.csi.it/stardas/services/StardasCommonTypes" schemaLocation="StardasServiceProxy?xsd=StardasCommonTypes.xsd"/>
+      </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SmistaDocumentoRequest">
+    <wsdl:part name="parameters" element="tns:SmistaDocumentoRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SmistaDocumentoResponse">
+    <wsdl:part name="parameters" element="tns:SmistaDocumentoResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetStatoRichiestaRequest">
+    <wsdl:part name="parameters" element="tns:GetStatoRichiestaRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetStatoRichiestaResponse">
+    <wsdl:part name="parameters" element="tns:GetStatoRichiestaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="StardasServiceProxyPortType">
+    <wsdl:operation name="GetStatoRichiesta">
+      <wsdl:input message="tns:GetStatoRichiestaRequest" wsaw:Action="http://www.csi.it/stardas/services/StardasService/GetStatoRichiesta">
+    </wsdl:input>
+      <wsdl:output message="tns:GetStatoRichiestaResponse" wsaw:Action="http://www.csi.it/stardas/wso2/StardasService/StardasService/GetStatoRichiestaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SmistaDocumento">
+      <wsdl:input message="tns:SmistaDocumentoRequest" wsaw:Action="http://www.csi.it/stardas/services/StardasService/SmistaDocumento">
+    </wsdl:input>
+      <wsdl:output message="tns:SmistaDocumentoResponse" wsaw:Action="http://www.csi.it/stardas/wso2/StardasService/StardasService/SmistaDocumentoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="StardasServiceProxySoap11Binding" type="tns:StardasServiceProxyPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetStatoRichiesta">
+      <soap:operation soapAction="http://www.csi.it/stardas/services/StardasService/GetStatoRichiesta" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SmistaDocumento">
+      <soap:operation soapAction="http://www.csi.it/stardas/services/StardasService/SmistaDocumento" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StardasServiceProxySoap12Binding" type="tns:StardasServiceProxyPortType">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetStatoRichiesta">
+      <soap12:operation soapAction="http://www.csi.it/stardas/services/StardasService/GetStatoRichiesta" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SmistaDocumento">
+      <soap12:operation soapAction="http://www.csi.it/stardas/services/StardasService/SmistaDocumento" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StardasServiceProxyHttpBinding" type="tns:StardasServiceProxyPortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="GetStatoRichiesta">
+      <http:operation location="GetStatoRichiesta"/>
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SmistaDocumento">
+      <http:operation location="SmistaDocumento"/>
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StardasServiceProxy">
+    <wsdl:port name="StardasServiceProxyHttpSoap12Endpoint" binding="tns:StardasServiceProxySoap12Binding">
+      <soap12:address location="http://tst-api-piemonte.ecosis.csi.it/documentale/stardasws-test/v1"/>
+    </wsdl:port>
+    <wsdl:port name="StardasServiceProxyHttpSoap11Endpoint" binding="tns:StardasServiceProxySoap11Binding">
+      <soap:address location="http://tst-api-piemonte.ecosis.csi.it/documentale/stardasws-test/v1"/>
+    </wsdl:port>
+    <wsdl:port name="StardasServiceProxyHttpEndpoint" binding="tns:StardasServiceProxyHttpBinding">
+      <http:address location="http://tst-api-piemonte.ecosis.csi.it/documentale/stardasws-test/v1"/>
+    </wsdl:port>
+    <wsdl:port name="StardasServiceProxyHttpsSoap12Endpoint" binding="tns:StardasServiceProxySoap12Binding">
+      <soap12:address location="http://tst-api-piemonte.ecosis.csi.it/documentale/stardasws-test/v1"/>
+    </wsdl:port>
+    <wsdl:port name="StardasServiceProxyHttpsEndpoint" binding="tns:StardasServiceProxyHttpBinding">
+      <http:address location="http://tst-api-piemonte.ecosis.csi.it/documentale/stardasws-test/v1"/>
+    </wsdl:port>
+    <wsdl:port name="StardasServiceProxyHttpsSoap11Endpoint" binding="tns:StardasServiceProxySoap11Binding">
+      <soap:address location="http://tst-api-piemonte.ecosis.csi.it/documentale/stardasws-test/v1"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

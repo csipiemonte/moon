@@ -1,0 +1,43 @@
+
+<h4>{{ datiWorkflow?.nomeAzione}}</h4>
+
+{{msgErr}}
+<!-- <formio [form]='struttura'
+        [renderOptions]="{breadcrumbSettings:{clickable: false}}"
+        [submission]='data'
+        [options]="options"
+        [viewOnly] = "readOnly"
+        [readOnly]= "readOnly"
+        (submit)="onSubmit($event)"
+        (formLoad)="onFormLoad($event)"
+        (ready)="onFormLoad($event)"
+        (change)="onChange($event)"
+        (nextPage)="onNextPage($event)"
+        (prevPage)="onPrevPage($event)"
+>
+</formio> -->
+
+<formio [form]='struttura'
+        [renderOptions]="renderOptions"
+        [submission]='data'
+        [options]="options"
+        [viewOnly] = "readOnly"
+        [readOnly]= "readOnly"
+        (submit)="onSubmit($event)"
+        (formLoad)="onFormLoad($event)"
+        (ready)="onReady($event)"
+        (change)="onChange($event)"
+        (nextPage)="onNextPage($event)"
+        (prevPage)="onPrevPage($event)"
+>
+</formio>
+
+<!-- <button  class="btn btn-warning btn-sm" (click)="tornaLavoraIstanza()">
+  <fa-icon icon="arrow-left"></fa-icon>
+</button> -->
+
+<button  class="btn"  style="float:right; background-color:lightgrey" (click)="tornaLavoraIstanza()">
+  <fa-icon [icon]="faHome"></fa-icon>
+</button>
+
+<app-moon-spinner></app-moon-spinner>

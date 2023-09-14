@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:cmn="http://www.csi.it/stardas/services/StardasCommonTypes"
+	xmlns:tns="http://www.csi.it/stardas/wso2/StardasService"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	targetNamespace="http://www.csi.it/stardas/wso2/StardasService"
+	elementFormDefault="qualified">
+
+	<import namespace="http://www.csi.it/stardas/services/StardasCommonTypes" schemaLocation="StardasCommonTypes.xsd"/>
+
+	<element name="SmistaDocumentoRequest" type="tns:SmistaDocumentoRequestType"/>
+	<element name="SmistaDocumentoResponse" type="tns:SmistaDocumentoResponseType"/>
+
+	<element name="GetStatoRichiestaRequest" type="tns:GetStatoRichiestaRequestType"/>
+	<element name="GetStatoRichiestaResponse" type="tns:GetStatoRichiestaResponseType"/>
+
+	<element name="StardasServiceResponse" type="cmn:ResponseType"/>
+
+	<complexType name="SmistaDocumentoRequestType">
+		<sequence>
+			<element name="ConfigurazioneChiamante" type="cmn:ConfigurazioneChiamanteType"/>
+			<element name="DatiSmistaDocumento" type="cmn:DatiSmistaDocumentoType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="SmistaDocumentoResponseType">
+		<complexContent>
+			<extension base="cmn:ResponseType">
+				<sequence>
+					<element name="MessageUUID" type="cmn:String50Type"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="GetStatoRichiestaRequestType">
+		<sequence>
+			<element name="ConfigurazioneChiamante" type="cmn:ConfigurazioneChiamanteType"/>
+			<element name="MessageUUID" type="cmn:String50Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="GetStatoRichiestaResponseType">
+		<complexContent>
+			<extension base="cmn:ResponseType">
+				<sequence>
+					<element name="StatoRichiesta" type="cmn:StatoRichiestaType" minOccurs="0"/>
+					<element name="CodiceEsitoRichiesta" type="cmn:CodiceEsitoType" minOccurs="0"/>
+					<element name="DettaglioEsitoRichiesta" type="cmn:String400Type" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>

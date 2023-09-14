@@ -1,0 +1,28 @@
+<app-istanza-pagamenti-tab [pagamenti]="istanza.pagamenti"></app-istanza-pagamenti-tab>
+<div *ngIf="istanza?.stato?.nome==='IN PAGAMENTO' && !istanza?.dataEsitoPagamento" class="mb-6">
+
+  <!-- Messaggi di aiuto obsoleti
+
+     <div *ngIf="isNextWorkflowWithINVIA" class="alert alert-warning">
+      <span [innerHTML]="msgInAttesaDiPagamentoInvia"></span>
+    </div> -->
+
+    <!-- <div class="alert alert-warning">
+    <span>Nel caso avessi iniziato una procedura di pagamento non andata a buon fine (o ricevuto un email con esito \'Pagamento
+    non eseguito\'), lo IUV/Codice avviso risulterebbe già utilizzato. Puoi annullare la richiesta di pagamento e riprovare
+    in seguito la gestione del pagamento (questo genererà un nuovo IUV / Codice avviso) con
+    <a (click)="annullaPagamento()" [routerLink]="[]">Annulla Pagamento</a>.</span>
+    </div>
+    Il pagamento allo sportello viene eseguito via il Portale <a
+    href="urlPiemontePay" target="_blank">Piemontepay</a>.
+    -->
+
+<!-- Moved to istanza-container, renamed "Genera nuovo IUV" -->
+    <!--
+    <button class="btn btn-primary btn-xs" (click)="annullaPagamento()" [routerLink]="[]">
+      <svg class="icon icon-sm icon-white me-2">
+        <use [attr.href]="'./assets/svg/sprite.svg#it-restore'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-restore'"></use>
+      </svg>
+      Annulla Pagamento</button> -->
+
+    </div>

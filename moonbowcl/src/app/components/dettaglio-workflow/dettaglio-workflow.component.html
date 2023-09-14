@@ -1,0 +1,22 @@
+
+{{msgErr}}
+<formio [form]='struttura'
+        [renderOptions]="renderOptions"
+        [submission]='data'
+        [options]="options"
+        [viewOnly] = "readOnly"
+        [readOnly]= "readOnly"
+        (formLoad)="onFormLoad($event)"
+        (ready)="onFormLoad($event)"
+        (change)="onChange($event)"
+        (nextPage)="onNextPage($event)"
+        (prevPage)="onPrevPage($event)"
+>
+</formio>
+<!-- <button  class="btn btn-warning btn-sm" (click)="goback()">
+  <fa-icon name="arrow-left" ></fa-icon>
+</button> -->
+
+<button  class="btn"  style="float:right; background-color:lightgrey" (click)="goback()">
+  <fa-icon [icon]="faHome"></fa-icon>
+</button>

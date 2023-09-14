@@ -1,0 +1,122 @@
+<!-- Creare nuova versione per il modulo: {{modulo.codiceModulo}}<br> Descrizione: {{modulo.descrizioneModulo}} -->
+
+<form [formGroup]="frmNuovaVersione" (ngSubmit)="onSubmit()" style="margin: 0 auto !important;">
+
+    <div class="form-group col-md-9" style="margin: 0 auto;">
+        <h3 style="text-align:center;">Crea nuova versione</h3>
+        <div>&nbsp;</div>
+        <div> {{modulo.oggettoModulo}} ({{modulo.codiceModulo}})<span *ngIf="isAdmin"> [{{modulo.idModulo}}]</span></div>
+        <div> {{modulo.descrizioneModulo}}</div>
+        <div>&nbsp;</div>
+        <div class="form-group">
+            <label for="versione">Selezionare versione di partenza per la struttura</label>
+            <select name="versione" id="versione" formControlName="versionePartenza" class="form-control">
+                <option *ngFor="let v of elencoVersioni" [ngValue]="v.idVersioneModulo">{{
+                    v.versione}}-{{v.stato.descrizione}}</option>
+            </select>
+
+            <div *ngIf="versionePartenza.invalid && (versionePartenza.dirty || versionePartenza.touched)" class="alert alert-danger">
+                <div *ngIf="versionePartenza.errors?.required">
+                    Versione di partenza obbligatoria
+                </div>
+            </div>
+            <!-- </div> -->
+
+            <div>&nbsp;</div>
+
+
+            <div>
+                <div>
+                    <div>Selezionare i valori maior-minor-patch in modo che sia seguente alla ultima versione del modulo</div>
+                    <div>Ultima versione attuale del modulo &egrave; la seguente: {{datiInitnuovoaVersione?.ultimaVersione}}</div>
+                </div>
+                <div>&nbsp;</div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="maior">Maggiore</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input name="maior" id="maior" type="text" [size]="2" [minlength]="1" [maxlength]="2" formControlName="maior" style="width:60px">
+                    </div>
+                    <div *ngIf="maior.invalid && (maior.dirty || maior.touched)" class="alert alert-danger" style="margin-left:15px">
+                        <div *ngIf="maior.errors?.required">
+                            Maggiore obbligatorio
+                        </div>
+                        <div *ngIf="maior.errors?.pattern">
+                            Formato campo non corretto
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="minor">Minore</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input name="minor" id="minor" type="text" [size]="2" [minlength]="1" [maxlength]="2" formControlName="minor" style="width:60px">
+                    </div>
+                    <div *ngIf="minor.invalid && (minor.dirty || minor.touched)" class="alert alert-danger" style="margin-left:15px">
+                        <div *ngIf="minor.errors?.required">
+                            Minore obbligatorio
+                        </div>
+                        <div *ngIf="minor.errors?.pattern">
+                            Formato campo non corretto
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="patch">Patch</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input name="patch" id="patch" type="text" [size]="3" [minlength]="1" [maxlength]="3" formControlName="patch" style="width:60px">
+                    </div>
+
+                    <div *ngIf="patch.invalid && (patch.dirty || patch.touched)" class="alert alert-danger" style="margin-left:15px">
+                        <div *ngIf="patch.errors?.required">
+                            Patch obbligatorio
+                        </div>
+                        <div *ngIf="patch.errors?.pattern">
+                            Formato campo non corretto
+                        </div>
+                    </div>
+
+                    <div *ngIf="!checkNewVersion() && frmNuovaVersione.valid" class="alert alert-danger" style="margin-left:15px">
+                        <div>
+                            La versione inserita non &egrave; compatibile con ultima versione del modulo
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div>&nbsp;</div>
+        </div>
+
+        <!-- <ul class="list-inline">
+            <li class="list-inline-item">
+                <button type="button" class="btn btn-primary" style="width: 70px;margin-right: 10px" (click)="back()">
+                    <fa-icon style='font-size: 22px' [icon]="faHome"></fa-icon>
+                </button>
+
+                <button href="#" type="submit" [disabled]=" modeError || (!frmNuovaVersione.valid || !(checkNewVersion()) )" class="btn btn-primary" style="width: 70px;margin-right: 10px">
+                    <fa-icon style='font-size: 22px' [icon]="faSave"></fa-icon>
+                </button>
+            </li>
+        </ul> -->
+
+    </div>
+
+    <div class="form-group col-md-9" style="margin: 0 auto;">
+        <button type="button" class="btn btn-primary" style="width: 70px;float:left" (click)="back()">
+            <fa-icon style='font-size: 22px' [icon]="faHome"></fa-icon>
+        </button>
+
+        <button href="#" type="submit" [disabled]=" modeError || (!frmNuovaVersione.valid || !(checkNewVersion()) )" class="btn btn-primary" style="width: 70px;float:right">
+            <fa-icon style='font-size: 22px' [icon]="faSave"></fa-icon>
+        </button>
+    </div>
+
+
+</form>

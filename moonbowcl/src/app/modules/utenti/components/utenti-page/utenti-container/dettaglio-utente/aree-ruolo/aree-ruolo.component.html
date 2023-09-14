@@ -1,0 +1,54 @@
+<div>
+    <alert id="alert-utenti-area-ruolo"></alert>
+    <h4>Aree Ruolo abilitati:</h4>
+    <div class="table-responsive">
+        <table id="entiAreeRuoli" class="table table-bordered table-striped">
+            <thead>
+                <th>Ente</th>
+                <th>Area</th>
+                <th>Ruolo</th>
+                <th>Operazione</th>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let e of entiAreeRuoliAbilitati">
+                    <tr *ngFor="let ar of e?.areeRuoli">
+                        <td>{{e.nomeEnte}} ({{e.codiceEnte}})<span *ngIf="isAdmin"> [{{e.idEnte}}]</span></td>
+                        <td>{{ar.nomeArea}} ({{ar.codiceArea}})<span *ngIf="isAdmin"> [{{ar.idArea}}]</span></td>
+                        <td>{{ar.nomeRuolo}} ({{ar.codiceRuolo}})<span *ngIf="isAdmin"> [{{ar.idRuolo}}]</span></td>
+                        <td>
+<!--
+                            <a [routerLink]="[]" (click)="modifica(e,ar)" ngbTooltip="Modifica istanza" style="margin-left:10px">
+                                <fa-icon [icon]="faEdit"></fa-icon>
+                            </a>
+-->
+                            <a [routerLink]="[]" (click)="elimina(e,ar)" ngbTooltip="Elimina autorizzazione su Area Ruolo">
+                                <fa-icon style="margin-left: 20px; color: red" [icon]="faTrashAlt"></fa-icon>
+                            </a>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+    <form>
+        <h4>Aggiungi Aree :</h4>
+        <p>Comune
+            <select [(ngModel)]="newARidEnte" name="newARidEnte" id="newARidEnte" class="form-control" required readonly>
+                <option value="{{ente.idEnte}}">{{ente.nomeEnte}} ({{ente.codiceEnte}})</option>
+            </select>
+        </p>
+        <p>Area
+            <select [(ngModel)]="newARidArea" name="newARidArea" id="newARidArea" class="form-control" required>
+                <option *ngFor="let a of areeNonAbilitate" [value]="a.idArea">{{a.nomeArea}} ({{a.codiceArea}})</option>
+            </select>
+        </p>
+        <p>Ruolo
+            <select [(ngModel)]="newARidRuolo" name="newARidRuolo" id="newARidRuolo" class="form-control" required>
+                <option *ngFor="let r of ruoli" [value]="r.idRuolo">{{r.nomeRuolo}} ({{r.codiceRuolo}})</option>
+            </select>
+        </p>
+        <div class="form-group">
+            <button type="button" class="btn btn-success" (click)="aggiungiAreaRuolo();" style="float:right">Aggiungi</button>
+        </div>
+    </form>
+</div>

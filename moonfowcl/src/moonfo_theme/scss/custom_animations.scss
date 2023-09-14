@@ -1,0 +1,107 @@
+@mixin afterBg {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+  }
+
+  @keyframes shockwaveJump {
+    0% {
+    transform: scale(1);
+    }
+    40% {
+    transform: scale(1.08);
+    }
+    50% {
+    transform: scale(0.98);
+    }
+    55% {
+    transform: scale(1.02);
+    }
+    60% {
+    transform: scale(0.98);
+    }
+    100% {
+    transform: scale(1);
+    }
+}
+
+@keyframes shockwave {
+    0% {
+      transform: scale(.95);
+      box-shadow: 0 0 2px rgba(24,147,236,0.85), inset 0 0 1px rgba(24,147,236,0.85);
+    }
+    95% {
+      box-shadow: 0 0 20px rgba(24,147,236,0), inset 0 0 10px rgba(24,147,236,0);
+    }
+    100% {
+      transform: scale(1.2);
+  
+    }
+  }
+
+
+.animation--shockwave {
+    animation: shockwaveJump 1.5s ease-out infinite;
+    &:after {
+        @include afterBg;
+        animation: shockwave 1.5s .65s ease-out infinite;
+      }
+      
+      &:before {
+        @include afterBg;
+        animation: shockwave 1.5s .5s ease-out infinite;
+      }
+    }
+
+
+
+// Page loader animation - opacity (not used)
+  
+@keyframes opacity {
+  1% {fill:white;}
+  50% {fill: #19191a;}
+  100% {fill:white;}
+}
+
+.spinner-animation-rect {
+  animation-name: opacity;
+  animation-iteration-count: infinite;
+  -webkit-animation-name: opacity;
+}
+
+
+$spinner-rects : 12;
+@for $i from 1 through $spinner-rects {
+  .spinner-animation-rect-#{$i} {
+    animation-delay: #{$i / 20}s;
+    -webkit-animation-delay: #{$i / 20}s;
+    -moz-animation-delay: #{$i / 20}s;
+    animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+    -moz-animation-duration: 2s;
+  }
+}
+
+// page loader animation - wave 
+
+@keyframes move-left {
+  1% {transform:translateX(0)}
+  100% {transform:translateX(-48%)}
+}
+
+#wave {
+  transform:translateX(49%);
+  animation-name: move-left;
+  -webkit-animation-name: move-left;
+  -moz-animation-name: move-left;
+  animation-timing-function: ease-out;
+  -moz-animation-timing-function: ease-out;
+  -webkit-animation-timing-function: ease-out;
+  animation-duration: 8s;
+  -webkit-animation-duration: 8s;
+  -moz-animation-duration: 8s;
+}

@@ -1,0 +1,70 @@
+<div>
+    <h4>Moduli abilitati:</h4>
+    <span *ngIf="isAdmin">L'utente selezionato è di tipo ADMIN e non ha bisogno di abilitazione specifica per modulo (le vede già tutti).</span>
+    <div class="table-responsive">
+        <table id="moduliAbilitati" class="table table-bordered table-striped">
+            <thead>
+                <th *ngIf="isAdmin">#</th>
+                <th>Codice</th>
+                <th>Oggetto</th>
+                <th>Stato</th>
+                <th>Categoria</th>
+                <th>Operazione</th>
+            </thead>
+            <tbody>
+                <ng-container>
+                    <tr *ngFor="let m of moduliAbilitati | slice: (currPage-1) * pageSize : (currPage-1) * pageSize + pageSize; index as i">
+                        <td *ngIf="isAdmin">{{m.idModulo}}</td>
+                        <td>{{m.codiceModulo}}</td>
+                        <td>{{m.oggettoModulo}}</td>
+                        <td>{{m.stato.codice}}</td>
+                        <td>{{m.categoria?.descrizione}}</td>
+                        <td>
+                            <a [routerLink]="[]" (click)="elimina(m.idModulo)"
+                                ngbTooltip="Elimina abilitazione sul modulo">
+                                <fa-icon style="margin-left: 20px; color: red" [icon]="faTrashAlt"></fa-icon>
+                            </a>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+        <div class="clearfix"></div>
+        <div *ngIf="(moduliAbilitati?.length > pageSize)">
+            <ngb-pagination [(page)]="currPage"
+                            [pageSize]="pageSize"
+                            [collectionSize]="moduliAbilitati.length"
+                            [maxSize]="20" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
+                            (pageChange)="pageChanged($event)">
+            </ngb-pagination>
+        </div>
+    </div>
+    <form>
+        <h4>Aggiungi Modulo :</h4>
+        <div>Modulo
+<!--            <select name="modulo" id="modulo" class="form-control" required>
+                <option *ngFor="let m of moduliNonAbilitati" [value]="m.idModulo">{{m.oggettoModulo}} ({{m.codiceModulo}})</option>
+            </select> -->
+            <div class="ng-autocomplete">
+                <ng-autocomplete #auto 
+                    [data]="elencoSuggestModuli" 
+                    [initialValue]="moduloSuggestSelezionato"
+                    (selected)='selectEvent($event)' 
+                    (inputCleared)="clearFilter()" 
+                    [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate">
+                </ng-autocomplete>
+                <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item"></a>
+                </ng-template>
+                <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                </ng-template>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-success" (click)="aggiungiModulo();"
+                style="float:right">Aggiungi</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,17 @@
+{
+"java8": false,
+"useBeanValidation": true,
+"hideGenerationTimestamp": true,
+"apiPackage": "it.csi.moon.moonsrv.business.be.extra.wf",
+"modelPackage":  "it.csi.cosmo.callback.v1.dto",
+"invokerPackage": "it.csi.cosmo.callback.v1.business.be",
+"implFolder": "implfolder",
+"sourceFolder": "src/java",
+"useSwaggerFeature": false,
+"generateJbossDeploymentDescriptor": false,
+"generateImplArtifacts": true,
+"generateSwaggerMetadata": false,
+"attributeSerializationStrategy": "implicit-camel-case", 
+"accessHttpHeaders": true,
+"accessHttpRequest": true
+}

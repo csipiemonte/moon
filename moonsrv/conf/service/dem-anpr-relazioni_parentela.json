@@ -1,0 +1,33 @@
+{"relazioni_parentela":
+[
+{"id_tipo_relazione_parentela":1,"descr_tipo_relazione_parentela":"INTESTATARIO SCHEDA"}
+,{"id_tipo_relazione_parentela":2,"descr_tipo_relazione_parentela":"MARITO \/ MOGLIE"}
+,{"id_tipo_relazione_parentela":3,"descr_tipo_relazione_parentela":"FIGLIO \/ FIGLIA"}
+,{"id_tipo_relazione_parentela":4,"descr_tipo_relazione_parentela":"NIPOTE (DISCENDENTE)"}
+,{"id_tipo_relazione_parentela":5,"descr_tipo_relazione_parentela":"PRONIPOTE (DISCENDENTE)"}
+,{"id_tipo_relazione_parentela":6,"descr_tipo_relazione_parentela":"PADRE \/ MADRE"}
+,{"id_tipo_relazione_parentela":7,"descr_tipo_relazione_parentela":"NONNO \/ NONNA"}
+,{"id_tipo_relazione_parentela":8,"descr_tipo_relazione_parentela":"BISNONNO \/ BISNONNA"}
+,{"id_tipo_relazione_parentela":9,"descr_tipo_relazione_parentela":"FRATELLO \/ SORELLA"}
+,{"id_tipo_relazione_parentela":10,"descr_tipo_relazione_parentela":"NIPOTE (COLLATERALE)"}
+,{"id_tipo_relazione_parentela":11,"descr_tipo_relazione_parentela":"ZIO \/ ZIA (COLLATERALE)"}
+,{"id_tipo_relazione_parentela":12,"descr_tipo_relazione_parentela":"CUGINO \/ CUGINA"}
+,{"id_tipo_relazione_parentela":13,"descr_tipo_relazione_parentela":"ALTRO PARENTE"}
+,{"id_tipo_relazione_parentela":14,"descr_tipo_relazione_parentela":"FIGLIASTRO \/ FIGLIASTRA"}
+,{"id_tipo_relazione_parentela":15,"descr_tipo_relazione_parentela":"PATRIGNO \/ MATRIGNA"}
+,{"id_tipo_relazione_parentela":16,"descr_tipo_relazione_parentela":"GENERO \/ NUORA"}
+,{"id_tipo_relazione_parentela":17,"descr_tipo_relazione_parentela":"SUOCERO \/ SUOCERA"}
+,{"id_tipo_relazione_parentela":18,"descr_tipo_relazione_parentela":"COGNATO \/ COGNATA"}
+,{"id_tipo_relazione_parentela":19,"descr_tipo_relazione_parentela":"FRATELLASTRO \/ SORELLASTRA"}
+,{"id_tipo_relazione_parentela":20,"descr_tipo_relazione_parentela":"NIPOTE (AFFINE)"}
+,{"id_tipo_relazione_parentela":21,"descr_tipo_relazione_parentela":"ZIO \/ ZIA (AFFINE)"}
+,{"id_tipo_relazione_parentela":22,"descr_tipo_relazione_parentela":"ALTRO AFFINE"}
+,{"id_tipo_relazione_parentela":23,"descr_tipo_relazione_parentela":"CONVIVENTE (CON VINCOLI DI ADOZIONE O AFFETTIVI)"}
+,{"id_tipo_relazione_parentela":24,"descr_tipo_relazione_parentela":"RESPONSABILE DELLA CONVIVENZA NON AFFETTIVA"}
+,{"id_tipo_relazione_parentela":25,"descr_tipo_relazione_parentela":"CONVIVENTE IN CONVIVENZA NON AFFETTIVA"}
+,{"id_tipo_relazione_parentela":81,"descr_tipo_relazione_parentela":"NIPOTE"}
+,{"id_tipo_relazione_parentela":26,"descr_tipo_relazione_parentela":"TUTORE"}
+,{"id_tipo_relazione_parentela":28,"descr_tipo_relazione_parentela":"UNITO CIVILMENTE"}
+,{"id_tipo_relazione_parentela":80,"descr_tipo_relazione_parentela":"ADOTTATO"}
+,{"id_tipo_relazione_parentela":99,"descr_tipo_relazione_parentela":"NON DEFINITO\/COMUNICATO"}
+]}

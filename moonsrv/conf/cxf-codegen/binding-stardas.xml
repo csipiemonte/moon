@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxb:bindings xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" jaxb:version="2.0">
+    <jaxb:bindings schemaLocation="StardasCommonTypes.xsd" node="/xsd:schema">
+        <jaxb:schemaBindings>
+            <jaxb:package name="it.csi.protocollo.stardas.commons" />
+        </jaxb:schemaBindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="StardasWso2ServiceTypes.xsd" node="/xsd:schema">
+        <jaxb:schemaBindings>
+            <jaxb:package name="it.csi.protocollo.stardas.wso2" />
+        </jaxb:schemaBindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="StardasCallbackServiceTypes.xsd" node="/xsd:schema">
+        <jaxb:schemaBindings>
+            <jaxb:package name="it.csi.protocollo.stardas.callback" />
+        </jaxb:schemaBindings>
+    </jaxb:bindings>
+</jaxb:bindings>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://www.csi.it/stardas/services/StardasCallbackService"
+	xmlns:tns="http://www.csi.it/stardas/services/StardasCallbackService"
+	xmlns:cmn="http://www.csi.it/stardas/services/StardasCommonTypes"
+	elementFormDefault="qualified">
+
+	<import namespace="http://www.csi.it/stardas/services/StardasCommonTypes" schemaLocation="StardasCommonTypes.xsd"/>
+
+	<element name="EsitoSmistaDocumento">
+		<complexType>
+			<sequence>
+				<element name="Esito" type="tns:EsitoSmistaDocumentoType"/>
+			</sequence>
+		</complexType>
+	</element>
+
+	<complexType name="EsitoSmistaDocumentoType">
+		<sequence>
+			<element name="MessageUUID" type="cmn:String50Type"/>
+			<element name="IdDocumentoFruitore" type="cmn:String200Type"/>
+			<element name="TipoTrattamento" type="cmn:String50Type" maxOccurs="1" minOccurs="1"/>
+			<element name="EsitoTrattamento" type="cmn:ResultType" maxOccurs="1" minOccurs="1" />
+			<element name="EsitiStep" type="tns:EsitiStepType" minOccurs="1" maxOccurs="1" />
+			<element name="InformazioniAggiuntive" type="cmn:InformazioniAggiuntiveType" maxOccurs="1" minOccurs="0" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="EsitiStepType">
+		<sequence>
+			<element name="EsitoStep" minOccurs="1" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="Nome" type="cmn:String200Type" minOccurs="1" maxOccurs="1"/>
+						<element name="Esito" type="cmn:ResultType" maxOccurs="1" minOccurs="1" />
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+
+	<element name="EsitoSmistaDocumentoResponse">
+		<complexType>
+			<sequence>
+				<element name="Esito" type="cmn:ResultType" />
+			</sequence>
+		</complexType>
+	</element>
+</schema>

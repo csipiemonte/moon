@@ -1,0 +1,1278 @@
+swagger: "2.0"
+info:
+  description: |
+    # 1. Breve descrizione del servizio
+    ---
+    Api risorse per gestire i dati demografici del **cittadino**
+
+       * servizio invocabile da un client fruitore per reperire le generalità della famiglia e dei suoi componenti a partire da un Codice Fiscale di un suo componente (anche minorenne). La fonte dati è il sistema ANPR (Anagrafe Nazionale Persone Residenti). Per alcuni campi ANPR restituisce il codice; per derivare la descrizione relativa (es. statoCivile=1, descrizione="Coniugato/a") è necessario - quando indicato (es. "vd Tabella 3") - fare riferimento alle Tabelle di decodifica pubblicate sul sito ufficiale di ANPR.
+       * Il servizio presenta una profilazione applicativa legata al singolo client fruitore assegnato in fase di sottoscrizione della API
+       * il modello dati descritto rispetta il tracciato completo di ANPR
+       * ad ogni profilo applicativo corrisponde un modello dati specifico che è un sottoinsieme del modello dati complessivo.
+       * Le tabelle a cui si fa riferimento nelle descrizioni dei campi sono quelle pubblicate sul sito ufficiale ANPR all'indirizzo https://www.anpr.interno.it/portale/tabelle-di-riferimento
+    # 2. Casi d'uso del client
+    ---
+     ## 2.1 Ottenere le informazioni del cittadino
+
+    La applicazioni client devono invocare il seguente endpoint:
+    ```http
+    GET /anagrafe/cittadini/{user_id}/famiglia
+    ```
+
+    Verrà resituita la risorsa famiglia contenente le informazioni demografiche di ogni soggetto facente parte del nucleo familiare.
+  version: "v1"
+  title: "Demografia"
+host: "tst-api-piemonte.ecosis.csi.it"
+basePath: "/demografia/v1"
+schemes:
+- "https"
+paths:
+  /anagrafe/cittadini/{user_id}/famiglia:
+    get:
+      tags:
+      - "famiglia"
+      summary: "Lista dei soggetti del nucleo familiare"
+      description: "Il servizio restituisce la lista dei soggetti facenti parte del nucleo familiare del codice fiscale inserito come parametro"
+      operationId: "getFamigliaANPR"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "user_id"
+        in: "path"
+        type: string
+        description: "Codice fiscale del soggetto di cui si vuole estrarre il nucleo familiare"
+        required: true
+      - name: client-profile
+        in: header
+        type: string
+        required: true
+        description: "token in formato jwt utilizzato per la profilazione della risorsa richiesta"
+      - name: user-token
+        in: header
+        type: string
+        required: true
+        description: "token in formato jwt che identifica l'utente finale che sta richiedendo la risorsa. Il token è obbligatorio nel caso in cui si utilizzi un'autenticazione di tipo client credential(client_id + client_secret)"
+      - name: X-Request-Id
+        in: header
+        type: string
+        required: true
+        description: "Contiene un id univoco (`uuid v4`) della chiamata HTTP che viene generato
+      dal front-end, viene propagato agli strati successivi e viene restituito
+      al front-end assieme alla response, permettendo così di tracciare l'intero
+      ciclo di vita della richiesta"  
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/famiglia"
+        204:
+          description: "Nessun soggetto reperito per i parametri di ricerca impostati" 
+        400:
+          $ref: '#/responses/BadRequest'     
+        401:
+          $ref: '#/responses/UnauthorizedError'
+        403:
+          $ref: '#/responses/InsufficentPermissioneError'
+        404:
+          $ref: '#/responses/NotFound'
+        500:
+          $ref: '#/responses/InternalServerError'
+        502:
+          $ref: '#/responses/BadGatewayError'
+      security:
+        - demografiaSecurity: []
+securityDefinitions:
+  demografiaSecurity:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: "Bearer access token. Schema di autenticazione http  utilizzato per l'authorizzazione alla risorsa richiesta"
+responses:
+    BadRequest:
+      description: La richiesta fatta dal client è errata
+    UnauthorizedError:
+      description: Access token mancante o non valido
+    NotFound:
+      description: La risorsa specificata non è stata trovata  
+    InsufficentPermissioneError:
+      description: Il profilo utilizzato non ha sufficienti permessi per ottenere la risora richiesta
+    InternalServerError:
+      description: Si è verificato un'errore interno del server.
+    BadGatewayError:
+      description: Errore generato dai servizi di inner
+definitions: 
+  famiglia:
+      title: Famiglia
+      description: "Dati completi dei soggetti componenti il nucleo familiare"
+      type: "array"
+      items:
+            $ref: "#/definitions/soggetto"
+  soggetto:
+      title: Soggetto
+      description: "Dati completi di un Soggetto"
+      type: "object"
+      properties:
+        altraLingua:
+          type: array
+          items:
+            $ref: "#/definitions/altraLingua"
+        altriDati:
+            $ref: "#/definitions/altriDati"
+        annullamentoMatrimonio:
+          $ref: "#/definitions/annullamentoMatrimonio"
+        attoNascita: 
+          $ref: "#/definitions/atto"
+        attributiSoggetto:
+          $ref: "#/definitions/attributiSoggetto"
+        autoveicoli: 
+          $ref: "#/definitions/autoveicoli"
+        cartaIdentita:
+          $ref: "#/definitions/cartaIdentita"
+        censimento: 
+          $ref: "#/definitions/censimento"
+        cittadinanza:
+          type: array
+          items:
+            $ref: "#/definitions/cittadinanza"
+        coniugeExtra:
+          type: string
+        convivenzaDiFatto: 
+          $ref: "#/definitions/convivenzaDiFatto"
+        datiCancellazione:
+          $ref: "#/definitions/datiCancellazione"
+        datiDecesso:
+          $ref: "#/definitions/datiEvento"
+        datiIscrizione:
+          $ref: "#/definitions/datiIscrizione"
+        datiTraslitterati:
+          $ref: "#/definitions/datiTranslitterati"
+        domicilioDigitale:
+          $ref: "#/definitions/domicilioDigitale"
+        erroriAnomalie:      
+          type: array
+          items:
+            $ref: "#/definitions/erroriAnomalia"
+        famigliaConvivenza:
+          $ref: "#/definitions/famigliaConvivenzaRisposta"
+        generalita:
+          $ref: "#/definitions/generalita"
+        legameSoggetto:
+          $ref: "#/definitions/legameSoggettoCompleto"
+        listaElettorale:
+          $ref: "#/definitions/listaElettorale"
+        listaLeva:
+          $ref: "#/definitions/listaLeva"
+        madreExtra:
+          type: string
+        maternita:
+          $ref: "#/definitions/genitore"
+        matrimonio:
+          $ref: "#/definitions/matrimonio"
+        padreExtra:
+          type: string
+        paternita:
+          $ref: "#/definitions/genitore"
+        permessoSoggiorno:
+          $ref: "#/definitions/permessoSoggiorno"
+        residenza:
+          type: array
+          items:
+            $ref: "#/definitions/residenza"
+        statoCivile:
+          $ref: "#/definitions/statoCivile"
+        tutoreExtra:
+          type: string
+        tutoreIntestatario:
+          $ref: "#/definitions/tutoreIntestatario"
+        unioneCivile:
+          $ref: "#/definitions/unioneCivile"
+        vedovanza:
+          $ref: "#/definitions/vedovanza"   
+  altraLingua:
+      title: altraLingua
+      description: ""
+      type: object
+      properties:
+        denominazioneToponimo:
+          type: string
+          description: "La denominazione del toponimo"
+        descrizioneLocalita:
+          type: string
+          description: "Descrizione della località italiana. Non deve essere indicata se coincide con la descrizione del comune."
+        frazione:
+          type: string
+          description: "La frazione  del comune"            
+        idLingua:
+          type: string
+          description: "Dato aggiuntivo non gestito da ANPR"        
+        noteIndirizzo:
+          type: string
+          description: "Dato aggiuntivo non gestito da ANPR"        
+        presso:
+          type: string
+          description: "Indica la persona o la struttura presso la quale il soggetto è temporaneamente domiciliato"            
+        specie:
+          type: string
+          description: "La descrizione della DUG (denominazione urbana generica) dell’indirizzo "        
+  altriDati:
+      title: altriDati
+      description: ""
+      type: object
+      properties:
+        condizioneNonProfessionale:
+          type: string
+          description: "condizione non professionale (es. casalinga,studente,disoccupato,pensionato);Vedi Tabella 10 Condizione non professionale"
+          example: "1"
+        posizioneProfessionale:
+          type: string
+          description: "professione (es.dirigente, quadro/impiegato, operaio o assimilato);Vedi Tabella 9 Posizione nella professione"
+          example: "1"
+        titoloStudio:
+          type: string
+          description: "titolo di studio (es. Licenza media,Laurea triennale,Laurea); Vedi Tabella 11 Titolo di studio"
+          example: "A"
+  annullamentoMatrimonio:
+      title: annullamentoMatrimonio
+      description: "Annullamento matrimonio"
+      type: object
+      properties:
+        attoAnnullamentoMatrimonio:
+          description: ""
+          $ref: "#/definitions/atto"
+        sentenza:    
+          description: ""
+          $ref: "#/definitions/sentenza"    
+        tipoCessazione:
+          type: string
+          example: "1 (Cessazione effetti civili)"
+          description: "Indica la tipologia di cessazione del matrimonio (vedi Tabella 31 Tipo Cessazione Matrimonio)"
+  atto:
+      title: atto
+      description: "Atto di stato civile contenente gli estremi dell'atto (tipicamente Ufficio-Parte-Serie, numero, anno, comune, iscritto/trascritto)"
+      type: object
+      properties:
+        anno:
+          type: string
+          description: "anno di registrazione dell'atto"
+        comuneRegistrazione:
+          description: "comune di registrazione dell'atto"
+          $ref: "#/definitions/comune"
+        dataFormazioneAtto:
+          type: string
+          format: date
+          description: "data di registrazione dell'atto"
+        numeroAtto:
+          type: string
+          description: "numero di registrazione dell'atto"      
+        parte:
+          type: string
+          description: "Parte"      
+        serie:
+          type: string
+          description: "Serie"      
+        trascritto:
+          type: string
+          description: "Indica se l'atto sia o meno originale (0) o trascritto (1)"      
+        ufficioMunicipio:
+          type: string
+          description: "L‟ufficio o il municipio in cui si registra l‟atto"      
+        volume:
+          type: string
+          description: "Volume nel quale è presente l'atto"      
+  comune:
+      title: comune
+      description: "Comune italiano"
+      type: object
+      properties:
+        codiceIstat:
+          type: string
+          description: "Codice ISTAT del comune italiano"
+          example: "001272"
+        descrizioneLocalita:
+          type: string
+          description: "Descrizione della località italiana. Non deve essere indicata se coincide con la descrizione del comune"      
+        nomeComune:
+          type: string
+          description: "Denominazione del comune"
+          example: "TORINO,ACQUAVIVA D'ISERNIA"
+        siglaProvinciaIstat:
+          type: string
+          description: "Sigla della provincia in cui si trova il comune"
+          example: "TO"
+  sentenza:
+      title: sentenza
+      description: ""
+      type: object
+      properties:
+        autorita:
+          type: string
+          description: "Indica il tribunale / professionista che ha emesso la sentenza / accordo scioglimento"      
+        data:
+          type: string
+          format: date
+          description: "Indica la data in cui è stata emessa la sentenza / accordo scioglimento"      
+        dataValidita:
+          type: string
+          format: date
+          description: "Indica la data da cui  la sentenza / accordo scioglimento è valida"      
+        numero:
+          type: string
+          description: "Indica il numero della sentenza"  
+        tipoTribunale:
+          type: string
+          description: "Indica il tipo Autorità Giurisdizionale/amministrativa o di chi abbia stipulato l’ accordo scioglimento"           
+  attributiSoggetto:
+      title: attributiSoggetto
+      description: ""
+      type: object
+      properties:
+        senzaFissaDimora:
+          type: string
+          description: "Specifica se il cittadino è senza fissa dimora"
+          example: "S,N"
+        soggettoCertificabile:
+          type: string
+          description: "Specifica se il soggetto è certificabile o l'eventuale motivo di non certificabilità (Tabella 42 Motivi di non certificabilità)"
+          example: "2"
+  autoveicoli:
+      title: autoveicoli
+      description: "Possesso di patente e autoveicoli"
+      type: object
+      properties:
+        possessoAutoveicoli:
+          type: string
+          description: "Possesso di autoveicoli, ciclomotori, motocicli etc. (può valere S/N)"
+          example: "N"
+        possessoPatente:
+          type: string
+          description: "Possesso patente (può valere S/N)"
+          example: "N"
+  cartaIdentita:
+      title: cartaIdentita
+      description: "Carta d'Identità"
+      type: object
+      properties:
+        cartaceaElettronica:
+          type: string
+          description: "Indica se la carta di identità è cartacea (0) o elettronica(1)"        
+        comuneRilascio:
+          description: "Comune d rilascio (alternativo a Consolato)"
+          $ref: "#/definitions/comune"        
+        consolatoRilascio:
+          description: "Consolato di rilascio (alternativo a Comune)"
+          $ref: "#/definitions/consolato"        
+        dataAnnullamento:
+          type: string
+          format: date
+          description: "Data di annullamento o revoca della carta d’identità"
+        dataRilascio:
+          type: string
+          format: date          
+          description: "Data di rilascio della carta d’identità"
+        dataScadenza:
+          type: string
+          format: date          
+          description: "Data di rilascio della carta d’identità"
+        interdizioneEspatrio:
+          type: string
+          description: "Indica se il soggetto è interdetto all'espatrio (S) oppure può espatriare (N)"
+        numero:
+          type: string
+          description: "Numero della carta d’identità"
+          example: "AT8222393"
+  consolato:
+      title: consolato
+      description: "Consolato"
+      type: object
+      properties:
+        codiceConsolato:
+          type: string
+          description: "Il Codice del Consolato di residenza (vedi Tabella 24 Stati -  Consolati)"      
+          example: "2250100"
+        descrizioneConsolato:
+          type: string
+          description: "La città Sede del consolato (vedi Tabella 24 Stati -  Consolati)"
+          example: "PRAGA"
+  censimento:
+      title: censimento
+      description: "Censimento"
+      type: object
+      properties:
+        annoCensimento:
+          type: string
+          description: "Anno del censimento"             
+        dataRegolarizzazione:
+          type: string
+          format: date
+          description: "Data nella quale il cittadino regolarizza la propria posizione in caso di mancata compilazione del questionario"
+        foglioCensimento:
+          type: string
+          description: "Numero del foglio del censimento"
+        motivoCompilazione:
+          type: string
+          description: "Motivo della mancata compilazione in formato di testo libero"
+        sezioneCensimento:
+          type: string
+          description: "Sezione del censimento" 
+  cittadinanza:
+      title: cittadinanza
+      description: "Cittadinanza del soggetto"
+      type: object
+      properties:
+        codiceStato:
+          type: string
+          description: "Indica il codice dello stato corrispondente (Vedi tabella 2 stati esteri)" 
+          example: "100"
+        dataValidita:
+          type: string
+          format: date
+          description: "La data a partire dalla quale il soggetto ha assunto la cittadinanza che si sta indicando "
+          example: "1991-11-25T00:00:00+01:00"
+        descrizioneStato:
+          type: string
+          description: "Indica lo stato nella quale il soggetto ha la cittadinanza" 
+          example: "ITALIA"
+        noteStato:
+          type: string
+          description: "Dato aggiuntivo non gestito da ANPR"           
+  convivenzaDiFatto:
+      title: convivenzaDiFatto
+      description: ""
+      type: object
+      properties:
+        cittadinanza:
+          description: ""
+          $ref: "#/definitions/cittadinanza" 
+        contrattoRisoluzione:
+          description: ""
+          $ref: "#/definitions/risoluzioneConvivenza" 
+        contrattoStipula:
+          description: ""
+          $ref: "#/definitions/documentoProtocollato" 
+        convivente:
+          description: ""
+          $ref: "#/definitions/generalita"             
+        ordineConvivenza:
+          type: string
+          description: "Numero di convivenze (è un progressivo numerico che identifica il numero di convivenza del soggetto principale)"
+  risoluzioneConvivenza:
+      title: risoluzioneConvivenza
+      description: ""
+      type: object
+      properties: 
+        contratto:
+          description: ""
+          $ref: "#/definitions/documentoProtocollato"
+        motivoRisoluzione:
+          type: integer
+          description: "Motivo di risoluzione della convivenza (vd Tabella 43; ID a partire da 31 e 98 in caso di decesso del partner)"
+  documentoProtocollato:
+      title: documentoProtocollato
+      description: ""
+      type: object
+      properties:
+        comuneRegistrazione:
+          description: ""
+          $ref: "#/definitions/comune"
+        data:
+          type: string
+          format: date
+          description: "Indica la data evento (tipicamente costituzione della convivenza oppure data cessazione)" 
+        dataDocumento:
+          type: string
+          format: date
+          description: "Indica la data di sottoscrizione del contratto se si tratta di una stipula, oppure indica la data di risoluzione del contratto se si tratta di una risoluzione" 
+        dataNotifica:
+          type: string
+          format: date
+          description: "Indica la data di notifica del contratto o della risoluzione al comune"    
+        documento:
+          type: string
+          description: "E' un campo CLOB ad esclusivo uso dell'applicazione WEB ANPR"          
+        estensione:
+          type: string
+          description: ""             
+        luogoEvento:
+          description: ""
+          $ref: "#/definitions/luogoEvento"
+        professionista:
+          type: string
+          description: "indica il notaio, l'avvocato, lo studio etc. che ha redatto il contratto o la sua risoluzione"  
+        protocollo:
+          type: string
+          description: "indica il numero di protocollo con cui viene notificato il contratto o la risoluzione al comune"   
+        stato:
+          type: string
+          description: "E' un campo ad esclusivo uso del sistema ANPR, indica se è stato processato tramite verifica antivirus il documento inviato"             
+  datiCancellazione:
+      title: datiCancellazione
+      description: ""
+      type: object
+      properties:
+        dataDecorrenzaCancellazione:
+          type: string
+          format: date
+          description: "data in cui il soggetto si ritiene cancellato"        
+        datiSentenza:
+          description: ""
+          $ref: "#/definitions/sentenza"        
+        motivoCancellazione:
+          type: string
+          description: "se soggettoAIRE = N vedi tabella 15 motivi cancellazione; se soggettoAIRE = S vedi tabella 28 motivi cancellazione AIRE"        
+        notecancellazione:
+          type: string
+          description: "Dato aggiuntivo non gestito da ANPR"        
+  datiEvento:
+      title: datiEvento
+      description: "Dati dell'evento"
+      type: object
+      properties:
+        attoEvento:
+          description: "estremi dell'atto"
+          $ref: "#/definitions/atto"        
+        dataEvento:
+          type: string
+          format: date
+          description: "La data  dell'evento (nascita, matrimonio, ecc.)"        
+        luogoEvento:
+          description: ""
+          $ref: "#/definitions/luogoEvento"         
+        senzaGiorno:
+          type: string
+          description: "= 1 se data decesso solo mese e anno"        
+        senzaGiornoMese:
+          type: string
+          description: "= 1 se data decesso solo anno"   
+  luogoEvento:
+      title: luogoEvento
+      description: "Luogo evento"
+      type: object
+      properties:
+        comune:
+          description: ""
+          $ref: "#/definitions/comune"
+        localita:
+          description: ""
+          $ref: "#/definitions/localita"
+        luogoEccezionale:
+          type: string
+          description: "Indica se si tratta di un luogo eccezionale, non identificabile solo con un comune o una località (es: su una nave, in aereo, ecc.) "
+  localita:
+      title: localita
+      description: ""
+      type: object
+      properties:
+        codiceStato:
+          type: string
+          description: "Il Codice dello Stato a cui la località appartiene (vd Tabella 2)"
+          example: "172"
+        descrizioneLocalita:
+          type: string
+          description: "Descrizione della località estera nella quale è avvenuto l'evento (Es. New York)."
+        descrizioneStato:
+          type: string
+          description: "Descrizione dello Stato a cui la località appartiene "
+          example: "SVEZIA"
+        provinciaContea:
+          type: string
+          description: "Descrizione provincia contea"
+  datiIscrizione:
+      title: datiIscrizione
+      description: ""
+      type: object
+      properties:
+        datiIscrizioneComune:
+          description: ""
+          $ref: "#/definitions/datiIscrizioneComune"
+        iscrizioneResidente:
+          description: ""
+          $ref: "#/definitions/iscrizioneResidente"
+        sentenza:
+          description: ""
+          $ref: "#/definitions/sentenza"
+        tipoIscrizioneAIRE:
+          description: ""
+          $ref: "#/definitions/iscrizioneAIRE"            
+  datiIscrizioneComune:
+      title: datiIscrizioneComune
+      description: ""
+      type: object
+      properties:  
+        comune:
+          description: "Comune che ha effettuato l'iscrizione"
+          $ref: "#/definitions/comune"   
+        dataDefinizionePratica:
+          type: string
+          format: date
+          description: "Data di definizione della pratica di iscrizione"
+        dataIscrizione:
+          type: string
+          format: date
+          description: "Data di istituzione della scheda individuale"
+        idOperazioneANPR:
+          type: string
+          description: "Identificativo univoco attribuito all'operazione da ANPR"
+        idOperazioneComune:
+          type: string
+          description: "Identificativo attribuito all'operazione dal comune"
+        protocolloComune:
+          type: string
+          description: "Protocollo attribuito all'operazione dal comune" 
+  iscrizioneResidente:
+      title: iscrizioneResidente
+      description: ""
+      type: object
+      properties:   
+        descrizioneMotivoIscrizione:
+          type: string
+          description: "Descrizione della  motivazione dell'iscrizione"
+          example: "Nascita"
+        motivoIscrizione:
+          type: string
+          description: "Motivo iscrizione in ANPR (vedi Tabella 07  Motivi Iscrizione)"
+          example: "1"
+  iscrizioneAIRE:
+      title: iscrizioneAIRE
+      description: "Dati relativi all'iscrizione all'AIRE"
+      type: object
+      properties:   
+        dataArrivoConsolato:
+          type: string
+          format: date
+          description: "data di arrivo nel consolato di residenza"
+        individuazioneComuneIscrizione:
+          type: string
+          description: "Motivo dell'iscrizione all'AIRE nel Comune (Vedi Tabella Individuazione del comune di iscrizione)"
+        iniziativaIscrizione:
+          type: string
+          description: "Indica l'ufficio o il soggetto che invia la richiesta di iscrizione all'AIRE (vd Tabella 20)"
+        motivoIscrizione:
+          type: string
+          description: "Motivo di iscrizione all'AIRE (Vedi Tabella 19   Motivazione dell'iscrizione all'Aire)"
+        noteIndividuazioneComuneIscrizione:
+          type: string
+          description: "Deve essere valorizzato solo nel caso in cui il codice individuazione comune  iscrizione sia 9 - Altro"
+        noteIniziativaIscrizione:
+          type: string
+          description: "Deve essere valorizzato solo nel caso in cui il codice Iniziativa iscrizione sia 9 - Altro"
+        noteMotivoIscrizione:
+          type: string
+          description: "Deve essere valorizzato solo nel caso in cui il codice Motivo iscrizione sia C09 - Altro"          
+  datiTranslitterati:
+      title: datiTranslitterati
+      description: ""
+      type: object
+      properties:
+        cognomeTranslitterato:
+          type: string
+          description: "cognome del soggetto"  
+          example: "ROSSI"
+        denominazioneComuneTranslitterato:
+          type: string
+          description: "denominazione del comune"
+          example: "TORINO"
+        denominazioneLocEsteraTranslitterata:
+          type: string
+          description: "denominazione indirizzo estero"         
+        denominazioneToponimoTranslitterato:
+          type: string
+          description: "nome della via piazza ecc" 
+          example: "S. MARGHERITA"
+        descrizioneConsolatoTranslitterato:
+          type: string
+          description: "denominazione indirizzo estero"         
+        descrizioneLocalitaTranslitterata:
+          type: string
+          description: "Descrizione della località estera nella quale è avvenuto l'evento (Es. New York)."         
+        descrizioneStatoCittadinanzaTranslitterato:
+          type: string
+          description: "Descrizione dello Stato della cittadinanza"         
+        descrizioneStatoNascitaTranslitterato:
+          type: string
+          description: "Descrizione dello Stato di nascita"         
+        descrizioneStatoResidenzaTranslitterato:
+          type: string
+          description: "Descrizione dello Stato a cui la località appartiene "         
+        nomeTranslitterato:
+          type: string
+          description: "nome del soggetto"
+          example: "MARIO"
+        specieTranslitterata:
+          type: string
+          description: "La descrizione della DUG"         
+  provenienzaDestinazione:
+      title: provenienzaDestinazione
+      description: ""
+      type: object
+      properties:
+        comune: 
+          description: ""
+          $ref: "#/definitions/comune"        
+        localita:      
+          description: ""
+          $ref: "#/definitions/localita"        
+  domicilioDigitale:
+      title: domicilioDigitale
+      description: ""
+      type: object
+      properties:
+        dataInizioValidita: 
+          type: string
+          format: date
+          description: "data inizio validità"
+        enteErogatore:
+          type: string
+          description: "Ente che ha rilasciato la casella PEC"        
+        indirizzoDigitale:
+          type: string
+          description: "Indirizzo di posta elettronica utilizzato per comunicare con le PA"        
+  erroriAnomalia:
+      title: erroriAnomalia
+      description: "Descrive un errore ritornato da ANPR"
+      type: object
+      properties:
+        campoErroreAnomalia:
+          type: string
+          description: "Descrizione del campo presente nell'oggetto nel quale è stato rilevato l'errore o l'anomalia"         
+        codiceErroreAnomalia:
+          type: string
+          description: "Codice che identifica l'errore o l'anomalie"         
+        oggettoErroreAnomalia:
+          type: string
+          description: "Oggetto nel quale è stato rilevato l'errore o l'anomalie"         
+        testoErroreAnomalia:
+          type: string
+          description: "Testo descrittivo dell'errore o dell'anomalia"         
+        tipoErroreAnomalia:
+          type: string
+          description: "E= errore bloccante; W = anomalia non bloccante"         
+        valoreErroreAnomalia:
+          type: string
+          description: "Valore del campo nel quale è stato rilevato l'errore o l'anomalia"         
+  famigliaConvivenzaRisposta:
+      title: famigliaConvivenzaRisposta
+      description: "Dati della Famiglia/Convivenza"
+      type: object
+      properties:
+        dataOrigineFamigliaConvivenza:
+          type: string
+          format: date
+          description: "La data di origine della famiglia / Convivenza"
+        denominazioneConvivenza:
+          type: string
+          description: "Denominazione della Convivenza (valorizzato solo in caso di tipoScheda = 4)"
+          example: "RESIDENZA MILLENIUM  R.S.A. PER ANZIANI"
+        famigliaAire:
+          type: string
+          description: "Specifica se si tratta di una schedafamiglia  residente all'estero (valorizzato solo in caso di tipoScheda = 1)"
+        idFamigliaConvivenzaANPR:
+          type: string
+          description: "Il codice attribuito alla famiglia da ANPR"
+          example: 30794880
+        idFamigliaConvivenzaComune:
+          description: ""
+          $ref: "#/definitions/idFamigliaConvivenzaComune"
+        motivoCostituzione:
+          type: string
+          description: "vedi tabella 26 motivo costituzione famiglia (es. 1=Vincoli di matrimonio)"
+          example: "1"
+        presenzaFamigliaCoabitante:
+          type: string
+          description: "Indica se famiglia in coabitazione (può valere S/N).Valorizzato solo in caso di tipoScheda = 3"
+        specieConvivenza:
+          type: string
+          description: "vedi tabella 27 Specie convivenza (es. 1=Motivi religiosi)"
+        tipoMovimentazione:
+          type: string
+          description: "vedi tabella 23 motivo di movimentazione (es. 1=Immigrazione in famiglia nuova)"
+        tipoScheda:
+          type: string
+          description: "Indica il tipo di scheda: può valere 3=famiglia,4=convivenza,5=famigliaAIRE"
+          example: "3"
+  idFamigliaConvivenzaComune:
+      title: idFamigliaConvivenzaComune
+      description: ""
+      type: object
+      properties:
+        idFamigliaConvivenza:
+          type: string
+          description: "Identificativo attribuito alla famiglia dal comune" 
+          title: "10620444"
+        idFamigliaConvivenzaComuneIstat:
+          type: string
+          description: "Il codice ISTAT del comune che ha attribuito idFamiglia (vd Tabella 3)"
+          example: "001272"
+  generalita:
+      title: generalita
+      description: "Generalità"
+      type: object
+      properties:
+        annoEspatrio:
+          type: string
+          description: "Si può indicare solo se soggettoAIRE = S"
+        codiceFiscale:
+          description: "Codice Fiscale"
+          $ref: "#/definitions/codiceFiscale"
+        cognome:
+          type: string
+          description: "Cognome"
+          example: "ROSSI"
+        dataNascita:
+          type: string
+          format: date
+          description: "Data di nascita" 
+          example: "1970-06-01T00:00:00+02:00"
+        idSchedaSoggettoANPR:
+          type: string
+          description: "Identificativo della scheda soggetto ANPR"
+          example: "60853711"
+        idSchedaSoggettoComune:
+          description: "Identificativo attribuito dal comune alla scheda soggetto"
+          $ref: "#/definitions/idSchedaSoggettoComune"
+        luogoNascita:
+          description: "Luogo di nascita"
+          $ref: "#/definitions/luogoEvento"
+        nome:
+          type: string
+          description: "Nome"
+          example: "MARIO"
+        note:
+          type: string
+          description: "Dato aggiuntivo non gestito da ANPR"
+        senzaCognome:
+          type: string
+          description: "= 1 se soggetto senza cognome (alternativo a Cognome)"
+        senzaGiorno:
+          type: string
+          description: "= 1 se data nascita solo mese e anno"
+        senzaGiornoMese:
+          type: string
+          description: "= 1 se data nascita solo anno"
+        senzaNome:
+          type: string
+          description: "= 1 se soggetto senza Nome (alternativo a Nome)"
+        sesso:
+          type: string
+          description: "Sesso. Può assumere i seguenti valori: F, M, N (non conosciuto)"
+          example: "M"
+        soggettoAIRE:
+          type: string
+          description: "Specifica se si tratta di un cittadino italiano residente all'estero (vale 'S' per i soggetti AIRE)"
+          example: "S"
+  codiceFiscale:
+      title: codiceFiscale
+      description: "codice fiscale del soggetto"
+      type: object
+      properties:
+        codFiscale:
+          type: string
+          description: "Codice fiscale del soggetto"
+          example: "GLTCRL75H01L219X"
+        dataAttribuzioneValidita:
+          type: string
+          format: date
+          description: "Indica la data in cui è stato validato il codice fiscale"  
+        validitaCF:
+          type: string
+          description: "flag che indica l'esito della validazione dei dati anagrafici con il servizio di AE (vale 1=validato, 9=non validato)"
+          example: "1"
+  idSchedaSoggettoComune:
+      title: idSchedaSoggettoComune
+      description: ""
+      type: object
+      properties:
+        idSchedaSoggetto:
+          type: string
+          description: "Identificativo attribuito dal comune alla scheda soggetto"   
+          example: "R00939588"
+        idSchedaSoggettoComuneIstat:
+          type: string
+          description: "Il codice ISTAT del comune che ha attribuito idSoggetto"
+          example: "001272"          
+  legameSoggettoCompleto:
+      title: legameSoggettoCompleto
+      description: "Legame di parentale del soggetto (sempre riferito all'Intestatario Scheda)"
+      type: object
+      properties:
+        dataDecorrenzaLegame:
+          type: string
+          format: date
+          description: "La data a partire dalla quale il soggetto ha assunto un determinato rapporto di parentela/legame rispetto all'intestatario della scheda famiglia/convivenza"      
+        codiceLegame:
+          type: string
+          description: "Il codice il legame del soggetto con la famiglia o con la convivenza (Vedi Tabella 6 Legame - Scheda convivenza o tabella 05 relazione di parentela)"
+          example: "1"
+        dataDecorrenza:
+          type: string
+          format: date
+          description: "La data a partire dalla quale il soggetto appartiene alla famiglia/convivenza"
+          example: "1991-11-25T00:00:00+01:00"
+        progressivoComponente:
+          type: string
+          description: "Indica il progressivo con cui il soggetto è attribuito alla famiglia (solo per famiglia)"
+          example: "1"
+        tipoLegame:
+          type: string
+          description: "Può valere 3=famiglia;4=convivemza;5=famigliaAIRE (Se non indicato si assume 3)"
+          example: "3"
+  listaElettorale:
+      title: listaElettorale
+      description: "Lista Elettorale"
+      type: object
+      properties:
+        comune:
+          description: "Comune appartenenza lista elettorale. Se non indicato si assume = comune residenza"
+          $ref: "#/definitions/comune"        
+        elettore:
+          type: string
+          description: "flag di iscrizione nelle liste elettorali. Può valere S=Sì (elettore),N=No (non iscritto alle liste elettorali),P=Perdita diritto al voto"
+  listaLeva:
+      title: listaLeva
+      description: "Lista di Leva"
+      type: object
+      properties:
+        comune:
+          description: "Comune appartenenza lista di leva Se non indicato si assume = comune residenza"
+          $ref: "#/definitions/comune"        
+        iscritto:
+          type: string
+          description: "flag di iscrizione nelle liste di leva (S/N)"      
+  genitore:
+      title: genitore
+      description: "Dati di un genitore (ripetuto due volte per genitore1/genitore2)"
+      type: object
+      properties:
+        altriDati:
+          description: "professione e titolo di studio del genitore"
+          $ref: "#/definitions/altriDati"        
+        cittadinanza:
+          description: "cittadinanza del genitore"
+          $ref: "#/definitions/cittadinanza"        
+        generalita:
+          description: "generalità del genitore"
+          $ref: "#/definitions/generalita"        
+        statoCivile:
+          description: "stato civile del genitore"
+          $ref: "#/definitions/statoCivile"        
+  matrimonio:
+      title: matrimonio
+      description: "Dati del matrimonio"
+      type: object
+      properties:
+        cittadinanza: 
+          description: "Cittadinanza del coniuge"
+          $ref: "#/definitions/cittadinanza"
+        coniuge: 
+          description: "Generalità del coniuge"
+          $ref: "#/definitions/generalita"
+        datiMatrimonio: 
+          description: "Dati dell'evento (data, luogo, estremi atto)"
+          $ref: "#/definitions/datiEvento"
+        ordineMatrimonio:   
+          type: string
+          description: "Numero di matrimoni (se non indicato vale 1)"
+  permessoSoggiorno:
+      title: permessoSoggiorno
+      description: "Permesso di Soggiorno"
+      type: object
+      properties:
+        comune:
+          description: "Comune rilascio permesso di soggiorno"
+          $ref: "#/definitions/comune"
+        dataRilascio:
+          type: string
+          format: date
+          description: "Data di rilascio del permesso di soggiorno "
+        dataScadenza:
+          type: string
+          format: date
+          description: "Data di scadenza del permesso di soggiorno "
+        noteSoggiorno:
+          type: string
+          description: "Da indicare nel caso che il tipoSoggiorno sia 9 - non conosciuto/fornito"
+        numeroPassaporto:
+          type: string
+          description: "Numero del passaporto del cittadino"
+        numeroSoggiorno:
+          type: string
+          description: "Il numero del permesso di soggiorno "
+        questuraRilascioSoggiorno:
+          type: string
+          description: "Indica la questura in cui è stato rilasciato il permesso di soggiorno. "
+        tipoSoggiorno:
+          type: string
+          description: "Il tipo di permesso di soggiorno (vedi tabella 8 tipo soggiorno)"
+          example: "2"
+  residenza:
+      title: residenza
+      description: "Indirizzo di residenza in Italia o all'Estero"
+      type: object
+      properties:
+        dataDecorrenzaResidenza: 
+          type: string
+          format: date
+          description: "Data decorrenza della residenza"
+        indirizzo: 
+          description: "Indirizzo in Italia"
+          $ref: "#/definitions/indirizzo"
+        localitaEstera:
+          description: "Indirizzo Estero"
+          $ref: "#/definitions/localitaEstera"
+        noteIndirizzo: 
+          type: string
+          description: "Obbligatorio se tipoIndirizzo = 9 - altro"
+        presso: 
+          type: string
+          description: "Indica la persona o la struttura presso la quale il soggetto è temporaneamente domiciliato"
+        tipoIndirizzo: 
+          type: string
+          description: "Vedi tabella 25 - Tipo indirizzo (es. 1 residenza, 4 residenza estera)" 
+          example: "1"
+  indirizzo:
+      title: indirizzo
+      description: "Indirizzo in Italia"
+      type: object
+      properties:
+        cap: 
+          type: string
+          description: "Il CAP dell‟indirizzo"
+        comune: 
+          description: ""
+          $ref: "#/definitions/comune"
+        frazione: 
+          type: string
+          description: "La frazione  del comune"
+        numeroCivico:
+          description: "Numero Civico (comprensivo di eventuale Bis/Interno/Scala fino al NUI)"
+          $ref: "#/definitions/numeroCivico"
+        toponimo: 
+          description: ""
+          $ref: "#/definitions/toponimo"
+  numeroCivico:
+      title: numeroCivico
+      description: "Numero Civico eventualmente completo di Bis/Interno/Scala e NUI per identificare il singolo appartamento"
+      type: object
+      properties:
+        civicoFonte: 
+          type: string
+          description: "Indica la provenienza del codice civico.Vale 1 se specie è ricavato dalla tabella  nazionale; 2 se specie è ricavato dalla tabella del comune"
+        civicoInterno: 
+          description: ""
+          $ref: "#/definitions/civicoInterno"
+        codiceCivico: 
+          type: string
+          description: "Codice identificativo attribuito al numero civico nella banca dati comunale/nazionale (id_Civico del sistema di Toponomastica)"
+        colore: 
+          type: string
+          description: "Il colore del civico (1=rosso,2=nero,3=blu,4=residenziale,5=non residenziale)"
+        esponente1: 
+          type: string
+          description: "bis, ter, quater …"
+        lettera: 
+          type: string
+          description: "La lettera del civico "
+        metrico: 
+          type: string
+          description: "Distanza tra l'accesso e il punto di riferimento prestabilito, espresso in metri (è in alternativa al numero civico)"
+        numero: 
+          type: string
+          description: "Numero Civico (alternativo al metrico)"
+        progSNC: 
+          type: string
+          description: "progressivo  dopo l'ultimo civico presente" 
+  civicoInterno:
+      title: civicoInterno
+      description: "Specifica il Bis/Interno/Scala dell'indirizzo (es.  int. 11 int. A Piano: 03)"
+      type: object
+      properties:
+        corte: 
+          type: string
+          description: "Corte"
+        espInterno1: 
+          type: string
+          description: "bis, ter, quater …"
+        espInterno2: 
+          type: string
+          description: "bis, ter, quater …"
+        interno1: 
+          type: string
+          description: "Interno (primo livello)"
+        interno2: 
+          type: string
+          description: "Interno (secondo livello)"
+        isolato: 
+          type: string
+          description: "numero isolato"
+        nui: 
+          type: string
+          description: "numero unità immobiliare"           
+        piano: 
+          type: string
+          description: "Piano"
+        scala: 
+          type: string
+          description: "Scala"
+        scalaEsterna: 
+          type: string
+          description: "Scala Esterna"
+        secondario: 
+          type: string
+          description: "Lettera indicante il numero secondario - generalmente si riferisce ai negozi"   
+  toponimo:
+      title: toponimo
+      description: "Il toponimo dell'indirizzo in cui risiede il soggetto completo di tutti i suoi attributi"
+      type: object
+      properties:
+        codSpecie: 
+          type: string
+          description: "Codice attribuito alla DUG (denominazione urbana generica);vedi tabella 04 specie toponimi"
+          example: "213"
+        codToponimo: 
+          type: string
+          description: "Codice identificativo attribuito al toponimo nella banca dati comunale/nazionale"
+          example: "57636"
+        denominazioneToponimo: 
+          type: string
+          description: "La denominazione del toponimo (nome della via)"
+          example: "PASTRENGO"
+        specie: 
+          type: string
+          description: "La descrizione della DUG (vedi tabella 04 specie toponimi)"
+          example: "VIA"
+        specieFonte: 
+          type: string
+          description: "Indica la provenienza della DUG.Vale 1 se codSpecie è ricavato dalla tabella; 2 se codSpecie è ricavato dalla tabella del comune"
+          example: "2"
+        toponimoFonte: 
+          type: string
+          description: "Indica la provenienza del toponimo.Vale 1 se codToponimo è ricavato dalla tabella  ISTAT; 2 se è ricavato dalla tabella del comune"
+          example: "2"
+  localitaEstera:
+      title: localitaEstera
+      description: "Località estera"
+      type: object
+      properties:
+        indirizzoEstero: 
+          description: ""
+          $ref: "#/definitions/indirizzoEstero"
+        consolato: 
+          description: ""
+          $ref: "#/definitions/consolato" 
+  indirizzoEstero:
+      title: indirizzoEstero
+      description: "Indirizzo estero di residenza (comprensivo di cap, località, via e numero civico)"
+      type: object
+      properties:
+        cap:
+          type: string
+          description: "Il CAP dell‟indirizzo"      
+        localita: 
+          description: ""
+          $ref: "#/definitions/datoLocalitaEstera"
+        toponimo: 
+          description: ""
+          $ref: "#/definitions/toponimoEstero"  
+  datoLocalitaEstera:
+      title: datoLocalitaEstera
+      description: "Indirizzo estero"
+      type: object
+      properties:
+        codiceStato: 
+          type: string
+          description: "Il Codice dello Stato a cui la località appartiene (vd Tabella 2)"      
+        descrizioneLocalita: 
+          type: string
+          description: "Descrizione della località estera nella quale è avvenuto l'evento (Es. New York)."      
+        descrizioneStato: 
+          type: string
+          description: "Descrizione dello Stato a cui la località appartiene"      
+        provinciaContea: 
+          type: string
+          description: "Descrizione provincia contea"  
+  toponimoEstero:
+      title: toponimoEstero
+      description: "Toponimo estero (indirizzo estero)"
+      type: object
+      properties:
+        denominazione: 
+          type: string
+          description: "La denominazione del toponimo (cioè il nome della via)"      
+        numeroCivico: 
+          type: string
+          description: "Codice identificativo ufficiale del numero civico"          
+  statoCivile:
+      title: statoCivile
+      description: "Stato Civile del soggetto"
+      type: object
+      properties:
+        noteStatoCivile: 
+          type: string
+          description: "Deve essere valorizzato solo nel caso in cui lo Stato Civile sia 9 - Non classificabile / ignoto / non documentato" 
+        statoCivile: 
+          type: string
+          description: "Vedi Tabella 1 Stato Civile"
+        statoCivileND: 
+          type: string
+          description: "Specifica se Stato Civile non documentato (valori ammessi S, N)"          
+  tutoreIntestatario:
+      title: tutoreIntestatario
+      description: ""
+      type: object
+      properties:
+        comuneResidenza: 
+          description: "Per l'intestatario della convivenza che non risiede nel comune"
+          $ref: "#/definitions/comune"
+        dataIntestarioConvivenza:
+          type: string
+          format: date
+          description: "Data in cui il soggetto è diventato intestatario della famiglia/convivenza/tutoraggio."             
+        generalita: 
+          description: "generalità del soggetto"
+          $ref: "#/definitions/generalita"      
+  unioneCivile:
+      title: unioneCivile
+      description: "Unione Civile"
+      type: object
+      properties:
+        attoUnione: 
+          description: ""
+          $ref: "#/definitions/datiEvento"
+        cittadinanza: 
+          description: ""
+          $ref: "#/definitions/cittadinanza"              
+        ordineUnione:
+          type: string
+          description: "Numero di unioni"             
+        scioglimentoUnione: 
+          description: ""
+          $ref: "#/definitions/scioglimentoUnione"  
+        unitoCivilmente: 
+          description: ""
+          $ref: "#/definitions/generalita"   
+  scioglimentoUnione:
+      title: scioglimentoUnione
+      description: "Scioglimento unione civile"
+      type: object
+      properties:    
+        datiEvento: 
+          description: ""
+          $ref: "#/definitions/datiEvento"      
+        motivoScioglimento:
+          type: string
+          description: "Indica la tipologia di cessazione dell'unione civile (vd Tabella 43 Cessazione unione civile - convivenze)"             
+        sentenza: 
+          description: ""
+          $ref: "#/definitions/sentenza"      
+  vedovanza:
+      title: vedovanza
+      description: "Dati relativi al coniuge deceduto"
+      type: object
+      properties:    
+        datiMorteconiuge: 
+          description: "Coniuge deceduto"
+          $ref: "#/definitions/datiEvento"  
+        ordineMatrimonioPrecedente:
+          type: string
+          description: "Numero di matrimoni" 

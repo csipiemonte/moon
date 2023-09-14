@@ -1,0 +1,233 @@
+<div *ngIf="!editModeNextCrm">
+    <div>
+        <div class="row">
+            <div class="col col-md-2"><span title="{{ titleUpd.get('PSIT_CRM_CONF_NEXTCRM') }}">CRM Conf:</span>
+            </div>
+            <div class="col col-md-10"><span title="{{attrCrmConf|json}}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-code-square"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z">
+                        </path>
+                        <path
+                            d="M6.854 4.646a.5.5 0 0 1 0 .708L4.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0z">
+                        </path>
+                    </svg></span>
+            </div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['title']">
+            <div class="col col-md-2">title:</div>
+            <div class="col col-md-10">{{attrCrmConf['title'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['group_id']">
+            <div class="col col-md-2">group_id:</div>
+            <div class="col col-md-10">{{attrCrmConf['group_id']}}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['priority_id']">
+            <div class="col col-md-2">priority_id:</div>
+            <div class="col col-md-10">{{attrCrmConf['priority_id']}}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['note']">
+            <div class="col col-md-2">note:</div>
+            <div class="col col-md-10">{{attrCrmConf['note'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['type_id']">
+            <div class="col col-md-2">type_id:</div>
+            <div class="col col-md-10">{{attrCrmConf['type_id']}}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['asset_id']">
+            <div class="col col-md-2">asset_id:</div>
+            <div class="col col-md-10">{{attrCrmConf['asset_id']}}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['additional_info']">
+            <div class="col col-md-2">additional_info:</div>
+            <div class="col col-md-10">{{attrCrmConf['additional_info'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['article_istanza_subject']">
+            <div class="col col-md-2">article_istanza_subject:</div>
+            <div class="col col-md-10">{{attrCrmConf['article_istanza_subject'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['article_istanza_body']">
+            <div class="col col-md-2">article_istanza_body:</div>
+            <div class="col col-md-10">{{attrCrmConf['article_istanza_body'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['include_allegati']">
+            <div class="col col-md-2">include_allegati:</div>
+            <div class="col col-md-10">{{attrCrmConf['include_allegati'] }}</div>
+        </div>
+        <!-- <div class="row" *ngIf="attrCrmConf['article_allegato_subject']">
+            <div class="col col-md-2">article_allegato_subject:</div>
+            <div class="col col-md-10">{{attrCrmConf['article_allegato_subject'] }}</div>
+        </div> -->
+        <div class="row" *ngIf="attrCrmConf['codiceFiscale']">
+            <div class="col col-md-2">codiceFiscale:</div>
+            <div class="col col-md-10">{{attrCrmConf['codiceFiscale'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['firstname']">
+            <div class="col col-md-2">Nome:</div>
+            <div class="col col-md-10">{{attrCrmConf['firstname'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['lastname']">
+            <div class="col col-md-2">Cognome:</div>
+            <div class="col col-md-10">{{attrCrmConf['lastname'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['email']">
+            <div class="col col-md-2">email:</div>
+            <div class="col col-md-10">{{attrCrmConf['email'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['phone']">
+            <div class="col col-md-2">phone:</div>
+            <div class="col col-md-10">{{attrCrmConf['phone'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['mobile']">
+            <div class="col col-md-2">mobile:</div>
+            <div class="col col-md-10">{{attrCrmConf['mobile'] }}</div>
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+<div *ngIf="editModeNextCrm">
+    <alert id="alert-moduli-attr-crm"></alert>
+    <form>
+        <legend>Configurazione NextCrm</legend>
+        <div class="form-group">
+            <label for="title">Title:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Title del Ticket"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['title']" id="title" name="title" class="form-control" #title="ngModel" placeholder="@@CODICE_ISTANZA@@"/>
+        </div>
+        <div class="form-group">
+            <label for="group_id">group_id:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Il gruppo del CRM in cui confluisce il ticket. Descrive la coda di gestione del ticket e va concordata rin fase di integrazione. (numerico o string '##istanza_data.field_group_id##')"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['group_id']" id="group_id" name="group_id" class="form-control" #group_id="ngModel" placeholder="Inserire il numero del gruppo NextCRM, o il riferimento al campo dell'istanza che lo contiene ##field_group_id##"/>
+        </div>
+        <div class="form-group">
+            <label for="priority_id">priority_id:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Descrive la priorità. Di default le integrazioni prevedono un valore fisso (2-Normal). 1: Low | 2: Normal | 3: High"></i></label>
+            <input type="number" [(ngModel)]="attrCrmConfEdit['priority_id']" id="priority_id" name="priority_id" class="form-control"
+                #priority_id="ngModel" placeholder=2/>
+        </div>
+        <div class="form-group">
+            <label for="note">note:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Note"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['note']" id="note" name="note" class="form-control"
+                #note="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="type_id">type_id:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Tipo di ticket: classificazione primaria definita su CRM : 1: Richiesta informativa generica | 2: Domanda sul servizio applicativo | 3: Segnalazione di malfunzionamento"></i></label>
+            <input type="number" [(ngModel)]="attrCrmConfEdit['type_id']" id="type_id" name="type_id" class="form-control"
+                #type_id="ngModel" placeholder=1/>
+        </div>
+        <div class="form-group">
+            <label for="asset_id">asset_id:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Asset ID è la CFI, cioè il terzo valore delle attuali trplette di Remedy e descrive il servizio online su cui viene richiesta assistenza. (numerico o string '##istanza_data.field_asset_id##')"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['asset_id']" id="asset_id" name="asset_id" class="form-control"
+                #asset_id="ngModel" placeholder="Inserire il numero del CFI, o il riferimento al campo dell'istanza che lo contiene ##field_asset_id##"/>
+        </div>
+        <div class="form-group">
+            <label for="additional_info">additional_info:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Additional Info, dati di business specifici che per qualche motivo non sono nell'istanza (primo article del ticket)"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['additional_info']" id="additional_info" name="additional_info" class="form-control"
+                #additional_info="ngModel" />
+        </div>
+    <fieldset>
+        <legend>Article:</legend>
+        <div class="form-group">
+            <label for="article_istanza_subject">article_istanza_subject:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Suject del'article principale di tipo Istanza"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['article_istanza_subject']" id="article_istanza_subject" name="article_istanza_subject" class="form-control"
+                #article_istanza_subject="ngModel" placeholder="Istanza @@CODICE_ISTANZA@@"/>
+        </div>
+        <div class="form-group">
+            <label for="article_istanza_body">article_istanza_body:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Body del'article principale di tipo Istanza"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['article_istanza_body']" id="article_istanza_body" name="article_istanza_body" class="form-control" 
+                #article_istanza_body="ngModel" placeholder="Istanza @@CODICE_ISTANZA@@ (allegato pdf)" />
+        </div>
+        <div class="form-group">
+            <label for="include_allegati">include_allegati:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Allega gli allegati. Verra creato un artile per ogni allegato"></i></label>
+            <!-- input type="text" [(ngModel)]="attrCrmConfEdit['include_allegati']" id="include_allegati" name="include_allegati" class="form-control"
+                #include_allegati="ngModel" /> -->
+            <div>
+                <ui-switch [(ngModel)]="attrCrmConfEdit['include_allegati']" [ngModelOptions]="{standalone: true}" id="include_allegati" name="include_allegati">
+                </ui-switch>
+            </div>
+        </div>
+    <!--
+        <div class="form-group">
+            <label for="article_allegato_subject">article_allegato_subject:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Suject di un article di tipo Allegato"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['article_allegato_subject']" id="article_allegato_subject" name="article_allegato_subject" class="form-control"
+                #article_allegato_subject="ngModel" placeholder="Allegato di @@CODICE_ISTANZA@@"/>
+        </div>
+    -->
+        Verra usato l'email del customer come emittente dell'article (campo 'from').
+    </fieldset>
+    <fieldset>
+        <legend>Customer:</legend>
+        <div class="form-group">
+            <label for="codiceFiscale">codiceFiscale:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="CodiceFiscale del CUSTOMER"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['codiceFiscale']" id="codiceFiscale" name="codiceFiscale" class="form-control"
+                #codiceFiscale="ngModel" placeholder="@@CODICE_FISCALE@@"/>
+        </div>
+        <div class="form-group">
+            <label for="firstname">firstname:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Nome del CUSTOMER"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['firstname']" id="firstname" name="firstname"
+                class="form-control" #firstname="ngModel" placeholder="@@NOME@@"/>
+        </div>
+        <div class="form-group">
+            <label for="lastname">lastname:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Cognome del CUSTOMER"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['lastname']" id="lastname" name="lastname"
+                class="form-control" #lastname="ngModel" placeholder="@@COGNOME@@"/>
+        </div>
+        <div class="form-group">
+            <label for="email">email:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Nome del campo nel form dove ricavare l'email del destinatario (dinamico per ogni istanza)"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['email']" id="email" name="email" class="form-control"
+                #email="ngModel" placeholder="##email##"/>
+        </div>
+        <div class="form-group">
+            <label for="phone">phone:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Nome del campo nel form dove ricavare il numero di telephono del destinatario (dinamico per ogni istanza)"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['phone']" id="phone" name="phone" class="form-control"
+                #phone="ngModel" placeholder="##phone##"/>
+        </div>
+        <div class="form-group">
+            <label for="mobile">mobile:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Nome del campo nel form dove ricavare il numero di cellulare del destinatario (dinamico per ogni istanza)"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['mobile']" id="mobile" name="mobile" class="form-control"
+                #mobile="ngModel" placeholder="##mobile##"/>
+        </div>
+    </fieldset>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+      <!--  <div class="form-group">
+            <button type="button" class="btn btn-light" (click)="editMode=false;" style="float:left">Annulla</button>
+            <button type="button" class="btn btn-success" (click)="salva()" style="float:right">Salva</button>
+        </div>-->
+    </form>
+</div>
+<div>&nbsp;</div>
+<div>Default conf:&nbsp;
+    <pre>
+"title": "@@CODICE_ISTANZA@@",
+"priority_id": 2,
+"type_id": 2,
+"article_istanza_subject": "Istanza @@CODICE_ISTANZA@@",
+"article_istanza_body": "@@CODICE_ISTANZA@@ (allegato pdf)",
+"include_allegati": false,
+<!-- "article_allegato_subject": "Allegato di @@CODICE_ISTANZA@@", -->
+"codiceFiscale": "@@CODICE_FISCALE@@",
+"firstname": "@@NOME@@",
+"lastname": "@@COGNOME@@",
+"email": "##email##",
+"phone": "##phone##",
+"mobile": "##mobile##"
+<!-- 
+"group_id": "7",
+"note": null,
+"asset_id": "1",
+"additional_info": null,
+-->
+    </pre>
+</div>

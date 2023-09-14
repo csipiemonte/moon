@@ -1,0 +1,137 @@
+<div *ngIf="!editMode">
+    <div *ngIf="isAdmin || currentUser?.hasRuoloOperatorMinADM()"
+        style="position:absolute; top: 4.5rem; right: 8px; z-index: 1;">
+        <button type="button" class="btn btn-outline-primary" (click)="editMode=true;">Edit Dati Generali</button>
+    </div>
+    <div>
+        <div class="row">
+            <div class=".col-12 col-md-11 align-self-start">{{utente?.nome}} {{utente?.cognome}}</div>
+            <div class=".col-12 col-md-1">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-11 align-self-start">{{utente?.identificativoUtente}}
+                <span *ngIf="isAdmin"> [{{utente.idUtente}}]</span>
+            </div>
+            <div class=".col-12 col-md-1">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-11 align-self-start">{{utente?.email}}</div>
+            <div class=".col-12 col-md-1">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-11 align-self-start">{{utente?.tipoUtente?.descrizione}} ({{utente?.tipoUtente?.codice}})</div>
+            <div class=".col-12 col-md-1">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-11 align-self-start">Attivo: {{utente?.flagAttivo}}
+            </div>
+            <div class=".col-12 col-md-1">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-11 align-self-start">&nbsp;
+            </div>
+            <div class=".col-12 col-md-1">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-11 align-self-start">Inserito il {{utente?.dataIns | date: 'dd/MM/yyyy HH:mm:ss' }} da {{utente?.attoreIns }}</div>
+            <div class=".col-12 col-md-1">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-11 align-self-start">Aggiornato il {{utente?.dataUpd | date: 'dd/MM/yyyy HH:mm:ss' }} da {{utente?.attoreUpd }}</div>
+            <div class=".col-12 col-md-1">&nbsp;</div>
+        </div>
+    </div>
+    <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+</div>
+<div *ngIf="editMode">
+    <alert id="alert-moduli-dati-generali"></alert>
+    <form>
+        <div class="form-group">
+            <label for="cognome"> Cognome:</label>
+            <input type="text" id="cognome" name="cognome" class="form-control"
+                #cognome="ngModel" [(ngModel)]="utenteEdit.cognome"
+                required minlength="1" maxlength="50">
+            <div *ngIf="cognome.dirty && cognome.touched && cognome.invalid">
+                <div class="alert-danger" *ngIf='cognome.errors.required'>
+                    Il campo codice è obbligatorio
+                </div>
+                <div class="alert-danger" *ngIf='cognome.errors.minlength'>
+                    Lunghezza minima deve essere {{cognome.errors.minlength.requiredLength}}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="nome"> Nome:</label>
+            <input type="text" id="nome" name="nome" class="form-control"
+                #nome="ngModel" [(ngModel)]="utenteEdit.nome"
+                minlength="1" maxlength="50">
+            <div *ngIf="nome.dirty && nome.touched && nome.invalid">
+                <div class="alert-danger" *ngIf='nome.errors.minlength'>
+                    Lunghezza minima deve essere {{nome.errors.minlength.requiredLength}}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="identificativoUtente"> Codice Fiscale:</label>
+            <input type="text" [(ngModel)]="utenteEdit.identificativoUtente" id="identificativoUtente" name="identificativoUtente"
+                class="form-control" #identificativoUtente="ngModel" required minlength="5" maxlength="32">
+            <div *ngIf="identificativoUtente.dirty && identificativoUtente.touched && identificativoUtente.invalid">
+                <div class="alert-danger" *ngIf='identificativoUtente.errors.required'>
+                    Il campo codice è obbligatorio
+                </div>
+                <div class="alert-danger" *ngIf='identificativoUtente.errors.minlength'>
+                    Lunghezza minima deve essere {{identificativoUtente.errors.minlength.requiredLength}}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email"> Email:</label>
+            <input type="text" [(ngModel)]="utenteEdit.email" id="email" name="email" maxlength="200"
+                class="form-control" #email="ngModel"
+                required minlength="5" maxlength="200">
+            <div *ngIf="email.dirty && email.touched && email.invalid">
+                <div class="alert-danger" *ngIf='email.errors.required'>
+                    Il campo codice è obbligatorio
+                </div>
+                <div class="alert-danger" *ngIf='email.errors.minlength'>
+                    Lunghezza minima deve essere {{email.errors.minlength.requiredLength}}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="tipoUtente">Tipo Utente:</label>
+            <select [(ngModel)]="tipoUtenteEdit.codice" name="tipoUtente" id="tipoUtente" class="form-control"
+                #tipoUtenteEdit.codice="ngModel">
+                <option *ngFor="let t of tipiUtente" [ngValue]="t.codice">{{t.descrizione}} ({{t.codice}})</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="flagAttivo"> Attivo:</label>
+            <div>
+                <ui-switch [(ngModel)]="utenteEdit.flagAttivo" [ngModelOptions]="{standalone: true}" #flagAttivo="ngModel">
+                </ui-switch>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-light" (click)="editMode=false;" style="float:left">Annulla</button>
+            <button type="button" class="btn btn-success" (click)="salva()" style="float:right">Salva</button>
+        </div>
+    </form>
+    <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<!-- Per Visualizzare messaggi Da capite -->
+<p>Queste sono le istanze che hai segnato come <b>Importanti</b>.</p>
+
+<div id="domanda" role="tabpanel" aria-label="Istanze importanti"
+    class="areaTabAccodion tab-pane fade active show mt-5">
+    <div *ngIf="righeIstanzaImportanti?.length > 0">
+        <div>
+            <table id="mytable" class="table table-sm  table-hover small">
+                <thead>
+                    <th><span class="visually-hidden">Aggiungi/rimuovi alle istanze importanti</span></th>
+                    <th>Modulo</th>
+                    <th>Numero istanza</th>
+                    <th>Data di creazione</th>
+                    <th>Stato attuale</th>
+                    <th>Operazioni</th>
+                </thead>
+                <tbody>
+                    <tr riga-istanza-importante
+                        *ngFor="let rigaIstanza of righeIstanzaImportanti  | slice: (currPageBozza-1) * pageSizeBozza : (currPageBozza-1) * pageSizeBozza + pageSizeBozza"
+                        [riga-istanza-data]="rigaIstanza" [currPage]="currPageBozza"
+                        (onDeleteRiga)="onDeleteRiga($event)" (onCambiaImportanza)="onCambiaImportanza($event)">
+                    </tr>
+                </tbody>
+            </table>
+
+            <div *ngIf="righeIstanzaImportanti.length > pageSizeBozza" class="d-flex justify-content-center mt-5">
+                <ngb-pagination [(page)]="currPageBozza" [pageSize]="pageSizeBozza"
+                    [collectionSize]="righeIstanzaImportanti.length" [maxSize]="5" [rotate]="true" [ellipses]="true"
+                    [boundaryLinks]="true" [directionLinks]="false" (pageChange)="pageChanged($event)">
+                    <ng-template ngbPaginationFirst>Prima</ng-template>
+                    <ng-template ngbPaginationLast>Ultima</ng-template>
+                    <ng-template ngbPaginationEllipsis>...</ng-template>
+                </ngb-pagination>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title custom_align" id="Heading">Elimina istanza</h4>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-hidden="true"><span
+                            class="fa fa-remove" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="alert alert-danger"><span class="fas fa-warning-sign"></span> Sei sicuro di voler
+                        eliminare questa istanza?
+                    </div>
+
+                </div>
+                <div class="modal-footer ">
+                    <button type="button" class="btn btn-success"><span class="fas fa-check"></span>Si</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal"><span
+                            class="fas fa-times"></span> No</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+</div>
+

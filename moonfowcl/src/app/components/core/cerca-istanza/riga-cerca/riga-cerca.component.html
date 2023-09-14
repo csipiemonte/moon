@@ -1,0 +1,152 @@
+<td>{{rigaIstanza?.modulo.oggettoModulo}}</td>
+<td>{{rigaIstanza?.codiceIstanza}}</td>
+<td>{{rigaIstanza?.created | date: 'dd/MM/yyyy HH:mm'}}</td>
+<td>{{rigaIstanza?.stato.nome}}</td>
+
+<td *ngIf="isOperatore"> {{rigaIstanza?.nomeDichiarante}} </td>
+<td *ngIf="isOperatore"> {{rigaIstanza?.cognomeDichiarante}} </td>
+<td *ngIf="isOperatore"> {{rigaIstanza?.codiceFiscaleDichiarante}}</td>
+
+<!-- Operazioni -->
+<td>
+  <div class="d-flex">
+
+    <ng-template
+      [ngIf]="rigaIstanza.stato.idStato === STATI.IN_ATTESA_INTEGRAZIONE || rigaIstanza.stato.idStato === STATI.IN_ATTESA_OSSERVAZIONI"
+      [ngIfThen]="esegui" [ngIfElse]="lavora_dettaglio">
+    </ng-template>
+
+    <ng-template #esegui>
+      <button role="link" aria-label="Esegui integrazione istanza" type="button" class="btn btn-icon btn-xxs"
+        *ngIf="rigaIstanza.stato.idStato > STATI.BOZZA && ( rigaIstanza.stato.idStato === STATI.IN_ATTESA_INTEGRAZIONE || rigaIstanza.stato.idStato === STATI.IN_ATTESA_OSSERVAZIONI )"
+        (click)="mostraDettaglioIstanza()" [routerLink]="[]" ngbTooltip="Esegui integrazione" placement="left">
+        <span class="visually-hidden">Esegui integrazione dell'istanza n. {{rigaIstanza?.codiceIstanza}}</span>
+        <svg class="icon icon-sm icon-primary">
+          <use [attr.href]="'./assets/svg/sprite-custom.svg#add-file'"
+            [attr.xlink:href]="'./assets/svg/sprite-custom.svg#add-file'"></use>
+        </svg></button>
+    </ng-template>
+
+    <ng-template #lavora_dettaglio>
+      <ng-template [ngIf]="rigaIstanza.stato.idStato === STATI.BOZZA" [ngIfThen]="dettaglio" [ngIfElse]="lavora">
+      </ng-template>
+
+      <ng-template #dettaglio>
+        <button role="link" aria-label="Vai al dettaglio istanza" type="button" class="btn btn-icon btn-xxs"
+          (click)="mostraDettaglioIstanza()" [routerLink]="[]" ngbTooltip="Informazioni istanza" placement="left">
+          <span class="visually-hidden">Vai al dettaglio delll'istanza n. {{rigaIstanza?.codiceIstanza}}</span>
+          <svg class="icon icon-sm icon-primary">
+            <use [attr.href]="'./assets/svg/sprite.svg#it-info-circle'"
+              [attr.xlink:href]="'./assets/svg/sprite.svg#it-info-circle'"></use>
+          </svg>
+        </button>
+      </ng-template>
+
+      <ng-template #lavora>
+        <ng-template
+          [ngIf]="rigaIstanza.stato.idStato === STATI.IN_PAGAMENTO  ||  rigaIstanza.stato.idStato === STATI.ATTESA_RICEVUTA_PAGAMENTO  ||  rigaIstanza.stato.idStato === STATI.IN_PAGAMENTO_ONLINE  || rigaIstanza.stato.idStato === STATI.ATTESA_PAGAMENTO"
+          [ngIfThen]="in_pagamento" [ngIfElse]="lavora">
+        </ng-template>
+        <ng-template #in_pagamento>
+          <button role="link" aria-label="Stato pagamento" type="button" class="btn btn-icon btn-xxs"
+            (click)="mostraDettaglioIstanza()" [routerLink]="[]" ngbTooltip="Stato pagamento" placement="left">
+            <span class="visually-hidden">Stato pagamento n. {{rigaIstanza?.codiceIstanza}}</span>
+            <svg class="icon icon-sm icon-primary">
+              <use [attr.href]="'./assets/svg/sprite.svg#it-info-circle'"
+                [attr.xlink:href]="'./assets/svg/sprite.svg#it-info-circle'"></use>
+            </svg>
+          </button>
+        </ng-template>
+
+        <ng-template #lavora>
+          <ng-template
+            [ngIf]="rigaIstanza.stato.idStato > STATI.BOZZA && !(rigaIstanza.stato.idStato === STATI.IN_ATTESA_INTEGRAZIONE || rigaIstanza.stato.idStato === STATI.IN_ATTESA_OSSERVAZIONI || rigaIstanza.stato.idStato === STATI.DA_INVIARE)"
+            [ngIfThen]="dettaglio" [ngIfElse]="lavora">
+          </ng-template>
+          <ng-template #dettaglio>
+            <ng-template [ngIf]="rigaIstanza.stato.idStato === STATI.DA_PAGARE" [ngIfThen]="da_pagare"
+              [ngIfElse]="dettaglio">
+            </ng-template>
+            <ng-template #da_pagare>
+              <button role="link" aria-label="Esegui pagamento" type="button" class="btn btn-icon btn-xxs"
+                (click)="mostraDettaglioIstanza()" [routerLink]="[]" ngbTooltip="Esegui pagamento" placement="left">
+                <span class="visually-hidden">Esegui pagamento n. {{rigaIstanza?.codiceIstanza}}</span>
+                <svg class="icon icon-sm icon-primary">
+                  <use [attr.href]="'./assets/svg/sprite-custom.svg#euro'"
+                    [attr.xlink:href]="'./assets/svg/sprite-custom.svg#euro'"></use>
+                </svg>
+              </button>
+            </ng-template>
+            <ng-template #dettaglio>
+              <button role="link" aria-label="Vai al dettaglio istanza" type="button" class="btn btn-icon btn-xxs"
+                (click)="mostraDettaglioIstanza()" [routerLink]="[]" ngbTooltip="Informazioni istanza" placement="left">
+                <span class="visually-hidden">Vai al dettaglio dell'istanza n. {{rigaIstanza?.codiceIstanza}}</span>
+                <svg class="icon icon-sm icon-primary">
+                  <use [attr.href]="'./assets/svg/sprite.svg#it-info-circle'"
+                    [attr.xlink:href]="'./assets/svg/sprite.svg#it-info-circle'"></use>
+                </svg>
+              </button>
+            </ng-template>
+          </ng-template>
+
+          <ng-template #lavora>
+            <button role="link" aria-label="Lavora istanza" type="button" class="btn btn-icon btn-xxs"
+              (click)="mostraDettaglioIstanza()" [routerLink]="[]" ngbTooltip="Lavora istanza" placement="left">
+              <span class="visually-hidden">Lavora istanza n. {{rigaIstanza?.codiceIstanza}}</span>
+              <svg class="icon icon-sm icon-primary">
+                <use [attr.href]="'./assets/svg/sprite.svg#it-settings'"
+                  [attr.xlink:href]="'./assets/svg/sprite.svg#it-settings'"></use>
+              </svg>
+            </button>
+          </ng-template>
+        </ng-template>
+      </ng-template>
+
+    </ng-template>
+
+    <button (click)="downloadPdf()"
+      *ngIf="rigaIstanza.stato.idStato >= STATI.INVIATA"
+      [routerLink]="[]" aria-label="Scarica il PDF dell'istanza" class="btn btn-icon btn-xxs" ngbTooltip="Scarica pdf"
+      placement="left" type="button">
+      <span class="visually-hidden">Scarica il PDF dell'istanza n. {{rigaIstanza?.codiceIstanza}}</span>
+      <svg class="icon icon-primary icon-sm">
+        <use [attr.href]="'./assets/svg/sprite.svg#it-download'"
+          [attr.xlink:href]="'./assets/svg/sprite.svg#it-download'"></use>
+      </svg>
+    </button>
+
+    <button (click)="modificaIstanza()"
+      *ngIf="rigaIstanza.stato.idStato === STATI.BOZZA && rigaIstanza.modulo.stato.codice === 'PUB'" [routerLink]="[]"
+      aria-label="Modifica istanza" class="btn btn-icon btn-xxs" ngbTooltip="Modifica istanza" placement="left"
+      role="link" type="button">
+      <span class="visually-hidden">Modifica istanza n. {{rigaIstanza?.codiceIstanza}}"</span>
+      <svg class="icon icon-primary icon-sm">
+        <use [attr.href]="'./assets/svg/sprite.svg#it-pencil'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-pencil'">
+        </use>
+      </svg>
+    </button>
+
+    <button (click)="duplicaIstanza(rigaIstanza.idIstanza)"
+      *ngIf="rigaIstanza.stato.idStato >= STATI.INVIATA && rigaIstanza.stato.idStato !== STATI.DA_INVIARE && rigaIstanza.stato.idStato !== STATI.DA_PAGARE && rigaIstanza.stato.idStato !== STATI.IN_ATTESA_INTEGRAZIONE && rigaIstanza.stato.idStato !== STATI.IN_ATTESA_OSSERVAZIONI && rigaIstanza.modulo.stato.codice === 'PUB'"
+      aria-label="Duplica istanza" type="button" class="btn btn-icon btn-xxs" ngbTooltip="Duplica istanza"
+      placement="left">
+      <span class="visually-hidden">Duplica istanza n. {{rigaIstanza?.codiceIstanza}}</span>
+      <svg class="icon icon-sm icon-primary">
+        <use [attr.href]="'./assets/svg/sprite.svg#it-copy'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-copy'">
+        </use>
+      </svg>
+    </button>
+
+    <button aria-label="Elimina istanza" type="button" class="btn btn-icon btn-xxs"
+      *ngIf="rigaIstanza.stato.idStato === STATI.BOZZA || rigaIstanza.stato.idStato === STATI.DA_INVIARE || rigaIstanza.stato.idStato === STATI.DA_PAGARE"
+      (click)="cancellaIstanza()" [routerLink]="[]" ngbTooltip="Elimina istanza" placement="left"><span
+        class="visually-hidden">Elimina istanza n.
+        {{rigaIstanza?.codiceIstanza}}</span>
+      <svg class="icon icon-sm icon-red">
+        <use [attr.href]="'./assets/svg/sprite.svg#it-delete'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-delete'">
+        </use>
+      </svg>
+    </button>
+
+  </div>
+</td>

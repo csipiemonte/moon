@@ -1,0 +1,91 @@
+swagger: '2.0'
+info:
+  contact:
+    name: EII
+  description: API per i modelli comuni a tutte le API
+  title: common models
+  version: '1.0'
+host: 'localhost:8080'
+basePath: /cosmo/api
+schemes:
+  - http
+paths: {}
+definitions:
+  CampiTecnici:
+    description: |-
+      Model che contiene i campi tecnici della risorsa:
+      - data inizio validita'
+      - data fine validita'
+    properties:
+      dtFineVal:
+        format: date-time
+        type: string
+      dtIniVal:
+        format: date-time
+        type: string
+      dtModifica:
+        format: date-time
+        type: string
+    title: CampiTecnici
+    type: object
+    x-examples: {}
+  Esito:
+    description: Model che contiene i campi che vengono restituiti in caso di errore da tutte le API
+    properties:
+      code:
+        type: string
+      status:
+        type: integer
+      title:
+        type: string
+    required:
+      - status
+      - code
+    title: Esito
+    type: object
+    x-examples: {}
+  PageInfo:
+    description: Modello che descrive la pagina contenuta in una response
+    properties:
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      totalElements:
+        type: integer
+      totalPages:
+        type: integer
+    title: PageInfo
+    type: object
+  Funzionalita:
+    title: Funzionalita
+    type: object
+    properties:
+      nomeFunzionalita:
+        type: string
+      parametri:
+        type: array
+        items:
+          $ref: '#/definitions/Parametro'
+  Parametro:
+    title: Parametro
+    type: object
+    properties:
+      chiave:
+        type: string
+      valore:
+        type: string
+    required:
+      - chiave
+  Preferenza:
+    title: Preferenza
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      valore:
+        type: string
+      versione:
+        type: string
+x-components: {}

@@ -1,0 +1,198 @@
+<html>
+<head>
+    <title th:text="${document.title}"></title>
+    <link rel="stylesheet" href="style.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<body>
+
+<div id="theme">
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_left': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.header.left,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_center': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.header.center,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_right': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(#strings.replace(document.header.right,'%%module%%',document.accettazione.modulo),'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_footer_left': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.footer.left,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_footer_right': 'hidden')}" >
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.footer.right,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+
+    <div class="header_separator"></div>
+
+    <!-- Prima pagina -->
+    <div class="section" > <!-- page-after-->
+        <div class="header">
+            <img src="img/Comune_Torino-logo.png"/>
+            <h4 class="document_subtitle">Area Servizi Civici<br/>Ufficio Cambi Indirizzo</h4>
+            <h3 class="document_title">Comunicazione di accoglimento della richiesta di variazione di indirizzo</h3>
+        </div>
+        <page-inside-avoid>
+            <div> <!-- th:classappend="page-break-after" Page break after forced (ignoring JSON directives for this template-->
+
+                <p class="first"><b>RIF. N. <span th:text="${document.accettazione.rif}"></span></b></p>
+                <p>Il sig./ra <b>
+                    <span th:text="${document.anagrafica.richiedente.cognome}"></span>
+                    <span th:text="${document.anagrafica.richiedente.nome}"></span>
+                </b></p>
+
+                <p>Ha presentato in data <b> <span th:text="${document.richiesta.data}"></span></b> dichiarazione di trasferimento di abitazione in Torino all'indirizzo:<br/>
+                    <b>
+                    <span th:text="${document.anagrafica.nuovoIndirizzo.indirizzoCompleto}"></span> <!--,  
+                    <span th:text="${document.anagrafica.nuovoIndirizzo.civico}"></span>   -->
+                    <!-- - piano: <span th:text="${document.anagrafica.nuovoIndirizzo.piano}"></span>-->
+                    <!-- - n.u.i.: <span th:text="${document.anagrafica.nuovoIndirizzo.nui}"></span>-->
+                    </b>
+                </p>
+
+                <p><span th:text="${document.anagrafica.fraseIntestazione}"></span>
+                    <div th:each="familiare,iStat : ${document.anagrafica.nucleoFamiliare}">
+                        <b>
+                        <span th:text="${familiare.cognome}"></span>
+                        <span th:text="${familiare.nome}"></span>
+                        </b>
+                    </div>
+
+
+                </p>
+
+                <p>In data odierna si &#232; proceduto alla registrazione del sopraesteso trasferimento di abitazione con decorrenza giuridica dal <b><span th:text="${document.richiesta.data}"></span></b>.<br/>
+                    Il richiedente si impegna a notificare la suddetta variazione anagrafica agli altri componenti della famiglia.</p>
+
+                <p>La presente &#232; comunicazione di avvio del procedimento ai sensi dell'art. 7 della Legge 241/90.<br/>
+                    Responsabile del procedimento di variazione anagrafica &#232; il Funzionario <b><span th:text="${document.accettazione.funzionarioResponsabile}"></span></b><br/>
+                    Per ogni informazione e chiarimento in merito alla pratica, Lei potr&#224; far riferimento all'Ufficio Iscrizioni anagrafiche, via della Consolata 23, tel. 011011.25033,  e-mail movimentazionepopolazione@comune.torino.it</p>
+
+                <p>Si comunica che, a seguito della variazione anagrafica, questo ufficio provveder&#224; ad accertare la sussistenza dei requisiti previsti per la variazione stessa e che, trascorsi 45 giorni dalla dichiarazione resa o inviata senza che sia stata effettuata la comunicazione dei requisiti mancanti, il cambio di abitazione si intende confermato.</p>
+
+                <p>Qualora emergano discordanze tra la dichiarazione resa dall'interessato e gli esiti degli accertamenti effettuati dall'amministrazione, verranno applicati gli artt. 75 e 76 D.P.R. 445/2000 che prevedono la decadenza dai benefici acquisiti nonch&#232; il rilievo penale della dichiarazione non conforme, con conseguente segnalazione alla competente autorit&#224; di pubblica sicurezza.</p>
+
+                <span class="signature-left">
+                    <span>Torino, <b> <span th:text="${document.accettazione.data}"></span></b></span>
+                </span>
+                <span class="signature-right">
+                    <span>L'Ufficiale dell'Anagrafe</span><br/>
+                    <span th:text="${document.accettazione.ufficialeAnagrafe}"></span><br/><br/>
+                    <span>FIRMA OMESSA</span><br/>
+                    <span>Ai sensi dell'art. 3 D.lgs n.39 del 12/02/1993</span>
+                </span>
+
+
+            </div>
+        </page-inside-avoid>
+    </div>
+
+    <!-- Pagine successive: patente intestatario -->
+    <div class="section page-before  page-break-before" th:if="${!#strings.isEmpty(document.anagrafica.richiedente.numeroPatente) or !#strings.isEmpty(document.anagrafica.richiedente.targaVeicolo)}">
+        <div class="header">
+            <img src="img/Comune_Torino-logo.png"/>
+            <h4 class="document_subtitle">Area Servizi Civici<br/>Ufficio Cambi Indirizzo</h4>
+        </div>
+        <page-inside-avoid>
+            <div > <!-- th:classappend="page-break-before" Page break before forced (ignoring JSON directives for this template-->
+                <div class="box" style="padding: 8px">
+                    <p class="allcaps">Per ricevuta della richesta di aggiornamento della patente N. <b><span th:text="${document.anagrafica.richiedente.numeroPatente}"></span></b> di
+                        <b>
+                            <span th:text="${document.anagrafica.richiedente.cognome}"></span>
+                            <span th:text="${document.anagrafica.richiedente.nome}"></span>
+                        </b>
+                    </p>
+
+                    <p class="allcaps">E/o dei documenti di circolazione dei veicoli targati: <b><span th:text="${document.anagrafica.richiedente.targaVeicolo}"></span></b></p>
+
+                    <p class="allcaps">A seguito della richiesta di cambio di indirizzo dell'intestatario in questo comune in
+                        <b>
+                            <span th:text="${document.anagrafica.nuovoIndirizzo.indirizzo}"></span>,
+                            <!--<span th:text="${document.anagrafica.nuovoIndirizzo.civico}"></span>-->
+                        </b>
+                    </p>
+
+                    <div>
+                        <span class="signature-left">
+                            <span>Torino, <b> <span th:text="${document.accettazione.data}"></span></b></span>
+                        </span>
+                        <span class="signature-right">
+                            <span>L'Ufficiale dell'Anagrafe</span><br/>
+                            <span th:text="${document.accettazione.ufficialeAnagrafe}"></span><br/><br/>
+                            <span>FIRMA OMESSA</span><br/>
+                            <span>Ai sensi dell'art. 3 D.lgs n.39 del 12/02/1993</span>
+                        </span>
+                        <span class="clear"></span>
+                    </div>
+                </div>
+                <div class="informativaPatente">
+<p>La presente ricevuta va esibita in fotocopia semplice con la carta di circolazione di ciascuno dei veicoli sopra indicati e/o con la patente di guida a dimostrazione dell'avvenuta richiesta di aggiornamento dei documenti.</p>
+<p><span style="text-decoration: underline;font-weight: bold;">Dal 1&#176; ottobre 2020 non viene pi&#249; inviato il tagliando adesivo di aggiornamento delle carte di circolazione</span> per tutti i veicoli, ad eccezione dei ciclomotori 50 cc.<br/>
+<span style="text-decoration: underline;">Solo per i ciclomotori 50 cc</span>, trascorso un periodo di 180 giorni senza che siano pervenuti i tagliandi, possono
+essere chieste notizie sullo stato della richiesta di aggiornamento della carta di circolazione telefonando al numero verde 800-232323; gli operatori della Motorizzazione Civile sono disponibili dal luned&#236; al venerd&#236;, dalle 08.30 alle 13.30 e dalle 14.30 alle 17.30.</p>
+<p>Si ricorda infine che, a seguito dell'entrata in vigore del Decreto Legislativo n. 2/2013, <span style="text-decoration: underline;font-weight: bold;"> la patente di guida non riporta pi&#249; l'indirizzo di residenza e non viene quindi trasmesso il tagliando di aggiornamento.</span></p>
+
+                </div>
+            </div>
+        </page-inside-avoid>
+    </div>
+
+    <!-- Pagine successive: patente familiari -->
+    <div class="section page-before  page-break-before" th:each="familiare,iStat : ${document.anagrafica.nucleoFamiliare}" th:if="${!#strings.isEmpty(familiare.numeroPatente) or !#strings.isEmpty(familiare.targaVeicolo)}">
+        <div class="header">
+            <img src="img/Comune_Torino-logo.png"/>
+            <h4 class="document_subtitle">Area Servizi Civici<br/>Ufficio Cambi Indirizzo</h4>
+        </div>
+        <page-inside-avoid>
+            <div > <!-- th:classappend="page-break-before" Page break before forced (ignoring JSON directives for this template-->
+                <div class="box" style="padding: 8px">
+                    <p class="allcaps">Per ricevuta della richesta di aggiornamento della patente N. <b><span th:text="${familiare.numeroPatente}"></span></b> di
+                        <b>
+                            <span th:text="${familiare.cognome}"></span>
+                            <span th:text="${familiare.nome}"></span>
+                        </b>
+                    </p>
+
+                    <p class="allcaps">E/o dei documenti di circolazione dei veicoli targati: <b><span th:text="${familiare.targaVeicolo}"></span></b></p>
+
+                    <p class="allcaps">A seguito della richiesta di cambio di indirizzo dell'intestatario in questo comune in
+                        <b>
+                            <span th:text="${document.anagrafica.nuovoIndirizzo.indirizzo}"></span>,
+                            <!--<span th:text="${document.anagrafica.nuovoIndirizzo.civico}"></span>-->
+                        </b>
+                    </p>
+
+                    <div>
+                        <span class="signature-left">
+                            <span>Torino, <b> <span th:text="${document.accettazione.data}"></span></b></span>
+                        </span>
+                        <span class="signature-right">
+                            <span>L'Ufficiale dell'Anagrafe</span><br/>
+                            <span th:text="${document.accettazione.ufficialeAnagrafe}"></span><br/><br/>
+                            <span>FIRMA OMESSA</span><br/>
+                            <span>Ai sensi dell'art. 3 D.lgs n.39 del 12/02/1993</span>
+                        </span>
+                        <span class="clear"></span>
+                    </div>
+                </div>
+                <div class="informativaPatente">
+<p>La presente ricevuta va esibita in fotocopia semplice con la carta di circolazione di ciascuno dei veicoli sopra indicati e/o con la patente di guida a dimostrazione dell'avvenuta richiesta di aggiornamento dei documenti.</p>
+<p><span style="text-decoration: underline;font-weight: bold;">Dal 1&#176; ottobre 2020 non viene pi&#249; inviato il tagliando adesivo di aggiornamento delle carte di circolazione</span> per tutti i veicoli, ad eccezione dei ciclomotori 50 cc.<br/>
+<span style="text-decoration: underline;">Solo per i ciclomotori 50 cc</span>, trascorso un periodo di 180 giorni senza che siano pervenuti i tagliandi, possono
+essere chieste notizie sullo stato della richiesta di aggiornamento della carta di circolazione telefonando al numero verde 800-232323; gli operatori della Motorizzazione Civile sono disponibili dal luned&#236; al venerd&#236;, dalle 08.30 alle 13.30 e dalle 14.30 alle 17.30.</p>
+<p>Si ricorda infine che, a seguito dell'entrata in vigore del Decreto Legislativo n. 2/2013, <span style="text-decoration: underline;font-weight: bold;"> la patente di guida non riporta pi&#249; l'indirizzo di residenza e non viene quindi trasmesso il tagliando di aggiornamento.</span></p>
+
+                </div>
+            </div>
+        </page-inside-avoid>
+    </div>
+
+
+
+</div>
+<div style="clear:both;"></div>
+
+
+</body>
+</html>

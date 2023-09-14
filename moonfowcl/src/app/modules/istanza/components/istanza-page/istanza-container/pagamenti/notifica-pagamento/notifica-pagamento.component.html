@@ -1,0 +1,29 @@
+<!-- <b>Notifica di pagamento ricevuta</b><br> -->
+<table class="table table-sm table-hover small table-striped" id="notifica-pag-tab">
+  <thead>
+  <!-- <th>Id Notifica Pagamento</th -->
+  <th>Importo Pagato</th>
+  <th>Causale Versamento</th>
+  <th>Data Esito Pagamento</th>
+  <th>Soggetto debitore</th>
+  <th>Dati transazione</th>
+
+  </thead>
+  <tbody>
+  <tr>
+    <!--td>{{notificaPagamento?.idNotificaPagamento}}
+    </td -->
+    <td>{{notificaPagamento?.importoPagato | currency: 'EUR' }}
+    </td>
+    <td>{{notificaPagamento?.descCausaleVersamento }}
+    </td>
+    <td>{{notificaPagamento?.dataEsitoPagamento | date: 'dd/MM/yyyy HH:mm' }}
+    </td>
+    <td>{{notificaPagamento?.soggettoDebitore?.personaFisica?.cognome}} {{notificaPagamento?.soggettoDebitore?.personaFisica?.nome}} {{notificaPagamento?.soggettoDebitore?.personaGiuridica}} {{notificaPagamento?.soggettoDebitore?.identificativoUnivocoFiscale}}
+    </td>
+    <td>{{notificaPagamento?.datiTransazionePsp }}
+    </td>
+  </tr>
+  </tbody>
+</table>
+

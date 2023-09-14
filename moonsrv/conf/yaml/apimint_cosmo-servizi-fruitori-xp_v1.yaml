@@ -1,0 +1,2039 @@
+definitions:
+  AvviaProcessoFruitoreRequest:
+    title: AvviaProcessoFruitoreRequest
+    type: object
+    properties:
+      idPratica:
+        type: string
+        maxLength: 255
+      codiceIpaEnte:
+        type: string
+        maxLength: 255
+    required:
+      - idPratica
+      - codiceIpaEnte
+  AvviaProcessoFruitoreResponse:
+    title: AvviaProcessoFruitoreResponse
+    type: object
+    properties:
+      idProcesso:
+        type: string
+      idPraticaCosmo:
+        type: integer
+      idPratica:
+        type: string
+        maxLength: 255
+      codiceIpaEnte:
+        type: string
+        maxLength: 255
+    required:
+      - idProcesso
+      - idPraticaCosmo
+      - idPratica
+      - codiceIpaEnte
+  CreaEventoFruitoreRequest:
+    title: CreaEventoFruitoreRequest
+    type: object
+    properties:
+      codiceIpaEnte:
+        type: string
+        minLength: 1
+        maxLength: 255
+      destinatario:
+        type: string
+        minLength: 1
+        maxLength: 255
+      titolo:
+        type: string
+        minLength: 1
+        maxLength: 255
+      descrizione:
+        type: string
+        minLength: 1
+      scadenza:
+        type: string
+        format: date-time
+    required:
+      - codiceIpaEnte
+      - destinatario
+      - titolo
+      - descrizione
+      - scadenza
+  CreaEventoFruitoreResponse:
+    title: CreaEventoFruitoreResponse
+    type: object
+    properties:
+      idEvento:
+        type: string
+        minLength: 1
+        maxLength: 255
+    required:
+      - idEvento
+  AggiornaEventoFruitoreRequest:
+    title: AggiornaEventoFruitoreRequest
+    type: object
+    properties:
+      codiceIpaEnte:
+        type: string
+        minLength: 1
+        maxLength: 255
+      nuovaDataScadenza:
+        type: string
+        format: date-time
+      nuovoTitolo:
+        type: string
+        minLength: 1
+        maxLength: 255
+      nuovaDescrizione:
+        type: string
+        minLength: 1
+      eseguito:
+        type: boolean
+    required:
+      - codiceIpaEnte
+  AggiornaEventoFruitoreResponse:
+    title: AggiornaEventoFruitoreResponse
+    type: object
+    properties:
+      messaggio:
+        type: string
+    required:
+      - messaggio
+  EliminaEventoFruitoreRequest:
+    title: EliminaEventoFruitoreRequest
+    type: object
+    properties:
+      codiceIpaEnte:
+        type: string
+        minLength: 1
+        maxLength: 255
+    required:
+      - codiceIpaEnte
+  GetPraticaFruitoreResponse:
+    title: GetPraticaFruitoreResponse
+    type: object
+    description: Tutti i contenuti della pratica aggiornati alla data odierna
+    properties:
+      id:
+        type: string
+      codiceIpaEnte:
+        type: string
+      tipo:
+        title: TipoPraticaFruitore
+        type: object
+        properties:
+          codice:
+            type: string
+          descrizione:
+            type: string
+        required:
+          - codice
+      oggetto:
+        type: string
+      stato:
+        title: StatoPraticaFruitore
+        type: object
+        properties:
+          codice:
+            type: string
+          descrizione:
+            type: string
+        required:
+          - codice
+      riassunto:
+        type: string
+      utenteCreazione:
+        title: utente
+        type: object
+        x-examples: {}
+        properties:
+          codiceFiscale:
+            type: string
+          nome:
+            type: string
+          cognome:
+            type: string
+        required:
+          - codiceFiscale
+      dataCreazione:
+        type: string
+        format: date-time
+      dataFine:
+        type: string
+        format: date-time
+      dataCambioStato:
+        type: string
+        format: date-time
+      dataAggiornamento:
+        type: string
+        format: date-time
+      metadati:
+        description: metadati della pratica in formato libero
+        type: object
+      attivita:
+        type: array
+        description: array di tutte le attività della pratica in ordine cronologico, le attività concluse hanno dataFine not null
+        items:
+          title: AttivitaFruitore
+          type: object
+          x-examples: {}
+          description: attività assegnate durante la pratica in ordine cronologico
+          properties:
+            nome:
+              type: string
+            descrizione:
+              type: string
+            dataInizio:
+              type: string
+              format: date-time
+            dataFine:
+              type: string
+              format: date-time
+            assegnazione:
+              type: array
+              items:
+                title: AssegnazioneFruitore
+                description: utente o gruppo assegnatario dell'attività
+                type: object
+                properties:
+                  utente:
+                    $ref: '#/definitions/GetPraticaFruitoreResponse/properties/utenteCreazione'
+                  gruppo:
+                    type: string
+                x-examples: {}
+            sottoAttivita:
+              type: array
+              description: l'oggetto sottotask ha un assegnatario
+              items:
+                title: SottoAttivitaFruitore
+                type: object
+                x-examples: {}
+                description: attivita di collaborazione
+                properties:
+                  nome:
+                    type: string
+                  descrizione:
+                    type: string
+                  dataInizio:
+                    type: string
+                    format: date-time
+                  dataFine:
+                    type: string
+                    format: date-time
+                  assegnazione:
+                    type: array
+                    items:
+                      $ref: '#/definitions/GetPraticaFruitoreResponse/properties/attivita/items/properties/assegnazione/items'
+                required:
+                  - nome
+            messaggiCollaboratori:
+              type: array
+              items:
+                $ref: '#/definitions/GetPraticaFruitoreResponse/properties/commenti/items'
+          required:
+            - nome
+      commenti:
+        type: array
+        description: array in ordine cronologico dei commenti della pratica
+        items:
+          title: messaggioFruitore
+          type: object
+          description: ''
+          properties:
+            utente:
+              $ref: '#/definitions/GetPraticaFruitoreResponse/properties/utenteCreazione'
+            messaggio:
+              type: string
+            timestamp:
+              type: string
+              format: date-time
+          x-examples: {}
+      documenti:
+        type: array
+        description: array dei documenti della pratica
+        items:
+          title: DocumentoFruitore
+          type: object
+          x-examples: {}
+          description: ''
+          properties:
+            id:
+              type: string
+            idPadre:
+              type: string
+            nomeFile:
+              type: string
+            dimensione:
+              type: integer
+              format: int64
+            titolo:
+              type: string
+            descrizione:
+              type: string
+            autore:
+              type: string
+            mimeType:
+              type: string
+            firme:
+              type: array
+              items:
+                title: FirmaDocumentoFruitore
+                type: object
+                properties:
+                  data:
+                    type: string
+                    format: date-time
+                  firmatario:
+                    type: string
+                  organizzazione:
+                    type: string
+            archiviazione:
+              title: ArchiviazioneDocumento
+              type: object
+              properties:
+                protocollo:
+                  title: ProtocolloDocumentoFruitore
+                  type: object
+                  properties:
+                    numero:
+                      type: string
+                    data:
+                      type: string
+                classificazione:
+                  type: string
+            refURL:
+              type: string
+            tipo:
+              title: TipoDocumentoFruitore
+              type: object
+              properties:
+                codice:
+                  type: string
+                descrizione:
+                  type: string
+              required:
+                - codice
+            stato:
+              title: StatoDocumentoFruitore
+              type: object
+              properties:
+                codice:
+                  type: string
+                descrizione:
+                  type: string
+              required:
+                - codice
+            idCosmo:
+              type: string
+          required:
+            - id
+            - stato
+    required:
+      - id
+  InviaSegnaleFruitoreRequest:
+    title: InviaSegnaleFruitoreRequest
+    type: object
+    properties:
+      codiceSegnale:
+        type: string
+      richiediCallback:
+        type: boolean
+      variabili:
+        type: array
+        items:
+          $ref: '#/definitions/InviaSegnaleFruitoreVariabileRequest'
+    required:
+      - codiceSegnale
+  InviaSegnaleFruitoreVariabileRequest:
+    title: InviaSegnaleFruitoreVariabileRequest
+    type: object
+    properties:
+      nome:
+        type: string
+      valore:
+        type: string
+    required:
+      - nome
+      - valore
+  InviaSegnaleFruitoreResponse:
+    title: InviaSegnaleFruitoreResponse
+    type: object
+    properties:
+      codiceInvio:
+        type: string
+    required:
+      - codiceInvio
+  CreaPraticaFruitoreRequest:
+    title: CreaPraticaFruitoreRequest
+    type: object
+    properties:
+      idPratica:
+        type: string
+        maxLength: 255
+      codiceIpaEnte:
+        type: string
+      codiceTipologia:
+        type: string
+      oggetto:
+        type: string
+        maxLength: 255
+      riassunto:
+        type: string
+      utenteCreazionePratica:
+        type: string
+        maxLength: 50
+      metadati:
+        type: string
+    required:
+      - idPratica
+      - codiceIpaEnte
+      - codiceTipologia
+      - oggetto
+  CreaPraticaFruitoreResponse:
+    title: CreaPraticaFruitoreResponse
+    type: object
+    properties:
+      idPratica:
+        type: string
+        maxLength: 255
+      codiceIpaEnte:
+        type: string
+      codiceTipologia:
+        type: string
+      oggetto:
+        type: string
+        maxLength: 255
+      riassunto:
+        type: string
+      utenteCreazionePratica:
+        type: string
+        maxLength: 50
+    required:
+      - idPratica
+      - codiceIpaEnte
+      - codiceTipologia
+      - oggetto
+  CreaNotificaFruitoreRequest:
+    title: CreaNotificaFruitoreRequest
+    type: object
+    description: Model che contiene i campi relativi alla notifica da creare
+    x-examples: {}
+    properties:
+      codiceIpaEnte:
+        type: string
+        maxLength: 255
+        minLength: 1
+      idPratica:
+        type: string
+        maxLength: 255
+        minLength: 1
+      descrizione:
+        type: string
+        minLength: 1
+      destinatari:
+        type: array
+        items:
+          type: string
+          maxLength: 255
+          minLength: 1
+          x-deprecated: true
+      utentiDestinatari:
+        type: array
+        items:
+          type: string
+          maxLength: 255
+          minLength: 1
+      gruppiDestinatari:
+        type: array
+        items:
+          type: string
+          maxLength: 255
+          minLength: 1
+    required:
+      - codiceIpaEnte
+      - descrizione
+  CreaNotificaFruitoreResponse:
+    title: CreaNotificaFruitoreResponse
+    type: object
+    properties:
+      esiti:
+        type: array
+        items:
+          $ref: '#/definitions/EsitoCreazioneNotificaFruitoreResponse'
+    required:
+      - esiti
+  EsitoCreazioneNotificaFruitoreResponse:
+    title: EsitoCreazioneNotificaFruitoreResponse
+    type: object
+    description: Model che contiene i campi relativi all'esito dell'invio di una notifica
+    x-examples: {}
+    properties:
+      destinatario:
+        type: string
+        maxLength: 255
+        minLength: 1
+        x-deprecated: true
+      utenteDestinatario:
+        type: string
+        maxLength: 255
+        minLength: 1
+      gruppoDestinatario:
+        type: string
+        maxLength: 255
+        minLength: 1
+      esito:
+        description: Model che contiene i campi che vengono restituiti in caso di errore da tutte le API
+        properties:
+          code:
+            type: string
+          status:
+            type: integer
+          title:
+            type: string
+        required:
+          - status
+          - code
+        title: Esito
+        type: object
+        x-examples: {}
+    required:
+      - esito
+  CreaDocumentiFruitoreRequest:
+    title: CreaDocumentiFruitoreRequest
+    type: object
+    description: Model che contiene i campi relativi ai documenti da creare
+    x-examples: {}
+    properties:
+      documenti:
+        type: array
+        items:
+          $ref: '#/definitions/CreaDocumentoFruitoreRequest'
+      idPratica:
+        type: string
+        maxLength: 255
+        minLength: 1
+      codiceIpaEnte:
+        type: string
+        maxLength: 255
+        minLength: 1
+    required:
+      - documenti
+      - idPratica
+      - codiceIpaEnte
+  CreaDocumentoFruitoreRequest:
+    title: CreaDocumentoFruitoreRequest
+    type: object
+    description: Model che contiene i campi relativi al documento da creare
+    x-examples: {}
+    properties:
+      id:
+        type: string
+        maxLength: 255
+        minLength: 1
+      idPadre:
+        type: string
+        maxLength: 255
+        minLength: 1
+      codiceTipo:
+        type: string
+        maxLength: 100
+        minLength: 1
+      titolo:
+        type: string
+        maxLength: 255
+        minLength: 1
+      descrizione:
+        type: string
+      autore:
+        type: string
+        maxLength: 100
+        minLength: 0
+      uploadUUID:
+        type: string
+        maxLength: 100
+        minLength: 1
+      contenuto:
+        $ref: '#/definitions/CreaDocumentoFruitoreContenutoRequest'
+  CreaDocumentoFruitoreContenutoRequest:
+    title: CreaDocumentoFruitoreContenutoRequest
+    type: object
+    description: Model che contiene i dati sul contenuto fisico
+    x-examples: {}
+    properties:
+      nomeFile:
+        type: string
+        maxLength: 255
+        minLength: 1
+      mimeType:
+        type: string
+        maxLength: 255
+        minLength: 1
+      contenutoFisico:
+        type: string
+        pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+    required:
+      - nomeFile
+      - contenutoFisico
+  DocumentoFruitore:
+    title: DocumentoFruitore
+    type: object
+    description: Model che contiene i campi relativi al documento da creare
+    x-examples: {}
+    properties:
+      id:
+        type: string
+        maxLength: 255
+      idPadre:
+        type: string
+        maxLength: 255
+      idPratica:
+        type: string
+        maxLength: 255
+      codiceStato:
+        type: string
+        maxLength: 100
+      codiceTipo:
+        type: string
+        maxLength: 100
+      titolo:
+        type: string
+        maxLength: 255
+      descrizione:
+        type: string
+      autore:
+        type: string
+        maxLength: 100
+      allegati:
+        type: array
+        items:
+          $ref: '#/definitions/DocumentoFruitore'
+    required:
+      - id
+      - idPratica
+      - codiceStato
+  EsitoCreazioneDocumentiFruitore:
+    title: EsitoCreazioneDocumentiFruitore
+    type: object
+    properties:
+      esiti:
+        type: array
+        items:
+          $ref: '#/definitions/EsitoCreazioneDocumentoFruitore'
+    required:
+      - esiti
+  EsitoCreazioneDocumentoFruitore:
+    title: EsitoCreazioneDocumentoFruitore
+    type: object
+    description: Model che contiene i campi relativi all'esito della creazione di un documento
+    x-examples: {}
+    properties:
+      input:
+        $ref: '#/definitions/CreaDocumentoFruitoreRequest'
+      output:
+        $ref: '#/definitions/DocumentoFruitore'
+      esito:
+        description: Model che contiene i campi che vengono restituiti in caso di errore da tutte le API
+        properties:
+          code:
+            type: string
+          status:
+            type: integer
+          title:
+            type: string
+        required:
+          - status
+          - code
+        title: Esito
+        type: object
+        x-examples: {}
+    required:
+      - esito
+paths:
+  /processo:
+    post:
+      tags:
+        - processi
+      summary: ''
+      operationId: post-processo-fruitore
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/AvviaProcessoFruitoreResponse'
+          examples:
+            avviaProcessoFruitoreSampleResponse:
+              idProcesso: '125781'
+              idPraticaCosmo: 12
+              idPratica: '12345'
+              codiceIpaEnte: r_piemon
+        '400':
+          description: Bad Request - i dati inviati non sono formalmente corretti
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            badRequestSampleResponse:
+              status: 400
+              code: BAD_REQUEST
+              title: La richiesta inviata non e' formalmente corretta
+        '401':
+          description: Unauthorized - devi autenticarti per fruire di questo servizio
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            unauthorizedSampleResponse:
+              status: 401
+              code: UNAUTHORIZED
+              title: Per compiere l'operazione richiesta occorre autenticarsi
+        '403':
+          description: Forbidden - non sei autorizzato alla fruizione di questo servizio
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            forbiddenSampleResponse:
+              status: 403
+              code: FORBIDDEN
+              title: Non sei autorizzato a compiere l'operazione richiesta
+        '404':
+          description: Not found - la pratica specificata non e' stata trovata
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            notFoundSampleResponse:
+              status: 404
+              code: NOT_FOUND
+              title: La risorsa richiesta non e' stata trovata
+        '409':
+          description: Conflict - azione non valida per lo stato corrente della pratica
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            conflictSampleResponse:
+              status: 409
+              code: CONFLICT
+              title: Azione non valida per lo stato corrente della pratica
+        '422':
+          description: Unprocessable entity - i dati inviati non sono corretti
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            conflictSampleResponse:
+              status: 422
+              code: UNPROCESSABLE_ENTITY
+              title: Il parametro 'idPratica' e' obbligatorio
+      description: Avvia il processo associato alla pratica specificata
+      parameters:
+        - type: string
+          in: header
+          name: X-Request-Id
+          description: Identificativo univoco della richiesta. Utilizzato per identificare e tracciare una singola chiamata.
+        - type: string
+          in: header
+          name: X-Forwarded-For
+          description: Indirizzo IPv4 o IPv6 che identifica l'origine della chiamata.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/AvviaProcessoFruitoreRequest'
+          x-examples:
+            avviaProcessoFruitoreSampleRequest:
+              idPratica: '12345'
+              codiceIpaEnte: r_piemon
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /evento:
+    post:
+      tags:
+        - eventi
+      summary: ''
+      operationId: post-fruitori-evento
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/CreaEventoFruitoreResponse'
+          examples:
+            creaEventoFruitoreSampleResponse:
+              idEvento: '12564'
+        '400':
+          description: Bad Request - la richiesta non e' formalmente corretta
+          schema:
+            description: Model che contiene i campi che vengono restituiti in caso di errore da tutte le API
+            properties:
+              code:
+                type: string
+              status:
+                type: integer
+              title:
+                type: string
+            required:
+              - status
+              - code
+            title: Esito
+            type: object
+            x-examples: {}
+          examples:
+            badRequestSampleResponse:
+              status: 400
+              code: BAD_REQUEST
+              title: La richiesta inviata non e' formalmente corretta
+        '401':
+          description: Unauthorized - devi autenticarti per fruire di questo servizio
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            unauthorizedSampleResponse:
+              status: 401
+              code: UNAUTHORIZED
+              title: Per compiere l'operazione richiesta occorre autenticarsi
+        '403':
+          description: Forbidden - non sei autorizzato alla fruizione di questo servizio
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            forbiddenSampleResponse:
+              status: 403
+              code: FORBIDDEN
+              title: Non sei autorizzato a compiere l'operazione richiesta
+        '404':
+          description: Not found - l'ente o l'utente specificato non e' stato trovato
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            notFoundSampleResponse:
+              status: 404
+              code: NOT_FOUND
+              title: La risorsa richiesta non e' stata trovata
+        '422':
+          description: Unprocessable entity - i dati inviati non sono corretti
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            conflictSampleResponse:
+              status: 422
+              code: UNPROCESSABLE_ENTITY
+              title: Il parametro 'r_piemon' e' obbligatorio
+      description: Inserisce un evento
+      parameters:
+        - type: string
+          in: header
+          name: X-Request-Id
+          description: Identificativo univoco della richiesta. Utilizzato per identificare e tracciare una singola chiamata.
+        - type: string
+          in: header
+          name: X-Forwarded-For
+          description: Indirizzo IPv4 o IPv6 che identifica l'origine della chiamata.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/CreaEventoFruitoreRequest'
+          x-examples:
+            creaEventoFruitoreSampleRequest:
+              codiceIpaEnte: r_piemon
+              destinatario: CDFSCL00A00F000A
+              titolo: Titolo dell'evento
+              descrizione: Descrizione approfondita dell'evento
+              scadenza: '2019-08-24T14:15:22Z'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /evento/{idEvento}:
+    parameters:
+      - type: string
+        name: idEvento
+        in: path
+        required: true
+        minLength: 1
+        maxLength: 255
+    put:
+      tags:
+        - eventi
+      summary: ''
+      operationId: put-fruitori-evento
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AggiornaEventoFruitoreResponse'
+          examples:
+            aggiornaEventoFruitoreSampleResponse:
+              messaggio: ok, evento aggiornato
+        '400':
+          description: Bad Request - la richiesta non e' formalmente corretta
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            badRequestSampleResponse:
+              status: 400
+              code: BAD_REQUEST
+              title: La richiesta inviata non e' formalmente corretta
+        '401':
+          description: Unauthorized - devi autenticarti per fruire di questo servizio
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            unauthorizedSampleResponse:
+              status: 401
+              code: UNAUTHORIZED
+              title: Per compiere l'operazione richiesta occorre autenticarsi
+        '403':
+          description: Forbidden - non sei autorizzato alla fruizione di questo servizio
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            forbiddenSampleResponse:
+              status: 403
+              code: FORBIDDEN
+              title: Non sei autorizzato a compiere l'operazione richiesta
+        '404':
+          description: Not found - l'evento specificato non e' stato trovato
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            notFoundSampleResponse:
+              status: 404
+              code: NOT_FOUND
+              title: La risorsa richiesta non e' stata trovata
+        '422':
+          description: Unprocessable entity - i dati inviati non sono corretti
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            conflictSampleResponse:
+              status: 422
+              code: UNPROCESSABLE_ENTITY
+              title: Il parametro 'idEvento' e' obbligatorio
+      description: Aggiorna un evento
+      parameters:
+        - type: string
+          in: header
+          name: X-Request-Id
+          description: Identificativo univoco della richiesta. Utilizzato per identificare e tracciare una singola chiamata.
+        - type: string
+          in: header
+          name: X-Forwarded-For
+          description: Indirizzo IPv4 o IPv6 che identifica l'origine della chiamata.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/AggiornaEventoFruitoreRequest'
+          x-examples:
+            aggiornaEventoFruitoreSampleRequest:
+              nuovaDataScadenza: '2019-08-27T14:15:22Z'
+              codiceIpaEnte: r_piemon
+              nuovoTitolo: titolo aggiornato
+              nuovaDescrizione: descrizione aggiornata
+              eseguito: true
+          description: ''
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+    delete:
+      tags:
+        - eventi
+      summary: ''
+      operationId: delete-fruitori-evento
+      responses:
+        '204':
+          description: No content
+        '400':
+          description: Bad Request - la richiesta non e' formalmente corretta
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            badRequestSampleResponse:
+              status: 400
+              code: BAD_REQUEST
+              title: La richiesta inviata non e' formalmente corretta
+        '401':
+          description: Unauthorized - devi autenticarti per fruire di questo servizio
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            unauthorizedSampleResponse:
+              status: 401
+              code: UNAUTHORIZED
+              title: Per compiere l'operazione richiesta occorre autenticarsi
+        '403':
+          description: Forbidden - non sei autorizzato alla fruizione di questo servizio
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            forbiddenSampleResponse:
+              status: 403
+              code: FORBIDDEN
+              title: Non sei autorizzato a compiere l'operazione richiesta
+        '404':
+          description: Not found - l'evento specificato non e' stato trovato
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            notFoundSampleResponse:
+              status: 404
+              code: NOT_FOUND
+              title: La risorsa richiesta non e' stata trovata
+      description: Elimina un evento
+      parameters:
+        - type: string
+          in: header
+          name: X-Request-Id
+          description: Identificativo univoco della richiesta. Utilizzato per identificare e tracciare una singola chiamata.
+        - type: string
+          in: header
+          name: X-Forwarded-For
+          description: Indirizzo IPv4 o IPv6 che identifica l'origine della chiamata.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/EliminaEventoFruitoreRequest'
+          x-examples:
+            eliminaEventoFruitoreSampleRequest:
+              codiceIpaEnte: r_piemon
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /pratiche/{idPratica}:
+    parameters:
+      - type: string
+        name: idPratica
+        in: path
+        required: true
+        minLength: 1
+        maxLength: 255
+    get:
+      tags:
+        - pratiche
+      summary: ''
+      operationId: get-fruitori-pratica
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GetPraticaFruitoreResponse'
+          examples:
+            getPraticaFruitoreSampleResponse:
+              id: string
+              codiceIpaEnte: string
+              tipo:
+                codice: string
+                descrizione: string
+              oggetto: string
+              stato:
+                codice: string
+                descrizione: string
+              riassunto: string
+              utenteCreazione:
+                codiceFiscale: string
+                nome: string
+                cognome: string
+              dataCreazione: '2019-08-24T14:15:22Z'
+              dataFine: '2019-08-24T14:15:22Z'
+              dataCambioStato: '2019-08-24T14:15:22Z'
+              dataAggiornamento: '2019-08-24T14:15:22Z'
+              metadati: {}
+              attivita:
+                - nome: string
+                  descrizione: string
+                  dataInizio: '2019-08-24T14:15:22Z'
+                  dataFine: '2019-08-24T14:15:22Z'
+                  assegnazione:
+                    - utente:
+                        codiceFiscale: string
+                        nome: string
+                        cognome: string
+                      gruppo: string
+                  sottoAttivita:
+                    - nome: string
+                      descrizione: string
+                      dataInizio: '2019-08-24T14:15:22Z'
+                      dataFine: '2019-08-24T14:15:22Z'
+              commenti:
+                - utente:
+                    codiceFiscale: string
+                    nome: string
+                    cognome: string
+                  messaggio: string
+                  timestamp: '2019-08-24T14:15:22Z'
+              documenti:
+                - id: string
+                  idPadre: string
+                  titolo: string
+                  descrizione: string
+                  autore: string
+                  mimeType: string
+                  firme:
+                    - data: '2019-08-24T14:15:22Z'
+                      firmatario: string
+                      organizzazione: string
+                  protocollo:
+                    numero: string
+                    data: string
+                    classificazione: string
+                  refURL: string
+                  tipoDocumento: string
+                  tipo:
+                    codice: string
+                    descrizione: string
+                  stato:
+                    codice: string
+                    descrizione: string
+        '400':
+          description: Bad Request - la richiesta non e' formalmente corretta
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            badRequestSampleResponse:
+              status: 400
+              code: BAD_REQUEST
+              title: La richiesta inviata non e' formalmente corretta
+        '401':
+          description: Unauthorized - devi autenticarti per fruire di questo servizio
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            unauthorizedSampleResponse:
+              status: 401
+              code: UNAUTHORIZED
+              title: Per compiere l'operazione richiesta occorre autenticarsi
+        '403':
+          description: Forbidden - non sei autorizzato alla fruizione di questo servizio
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            forbiddenSampleResponse:
+              status: 403
+              code: FORBIDDEN
+              title: Non sei autorizzato a compiere l'operazione richiesta
+        '404':
+          description: Not found - pratica non trovata
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            notFoundSampleResponse:
+              status: 404
+              code: NOT_FOUND
+              title: La risorsa richiesta non e' stata trovata
+      description: Ottiene lo stato della pratica
+      parameters:
+        - type: string
+          in: header
+          name: X-Request-Id
+          description: Identificativo univoco della richiesta. Utilizzato per identificare e tracciare una singola chiamata.
+        - type: string
+          in: header
+          name: X-Forwarded-For
+          description: Indirizzo IPv4 o IPv6 che identifica l'origine della chiamata.
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /pratiche/{idPratica}/segnala:
+    parameters:
+      - type: string
+        name: idPratica
+        in: path
+        required: true
+        minLength: 1
+        maxLength: 255
+    post:
+      tags:
+        - processi
+      summary: ''
+      operationId: post-fruitori-segnale
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/InviaSegnaleFruitoreResponse'
+          examples:
+            inviaSegnaleFruitoreSampleResponse:
+              codiceInvio: 123-asd-535-dgw
+        '400':
+          description: Bad Request - la richiesta non e' formalmente corretta
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            badRequestSampleResponse:
+              status: 400
+              code: BAD_REQUEST
+              title: La richiesta inviata non e' formalmente corretta
+        '401':
+          description: Unauthorized - devi autenticarti per fruire di questo servizio
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            unauthorizedSampleResponse:
+              status: 401
+              code: UNAUTHORIZED
+              title: Per compiere l'operazione richiesta occorre autenticarsi
+        '403':
+          description: Forbidden - non sei autorizzato alla fruizione di questo servizio
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            forbiddenSampleResponse:
+              status: 403
+              code: FORBIDDEN
+              title: Non sei autorizzato a compiere l'operazione richiesta
+        '404':
+          description: Not found - la pratica specificata non e' stata trovata
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            notFoundSampleResponse:
+              status: 404
+              code: NOT_FOUND
+              title: La risorsa richiesta non e' stata trovata
+        '409':
+          description: Conflict - la pratica specificata non ha un processo avviato
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            notFoundSampleResponse:
+              status: 409
+              code: CONFLICT
+              title: La pratica specificata non ha un processo avviato
+        '422':
+          description: Unprocessable entity - i dati inviati non sono corretti
+          schema:
+            $ref: '#/paths/~1evento/post/responses/400/schema'
+          examples:
+            conflictSampleResponse:
+              status: 422
+              code: UNPROCESSABLE_ENTITY
+              title: Il parametro 'r_piemon' e' obbligatorio
+      description: Invia un segnale ad un processo
+      parameters:
+        - type: string
+          in: header
+          name: X-Request-Id
+          description: Identificativo univoco della richiesta. Utilizzato per identificare e tracciare una singola chiamata.
+        - type: string
+          in: header
+          name: X-Forwarded-For
+          description: Indirizzo IPv4 o IPv6 che identifica l'origine della chiamata.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/InviaSegnaleFruitoreRequest'
+          x-examples:
+            inviaSegnaleFruitoreSampleRequest:
+              codiceSegnale: AVANZA_PROCESSO
+              richiediCallback: true
+              variabili:
+                - nome: var1
+                  valore: '123123'
+                - nome: var2
+                  valore: test
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /pratiche:
+    post:
+      tags:
+        - pratiche
+      summary: ''
+      operationId: post-pratiche-fruitori
+      responses:
+        '201':
+          description: Created - la pratica e' stata creata
+          schema:
+            $ref: '#/definitions/CreaPraticaFruitoreResponse'
+          examples:
+            creaPraticaFruitoreSampleResponse:
+              idPratica: '1234'
+              codiceIpaEnte: r_piemon
+              codiceTipologia: Approvazione
+              oggetto: Approvazione della proposta num. 123
+              riassunto: Pratica per l'iter di approvazione della proposta num. 123
+              utenteCreazionePratica: CODICEFISCALEUTENTE
+        '400':
+          description: Bad Request
+          schema:
+            description: Model che contiene i campi che vengono restituiti in caso di errore da tutte le API
+            properties:
+              code:
+                type: string
+              status:
+                type: integer
+              title:
+                type: string
+            required:
+              - status
+              - code
+            title: Esito
+            type: object
+            x-examples: {}
+          examples:
+            badRequestSampleResponse:
+              status: 400
+              code: BAD_REQUEST
+              title: La richiesta inviata non e' formalmente corretta
+        '401':
+          description: Unauthorized - devi autenticarti per procedere
+          schema:
+            $ref: '#/paths/~1pratiche/post/responses/400/schema'
+          examples:
+            unauthorizedSampleResponse:
+              status: 401
+              code: UNAUTHORIZED
+              title: Per compiere l'operazione richiesta occorre autenticarsi
+        '403':
+          description: Forbidden - non sei autorizzato alla creazione della pratica
+          schema:
+            $ref: '#/paths/~1pratiche/post/responses/400/schema'
+          examples:
+            forbiddenSampleResponse:
+              status: 403
+              code: FORBIDDEN
+              title: Non sei autorizzato a compiere l'operazione richiesta
+        '409':
+          description: Conflict - esiste gia' una pratica corrispondente all'identificativo fornito
+          schema:
+            $ref: '#/paths/~1pratiche/post/responses/400/schema'
+          examples:
+            conflictSampleResponse:
+              status: 409
+              code: CONFLICT
+              title: Esiste gia' una pratica con l'id specificato
+        '422':
+          description: Unprocessable entity - i dati inviati non sono corretti
+          schema:
+            $ref: '#/paths/~1pratiche/post/responses/400/schema'
+          examples:
+            conflictSampleResponse:
+              status: 422
+              code: UNPROCESSABLE_ENTITY
+              title: Il parametro 'id' e' obbligatorio
+      parameters:
+        - type: string
+          in: header
+          name: X-Request-Id
+          description: Identificativo univoco della richiesta. Utilizzato per identificare e tracciare una singola chiamata.
+        - type: string
+          in: header
+          name: X-Forwarded-For
+          description: Indirizzo IPv4 o IPv6 che identifica l'origine della chiamata.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/CreaPraticaFruitoreRequest'
+          x-examples:
+            creaPraticaFruitoreSampleRequest:
+              idPratica: '1234'
+              codiceIpaEnte: r_piemon
+              codiceTipologia: Approvazione
+              oggetto: Approvazione della proposta num. 123
+              riassunto: Pratica per l'iter di approvazione della proposta num. 123
+              utenteCreazionePratica: CODICEFISCALEUTENTE
+      description: inserisce una pratica
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /notifiche:
+    post:
+      summary: ''
+      tags:
+        - notifiche
+      operationId: post-notifica-fruitore
+      responses:
+        '200':
+          description: OK - la richiesta di notifica e' stata elaborata correttamente
+          schema:
+            $ref: '#/definitions/CreaNotificaFruitoreResponse'
+          examples:
+            creaNotificaFruitoreSampleResponse:
+              esiti:
+                - destinatario: CODICEFISCALE1
+                  esito:
+                    status: 201
+                    code: CREATED
+                    title: Notifica inviata
+                - destinatario: CODICEFISCALE2
+                  esito:
+                    status: 404
+                    code: NOT_FOUND
+                    title: Utente non trovato
+                - destinatario: CODICEFISCALE3
+                  esito:
+                    status: 400
+                    code: BAD_REQUEST
+                    title: Utente non associato all'ente specificato
+        '400':
+          description: Bad Request - il formato della richiesta non e' corretto
+          schema:
+            $ref: '#/definitions/EsitoCreazioneNotificaFruitoreResponse/properties/esito'
+          examples:
+            badRequestSampleResponse:
+              status: 400
+              code: BAD_REQUEST
+              title: La richiesta inviata non e' formalmente corretta
+        '401':
+          description: Unauthorized - devi autenticarti per procedere
+          schema:
+            $ref: '#/definitions/EsitoCreazioneNotificaFruitoreResponse/properties/esito'
+          examples:
+            unauthorizedSampleResponse:
+              status: 401
+              code: UNAUTHORIZED
+              title: Per compiere l'operazione richiesta occorre autenticarsi
+        '403':
+          description: Forbidden - non sei autorizzato alla creazione
+          schema:
+            $ref: '#/definitions/EsitoCreazioneNotificaFruitoreResponse/properties/esito'
+          examples:
+            forbiddenSampleResponse:
+              status: 403
+              code: FORBIDDEN
+              title: Non sei autorizzato a compiere l'operazione richiesta
+        '404':
+          description: Not found - la pratica specificata non esiste
+          schema:
+            $ref: '#/definitions/EsitoCreazioneNotificaFruitoreResponse/properties/esito'
+          examples:
+            notFoundSampleResponse:
+              status: 404
+              code: NOT_FOUND
+              title: La risorsa richiesta non e' stata trovata
+        '422':
+          description: Unprocessable entity - i dati forniti non sono corretti
+          schema:
+            $ref: '#/definitions/EsitoCreazioneNotificaFruitoreResponse/properties/esito'
+          examples:
+            conflictSampleResponse:
+              status: 422
+              code: UNPROCESSABLE_ENTITY
+              title: Il parametro 'codiceIpaEnte' e' obbligatorio
+      description: Endpoint per creare una notifica
+      parameters:
+        - type: string
+          in: header
+          name: X-Request-Id
+          description: Identificativo univoco della richiesta. Utilizzato per identificare e tracciare una singola chiamata.
+        - type: string
+          in: header
+          name: X-Forwarded-For
+          description: Indirizzo IPv4 o IPv6 che identifica l'origine della chiamata.
+        - in: body
+          name: notifica
+          schema:
+            $ref: '#/definitions/CreaNotificaFruitoreRequest'
+          required: true
+          description: ''
+          x-examples:
+            creaNotificaFruitoreSampleRequest:
+              codiceIpaEnte: r_piemon
+              idPratica: '12345'
+              descrizione: Descrizione approfondita della notifica
+              destinatari:
+                - CODICEFISCALE1
+                - CODICEFISCALE2
+                - CODICEFISCALE3
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /documenti:
+    post:
+      summary: ''
+      tags:
+        - documenti
+      operationId: post-documento-fruitore
+      responses:
+        '200':
+          description: OK - i documenti sono stati acquisiti
+          schema:
+            $ref: '#/definitions/EsitoCreazioneDocumentiFruitore'
+          examples:
+            creaDocumentiFruitoreSampleResponse:
+              esiti:
+                - input:
+                    id: '1'
+                    codiceTipo: Proposta
+                    titolo: Riassunto della proposta
+                    descrizione: Riassunto della proposta in formato PDF
+                    autore: CODICEFISCALE
+                    uploadUUID: c1254f-a1254e153-eed123-bfe1123
+                  output:
+                    id: '1'
+                    idPratica: '12345'
+                    codiceStato: ACQUISITO
+                    codiceTipo: Proposta
+                    titolo: Riassunto della proposta
+                    descrizione: Riassunto della proposta in formato PDF
+                    autore: CODICEFISCALE
+                  esito:
+                    status: 201
+                    code: CREATED
+                    title: Documento acquisito correttamente
+                - input:
+                    id: '2'
+                    idPadre: '1'
+                    codiceTipo: Allegato
+                    titolo: Allegato 1 alla proposta
+                    descrizione: Allegato numero 1, con contenuto passato direttamente codificato in base64
+                    autore: CODICEFISCALE
+                  output:
+                    id: '2'
+                    idPadre: '1'
+                    idPratica: '12345'
+                    codiceStato: ACQUISITO
+                    codiceTipo: Allegato
+                    titolo: Allegato 1 alla proposta
+                    descrizione: Allegato numero 1, con contenuto passato direttamente codificato in base64
+                    autore: CODICEFISCALE
+                  esito:
+                    status: 201
+                    code: CREATED
+                    title: Documento acquisito correttamente
+                - input:
+                    id: '3'
+                    codiceTipo: Allegato
+                    titolo: Allegato 2 alla proposta
+                    descrizione: Allegato numero 2, senza contenuto (deve fallire)
+                    autore: CODICEFISCALE
+                  esito:
+                    status: 422
+                    code: UNPROCESSABLE_ENTITY
+                    title: Nessun contenuto fornito
+        '400':
+          description: Bad Request - il formato della richiesta non e' corretto
+          schema:
+            $ref: '#/definitions/EsitoCreazioneDocumentoFruitore/properties/esito'
+          examples:
+            badRequestSampleResponse:
+              status: 400
+              code: BAD_REQUEST
+              title: La richiesta inviata non e' formalmente corretta
+        '401':
+          description: Unauthorized - devi autenticarti per procedere
+          schema:
+            $ref: '#/definitions/EsitoCreazioneDocumentoFruitore/properties/esito'
+          examples:
+            unauthorizedSampleResponse:
+              status: 401
+              code: UNAUTHORIZED
+              title: Per compiere l'operazione richiesta occorre autenticarsi
+        '403':
+          description: Forbidden - non sei autorizzato alla creazione dei documenti
+          schema:
+            $ref: '#/definitions/EsitoCreazioneDocumentoFruitore/properties/esito'
+          examples:
+            forbiddenSampleResponse:
+              status: 403
+              code: FORBIDDEN
+              title: Non sei autorizzato a compiere l'operazione richiesta
+        '404':
+          description: Not found - la pratica specificata non e' stata trovata
+          schema:
+            $ref: '#/definitions/EsitoCreazioneDocumentoFruitore/properties/esito'
+          examples:
+            notFoundSampleResponse:
+              status: 404
+              code: NOT_FOUND
+              title: La risorsa richiesta non e' stata trovata
+        '409':
+          description: Conflict - esiste gia' un documento corrispondente all'identificativo fornito
+          schema:
+            $ref: '#/definitions/EsitoCreazioneDocumentoFruitore/properties/esito'
+          examples:
+            conflictSampleResponse:
+              status: 409
+              code: CONFLICT
+              title: Documento con id specificato gia' esistente
+        '422':
+          description: Unprocessable entity - i dati forniti non sono corretti
+          schema:
+            $ref: '#/definitions/EsitoCreazioneDocumentoFruitore/properties/esito'
+          examples:
+            conflictSampleResponse:
+              status: 422
+              code: UNPROCESSABLE_ENTITY
+              title: Il parametro 'codiceTipo' e' obbligatorio
+      description: Endpoint per creare uno o più documenti
+      parameters:
+        - type: string
+          in: header
+          name: X-Request-Id
+          description: Identificativo univoco della richiesta. Utilizzato per identificare e tracciare una singola chiamata.
+        - type: string
+          in: header
+          name: X-Forwarded-For
+          description: Indirizzo IPv4 o IPv6 che identifica l'origine della chiamata.
+        - in: body
+          name: documento
+          schema:
+            $ref: '#/definitions/CreaDocumentiFruitoreRequest'
+          required: true
+          description: ''
+          x-examples:
+            creaDocumentiFruitoreSampleRequest:
+              documenti:
+                - id: '1'
+                  codiceTipo: Proposta
+                  titolo: Riassunto della proposta
+                  descrizione: Riassunto della proposta in formato PDF
+                  autore: CODICEFISCALE
+                  uploadUUID: c1254f-a1254e153-eed123-bfe1123
+                - id: '2'
+                  idPadre: '1'
+                  codiceTipo: Allegato
+                  titolo: Allegato 1 alla proposta
+                  descrizione: Allegato numero 1, con contenuto passato direttamente codificato in base64
+                  autore: CODICEFISCALE
+                  contenuto:
+                    nomeFile: allegato.pdf
+                    mimeType: application/pdf
+                    contenutoFisico: aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1ZZGR3a01KRzFKbw==
+                - id: '3'
+                  codiceTipo: Allegato
+                  titolo: Allegato 2 alla proposta
+                  descrizione: Allegato numero 2, senza contenuto (deve fallire)
+                  autore: CODICEFISCALE
+              idPratica: '12345'
+              codiceIpaEnte: r_piemon
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /documenti/{idDocumento}/contenuto:
+    parameters:
+      - type: string
+        name: idDocumento
+        in: path
+        required: true
+    get:
+      summary: ''
+      tags:
+        - documenti
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties: {}
+        '302':
+          description: Found
+          schema:
+            type: object
+            properties: {}
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties: {}
+      operationId: get-contenuto-fruitore
+      description: Recupero contenuto di un documento da parte di un fruitore
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /file/upload:
+    post:
+      consumes:
+        - multipart/form-data
+      tags:
+        - file
+      operationId: post-file-upload
+      responses:
+        '200':
+          description: OK
+          schema:
+            title: FileUploadResult
+            type: object
+            properties:
+              uploadUUID:
+                type: string
+                minLength: 1
+                maxLength: 255
+            required:
+              - uploadUUID
+          examples:
+            uploadFileSampleResponse:
+              uploadUUID: 219aeb-39ecf-123abc-219aeb-aaaa-aaaaaa
+        '401':
+          description: Unauthorized - il fruitore non e' stato autenticato correttamente oppure non e' stato registrato come fruitore abilitato
+          schema:
+            description: Model che contiene i campi che vengono restituiti in caso di errore da tutte le API
+            properties:
+              code:
+                type: string
+              status:
+                type: integer
+              title:
+                type: string
+            required:
+              - status
+              - code
+            title: Esito
+            type: object
+            x-examples: {}
+          examples:
+            unauthorizedSampleResponse:
+              status: 401
+              code: UNAUTHORIZED
+              title: Per compiere l'operazione richiesta occorre autenticarsi
+        '403':
+          description: Forbidden - il fruitore non e' autorizzato alla specifica operazione richiesta
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            forbiddenSampleResponse:
+              status: 403
+              code: FORBIDDEN
+              title: Non sei autorizzato a compiere l'operazione richiesta
+        '404':
+          description: Not Found - la risorsa richiesta non esiste
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            notFoundSampleResponse:
+              status: 404
+              code: NOT_FOUND
+              title: La risorsa richiesta non e' stata trovata
+        '409':
+          description: Conflict - una risorsa corrispondente agli identificativi univoci forniti esiste gia'
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            conflictSampleResponse:
+              status: 409
+              code: CONFLICT
+              title: La risorsa corrispondente agli identificativi forniti esiste gia'
+      description: Esegue l'upload di un file
+      parameters:
+        - type: string
+          in: header
+          name: X-Request-Id
+          description: Identificativo univoco della richiesta. Utilizzato per identificare e tracciare una singola chiamata.
+        - type: string
+          in: header
+          name: X-Forwarded-For
+          description: Indirizzo IPv4 o IPv6 che identifica l'origine della chiamata.
+        - in: formData
+          type: file
+          description: Il contenuto binario del file da caricare
+          name: payload
+          required: true
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+    parameters: []
+  /file/upload-session:
+    post:
+      tags:
+        - file
+      operationId: create-upload-session
+      responses:
+        '201':
+          description: OK
+          schema:
+            title: CreateUploadSessionResponse
+            type: object
+            properties:
+              sessionUUID:
+                type: string
+                minLength: 1
+                maxLength: 255
+            required:
+              - sessionUUID
+          examples:
+            createUploadSessionSampleResponse:
+              sessionUUID: 219aeb-39ecf-123abc-219aeb-aaaa-aaaaaa
+        '401':
+          description: Unauthorized - il fruitore non e' stato autenticato correttamente oppure non e' stato registrato come fruitore abilitato
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            unauthorizedSampleResponse:
+              status: 401
+              code: UNAUTHORIZED
+              title: Per compiere l'operazione richiesta occorre autenticarsi
+        '403':
+          description: Forbidden - il fruitore non e' autorizzato alla specifica operazione richiesta
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            forbiddenSampleResponse:
+              status: 403
+              code: FORBIDDEN
+              title: Non sei autorizzato a compiere l'operazione richiesta
+      description: Crea una sessione di upload
+      parameters:
+        - type: string
+          in: header
+          name: X-Request-Id
+          description: Identificativo univoco della richiesta. Utilizzato per identificare e tracciare una singola chiamata.
+        - type: string
+          in: header
+          name: X-Forwarded-For
+          description: Indirizzo IPv4 o IPv6 che identifica l'origine della chiamata.
+        - in: body
+          name: body
+          schema:
+            title: CreateUploadSessionRequest
+            type: object
+            properties:
+              fileName:
+                type: string
+              mimeType:
+                type: string
+              size:
+                type: integer
+                format: int64
+            required:
+              - fileName
+              - size
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+    parameters: []
+  /file/upload-session/{sessionUUID}/parts/{partNumber}:
+    post:
+      consumes:
+        - multipart/form-data
+      tags:
+        - file
+      operationId: upload-session-part
+      responses:
+        '204':
+          description: OK
+        '401':
+          description: Unauthorized - il fruitore non e' stato autenticato correttamente oppure non e' stato registrato come fruitore abilitato
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            unauthorizedSampleResponse:
+              status: 401
+              code: UNAUTHORIZED
+              title: Per compiere l'operazione richiesta occorre autenticarsi
+        '403':
+          description: Forbidden - il fruitore non e' autorizzato alla specifica operazione richiesta
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            forbiddenSampleResponse:
+              status: 403
+              code: FORBIDDEN
+              title: Non sei autorizzato a compiere l'operazione richiesta
+        '404':
+          description: Not Found - la risorsa richiesta non esiste
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            notFoundSampleResponse:
+              status: 404
+              code: NOT_FOUND
+              title: La sessione di upload non e' stata trovata
+        '409':
+          description: Conflict - una risorsa corrispondente agli identificativi univoci forniti esiste gia'
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            conflictSampleResponse:
+              status: 409
+              code: CONFLICT
+              title: La risorsa corrispondente agli identificativi forniti esiste gia'
+      description: Carica una parte di file in una sessione di upload
+      parameters:
+        - in: formData
+          type: file
+          description: Il contenuto binario del file da caricare
+          name: payload
+          required: true
+        - type: string
+          in: header
+          name: X-Request-Id
+          description: Identificativo univoco della richiesta. Utilizzato per identificare e tracciare una singola chiamata.
+        - type: string
+          in: header
+          name: X-Forwarded-For
+          description: Indirizzo IPv4 o IPv6 che identifica l'origine della chiamata.
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+    parameters:
+      - type: string
+        name: sessionUUID
+        in: path
+        required: true
+        minLength: 1
+        maxLength: 255
+      - type: integer
+        format: int64
+        name: partNumber
+        in: path
+        required: true
+  /file/upload-session/{sessionUUID}/complete:
+    post:
+      tags:
+        - file
+      operationId: complete-upload-session
+      responses:
+        '200':
+          description: OK
+          schema:
+            title: CompleteUploadSessionResponse
+            type: object
+            properties:
+              uploadUUID:
+                type: string
+                minLength: 1
+                maxLength: 255
+            required:
+              - uploadUUID
+          examples:
+            completeUploadSessionSampleResponse:
+              uploadUUID: 219aeb-39ecf-123abc-219aeb-aaaa-aaaaaa
+        '400':
+          description: Bad Request - la sessione di upload non e' pronta per il completamento
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            notFoundSampleResponse:
+              status: 400
+              code: BAD_REQUEST
+              title: la sessione di upload non e' pronta per il completamento
+        '401':
+          description: Unauthorized - il fruitore non e' stato autenticato correttamente oppure non e' stato registrato come fruitore abilitato
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            unauthorizedSampleResponse:
+              status: 401
+              code: UNAUTHORIZED
+              title: Per compiere l'operazione richiesta occorre autenticarsi
+        '403':
+          description: Forbidden - il fruitore non e' autorizzato alla specifica operazione richiesta
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            forbiddenSampleResponse:
+              status: 403
+              code: FORBIDDEN
+              title: Non sei autorizzato a compiere l'operazione richiesta
+        '404':
+          description: Not Found - la sessione di upload richiesta non esiste
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            notFoundSampleResponse:
+              status: 404
+              code: NOT_FOUND
+              title: la sessione di upload richiesta non esiste
+        '409':
+          description: Conflict - la sessione di upload non e' confermabile al momento
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            conflictSampleResponse:
+              status: 409
+              code: CONFLICT
+              title: La sessione di upload non e' confermabile al momento
+      description: Completa una sessione di upload
+      parameters:
+        - in: body
+          name: body
+          schema:
+            title: CompleteUploadSessionRequest
+            type: object
+            properties:
+              hashes:
+                type: string
+        - type: string
+          in: header
+          name: X-Request-Id
+          description: Identificativo univoco della richiesta. Utilizzato per identificare e tracciare una singola chiamata.
+        - type: string
+          in: header
+          name: X-Forwarded-For
+          description: Indirizzo IPv4 o IPv6 che identifica l'origine della chiamata.
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+    parameters:
+      - type: string
+        name: sessionUUID
+        in: path
+        required: true
+        minLength: 1
+        maxLength: 255
+  /file/upload-session/{sessionUUID}/cancel:
+    delete:
+      tags:
+        - file
+      operationId: cancel-upload-session
+      responses:
+        '204':
+          description: OK
+        '401':
+          description: Unauthorized - il fruitore non e' stato autenticato correttamente oppure non e' stato registrato come fruitore abilitato
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            unauthorizedSampleResponse:
+              status: 401
+              code: UNAUTHORIZED
+              title: Per compiere l'operazione richiesta occorre autenticarsi
+        '403':
+          description: Forbidden - il fruitore non e' autorizzato alla specifica operazione richiesta
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            forbiddenSampleResponse:
+              status: 403
+              code: FORBIDDEN
+              title: Non sei autorizzato a compiere l'operazione richiesta
+        '404':
+          description: Not Found - la sessione di upload richiesta non esiste
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            notFoundSampleResponse:
+              status: 404
+              code: NOT_FOUND
+              title: la sessione di upload richiesta non esiste
+        '409':
+          description: Conflict - la sessione di upload non e' cancellabile al momento
+          schema:
+            $ref: '#/paths/~1file~1upload/post/responses/401/schema'
+          examples:
+            conflictSampleResponse:
+              status: 409
+              code: CONFLICT
+              title: La sessione di upload non e' cancellabile al momento
+      description: Annulla una sessione di upload
+      parameters:
+        - type: string
+          in: header
+          name: X-Request-Id
+          description: Identificativo univoco della richiesta. Utilizzato per identificare e tracciare una singola chiamata.
+        - type: string
+          in: header
+          name: X-Forwarded-For
+          description: Indirizzo IPv4 o IPv6 che identifica l'origine della chiamata.
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+    parameters:
+      - type: string
+        name: sessionUUID
+        in: path
+        required: true
+        minLength: 1
+        maxLength: 255
+swagger: '2.0'
+tags:
+  - name: documenti
+    description: gestione dei documenti
+  - name: pratiche
+    description: gestione delle pratiche
+  - name: eventi
+    description: gestione degli eventi
+  - name: processi
+    description: gestione dei processi
+  - name: notifiche
+    description: gestione delle notifiche
+  - name: file
+    description: gestione dei file
+info:
+  title: cosmo-servizi-fruitori
+  version: v1
+  contact:
+    name: CSI Piemonte
+  description: API esposte da Cosmo per l'integrazione con i fruitori esterni
+host: tst-api-piemonte.ecosis.csi.it
+schemes:
+  - http
+produces:
+  - application/json
+consumes:
+  - application/json
+basePath: /documentale/cosmoint01xp/v1
+securityDefinitions:
+  default:
+    type: oauth2
+    authorizationUrl: https://tst-api-piemonte.ecosis.csi.it/authorize
+    flow: implicit
+    scopes: {}

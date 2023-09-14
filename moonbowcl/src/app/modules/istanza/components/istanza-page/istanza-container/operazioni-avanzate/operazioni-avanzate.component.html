@@ -1,0 +1,23 @@
+<div class="mb-3">
+    <div *ngIf="!istanza.numeroProtocollo && moduloConProtocollazione && isAdmin" class="mb-3">
+        <a [routerLink]="[]" (click)="protocolla()" ngbTooltip="Protocolla">Protocolla</a>
+    </div>
+    <!-- Email -->
+    <div *ngIf="isEmailRinviabileUser" class="mb-3">
+        <a [routerLink]="[]" (click)="rinviaEmail('user')" ngbTooltip="Reinvia email dichiarante">Reinvia Email
+            Dichiarante</a>
+    </div>
+    <div *ngIf="isEmailRinviabileProtocollo" class="mb-3">
+        <a [routerLink]="[]" (click)="rinviaEmail('protocollo')" ngbTooltip="Reinvia email protocollo">Reinvia Email
+            Protocollo</a>
+    </div>
+    <div *ngIf="isEmailRinviabileUser && isEmailRinviabileProtocollo" class="mb-3">
+        <a [routerLink]="[]" (click)="rinviaEmail('user,protocollo')"
+            ngbTooltip="Reinvia email dichiarante e protocollo">Reinvia Email Dichiarante & Protocollo e
+            Protocollo</a>
+    </div>
+    <div *ngIf="isEmailRinviabilePostCallbackProtocollo" class="mb-3">
+        <a [routerLink]="[]" (click)="rinviaEmail('postCallbackPrt')" ngbTooltip="Reinvia email Post Callback Protocollo">Reinvia Email
+        Post Callback Protocollo</a>
+    </div>
+</div>

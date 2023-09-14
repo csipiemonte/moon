@@ -1,0 +1,12 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">{{modal_titolo}}</h4>
+  <button (click)="activeModal.dismiss('Cross click')" aria-label="Chiudi" class="btn-close" type="button"></button>
+</div>
+<div class="modal-body">
+  <p>
+    {{modal_contenuto}}
+  </p>
+</div>
+<div class="modal-footer">
+  <button (click)="activeModal.close('Conferma')" class="btn btn-outline-dark" type="button">Esci</button>
+</div>

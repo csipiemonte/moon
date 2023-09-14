@@ -1,0 +1,27 @@
+<table id="mytable" class="table table-sm  table-hover small">
+  <thead>
+    <!--        <th>nome formio</th> -->
+    <th>nome file</th>
+    <th>lunghezza</th>
+    <th>estensione</th>
+    <th>data creazione</th>
+    <th>contenuto</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let allegato of allegati"> 
+      <td>{{allegato.nomeFile}}</td>
+      <td>{{allegato.lunghezza}}</td>
+      <td>{{allegato.estensione}}</td>
+      <td>{{allegato.dataCreazione | date: 'dd/MM/yyyy'}}</td>
+      <td>
+        <div class="d-flex">
+          <button type="button" *ngIf="allegato.formioNameFile" aria-label="Scarica ricevuta" class="btn btn-icon btn-xxs" (click)="downloadAllegato(allegato.formioNameFile,allegato.contentType)" [routerLink]="[]"
+          ngbTooltip="Scarica allegato" placement="left">
+            <span class="visually-hidden">Scarica il file dell'allegato {{allegato.formioNameFile}}</span>
+            <svg class="icon icon-primary icon-sm"><use [attr.href]="'./assets/svg/sprite.svg#it-download'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-download'"></use></svg>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

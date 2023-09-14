@@ -1,0 +1,1973 @@
+swagger: '2.0'
+info:
+  description: Api Rest per la fruizione in cooperazione applicativa dei dati della
+    toponomastica del Comune di Torino
+  version: v1
+  title: toponomastica-comune-torino
+host: tst-api-piemonte.ecosis.csi.it
+basePath: "/territorio/toponomastica/ctsapicoto/v1"
+schemes:
+- http
+produces:
+- application/json
+security:
+- default: []
+paths:
+  "/vie/{idvia}":
+    get:
+      tags:
+      - cercaViaPerId
+      summary: servizio di ricerca della via per id via
+      description: Restituisce un oggetto via
+      operationId: cercaViaPerId
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      - name: idvia
+        in: path
+        description: id della via
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Oggetto via
+          schema:
+            "$ref": "#/definitions/via"
+        '204':
+          description: Nessun oggetto reperito per i parametri di ricerca impostati
+        '400':
+          description: La richiesta fatta dal client e' errata
+        '401':
+          description: Access Token mancante o non valido
+        '404':
+          description: La risorsa specificata non e' stata trovata
+        '500':
+          description: Si e' verificato un'errore interno del server.
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/vie":
+    get:
+      tags:
+      - cercaViePerDescrizione
+      summary: servizio di ricerca delle vie per descrizione
+      description: Restituisce un elenco di oggetti via. La ricerca si basa sulla
+        selezione di record che contengono la stringa in input {nome}. La ricerca
+        e' eseguita sull'attributo denominazioneParte1. Esempio ../vie/?nome=FRANCIA
+      operationId: cercaViePerDescrizione
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      - name: nome
+        in: query
+        description: nome della via
+        required: false
+        type: string
+      responses:
+        '200':
+          description: Oggetto via
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/via"
+        '204':
+          description: Nessun oggetto reperito per i parametri di ricerca impostati
+        '400':
+          description: La richiesta fatta dal client e' errata
+        '401':
+          description: Access Token mancante o non valido
+        '404':
+          description: La risorsa specificata non e' stata trovata
+        '500':
+          description: Si e' verificato un'errore interno del server.
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/vielight":
+    get:
+      tags:
+      - cercaViePerDescrizioneLight
+      summary: servizio di ricerca delle vie per descrizione
+      description: Restituisce un elenco di oggetti viaLight. La ricerca si basa sulla
+        selezione di record che contengono la stringa in input {nome}. La ricerca
+        è eseguita sull'attributo denominazioneParte1. Esempio .../vielight/?nome=FRANCIA
+      operationId: cercaViePerDescrizioneLight
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo ella transazione per il tracciamento
+        required: true
+        type: string
+      - name: nome
+        in: query
+        description: nome della via
+        required: false
+        type: string
+      responses:
+        '200':
+          description: Oggetto via light
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/viaLight"
+        '204':
+          description: Nessun oggetto reperito per i parametri di ricerca impostati
+        '400':
+          description: La richiesta fatta dal client e' errata
+        '401':
+          description: Access Token mancante o non valido
+        '404':
+          description: La risorsa specificata non e' stata trovata
+        '500':
+          description: Si e' verificato un'errore interno del server.
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/civici/{idcivico}":
+    get:
+      tags:
+      - cercaCivicoPerId
+      summary: servizio di ricerca dei numeri civici  per id civico
+      description: Restituisce un oggetto civico
+      operationId: cercaCivico
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      - name: idcivico
+        in: path
+        description: id del civico
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Oggetto civico
+          schema:
+            "$ref": "#/definitions/civico"
+        '204':
+          description: Nessun oggetto reperito per i parametri di ricerca impostati
+        '400':
+          description: La richiesta fatta dal client e' errata
+        '401':
+          description: Access Token mancante o non valido
+        '404':
+          description: La risorsa specificata non e' stata trovata
+        '500':
+          description: Si e' verificato un'errore interno del server.
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/civici/{idcivico}/storicoCivico":
+    get:
+      tags:
+      - cercaStoricoCivico
+      summary: il servizio di ricerca di eventuali sostituzioni per cambio denominazione
+        via o rinumerazione che hanno interessato il numero civico
+      description: Restituisce un array di oggetti di tipo storicoCivico
+      operationId: storicoCivico
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      - name: idcivico
+        in: path
+        description: id del civico
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Oggetto storico civico
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/storicoCivico"
+        '204':
+          description: Nessun oggetto reperito per i parametri di ricerca impostati
+        '400':
+          description: La richiesta fatta dal client e' errata
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '401':
+          description: Access Token mancante o non valido
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '404':
+          description: La risorsa specificata non e' stata trovata
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '500':
+          description: Si e' verificato un'errore interno del server.
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '502':
+          description: Si e' verificato un'errore accedendo ad un server esterno.
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/civicizone/{idcivico}":
+    get:
+      tags:
+      - cercaCivicoConAzzonamenti
+      summary: servizio di ricerca dei numeri civici  per id civico
+      description: Restituisce un oggetto civicozone
+      operationId: cercaCivicoConAzzonamenti
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      - name: idcivico
+        in: path
+        description: id del civico
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Oggetto civicoZone
+          schema:
+            "$ref": "#/definitions/civicoZone"
+        '204':
+          description: Nessun oggetto reperito per i parametri di ricerca impostati
+        '400':
+          description: La richiesta fatta dal client e' errata
+        '401':
+          description: Access Token mancante o non valido
+        '404':
+          description: La risorsa specificata non e' stata trovata
+        '500':
+          description: Si e' verificato un'errore interno del server.
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/vie/{idvia}/civici":
+    get:
+      tags:
+      - cercaCiviciDiUnaVia
+      summary: servizio di ricerca dei civici di una via
+      description: Restituisce un elenco di oggetti civico
+      operationId: cercaCiviciDiUnaVia
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      - name: idvia
+        in: path
+        description: id della via
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Oggetto civico
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/civico"
+        '204':
+          description: Nessun oggetto reperito per i parametri di ricerca impostati
+        '400':
+          description: La richiesta fatta dal client e' errata
+        '401':
+          description: Access Token mancante o non valido
+        '404':
+          description: La risorsa specificata non e' stata trovata
+        '500':
+          description: Si e' verificato un'errore interno del server.
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/vie/{idvia}/civicilight":
+    get:
+      tags:
+      - cercaCiviciDiUnaViaLight
+      summary: servizio di ricerca dei civici light di una via
+      description: Restituisce un elenco di oggetti civicoLight
+      operationId: cercaCiviciDiUnaViaLight
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      - name: idvia
+        in: path
+        description: id della via
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Oggetto civico light
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/civicoLight"
+        '204':
+          description: Nessun oggetto reperito per i parametri di ricerca impostati
+        '400':
+          description: La richiesta fatta dal client e' errata
+        '401':
+          description: Access Token mancante o non valido
+        '404':
+          description: La risorsa specificata non e' stata trovata
+        '500':
+          description: Si e' verificato un'errore interno del server.
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/vie/{idvia}/civicilight/numeriRadice":
+    get:
+      tags:
+      - elencoNumeriRadiceAttiviByIdvia
+      summary: servizio di ricerca dei numeri radice attivi di una via
+      description: Restituisce un elenco di oggetti numeri radice
+      operationId: elencoNumeriRadiceAttiviByIdvia
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      - name: idvia
+        in: path
+        description: id della via
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: numero radice
+          schema:
+            type: array
+            items:
+              type: integer
+        '204':
+          description: Nessun oggetto reperito per i parametri di ricerca impostati
+        '400':
+          description: La richiesta fatta dal client e' errata
+        '401':
+          description: Access Token mancante o non valido
+        '404':
+          description: La risorsa specificata non e' stata trovata
+        '500':
+          description: Si e' verificato un'errore interno del server.
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/vie/{idvia}/civicilight/numero/{numero}":
+    get:
+      tags:
+      - cercaCiviciDiUnaViaLightNumero
+      summary: servizio di ricerca dei civici di una via per codice via e numero radice
+      description: Restituisce un elenco di oggetti civico light
+      operationId: cercaCiviciDiUnaViaLightNumero
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      - name: idvia
+        in: path
+        description: id della via
+        required: true
+        type: integer
+      - name: numero
+        in: path
+        description: numero radice
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Oggetto civico light
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/civicoLight"
+        '204':
+          description: Nessun oggetto reperito per i parametri di ricerca impostati
+        '400':
+          description: La richiesta fatta dal client e' errata
+        '401':
+          description: Access Token mancante o non valido
+        '404':
+          description: La risorsa specificata non e' stata trovata
+        '500':
+          description: Si e' verificato un'errore interno del server.
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/civici/{idcivico}/uiu":
+    get:
+      tags:
+      - cercaUiuPerCivico
+      summary: servizio di ricerca delle uiu id civico
+      description: Restituisce un elenco di oggetti uiu
+      operationId: cercaUiuPerCivico
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      - name: idcivico
+        in: path
+        description: id del civico
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Oggetto uiu
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/uiu"
+        '204':
+          description: Nessun oggetto reperito per i parametri di ricerca impostati
+        '400':
+          description: La richiesta fatta dal client e' errata
+        '401':
+          description: Access Token mancante o non valido
+        '404':
+          description: La risorsa specificata non e' stata trovata
+        '500':
+          description: Si e' verificato un'errore interno del server.
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/civici/{idcivico}/uiulight":
+    get:
+      tags:
+      - cercaUiuLightPerCivico
+      summary: servizio di ricerca delle unità immobiliari per id civico
+      description: Restituisce un elenco di oggetti uiu light
+      operationId: cercaUiuLightPerCivico
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      - name: idcivico
+        in: path
+        description: id del civico
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Oggetto uiu light
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/uiuLight"
+        '204':
+          description: Nessun oggetto reperito per i parametri di ricerca impostati
+        '400':
+          description: La richiesta fatta dal client e' errata
+        '401':
+          description: Access Token mancante o non valido
+        '404':
+          description: La risorsa specificata non e' stata trovata
+        '500':
+          description: Si e' verificato un'errore interno del server.
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/uiu/piani":
+    get:
+      tags:
+      - cercaPiani
+      summary: servizio di restituzione dell'elenco dei "piani"
+      description: Restituisce un elenco di oggetti piano
+      operationId: cercaPiani
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Oggetto piano
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/piano"
+        '204':
+          description: Nessun oggetto reperito per i parametri di ricerca impostati
+        '400':
+          description: La richiesta fatta dal client e' errata
+        '401':
+          description: Access Token mancante o non valido
+        '404':
+          description: La risorsa specificata non e' stata trovata
+        '500':
+          description: Si e' verificato un'errore interno del server.
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/civici/{idcivico}/indirizzo/ridotto":
+    get:
+      tags:
+      - cercaCivicoIndirizzoRidotto
+      summary: servizio di recupero stringa per il dato id civico di una data lunghezza
+      description: Restituisce un oggetto con un campo stringa rappresentante il civico
+        richiesto per la data lunghezza
+      operationId: cercaCivicoIndirizzoRidotto
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      - name: idcivico
+        in: path
+        description: id del civico
+        required: true
+        type: integer
+      - name: maxLength
+        in: query
+        description: lunghezza massima della stringa di output
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Stringa rappresentante il civico richiesto
+          schema:
+            "$ref": "#/definitions/cercaIndirizzoRidottoResponse"
+        '400':
+          description: La richiesta fatta dal client e' errata
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '401':
+          description: Access Token mancante o non valido
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '404':
+          description: La risorsa specificata non e' stata trovata
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '500':
+          description: Si e' verificato un'errore interno del server.
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '502':
+          description: Si e' verificato un'errore accedendo ad un server esterno.
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/uiu/{idUiu}/daticatastali":
+    get:
+      tags:
+      - cercaDatiCatastaliPerUiu
+      summary: servizio di recupero dei dati catastali per UIU (Unità Immobiliare
+        Urbana)
+      description: Fornendo l’id della uiu (idUiu = numerico) viene restituita la
+        collezione di dati catastali ad essa associata
+      operationId: cercaDatiCatastaliPerUiu
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      - name: idUiu
+        in: path
+        description: identificativo Uiu
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Elenco lista di oggetti rappresentanti i dati catastali per
+            l'identificativo richiesto
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/datocatastale"
+        '400':
+          description: La richiesta fatta dal client e' errata
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '401':
+          description: Access Token mancante o non valido
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '404':
+          description: La risorsa specificata non e' stata trovata
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '500':
+          description: Si e' verificato un'errore interno del server.
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '502':
+          description: Si e' verificato un'errore accedendo ad un server esterno.
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/civici/sezione/{sezione}/foglio/{foglio}/numero/{numero}/subalterno/{subalterno}/indirizzo":
+    get:
+      tags:
+      - cercaIdUiuIdCivicoIndirizzoPianoNuiByQuadruplaCatastale
+      summary: servizio di recupero di idUiu, idCivico, Indirizzo, Piano e NUI per
+        tripletta dati catastali
+      description: Fornendo la quadrupla di dati catastali viene restituita l’id della
+        uiu (idUiu = numerico), idCivico e una stringa rappresentante Indirizzo, Piano
+        e NUI ad essa associata
+      operationId: cercaIdUiuIdCivicoIndirizzoPianoNuiByQuadruplaCatastale
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      - name: sezione
+        in: path
+        description: codice sezione catasto
+        required: true
+        type: integer
+      - name: foglio
+        in: path
+        description: codice foglio catasto
+        required: true
+        type: integer
+      - name: numero
+        in: path
+        description: codice numero catasto
+        required: true
+        type: integer
+      - name: subalterno
+        in: path
+        description: codice subalterno catasto
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Elenco lista di oggetti contenenti id della uiu (idUiu = numerico),
+            idCivico e una stringa rappresentante Indirizzo, Piano e NUI ad essa associata
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/cercaIdUiuIdCivicoIndirizzoPianoNuiByDatiCatastaliResponse"
+        '400':
+          description: La richiesta fatta dal client e' errata
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '401':
+          description: Access Token mancante o non valido
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '404':
+          description: La risorsa specificata non e' stata trovata
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '500':
+          description: Si e' verificato un'errore interno del server.
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '502':
+          description: Si e' verificato un'errore accedendo ad un server esterno.
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/civici/foglio/{foglio}/numero/{numero}/subalterno/{subalterno}/indirizzo":
+    get:
+      tags:
+      - cercaIdUiuIdCivicoIndirizzoPianoNuiByTriplettaCatastale
+      summary: servizio di recupero di idUiu, idCivico, Indirizzo, Piano e NUI per
+        tripletta dati catastali
+      description: Fornendo la tripletta di dati catastali viene restituita l’id della
+        uiu (idUiu = numerico), idCivico e una stringa rappresentante Indirizzo, Piano
+        e NUI ad essa associata
+      operationId: cercaIdUiuIdCivicoIndirizzoPianoNuiByTriplettaCatastale
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      - name: foglio
+        in: path
+        description: codice foglio catasto
+        required: true
+        type: integer
+      - name: numero
+        in: path
+        description: codice numero catasto
+        required: true
+        type: integer
+      - name: subalterno
+        in: path
+        description: codice subalterno catasto
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Elenco lista di oggetti contenenti id della uiu (idUiu = numerico),
+            idCivico e una stringa rappresentante Indirizzo, Piano e NUI ad essa associata
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/cercaIdUiuIdCivicoIndirizzoPianoNuiByDatiCatastaliResponse"
+        '400':
+          description: La richiesta fatta dal client e' errata
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '401':
+          description: Access Token mancante o non valido
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '404':
+          description: La risorsa specificata non e' stata trovata
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '500':
+          description: Si e' verificato un'errore interno del server.
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '502':
+          description: Si e' verificato un'errore accedendo ad un server esterno.
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/civico/{idcivico}/uium":
+    post:
+      tags:
+      - inserisciUiuMultiple
+      summary: servizio di inserimento di multiple UIU associate al dato Civico
+      description: Restituisce una lista di identificativi per le UIU inserite o riattivate
+        ed una lista di oggetti per le UIU non elaborate a causa di errore o già esistenti
+        ed attive.
+      operationId: inserisciUiuMultiple
+      produces:
+      - application/json
+      parameters:
+      - name: app_id
+        in: header
+        description: Identificativo della configurazione per il chiamante
+        required: true
+        type: string
+      - name: X-Request-Id
+        in: header
+        description: Identificativo della transazione per il tracciamento
+        required: true
+        type: string
+      - name: utente-id
+        in: header
+        description: Identificativo dell'utente che effettua l'operazione
+        required: true
+        type: string
+      - name: idcivico
+        in: path
+        description: id del civico
+        required: true
+        type: integer
+      - in: body
+        name: body
+        description: L'elenco di UIU da inserire per il dato civico.
+        required: true
+        schema:
+          type: array
+          items:
+            "$ref": "#/definitions/inserisciUiuMultipleRequest"
+      responses:
+        '200':
+          description: Stringa rappresentante il civico richiesto
+          schema:
+            "$ref": "#/definitions/inserisciUiuMultipleResponse"
+        '400':
+          description: La richiesta fatta dal client e' errata
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '401':
+          description: Access Token mancante o non valido
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '404':
+          description: La risorsa specificata non e' stata trovata
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '500':
+          description: Si e' verificato un'errore interno del server.
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+        '502':
+          description: Si e' verificato un'errore accedendo ad un server esterno.
+          schema:
+            type: array
+            items:
+              type: object
+              allOf:
+              - "$ref": "#/definitions/errore"
+              - type: object
+                properties:
+                  status:
+                    type: integer
+      security:
+      - toponomasticaSecurity: []
+      - default: []
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+securityDefinitions:
+  toponomasticaSecurity:
+    description: Bearer access token. Schema di autenticazione http  utilizzato per
+      l'authorizzazione alla risorsa richiesta
+    type: apiKey
+    name: Authorization
+    in: header
+  default:
+    type: oauth2
+    authorizationUrl: http://tst-api-piemonte.ecosis.csi.it/authorize
+    flow: implicit
+definitions:
+  baseErrore:
+    type: object
+    properties:
+      code:
+        type: string
+      title:
+        type: string
+      detail:
+        type: object
+        additionalProperties:
+          type: string
+  errore:
+    allOf:
+    - "$ref": "#/definitions/baseErrore"
+    - type: object
+      properties:
+        status:
+          type: integer
+  via:
+    type: object
+    properties:
+      idVia:
+        type: integer
+        description: Codice numerico ufficiale della via
+      stato:
+        type: integer
+        description: codice stato della via
+      descStato:
+        type: string
+        description: descrizione dello stato
+      convenzionale:
+        type: integer
+        description: "- 0 = via non convenzionale; \n- 1 = indica che la via è convenzionale
+          (la via convenzionale è utilizza per particolari esigenge di alcuni Sistemi
+          Informativi della Città di Torino alcuni  esempi  (SENZA FISSA DIMORA,INDIRIZZO
+          IMPRECISATO, VIA DELLA CASA COMUNALE, ecc..)\n"
+      sedime:
+        "$ref": "#/definitions/sedime"
+      denominazionePrincipale:
+        type: string
+        description: è composta dalla denominazioneParte2+denominazioneParte1
+      denominazioneSecondaria:
+        type: string
+        description: e' composta dalla denominazioneParte1+denominazioneParte2
+      denominazioneParte1:
+        type: string
+        description: parte significativa (ad esempio il cognome) del nome della via
+      denominazioneParte2:
+        type: string
+        description: parte secondaria facoltativa (ad esempio il nome)  del nome della
+          via
+      denominazioneBreve:
+        type: string
+        description: denominazione breve
+      denominazioneCorrente:
+        type: string
+        description: denominazione corrente
+      denominazioneAlfabetica1:
+        type: string
+        description: e' la denominazione piu' completa composta per le vie ufficiali
+          da denominazioneParte1/denominazioneParte2 (sedime) ad esempio "GARIBALDI/GIUSEPPE
+          (VIA)"
+      denominazioneAlfabetica2:
+        type: string
+        description: ulteriore chiave di ricerca della denominazione alfabetica
+      denominazioneCompatta:
+        type: string
+        description: denominazione compatta e chiave di ricerca alfabetica della via.
+      descrizioneTipoVia:
+        type: string
+        description: descrizione tipo via
+      idTipoVia:
+        type: integer
+        description: codice tipologia della via
+      dataDelibera:
+        type: string
+        format: date
+        description: data delibera (in formato YYYY-MM-DD)
+    example:
+      idVia: 24288
+      stato: 1
+      descStato: Attiva
+      convenzionale: false
+      sedime:
+        idSedime: 361
+        descrizione: VIA
+        descrizioneBreve: V.
+      denominazionePrincipale: GIUSEPPE GARIBALDI
+      denominazioneSecondaria: GARIBALDI GIUSEPPE
+      denominazioneParte1: GARIBALDI
+      denominazioneParte2: GIUSEPPE
+      denominazioneBreve: GARIBALDI
+      denominazioneCorrente: GIUSEPPE GARIBALDI
+      denominazioneAlfabetica1: GARIBALDI/GIUSEPPE (VIA)
+      denominazioneAlfabetica2: ''
+      denominazioneCompatta: GARIBALDI
+      descrizioneTipoVia: Abitativo
+      idTipoVia: 1
+      dataDelibera: ''
+  sedime:
+    type: object
+    properties:
+      idSedime:
+        type: integer
+        description: id del sedime
+      descrizione:
+        type: string
+        description: descrizione del sedime
+      descrizioneBreve:
+        type: string
+        description: descrizione breve del sedime
+      preposizione:
+        type: string
+        description: preposizione del sedime
+  viaLight:
+    type: object
+    properties:
+      idVia:
+        type: integer
+        description: id della via
+      stato:
+        type: integer
+        description: stato della via
+      descStato:
+        type: string
+        description: descrizione dello stato
+      convenzionale:
+        type: integer
+        description: convenzionale via
+      sedime:
+        "$ref": "#/definitions/sedime"
+      denominazionePrincipale:
+        type: string
+        description: denominazione principale
+      denominazioneSecondaria:
+        type: string
+        description: denominazione secondaria
+      denominazioneBreve:
+        type: string
+        description: denominazione breve
+    example:
+      idVia: 24288
+      stato: 1
+      descStato: Attiva
+      convenzionale: false
+      sedime:
+        idSedime: 361
+        descrizione: VIA
+        descrizioneBreve: V.
+        preposizione: ''
+      denominazionePrincipale: GIUSEPPE GARIBALDI
+      denominazioneSecondaria: GARIBALDI GIUSEPPE
+      denominazioneBreve: GARIBALDI
+  civico:
+    type: object
+    properties:
+      idCivico:
+        type: integer
+        description: id del civico
+      idVia:
+        type: integer
+        description: id della via
+      numeroRadice:
+        type: integer
+        description: numero radice
+      iBisTer:
+        type: integer
+        description: iBisTer
+      interno1:
+        type: string
+        description: interno1
+      iBisTer1:
+        type: integer
+        description: iBisTer1
+      interno2:
+        type: string
+        description: interno2
+      iBisTer2:
+        type: integer
+        description: iBisTer2
+      scala:
+        type: string
+        description: scala
+      numerazioneSecondaria:
+        type: string
+        description: numerazione secondaria
+      fronteVia:
+        type: integer
+        description: fronte via
+      codiceAbitativo:
+        type: integer
+        description: codice abitativo
+      abitativo:
+        type: string
+        description: abitativo
+      cap:
+        type: integer
+        description: cap
+      stato:
+        type: integer
+        description: stato del civico
+      campoNomadi:
+        type: integer
+        description: campoNomadi
+      descrizioneStato:
+        type: string
+        description: descrizione dello stato
+      carraio:
+        type: boolean
+        description: carraio
+      uiuCompletate:
+        type: boolean
+        description: uiu completate (il civico risulta con uiu propagate- indica la
+          presenza di almeno una uiu attiva)
+      tipologia:
+        type: string
+        description: codice tipologia
+      descrizioneTipologia:
+        type: string
+        description: descrizione tipologia
+      bister:
+        type: string
+        description: decodifica di iBisTer
+      bisInterno1:
+        type: string
+        description: decodifica di iBisInterno1
+      bisInterno2:
+        type: string
+        description: decodifica di iBisInterno2
+  datocatastale:
+    type: object
+    properties:
+      idDatoCatastale:
+        type: integer
+        description: Id dato catastale
+      subalterno:
+        type: string
+        description: Numero subalterno del catasto (es. 0003)
+      numero:
+        type: string
+        description: Numero catasto (es. 00150)
+      foglio:
+        type: string
+        description: Numero foglio catasto (es. 1418)
+      sezione:
+        type: string
+        description: Numero Sezione catasto (es. 000)
+      codiceProvenienzaInfo:
+        type: string
+        description: "- RT\n- ZZ \n- 00 \n- 01 \n- 02 \n- 03 \n- 04 \n- 05 \n- 06\n-
+          07\n"
+      descrizioneProvenienzaInfo:
+        type: string
+        description: "- RT = Ribaltamento TARSU\n- ZZ = Caricamento iniziale \n- 00
+          = valori nulli \n- 01 = Amministratore\n- 02 = Comunicato del proprietario
+          \n- 03 = Ufficio Tributi\n- 04 = esiste in mnf\n- 05 = Ufficio Toponomastica\n-
+          06 = categorià già variata da tarsu\n- 07 = Diana's Files\n"
+      codCessazioneValidita:
+        type: string
+        description: "- RT \n- ZZ \n- 00 \n- 01 \n- 02 \n- 04 \n- 05 \n- 06 \n- 07
+          \n- 08 \n- 09 \n- 10 \n- 11 \n- 12 \n"
+      motivoCessazioneValidita:
+        type: string
+        description: "- RT = Ribaltamento TARSU\n- ZZ = Caricamento iniziale\n- 00
+          = N.A.\n- 01 = Errore materiale\n- 02 = Accorpamento con altra U.I.U.\n-
+          04 = cessazione tecnica per gest si rilevato\n- 05 = Soppressione numero
+          civico principale (S3)\n- 06 = Soppressione per cambio denominazione via
+          numero civico principale (S4)\n- 07 = Soppressione numero civico secondario
+          (S6)\n- 08 = Soppressione per cambio denominazione via numero civico secondario
+          (S7)\n- 09 = Sostituzione U.I.U.\n- 10 = cessazione tecnica indirizzo bloccato\n-
+          11 = PORZIONE DI UIU UNITA DI FATTO\n- 12 = dissociazione identificativo
+          catastale soppresso in catasto \n"
+      cessazioneValidita:
+        type: string
+        format: date
+        description: Data cessazione validita (in formato YYYY-MM-DD)
+      inizioValidita:
+        type: string
+        format: date
+        description: Data inizio validita (in formato YYYY-MM-DD)
+      validita:
+        type: string
+        description: Flag di validazione dato catastale = S per Validato - N per Non
+          validato
+      statoCatastale:
+        type: integer
+        description: "- 0 = per Soppressa \n- 1 = per Attiva \n- 3 = per Record non
+          trovati su scarico MNF\n"
+      descStatoCatastale:
+        type: string
+        description: Soppresso - Attivo - Record non trovati su scarico MNF
+  civicoZone:
+    type: object
+    properties:
+      idCivico:
+        type: integer
+        description: id del civico
+      idVia:
+        type: integer
+        description: id della via
+      numeroRadice:
+        type: integer
+        description: numero radice
+      iBisTer:
+        type: integer
+        description: iBisTer
+      interno1:
+        type: string
+        description: interno1
+      iBisTer1:
+        type: integer
+        description: iBisTer1
+      interno2:
+        type: string
+        description: interno2
+      iBisTer2:
+        type: integer
+        description: iBisTer2
+      scala:
+        type: string
+        description: scala
+      numerazioneSecondaria:
+        type: string
+        description: numerazione secondaria
+      fronteVia:
+        type: integer
+        description: fronte via
+      codiceAbitativo:
+        type: integer
+        description: codice abitativo
+      abitativo:
+        type: string
+        description: abitativo
+      cap:
+        type: integer
+        description: cap
+      stato:
+        type: integer
+        description: stato del civico
+      campoNomadi:
+        type: integer
+        description: campoNomadi
+      descrizioneStato:
+        type: string
+        description: descrizione dello stato
+      carraio:
+        type: boolean
+        description: carraio
+      uiuCompletate:
+        type: boolean
+        description: uiu completate (il civico risulta con uiu propagate- indica la
+          presenza di almeno una uiu attiva)
+      tipologia:
+        type: string
+        description: codice tipologia
+      descrizioneTipologia:
+        type: string
+        description: descrizione tipologia
+      bister:
+        type: string
+        description: decodifica di iBisTer
+      bisInterno1:
+        type: string
+        description: decodifica di iBisInterno1
+      bisInterno2:
+        type: string
+        description: decodifica di iBisInterno2
+      sezioneCensimento:
+        type: integer
+        description: identificativo numerico della Sezione di Censimento Istat
+      idCircoscrizione:
+        type: integer
+        description: identificativo della Circoscrizione
+      descCircoscrizione:
+        type: string
+        description: denominazione della Circoscrizione
+      idCimitero:
+        type: integer
+        description: identificativo dell'ambito cimiteriale
+      descCimitero:
+        type: string
+        description: denominazione dell'ambito cimiteriale
+      idLocalitaIstat:
+        type: integer
+        description: codice della Localita' Istat
+      descLocalitaIstat:
+        type: string
+        description: denominazione della Localita' Istat
+      idDistretto:
+        type: integer
+        description: identificativo del Distretto Assistenziale
+      descDistrAssistenza:
+        type: string
+        description: denominazione Distretto Assistenza (ex Circoscrizione+Lettera)
+      idParrocchia:
+        type: integer
+        description: identificativo Parrocchia
+      descParrocchia:
+        type: string
+        description: denominazione Parrocchia
+      idExQuartiere:
+        type: integer
+        description: identificativo Ex Quartiere
+      descQuartiere:
+        type: string
+        description: denominazione Ex Quartiere
+      idAsl:
+        type: integer
+        description: identificativo Asl
+      descAsl:
+        type: string
+        description: denominazione Asl
+      idZonaStatistica:
+        type: integer
+        description: identificativo numerico Zona Statistica
+      descZonaStatistica:
+        type: string
+        description: denominazione Zona Statistica ('01', '09bis', ecc.)
+      idRaggruppamento:
+        type: integer
+        description: identificativo Raggruppamento Statistico
+      descRaggrStatistico:
+        type: string
+        description: denominazione Raggruppamento Statistico
+  civicoLight:
+    type: object
+    properties:
+      idCivico:
+        type: integer
+        description: id del civico
+      idVia:
+        type: integer
+        description: id della via
+      numeroRadice:
+        type: integer
+        description: numero radice
+      indirizzo:
+        type: string
+        description: indirizzo
+      cap:
+        type: integer
+        description: cap
+      stato:
+        type: integer
+        description: stato del civico
+      descrizioneStato:
+        type: string
+        description: descrizione dello stato
+      carraio:
+        type: boolean
+        description: carraio
+      tipologia:
+        type: string
+        description: codice tipologia civico
+      descrizioneTipologia:
+        type: string
+        description: descrizione tipologia civico
+      uiuCompletate:
+        type: boolean
+        description: uiu completate (il civico risulta con uiu propagate- indica la
+          presenza di almeno una uiu attiva)
+      esponente:
+        type: string
+        description: esponente (composto dalla decodifica degli attributi riferiti
+          a bister, interni, scale e secondari)
+  tipoUiu:
+    type: object
+    required:
+    - codiceTipoUiu
+    properties:
+      codiceTipoUiu:
+        type: string
+        description: codice tipo uiu
+      descrizione:
+        type: string
+        description: descrizione
+      dataDecorrenzaTipoUiu:
+        type: string
+        format: date
+        description: data decorrenza tipo uiu  (in formato YYYY-MM-DD)
+  uiuLight:
+    type: object
+    required:
+    - nui
+    - piano
+    properties:
+      idUiu:
+        type: integer
+        description: id della uiu
+      nui:
+        type: integer
+        description: nui
+      piano:
+        type: string
+        description: piano
+      descrizionePiano:
+        type: string
+        description: descrizione del piano
+      stato:
+        type: integer
+        description: stato
+      descrizioneStato:
+        type: string
+        description: descrizione stato
+  uiu:
+    allOf:
+    - "$ref": "#/definitions/uiuLight"
+    - type: object
+      properties:
+        tipiUiu:
+          type: array
+          items:
+            "$ref": "#/definitions/tipoUiu"
+        codCausaNascita:
+          type: string
+          description: codice causa nascita
+        descrizioneCausaNascita:
+          type: string
+          description: descrizione causa nascita
+        codCessazioneValidita:
+          type: string
+          description: cod cessazione validita
+        motivoCessazioneValidita:
+          type: string
+          description: motivo cessazione validita
+        codiceCessazioneProvenienzaInfo:
+          type: string
+          description: codice cessazione provenienza info
+        descrizioneCessazioneProvenienzaInfo:
+          type: string
+          description: descrizione cessazione provenienza info
+        codiceNascitaProvenienzaInfo:
+          type: string
+          description: codice nascita provenienza info
+        descrizioneNascitaProvenienzaInfo:
+          type: string
+          description: descrizione nascita provenienza info
+        dataDecorrenza:
+          type: string
+          format: date
+          description: data decorrenza in formato ISO-8601, di default impostato alla
+            data odierna  (in formato YYYY-MM-DD)
+        dataCessazione:
+          type: string
+          format: date
+          description: data cessazione in formato ISO-8601, di default impostato alla
+            data odierna (in formato YYYY-MM-DD)
+        codiceProvenienzaInfo:
+          type: string
+          description: codice provenienza info
+        descrizioneProvenienzaInfo:
+          type: string
+          description: descrizione provenienza info
+        atc:
+          type: integer
+          description: atc
+  piano:
+    type: object
+    properties:
+      codicePiano:
+        type: string
+        description: codice piano
+      descrizione:
+        type: string
+        description: descrizione
+  storicoCivico:
+    type: object
+    properties:
+      citNew:
+        type: integer
+        description: id del nuovo Civico
+      citOld:
+        type: integer
+        description: id del civico che viene sostituito
+      note:
+        type: string
+        description: note
+      dataModifica:
+        type: string
+        format: date
+        description: data modifica in formato ISO-8601 (in formato YYYY-MM-DD)
+  cercaIndirizzoRidottoResponse:
+    type: object
+    properties:
+      indirizzoRidotto:
+        type: string
+        example: L-PO ANTONELLI 117 int. 4 int. E
+  cercaIdUiuIdCivicoIndirizzoPianoNuiByDatiCatastaliResponse:
+    type: object
+    properties:
+      idUiu:
+        type: integer
+        description: identificativo UIU
+      idCivico:
+        type: integer
+        description: identificativo Civico
+      indirizzoCompleto:
+        type: string
+        example: 'LUNGO PO ANTONELLI 117 int. 4 int. E PIANO QUINTO NUI: 23'
+  inserisciUiuMultipleRequest:
+    type: object
+    required:
+    - nui
+    - piano
+    - tipiUiu
+    properties:
+      nui:
+        type: integer
+        description: nui
+      piano:
+        type: string
+        description: piano
+      codCausaNascita:
+        type: string
+        description: codice causa nascita
+        default: '00'
+      codiceProvenienzaInfo:
+        type: string
+        description: codice provenienza info
+        default: '00'
+      codiceNascitaProvenienzaInfo:
+        type: string
+        description: codice nascita provenienza info
+        default: '00'
+      dataDecorrenza:
+        type: string
+        format: date-time
+        description: in formato ISO-8601, di default impostato alla data odierna (in
+          formato YYYY-MM-DD)
+      tipiUiu:
+        type: array
+        description: elenco dei tipi UIU associati
+        items:
+          type: object
+          properties:
+            codiceTipoUiu:
+              type: string
+              description: codice tipo uiu
+          required:
+          - codiceTipoUiu
+  inserisciUiuMultipleResponse:
+    type: object
+    properties:
+      uiuInserite:
+        type: array
+        items:
+          type: integer
+      uiuNonElaborate:
+        type: array
+        items:
+          type: object
+          properties:
+            nui:
+              type: integer
+              description: nui
+            piano:
+              type: string
+              description: piano
+            esistente:
+              type: boolean
+              description: attivo nel caso in cui la UIU era già esistente ed attiva
+            errore:
+              "$ref": "#/definitions/baseErrore"
+responses:
+  BadRequest:
+    description: La richiesta fatta dal client e' errata
+  BadRequestMint:
+    description: La richiesta fatta dal client e' errata
+    schema:
+      type: array
+      items:
+        type: object
+        allOf:
+        - "$ref": "#/definitions/errore"
+        - type: object
+          properties:
+            status:
+              type: integer
+  UnauthorizedError:
+    description: Access Token mancante o non valido
+  UnauthorizedErrorMint:
+    description: Access Token mancante o non valido
+    schema:
+      type: array
+      items:
+        type: object
+        allOf:
+        - "$ref": "#/definitions/errore"
+        - type: object
+          properties:
+            status:
+              type: integer
+  NotFound:
+    description: La risorsa specificata non e' stata trovata
+  NotFoundMint:
+    description: La risorsa specificata non e' stata trovata
+    schema:
+      type: array
+      items:
+        type: object
+        allOf:
+        - "$ref": "#/definitions/errore"
+        - type: object
+          properties:
+            status:
+              type: integer
+  NotFoundOld:
+    description: La risorsa specificata non e' stata trovata
+  NotFoundOldMint:
+    description: La risorsa specificata non e' stata trovata
+    schema:
+      type: array
+      items:
+        type: object
+        allOf:
+        - "$ref": "#/definitions/errore"
+        - type: object
+          properties:
+            status:
+              type: integer
+  InternalServerError:
+    description: Si e' verificato un'errore interno del server.
+  InternalServerErrorMint:
+    description: Si e' verificato un'errore interno del server.
+    schema:
+      type: array
+      items:
+        type: object
+        allOf:
+        - "$ref": "#/definitions/errore"
+        - type: object
+          properties:
+            status:
+              type: integer
+  ExternalServerErrorMint:
+    description: Si e' verificato un'errore accedendo ad un server esterno.
+    schema:
+      type: array
+      items:
+        type: object
+        allOf:
+        - "$ref": "#/definitions/errore"
+        - type: object
+          properties:
+            status:
+              type: integer

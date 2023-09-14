@@ -1,0 +1,77 @@
+<alert id="alert-processi-dettaglio_workflow"></alert>
+<div style="margin: 0 auto;">
+    <div style="margin: 0 auto;">
+        <h3 style="text-align:center;">
+            {{processoSelezionato.nomeProcesso}}&nbsp;({{processoSelezionato.codiceProcesso}})
+            &nbsp;<span *ngIf="isAdmin">[{{processoSelezionato.idProcesso}}]</span>
+            <!--
+            <div style="position: relative;  float: right;">
+                <a *ngIf="isModificabile" [routerLink]="[]" ngbTooltip="Modifica Modulo" (click)="modificaModulo($event)">
+                    <fa-icon style="margin-left: 15px" [icon]="faEdit"></fa-icon>
+                </a>
+                <a *ngIf="isAdmin" [routerLink]="[]" ngbTooltip="Duplica" (click)="duplicaModulo($event)">
+                    <fa-icon style="margin-left: 15px" [icon]="faClone"></fa-icon>
+                </a>
+                <a *ngIf="modulo.stato?.codice==='INIT'" [routerLink]="[]" ngbTooltip="Elimina Modulo" (click)="eliminaModulo($event)">
+                    <fa-icon style="margin-left: 20px; color: red" [icon]="faTrashAlt"></fa-icon>
+                </a>
+            </div>
+            -->
+        </h3>
+        <div>&nbsp;</div>
+    </div>
+    <div>
+        <div class="row">
+            <div class=".col-12 col-md-3 align-self-start">ID</div>
+            <div class=".col-12 col-md-9">&nbsp;{{idWorkflowSelezionato}}</div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-3 align-self-start">StatoPartenza</div>
+            <div class=".col-12 col-md-9">&nbsp;{{workflow?.statoPartenza?.nome}} ({{workflow?.statoPartenza?.codice}}) [{{workflow?.idStatoWfPartenza}}]</div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-3 align-self-start">StatoArrivo</div>
+            <div class=".col-12 col-md-9">&nbsp;{{workflow?.statoArrivo?.nome}} ({{workflow?.statoArrivo?.codice}}) [{{workflow?.idStatoWfArrivo}}]</div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-3 align-self-start">Azione</div>
+            <div class=".col-12 col-md-9">&nbsp;{{workflow?.nomeAzione}} ({{workflow?.codiceAzione}}) [{{workflow?.idAzione}}]</div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-3 align-self-start">Destinatario</div>
+            <div class=".col-12 col-md-9">&nbsp;<span *ngIf="isAdmin">{{workflow?.destinatario}}</span></div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-3 align-self-start">idTipoUtenteDestinatario</div>
+            <div class=".col-12 col-md-9">&nbsp;{{workflow?.idTipoUtenteDestinatario}}</div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-3 align-self-start">DatiAzione</div>
+            <div class=".col-12 col-md-9">&nbsp;[{{workflow?.idDatiAzione}}]</div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-3 align-self-start">isAnnullabile</div>
+            <div class=".col-12 col-md-9">&nbsp;{{workflow?.isAnnullabile}}</div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-3 align-self-start">isArchiviabile</div>
+            <div class=".col-12 col-md-9">&nbsp;{{workflow?.isArchiviabile}}</div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-3 align-self-start">isAutomatico</div>
+            <div class=".col-12 col-md-9">&nbsp;{{workflow?.isAutomatico}}</div>
+        </div>
+        <div class="row">
+            <div class=".col-12 col-md-3 align-self-start">idCondizione</div>
+            <div class=".col-12 col-md-9">&nbsp;{{workflow?.idCondizione}}</div>
+        </div>
+    </div>
+    <!-- <pre>Debug Active navVertActive: {{ navVertActive }}</pre> -->
+    
+    <div>&nbsp;</div>
+    <div>
+        <button type="button" class="btn btn-primary" style="width: 70px;float:left" (click)="back()">
+            <fa-icon style='font-size: 22px' [icon]="faHome"></fa-icon>
+        </button>
+    </div>
+</div>

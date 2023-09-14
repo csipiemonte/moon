@@ -1,0 +1,73 @@
+<div *ngIf="!editMode">
+    <div *ngIf="isAdmin" style="position:absolute; top: 4.5rem; right: 8px; z-index: 1;">
+        <button type="button" class="btn btn-outline-primary" (click)="editMode=true;">Edit CRM</button>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col col-md-2"><span title="{{ titleUpd.get('PSIT_CRM') }}">Attivazione:</span></div>
+            <div class="col col-md-10">{{maCRM['valore']}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-2"><span title="{{ titleUpd.get('PSIT_CRM_SYSTEM') }}">Sitema:</span></div>
+            <div class="col col-md-10">{{maCRMsystem['valore']}}</div>
+        </div>
+        <br>
+        <div class="row" *ngIf="maCRMsystem['valore']=='NEXTCRM'">
+            <app-crm-conf-nextcrm [editModeNextCrm]="false"></app-crm-conf-nextcrm>
+        </div>
+        <div class="row" *ngIf="maCRMsystem['valore']=='R2U'">
+            <app-crm-conf-readytouse [editModeR2U]="false"></app-crm-conf-readytouse>
+        </div>
+        <div class="row" *ngIf="maCRMsystem['valore']=='OTRS'">
+            <app-crm-conf-otrs [editModeOtrs]="false"></app-crm-conf-otrs>
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+<div *ngIf="editMode">
+    <alert id="alert-moduli-attr-crm"></alert>
+    <form>
+        <div class="form-group">
+            <label for="attrCRMEdit">Attivazione:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Abilitazione all'invio verso CRM, in seguito all'invio di un istanza. [S|N]"></i></label>
+            <!-- <input type="text" [(ngModel)]="maCRMEdit['valore']" id="attrCRMEdit" name="attrCRMEdit" size="1" maxlength="1" class="form-control" #attrNextCRMEdit="ngModel" /> -->
+            <div>
+                <ui-switch [(ngModel)]="maCRMEditT" [ngModelOptions]="{standalone: true}">
+                </ui-switch>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="attrCRMsystemEdit">Sistema:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="{{ titleUpd.get('PSIT_CRM_SYSTEM') }}"></i></label>
+            <select class='form-control' id="attrCRMsystemEdit" name="attrCRMsystemEdit" [(ngModel)]="maCRMsystemEdit['valore']" >
+                    <option *ngFor="let cs of listCrmSystem" [selected]="cs === maCRMsystem['valore']" [value]="cs">
+                        {{ cs }}
+                    </option>
+            </select>
+        </div>
+        <div class="row" *ngIf="maCRMsystemEdit['valore']=='NEXTCRM'">
+            <app-crm-conf-nextcrm [editModeNextCrm]="true"></app-crm-conf-nextcrm>
+        </div>  
+        <div class="row" *ngIf="maCRMsystemEdit['valore']=='R2U'">
+            <app-crm-conf-readytouse [editModeR2U]="true"></app-crm-conf-readytouse>
+        </div>
+        <div class="row" *ngIf="maCRMsystemEdit['valore']=='OTRS'">
+            <app-crm-conf-otrs [editModeOtrs]="true"></app-crm-conf-otrs>
+        </div> 
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-light" (click)="editMode=false;" style="float:left">Annulla</button>
+            <button type="button" class="btn btn-success" (click)="salva()" style="float:right">Salva</button>
+        </div>
+    </form>
+</div>
+<div>&nbsp;</div>

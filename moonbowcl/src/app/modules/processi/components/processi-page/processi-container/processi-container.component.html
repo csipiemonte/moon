@@ -1,0 +1,39 @@
+<div [ngSwitch]="currentView" style="margin: 0 auto">
+    <alert id="alert-processi-container"></alert>
+    <div *ngSwitchCase="'elenco'">
+        <div class="row">
+            <div class="col-md-12">
+                <app-processi-tabella 
+                    (eventCreaProcesso)="creaProcesso()" 
+                    (eventDettaglio)="dettaglio($event)"
+                    (eventEliminaProcesso)="eliminaProcesso($event)">
+                </app-processi-tabella>
+            </div>
+        </div>
+    </div>
+
+    <div *ngSwitchCase="'dettaglio'">
+        <app-dettaglio-processo
+            [processoSelezionato]="processoSelezionato"
+            (backEvent)="setView($event)">
+        </app-dettaglio-processo>
+    </div>
+
+    <div *ngSwitchCase="'crea'">
+        <app-processi-crea 
+            (backEvent)="setView($event)">
+        </app-processi-crea>
+    </div>
+
+    <div *ngSwitchCase="'dettaglio-wf'">
+        <app-dettaglio-workflow 
+            [processoSelezionato]="processoSelezionato" 
+            [idWorkflowSelezionato]="idWorkflowSelezionato" 
+            (backEvent)="setView($event)">
+        </app-dettaglio-workflow>
+    </div>
+
+</div>
+
+<app-moon-spinner></app-moon-spinner>
+

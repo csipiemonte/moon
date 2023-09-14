@@ -1,0 +1,31 @@
+<table id="mytable" class="table table-sm  table-hover small">
+  <thead>
+    <th>azione</th>
+    <th>stato partenza</th>
+    <th>stato arrivo</th>
+    <!-- <th>autore</th> -->
+    <th>data avvio</th>
+    <!-- <th>data fine</th>-->
+    <th>contenuto</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let storico of storicoWorkflow">
+      <td>{{storico.nomeAzione}}</td>
+      <td>{{storico.nomeStatoWfPartenza}}</td>
+      <td>{{storico.nomeStatoWfArrivo}}</td>
+      <!-- <td>{{storico.attoreUpd}}</td> -->
+      <td>{{storico.dataInizio | date: 'dd/MM/yyyy HH:mm'}}</td>
+      <!-- <td>{{storico.dataFine | date: 'dd/MM/yyyy'}}</td> -->
+      <td>
+        <div *ngIf="storico.contieneDati" class="d-flex">
+          <button (click)="mostraDettaglioWorkflow(storico.idStoricoWorkflow)" [routerLink]="[]" ngbTooltip="Mostra informazioni" aria-label="Mostra informazioni" type="button" class="btn btn-icon btn-xxs" >
+            <svg class="icon icon-sm icon-primary"><use [attr.href]="'./assets/svg/sprite.svg#it-info-circle'"[attr.xlink:href]="'./assets/svg/sprite.svg#it-info-circle'"></use></svg>
+          </button>
+          <!-- <button *ngIf="storico.idFileRendering" aria-label="Scarica ricevuta" (click)="downloadRicevuta(storico)" [routerLink]="[]" ngbTooltip="Scarica ricevuta">
+          <svg class="icon icon-primary icon-sm"><use [attr.href]="'./assets/svg/sprite.svg#it-download'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-download'"></use></svg>
+          </button>-->
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

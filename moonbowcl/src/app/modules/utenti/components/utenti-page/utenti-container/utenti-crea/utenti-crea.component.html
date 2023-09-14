@@ -1,0 +1,80 @@
+<form class="userform" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="form-group col-md-9" style="margin: 0 auto;">
+
+        <h3 style="text-align:center;">Crea Utente</h3>
+        <alert id="alert-utenti-crea"></alert>
+        <div>&nbsp;</div>
+        <label for="identificativoUtente">Codice Fiscale</label>
+        <input #identificativoUtente='ngModel' [(ngModel)]="utente.identificativoUtente" name="identificativoUtente"
+            id="identificativoUtente" class="form-control" required minlength="5" maxlength="32">
+        <div *ngIf="identificativoUtente.dirty && identificativoUtente.touched && identificativoUtente.invalid">
+            <div class="alert-danger" *ngIf='identificativoUtente.errors.required'>
+                Il campo codice è obbligatorio
+            </div>
+            <div class="alert-danger" *ngIf='identificativoUtente.errors.minlength'>
+                Lunghezza minima deve essere {{identificativoUtente.errors.minlength.requiredLength}}
+            </div>
+        </div>
+
+        <label for="cognome">Cognome</label>
+        <input #cognome='ngModel' [(ngModel)]="utente.cognome" name="cognome" id="cognome" class="form-control" required
+            minlength="1" maxlength="50">
+        <div *ngIf="cognome.dirty && cognome.touched && cognome.invalid">
+            <div class="alert-danger" *ngIf='cognome.errors.required'>
+                Il campo codice è obbligatorio
+            </div>
+            <div class="alert-danger" *ngIf='cognome.errors.minlength'>
+                Lunghezza minima deve essere {{cognome.errors.minlength.requiredLength}}
+            </div>
+        </div>
+
+        <label for="nome">Nome</label>
+        <input #nome='ngModel' [(ngModel)]="utente.nome" name="nome" id="nome" class="form-control"
+            minlength="1" maxlength="50">
+        <div *ngIf="nome.dirty && nome.touched && nome.invalid">
+            <div class="alert-danger" *ngIf='nome.errors.minlength'>
+                Lunghezza minima deve essere {{nome.errors.minlength.requiredLength}}
+            </div>
+        </div>
+
+        <label for="email">Email</label>
+        <input #email='ngModel' [(ngModel)]="utente.email" name="email" id="email" class="form-control" required
+            minlength="5" maxlength="200">
+        <div *ngIf="email.dirty && email.touched && email.invalid">
+            <div class="alert-danger" *ngIf='email.errors.required'>
+                Il campo codice è obbligatorio
+            </div>
+            <div class="alert-danger" *ngIf='email.errors.minlength'>
+                Lunghezza minima deve essere {{email.errors.minlength.requiredLength}}
+            </div>
+        </div>
+
+        <label for="tipoUtente">Tipo Utente</label>
+        <select #tipoUtente='ngModel' name="tipoUtente" id="tipoUtente" class="form-control" required
+            [(ngModel)]="utente.tipoUtente.codice" [attr.disabled]="!isAdmin ? '' : null">
+            <option *ngFor="let t of tipiUtente" [value]="t.codice">{{ t.codice }} - {{ t.descrizione }}</option>
+        </select>
+        <!-- <div *ngIf="tipoUtente.dirty && tipoUtente.touched && tipoUtente.invalid">
+            <div class="alert-danger" *ngIf='tipoUtente.errors.required'>
+                Il campo Tipo Utente è obbligatorio
+            </div>
+        </div> -->
+
+    </div>
+
+    <div>&nbsp;</div>
+    <div class="form-group col-md-9" style="margin: 0 auto;">
+        <button type="button" class="btn btn-primary" style="width: 70px;float:left" (click)="back()">
+            <fa-icon style='font-size: 22px' [icon]="['fas', 'home']"></fa-icon>
+        </button>
+
+        <button href="#" type="submit" [disabled]="f.form.invalid" class="btn btn-primary"
+            style="width: 70px;float:right">
+            <fa-icon style='font-size: 22px' [icon]="['fas', 'save']"></fa-icon>
+        </button>
+    </div>
+
+</form>
+<br>
+
+<!-- <app-moon-spinner></app-moon-spinner> -->

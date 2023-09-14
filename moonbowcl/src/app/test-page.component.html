@@ -1,0 +1,23 @@
+<h3>Test Page</h3>
+<p>questa &egrave; una pagina di test aggiuntiva rispetto al tutorial "tour of heroes", che 
+ha lo scopo di: 
+</p>
+<ul>
+<li>fornire un punto di test rapido per il collegamento C/S (pulsante "ping"),</li>
+<li>permettere la visualizzazione dei parametri d'ambiente (pulsante "show environment params")</li>
+</ul>
+<p>Ping response: {{pingResponse}}</p>
+<div *ngIf="currentUser">
+    <p>current user:</p>
+    <ul>
+        <li>nome: {{currentUser.nome}}</li>
+        <li>cognome: {{currentUser.cognome}}</li>
+        <li>C.F: {{currentUser.codFisc}}</li>
+        <li>idIride: {{currentUser.idIride}}
+    </ul>
+</div>
+<p *ngIf="envParams">Env. parameters: {{envParams}}</p>
+<button (click)="ping()">Ping!</button>
+<button (click)="getCurrentUser()">Get current user</button>
+<button (click)="resetPage()">reset page</button>
+<button (click)="showEnvParams()">show environment params</button>

@@ -1,0 +1,857 @@
+openapi: 3.0.0
+tags:
+  - name: modulistica
+    description: gestione dei servizi di Front Office per fruitori esterni
+info:
+  description: API del sistema MOON Front Office che consentono di consultare le istanze ed i moduli resi
+    disponibili per un utente su un portale.
+  version: v1
+  title: moonfo-coto
+servers:
+- url: http://tst-api-piemonte.ecosis.csi.it/modulistica/moonfo-coto/v1
+  description: Staging server
+paths:
+  /moon-identita:
+    post:
+      operationId: moonIdentita
+      summary: servizio di recupero del MOOn-Identita Token
+      description: Restituisce il JWT MOOn-Identita che identifica l'utente su un portale. Il JWT e' necessario per tutti servizi successivi API di Front Office descritto in questa API come un login al sistema. Viene usato da MOOn come sessione lato client MOOn Front Office. Il MOOn-Identita token scade come il Front Office MOOn (attualmente la durata è di 12 ore ma potrebbe essere soggetto a variazione).
+      tags:
+        - Moon-Identita-JWT
+        - login
+      parameters:
+        - name: client-profile
+          in: header
+          required: true
+          description: Token in formato jwt utilizzato per identificare il fruitore applicativo. Viene fornito dal gruppo MOOn in fase di analisi di integrazione application to application. Il MOOn-Fruitore token (client-profile) non ha scadenza.
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di vita della richiesta
+          schema:
+            type: string
+        - name: logon_mode
+          in: query
+          required: true
+          description: String di codifica “aperta” della modalità fruitore di autenticazione dell'utente (es.SHIBBOLETH, USER_PWD, SOCIAL, …)
+          schema:
+            type: string
+        - name: provider
+          in: query
+          required: false
+          description: Codifica del provider (es. IPA, INFOCERT, ACTALIS_EU, SPID, GOOGLE, …) Nel caso di login via Shibboleth corrisponde all'header Shib-Identita-Provider in caso di so-cial il suo nome.
+          schema:
+            type: string
+        - name: nome_portale
+          in: query
+          required: true
+          description: Nome del Portale MOOn (es. torinofacile-moon.csi.it)
+          schema:
+            type: string
+        - name: identificativo_utente
+          in: query
+          required: false
+          description: Identificativo utente (codice Fiscale nel caso di login via Shibboleth). Viene preso da “id_iride” se presente.
+          schema:
+            type: string
+        - name: codice_fiscale
+          in: query
+          required: false
+          description: Codice Fiscale utente. Viene preso da "id_iride" se presente.
+          schema:
+            type: string
+        - name: cognome
+          in: query
+          required: false
+          description: Cognome dell'utente dichiarante. Viene preso da "id_iride" se presente.
+          schema:
+            type: string
+        - name: nome
+          in: query
+          required: false
+          description: Nome dell'utente dichiarante. Viene preso da "id_iride" se presente.
+          schema:
+            type: string
+        - name: email
+          in: query
+          required: false
+          description: Email utente. Nel caso di login via Shibboleth puo essere inizializzato con l'header Shib-Mail
+          schema:
+            type: string
+        - name: id_iride
+          in: query
+          required: false
+          description: Identita IRIDE (es. AAAAAA00B77B000F/CSI+PIEMONTE/DEMO+20/ACTALIS_EU/20220614150800/16/0+uKKGHUs7fNzL2jkz+xNw==)
+          schema:
+            type: string
+        - name: shib-Identita-JWT
+          in: query
+          required: false
+          description: Il token SPID Nel caso di login via Shibboleth puo essere inizializzato con l’header Shib-Identita-JWT
+          schema:
+            type: string
+        - name: codice_ente
+          in: query
+          required: false
+          description: Codice Ente MOOn utile solo nel caso di portale multi ente (es. 001272, 001)
+          schema:
+            type: string
+        - name: codice_ambito
+          in: query
+          required: false
+          description: Codice Ambito MOOn utile solo nel caso di volontà di restrizione all'operatività offerta all'utente (es. TRIBUTI)
+          schema:
+            type: string
+      responses:
+        200:
+          description: Oggetto response moon-identita
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoonIdentitaResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /istanze:
+    get:
+      operationId: istanze
+      summary: servizio di recupero l'elenco delle istanze di un utente su un portale (via un Identita-MOOn) 
+      description: Restituisce un elenco di oggetto istanze raggruppati in 2 sezioni 1-"In lavorazione", 2-"Inviate"
+      tags:
+        - istanze
+      parameters:
+        - name: Moon-Identita-JWT
+          in: header
+          required: true
+          description: Token in formato jwt permettendo di identificare l'utente e portale di accesso
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - name: id_tab_fo
+          in: query
+          required: true
+          description: Integer identificatifo del ragruppamento delle istanze per stato da estrarre (es. 1, 2) 1-"In lavorazione", 2-"Inviate" 
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Istanza'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /istanze-paginate:
+    get:
+      operationId: istanzePaginate
+      summary: servizio di recupero dei codici istanza
+      description: Restituisce un elenco di codici con paginazione delle istanze inoltrate
+        di uno specifico modulo e in uno specifico stato
+      tags:
+        - istanze
+      parameters:
+        - name: Moon-Identita-JWT
+          in: header
+          required: true
+          description: Token in formato jwt permettendo di identificare l'utente e portale di accesso
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - name: id_tab_fo
+          in: query
+          required: true
+          description: Integer identificatifo del ragruppamento delle istanze per stato da estrarre (es. 1, 2) 1-"In lavorazione", 2-"Inviate" 
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: true
+          description: Limit per paginazione
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          required: true
+          description: Offset per paginazione (multiplo del limit es. per limit=20, offset
+            deve essere valorizzato con 0,20,40,60,...)
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IstanzePaginate'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /istanze/{codice-istanza}:
+    get:
+      operationId: istanza
+      summary: servizio di ricerca di una istanza per codice istanza
+      description: Restituisce il dettaglio di una istanza
+      tags:
+        - istanze
+      parameters:
+        - name: Moon-Identita-JWT
+          in: header
+          required: true
+          description: Token in formato jwt permettendo di identificare l'utente e portale di accesso
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - in: path
+          name: codice-istanza
+          required: true
+          description: Codice istanza
+          schema:
+            type: string
+      responses:
+        200:
+          description: Oggetto istanza
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Istanza'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          $ref: '#/components/responses/NotFound'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      operationId: deleteIstanza
+      summary: servizio di cancellazione logica di una istanza per codice istanza
+      description: Restituisce il dettaglio dell'istanza eliminata
+      tags:
+        - istanze
+      parameters:
+        - name: Moon-Identita-JWT
+          in: header
+          required: true
+          description: Token in formato jwt permettendo di identificare l'utente e portale di accesso
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - in: path
+          name: codice-istanza
+          required: true
+          description: Codice istanza
+          schema:
+            type: string
+      responses:
+        200:
+          description: Oggetto istanza
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Istanza'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          $ref: '#/components/responses/NotFound'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError' 
+  /istanze/{codice-istanza}/duplica:
+    get:
+      operationId: duplicaIstanza
+      summary: servizio di copia di una istanza per codice istanza
+      description: Restituisce il dettaglio dell'istanza duplicata
+      tags:
+        - istanze
+      parameters:
+        - name: Moon-Identita-JWT
+          in: header
+          required: true
+          description: Token in formato jwt permettendo di identificare l'utente e portale di accesso
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - in: path
+          name: codice-istanza
+          required: true
+          description: Codice istanza
+          schema:
+            type: string
+        - name: duplica_allegati
+          in: query
+          required: false
+          description: Filtro per la discriminazione della copia degli allegati dell'istanza ( se assume il valore 'true' copia gli allegati, se assume il valore 'false' non copia gli allegati, default 'true' )
+          schema:
+            type: string            
+      responses:
+        200:
+          description: Oggetto istanza
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Istanza'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          $ref: '#/components/responses/NotFound'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'           
+  /istanze/{codice-istanza}/pdf:
+    get:
+      summary: servizio di recupero del documento PDF della singola istanza
+      description: Restituisce il documento PDF di una specifica istanza
+      operationId: istanzaPDF
+      tags:
+        - istanze
+      parameters:
+        - name: Moon-Identita-JWT
+          in: header
+          required: true
+          description: Token in formato jwt permettendo di identificare l'utente e portale di accesso
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - name: codice-istanza
+          in: path
+          required: true
+          description: Codice istanza
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          $ref: '#/components/responses/NotFound'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /moduli:
+    get:
+      operationId: moduli
+      summary: servizio di recupero l'elenco degli moduli accessibile da un utente su un portale (via un Identita-MOOn) 
+      description: Restituisce un elenco di oggetto modulo
+      tags:
+        - moduli
+      parameters:
+        - name: Moon-Identita-JWT
+          in: header
+          required: true
+          description: Token in formato jwt permettendo di identificare l'utente e portale di accesso
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - name: codice_modulo
+          in: query
+          required: false
+          description: Codice identificativo di un Modulo 
+          schema:
+            type: string
+        - name: versione_modulo
+          in: query
+          required: false
+          description: Versione del Modulo (es. 1.0.0)
+          schema:
+            type: string
+        - name: oggetto_modulo
+          in: query
+          required: false
+          description: Oggetto del Modulo (Ricerca like)
+          schema:
+            type: string
+        - name: descrizione_modulo
+          in: query
+          required: false
+          description: Descrizione del Modulo (Ricerca like)
+          schema:
+            type: string
+        - name: stato
+          in: query
+          required: false
+          description: Stato del Modulo
+          schema:
+            type: string
+        - name: codice_ambito
+          in: query
+          required: false
+          description: Codice Ambito
+          schema:
+            type: string
+        - name: con_presenza_istanze
+          in: query
+          required: false
+          description: Identificativo Utente (Codice Fiscale) proprietario di istanze di moduli. Verrano estratti i moduli dove sono presenti istanze per l'utente preciso.
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          description: Valorizzazione particolare dell'oggetto modulo di ritorno.
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Modulo'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /moduli/{codice-modulo}/v/{versione-modulo}:
+    get:
+      operationId: modulo
+      summary: servizio di recupero di un modulo
+      description: Restituisce il dettaglio di un modulo
+      tags:
+        - moduli
+      parameters:
+        - name: Moon-Identita-JWT
+          in: header
+          required: true
+          description: Token in formato jwt permettendo di identificare l'utente e portale di accesso
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - name: codice-modulo
+          in: path
+          required: true
+          description: Codice identificativo di un Modulo 
+          example: MODULO_TEST
+          schema:
+            type: string
+        - name: versione-modulo
+          in: path
+          required: true
+          description: Versione del Modulo 
+          example: 1.0.0
+          schema:
+            type: string            
+      responses:
+        200:
+          description: Oggetto istanza
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Modulo'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /moduli/{codice-modulo}/versioni:
+    get:
+      operationId: cronologiaStati
+      summary: servizio di recupero della cronologia degli stati di un modulo
+      description: Restituisce la cronologia degli stati di un modulo
+      tags:
+        - moduli
+      parameters:
+        - name: Moon-Identita-JWT
+          in: header
+          required: true
+          description: Token in formato jwt permettendo di identificare l'utente e portale di accesso
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - name: codice-modulo
+          in: path
+          required: true
+          description: Codice identificativo di un Modulo 
+          schema:
+            type: string
+        - name: filtro_stato
+          in: query
+          required: false
+          description: Filtro per la discriminazione degli stati da restituire in output ( se assume il valore 'ALL' restituisce tutti gli stati per tutte le versioni, se assume il valore 'CURRENT' restituisce  gli stati attuali, se assume il valore 'LAST' restituisce gli ultimi stati inseriti che potrebbero anche avere una data di inizio nel futuro, default )
+          schema:
+            type: string             
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ModuloVersioneStato'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'          
+components:
+  responses:
+    BadRequest:
+      description: La richiesta effettuata dal client è errata
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MoonErrore'
+    UnauthorizedError:
+      description: Access token mancante o non valido
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MoonErrore'
+    NotFound:
+      description: La risorsa specificata non è stata trovata
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MoonErrore'
+    UnprocessableEntityError:
+      description: Parametro mancante o non valido
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MoonErrore'
+    InternalServerError:
+      description: Si è verificato un'errore interno del server
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MoonErrore'
+  schemas:
+    MoonErrore:
+      title: Errore
+      description: Dati di dettaglio dell'errore
+      type: object
+      properties:
+        code:
+          type: string
+          description: Codice MOOn dell'errore
+        msg:
+          type: string
+          description: Messaggio di dettaglio dell'errore
+        title:
+          type: string
+          description: Titolo dell'errore'
+    MoonIdentitaResponse:
+      title: MOOn Identita
+      description: Dati di dettaglio della response di una login su MOOn Front Office di un utente su un portale
+      type: object
+      properties:
+        nome:
+          type: string
+          description: Codice univoco dell'istanza
+        cognome:
+          type: string
+          description: Codice univoco dell'istanza
+        identificativoUtente:
+          type: string
+          description: Codice univoco dell'istanza
+        codFiscDichIstanza:
+          type: string
+          description: Codice fiscale del dichiarante
+        nomeDich:
+          type: string
+          description: Nome SPID del dichiarante (da considerare solo quando attoreIns
+            == codiceFiscaleDichiarante ; non nel caso di conto terzi)
+        cognomeDich:
+          type: string
+          description: Cognome SPID del dichiarante (da considerare solo quando attoreIns
+            == codiceFiscaleDichiarante ; non nel caso di conto terzi)
+        ente:
+          $ref: '#/components/schemas/Ente'
+        idIride:
+          type: string
+          description: Codice univoco dell'istanza
+        idMoonToken:
+          type: string
+          description: string del JWT del MOOn-Identita Token. Questo token e' necessario per accedere a qualsiasi servizi REST di business di Front Office e viene usato da MOOn come sessione lato client. MOOn Front Office. MOOn non gestisce sessione lato server.
+    Ente:
+      title: Ente
+      description: Dati dell'ente
+      type: object
+      properties:
+        codiceEnte:
+          type: string
+          description: Codice ente
+          example: 001272
+        nomeEnte:
+          type: string
+          description: Nome ente
+          example: COMUNE DI TORINO
+        descrizioneEnte:
+          type: string
+          description: Descrizione estesa dell'ente
+          example: COMUNE DI TORINO
+    Istanza:
+      title: Istanza
+      description: Dati di dettaglio dell'istanza
+      type: object
+      properties:
+        codiceIstanza:
+          type: string
+          description: Codice univoco dell'istanza
+        identificativoUtente:
+          type: string
+          description: identificativo utente del proprietario dell'istanza
+        codiceFiscaleDichiarante:
+          type: string
+          description: Codice fiscale del dichiarante
+        cognomeDichiarante:
+          type: string
+          description: Cognome del dichiarante
+        nomeDichiarante:
+          type: string
+          description: Nome del dichiarante
+        stato:
+          $ref: '#/components/schemas/StatoIstanza'
+        created:
+          type: string
+          format: date-time
+          description: Data di creazione/invio dell'istanza (modifica da parte del dichiarante)
+          example: 2022-01-18T14:45:59.153Z
+        dataProtocollo:
+          type: string
+          format: date-time
+          description: Data di protocollo dell'istanza
+          example: 2022-01-18T14:45:59.153Z
+        numeroProtocollo:
+          type: string
+          description: Numero di protocollo dell'istanza
+        jsonString:
+          type: string
+          description: Stringa contenente il JSON dei dati compilati (valorizzata solo nel caso di accesso su una singola istanza)
+        modulo:
+          $ref: '#/components/schemas/Modulo'
+    IstanzePaginate:
+      title: Istanze con paginazione
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ente'
+        page:
+          type: integer
+          description: Numero della pagina corrente ( 0 based ) 
+        pageSize:
+          type: integer
+          description: Dimensione massima della pagina ( limit della richiesta )
+        totalElements:
+          type: integer
+          description: Numero totale di istanze secondo i filtri impostati eccetto quelli
+            di paginazione
+        totalPages:
+          type: integer
+          description: Numero totale delle pagine
+    StatoIstanza:
+      title: Stato Modulo
+      description: Dati dello stato istanza
+      type: object
+      properties:
+        codice:
+          type: string
+          description: Codice dello stato istanza
+          example: COMPLETATA
+        nome:
+          type: string
+          description: Nome dello stato istanza
+          example: DA INVIARE
+        descrizione:
+          type: string
+          description: Descrizione estesa dello stato istanza
+          example: istanza completata ma non inviata
+    Modulo:
+      title: Modulo
+      description: Dati del modulo
+      type: object
+      properties:
+        codiceModulo:
+          type: string
+          description: Codice modulo
+          example: CONTATTI
+        versioneModulo:
+          type: string
+          description: Versione modulo
+          example: 1.0.0
+        oggettoModulo:
+          type: string
+          description: Versione modulo
+          example: 1.0.0
+        descrizioneModulo:
+          type: string
+          description: Versione modulo
+          example: 1.0.0
+        stato:
+          $ref: '#/components/schemas/StatoModulo'
+        categoria:
+          $ref: '#/components/schemas/CategoriaModulo'
+        flagEliminata:
+          type: boolean
+          description: Flag di eliminazione logica dell'istanza
+        importanza:
+          type: integer
+          description: Numero di categorizzazione di importanza (es. 0/1)
+          example: 1
+    StatoModulo:
+      title: Stato Modulo
+      description: Dati dello stato modulo
+      type: object
+      properties:
+        codice:
+          type: string
+          description: Codice modulo
+          example: PUB
+        descrizione:
+          type: string
+          description: Versione modulo
+          example: PUBBLICATO
+        dataInizioValidita:
+          type: string
+          format: date-time
+          description: Data di inizio validità dello stato
+          example: 2022-05-26 14:47:16
+    ModuloVersioneStato:
+      title: Modulo Versione Stato
+      description: Dati cronologia di stato
+      type: object
+      properties:
+        codice:
+          type: string
+          description: Codice di stato 
+          example: PUB
+        descrizione:
+          type: string
+          description: Descrizione del codice di stato
+          example: PUBBLICATO
+        dataInizioValidita:
+          type: string
+          format: date-time
+          description: Data di inizio validità dello stato
+          example: 2022-05-26 14:47:16 
+        dataFineValidita:
+          type: string
+          format: date-time
+          description: Data di inizio validità dello stato
+          example: 2022-05-26 14:47:16 
+        versioneModulo:
+          type: string
+          description: Versione modulo
+          example: 1.0.0  
+    CategoriaModulo:
+      title: Categroria e Ambito di un Modulo
+      description: Dati della categroria e ambito di un Modulo
+      type: object
+      properties:
+        descrizione:
+          type: string
+          description: Descrizione della categoria del modulo
+          example: TASSE COMUNALE
+        codiceAmbito:
+          type: string
+          description: Codice dell'ambito della categoria
+          example: TRIBUTI
+        nomeAmbito:
+          type: string
+          description: Nome dell'ambito della categoria
+          example: Tributi
+        color:
+          type: string
+          description: Codice colore in MOOn per l'ambito della categoria
+          example: #b7dff2

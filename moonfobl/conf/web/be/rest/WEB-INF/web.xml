@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<context-param>
+	    <param-name>spring.profiles.active</param-name>
+	    <param-value>@spring.profiles.active@</param-value>
+	</context-param>
+
+	<listener>
+	<!--  	per mettere a disposizione della logica di integrazione spring-resteasy il servlet context  -->
+		<listener-class>it.csi.moon.moonfobl.util.AppServletContextListener</listener-class>
+   	</listener>
+   <listener>
+      <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+   </listener>
+   
+	<listener>
+	<!--caricare la configurazione spring contenente i bean di implementazione del servizio (file applicationContext.xml in WEB-INF -->
+      <listener-class>org.jboss.resteasy.plugins.spring.SpringContextLoaderListener</listener-class>
+   </listener>
+
+	<servlet>
+        <servlet-name>NotificaPpayServlet</servlet-name>
+        <servlet-class>it.csi.moon.moonfobl.business.NotificaPpayServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NotificaPpayServlet</servlet-name>
+        <url-pattern>/notifica-ppay</url-pattern>
+    </servlet-mapping>
+    
+ <!-- 	<listener>
+    	<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+   	</listener> -->
+   	
+    <!-- filtro di Sanitizer Filter -->
+   	<filter>
+		<filter-name>SanitizerFilter</filter-name>
+		<filter-class>it.csi.moon.moonfobl.filter.SanitizerFilter</filter-class>
+	</filter>
+    <filter-mapping>
+		<filter-name>SanitizerFilter</filter-name>
+		<url-pattern>*</url-pattern>
+    </filter-mapping>
+   
+   
+     <!-- filtro di Response index -->
+   	<filter>
+		<filter-name>RedirectIndexFilter</filter-name>
+		<filter-class>it.csi.moon.moonfobl.filter.RedirectIndexFilter</filter-class>
+	</filter>
+    <filter-mapping>
+		<filter-name>RedirectIndexFilter</filter-name>
+		<url-pattern>*</url-pattern>
+    </filter-mapping>
+   
+   
+   
+   
+	<!-- filtro di protezione ad attacchi XSRF -->
+	<filter>
+		<filter-name>XSRFProtectionFilter</filter-name>
+		<filter-class>it.csi.moon.moonfobl.filter.XSRFProtectionFilter</filter-class>
+		<init-param>
+    		<param-name>disabled</param-name>
+    		<param-value>@@@XSRFFILTER.DISABLED@@@</param-value>
+  		</init-param>
+  		<init-param>
+    		<param-name>devmode</param-name>
+    		<param-value>@@@XSRFFILTER.DEVMODE@@@</param-value>
+  		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>XSRFProtectionFilter</filter-name>
+		<url-pattern>/restfacade/*</url-pattern>
+	</filter-mapping>
+
+
+	<!-- filtro location richieste di autenticazione -->
+	<filter>
+		<filter-name>AuthFilter</filter-name>
+		<filter-class>it.csi.moon.moonfobl.filter.AuthFilter</filter-class>
+		<init-param>
+    		<param-name>devmode</param-name>
+    		<param-value>@@@AUTHFILTER.DEVMODE@@@</param-value>
+  		</init-param>
+  		<init-param>
+    		<param-name>tstmode.remapidentita</param-name>
+    		<param-value>@@@AUTHFILTER.TSTMODE.REMAPIDENTITA@@@</param-value>
+  		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>AuthFilter</filter-name>
+		<url-pattern>/restfacade/auth/*</url-pattern>
+	</filter-mapping>
+  
+  
+	<!-- filtro di recepimento token autenticazione -->
+	<filter>
+		<filter-name>JwtAuthenticationFilter</filter-name>
+		<filter-class>it.csi.moon.moonfobl.filter.JwtAuthenticationFilter</filter-class>
+		<init-param>
+    		<param-name>devmode</param-name>
+    		<param-value>@@@JWTAUTHENTICATIONFILTER.DEVMODE@@@</param-value>
+  		</init-param>
+  		<init-param>
+    		<param-name>tstmode.remapidentita</param-name>
+    		<param-value>@@@JWTAUTHENTICATIONFILTER.TSTMODE.REMAPIDENTITA@@@</param-value>
+  		</init-param>
+   </filter>
+   <filter-mapping>
+		<filter-name>JwtAuthenticationFilter</filter-name>
+		<url-pattern>/restfacade/be/*</url-pattern>
+   </filter-mapping>
+   <filter-mapping>
+		<filter-name>JwtAuthenticationFilter</filter-name>
+		<url-pattern>/restfacade/emb/*</url-pattern>
+   </filter-mapping>
+
+
+	<!-- filtro di sicurezza Cross-Origin Resource Sharing -->
+	<filter>
+	    <filter-name>CorsFilter</filter-name>
+	    <filter-class>it.csi.moon.moonfobl.filter.CorsFilter</filter-class>
+	    <init-param>
+    		<param-name>enablecors</param-name>
+    		<param-value>@@@CORSFILTER.ENABLECORS@@@</param-value>
+  		</init-param>
+	    <init-param>
+    		<param-name>origincors</param-name>
+    		<param-value>@@@CORSFILTER.ORIGINCORS@@@</param-value>
+  		</init-param>
+	</filter> 
+	<filter-mapping>
+	    <filter-name>CorsFilter</filter-name>
+	    <url-pattern>/restfacade/*</url-pattern>
+	</filter-mapping>
+ 
+  <!-- replica della sessione (pur essendo i servizi stateless, serve per replicare il contesto 
+       di autenticazione e il token xsrf, quindi e' necessario solo nello scenario SPA-REST -->
+  <!--  <distributable />  -->
+	
+</web-app>

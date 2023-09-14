@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="urn:SrvRicercaSoggetto" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="urn:SrvRicercaSoggetto" xmlns:intf="urn:SrvRicercaSoggetto" xmlns:tns1="http://wrapper.csi.csi.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Nov 13, 2013 (09:13:21 GMT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="urn:SrvRicercaSoggetto" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://wrapper.csi.csi.it"/>
+   <element name="ricercaChiaviSoggetti">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="impl:CriterioRicercaSoggetto"/>
+      <element minOccurs="0" name="in1" type="impl:DatiProfilati"/>
+      <element minOccurs="0" name="in2" type="impl:UtenteServizio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_int">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="CriterioRicercaGenitore">
+    <sequence>
+     <element name="cognomeGenitore" nillable="true" type="xsd:string"/>
+     <element name="iniziaPerCognome" type="xsd:boolean"/>
+     <element name="iniziaPerNome" type="xsd:boolean"/>
+     <element name="nomeGenitore" nillable="true" type="xsd:string"/>
+     <element name="ruoloGenitore" nillable="true" type="impl:ArrayOf_xsd_int"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfCriterioRicercaGenitore">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:CriterioRicercaGenitore"/>
+    </sequence>
+   </complexType>
+   <complexType name="CriterioRicercaSoggetto">
+    <sequence>
+     <element name="annoNascita" nillable="true" type="xsd:int"/>
+     <element name="cartaIdentita" nillable="true" type="xsd:string"/>
+     <element name="codiceFiscale" nillable="true" type="xsd:string"/>
+     <element name="codiceVia" type="xsd:int"/>
+     <element name="cognome" nillable="true" type="xsd:string"/>
+     <element name="criterioRicercaGenitori" nillable="true" type="impl:ArrayOfCriterioRicercaGenitore"/>
+     <element name="denominazioneIndirizzo" nillable="true" type="xsd:string"/>
+     <element name="etaAllaRegistrazione" nillable="true" type="xsd:int"/>
+     <element name="giornoNascita" nillable="true" type="xsd:int"/>
+     <element name="idCivici" nillable="true" type="impl:ArrayOf_xsd_int"/>
+     <element name="idUiu" nillable="true" type="impl:ArrayOf_xsd_int"/>
+     <element name="iniziaPerCognome" type="xsd:boolean"/>
+     <element name="iniziaPerNome" type="xsd:boolean"/>
+     <element name="meseNascita" nillable="true" type="xsd:int"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="numIndividuale" nillable="true" type="xsd:string"/>
+     <element name="numeroPrimarioIndirizzo" nillable="true" type="xsd:int"/>
+     <element name="sedimeIndirizzo" nillable="true" type="xsd:string"/>
+     <element name="sesso" nillable="true" type="xsd:string"/>
+     <element name="tipoOrdinamento" type="xsd:int"/>
+     <element name="tipoRicerca" type="xsd:int"/>
+     <element name="tipoRicercaCompleta" type="xsd:int"/>
+     <element name="tipoSoggetti" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="DatiProfilati">
+    <sequence>
+     <element name="flgPaternitaMaternita" type="xsd:boolean"/>
+     <element name="flgProtocolliRiservatiE" type="xsd:boolean"/>
+     <element name="flgProtocolliRiservatiQ" type="xsd:boolean"/>
+     <element name="flgRettificheGeneralita" type="xsd:boolean"/>
+     <element name="flgSoggettiCancellati" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="Identita">
+    <sequence>
+     <element name="codFiscale" nillable="true" type="xsd:string"/>
+     <element name="cognome" nillable="true" type="xsd:string"/>
+     <element name="idProvider" nillable="true" type="xsd:string"/>
+     <element name="livelloAutenticazione" type="xsd:int"/>
+     <element name="mac" nillable="true" type="xsd:string"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="rappresentazioneInterna" nillable="true" type="xsd:string"/>
+     <element name="timestamp" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="UtenteServizio">
+    <sequence>
+     <element name="codiceUtente" nillable="true" type="xsd:string"/>
+     <element name="identita" nillable="true" type="impl:Identita"/>
+    </sequence>
+   </complexType>
+   <element name="ricercaChiaviSoggettiResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="ricercaChiaviSoggettiReturn" nillable="true" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="SystemException">
+    <complexContent>
+     <extension base="tns1:SystemException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault" type="impl:SystemException"/>
+   <complexType name="ServiceException">
+    <complexContent>
+     <extension base="tns1:UserException">
+      <sequence>
+       <element name="message" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault1" type="impl:ServiceException"/>
+   <complexType name="FormalException">
+    <complexContent>
+     <extension base="impl:ServiceException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault2" type="impl:FormalException"/>
+   <complexType name="UnauthorizedException">
+    <complexContent>
+     <extension base="impl:ServiceException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault3" type="impl:UnauthorizedException"/>
+   <element name="ricercaDettaglioSoggetti">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="impl:CriterioRicercaSoggetto"/>
+      <element minOccurs="0" name="in1" type="impl:DatiProfilati"/>
+      <element minOccurs="0" name="in2" type="impl:UtenteServizio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="ricercaDettaglioSoggettiResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="ricercaDettaglioSoggettiReturn" type="impl:DettaglioSoggetto"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Generalita">
+    <sequence>
+     <element name="codiceFiscale" nillable="true" type="xsd:string"/>
+     <element name="cognome" nillable="true" type="xsd:string"/>
+     <element name="dataNascita" nillable="true" type="xsd:string"/>
+     <element name="dataNascitaOriginale" nillable="true" type="xsd:string"/>
+     <element name="idSoggetto" type="xsd:int"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="nomeCompleto" nillable="true" type="xsd:string"/>
+     <element name="numeroIndividuale" nillable="true" type="xsd:string"/>
+     <element name="oraMinutiNascita" nillable="true" type="xsd:string"/>
+     <element name="protocolloRiservato" type="xsd:int"/>
+     <element name="sesso" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Genitore">
+    <sequence>
+     <element name="codRuolo" nillable="true" type="xsd:string"/>
+     <element name="cognome" nillable="true" type="xsd:string"/>
+     <element name="cognomeDichiarato" nillable="true" type="xsd:string"/>
+     <element name="dataFineValidita" nillable="true" type="xsd:string"/>
+     <element name="dataInizioValidita" nillable="true" type="xsd:string"/>
+     <element name="descRuolo" nillable="true" type="xsd:string"/>
+     <element name="flgCognomeNomeCorretti" type="xsd:boolean"/>
+     <element name="genitoreDocumentato" nillable="true" type="xsd:boolean"/>
+     <element name="idRuolo" type="xsd:int"/>
+     <element name="idSoggetto" type="xsd:int"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="nomeDichiarato" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfGenitore">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Genitore"/>
+    </sequence>
+   </complexType>
+   <complexType name="Luogo">
+    <sequence>
+     <element name="capComune" nillable="true" type="xsd:string"/>
+     <element name="codCatComune" nillable="true" type="xsd:string"/>
+     <element name="codCatNazione" nillable="true" type="xsd:string"/>
+     <element name="codCieNazione" nillable="true" type="xsd:string"/>
+     <element name="codIstatComune" nillable="true" type="xsd:string"/>
+     <element name="codIstatNazione" nillable="true" type="xsd:string"/>
+     <element name="codIstatProvincia" nillable="true" type="xsd:string"/>
+     <element name="codMctcNazione" nillable="true" type="xsd:string"/>
+     <element name="codMinisteroInterniNazione" nillable="true" type="xsd:int"/>
+     <element name="codTerritorioNazione" nillable="true" type="xsd:string"/>
+     <element name="codiceMFLuogo" nillable="true" type="xsd:string"/>
+     <element name="codiceMFNazione" nillable="true" type="xsd:string"/>
+     <element name="codiceMinisteroComune" nillable="true" type="xsd:string"/>
+     <element name="dataFineValiditaLuogo" nillable="true" type="xsd:string"/>
+     <element name="dataInizioValiditaLuogo" nillable="true" type="xsd:string"/>
+     <element name="descLuogo" nillable="true" type="xsd:string"/>
+     <element name="descNazione" nillable="true" type="xsd:string"/>
+     <element name="descProvincia" nillable="true" type="xsd:string"/>
+     <element name="flgAppartenenzaUENazione" type="xsd:boolean"/>
+     <element name="idLuogo" nillable="true" type="xsd:int"/>
+     <element name="idNazione" nillable="true" type="xsd:int"/>
+     <element name="idProvincia" nillable="true" type="xsd:int"/>
+     <element name="siglaProvincia" nillable="true" type="xsd:string"/>
+     <element name="statoLuogo" type="xsd:int"/>
+     <element name="tipoLuogo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="SoggettoFamiglia">
+    <sequence>
+     <element name="codiceIstatRapportoParentela" nillable="true" type="xsd:string"/>
+     <element name="dataIngressoInFamiglia" nillable="true" type="xsd:string"/>
+     <element name="dataUscitaDaFamiglia" nillable="true" type="xsd:string"/>
+     <element name="descBreveRapportoParentela" nillable="true" type="xsd:string"/>
+     <element name="descRapportoParentela" nillable="true" type="xsd:string"/>
+     <element name="numeroFamiglia" nillable="true" type="xsd:string"/>
+     <element name="tipoMovimentazione" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="StatoSoggetto">
+    <sequence>
+     <element name="descBreveStato" nillable="true" type="xsd:string"/>
+     <element name="descBreveStatoAnagrafico" nillable="true" type="xsd:string"/>
+     <element name="descStato" nillable="true" type="xsd:string"/>
+     <element name="descStatoAnagrafico" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Soggetto">
+    <sequence>
+     <element name="generalita" nillable="true" type="impl:Generalita"/>
+     <element name="genitori" nillable="true" type="impl:ArrayOfGenitore"/>
+     <element name="luogoNascita" nillable="true" type="impl:Luogo"/>
+     <element name="soggettoFamiglia" nillable="true" type="impl:SoggettoFamiglia"/>
+     <element name="statoSoggetto" nillable="true" type="impl:StatoSoggetto"/>
+    </sequence>
+   </complexType>
+   <complexType name="IndirizzoInterno">
+    <sequence>
+     <element name="bisTer" nillable="true" type="xsd:string"/>
+     <element name="bisTerInterno1" nillable="true" type="xsd:string"/>
+     <element name="bisTerInterno2" nillable="true" type="xsd:string"/>
+     <element name="cap" nillable="true" type="xsd:int"/>
+     <element name="codVia" nillable="true" type="xsd:int"/>
+     <element name="codicePiano" nillable="true" type="xsd:string"/>
+     <element name="denominazioneCompattaVia" nillable="true" type="xsd:string"/>
+     <element name="denominazioneCorrente" nillable="true" type="xsd:string"/>
+     <element name="denominazioneSecondariaVia" nillable="true" type="xsd:string"/>
+     <element name="denominazioneVia" nillable="true" type="xsd:string"/>
+     <element name="descCircoscrizione" nillable="true" type="xsd:string"/>
+     <element name="descDistrettoAssistenza" nillable="true" type="xsd:string"/>
+     <element name="descPiano" nillable="true" type="xsd:string"/>
+     <element name="descSezioneVigiliUrbani" nillable="true" type="xsd:string"/>
+     <element name="idCircoscrizione" nillable="true" type="xsd:int"/>
+     <element name="idCivico" nillable="true" type="xsd:int"/>
+     <element name="idDistrettoAssistenza" nillable="true" type="xsd:int"/>
+     <element name="idSezioneVigiliUrbani" nillable="true" type="xsd:int"/>
+     <element name="idUiu" nillable="true" type="xsd:int"/>
+     <element name="indicatoreAcquisizione" nillable="true" type="xsd:string"/>
+     <element name="interno1" nillable="true" type="xsd:string"/>
+     <element name="interno2" nillable="true" type="xsd:string"/>
+     <element name="nui" nillable="true" type="xsd:int"/>
+     <element name="numeroCompleto" nillable="true" type="xsd:string"/>
+     <element name="numeroPrimario" nillable="true" type="xsd:int"/>
+     <element name="numeroRadice" nillable="true" type="xsd:int"/>
+     <element name="scala" nillable="true" type="xsd:string"/>
+     <element name="secondario" nillable="true" type="xsd:string"/>
+     <element name="sedime" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="IndirizzoEsterno">
+    <sequence>
+     <element name="capEstero" nillable="true" type="xsd:string"/>
+     <element name="descrizioneIndirizzoPrimaParte" nillable="true" type="xsd:string"/>
+     <element name="descrizioneIndirizzoSecondaParte" nillable="true" type="xsd:string"/>
+     <element name="luogo" nillable="true" type="impl:Luogo"/>
+    </sequence>
+   </complexType>
+   <complexType name="DettaglioSoggetto">
+    <complexContent>
+     <extension base="impl:Soggetto">
+      <sequence>
+       <element name="descBreveStatoResidenza" nillable="true" type="xsd:string"/>
+       <element name="descrizioneStatoResidenza" nillable="true" type="xsd:string"/>
+       <element name="indirizzoDomicilio" nillable="true" type="impl:IndirizzoInterno"/>
+       <element name="indirizzoResidenzaEsterno" nillable="true" type="impl:IndirizzoEsterno"/>
+       <element name="indirizzoResidenzaInterno" nillable="true" type="impl:IndirizzoInterno"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="TooManyItemException">
+    <complexContent>
+     <extension base="impl:FormalException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault4" type="impl:TooManyItemException"/>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://wrapper.csi.csi.it" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="urn:SrvRicercaSoggetto"/>
+   <complexType name="CSIException">
+    <sequence>
+     <element name="nestedExcClassName" nillable="true" type="xsd:string"/>
+     <element name="nestedExcMsg" nillable="true" type="xsd:string"/>
+     <element name="stackTraceMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="SystemException">
+    <complexContent>
+     <extension base="tns1:CSIException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="UserException">
+    <complexContent>
+     <extension base="tns1:CSIException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="ricercaDettaglioSoggettiResponse">
+
+      <wsdl:part element="impl:ricercaDettaglioSoggettiResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="UnauthorizedException">
+
+      <wsdl:part element="impl:fault3" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ricercaChiaviSoggettiResponse">
+
+      <wsdl:part element="impl:ricercaChiaviSoggettiResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ricercaDettaglioSoggettiRequest">
+
+      <wsdl:part element="impl:ricercaDettaglioSoggetti" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ServiceException">
+
+      <wsdl:part element="impl:fault1" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ricercaChiaviSoggettiRequest">
+
+      <wsdl:part element="impl:ricercaChiaviSoggetti" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="TooManyItemException">
+
+      <wsdl:part element="impl:fault4" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="SystemException">
+
+      <wsdl:part element="impl:fault" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="FormalException">
+
+      <wsdl:part element="impl:fault2" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="JavaServiceDesc">
+
+      <wsdl:operation name="ricercaChiaviSoggetti">
+
+         <wsdl:input message="impl:ricercaChiaviSoggettiRequest" name="ricercaChiaviSoggettiRequest"/>
+
+         <wsdl:output message="impl:ricercaChiaviSoggettiResponse" name="ricercaChiaviSoggettiResponse"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:UnauthorizedException" name="UnauthorizedException"/>
+
+         <wsdl:fault message="impl:FormalException" name="FormalException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ricercaDettaglioSoggetti">
+
+         <wsdl:input message="impl:ricercaDettaglioSoggettiRequest" name="ricercaDettaglioSoggettiRequest"/>
+
+         <wsdl:output message="impl:ricercaDettaglioSoggettiResponse" name="ricercaDettaglioSoggettiResponse"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:UnauthorizedException" name="UnauthorizedException"/>
+
+         <wsdl:fault message="impl:TooManyItemException" name="TooManyItemException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+         <wsdl:fault message="impl:FormalException" name="FormalException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SrvRicercaSoggettoSoapBinding" type="impl:JavaServiceDesc">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="ricercaChiaviSoggetti">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ricercaChiaviSoggettiRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ricercaChiaviSoggettiResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UnauthorizedException">
+
+            <wsdlsoap:fault name="UnauthorizedException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FormalException">
+
+            <wsdlsoap:fault name="FormalException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ricercaDettaglioSoggetti">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ricercaDettaglioSoggettiRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ricercaDettaglioSoggettiResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UnauthorizedException">
+
+            <wsdlsoap:fault name="UnauthorizedException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="TooManyItemException">
+
+            <wsdlsoap:fault name="TooManyItemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FormalException">
+
+            <wsdlsoap:fault name="FormalException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="JavaServiceDescService">
+
+      <wsdl:port binding="impl:SrvRicercaSoggettoSoapBinding" name="SrvRicercaSoggetto">
+
+         <wsdlsoap:address location="https://tst-applogic.comune.torino.it:1444/wsfad_naosrv_wsicompliant/services/SrvRicercaSoggetto"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

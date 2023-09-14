@@ -1,0 +1,16 @@
+<div class="form-group" style="width:50%;margin-left:auto;margin-right:auto">
+    <label for="enteSel" style="float:left;font-weight: bold;">Seleziona un ente:</label>
+    <select id="enteSel" name="enteSel" [(ngModel)]="idEnte" #enteSel="ngModel" class="form-control" required (change)="selezionaEnte($event.target.value)">
+        <!-- <option value="">...</option> -->
+        <option *ngFor="let ente of elencoEnti" value="{{ente.idEnte}}">{{ente.nomeEnte}}</option>
+    </select>
+
+    <div *ngIf="enteSel.invalid && (enteSel.dirty || enteSel.touched)" class="alert alert-danger">Ente obbligatorio
+    </div>
+</div>
+<div>&nbsp;</div>
+<div style="text-align:center">
+    <button type="button" class="btn btn-primary" style="width:150px" (click)=annullaSelezione()>Annulla</button>
+    <button type="button" class="btn btn-primary" style="width:150px;margin-left:10px" [disabled]="enteSel.invalid" (click)=aggiornaEnte()>Seleziona</button>
+</div>
+<app-moon-spinner></app-moon-spinner>

@@ -1,0 +1,30 @@
+<div [ngSwitch]="currentView" style="margin: 0 auto">
+    <alert id="alert-utenti-container"></alert>
+    <div *ngSwitchCase="'elenco'">
+        <div class="row">
+            <div class="col-md-12">
+                <app-utenti-tabella
+                    (eventCreaUtente)="creaUtente()"
+                    (eventDettaglio)="dettaglio($event)" 
+                    (eventEliminaUtenteAreaRuolo)="eliminaUtenteAreaRuolo($event)">
+                </app-utenti-tabella>
+            </div>
+        </div>
+    </div>
+
+    <div *ngSwitchCase="'dettaglio'">
+        <app-utenti-dettaglio [utenteSelezionato]="utenteSelezionato" 
+            (eventModifica)="modificaUtente($event)"
+            (eventElimina)="eliminaUtente($event)" 
+            (backEvent)="setView($event)">
+        </app-utenti-dettaglio>
+    </div>
+
+    <div *ngSwitchCase="'crea'">
+        <app-utenti-crea (backEvent)="setView($event)">
+        </app-utenti-crea>
+    </div>
+
+</div>
+
+<app-moon-spinner></app-moon-spinner>

@@ -1,0 +1,20 @@
+<div style="width: 90%; margin-left:100px;margin-top:40px ">
+    <h2 style="text-align:center">
+        <div [innerHTML]="titoloErrore"></div>
+    </h2>
+    <br>
+    <h4 style="text-align:center">
+        <div [innerHTML]="descrizione"></div>
+    </h4>
+
+    <br>
+    <div *ngIf="!isUrlEmbedded">
+        <ng-template [ngIf]="!urlEmbedded" [ngIfElse]="isEmbedded">
+            <h5 style="text-align:center"><a (click)="goToIstanze()" [routerLink]="[]"> Vai alle tue istanze</a></h5>                  
+        </ng-template>
+        <ng-template #isEmbedded >
+            <h5 style="text-align:center"><a (click)="goBack()" [routerLink]="[]"> Torna indietro</a></h5>                                 
+        </ng-template>  
+    </div>
+
+</div>

@@ -1,0 +1,86 @@
+<div *ngIf="!editMode">
+    <div *ngIf="isModificabile" style="position:absolute; top: 4.5rem; right: 8px; z-index: 1;">
+        <button type="button" class="btn btn-outline-primary" (click)="editMode=true;">Edit Modulistica</button>
+    </div>
+    <div *ngIf="!hasPortaliLogonMode">
+        <p>Nessun Accesso via Modulistica configurati.</p>
+    </div>
+    <div *ngIf="hasPortaliLogonMode">
+        <alert id="alert-moduli-moduliscita"></alert>
+        <h4>Accesso via Modulistica:</h4>
+        <div class="table-responsive">
+            <table id="portaliLogonMode" class="table table-bordered table-striped">
+                <thead>
+                    <th>Portale</th>
+                    <th>LogonMode</th>
+                    <th>Filtro</th>
+    <!-- 
+                    <th>Operazione</th>-->
+                </thead>
+                <tbody>
+                    <tr *ngFor="let plm of portaliLogonMode">
+                        <td>{{plm.portale.nomePortale}} ({{plm.portale.codicePortale}})<span *ngIf="isAdmin"> [{{plm.portale.idPortale}}]</span></td>
+                        <td>{{plm.logonMode.descLogonMode}} ({{plm.logonMode.codiceLogonMode}})<span *ngIf="isAdmin"> [{{plm.logonMode.idLogonMode}}]</span></td>
+                        <td>{{plm.filtro}}</td>
+    <!--
+                        <td>
+                            <a [routerLink]="[]" (click)="elimina(plm)"
+                                ngbTooltip="Elimina configurazione di accesso su Modulistica">
+                                <fa-icon style="margin-left: 20px; color: red" [icon]="faTrashAlt"></fa-icon>
+                            </a>
+                        </td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div *ngIf="editMode">
+        <alert id="alert-moduli-moduliscita"></alert>
+        <h4>Accesso via Modulistica:</h4>
+        <div class="table-responsive">
+            <table id="portaliLogonMode" class="table table-bordered table-striped">
+                <thead>
+                    <th>Portale</th>
+                    <th>LogonMode</th>
+                    <th>Filtro</th>
+                    <th>Operazione</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let plm of portaliLogonMode">
+                        <td>{{plm.portale.nomePortale}} ({{plm.portale.codicePortale}})<span *ngIf="isAdmin">
+                                [{{plm.portale.idPortale}}]</span></td>
+                        <td>{{plm.logonMode.descLogonMode}} ({{plm.logonMode.codiceLogonMode}})<span *ngIf="isAdmin">
+                                [{{plm.logonMode.idLogonMode}}]</span></td>
+                        <td>{{plm.filtro}}</td>
+                        <td>
+                            <a [routerLink]="[]" (click)="elimina(plm)"
+                                ngbTooltip="Elimina configurazione di accesso su Modulistica">
+                                <fa-icon style="margin-left: 20px; color: red" [icon]="faTrashAlt"></fa-icon>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    <form>
+        <h4>Aggiungi Portale LogonMode :</h4>
+        <p>Portale
+            <select [(ngModel)]="newIdPortale" name="newIdPortale" id="newIdPortale" class="form-control" required>
+                <option *ngFor="let p of portaliNonAbilitate" [value]="p.idPortale">{{p.nomePortale}} ({{p.codicePortale}})</option>
+            </select>
+        </p>
+        <p>LogonMode
+            <select [(ngModel)]="newIdLogonMode" name="newIdLogonMode" id="newIdLogonMode" class="form-control" required>
+                <option *ngFor="let lm of elencoLogonMode" [value]="lm.idLogonMode">{{lm.descLogonMode}} ({{lm.codiceLogonMode}})</option>
+            </select>
+        </p>
+        <p>Filtro
+            <input type="text" [(ngModel)]="newFiltro" name="newFiltro" id="newFiltro" class="form-control" />
+        </p>
+        <div class="form-group">
+            <button type="button" class="btn btn-success" (click)="aggiungi();"
+                style="float:right">Aggiungi</button>
+        </div>
+    </form>
+</div>

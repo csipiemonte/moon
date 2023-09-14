@@ -1,0 +1,211 @@
+<div *ngIf="!editMode">
+    <div *ngIf="isOpAdmin" style="position:absolute; top: 4.5rem; right: 8px; z-index: 1;">
+        <button type="button" class="btn btn-outline-primary" (click)="editMode=true;">Edit Attributi</button>
+    </div>
+    <div>
+        <!--                    <div class="switch-toggle switch-2 switch-candy">Init Obbligatoria:
+                    <ng-container #buttonIcon *ngFor="let option of optionsSN">
+                            <input type="radio" name="state-d" id="state-d"
+                                [checked]="attrInitObbl === option.value" [value]="option.value" />
+                            <label (click)="onSelectionChangeAttrInitObbl(option.value)" for="{{option.id}}">{{option.id}}
+                            </label>
+                        </ng-container>
+                    </div>
+-->
+        <div class="row">
+            <div class="col col-md-3"><span title="{{ titleUpd.get('INIT_OBBLIGATORIA') }}">Init Obbligatoria:</span></div>
+            <div class="col col-md-7">{{maInitObbligatoria?.valore}}</div>
+            <div class="col col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3"><span title="{{ titleUpd.get('INIT_NOME_CLASS') }}">Init Class:</span></div>
+            <div class="col col-md-7">{{maInitNomeClass?.valore}}</div>
+            <div class="col col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3"><span title="{{ titleUpd.get('CONTO_TERZI') }}">Conto Terzi:</span></div>
+            <div class="col col-md-9">{{maContoTerzi?.valore}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3"><span title="{{ titleUpd.get('COMPILA_BO') }}">Compila BO::</span></div>
+            <div class="col col-md-9">{{maCompilaBO?.valore}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3"><span title="{{ titleUpd.get('ISTANZA_AUTO_SAVE') }}">Auto Save Istanze:</span></div>
+            <div class="col col-md-9">{{maIstanzaAutoSave?.valore}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3"><span title="{{ titleUpd.get('HASH_UNIVOCITA') }}">Univocita:</span></div>
+            <div class="col col-md-9">{{maHashUnivocita?.valore}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3"><span title="{{ titleUpd.get('HASH_UNIVOCITA_FIELDS') }}">Univocita Fields:</span></div>
+            <div class="col col-md-9">{{maHashUnivocitaFields?.valore}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3"><span title="{{ titleUpd.get('MSG_UNIVOCITA') }}">Messaggio Univocita:</span></div>
+            <div class="col col-md-9">{{maMsgUnivocita?.valore}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3"><span title="{{ titleUpd.get('STAMPA_PDF') }}">Stampa PDF Modulistica:</span></div>
+            <div class="col col-md-9">{{maStampaPdf?.valore}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3"><span title="{{ titleUpd.get('TIPO_FILTER_BO') }}">Tipo Filter BO:</span></div>
+            <div class="col col-md-9">{{maTipoFilterBo?.valore}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3"><span title="{{ titleUpd.get('STAMPA_DINAMICA') }}">Force Stampa Dinamica:</span></div>
+            <div class="col col-md-9">{{maStampaDinamica?.valore}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3"><span title="Mapper di Stampa PDF nella Factory">Mapper di Stampa PDF:</span></div>
+            <div class="col col-md-9">{{printMapperName}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3"><span title="Mapper di Stampa PDF nel DB in ModuloClass (sovrascrive quello della Factory)">Mapper di Stampa PDF DB:</span></div>
+            <div class="col col-md-9">{{printMapperModuloClassName}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3"><span title="{{ titleUpd.get('MODIFICA_ISTANZA_INVIATA') }}">Abilita la modifica delle istanze inviate:</span></div>
+            <div class="col col-md-9">{{maModificaIstanzaInviata?.valore}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3"><span title="{{ titleUpd.get('FORMIO_BREADCRUMB_CLICKABLE') }}">Abilita click sui Tab FormIO:</span></div>
+            <div class="col col-md-9">{{maFormioBreadcrumbClickable?.valore}}</div>
+        </div>
+    </div>
+    <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+</div>
+<div *ngIf="editMode">
+    <alert id="alert-moduli-attributi"></alert>
+    <form>
+        <!-- <div class="form-group">
+            <label for="customSwitches">Prova Checkbox S/N (only for TEST):&nbsp;<i class="fa fa-question-circle text-muted"
+                    title="customSwitches [S|N]"></i></label>
+            <input type="checkbox" class="custom-control-input" id="customSwitches" name="customSwitches" class="form-control" />
+
+            <ui-switch></ui-switch>
+        </div> -->
+        <div class="form-group">
+            <label for="initObbligatoria">Init Obbligatoria:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Inizializazione Obbligatoria, non vuota (serve sopratutto per i moduli con inizializzazione con sistemi esterni) [S|N]"></i></label>
+            <div>
+                <ui-switch [(ngModel)]="maInitObbligatoriaEditT" [ngModelOptions]="{standalone: true}" id="initObbligatoria" name="initObbligatoria">
+                </ui-switch>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="initNomeClass">Init Class:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Nome della Calss di inizializzazione"></i></label>
+            <input type="text" [(ngModel)]="maInitNomeClassEdit['valore']" id="initNomeClass" name="initNomeClass" class="form-control" #initNomeClass="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="contoTerzi">Conto Terzi:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Codice del form di conto terzi (necessità obbligatoriamente sviluppo dall'administratore)"></i></label>
+            <input [(ngModel)]="maContoTerziEdit['valore']" id="contoTerzi" name="contoTerzi" class="form-control" #contoTerzi="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="compilaBO">Compila BO:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Codice del pre form pre compilazione da BO"></i></label>
+            <input [(ngModel)]="maCompilaBOEdit['valore']" id="compilaBO" name="compilaBO" class="form-control"
+                #contoTerzi="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="autoSaveIstanza">Auto Save Istanze:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Abilitazione all'auto save istanza, utile per i moduli con tanti step [S|N]"></i></label>
+            <div>
+                <ui-switch [(ngModel)]="maIstanzaAutoSaveEditT" [ngModelOptions]="{standalone: true}" id="autoSaveIstanza" name="autoSaveIstanza">
+                </ui-switch>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="univocita">Univocita:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Abilitazione del controllo dell'univocità delle istanze sulla base dei campi configurati in seguito 'Campi Univocita' [S|N]"></i></label>
+            <div>
+                <ui-switch [(ngModel)]="maHashUnivocitaEditT" [ngModelOptions]="{standalone: true}" id="univocita" name="univocita">
+                </ui-switch>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="univocitaFields">Campi Univocita:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Campo/i per formare la chiave univoca. Usato solo nel caso di abilitazione dell'univocita."></i></label>
+            <input [(ngModel)]="maHashUnivocitaFieldsEdit['valore']" id="univocitaFields" name="univocitaFields" class="form-control" #univocitaFields="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="univocitaMsg">Messaggio Univocita:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Personalizzazione del messaggio nel caso d'invio di un istanza non univoca'invio di un istanza. Usato solo nel caso di abilitazione dell'univocita."></i></label>
+            <input [(ngModel)]="maMsgUnivocitaEdit['valore']" id="univocitaMsg" name="univocitaMsg" class="form-control" #univocitaMsg="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="stampaPdfModulistica">Stampa PDF Modulistica:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Abilitazione alla stampa PDF dell'istanza in seguito al salvataggio su Modulistica. Non è neccessario per moduli pubblicati via MoonFO. [S|N]"></i></label>
+            <div>
+                <ui-switch [(ngModel)]="maStampaPdfEditT" [ngModelOptions]="{standalone: true}" id="stampaPdfModulistica" name="stampaPdfModulistica">
+                </ui-switch>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="tipoFiltroBo">Tipo Filter BO:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Campo filtro ulteriore su MoonBO"></i></label>
+            <input [(ngModel)]="maTipoFilterBoEdit['valore']" id="tipoFiltroBo" name="tipoFiltroBo" class="form-control" #tipoFiltroBo="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="stampaDinamica">Force Stampa Dinamica:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Force Stampa Dinamica, anche se è presente una stampa specifica (mapper)"></i></label>
+            <div>
+                <ui-switch [(ngModel)]="maStampaDinamicaEditT" [ngModelOptions]="{standalone: true}" id="stampaDinamica" name="stampaDinamica">
+                </ui-switch>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>Mapper di Stampa PDF:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Class Mapper di Stampa PDF nella Factory (nel codice, non modificabile ma sovrascrivibile)"></i></div>
+            <div>{{printMapperName}}</div>
+        </div>
+        <div class="form-group">
+            <label for="filePrintMapper">Mapper di Stampa PDF DB:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Class Mapper di Stampa PDF nel DB in ModuloClass (sovrascrive quello della Factory)"></i></label>
+            <div *ngIf="printMapperModuloClassName">{{printMapperModuloClassName.replace('it.csi.moon.moonsrv.business.service.mapper','..')}}
+                <button type="button" class="btn btn-danger" (click)="deletePrintMapper()" style="float:right">Delete File</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <input type="file" id="filePrintMapper" (change)="handleFilePrintMapperInput($event.target.files)">
+                <button type="button" class="btn btn-success" (click)="uploadFileToServer()" style="float:right">Upload File</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="modificaIstanzaInviata">Abilita modifica istanza inviata:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Abilita la modifica di un istanza anche se inviata su BO ai utenti authorizzati"></i></label>
+            <div>
+                <ui-switch [(ngModel)]="maModificaIstanzaInviataEditT" [ngModelOptions]="{standalone: true}" id="modificaIstanzaInviata"
+                    name="modificaIstanzaInviata">
+                </ui-switch>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="formioBreadcrumbClickable">Abilita click sui tab Formio:&nbsp;<i
+                    class="fa fa-question-circle text-muted"
+                    ngbTooltip="Abilita click sui tab Formio (nel caso di form wizard)"></i></label>
+            <div>
+                <ui-switch [(ngModel)]="maFormioBreadcrumbClickableEditT" [ngModelOptions]="{standalone: true}"
+                    id="formioBreadcrumbClickable" name="formioBreadcrumbClickable">
+                </ui-switch>
+            </div>
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-light" (click)="editMode=false;" style="float:left">Annulla</button>
+            <button type="button" class="btn btn-success" (click)="salva()" style="float:right">Salva</button>
+        </div>
+    </form>
+</div>

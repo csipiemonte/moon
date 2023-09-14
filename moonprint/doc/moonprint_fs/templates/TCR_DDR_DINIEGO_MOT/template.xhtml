@@ -1,0 +1,84 @@
+<html>
+<head>
+    <title th:text="${document.title}"></title>
+    <link rel="stylesheet" href="style.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<body>
+
+<div id="theme">
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_left': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.header.left,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_center': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.header.center,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+    <!--<div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_right': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(#strings.replace(document.header.right,'%%module%%',document.accettazione.modulo),'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>-->
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_footer_left': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.footer.left,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_footer_right': 'hidden')}" >
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.footer.right,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+
+    <div class="header_separator"></div>
+	
+    <div class="section" > <!-- page-after-->
+			  <img src="img/Immagine.png"/>
+		<page-inside-avoid>
+		<div class="angrafica-right">
+			<span th:text="${document.anagrafica.nome}"/>
+			<span th:text="${document.anagrafica.cognome}"/><br/>
+			<span th:text="${document.anagrafica.indirizzo}"/><br/>
+			<span th:text="${document.anagrafica.cap}"/>
+			<span th:text="${document.anagrafica.comune}"/>
+			<span>(<span th:text="${document.anagrafica.provincia}"/>)</span><br/><br/>
+			<span><i>Torino,&#xA0;<span th:text="${document.richiesta.data}"/></i></span>
+		</div><br/><br/>
+		<br/><br/><br/>
+				
+
+		<p><b>Prot. n:&#xA0;</b><span th:text="${document.datiDiniego.numProtocolloUscita}"/></p> 
+		
+				
+		<p><b>CLASSIFICAZIONE:&#xA0;</b><span th:text="${document.datiDiniego.classificazioneDOQUI}"/></p>
+		<p><b>CODICE FISCALE/PARTITA IVA:</b>&#xA0;<span th:text="${document.anagrafica.codiceFiscale}"></span></p>
+		<br/>
+		<p><b>OGGETTO:&#xA0;</b>Tasse sulle concessioni regionali: rimborso</p>
+
+		<p class="dati-modulo">
+			ANNO DI RIFERIMENTO:&#xA0;<span th:text="${document.datiDiniego.annoPagamento}"></span><br/>
+			PROTOCOLLO LETTERA IN INGRESSO:&#xA0;<span th:text="${document.datiDiniego.numProtocolloIngresso}"/><br/>
+			
+		</p>
+		<br/><br/><br/>
+
+
+		<p>Con riferimento alla domanda in oggetto, mediante la quale &#232; stata chiesta la restituzione di
+			tasse sulle concessioni regionali che si ritengono indebitamente versate, spiace dover comunicare che la medesima non pu&#243; essere accolta per i motivi qui di seguito brevemente descritti:</p>
+
+					   <p class="elenco-motivazioni"><ul th:each="destination: ${document.datiDiniego.motivazioni}">
+							<li th:text="${destination}"></li>
+					   </ul></p>
+		<p>Contro l’adottata decisione potr&#224; essere proposto, nel termine di sessanta giorni da che la presente risulter&#224; essere pervenuta, il ricorso giurisdizionale di cui al decreto legislativo 31 dicembre 1992, n. 546, e successive modificazioni ed integrazioni, davanti alla Commissione tributaria provinciale di Torino e secondo le modalit&#224; previste dagli articoli 18 e seguenti del medesimo decreto.</p>
+		<p>Per ulteriori informazioni consultare il sito della Regione Piemonte (<a href="https://www.regione.piemonte.it/web/temi/tributi/tcr">https://www.regione.piemonte.it/web/temi/tributi/tcr</a>).</p>
+		<p>Distinti saluti.</p><br/><br/>
+        <span class="signature-right">
+                    <span>IL DIRIGENTE DEL SETTORE</span><br/>
+                    <span>Dr. Fabrizio Zanella</span><br/><br/>
+                    <span>FIRMA OMESSA</span><br/>
+					<span style="font-size:9px">Ai sensi dell' art. 3, c. 2, del Decreto Legislativo 12 febbraio 1993, n. 39 la firma prevista per la validit&#225; della presente comunicazione, prodotta mediante sistemi informatici, &#232; sostituita con l' indicazione a stampa del nominativo del soggetto responsabile</span>
+
+                </span>
+        </page-inside-avoid>
+    </div>
+</div>
+
+<div style="clear:both;"></div>
+
+
+</body>
+</html>

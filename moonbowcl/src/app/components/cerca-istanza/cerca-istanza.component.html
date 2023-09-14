@@ -1,0 +1,291 @@
+<alert id="alert-cerca-istanza"></alert>
+<form [formGroup]="archivioForm">
+    <div class="container">
+        <!-- <div class="row" style="margin-left:15%">                   -->
+        <div class="row">
+
+            <!-- <div class="input-group" *ngIf="isPagamenti">
+                <p style="margin-bottom: 0.2em !important; margin-left: 0.5em">
+                    <label>
+                        <input type="radio" value="all" name="paid" checked (change)="changePaid($event)"
+                            formControlName="paid"> Tutte</label>
+                    <label><input type="radio" value="paid" name="paid" (change)="changePaid($event)"> Pagate</label>
+                    <label><input type="radio" value="unpaid" name="paid" (change)="changePaid($event)"> Non
+                        Pagate</label>
+                </p>
+            </div> -->
+
+            <div class="input-group">
+                <div class="input-group-prepend" style="padding:5px">
+                    
+                    <span class="input-group-text" style="margin-right:8px">Seleziona un modulo</span>
+                    <select class="browser-default" id="moduli" name="modulo"
+                        (change)="selectModulo($any($event).target.value)" formControlName="modulo">
+                        <option value="">...</option>
+                        <option *ngFor="let modulo of moduli" value="{{modulo.idModulo}}">{{modulo.oggettoModulo}}
+                            ({{modulo.codiceModulo}})</option>
+                    </select>
+                </div>
+
+                <div *ngIf="showFiltroComuneUtente" class="input-group-prepend" style="padding:5px">
+                    <span class="input-group-text" style="margin-right:8px">Seleziona comune</span>
+                    <select class="browser-default" (change)="selectComune($any($event).target.value)"
+                        formControlName="comuneUtente">
+                        <option value="">...</option>
+                        <option *ngFor="let comune of comuniUtente" value="{{comune.codice}}">{{comune.nome}}</option>
+                    </select>
+                </div>
+                <div *ngIf="showFiltroEnteUtente" class="input-group-prepend" style="padding:5px">
+                    <span class="input-group-text" style="margin-right:8px">Seleziona filtro</span>
+                    <select class="browser-default" (change)="selectEnte($any($event).target.value)"
+                        formControlName="enteUtente">
+                        <option value="">...</option>
+                        <option *ngFor="let ente of entiUtente" value="{{ente.codice}}">{{ente.nome}}</option>
+                    </select>
+                </div>
+                <div *ngIf="showFiltroComune" class="input-group-prepend" style="padding:5px">
+                    <span class="input-group-text" style="margin-right:8px">Filtra per comune</span>
+
+                    <select class="browser-default" (change)="selectProvincia($any($event).target.value)"
+                        formControlName="provincia">
+                        <option value="">...</option>
+                        <option value="001">Torino</option>
+                        <option value="006">Alessandria</option>
+                        <option value="005">Asti</option>
+                        <option value="096">Biella</option>
+                        <option value="004">Cuneo</option>
+                        <option value="003">Novara</option>
+                        <option value="103">Verbano-Cusio-Ossola</option>
+                        <option value="002">Vercelli</option>
+                    </select>
+
+                    <select class="browser-default" style="margin-left:8px" (change)="selectComune($any($event).target.value)"
+                        formControlName="comune">
+                        <option value="">...</option>
+                        <option *ngFor="let comune of comuni" value="{{comune.codice}}">{{comune.nome}}</option>
+                    </select>
+                </div>
+
+                <!-- <div *ngIf="showFiltroMultiEnte" class="input-group-prepend" style="padding:5px">
+                    <span class="input-group-text" style="margin-right:8px">Filtra ente</span>
+                    <select class="browser-default" (change)="selectMultiEnte($event.target.value)" formControlName="multiEnte">
+                        <option value="">...</option>
+                        <option *ngFor="let ente of entiMultiEnte" value="{{ente.idEnte}}">{{ente.nomeEnte}}</option>
+                    </select>
+                </div> -->
+
+                <div class="input-group">
+                    <div class="input-group-prepend" style="padding:5px">
+                        <span class="input-group-text" style="margin-right:8px">Numero istanza</span>
+                        <!-- <input type="text" id="codiceIstanza" formControlName="codiceIstanza" size="50" maxlength="50" (input)="updateResult($event.target.value)"> -->
+                        <input type="text" id="codiceIstanza" formControlName="codiceIstanza" size="50" maxlength="50">
+                    </div>
+                    <div class="input-group-prepend" style="padding:5px">
+                        <span class="input-group-text" style="margin-right:8px">Protocollo</span>
+                        <input type="text" id="protocollo" formControlName="protocollo" maxlength="20">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-group-prepend" style="padding:5px">
+                        <span class="input-group-text" style="margin-right:8px">Cognome dichiarante</span>
+                        <input type="text" id="cognome" formControlName="cognome" size="50" maxlength="150">
+                    </div>
+                    <div class="input-group-prepend" style="padding:5px">
+                        <span class="input-group-text" style="margin-right:8px">Nome dichiarante</span>
+                        <input type="text" id="nome" formControlName="nome" maxlength="150">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend" style="padding:5px">
+                        <span class="input-group-text" style="margin-right:8px">Codice fiscale dichiarante</span>
+                        <input type="text" id="codiceFiscale" formControlName="codiceFiscale" maxlength="16">
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="showBaseFilter">
+                <!-- <div class="input-group" style="top:-15px"> -->
+                <div class="input-group">    
+                    <div class="input-group-prepend" style="padding:5px">
+                        <span class="input-group-text">Seleziona lo stato</span>
+                    </div>
+                    <div style="padding:5px">
+
+                        <ng-multiselect-dropdown id="stati" name="stato" formControlName="stato"
+                            [settings]="dropdownStatoSettings" [placeholder]="'Seleziona uno stato'" [data]="stati"
+                            (onSelect)="onItemStatoSelect($event)" (onDeSelect)="onItemStatoDeSelect($event)"
+                            (onSelectAll)="onItemStatoSelectAll($event)">
+                        </ng-multiselect-dropdown>
+
+                    </div>
+
+                    <div class="input-group-prepend " style="padding:5px">
+                        <span class="input-group-text" style="margin-right: 5px">Dal</span>
+                        <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" formControlName="dataDal">
+                        <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                    </div>
+
+                    <div class="input-group-prepend" style="padding:5px">
+                        <span class="input-group-text" style="margin-right: 5px">Al</span>
+                        <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" formControlName="dataAl">
+                        <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                    </div>
+
+                </div>
+
+                <!-- <div class="input-group" style="top:-15px"> -->
+                <div class="input-group">                    
+                    <div class="input-group-prepend " style="padding:5px">
+                        <span class="input-group-text" style="margin-right: 5px">Inviate Dal</span>
+                        <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" formControlName="inviateDataDal">
+                        <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                    </div>
+
+                    <div class="input-group-prepend" style="padding:5px">
+                        <span class="input-group-text" style="margin-right: 5px">Inviate Al</span>
+                        <input [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" formControlName="inviateDataAl">
+                        <owl-date-time [pickerType]="'calendar'" #dt4></owl-date-time>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="input-group" *ngIf="isPagamenti" style="padding: 20px 5px 5px 5px">
+                <!-- <p style="margin-bottom: 0.2em !important; margin-left: 0.5em">
+                    <label>
+                        <input type="radio" value="all" name="filtroEpay" (change)="changePaid($event)"
+                            formControlName="filtroEpay"  [checked]="filtroEpay === 'all' ? true:false"> Tutte</label>
+                    <label><input type="radio" value="paid" name="filtroEpay" (change)="changePaid($event)" [checked]="filtroEpay === 'paid' ? true:false"> Pagate</label>
+                    <label><input type="radio" value="unpaid" name="filtroEpay" (change)="changePaid($event)" [checked]="filtroEpay === 'unpaid' ? true:false"> Non
+                        Pagate</label>
+                </p> -->
+                <div style="padding-left:0px !important" class="col-12 col-lg-6 col-xl-4">
+                    <!-- <legend>Stato pagamento:</legend> -->
+                    <div class="switch-toggle alert alert-light" *ngIf="isPagamenti">
+                        <input type="radio" id="radioall" value="all" name="filtroEpay" formControlName="filtroEpay"  [checked]="filtroEpay === 'all' ? true:false"
+                            (change)="changePaid($event)">
+                        <label for="radioall">Tutte</label>
+
+                        <input type="radio" id="radiopaid" value="paid" name="filtroEpay" formControlName="filtroEpay"  [checked]="filtroEpay === 'paid' ? true:false"
+                            (change)="changePaid($event)">
+                        <label for="radiopaid">Pagate</label>
+
+                        <input type="radio" id="radiounp" value="unpaid" name="filtroEpay" formControlName="filtroEpay"  [checked]="filtroEpay === 'unpaid' ? true:false"
+                            (change)="changePaid($event)">
+                        <label for="radiounp">Non pagate</label>
+
+                        <a class="btn btn-primary btn-toggle"></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- </div> -->
+
+            <!-- <div style="margin-top:20px" class=" row">      
+                <button class="btn" style="background-color:lightgrey;" (click)="cerca()">
+                    Cerca
+                </button>
+                <button class="btn" style="background-color:lightgrey;margin-left:20px" (click)="reset()">
+                    Cancella
+                </button>
+            </div>             -->
+
+            <div class="input-group"  style="margin-top:20px;padding-left:5px">
+                <button class="btn" style="background-color:lightgrey;" (click)="cerca()">
+                    Cerca
+                </button>
+                <button class="btn" style="background-color:lightgrey;margin-left:20px" (click)="reset()">
+                    Cancella
+                </button>
+            </div>
+
+        </div>
+
+        <!-- <div style="margin-top:20px" class="text-center"> -->
+        <!-- <div class="input-group" style="margin-top:20px" style="padding:5px"> -->
+
+        <!-- <div class="input-group row"  style="margin-top:20px;padding-left:5px">
+            <button class="btn" style="background-color:lightgrey;" (click)="cerca()">
+                Cerca
+            </button>
+            <button class="btn" style="background-color:lightgrey;margin-left:20px" (click)="reset()">
+                Cancella
+            </button>
+        </div> -->
+    </div>
+
+</form>
+
+<!-- <div *ngIf="msgValidazione" class="alert-danger" style="margin-left:auto;margin-right:auto;text-align:center;margin-top:20px;width: fit-content;">
+    {{msgValidazione}}
+</div> -->
+
+<div class="container">
+    <div class="row" *ngIf="righeIstanza.length > 0">
+        <!-- <div class="col-md-12"> -->
+        <div>
+            <br>
+            <p *ngIf="righeIstanza.length > 0"><b>{{modulo?.oggettoModulo}}</b> - istanze trovate: {{istanzeTotali}}
+            </p>
+            <div class="table-responsive">
+                <table id="mytable" class="table table-bordered table-striped">
+                    <thead>
+                        <th>&nbsp;</th>
+                        <th *ngIf="isPagamenti"></th>
+                        <th *ngIf="showColonnaComune">Comune</th>
+                        <th *ngIf="showColonnaEnteUtente">Ente</th>
+                        <th *ngIf="showFiltroMultiEnte">Ente</th>
+                        <th>Numero istanza</th>
+                        <th>Cognome Dichiarante</th>
+                        <th>Nome Dichiarante</th>
+                        <th>Codice Fiscale Dichiarante</th>
+                        <th>Data invio
+                            <!-- <span style="float:right" *ngIf="sortDataInvio === Sort.DESC">
+                                <a [routerLink]="[]" (click)="toggleDataInvio()" ngbTooltip="Ordinamento ascendente">
+                                    <fa-icon [icon]="faAngleUp" style="color: #005ca9;"></fa-icon>
+                                </a>
+                            </span>
+                            <span style="float:right" *ngIf="sortDataInvio === Sort.ASC">
+                                <a [routerLink]="[]" (click)="toggleDataInvio()" ngbTooltip="Ordinamento discendente">
+                                    <fa-icon [icon]="faAngleDown" style="color: #005ca9;"></fa-icon>
+                                </a>
+                            </span>   -->
+                        </th>
+                        <th>Protocollo</th>
+                        <th>Stato attuale</th>
+                        <th>Data cambio stato</th>
+                        <th>In carico a</th>
+                        <th>Azioni</th>
+                    </thead>
+                    <tbody>
+                        <tr riga-istanza-cerca *ngFor="let rigaIstanza of righeIstanza; index as i"
+                            [riga-istanza-data]="rigaIstanza" [i]="i+(currPage-1) * pageSize"
+                            [criterioRicerca]="criterioRicerca" [currPage]="currPage" [isPagamenti]="isPagamenti">
+                        </tr>
+                    </tbody>
+
+                </table>
+                <div class="clearfix" *ngIf="istanzeTotali > pageSize">
+                    <ngb-pagination  [(page)]="currPage"
+                                     [pageSize]="pageSize"
+                                     [collectionSize]="istanzeTotali"
+                                     [maxSize]="20" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
+                                     (pageChange)="pageChanged($event)">
+
+                    </ngb-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div *ngIf="msgValidazione" class="alert-danger"
+    style="margin-left:auto;margin-right:auto;text-align:center;margin-top:20px;width: fit-content;">
+    {{msgValidazione}}
+</div>
+
+
+
+<app-moon-spinner></app-moon-spinner>

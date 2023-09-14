@@ -1,0 +1,68 @@
+<div *ngIf="msg" class="mt-2">
+  <div class="alert alert-info">
+    <strong>{{msg}}</strong>
+  </div>
+</div>
+
+<div class="card-container">
+
+<nav *ngIf="backCategorie == 'true'" class="breadcrumb-container" aria-label="Percorso di navigazione">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a style="cursor:pointer" (click)="back()">Nuova istanza</a><span class="separator" aria-hidden="true">/</span></li>
+    <li class="breadcrumb-item active" aria-current="page"> {{categoriaModuli}}</li>
+  </ol>
+</nav>
+
+<h1 class="fs-6"><span class="h6">Moduli della categoria:</span><br>
+  <span class="h2">{{categoriaModuli}}</span></h1>
+
+<div class="row my-5">
+  <div class="col-12 col-md-6 mb-3" *ngFor="let modulo of moduli">
+    <div class="bg-light p-3 h-100"> <!-- box contents -->
+      <h4>{{modulo?.oggettoModulo}}</h4>
+      <p>{{modulo?.descrizioneModulo}}</p>
+      <div *ngIf="modulo?.stato.dataFineValidita">
+        <p class="small">{{modulo?.codiceModulo}}&nbsp;ver.{{modulo?.versioneModulo}}&nbsp;(pubblicato fino al {{modulo?.stato.dataFineValidita}})</p>
+      </div>
+      <div *ngIf="!modulo?.stato.dataFineValidita">
+        <p class="small">{{modulo?.codiceModulo}}&nbsp;ver.{{modulo?.versioneModulo}}</p>
+      </div>
+
+      <div class="mt-2">   <!-- box buttons -->
+        <div >
+          <span [ngSwitch]="modulo?.codiceModulo">
+            <button *ngSwitchCase="'COMM_RINNOVO'" class="btn me-4 mb-4 rounded-0 btn-outline-primary "
+              routerLink="/manage-form/NEW/{{modulo?.idModulo}}/{{modulo?.idVersioneModulo}}">
+              <span class="visually-hidden">Compila il modulo "{{modulo?.oggettoModulo}}"</span>COMPILA per concessionario PERSONA FISICA con CF</button>
+
+            <button *ngSwitchCase="'CAMBIO_RES_CAF'" routerLink=""></button>
+
+            <button role="link" *ngSwitchDefault class="btn me-4 mb-4 rounded-0 btn-primary "
+              routerLink="/manage-form/NEW/{{modulo?.idModulo}}/{{modulo?.idVersioneModulo}}"><span class="visually-hidden">Compila il modulo "{{modulo?.oggettoModulo}}"</span>Compila</button>
+          </span>
+
+
+          <ng-template [ngIf]="isModuloCompilabileContoTerzi(modulo)">
+              <span [ngSwitch]="modulo?.codiceModulo">
+                  <button (click)="initModuloContoTerzi(modulo, true)" *ngSwitchCase="'COMM_RINNOVO'" [routerLink]="[]"
+                      class="btn me-4 mb-4 rounded-0 btn-outline-primary"><span class="visually-hidden">Compila il modulo "{{modulo?.oggettoModulo}}" per concessionario persona giuridica con
+                        CF/P.IVA</span>Compila per concessionario persona giuridica con
+                    CF/P.IVA
+                  </button>
+
+                <button (click)="initModuloContoTerzi(modulo, false)" *ngSwitchCase="'COMM_RINNOVO'" [routerLink]="[]"
+                    class="btn me-4 mb-4 rounded-0 btn-outline-primary"><span class="visually-hidden">Compila il modulo "{{modulo?.oggettoModulo}}" per delegato</span>Compila per delegato
+                </button>
+
+                <button (click)="initModuloContoTerzi(modulo,false)" *ngSwitchDefault [routerLink]="[]"
+                    class="btn me-4 mb-4 rounded-0 btn-outline-primary"><span class="visually-hidden">Compila il modulo "{{modulo?.oggettoModulo}}" conto terzi</span>Compila conto terzi
+                </button>
+
+              </span>
+          </ng-template>
+        </div>
+      </div>
+    </div>  
+  </div>
+</div>    
+</div>

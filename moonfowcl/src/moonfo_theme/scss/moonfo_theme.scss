@@ -1,0 +1,268 @@
+// Moon FO theme - use this file to override BI variables, import node modules styles and import custom theme styles
+
+//////////////////////////////////////
+/////// Override BI variables ///////
+/////////////////////////////////////
+
+
+// colors
+$primary-h: 225;
+$primary-s: 89;
+$primary-b: 76;
+
+$primary: #153FC2; //153FC2
+$indigo: #6675FF ; // appalti
+$purple: #7F39D8 ; // pnrr
+$pink: #D02C86  ; // personale
+$red: #D24242  ; // edilizia
+$orange: #FF7A00 ; // istruzione
+$yellow: #F0C000 ; // demografici
+$green: #1ABE85 ; // tributi
+$teal: #11D7D7; //  bandi
+$cyan:  #1893EC; // sanità
+$blue: #153FC2; // $primary -> test e default
+$light: #E9E6F2;
+$dark: #17324D; // #17324D tcr
+
+$primary-light: #D8E8EE; // custom moon variable
+
+
+$secondary-h: 68;
+$secondary-s: 100;
+$secondary-b: 100;
+
+$secondary:  #CEF000;
+
+
+$theme-colors: () ;
+$theme-colors: map-merge(
+  (
+    'yellow': $yellow,
+    'red': $red,
+    'primary-light': $primary-light,
+    'dark': $dark,
+    'green': $green,
+    'indigo': $indigo,
+    'cyan': $cyan
+  ),
+  $theme-colors
+);
+
+$info: $cyan;
+
+$variable-prefix: bs-;
+
+
+// navbar
+$navbar-light-color: $primary;
+$navbar-light-hover-color: $primary;
+$navbar-light-active-color: $primary;
+$navbar-light-disabled-color: $primary;
+$navbar-light-toggler-border-color: transparent;
+$nav-link-disabled-color: #b1b1b3;
+
+
+// misc
+
+$btn-box-shadow:  none;
+$btn-border-radius: 0px;
+$table-hover-bg: #e5f1fa;
+$breadcrumb-link-color: $primary;
+$link-hover-decoration: underline;
+$input-label-color: #435a70;
+
+
+//////////////////////////////////////////
+/////// Import node modules styles ///////
+//////////////////////////////////////////
+
+// bootstrap italia version variable
+// useful to check for the current version
+@import '/node_modules/bootstrap-italia/src/scss/custom/version';
+
+// funzioni e variabili colore
+@import '/node_modules/bootstrap-italia/src/scss/functions';
+@import '/node_modules/bootstrap-italia/src/scss/utilities/colors_vars';
+
+//variables
+@import '/node_modules/bootstrap-italia/src/scss/variables';
+
+//classi colore
+@import '/node_modules/bootstrap-italia/src/scss/utilities/colors';
+
+// BS5 Configuration
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/functions';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/variables';
+// @import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/maps';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/mixins';
+// mixins custom
+@import '/node_modules/bootstrap-italia/src/scss/custom/mixins/buttons';
+@import '/node_modules/bootstrap-italia/src/scss/custom/mixins/text-emphasis';
+//
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/utilities';
+
+// BS5 Layout & components
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/root';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/reboot';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/type';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/images';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/containers';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/grid';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/tables';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/forms';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/buttons';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/transitions';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/dropdown';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/button-group';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/nav';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/navbar';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/card';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/accordion';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/breadcrumb';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/pagination';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/badge';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/alert';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/progress';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/list-group';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/close';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/toasts';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/modal';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/tooltip';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/popover';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/carousel';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/spinners';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/offcanvas';
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/placeholders';
+
+// Helpers
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/helpers';
+
+// Utilities
+@import '/node_modules/bootstrap-italia/node_modules/bootstrap/scss/utilities/api';
+// scss-docs-end import-stack
+
+// Customizzazioni e nuovi componenti
+@import '/node_modules/bootstrap-italia/src/scss/utilities/text-colors';
+@import '/node_modules/bootstrap-italia/src/scss/custom/type';
+@import '/node_modules/bootstrap-italia/src/scss/custom/grid';
+@import '/node_modules/bootstrap-italia/src/scss/custom/tables';
+@import '/node_modules/bootstrap-italia/src/scss/custom/breadcrumb';
+@import '/node_modules/bootstrap-italia/src/scss/custom/modal';
+@import '/node_modules/bootstrap-italia/src/scss/custom/accordion';
+@import '/node_modules/bootstrap-italia/src/scss/custom/carousel';
+@import '/node_modules/bootstrap-italia/src/scss/custom/calendar';
+@import '/node_modules/bootstrap-italia/src/scss/custom/alert';
+@import '/node_modules/bootstrap-italia/src/scss/custom/buttons';
+@import '/node_modules/bootstrap-italia/src/scss/custom/font';
+
+// Avoid BI form styles, conflicting with Form.io
+// @import '/node_modules/bootstrap-italia/src/scss/custom/forms';
+// @import '/node_modules/bootstrap-italia/src/scss/custom/form-input-file';
+// @import '/node_modules/bootstrap-italia/src/scss/custom/form-input-number';
+// @import '/node_modules/bootstrap-italia/src/scss/custom/form-input-upload';
+// @import '/node_modules/bootstrap-italia/src/scss/custom/form-toggles';
+// @import '/node_modules/bootstrap-italia/src/scss/custom/form-password';
+// @import '/node_modules/bootstrap-italia/src/scss/custom/form-select';
+// @import '/node_modules/bootstrap-italia/src/scss/custom/form-transfer';
+
+@import '/node_modules/bootstrap-italia/src/scss/custom/dropdown';
+@import '/node_modules/bootstrap-italia/src/scss/custom/pager';
+@import '/node_modules/bootstrap-italia/src/scss/custom/tab';
+@import '/node_modules/bootstrap-italia/src/scss/custom/cookiebar';
+@import '/node_modules/bootstrap-italia/src/scss/custom/hero';
+@import '/node_modules/bootstrap-italia/src/scss/custom/forward';
+@import '/node_modules/bootstrap-italia/src/scss/custom/back-to-top';
+@import '/node_modules/bootstrap-italia/src/scss/custom/autocomplete';
+@import '/node_modules/bootstrap-italia/src/scss/custom/linklist';
+@import '/node_modules/bootstrap-italia/src/scss/custom/navigation';
+@import '/node_modules/bootstrap-italia/src/scss/custom/skiplinks';
+@import '/node_modules/bootstrap-italia/src/scss/custom/affix';
+@import '/node_modules/bootstrap-italia/src/scss/custom/sidebar';
+@import '/node_modules/bootstrap-italia/src/scss/custom/sidebarthemes';
+@import '/node_modules/bootstrap-italia/src/scss/custom/megamenu';
+@import '/node_modules/bootstrap-italia/src/scss/custom/bottomnav';
+@import '/node_modules/bootstrap-italia/src/scss/custom/navscroll';
+@import '/node_modules/bootstrap-italia/src/scss/custom/navscrolltheme';
+@import '/node_modules/bootstrap-italia/src/scss/custom/callout';
+@import '/node_modules/bootstrap-italia/src/scss/custom/toolbar';
+@import '/node_modules/bootstrap-italia/src/scss/custom/sections';
+@import '/node_modules/bootstrap-italia/src/scss/custom/dialog';
+@import '/node_modules/bootstrap-italia/src/scss/custom/notifications';
+@import '/node_modules/bootstrap-italia/src/scss/custom/avatar';
+@import '/node_modules/bootstrap-italia/src/scss/custom/thumbnav';
+@import '/node_modules/bootstrap-italia/src/scss/custom/steppers';
+@import '/node_modules/bootstrap-italia/src/scss/custom/card';
+@import '/node_modules/bootstrap-italia/src/scss/custom/imgresponsive';
+@import '/node_modules/bootstrap-italia/src/scss/custom/overlay-panel';
+@import '/node_modules/bootstrap-italia/src/scss/custom/progress-donuts';
+@import '/node_modules/bootstrap-italia/src/scss/custom/progress-bars';
+@import '/node_modules/bootstrap-italia/src/scss/custom/progress-spinners';
+@import '/node_modules/bootstrap-italia/src/scss/custom/gridlist';
+@import '/node_modules/bootstrap-italia/src/scss/custom/popover';
+@import '/node_modules/bootstrap-italia/src/scss/custom/tooltip';
+@import '/node_modules/bootstrap-italia/src/scss/custom/list';
+@import '/node_modules/bootstrap-italia/src/scss/custom/chips';
+@import '/node_modules/bootstrap-italia/src/scss/custom/rating';
+@import '/node_modules/bootstrap-italia/src/scss/custom/dimmer';
+@import '/node_modules/bootstrap-italia/src/scss/custom/timeline';
+@import '/node_modules/bootstrap-italia/src/scss/custom/anchor';
+@import '/node_modules/bootstrap-italia/src/scss/custom/map';
+@import '/node_modules/bootstrap-italia/src/scss/custom/point-list';
+@import '/node_modules/bootstrap-italia/src/scss/custom/rating-list';
+@import '/node_modules/bootstrap-italia/src/scss/custom/badge';
+@import '/node_modules/bootstrap-italia/src/scss/custom/figcaption';
+@import '/node_modules/bootstrap-italia/src/scss/custom/sticky';
+@import '/node_modules/bootstrap-italia/src/scss/custom/print';
+@import '/node_modules/bootstrap-italia/src/scss/custom/code';
+@import '/node_modules/bootstrap-italia/src/scss/custom/images';
+@import '/node_modules/bootstrap-italia/src/scss/custom/just-validate';
+@import '/node_modules/bootstrap-italia/src/scss/custom/accessible-autocomplete';
+
+// datepicker
+@import '/node_modules/bootstrap-italia/src/scss/custom/form-datepicker';
+
+// timepicker
+@import '/node_modules/bootstrap-italia/src/scss/custom/timepicker';
+
+// header
+@import '/node_modules/bootstrap-italia/src/scss/custom/headerslim';
+@import '/node_modules/bootstrap-italia/src/scss/custom/headerslimtheme';
+@import '/node_modules/bootstrap-italia/src/scss/custom/headercenter';
+@import '/node_modules/bootstrap-italia/src/scss/custom/headercentertheme';
+@import '/node_modules/bootstrap-italia/src/scss/custom/headernavbar';
+@import '/node_modules/bootstrap-italia/src/scss/custom/headernavbartheme';
+@import '/node_modules/bootstrap-italia/src/scss/custom/header';
+
+// footer
+@import '/node_modules/bootstrap-italia/src/scss/custom/footer';
+
+//colors theme
+@import '/node_modules/bootstrap-italia/src/scss/custom/navigationtheme';
+
+// componente di esempio
+@import '/node_modules/bootstrap-italia/src/scss/custom/componente-base';
+
+//gestione dei focus
+@import '/node_modules/bootstrap-italia/src/scss/utilities/focus';
+
+@import '/node_modules/bootstrap-italia/src/scss/utilities/icons';
+
+
+/////////////////////////////////////
+/////// Import custom styles ///////
+///////////////////////////////////
+
+@import '/src/moonfo_theme/scss/tables_custom';
+@import '/src/moonfo_theme/scss/pager_custom';
+@import '/src/moonfo_theme/scss/card_custom';
+@import '/src/moonfo_theme/scss/custom_classes';
+@import '/src/moonfo_theme/scss/forms_custom';
+@import '/src/moonfo_theme/scss/custom_animations';
+
+
+// import variables and overrides for fruitori esterni
+@import '/src/moonfo_theme/scss/fruitori_esterni_custom';
+
+.formio-loader{
+  display: none !important;
+}

@@ -1,0 +1,28 @@
+<div>
+    <div>
+        <div> {{modulo?.oggettoModulo}}  ({{modulo?.codiceModulo}})  {{modulo?.versioneModulo}}</div>
+        <div> {{modulo?.descrizioneModulo}}</div>
+    </div>
+    <formio-editor [form]="moduloFormIO" [reset]="resetFormioEditor$"
+                   [options]='formioOptions'>
+    </formio-editor>
+
+    <div>&nbsp;</div>
+    <div *ngIf="opt?.isbuttonIcon" class="form-group" style="margin: 0 auto; ">
+        <button class="btn btn-primary" style="width: 70px;float:left" (click)="back()">
+          <fa-icon style='font-size: 18px' [icon]="faHome"></fa-icon>
+        </button>
+        <!-- <button type="button" class="btn btn-primary" style="width: 70px;float:left;margin-left:10px;font-size: 18px"
+          (click)="reset()">
+          Reset
+        </button> -->
+        <button class="btn btn-primary" style="width: 70px;float:right" (click)="salva()">
+          <fa-icon style='font-size: 18px' [icon]="faSave"></fa-icon>
+        </button>
+    </div>
+    <div *ngIf="!opt?.isbuttonIcon" class="form-group" style="margin: 0 auto;">
+        <button type="button" class="btn btn-light" (click)="back()" style="float:left">Annulla</button>&nbsp;
+        <button type="button" class="btn btn-light" (click)="reset()" style="float:left">Reset</button>
+        <button type="button" class="btn btn-success" (click)="salva()" style="float:right" [disabled]="modeError ">Salva</button>
+    </div>
+</div>

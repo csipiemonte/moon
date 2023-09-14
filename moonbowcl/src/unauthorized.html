@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it" dir="ltr">
+
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Accesso non autorizzato">
+  
+    <title>Accesso non autorizzato</title>
+	<link rel="icon" type="image/x-icon" href="./favicon.ico">
+	
+	<link rel="stylesheet" media="all" href="./assets/styles/custom.css">
+    <style>
+		.brand-area img {  width: 150px;  height: auto;}
+		.d-inline-block {  display: inline-block !important;}	
+	</style>
+	</head>
+	<body>
+ 
+		<div class="container">
+			<div class="row align-items-center">
+			  <div class="brand-area col">
+				<span class="navbar-brand"><img src="./assets/im/moon.png" alt="Logo MOOn" class="d-inline-block align-top"></span>
+				<span style="font-size:24px; vertical-align:bottom;">MOOn Modulistica Open Online</span>
+			  </div>
+			</div>
+		</div>
+
+	
+		<section class="pricing py-5">
+		  <div class="container">
+			<div class="row">
+			  <!-- Test -->
+			  <div class="col-lg-6">
+				<div class="card mb-5 mb-lg-0">
+				  <div class="card-body">
+					<h5 class="card-title text-muted text-uppercase text-center">Accesso non autorizzato</h5>
+					<hr>
+					<p class="locale" style="font-size:14px !important;text-align:center">Per accedere occorre effettuare l'autenticazione</p>
+					<p class="locale" style="margin-top:40px;font-size:16px !important;text-align:center"><a href="#" onclick="accesso()"> ACCEDI</p>
+
+				  </div>
+				</div>
+			  </div>
+		 
+			</div>
+		  </div>
+		</section>
+
+    <script>
+	function accesso() {
+	  var destination =  window.location.protocol + "//" + window.location.host;
+	  switch (window.location.host) {
+		  case "tst-moon-ru.patrim.csi.it":
+		  case "tst-rupar-moon.csi.it":
+		  case "dev-moon.csi.it":
+		  case "tst-rupar-apaf-moon.csi.it":
+		  case "tst-rupar-demo-moon.csi.it":
+		  case "regionepiemonte-moon.csi.it":
+		  case "rupar-regionepiemonte-moon.csi.it":
+		  case "rupar-moon.csi.it":
+		  case "rupar-biella-moon.csi.it":
+		  case "rupar-demo-moon.csi.it":
+		  case "rupar-apaf-moon.csi.it":
+			path = "/moonbobl/accesso/wrup";
+			break;
+		  case "tst-moon-torinofacile.patrim.csi.it":
+			path = "/moonbobl/accesso/gasp_coto";
+			break;
+		  case "tst-moon-rupar.patrim.csi.it":
+		  case "torinofacile-moon.csi.it":
+		  case "rupar-torino-moon.csi.it":
+		  case "dev-me-moon.csi.it":
+			path = "/moonbobl/accesso/coto";
+			break;	
+		  case "tst-moon-internet.patrim.csi.it":
+			path = "/moonbobl/accesso/gasprp_salute";
+			break;	
+		  case "piemontetu-moon.csi.it":
+		  case "extracom-moon.csi.it":
+		    path = "/moonbobl/accesso/gasp_regione";
+			break;	
+		  case "tst-moon-bo-cmto.patrim.csi.it":
+		  case "rupar-cittametropolitanatorino-moon.csi.it":
+			path = "/moonbobl/accesso/provto";
+			break;
+		  case "tst-moon.csi.it":
+		  case "moon.csi.it":
+			path = "/moonbobl/accesso/intranet_icon";
+			break;	  
+
+		  default:
+			window.location.href = 'https://moon.csi.it/' +  (window.location.search || '') + (window.location.hash || '');
+		}
+		window.location.href = destination + path +  (window.location.search || '') + (window.location.hash || '');
+	  
+	}
+
+    </script>
+	</body>
+</html>

@@ -1,0 +1,1045 @@
+swagger: '2.0'
+info:
+  title: MOOn API
+  description: API per il backend del sistema MOOn di modulistica online.
+  version: 1.0.0
+host: 'mydevpc.csi.it:10110'
+schemes:
+  - http
+basePath: /restfacade/be
+produces:
+  - application/json
+paths:
+  /ping:
+    get:
+      operationId: ping
+      summary: servizio di ping del backend
+      description: Restituisce una stringa per confermare la disponibilita' del backend
+      produces:
+        - application/json
+      tags:
+        - system
+      responses:
+        '200':
+          description: stringa di conferma funzionamento
+          schema:
+            type: string
+          headers:
+            someheader:
+              description: header di risposta di test
+              type: string  
+        default:
+          description: Unexpected error
+          schema:
+            type: string
+  /currentUser:
+    get:
+      operationId: getCurrentUser
+      summary: get current user
+      description: restituisce l'utente corrente
+      produces:
+        - application/json
+      tags:
+        - security
+      responses:
+        '200':
+          description: l'utente corrente
+          schema:
+            $ref: '#/definitions/UserInfo'
+        default:
+          description: Unexpected error
+          schema:
+            type: string
+  /currentUser/roles:
+    get:
+      operationId: getUserRoles
+      summary: get current user role list
+      description: restituisce la lista di ruoli a cui appartiene l'utente corrente
+      produces:
+        - application/json
+      tags:
+        - security
+      responses:
+        '200':
+          description: la lista dei ruoli dell'utente collegato
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Role'
+        default:
+          description: Unexpected error
+          schema:
+            type: string
+  /currentUser/roles/{role}:
+    get:
+      operationId: isUserInRole
+      summary: l'utente appartiene al ruolo?
+      description: challenge di appartenenza dell'utente corrente al ruolo specificato
+      produces:
+        - application/json
+      tags:
+        - security
+      parameters:
+        - in: path
+          name: role
+          required: true
+          type: string
+      responses:
+        '200':
+          description: se l'utente corrente appartiene al ruolo specificato
+          schema:
+            $ref: '#/definitions/Role'
+        '401':
+          description: se l'utente corrente non appartiene al ruolo specificato
+  /currentUser/menu:
+    get:
+      operationId: getMenuStructureForUser
+      description: restituisce la struttura di menu (con abilitazioni) per l'utente corrente
+      produces: 
+        - application/json
+      tags:
+        - security
+      responses:
+        '200':
+          description: la struttura dei menu con abilitazioni
+          schema:
+            type: array
+            items: 
+              $ref: '#/definitions/MenuItem'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+  /currentUser/screens/{screen}:
+    get:
+      operationId: getScreenByCod
+      description: restituisce la struttura dello screen specificato, con le abilitazioni per l'utente collegato
+      produces:
+        - application/json
+      tags:
+        - security
+      parameters:
+        - in: path
+          name: screen
+          required: true
+          type: string
+      responses:
+        '200':
+          description: la struttura della schermata, con abilitazioni
+          schema:
+            $ref: '#/definitions/Screen'
+        '403':
+          description: se l'utente non e' abilitato alla schermata
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: se lo screen specificato non e' stato trovato
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+  /currentUser/screens/{screen}/widgets/{widget}:
+    get:
+      operationId: getWidget
+      description: restituisce il widget specificato. E' utile per interrogazioni puntuali
+      produces:
+        - application/json
+      tags:
+        - security
+      parameters:
+        - in: path
+          name: screen
+          required: true
+          type: string
+        - in: path
+          name: widget
+          required: true
+          type: string
+      responses:
+        '200':
+          description: le info del widget specificato
+          schema:
+            $ref: '#/definitions/Widget'
+        '404':
+          description: se lo screen o il widget specificati non sono stati trovati
+          schema:
+            $ref: '#/definitions/Error'
+  /moduli:
+    get:
+      summary: Lista tutti moduli accessibile dall'utente (filtrable con parametro "query")
+      operationId: getModuli
+      produces:
+        - application/json
+      tags: 
+        - business
+      parameters:
+        - in: query
+          name: fields
+          type: string
+          required: false
+      responses:
+        '200':
+          description: lista tutti moduli
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Modulo'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: È possibile creare un nuovo modulo all'interno del progetto utilizzando il messaggio POST all'endpoint /form insieme a un payload di dati che descriva il modulo che si desidera creare.
+      operationId: saveModulo
+      tags:
+        - business
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Modulo'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Modulo'
+  /moduli/{idModulo}:
+    get:
+      summary: Recurepa il modulo per chiave primaria
+      operationId: getModuloById
+      tags:
+        - business
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: idModulo
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: definizione del modulo
+    put:
+      summary: Aggiorna un modulo
+      operationId: putModulo
+      tags:
+        - business
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: idModulo
+          type: integer
+          format: int64
+          required: true
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Modulo'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Modulo'
+  /moduli/struttura/{idStruttura}:
+    get:
+      summary: Recupera la struttura del modulo
+      operationId: getStrutturaByIdStruttura
+      produces:
+        - application/json
+      tags: 
+        - business
+      parameters:
+        - in: path
+          name: idStruttura
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: struttura del modulo
+          schema:
+              $ref: '#/definitions/Modulo'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+  /istanze:
+    get:
+      summary: Recurepa i dati principali di compilazioni utente  (filtrable con parametro "query")
+      operationId: getIstanze
+      tags:
+        - business
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: fields
+          type: string
+          required: false
+      responses:
+        '200':
+          description: lista dei dati principali di compilazioni utente
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Istanza'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Salva i dati di un form compilati dall'utente (inserisci o aggiorna secondo presenza idIstanza)
+      operationId: saveIstanza
+      tags:
+        - business
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Istanza'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Istanza'
+  /istanze/{idIstanza}:
+    get:
+      summary: Recurepa i dati completi di una compilazione utente
+      operationId: getIstanzaById
+      tags:
+        - business
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: idIstanza
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: dati di una compilazione utente di un modulo
+          schema:
+            $ref: '#/definitions/Istanza'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Aggiorna i dati di un form compilati dall'utente
+      operationId: putIstanza
+      tags:
+        - business
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: idIstanza
+          type: integer
+          format: int64
+          required: true
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Istanza'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Istanza'
+  /istanze/init/{idModulo}:
+    get:
+      summary: Recurepa i dati di initializzazione di una compilazione utente di un modulo
+      operationId: getInitIstanzaByIdModulo
+      tags:
+        - business
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: idModulo
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: dati di initializzazione di una compilazione utente di un modulo
+          examples:
+            application/json: {  "stato":  {    "idStato": 1  },  "data": "{        \"data\": {            \"firstName\": \"Laurent\",            \"lastName\": \"PISSARD\",            \"submit\": false        }    }",  "modulo":  {    "idModulo": 13  }}
+          schema:
+            $ref: '#/definitions/Istanza'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+  /istanze/pdf:
+    post:
+      operationId: getPdf
+      tags:
+        - business
+      produces:
+        - application/pdf
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Istanza'
+      responses:
+        '200':
+          description: ok
+  /regioni:
+    get:
+      operationId: getRegioni
+      produces:
+        - application/json
+      tags: 
+        - business-extra
+      parameters:
+        - in: query
+          name: fields
+          required: false
+          type: string
+      responses:
+        '200':
+          description: le regioni italiane
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Regione'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+  /regioni/{codice}:
+    get:
+      operationId: getRegioneById
+      produces:
+        - application/json
+      tags: 
+        - business-extra
+      parameters:
+        - in: path
+          name: codice
+          required: true
+          type: integer
+        - in: query
+          name: fields
+          required: false
+          type: string
+      responses:
+        '200':
+          description: la regione corrispondente al codice fornito nel path
+          schema:
+            $ref: '#/definitions/Regione'
+        '404':
+          description: il codice fornito per la regione non esiste
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+  /regioni/{codiceRegione}/provincie:
+    get:
+      operationId: getProvincieByRegione
+      produces:
+        - application/json
+      tags: 
+        - business-extra
+      parameters:
+        - in: path
+          name: codiceRegione
+          required: true
+          type: integer
+        - in: query
+          name: fields
+          required: false
+          type: string
+      responses:
+        '200':
+          description: le provincie della regione corrispondente al codice fornito nel path
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Provincia'
+        '404':
+          description: il codice fornito per la regione non esiste
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+  /regioni/{codiceRegione}/provincie/{codiceProvincia}:
+    get:
+      operationId: getProvinciaById
+      produces: 
+        - application/json
+      tags: 
+        - business-extra
+      parameters: 
+        - in: path
+          name: codiceRegione
+          required: true
+          type: integer
+        - in: path
+          name: codiceProvincia
+          required: true
+          type: integer
+        - in: query
+          name: fields
+          required: false
+          type: string
+      responses:
+        '200':
+          description: la provincia selezionata
+          schema:
+            $ref: '#/definitions/Provincia'
+        '404':
+          description: il codice fornito per la regione/provincia non esiste/ono
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+  /regioni/{codiceRegione}/provincie/{codiceProvincia}/comuni:
+    get:
+      operationId: getComuniByProvincia
+      produces: 
+        - application/json
+      tags: 
+        - business-extra
+      parameters: 
+        - in: path
+          name: codiceRegione
+          required: true
+          type: integer
+        - in: path
+          name: codiceProvincia
+          required: true
+          type: integer
+        - in: query
+          name: fields
+          required: false
+          type: string  
+      responses:
+        '200':
+          description: i comuni della provincia selezionata
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Comune'
+        '404':
+          description: il codice fornito per la regione/provincia non esiste/ono
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+  /regioni/{codiceRegione}/provincie/{codiceProvincia}/comuni/{codiceComune}:
+    get:
+      operationId: getComuneById
+      produces: 
+        - application/json
+      tags: 
+        - business-extra
+      parameters: 
+        - in: path
+          name: codiceRegione
+          required: true
+          type: integer
+        - in: path
+          name: codiceProvincia
+          required: true
+          type: integer
+        - in: path
+          name: codiceComune
+          required: true
+          type: integer
+        - in: query
+          name: fields
+          required: false
+          type: string  
+      responses:
+        '200':
+          description: il comune selezionato
+          schema:
+            $ref: '#/definitions/Comune'
+        '404':
+          description: il codice fornito per la regione/provincia/comune non esiste/ono
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+  /nazioni:
+    get:
+      operationId: getNazioni
+      produces:
+        - application/json
+      tags: 
+        - business-extra
+      parameters:
+        - in: query
+          name: fields
+          required: false
+          type: string
+      responses:
+        '200':
+          description: le nazioni
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Nazione'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+  /nazioni/{codice}:
+    get:
+      operationId: getNazioneById
+      produces:
+        - application/json
+      tags: 
+        - business-extra
+      parameters:
+        - in: path
+          name: codice
+          required: true
+          type: integer
+        - in: query
+          name: fields
+          required: false
+          type: string
+      responses:
+        '200':
+          description: la nazione corrispondente al codice fornito nel path
+          schema:
+            $ref: '#/definitions/Nazione'
+        '404':
+          description: il codice fornito per la nazione non esiste
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+  /cittadinanze:
+    get:
+      operationId: getCittadinanze
+      produces:
+        - application/json
+      tags: 
+        - business-extra
+      parameters:
+        - in: query
+          name: fields
+          required: false
+          type: string
+      responses:
+        '200':
+          description: le cittadinanze
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Cittadinanza'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+  /cittadinanze/{codice}:
+    get:
+      operationId: getCittadinanzeById
+      produces:
+        - application/json
+      tags: 
+        - business-extra
+      parameters:
+        - in: path
+          name: codice
+          required: true
+          type: integer
+        - in: query
+          name: fields
+          required: false
+          type: string
+      responses:
+        '200':
+          description: la cittadinanza corrispondente al codice fornito nel path
+          schema:
+            $ref: '#/definitions/Cittadinanza'
+        '404':
+          description: il codice fornito per la cittadinanza non esiste
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: errore generico
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Istanza:
+    type: object
+    properties:
+      idIstanza:
+        type: integer
+        format: int64
+        description: l'identificativo dell'istanza (Long)
+      codiceIstanza:
+        type: string
+        description: l'identificativo utente dell'istanza secondo progressivo modulo
+      stato:
+        $ref: '#/definitions/Stato'
+      created:
+        type: string
+        format: date-time
+      modified:
+        type: string
+        format: date-time
+      data:
+        description: i dati del modulo compilati dall'utente
+        type: object
+      modulo:
+        $ref: '#/definitions/Modulo'
+      owner:
+        type: string
+      metadata:
+        type: object
+  Stato:
+    type: object
+    properties:
+      idStato:
+        type: integer
+        description: l'identificativo dello stato
+      nome:
+        type: string
+        description: il nome dello stato ('bozza','inviato')
+      descrizione:
+        type: string
+        description: la descrizione dello stato
+  UserInfo:
+    type: object
+    properties:
+      nome:
+        type: string
+        description: nome dell'utente
+      cognome:
+        type: string
+        description: cognome dell'utente
+      codFisc:
+        type: string
+        description: codice fiscale dell'utente
+      ente:
+        type: string
+        description: nome dell'ente
+      ruolo:
+        type: string
+        description: nome del ruolo dell'utente
+      cod_ruolo:
+        type: string
+        description: codice del ruolo dell'utente
+      idIride:
+        type: string
+        description: identita IRIDE
+  Role:
+    type: object
+    properties:
+      cod:
+        type: string
+      name:
+        type: string
+  Actor:
+    type: object
+    properties:
+      cod:
+        type: string
+      name:
+        type: string
+  UseCase:
+    type: object
+    properties:
+      cod:
+        type: string
+      name:
+        type: string
+  MenuItem:
+    type: object
+    description: la singola voce di menu
+    properties:
+      cod:
+        type: string
+        description: condice univoco dell'elemento
+      enabled:
+        type: boolean
+        description: true se il menu e' abilitato
+      visible:
+        type: boolean
+        description: true se il menu e' visibile
+      submenu:
+        type: array
+        items:
+          $ref: '#/definitions/MenuItem'
+  Widget:
+    type: object
+    description: il singolo widget
+    properties:
+      cod:
+        type: string
+        description: codice univoco dell'elemento
+      enabled:
+        type: boolean
+        description: true se il widget e' abilitato
+      visible:
+        type: boolean
+        description: true se il widget e' visibile
+  Screen:
+    type: object
+    description: informazioni strutturali di una schermata, con abilitazioni
+    properties:
+      cod:
+        type: string
+        description: codice univoco dell'elemento
+      widgets:
+        type: array
+        description: elenco dei widget della schermata, con abilitazioni
+        items:
+          $ref: '#/definitions/Widget'
+  Modulo:
+    type: object
+    properties:
+      idModulo:
+        type: integer
+        format: int64
+        description: l'identificativo del modulo (Long)
+      codiceModulo:
+        type: string
+        description: il codice del modulo
+      versioneModulo:
+        type: string
+        description: la versione del modulo
+      oggettoModulo:
+        type: string
+        description: l'oggetto del modulo
+      descrizioneModulo:
+        type: string
+        description: la descrizione del modulo
+      dataIns:
+        type: string
+        format: date-time
+        description: la data/oraio di inserimento/creazione del modulo
+      dataUpd:
+        type: string
+        format: date-time
+        description: la data/orario di ultimo aggiornamento del modulo
+      flagIsRiservato:
+        type: boolean
+        description: true se il modulo e' riservato
+      flagUsaProgressivo:
+        type: boolean
+        description: true se il modulo utilizzo il progressivo
+      flagProtocolloIntegrato:
+        type: boolean
+        description: true se deve essere protocollato
+      attoreUpd:
+        type: string
+        description: l'attore di inserimento/creazione o ultimo aggiornamento del modulo
+      idModuloStruttura:
+        type: integer
+        format: int64
+        description: l'identificativo del modulo struttura (Long)
+      tipoStruttura:
+        type: string
+        description: il tipo della struttura WIZ-Wizard FRM-Form
+      struttura:
+        type: string
+        description: la struttura del form in formato JSON formIO
+  Regione:
+    type: object
+    properties:
+      codice:
+        type: integer
+        description: il codice identificativo della regione
+      nome:
+        type: string
+        description: il nome comune della regione
+      provincie:
+        type: array
+        items:
+          $ref: '#/definitions/Provincia'
+  Provincia:
+    type: object
+    properties:
+      codice:
+        type: integer
+        description: il codice identificativo della provincia
+      nome:
+        type: string
+        description: il nome comune della provincia
+      comuni:
+        type: array
+        items:
+          $ref: '#/definitions/Comune'
+  Comune:
+    type: object
+    properties:
+      codice:
+        type: integer
+        description: il codice identificativo del comune
+      nome:
+        type: string
+        description: il nome comune del comune
+  Nazione:
+    type: object
+    properties:
+      codice:
+        type: integer
+        description: il codice identificativo della nazione (id_nazione)
+      nome:
+        type: string
+        description: il nome della nazione
+  Cittadinanza:
+    type: object
+    properties:
+      codice:
+        type: integer
+        description: il codice identificativo della cittadinanza (id_nazione)
+      nome:
+        type: string
+        description: il nome della cittadinanza
+      flagUE:
+        type: string
+        description: il flag di appartenenza all'UE
+  boolean_crit:
+    type: object
+    properties:
+      eq:
+        type: boolean
+  string_crit:
+    type: object
+    description: criterio su singola property di tipo stringa
+    properties:
+      eq:
+        type: string
+      ne:
+        type: string
+      lt:
+        type: string
+      lte:
+        type: string
+      gt:
+        type: string
+      gte:
+        type: string
+      in:
+        type: array
+        items:
+          type: string
+      nin:
+        type: array
+        items:
+          type: string
+      c:
+        type: string
+      ci:
+        type: string
+      s:
+        type: string
+      si:
+        type: string
+      e:
+        type: string
+      ei:
+        type: string
+  integer_crit:
+    type: object
+    description: criterio su singola property di tipo integer
+    properties:
+      eq:
+        type: integer
+      ne:
+        type: integer
+      lt:
+        type: integer
+      lte:
+        type: integer
+      gt:
+        type: integer
+      gte:
+        type: integer
+      in:
+        type: array
+        items:
+          type: integer
+      nin:
+        type: array
+        items:
+          type: integer
+  date_crit:
+    type: object
+    description: criterio su singola property di tipo data
+    properties:
+      eq:
+        type: string
+        format: date
+      ne:
+        type: string
+        format: date
+      lt:
+        type: string
+        format: date
+      lte:
+        type: string
+        format: date
+      gt:
+        type: string
+        format: date
+      gte:
+        type: string
+        format: date
+      in:
+        type: array
+        items:
+          type: string
+          format: date
+      nin:
+        type: array
+        items:
+          type: string
+          format: date    
+  Error:
+    type: object
+    properties:
+      code:
+        type: string
+      messaggioCittadino:
+        type: string
+      errorMessage:
+        type: string
+      fields:
+        type: string
+        x-nullable: true

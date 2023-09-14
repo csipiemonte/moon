@@ -1,0 +1,1466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="via" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="via" xmlns:intf="via" xmlns:tns1="http://api.coopdiag.csi.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Nov 13, 2013 (09:13:21 GMT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="via" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://api.coopdiag.csi.it"/>
+   <element name="testResources">
+    <complexType/>
+   </element>
+   <element name="testResourcesResponse">
+    <complexType>
+     <sequence>
+      <element name="testResourcesReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="CSIException">
+    <sequence>
+     <element name="nestedExcClassName" nillable="true" type="xsd:string"/>
+     <element name="nestedExcMsg" nillable="true" type="xsd:string"/>
+     <element name="stackTraceMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="fault" type="impl:CSIException"/>
+   <element name="selfCheck">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="in0" type="tns1:CalledResource"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="selfCheckResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="selfCheckReturn" type="tns1:InvocationNode"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns1_InvocationNode">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:InvocationNode"/>
+    </sequence>
+   </complexType>
+   <complexType name="UserException">
+    <complexContent>
+     <extension base="impl:CSIException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ParInputValNonCorrettoException">
+    <complexContent>
+     <extension base="impl:UserException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="SystemException">
+    <complexContent>
+     <extension base="impl:CSIException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="CommunicationException">
+    <complexContent>
+     <extension base="impl:SystemException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="OutputException">
+    <complexContent>
+     <extension base="impl:UserException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="UnrecoverableException">
+    <complexContent>
+     <extension base="impl:CSIException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ParInputObblMancantiException">
+    <complexContent>
+     <extension base="impl:UserException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="hasSelfCheck">
+    <complexType/>
+   </element>
+   <element name="hasSelfCheckResponse">
+    <complexType>
+     <sequence>
+      <element name="hasSelfCheckReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaVieComunaliPerNome">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+      <element minOccurs="0" name="in1" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaVieComunaliPerNomeResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaVieComunaliPerNomeReturn" type="impl:ViaComunale"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ViaComunale">
+    <sequence>
+     <element name="codUffToponomasticaTorino" nillable="true" type="xsd:long"/>
+     <element name="idComune" nillable="true" type="xsd:long"/>
+     <element name="idL2" type="xsd:long"/>
+     <element name="idLocalita" nillable="true" type="xsd:long"/>
+     <element name="idProvincia" nillable="true" type="xsd:long"/>
+     <element name="idRegione" nillable="true" type="xsd:long"/>
+     <element name="idSedime" nillable="true" type="xsd:long"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="nomeBreve" nillable="true" type="xsd:string"/>
+     <element name="nomeColloquiale" nillable="true" type="xsd:string"/>
+     <element name="nomeLocalita" nillable="true" type="xsd:string"/>
+     <element name="nomeProvincia" nillable="true" type="xsd:string"/>
+     <element name="nomeRegione" nillable="true" type="xsd:string"/>
+     <element name="sedime" nillable="true" type="xsd:string"/>
+     <element name="siglaProvincia" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="fault1" type="impl:SystemException"/>
+   <element name="fault2" type="impl:UnrecoverableException"/>
+   <element name="cercaVieComunaliPerNomeEIdComune">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+      <element minOccurs="0" name="in1" type="xsd:int"/>
+      <element name="in2" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaVieComunaliPerNomeEIdComuneResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaVieComunaliPerNomeEIdComuneReturn" type="impl:ViaComunale"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaViaComunalePerIdIndirizzoComunale">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaViaComunalePerIdIndirizzoComunaleResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaViaComunalePerIdIndirizzoComunaleReturn" type="impl:ViaComunale"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaVieSovracomunaliPerNome">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+      <element minOccurs="0" name="in1" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaVieSovracomunaliPerNomeResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaVieSovracomunaliPerNomeReturn" type="impl:ViaSovracomunale"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ViaSovracomunale">
+    <sequence>
+     <element name="diramazione" nillable="true" type="xsd:string"/>
+     <element name="estensione" nillable="true" type="xsd:string"/>
+     <element name="idEnteStradaSovracomunale" type="xsd:long"/>
+     <element name="idL3" type="xsd:long"/>
+     <element name="idSedime" type="xsd:long"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="nomeBreve" nillable="true" type="xsd:string"/>
+     <element name="nomeColloquiale" nillable="true" type="xsd:string"/>
+     <element name="nomeDiramazione" nillable="true" type="xsd:string"/>
+     <element name="numero" nillable="true" type="xsd:string"/>
+     <element name="sedime" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="cercaVieSovracomunaliPerNomeEIdEnteStradaSovracomunale">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+      <element minOccurs="0" name="in1" type="xsd:int"/>
+      <element name="in2" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaVieSovracomunaliPerNomeEIdEnteStradaSovracomunaleResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaVieSovracomunaliPerNomeEIdEnteStradaSovracomunaleReturn" type="impl:ViaSovracomunale"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaViaSovracomunalePerIdIndirizzoSovracomunale">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaViaSovracomunalePerIdIndirizzoSovracomunaleResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaViaSovracomunalePerIdIndirizzoSovracomunaleReturn" type="impl:ViaSovracomunale"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaTuttiGliEntiStradaSovracomunale">
+    <complexType/>
+   </element>
+   <element name="cercaTuttiGliEntiStradaSovracomunaleResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaTuttiGliEntiStradaSovracomunaleReturn" type="impl:EnteStradaSovracomunale"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="EnteStradaSovracomunale">
+    <sequence>
+     <element name="denominazione" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:long"/>
+     <element name="sigla" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="cercaGliEntiStradaSovracomunalePerNome">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+      <element minOccurs="0" name="in1" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaGliEntiStradaSovracomunalePerNomeResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaGliEntiStradaSovracomunalePerNomeReturn" type="impl:EnteStradaSovracomunale"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaEnteStradaSovracomunalePerIdEnteStrada">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaEnteStradaSovracomunalePerIdEnteStradaResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaEnteStradaSovracomunalePerIdEnteStradaReturn" type="impl:EnteStradaSovracomunale"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaEstensioneViaComunale">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaEstensioneViaComunaleResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaEstensioneViaComunaleReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault3" type="impl:OutputException"/>
+   <element name="fault4" type="impl:ParInputObblMancantiException"/>
+   <element name="fault5" type="impl:ParInputValNonCorrettoException"/>
+   <element name="cercaGeometriaViaComunale">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaGeometriaViaComunaleResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaGeometriaViaComunaleReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaEstensioneViaSovracomunale">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaEstensioneViaSovracomunaleResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaEstensioneViaSovracomunaleReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaGeometriaViaSovracomunale">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaGeometriaViaSovracomunaleResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaGeometriaViaSovracomunaleReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://api.coopdiag.csi.it" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="via"/>
+   <complexType name="ResourceType">
+    <sequence>
+     <element name="cod" nillable="true" type="xsd:string"/>
+     <element name="descr" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="CalledResource">
+    <sequence>
+     <element name="codRisorsa" nillable="true" type="xsd:string"/>
+     <element name="codSistema" nillable="true" type="xsd:string"/>
+     <element name="tipoRisorsa" nillable="true" type="tns1:ResourceType"/>
+    </sequence>
+   </complexType>
+   <complexType name="Outcome">
+    <sequence>
+     <element name="eccezione" nillable="true" type="impl:CSIException"/>
+     <element name="messaggio" nillable="true" type="xsd:string"/>
+     <element name="status" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="InvocationNode">
+    <sequence>
+     <element name="childs" nillable="true" type="impl:ArrayOf_tns1_InvocationNode"/>
+     <element name="outcome" nillable="true" type="tns1:Outcome"/>
+     <element name="resource" nillable="true" type="tns1:CalledResource"/>
+     <element name="startTime" type="xsd:long"/>
+     <element name="stopTime" type="xsd:long"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="cercaVieComunaliPerNomeEIdComuneRequest">
+
+      <wsdl:part element="impl:cercaVieComunaliPerNomeEIdComune" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaTuttiGliEntiStradaSovracomunaleRequest">
+
+      <wsdl:part element="impl:cercaTuttiGliEntiStradaSovracomunale" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="selfCheckRequest">
+
+      <wsdl:part element="impl:selfCheck" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaVieSovracomunaliPerNomeEIdEnteStradaSovracomunaleRequest">
+
+      <wsdl:part element="impl:cercaVieSovracomunaliPerNomeEIdEnteStradaSovracomunale" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaVieSovracomunaliPerNomeEIdEnteStradaSovracomunaleResponse">
+
+      <wsdl:part element="impl:cercaVieSovracomunaliPerNomeEIdEnteStradaSovracomunaleResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaEstensioneViaSovracomunaleResponse">
+
+      <wsdl:part element="impl:cercaEstensioneViaSovracomunaleResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaViaSovracomunalePerIdIndirizzoSovracomunaleResponse">
+
+      <wsdl:part element="impl:cercaViaSovracomunalePerIdIndirizzoSovracomunaleResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaEstensioneViaComunaleRequest">
+
+      <wsdl:part element="impl:cercaEstensioneViaComunale" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="UnrecoverableException">
+
+      <wsdl:part element="impl:fault2" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaEstensioneViaSovracomunaleRequest">
+
+      <wsdl:part element="impl:cercaEstensioneViaSovracomunale" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaVieComunaliPerNomeEIdComuneResponse">
+
+      <wsdl:part element="impl:cercaVieComunaliPerNomeEIdComuneResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaVieSovracomunaliPerNomeResponse">
+
+      <wsdl:part element="impl:cercaVieSovracomunaliPerNomeResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaTuttiGliEntiStradaSovracomunaleResponse">
+
+      <wsdl:part element="impl:cercaTuttiGliEntiStradaSovracomunaleResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaGeometriaViaSovracomunaleResponse">
+
+      <wsdl:part element="impl:cercaGeometriaViaSovracomunaleResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="OutputException">
+
+      <wsdl:part element="impl:fault3" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="SystemException">
+
+      <wsdl:part element="impl:fault1" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaGliEntiStradaSovracomunalePerNomeRequest">
+
+      <wsdl:part element="impl:cercaGliEntiStradaSovracomunalePerNome" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaViaComunalePerIdIndirizzoComunaleRequest">
+
+      <wsdl:part element="impl:cercaViaComunalePerIdIndirizzoComunale" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaGliEntiStradaSovracomunalePerNomeResponse">
+
+      <wsdl:part element="impl:cercaGliEntiStradaSovracomunalePerNomeResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaGeometriaViaSovracomunaleRequest">
+
+      <wsdl:part element="impl:cercaGeometriaViaSovracomunale" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="hasSelfCheckResponse">
+
+      <wsdl:part element="impl:hasSelfCheckResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaVieComunaliPerNomeResponse">
+
+      <wsdl:part element="impl:cercaVieComunaliPerNomeResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaGeometriaViaComunaleResponse">
+
+      <wsdl:part element="impl:cercaGeometriaViaComunaleResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="hasSelfCheckRequest">
+
+      <wsdl:part element="impl:hasSelfCheck" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ParInputValNonCorrettoException">
+
+      <wsdl:part element="impl:fault5" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="testResourcesResponse">
+
+      <wsdl:part element="impl:testResourcesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CSIException">
+
+      <wsdl:part element="impl:fault" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaEnteStradaSovracomunalePerIdEnteStradaResponse">
+
+      <wsdl:part element="impl:cercaEnteStradaSovracomunalePerIdEnteStradaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ParInputObblMancantiException">
+
+      <wsdl:part element="impl:fault4" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="testResourcesRequest">
+
+      <wsdl:part element="impl:testResources" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaViaSovracomunalePerIdIndirizzoSovracomunaleRequest">
+
+      <wsdl:part element="impl:cercaViaSovracomunalePerIdIndirizzoSovracomunale" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaVieSovracomunaliPerNomeRequest">
+
+      <wsdl:part element="impl:cercaVieSovracomunaliPerNome" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaViaComunalePerIdIndirizzoComunaleResponse">
+
+      <wsdl:part element="impl:cercaViaComunalePerIdIndirizzoComunaleResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaEnteStradaSovracomunalePerIdEnteStradaRequest">
+
+      <wsdl:part element="impl:cercaEnteStradaSovracomunalePerIdEnteStrada" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaVieComunaliPerNomeRequest">
+
+      <wsdl:part element="impl:cercaVieComunaliPerNome" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaEstensioneViaComunaleResponse">
+
+      <wsdl:part element="impl:cercaEstensioneViaComunaleResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaGeometriaViaComunaleRequest">
+
+      <wsdl:part element="impl:cercaGeometriaViaComunale" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="selfCheckResponse">
+
+      <wsdl:part element="impl:selfCheckResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="lanciVia">
+
+      <wsdl:operation name="testResources">
+
+         <wsdl:input message="impl:testResourcesRequest" name="testResourcesRequest"/>
+
+         <wsdl:output message="impl:testResourcesResponse" name="testResourcesResponse"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="selfCheck">
+
+         <wsdl:input message="impl:selfCheckRequest" name="selfCheckRequest"/>
+
+         <wsdl:output message="impl:selfCheckResponse" name="selfCheckResponse"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="hasSelfCheck">
+
+         <wsdl:input message="impl:hasSelfCheckRequest" name="hasSelfCheckRequest"/>
+
+         <wsdl:output message="impl:hasSelfCheckResponse" name="hasSelfCheckResponse"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaVieComunaliPerNome">
+
+         <wsdl:input message="impl:cercaVieComunaliPerNomeRequest" name="cercaVieComunaliPerNomeRequest"/>
+
+         <wsdl:output message="impl:cercaVieComunaliPerNomeResponse" name="cercaVieComunaliPerNomeResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaVieComunaliPerNomeEIdComune">
+
+         <wsdl:input message="impl:cercaVieComunaliPerNomeEIdComuneRequest" name="cercaVieComunaliPerNomeEIdComuneRequest"/>
+
+         <wsdl:output message="impl:cercaVieComunaliPerNomeEIdComuneResponse" name="cercaVieComunaliPerNomeEIdComuneResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaViaComunalePerIdIndirizzoComunale">
+
+         <wsdl:input message="impl:cercaViaComunalePerIdIndirizzoComunaleRequest" name="cercaViaComunalePerIdIndirizzoComunaleRequest"/>
+
+         <wsdl:output message="impl:cercaViaComunalePerIdIndirizzoComunaleResponse" name="cercaViaComunalePerIdIndirizzoComunaleResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaVieSovracomunaliPerNome">
+
+         <wsdl:input message="impl:cercaVieSovracomunaliPerNomeRequest" name="cercaVieSovracomunaliPerNomeRequest"/>
+
+         <wsdl:output message="impl:cercaVieSovracomunaliPerNomeResponse" name="cercaVieSovracomunaliPerNomeResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaVieSovracomunaliPerNomeEIdEnteStradaSovracomunale">
+
+         <wsdl:input message="impl:cercaVieSovracomunaliPerNomeEIdEnteStradaSovracomunaleRequest" name="cercaVieSovracomunaliPerNomeEIdEnteStradaSovracomunaleRequest"/>
+
+         <wsdl:output message="impl:cercaVieSovracomunaliPerNomeEIdEnteStradaSovracomunaleResponse" name="cercaVieSovracomunaliPerNomeEIdEnteStradaSovracomunaleResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaViaSovracomunalePerIdIndirizzoSovracomunale">
+
+         <wsdl:input message="impl:cercaViaSovracomunalePerIdIndirizzoSovracomunaleRequest" name="cercaViaSovracomunalePerIdIndirizzoSovracomunaleRequest"/>
+
+         <wsdl:output message="impl:cercaViaSovracomunalePerIdIndirizzoSovracomunaleResponse" name="cercaViaSovracomunalePerIdIndirizzoSovracomunaleResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaTuttiGliEntiStradaSovracomunale">
+
+         <wsdl:input message="impl:cercaTuttiGliEntiStradaSovracomunaleRequest" name="cercaTuttiGliEntiStradaSovracomunaleRequest"/>
+
+         <wsdl:output message="impl:cercaTuttiGliEntiStradaSovracomunaleResponse" name="cercaTuttiGliEntiStradaSovracomunaleResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaGliEntiStradaSovracomunalePerNome">
+
+         <wsdl:input message="impl:cercaGliEntiStradaSovracomunalePerNomeRequest" name="cercaGliEntiStradaSovracomunalePerNomeRequest"/>
+
+         <wsdl:output message="impl:cercaGliEntiStradaSovracomunalePerNomeResponse" name="cercaGliEntiStradaSovracomunalePerNomeResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaEnteStradaSovracomunalePerIdEnteStrada">
+
+         <wsdl:input message="impl:cercaEnteStradaSovracomunalePerIdEnteStradaRequest" name="cercaEnteStradaSovracomunalePerIdEnteStradaRequest"/>
+
+         <wsdl:output message="impl:cercaEnteStradaSovracomunalePerIdEnteStradaResponse" name="cercaEnteStradaSovracomunalePerIdEnteStradaResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaEstensioneViaComunale">
+
+         <wsdl:input message="impl:cercaEstensioneViaComunaleRequest" name="cercaEstensioneViaComunaleRequest"/>
+
+         <wsdl:output message="impl:cercaEstensioneViaComunaleResponse" name="cercaEstensioneViaComunaleResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaGeometriaViaComunale">
+
+         <wsdl:input message="impl:cercaGeometriaViaComunaleRequest" name="cercaGeometriaViaComunaleRequest"/>
+
+         <wsdl:output message="impl:cercaGeometriaViaComunaleResponse" name="cercaGeometriaViaComunaleResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaEstensioneViaSovracomunale">
+
+         <wsdl:input message="impl:cercaEstensioneViaSovracomunaleRequest" name="cercaEstensioneViaSovracomunaleRequest"/>
+
+         <wsdl:output message="impl:cercaEstensioneViaSovracomunaleResponse" name="cercaEstensioneViaSovracomunaleResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaGeometriaViaSovracomunale">
+
+         <wsdl:input message="impl:cercaGeometriaViaSovracomunaleRequest" name="cercaGeometriaViaSovracomunaleRequest"/>
+
+         <wsdl:output message="impl:cercaGeometriaViaSovracomunaleResponse" name="cercaGeometriaViaSovracomunaleResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="lanciViaSoapBinding" type="impl:lanciVia">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="testResources">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="testResourcesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="testResourcesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="selfCheck">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="selfCheckRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="selfCheckResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="hasSelfCheck">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="hasSelfCheckRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="hasSelfCheckResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaVieComunaliPerNome">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaVieComunaliPerNomeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaVieComunaliPerNomeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaVieComunaliPerNomeEIdComune">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaVieComunaliPerNomeEIdComuneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaVieComunaliPerNomeEIdComuneResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaViaComunalePerIdIndirizzoComunale">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaViaComunalePerIdIndirizzoComunaleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaViaComunalePerIdIndirizzoComunaleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaVieSovracomunaliPerNome">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaVieSovracomunaliPerNomeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaVieSovracomunaliPerNomeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaVieSovracomunaliPerNomeEIdEnteStradaSovracomunale">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaVieSovracomunaliPerNomeEIdEnteStradaSovracomunaleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaVieSovracomunaliPerNomeEIdEnteStradaSovracomunaleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaViaSovracomunalePerIdIndirizzoSovracomunale">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaViaSovracomunalePerIdIndirizzoSovracomunaleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaViaSovracomunalePerIdIndirizzoSovracomunaleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaTuttiGliEntiStradaSovracomunale">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaTuttiGliEntiStradaSovracomunaleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaTuttiGliEntiStradaSovracomunaleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaGliEntiStradaSovracomunalePerNome">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaGliEntiStradaSovracomunalePerNomeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaGliEntiStradaSovracomunalePerNomeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaEnteStradaSovracomunalePerIdEnteStrada">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaEnteStradaSovracomunalePerIdEnteStradaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaEnteStradaSovracomunalePerIdEnteStradaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaEstensioneViaComunale">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaEstensioneViaComunaleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaEstensioneViaComunaleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaGeometriaViaComunale">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaGeometriaViaComunaleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaGeometriaViaComunaleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaEstensioneViaSovracomunale">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaEstensioneViaSovracomunaleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaEstensioneViaSovracomunaleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaGeometriaViaSovracomunale">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaGeometriaViaSovracomunaleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaGeometriaViaSovracomunaleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="lanciViaService">
+
+      <wsdl:port binding="impl:lanciViaSoapBinding" name="lanciVia">
+
+         <wsdlsoap:address location="http://tst-applogic.reteunitaria.piemonte.it/lanciApplViaWsfad/services/lanciVia"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

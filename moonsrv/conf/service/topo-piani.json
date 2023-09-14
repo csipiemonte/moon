@@ -1,0 +1,18 @@
+{"piani":
+[{"codice":"AM","nome":"PIANO AMMEZZATO"},{"codice":"BF","nome":"BASSO FABBRICATO"},{"codice":"CO","nome":"CORTILE-"},{"codice":"FR","nome":"FRONTE"},{"codice":"IC","nome":"INTERNO CORTILE--"}
+,{"codice":"MA","nome":"MANSARDA"},{"codice":"PR","nome":"PIANO RIALZATO"},{"codice":"PT","nome":"PIANO TERRA"},{"codice":"SF","nome":"SOFFITTA"},{"codice":"SI","nome":"SEMINTERRATO"},{"codice":"SO","nome":"SOPPALCO"},{"codice":"SP","nome":"SOTTOPASSAGGIO"},{"codice":"ST","nome":"SOTTOTETTO"}
+,{"codice":"S1","nome":"SOTTERRANEO  N. 1"},{"codice":"S2","nome":"SOTTERRANEO  N. 2"},{"codice":"S3","nome":"SOTTERRANEO  N. 3"},{"codice":"S4","nome":"SOTTERRANEO  N. 4"},{"codice":"S5","nome":"SOTTERRANEO  N. 5"},{"codice":"S6","nome":"SOTTERRANEO  N. 6"},{"codice":"S7","nome":"SOTTERRANEO  N. 7"},{"codice":"S8","nome":"SOTTERRANEO  N. 8"},{"codice":"S9","nome":"SOTTERRANEO  N. 9"}
+,{"codice":"01","nome":"PIANO PRIMO"}
+,{"codice":"02","nome":"PIANO SECONDO"}
+,{"codice":"03","nome":"PIANO TERZO"}
+,{"codice":"04","nome":"PIANO QUARTO"}
+,{"codice":"05","nome":"PIANO QUINTO"}
+,{"codice":"06","nome":"PIANO SESTO"}
+,{"codice":"07","nome":"PIANO SETTIMO"}
+,{"codice":"08","nome":"PIANO OTTAVO"}
+,{"codice":"09","nome":"PIANO NONO"}
+,{"codice":"10","nome":"PIANO DECIMO"},{"codice":"11","nome":"PIANO UNDICESIMO"},{"codice":"12","nome":"PIANO DODICESIMO"},{"codice":"13","nome":"PIANO TREDICESIMO"},{"codice":"14","nome":"PIANO QUATTORDICESIMO"}
+,{"codice":"15","nome":"PIANO QUINDICESIMO"},{"codice":"16","nome":"PIANO SEDICESIMO"},{"codice":"17","nome":"PIANO DICIASETTESIMO"},{"codice":"18","nome":"PIANO DICIOTTESIMO"},{"codice":"19","nome":"PIANO DICIANNOVESIMO"}
+,{"codice":"20","nome":"PIANO VENTESIMO"},{"codice":"21","nome":"PIANO VENTUNESIMO"},{"codice":"22","nome":"PIANO VENTIDUESIMO"},{"codice":"23","nome":"PIANO VENTITREESIMO"},{"codice":"24","nome":"PIANO VENTIQUATTRESIMO"}
+,{"codice":"25","nome":"PIANO VENTICINQUESIMO"},{"codice":"26","nome":"PIANO VENTISEIESIMO"},{"codice":"27","nome":"PIANO VENTISETTESIMO"},{"codice":"28","nome":"PIANO VENTOTTESIMO -233"},{"codice":"29","nome":"PIANO VENTINOVESIMO"}
+,{"codice":"30","nome":"PIANO TRENTESIMO"}]}

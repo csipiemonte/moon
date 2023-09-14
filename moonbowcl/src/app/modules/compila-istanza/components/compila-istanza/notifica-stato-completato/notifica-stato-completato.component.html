@@ -1,0 +1,49 @@
+<div style="width: 90%; margin-left:100px;margin-top:40px ">
+    <h4 style="text-align:center">{{titoloNotifica1}}</h4>
+    <h4 style="text-align:center">{{titoloNotifica2}}</h4>
+    <h5 *ngIf="descrizione" style="text-align:center">{{descrizione}}</h5>
+    <div>&nbsp;</div>
+    <div class="table-responsive">
+        <table id="mytable" class="table table-bordered table-striped">
+            <thead>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bold">Modulo</td>
+                    <td>{{istanza?.modulo.oggettoModulo}}</td>
+                </tr>
+                <tr>
+                    <td class="bold">Codice istanza</td>
+                    <td>{{istanza?.codiceIstanza}}</td>
+                </tr>
+                <tr>
+                    <td class="bold">Data salvataggio</td>
+                    <td>{{istanza?.created | date: 'dd/MM/yyyy HH:mm'}}</td>
+                </tr>
+                <tr>
+                    <td class="bold">Riepilogo dei dati inseriti</td>
+                    <td>
+                        <a [routerLink]="[]" (click)="downloadPdf()">
+                            <i class="fas fa-file-pdf"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div></div>
+    </div>
+    <div>&nbsp;</div>
+    <div class="table-responsive">
+
+        <button *ngIf="!isBozza" class="btn" style="color: #fff;background-color: #dc3545;width:200px;float:left" (click)="riportaInBozza()">
+            Riporta in bozza
+        </button>
+   
+        <button *ngIf="!isBozza" class="btn" style=" color: #fff;background-color: #28a745;width:200px;float:right" (click)="inviaIstanza()">
+            Invia istanza
+        </button>
+    </div>
+</div>
+
+<app-moon-spinner messaggio='Scaricamento riepilogo ...'></app-moon-spinner>
+

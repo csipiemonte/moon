@@ -1,0 +1,168 @@
+<div *ngIf="!editMode">
+    <div *ngIf="isAdmin" style="position:absolute; top: 4.5rem; right: 8px; z-index: 1;">
+        <button type="button" class="btn btn-outline-primary" (click)="editMode=true;">Edit EPAY</button>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col col-md-2"><span title="{{ titleUpd.get('PSIT_EPAY') }}">Attivazione:</span></div>
+            <div class="col col-md-10">{{maEpay['valore']}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-2"><span title="{{ titleUpd.get('PSIT_EPAY_CONF') }}">EPAY Conf:</span>
+            </div>
+            <div class="col col-md-10"><span title="{{attrEpayConf|json}}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-code-square" viewBox="0 0 16 16">
+                        <path
+                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z">
+                        </path>
+                        <path
+                            d="M6.854 4.646a.5.5 0 0 1 0 .708L4.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0z">
+                        </path>
+                    </svg></span>
+            </div>
+        </div>
+        <div class="row" *ngIf="attrEpayConf['causale']">
+            <div class="col col-md-2">causale:</div>
+            <div class="col col-md-10">{{attrEpayConf['causale'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrEpayConf['codice_fiscale_ente']">
+            <div class="col col-md-2">codice_fiscale_ente:</div>
+            <div class="col col-md-10">{{attrEpayConf['codice_fiscale_ente']}}</div>
+        </div>
+        <div class="row" *ngIf="attrEpayConf['tipo_pagamento']">
+            <div class="col col-md-2">tipo_pagamento:</div>
+            <div class="col col-md-10">{{attrEpayConf['tipo_pagamento']}}</div>
+        </div>
+        <div class="row" *ngIf="attrEpayConf['importo']">
+            <div class="col col-md-2">importo:</div>
+            <div class="col col-md-10">{{attrEpayConf['importo'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrEpayConf['codice_fiscale_piva']">
+            <div class="col col-md-2">codice_fiscale_piva:</div>
+            <div class="col col-md-10">{{attrEpayConf['codice_fiscale_piva']}}</div>
+        </div>
+        <div class="row" *ngIf="attrEpayConf['cognome']">
+            <div class="col col-md-2">cognome:</div>
+            <div class="col col-md-10">{{attrEpayConf['cognome']}}</div>
+        </div>
+        <div class="row" *ngIf="attrEpayConf['nome']">
+            <div class="col col-md-2">nome:</div>
+            <div class="col col-md-10">{{attrEpayConf['nome'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrEpayConf['ragione_sociale']">
+            <div class="col col-md-2">ragione_sociale:</div>
+            <div class="col col-md-10">{{attrEpayConf['ragione_sociale'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrEpayConf['email']">
+            <div class="col col-md-2">email:</div>
+            <div class="col col-md-10">{{attrEpayConf['email'] }}</div>
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+<div *ngIf="editMode">
+    <alert id="alert-moduli-attr-epay"></alert>
+    <form>
+        <div class="form-group">
+            <label for="attrEpayEdit">Attivazione:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Abilitazione alla visualizazione dati EPAY su BO. [S|N]"></i></label>
+            <div>
+                <ui-switch [(ngModel)]="maEpayEditT" [ngModelOptions]="{standalone: true}">
+                </ui-switch>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="causale">Causale:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Causale del pagamento"></i></label>
+            <input type="text" [(ngModel)]="attrEpayConfEdit['causale']" id="causale" name="causale" class="form-control"
+                #causale="ngModel" placeholder="@@CODICE_ISTANZA@@" />
+        </div>
+        <div class="form-group">
+            <label for="codice_fiscale_ente">CodiceFiscale Ente:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Codice fiscale dell’Ente per cui il si richiede la creazione di una posizione debitoria."></i></label>
+            <input type="text" [(ngModel)]="attrEpayConfEdit['codice_fiscale_ente']" id="codice_fiscale_ente" name="codice_fiscale_ente"
+                class="form-control" #codice_fiscale_ente="ngModel" placeholder="##codice_fiscale_ente##" />
+        </div>
+        <div class="form-group">
+            <label for="tipo_pagamento">Codice Versamento:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Codice Versamento per cui il cittadino vuole effettuare il pagamento (tipo_pagamento)."></i></label>
+            <input type="text" [(ngModel)]="attrEpayConfEdit['tipo_pagamento']" id="tipo_pagamento" name="tipo_pagamento"
+                class="form-control" #tipo_pagamento="ngModel" placeholder="##tipo_pagamento##" />
+        </div>
+        <div class="form-group">
+            <label for="importo">Importo:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Importo totale del pagamento da effettuare."></i></label>
+            <input type="text" [(ngModel)]="attrEpayConfEdit['importo']" id="importo" name="importo" class="form-control"
+                #importo="ngModel" placeholder="inserire il valore es.: 25  oppure il riferimento preso dall'istanza es.: ##importo!Number##" />
+        </div>
+
+        <fieldset>
+            <legend>Soggetto:</legend>
+            <div class="form-group">
+                <label for="codice_fiscale_piva">CodiceFiscale / PIVA:&nbsp;<i class="fa fa-question-circle text-muted"
+                        ngbTooltip="Codice Fiscale del cittadino / Partita Iva dell’impresa che vuole effettuare il pagamento."></i></label>
+                <input type="text" [(ngModel)]="attrEpayConfEdit['codice_fiscale_piva']" id="codice_fiscale_piva"
+                    name="codice_fiscale_piva" class="form-control" #codice_fiscale_piva="ngModel"
+                    placeholder="##codice_fiscale_piva##" />
+            </div>
+            <div class="form-group">
+                <label for="cognome">Cognome:&nbsp;<i class="fa fa-question-circle text-muted"
+                        ngbTooltip="Cognome del cittadino che vuole effettuare il pagamento."></i></label>
+                <input type="text" [(ngModel)]="attrEpayConfEdit['cognome']" id="cognome" name="cognome" class="form-control"
+                    #cognome="ngModel" placeholder="@@COGNOME@@" />
+            </div>
+            <div class="form-group">
+                <label for="nome">Nome:&nbsp;<i class="fa fa-question-circle text-muted"
+                        ngbTooltip="Nome del cittadino che vuole effettuare il pagamento."></i></label>
+                <input type="text" [(ngModel)]="attrEpayConfEdit['nome']" id="nome" name="nome" class="form-control" #nome="ngModel"
+                    placeholder="@@NOME@@" />
+            </div>
+            <div class="form-group">
+                <label for="ragione_sociale">Ragione Sociale:&nbsp;<i class="fa fa-question-circle text-muted"
+                        ngbTooltip="Ragione sociale dell’impresa che vuole effettuare il pagamento, in alternativa ai dati nome e cognome."></i></label>
+                <input type="text" [(ngModel)]="attrEpayConfEdit['ragione_sociale']" id="ragione_sociale" name="ragione_sociale" class="form-control"
+                    #ragione_sociale="ngModel" placeholder="##ragione_sociale##" />
+            </div>
+            <div class="form-group">
+                <label for="email">email:&nbsp;<i class="fa fa-question-circle text-muted"
+                        ngbTooltip="Email del cittadino che vuole effettuare il pagamento."></i></label>
+                <input type="text" [(ngModel)]="attrEpayConfEdit['email']" id="email" name="email" class="form-control"
+                    #email="ngModel" placeholder="##email##" />
+            </div>
+        </fieldset>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-light" (click)="editMode=false;" style="float:left">Annulla</button>
+            <button type="button" class="btn btn-success" (click)="salva()" style="float:right">Salva</button>
+        </div>
+    </form>
+</div>
+<div>&nbsp;</div>
+<div>Default conf:&nbsp;
+    <pre>
+"causale": "@@CODICE_ISTANZA@@",
+"codice_fiscale_ente": "##codice_fiscale_ente##",
+"tipo_pagamento": "##tipo_pagamento##",
+"importo": "##importo!Number##",
+
+"codice_fiscale_piva": "##codice_fiscale_piva##",
+"cognome": "@@COGNOME@@",
+"nome": "@@NOME@@",
+"ragione_sociale": "##ragione_sociale##",
+"email": "##email##"
+    </pre>
+</div>

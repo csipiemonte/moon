@@ -1,0 +1,64 @@
+
+<header>
+    <div class="it-header-slim-wrapper py-0"  [style.background-color]="topbarBgColor">
+
+    <div class="container-xl">
+
+      <div class="row">
+        <div class="col-12">
+          <div class="it-header-slim-wrapper-content">
+            <span class="font-weight-semibold navbar-brand">{{consumerParams.parameters?.nome_ente['text']}}</span> <!-- << NOME REGIONE -->
+            <div class="d-flex dropdown border-start">
+              <a class="btn btn-transparent btn-icon dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="rounded-icon bg-white">
+                 <span class="text-primary p-2">{{currentUser.nome[0]}}{{currentUser.cognome[0]}}</span> <!-- << INIZIALI UTENTE -->
+                </span>
+                <span class="text-white d-none d-lg-block">{{currentUser.nome}} {{currentUser.cognome}}</span>
+                <!-- << NOME UTENET -->
+                <svg class="icon icon-sm">
+                  <use [attr.href]="'./assets/svg/sprite.svg#it-expand'"
+                       [attr.xlink:href]="'./assets/svg/sprite.svg#it-expand'">
+                  </use>
+                </svg>
+              </a>
+              <div id="dropwdown-menu" class="dropdown-menu mt-3">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="link-list-wrapper">
+                      <ul class="link-list"> <!-- << MENU UTENTE -->
+                        <li><a  [href]="consumerParams.parameters?.url_area_personale['url']" class="dropdown-item list-item border-bottom"><span class="text-primary">Area personale</span></a></li>
+                        <li><a  [href]="consumerParams.parameters?.url_profilo['url']" class="dropdown-item list-item border-bottom"><span class="text-primary">Profilo</span></a></li>
+                        <li><a [href]="consumerParams.backUrl" class="dropdown-item list-item" href="#"><span
+                          class="text-primary">Esci</span></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div> <!-- end topbar -->
+
+  <div class="it-nav-wrapper it-nav-wrapper py-3 py-lg-0" [style.background-color]="headerBgColor">  <!-- start nav -->
+    <div [style.background-color]="headerBgColor" class="it-header-center-wrapper py-1  align-items-center"> <!-- << COLORE HEADER -->
+      <div class="container-xl">
+        <div class="row">
+          <div class=" it-header-center-content-wrapper">
+            <div class="it-brand-wrapper col-12 col-xl-6 ">
+              <a href="#" class="d-flex flex-row align-items-center flex-nowrap"> <!-- << LINK SU LOGO COMUNE -->
+                <span class="visually-hidden">Vai alla home</span>
+                <img [src]="consumerParams.parameters?.link_img_comune['url']" style="height:80px;" class="w-auto me-3" class="me-3"> <!-- << LOGO COMUNE -->
+                <div class="it-brand-text">
+                  <div class="it-brand-title text-white">{{consumerParams.parameters?.nome_comune['text']}}</div> <!-- << NOME COMUNE -->
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

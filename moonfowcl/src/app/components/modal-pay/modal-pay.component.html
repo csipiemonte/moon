@@ -1,0 +1,19 @@
+
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{modal_titolo}}</h4>
+    <button type="button" class="btn-close" aria-label="Chiudi avviso" (click)="activeModal.dismiss('Cross click')">
+    </button>
+  </div>
+  <div class="modal-body">
+    <span [innerHtml]="modal_contenuto"></span>
+    <div class="form-check form-switch mt-3">
+      <input class="form-check-input" type="checkbox" id="modal_switch" name="modal_switch" value="{{modal_switch_label}}" [(ngModel)]="checkSelected">
+      <label class="form-check-label" for="modal_switch">{{modal_switch_label}}</label>
+    </div>
+  </div>
+
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" (click)="activeModal.dismiss('Annulla')">Annulla</button>
+    <button type="button" class="btn btn-primary" (click)="activeModal.close('Conferma')" [disabled]="!checkSelected">Conferma</button>
+  </div>

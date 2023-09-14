@@ -1,0 +1,224 @@
+<div *ngIf="!editMode">
+    <div *ngIf="isOpAdmin" style="position:absolute; top: 4.5rem; right: 8px; z-index: 1;">
+        <button type="button" class="btn btn-outline-primary" (click)="editMode=true;">Edit Email</button>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col col-md-2"><span title="{{ titleUpd.get('PSIT_EMAIL') }}">Email:</span></div>
+            <div class="col col-md-10">{{maEmail['valore']}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-2"><span title="{{ titleUpd.get('PSIT_EMAIL_CONF') }}">Email Conf:</span>
+            </div>
+            <div class="col col-md-10"><span title="{{attrEmailConf|json}}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-code-square" viewBox="0 0 16 16">
+                                                <path
+                                                        d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z">
+                                                </path>
+                                                <path
+                                                        d="M6.854 4.646a.5.5 0 0 1 0 .708L4.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0z">
+                                                </path>
+                                        </svg></span>
+            </div>
+        </div>
+        <div class="row" *ngIf="attrEmailConf['to']">
+            <div class="col col-md-2">to:</div>
+            <div class="col col-md-10">{{attrEmailConf['to'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrEmailConf['to_istanza_data_key']">
+            <div class="col col-md-2">to_istanza_data_key:</div>
+            <div class="col col-md-10">{{attrEmailConf['to_istanza_data_key']}}</div>
+        </div>
+        <div class="row" *ngIf="attrEmailConf['cc']">
+            <div class="col col-md-2">cc:</div>
+            <div class="col col-md-10">{{attrEmailConf['cc'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrEmailConf['cc_istanza_data_key']">
+            <div class="col col-md-2">cc_istanza_data_key:</div>
+            <div class="col col-md-10">{{attrEmailConf['cc_istanza_data_key']}}</div>
+        </div>
+        <div class="row" *ngIf="attrEmailConf['bcc']">
+            <div class="col col-md-2">bcc:</div>
+            <div class="col col-md-10">{{attrEmailConf['bcc'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrEmailConf['bcc_istanza_data_key']">
+            <div class="col col-md-2">bcc_istanza_data_key:</div>
+            <div class="col col-md-10">{{attrEmailConf['bcc_istanza_data_key']}}</div>
+        </div>
+        <div class="row" *ngIf="attrEmailConf['subject']">
+            <div class="col col-md-2">subject:</div>
+            <div class="col col-md-10">{{attrEmailConf['subject'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrEmailConf['text']">
+            <div class="col col-md-2">text:</div>
+            <div class="col col-md-10">{{attrEmailConf['text']}}</div>
+        </div>
+        <div class="row" *ngIf="attrEmailConf['html']">
+            <div class="col col-md-2">text HTML:</div>
+            <div class="col col-md-10">{{attrEmailConf['html']}}</div>
+        </div>
+        <div class="row" *ngIf="attrEmailConf['attach_istanza']">
+            <div class="col col-md-2">attach_istanza:</div>
+            <div class="col col-md-10">{{attrEmailConf['attach_istanza']}}</div>
+        </div>
+        <div class="row" *ngIf="attrEmailConf['attach_allegati']">
+            <div class="col col-md-2">attach_allegati:</div>
+            <div class="col col-md-10">{{attrEmailConf['attach_allegati']}}</div>
+        </div>
+        <div class="row" *ngIf="attrEmailConf['protocollo_to']">
+            <div class="col col-md-2">protocollo_to:</div>
+            <div class="col col-md-10">{{attrEmailConf['protocollo_to']}}</div>
+        </div>
+        <div class="row" *ngIf="attrEmailConf['subject_rinvio']">
+            <div class="col col-md-2">subject_rinvio:</div>
+            <div class="col col-md-10">{{attrEmailConf['subject_rinvio']}}</div>
+        </div>
+        <div class="row" *ngIf="attrEmailConf['text_rinvio']">
+            <div class="col col-md-2">text_rinvio:</div>
+            <div class="col col-md-10">{{attrEmailConf['text_rinvio']}}</div>
+        </div>
+        <div class="row" *ngIf="attrEmailConf['html_rinvio']">
+            <div class="col col-md-2">html_rinvio:</div>
+            <div class="col col-md-10">{{attrEmailConf['html_rinvio']}}</div>
+        </div>
+    </div>
+    <!--
+        <div><span title="{{ titleUpd.get('PSIT_EMAIL') }}">Email:&nbsp;</span>{{ maEmail['valore']}}</div>
+        <div><span title="{{ titleUpd.get('PSIT_EMAIL_CONF') }}">Email Conf:&nbsp;</span><span title="{{ maEmailConf['valore'] }}">&#123;json&#125;</span></div>
+        <div *ngIf="attrEmailConf['to']">to: {{ attrEmailConf['to'] }}</div>
+        <div *ngIf="attrEmailConf['to_istanza_data_key']">to_istanza_data_key: {{ attrEmailConf['to_istanza_data_key'] }}</div>
+        <div *ngIf="attrEmailConf['cc']">cc: {{ attrEmailConf['cc'] }}</div>
+        <div *ngIf="attrEmailConf['cc_istanza_data_key']">cc_istanza_data_key: {{ attrEmailConf['cc_istanza_data_key'] }}</div>
+        <div *ngIf="attrEmailConf['bcc']">bcc: {{ attrEmailConf['bcc'] }}</div>
+        <div *ngIf="attrEmailConf['bcc_istanza_data_key']">bcc_istanza_data_key: {{ attrEmailConf['bcc_istanza_data_key'] }}</div>
+        <div>subject: {{ attrEmailConf['subject'] }}</div>
+        <div>text: {{ attrEmailConf['text'] }}</div>
+        <div style="display: none;">html: {{ attrEmailConf['html'] }}</div>
+        <div>attach_istanza: {{ attrEmailConf['attach_istanza'] }}</div>
+        <div>attach_allegati: {{ attrEmailConf['attach_allegati'] }}</div>
+        <div *ngIf="attrEmailConf['protocollo_to']">protocollo_to: {{ attrEmailConf['protocollo_to'] }}</div>
+        <div *ngIf="attrEmailConf['subject_rinvio']">subject_rinvio: {{ attrEmailConf['subject_rinvio'] }}</div>
+        <div *ngIf="attrEmailConf['text_rinvio']">text_rinvio: {{ attrEmailConf['text_rinvio'] }}</div>
+        <div style="display: none;">html_rinvio: {{ attrEmailConf['html_rinvio'] }}</div>
+-->
+    <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+</div>
+<div *ngIf="editMode">
+    <alert id="alert-moduli-attr-email"></alert>
+    <form>
+        <div class="form-group">
+            <label for="attrEmailEdit">Email:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Abilitazione all'invio Email, in seguito all'invio di un istanza [S|N]"></i></label>
+            <div>
+                <ui-switch [(ngModel)]="maEmailEditT" [ngModelOptions]="{standalone: true}">
+                </ui-switch>
+            </div>
+        </div>
+        <div style="position:relative; float:right;">
+            <button type="button" class="btn btn-light btn-sm" (click)="showCc=true;" *ngIf="!showCc">CC</button>
+            <button type="button" class="btn btn-light btn-sm" (click)="showBcc=true;" *ngIf="!showBcc">BCC</button>
+        </div>
+        <div class="form-group">
+            <label for="to">To:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Email del destinatario fisso (fisso per ogni istanza, in combinazione con gli altri destinatari. Usare il ; come separatore per piu destinatari.)"></i></label>
+            <input type="text" [(ngModel)]="attrEmailConfEdit['to']" id="to" name="to" class="form-control" #to="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="toIstanzaDataKey">To Istanza Data Key:&nbsp;<i
+                                        class="fa fa-question-circle text-muted"
+                                        ngbTooltip="Nome del campo nel form dove ricavare l'email del destinatario (dinamico per ogni istanza)"></i></label>
+            <input type="text" [(ngModel)]="attrEmailConfEdit['to_istanza_data_key']" id="toIstanzaDataKey" name="toIstanzaDataKey" class="form-control" #toIstanzaDataKey="ngModel" />
+        </div>
+        <div *ngIf="showCc">
+            <div class="form-group">
+                <label for="cc">Cc:&nbsp;<i class="fa fa-question-circle text-muted"
+                        ngbTooltip="Email del destinatario in copia (CC) fisso (fisso per ogni istanza, in combinazione con gli altri destinatari. Usare il ; come separatore per piu destinatari.)"></i></label>
+                <input type="text" [(ngModel)]="attrEmailConfEdit['cc']" id="cc" name="cc" class="form-control" #cc="ngModel" />
+            </div>
+            <div class="form-group">
+                <label for="ccIstanzaDataKey">Cc Istanza Data Key:&nbsp;<i
+                                                class="fa fa-question-circle text-muted"
+                                                ngbTooltip="Nome del campo nel form dove ricavare l'email del destinatario in copia (CC) (dinamico per ogni istanza)"></i></label>
+                <input type="text" [(ngModel)]="attrEmailConfEdit['cc_istanza_data_key']" id="ccIstanzaDataKey" name="ccIstanzaDataKey" class="form-control" #ccIstanzaDataKey="ngModel" />
+            </div>
+        </div>
+        <div *ngIf="showBcc">
+            <div class="form-group">
+                <label for="bcc">Bcc:&nbsp;<i class="fa fa-question-circle text-muted"
+                        ngbTooltip="Email del destinatario in copia nascosta (BCC) fisso (fisso per ogni istanza, in combinazione con gli altri destinatari). Usare il ; come separatore per piu destinatari."></i></label>
+                <input type="text" [(ngModel)]="attrEmailConfEdit['bcc']" id="bcc" name="bcc" class="form-control" #bcc="ngModel" />
+            </div>
+            <div class="form-group">
+                <label for="bccIstanzaDataKey">Bcc Istanza Data Key:&nbsp;<i
+                                                class="fa fa-question-circle text-muted"
+                                                ngbTooltip="Nome del campo nel form dove ricavare l'email del destinatario in copia nascosta (BCC) (dinamico per ogni istanza)"></i></label>
+                <input type="text" [(ngModel)]="attrEmailConfEdit['bcc_istanza_data_key']" id="bccIstanzaDataKey" name="bccIstanzaDataKey" class="form-control" #bccIstanzaDataKey="ngModel" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="subject">Subject:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Soggetto dell'email (replace dinamici sulla base delle chiave previste in 'Info Replace')"></i></label>
+            <input type="text" [(ngModel)]="attrEmailConfEdit['subject']" id="subject" name="subject" class="form-control" #subject="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="text">Text:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Contenuto testuale dell'email (replace dinamici sulla base delle chiave previste in 'Info Replace')"></i></label>
+            <textarea [(ngModel)]="attrEmailConfEdit['text']" id="text" name="text" rows="6" cols="50" class="form-control" #text="ngModel"> </textarea>
+        </div>
+        <div class="form-group" style="display: none;">
+            <label for="html">HTML:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Contenuto HTML (replace dinamici sulla base delle chiave previste in 'Info Replace')"></i></label>
+            <input type="text" [(ngModel)]="attrEmailConfEdit['html']" id="html" name="html" class="form-control" #html="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="attachIstanza">Attach Istanza:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Abilitazione all'invio del PDF dell'istanza come allegato dell'email [true|false]"></i></label>
+            <div>
+                <ui-switch [(ngModel)]="attrEmailConfEdit['attach_istanza']" [ngModelOptions]="{standalone: true}"></ui-switch>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="attachAllegati">Attach Allegati:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Abilitazione all'invio degli allegati dell'istanza come allegato dell'email [true|false]"></i></label>
+            <div>
+                <ui-switch [(ngModel)]="attrEmailConfEdit['attach_allegati']" [ngModelOptions]="{standalone: true}"></ui-switch>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="protocolloTo">Protocollo To:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Email di protocollazione (fisso per ogni istanza, invio separato dall'invio principale)"></i></label>
+            <input type="text" [(ngModel)]="attrEmailConfEdit['protocollo_to']" id="protocolloTo" name="protocolloTo" class="form-control" #text="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="subjectRinvio">Subject Rinvio:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Soggetto diverso dell'email nel caso di rinvio (replace dinamici sulla base delle chiave previste in 'Info Replace')"></i></label>
+            <input type="text" [(ngModel)]="attrEmailConfEdit['subject_rinvio']" id="subjectRinvio" name="subjectRinvio" class="form-control" #text="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="textRinvio">Text Rinvio:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Contenuto testuale diverso dell'email nel caso di rinvio (replace dinamici sulla base delle chiave previste in 'Info Replace')"></i></label>
+            <textarea [(ngModel)]="attrEmailConfEdit['text_rinvio']" id="textRinvio" name="textRinvio" rows="4" cols="50" class="form-control" #textRinvio="ngModel"> </textarea>
+        </div>
+        <div class="form-group" style="display: none;">
+            <label for="htmlRinvio">HTML Rinvio:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Contenuto HTML diverso dell'email nel caso di rinvio (replace dinamici sulla base delle chiave previste in 'Info Replace')"></i></label>
+            <input type="text" [(ngModel)]="attrEmailConfEdit['html_rinvio']" id="htmlRinvio" name="htmlRinvio" class="form-control" #text="ngModel" />
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-light" (click)="editMode=false;" style="float:left">Annulla</button>
+            <button type="button" class="btn btn-success" (click)="salva()" style="float:right">Salva</button>
+        </div>
+    </form>
+</div>

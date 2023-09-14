@@ -1,0 +1,21 @@
+
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{modal_titolo}}</h4>
+    <button type="button" class="btn-close" aria-label="Chiudi avviso" (click)="activeModal.dismiss('Cross click')">
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>{{modal_contenuto}}</p>
+  </div>
+  <div class="modal-footer">
+
+    <button *ngIf="exit" class="btn btn-danger btn-icon" (click)="doExit()">
+      <svg class="icon icon-white">
+        <use [attr.href]="'./assets/svg/sprite.svg#it-arrow-left'"
+          [attr.xlink:href]="'./assets/svg/sprite.svg#it-arrow-left'"></use>
+      </svg>
+      <span>{{exitMessage}}</span>
+    </button>
+
+    <button type="button" class="btn btn-primary" (click)="activeModal.close('Conferma')">Prosegui</button>
+  </div>

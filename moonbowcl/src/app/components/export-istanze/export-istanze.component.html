@@ -1,0 +1,308 @@
+<alert id="alert-export"></alert>
+<form [formGroup]="exForm">
+    <div class="container">
+        <!-- <div class="row" style="margin-left:15%"> -->
+        <div class="row">
+
+            <!-- <div class="input-group" *ngIf="isPagamenti">
+                <p style="margin-bottom: 0.2em !important; margin-left: 0.5em">
+                    <label>
+                        <input type="radio" value="all" name="paid" checked (change)="changePaid($event)"
+                            formControlName="paid"> Tutte</label>
+                    <label><input type="radio" value="paid" name="paid" (change)="changePaid($event)"> Pagate</label>
+                    <label><input type="radio" value="unpaid" name="paid" (change)="changePaid($event)"> Non
+                        Pagate</label>
+                </p>
+            </div> -->
+
+            <div class="input-group">
+                <fieldset [disabled]="disabled" [class.overlay]="disabled">
+                    <div class="input-group-prepend" style="padding:5px">
+                        <span class="input-group-text" style="margin-right:8px">Seleziona un modulo</span>
+                        <select class="browser-default" id="moduli" name="modulo"
+                            (change)="selectModulo($any($event).target.value)" formControlName="modulo"
+                            [class.bg_grey]="disabled">
+                            <option value="">...</option>
+                            <option *ngFor="let modulo of moduli" value="{{modulo.idModulo}}">{{modulo.oggettoModulo}}
+                                ({{modulo.codiceModulo}})</option>
+                        </select>
+                    </div>
+                    <div *ngIf="showFiltroComuneUtente" class="input-group-prepend" style="padding:5px">
+                        <span class="input-group-text" style="margin-right:8px">Seleziona comune</span>
+                        <select class="browser-default" (change)="selectComune($any($event).target.value)"
+                            formControlName="comuneUtente" [class.bg_grey]="disabled">
+                            <option value="">...</option>
+                            <option *ngFor="let comune of comuniUtente" value="{{comune.codice}}">{{comune.nome}}
+                            </option>
+                        </select>
+                    </div>
+                    <div *ngIf="showFiltroEnteUtente" class="input-group-prepend" style="padding:5px">
+                        <span class="input-group-text" style="margin-right:8px">Seleziona filtro</span>
+                        <select class="browser-default" (change)="selectEnte($any($event).target.value)"
+                            formControlName="enteUtente" [class.bg_grey]="disabled">
+                            <option value="">...</option>
+                            <option *ngFor="let ente of entiUtente" value="{{ente.codice}}">{{ente.nome}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="showFiltroComune" class="input-group-prepend" style="padding:5px">
+                        <span class="input-group-text" style="margin-right:8px">Filtra per comune</span>
+
+                        <select class="browser-default" (change)="selectProvincia($any($event).target.value)"
+                            formControlName="provincia" [class.bg_grey]="disabled">
+                            <option value="">...</option>
+                            <option value="001">Torino</option>
+                            <option value="006">Alessandria</option>
+                            <option value="005">Asti</option>
+                            <option value="096">Biella</option>
+                            <option value="004">Cuneo</option>
+                            <option value="003">Novara</option>
+                            <option value="103">Verbano-Cusio-Ossola</option>
+                            <option value="002">Vercelli</option>
+                        </select>
+
+                        <select class="browser-default" style="margin-left:8px"
+                            (change)="selectComune($any($event).target.value)" formControlName="comune"
+                            [class.bg_grey]="disabled">
+                            <option value="">...</option>
+                            <option *ngFor="let comune of comuni" value="{{comune.codice}}">{{comune.nome}}</option>
+                        </select>
+                    </div>
+                </fieldset>
+            </div>
+
+            <h4 *ngIf="showBaseFilter" style="margin-top: 32px;">Esporta Csv istanze</h4>
+            <div class="input-group" *ngIf="showBaseFilter">
+                <fieldset [disabled]="disabled" [class.bg_disabled]="disabled">
+                    <div>
+                        <div class="input-group">
+                            <div class="input-group-prepend" style="padding:5px">
+                                <span class="input-group-text">Seleziona lo stato</span>
+                            </div>
+                            <div style="padding:5px">
+
+                                <ng-multiselect-dropdown id="stati" name="stato" formControlName="stato"
+                                    [settings]="dropdownStatoSettings" [placeholder]="'Seleziona uno stato'"
+                                    [data]="stati" [disabled]="disabled" (onSelect)="onItemStatoSelect($event)"
+                                    (onDeSelect)="onItemStatoDeSelect($event)"
+                                    (onSelectAll)="onItemStatoSelectAll($event)">
+                                </ng-multiselect-dropdown>
+
+                            </div>
+
+                            <div class="input-group-prepend " style="padding:5px">
+                                <span class="input-group-text" style="margin-right: 5px">Dal</span>
+                                <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" formControlName="dataDal"
+                                    [disabled]="disabled" [class.bg_grey]="disabled">
+                                <owl-date-time [pickerType]="'calendar'" #dt1 [disabled]="disabled"></owl-date-time>
+                            </div>
+
+                            <div class="input-group-prepend" style="padding:5px">
+                                <span class="input-group-text" style="margin-right: 5px">Al</span>
+                                <input [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" formControlName="dataAl"
+                                    [disabled]="disabled" [class.bg_grey]="disabled">
+                                <owl-date-time [pickerType]="'calendar'" #dt2 [disabled]="disabled"></owl-date-time>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend " style="padding:5px">
+                                <span class="input-group-text" style="margin-right: 5px">Inviate Dal</span>
+                                <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" formControlName="inviateDataDal"
+                                    [disabled]="disabled" [class.bg_grey]="disabled">
+                                <owl-date-time [pickerType]="'calendar'" #dt3 [disabled]="disabled"></owl-date-time>
+                            </div>
+
+                            <div class="input-group-prepend" style="padding:5px">
+                                <span class="input-group-text" style="margin-right: 5px">Inviate Al</span>
+                                <input [owlDateTime]="dt4" [owlDateTimeTrigger]="dt4" formControlName="inviateDataAl"
+                                    [disabled]="disabled" [class.bg_grey]="disabled">
+                                <owl-date-time [pickerType]="'calendar'" #dt4 [disabled]="disabled"></owl-date-time>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="showFieldsFilter">
+                        <div class="input-group">
+                            <div class="input-group-prepend" style="padding:5px">
+                                <span class="input-group-text"> Seleziona i campi generali </span>
+                            </div>
+                            <div style="padding:5px">
+                                <ng-multiselect-dropdown id="campi" name="campo" formControlName="campo"
+                                    [settings]="dropdownCampoSettings" [placeholder]="'Seleziona i campi generali'"
+                                    [data]="campi" [disabled]="disabled" (onSelect)="onItemCampoSelect($event)"
+                                    (onDeSelect)="onItemCampoDeSelect($event)"
+                                    (onSelectAll)="onItemCampoSelectAll($event)">
+                                </ng-multiselect-dropdown>
+                            </div>
+
+                            <div class="input-group-prepend" style="padding:5px">
+                                <span class="input-group-text">Seleziona i campi specifici di istanza</span>
+                            </div>
+                            <div style="padding:5px">
+                                <ng-multiselect-dropdown id="campiIstanza" name="campoIstanza"
+                                    formControlName="campoIstanza" [settings]="dropdownCampoIstanzaSettings"
+                                    [placeholder]="'Seleziona i campi specifici di istanza'" [data]="campiIstanza"
+                                    [disabled]="disabled" (onSelect)="onItemCampoIstanzaSelect($event)"
+                                    (onDeSelect)="onItemCampoIstanzaDeSelect($event)"
+                                    (onSelectAll)="onItemCampoIstanzaSelectAll($event)">
+                                </ng-multiselect-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div *ngIf="showPagingExport" class="input-group">
+                    <!-- <div class="input-group"> -->
+                        <div class="input-group-prepend" style="padding:5px;height:100% !important">
+                            <span class="input-group-text"> Righe da esportare</span>
+                        </div>
+                        <div style="padding:5px">
+                            <!-- <select name="pagingExport" id="pagingExport" class="form-control" [(ngModel)]="offset" (change)="selectRange($event.target.value)"> -->
+                            <!-- <select class="form-control" style="height:34px !important" name="records" id="records"
+                                formControlName="records" (change)="selectNumeroRecordsPerPagina($event.target.value)"> -->
+                            <select class="form-control" style="height:34px !important" name="records" id="records"
+                                formControlName="records" (change)="selectNumeroRecordsPerPagina($any($event).target.value)">
+                                <!-- <option *ngFor="let rec of records" [ngValue]="records">{{ rec.desc }}</option> -->
+                                <option value="">...</option>
+                                <option *ngFor="let rec of records">{{ rec }}</option>
+                            </select>
+                        </div>
+
+                        <!--class="form-select" aria-label="Default select example"-->
+                        <div *ngIf="showIntervals">
+                            <div class="input-group">
+                                <div class="input-group-prepend" style="padding:5px;height:100% !important">
+                                    <span class="input-group-text"> Seleziona un intervallo </span>
+                                </div>
+                                <div style="padding:5px">
+                                    <select class="form-control" style="height:100% !important" name="range" id="range"
+                                        formControlName="range">
+                                        <option value="">...</option>
+                                        <option *ngFor="let range of ranges" [ngValue]="range">{{ range.description }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- </div> -->
+                </div> 
+
+
+
+                <!-- <div *ngIf="showIntervals">
+                    <div class="input-group">
+                        <div class="input-group-prepend" style="padding:5px">
+                            <span class="input-group-text"> Seleziona un intervallo </span>
+                        </div>
+                        <div style="padding:5px">                            
+                            <select name="pagingExport" id="pagingExport" class="form-control"
+                                formControlName="range">
+                                <option *ngFor="let range of ranges" [ngValue]="range">{{ range.description }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div *ngIf="msgValidazione" class="alert-danger"
+                    style="margin-left:auto;margin-right:auto;text-align:center;margin-top:20px;width: fit-content;">
+                    {{msgValidazione}}
+                </div>
+
+                <!-- <div *ngIf="msgValidazione" class="alert-danger" style="margin-left:auto;margin-right:auto;text-align:center;margin-top:20px;width: fit-content;" [innerHTML]="msgValidazione">
+                </div> -->             
+          
+                <div class="input-group" *ngIf="isPagamenti" style="padding: 20px 5px 5px 5px">
+                    <div style="padding-left:0px !important" class="col-12 col-lg-6 col-xl-4">
+                        <!-- <legend>Stato pagamento:</legend> -->
+                        <div class="switch-toggle alert alert-light" *ngIf="isPagamenti">
+                            <input type="radio" id="radioall" value="all" name="filtroEpay" formControlName="filtroEpay"
+                                [checked]="filtroEpay === 'all' ? true:false" (change)="changePaid($event)">
+                            <label for="radioall">Tutte</label>
+
+                            <input type="radio" id="radiopaid" value="paid" name="filtroEpay"
+                                formControlName="filtroEpay" [checked]="filtroEpay === 'paid' ? true:false"
+                                (change)="changePaid($event)">
+                            <label for="radiopaid">Pagate</label>
+
+                            <input type="radio" id="radiounp" value="unpaid" name="filtroEpay"
+                                formControlName="filtroEpay" [checked]="filtroEpay === 'unpaid' ? true:false"
+                                (change)="changePaid($event)">
+                            <label for="radiounp">Non pagate</label>
+
+                            <a class="btn btn-primary btn-toggle"></a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- <div *ngIf="showBaseFilter && !showFieldsFilter" style="margin-top:20px" class="text-center"> -->
+             
+                <div class="input-group" *ngIf="showBaseFilter && !showFieldsFilter" style="margin-top:20px;padding-left:5px">
+                    <button class="btn" style="background-color:lightgrey" (click)="filtraCampi()">
+                        Filtra campi
+                    </button>
+                    <button class="btn" *ngIf="(showBaseFilter && showCustomExport) || showReportByStreaming"
+                        style="background-color:rgb(155, 196, 243); width:200px; margin-left:25px;"
+                        (click)="customizedDownload()">
+                        Esporta personalizzato
+                    </button>
+                </div>
+               
+                <!-- <div *ngIf="showFieldsFilter" style="margin-top:20px" class="text-center"> -->
+                <div class="input-group" *ngIf="showFieldsFilter" style="margin-top:20px;padding-left:5px">
+                    <button class="btn" *ngIf="!showPagingExport" style="background-color:lightgrey;" (click)="cerca()">
+                        Export Csv
+                    </button>
+                    <button class="btn" *ngIf="showPagingExport" style="background-color:lightgrey;"
+                        (click)="cercaPerRange()">
+                        Export Csv
+                    </button>
+                    <button class="btn" style="background-color:lightgrey;margin-left:20px" (click)="reset()">
+                        Cancella
+                    </button>
+                    <button class="btn" *ngIf="showPagingExport" style="background-color:lightgrey;margin-left:20px"
+                        (click)="sbloccaFiltro()">
+                        Sblocca filtro
+                    </button>
+                </div>
+                <!-- <div [formGorup]="custExportForm" > -->
+                    <h4 style="margin-top: 32px;" *ngIf="isModuloTari === true">Estrattori arera</h4>
+                    <div class="input-group" *ngIf="isModuloTari === true">
+                        <div class="input-group-prepend" style="padding:5px">
+                            <span class="input-group-text" style="margin-right: 5px">Seleziona un codice</span>
+                            <select class="browser-default" id="codice_estrazione" name="codice_estrazione" formControlName="codice_estrazione">
+                            <option vlaue="aperte_01">aperte_01</option>
+                            <option value="chiuse_01">chiuse_01</option>
+                        </select> 
+                        </div>
+                        <div class="input-group-prepend " style="padding:5px">
+                            <span class="input-group-text" style="margin-right: 5px">Data Dal</span>
+                            <input [owlDateTimeTrigger]="dt09" [owlDateTime]="dt09" formControlName="custDataDal"
+                                [disabled]="disabled" [class.bg_grey]="disabled">
+                            <owl-date-time [pickerType]="'calendar'" #dt09 [disabled]="disabled"></owl-date-time>
+                        </div>
+                
+                        <div class="input-group-prepend" style="padding:5px">
+                            <span class="input-group-text" style="margin-right: 5px"> Data Al</span>
+                            <input [owlDateTime]="dt10" [owlDateTimeTrigger]="dt10" formControlName="custDataAl"
+                                [disabled]="disabled" [class.bg_grey]="disabled">
+                            <owl-date-time [pickerType]="'calendar'" #dt10 [disabled]="disabled"></owl-date-time>
+                        </div>
+                        <button class="btn" style="background-color:lightgrey;margin-left:20px" (click)="setCustomExportCSV()">Esporta Csv</button>
+                    </div>
+                <!-- </div> -->
+            </div>
+
+
+
+            <div *ngIf="msg" class="alert-danger" style="margin-left: 5px">
+                {{msg}}
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+<app-moon-spinner></app-moon-spinner>

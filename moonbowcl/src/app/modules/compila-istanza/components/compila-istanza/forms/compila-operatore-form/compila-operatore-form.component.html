@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <h4 class="modal-title"><strong>Dati identificativi</strong></h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<form [formGroup]="compilaOperatoreForm" (ngSubmit)="submitForm()">
+    <div class="modal-body" [ngSwitch]="form">
+        <div *ngSwitchCase="Identita.CF">
+            <div class="form-group">
+                <label for="cf_pIva">Codice fiscale del cittadino dichiarante</label>
+                <input type="text" class="form-control" name="cf_pIva" id="cf_pIva" formControlName="cf_pIva">
+            </div>
+            <span [hidden]="compilaOperatoreForm.controls.cf_pIva.valid || compilaOperatoreForm.controls.cf_pIva.pristine"
+                class="error">Inserire un Codice Fiscale corretto</span>
+        </div>
+        <div *ngSwitchCase="Identita.CF_NOME_COGNOME">
+            <div class="form-group">
+                <label for="cf_pIva">Codice fiscale del cittadino dichiarante</label>
+                <input type="text" class="form-control" name="cf_pIva" id="cf_pIva" formControlName="cf_pIva">
+                <label for="nome">Nome del cittadino dichiarante</label>
+                <input type="text" class="form-control" name="nome" id="nome" formControlName="nome">
+                <label for="cognome">Cognome del cittadino dichiarante</label>
+                <input type="text" class="form-control" name="cognome" id="cognome" formControlName="cognome">
+            </div>
+            <span [hidden]="compilaOperatoreForm.controls.cf_pIva.valid || compilaOperatoreForm.controls.cf_pIva.pristine"
+                class="error">Inserire un Codice Fiscale corretto</span>
+                <span [hidden]="compilaOperatoreForm.controls.nome.valid || compilaOperatoreForm.controls.nome.pristine"
+                class="error">Inserire un Nome</span>
+                <span [hidden]="compilaOperatoreForm.controls.cognome.valid || compilaOperatoreForm.controls.cognome.pristine"
+                class="error">Inserire un Cognome</span>                
+        </div>
+        <div *ngSwitchCase="Identita.CF_PIVA">
+            <div class="form-group">
+                <label for="cf_pIva">Codice fiscale / partita IVA </label>
+                <input type="text" class="form-control" name="cf_pIva" id="cf_pIva" formControlName="cf_pIva">
+            </div>
+            <span [hidden]="compilaOperatoreForm.controls.cf_pIva.valid || compilaOperatoreForm.controls.cf_pIva.pristine"
+                class="error">Inserire un Codice Fiscale o una Partita IVA corretti</span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="reset()">Cancella</button>
+        <button type="button" class="btn btn-primary" [disabled]="!compilaOperatoreForm.valid"
+            (click)="activeModal.close(compilaOperatoreForm)">Conferma</button>
+    </div>
+</form>

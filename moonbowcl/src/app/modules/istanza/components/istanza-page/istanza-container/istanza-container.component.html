@@ -1,0 +1,319 @@
+<alert id="alert-istanza-container"></alert>
+<span style="float:left"><a [routerLink]="[]" (click)="refresh()">
+        <fa-icon [icon]="faSyncAlt"></fa-icon>
+    </a>
+</span>
+
+<!-- <div *ngIf="isInAttesaDiPagamento" class="alert alert-info">
+    <span>In attesa di pagamaneto.</span>
+</div>
+<div *ngIf="isPagatoMaNonInviato" class="alert alert-info">
+    <span>Pagamento eseguito con Successo, NON è stato effettuato l'<b>Invio</b> dell'istanza.</span>
+</div> -->
+
+<div class="row">
+    <div *ngIf="isUtenteAbilitatoWorkflow" class="col-md-6 order-md-2 mb-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Prossimo passo
+
+                <span
+                    *ngIf="(istanza?.modulo?.codiceModulo==='CONT_COSTR' || istanza?.modulo?.codiceModulo==='CONT_COSTR_2')"
+                    data-placement="top" data-toggle="tooltip">
+                    <a href="" data-toggle="modal" data-target="#processo" title="visualizza lo schema del flusso">
+                        <fa-icon [icon]="faEye"></fa-icon>
+                    </a>
+                </span>
+
+            </span>
+            <span class="badge badge-secondary badge-pill">{{ numOpzioni }}</span>
+        </h4>
+        <ul class="list-group mb-3">
+            <li style="margin:6px" class="list-group-item d-flex justify-content-between lh-condensed"
+                *ngFor="let nextAction of nextWorkflow">
+                <div>
+                    <h3 class="my-0">{{ nextAction.nomeAzione }}</h3>
+                    <small class="text-muted"></small>
+                </div>
+                <span *ngIf="!nextAction?.isAzioneConDati" class="badge badge-primary badge-pill">
+                    <a [routerLink]="[]" (click)="confermaAzione(nextAction)"
+                        style="background-color: Transparent; border: none; color: #fff;">
+                        <fa-icon [icon]="faArrowRight"></fa-icon>
+                    </a>
+                </span>
+                <span *ngIf="nextAction?.isAzioneConDati" class="badge badge-primary badge-pill">
+                    <a [routerLink]="[]" (click)="completaAzione(nextAction.idWorkflow)"
+                        style="background-color: Transparent; border: none; color: #fff;">
+                        <fa-icon [icon]="faArrowRight"></fa-icon>
+                    </a>
+                </span>
+            </li>
+            <li *ngIf="prevAction?.isAnnullabile" style="margin:6px"
+                class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                    <h3 class="my-0">Annulla passo precedente</h3>
+                    <small class="text-muted"></small>
+                </div>
+                <span class="badge badge-primary badge-pill">
+                    <a [routerLink]="[]" (click)="confermaAnnulla(prevAction.idWorkflow)"
+                        style="background-color: Transparent; border: none; color: #fff;">
+                        <fa-icon [icon]="faArrowRight"></fa-icon>
+                    </a>
+                </span>
+
+            </li>
+        </ul>
+    </div>
+
+    <!-- Dettaglio Istanza-->
+    <div class="col-md-6 order-md-1">
+        <app-istanza-dettaglio
+            [istanza]="istanza" 
+            [logCosmo]="logCosmo" 
+            [logServizioCosmo]="logServizioCosmo"
+            (initLogCosmo)="getLogPraticaCosmo()"
+            (initLogServizioCosmo)="getLogServizioCosmo()"
+            (initLogMyDocs)="getLogMyDocs()"
+            (alertService)="getAlert($event)">
+        </app-istanza-dettaglio>
+    </div>
+</div>
+
+<!-- Pagamenti -->
+<!-- <div *ngIf="isConPagamenti">
+    <span style="float:left" *ngIf="!isPagamentiOpen">
+        <a [routerLink]="[]" (click)="togglePagamenti()" ngbTooltip="{{togglePagamentiTooltip()}}">
+            <fa-icon [icon]="faAngleDown" style="color: red;"></fa-icon>
+        </a>
+    </span>
+    <span style="float:left" *ngIf="isPagamentiOpen">
+        <a [routerLink]="[]" (click)="togglePagamenti()" ngbTooltip="{{togglePagamentiTooltip()}}">
+            <fa-icon [icon]="faAngleUp" style="color: red;"></fa-icon>
+        </a>
+    </span>
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="mb-3">Pagamenti</h4>
+            <alert id="alert-istanza-pagamenti"></alert>
+            <app-istanza-pagamenti *ngIf="isPagamentiOpen"
+                [istanza]="istanza">
+            </app-istanza-pagamenti>
+        </div>
+    </div>
+</div> -->
+
+<!-- Storico lavorazione -->
+<span style="float:left" *ngIf="!isStoricoOpen">
+    <a [routerLink]="[]" (click)="toggleStorico()" ngbTooltip="{{toggleStoricoTooltip()}}">
+        <fa-icon [icon]="faAngleDown" style="color: red;"></fa-icon>
+    </a>
+</span>
+<span style="float:left" *ngIf="isStoricoOpen">
+    <a [routerLink]="[]" (click)="toggleStorico()" ngbTooltip="{{toggleStoricoTooltip()}}">
+        <fa-icon [icon]="faAngleUp" style="color: red;"></fa-icon>
+    </a>
+</span>
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="mb-3">Storico lavorazione</h4>
+        <app-istanza-storico *ngIf="isStoricoOpen"
+            [storicoWorkflow]="storicoWorkflow"
+            [istanza]="istanza"
+            (initStorico)="getStoricoWorkflow()">
+        </app-istanza-storico>
+    </div>
+</div>
+
+<!-- Allegati -->
+<span style="float:left" *ngIf="!isAllegatiOpen">
+    <a [routerLink]="[]" (click)="toggleAllegati()" ngbTooltip="Apri allegati">
+        <fa-icon [icon]="faAngleDown" style="color: red;"></fa-icon>
+    </a>
+</span>
+<span style="float:left" *ngIf="isAllegatiOpen">
+    <a [routerLink]="[]" (click)="toggleAllegati()" ngbTooltip="Chiudi allegati">
+        <fa-icon [icon]="faAngleUp" style="color: red;"></fa-icon>
+    </a>
+</span>
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="mb-3">Allegati</h4>
+        <app-istanza-allegati *ngIf="isAllegatiOpen"
+            [allegati]="allegati"
+            (initAllegati)="getAllegati()">
+        </app-istanza-allegati>
+    </div>
+</div>
+
+<!-- Comunicazioni Email -->
+<span style="float:left" *ngIf="!isLogEmailOpen">
+    <a [routerLink]="[]" (click)="toggleLogEmail()" ngbTooltip="Apri Log Email">
+        <fa-icon [icon]="faAngleDown" style="color: red;"></fa-icon>
+    </a>
+</span>
+<span style="float:left" *ngIf="isLogEmailOpen">
+    <a [routerLink]="[]" (click)="toggleLogEmail()" ngbTooltip="Chiudi Log Email">
+        <fa-icon [icon]="faAngleUp" style="color: red;"></fa-icon>
+    </a>
+</span>
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="mb-3">Comunicazioni Email</h4>
+        <app-istanza-log-email *ngIf="isLogEmailOpen" 
+            [data]="logEmail" 
+            (initData)="getLogEmail()">
+        </app-istanza-log-email>
+    </div>
+</div>
+
+<!-- TICKET -->
+<div *ngIf="isAdmin && isIstanzaOfModuloWithTicket">
+    <span style="float:left" *ngIf="!isLogTicketOpen">
+        <a [routerLink]="[]" (click)="toggleLogTicket()" ngbTooltip="Apri Log Ticket">
+            <fa-icon [icon]="faAngleDown" style="color: red;"></fa-icon>
+        </a>
+    </span>
+    <span style="float:left" *ngIf="isLogTicketOpen">
+        <a [routerLink]="[]" (click)="toggleLogTicket()" ngbTooltip="Chiudi Log Ticket">
+            <fa-icon [icon]="faAngleUp" style="color: red;"></fa-icon>
+        </a>
+    </span>
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="mb-3">Richiesta Ticket</h4>            
+            <app-istanza-log-ticket *ngIf="isLogTicketOpen"
+                [data]="logTicket">
+            </app-istanza-log-ticket>
+        </div>
+    </div>
+</div>
+
+<!-- COSMO -->
+<div *ngIf="isAdmin && isIstanzaOfModuloWithWFCosmo">
+    <span style="float:left" *ngIf="!isLogCosmoOpen">
+        <a [routerLink]="[]" (click)="toggleLogCosmo()" ngbTooltip="Apri Log Cosmo">
+            <fa-icon [icon]="faAngleDown" style="color: red;"></fa-icon>
+        </a>
+    </span>
+    <span style="float:left" *ngIf="isLogCosmoOpen">
+        <a [routerLink]="[]" (click)="toggleLogCosmo()" ngbTooltip="Chiudi Log Cosmo">
+            <fa-icon [icon]="faAngleUp" style="color: red;"></fa-icon>
+        </a>
+    </span>
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="mb-3">Integrazione Cosmo</h4>
+            
+            <app-istanza-log-cosmo *ngIf="isLogCosmoOpen"
+                [data]="logCosmo"
+                (initData)="getLogPraticaCosmo()">
+            </app-istanza-log-cosmo>
+
+            <app-istanza-log-servizio-cosmo *ngIf="isLogCosmoOpen && logServizioCosmo.length"
+                [data]="logServizioCosmo"
+                (initData)="getLogServizioCosmo()">
+            </app-istanza-log-servizio-cosmo>
+        </div>
+    </div>
+</div>
+
+
+<!-- MYDOCS -->
+<div *ngIf="isAdmin && logMyDocs.length">
+    <span style="float:left" *ngIf="!isLogMyDocsOpen">
+        <a [routerLink]="[]" (click)="toggleLogMyDocs()" ngbTooltip="Apri Log MyDocs">
+            <fa-icon [icon]="faAngleDown" style="color: red;"></fa-icon>
+        </a>
+    </span>
+    <span style="float:left" *ngIf="isLogMyDocsOpen">
+        <a [routerLink]="[]" (click)="toggleLogMyDocs()" ngbTooltip="Chiudi Log MyDocs">
+            <fa-icon [icon]="faAngleUp" style="color: red;"></fa-icon>
+        </a>
+    </span>
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="mb-3">Richieste MyDocs</h4>            
+            <app-istanza-log-mydocs *ngIf="isLogMyDocsOpen && logMyDocs.length"
+                [data]="logMyDocs"
+                (initData)="getLogMyDocs()">
+            </app-istanza-log-mydocs>
+        </div>
+    </div>
+</div>
+
+<!-- Pagamenti -->
+<div *ngIf="isOperatoreMinSIMP && isConPagamenti">
+    <span style="float:left" *ngIf="!isPagamentiOpen">
+        <a [routerLink]="[]" (click)="togglePagamenti()" ngbTooltip="Apri Pagamenti">
+            <fa-icon [icon]="faAngleDown" style="color: red;"></fa-icon>
+        </a>
+    </span>
+    <span style="float:left" *ngIf="isPagamentiOpen">
+        <a [routerLink]="[]" (click)="togglePagamenti()" ngbTooltip="Chiudi Pagamenti">
+            <fa-icon [icon]="faAngleUp" style="color: red;"></fa-icon>
+        </a>
+    </span>
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="mb-3">Pagamenti</h4>
+            <app-istanza-pagamenti *ngIf="isPagamentiOpen"
+                [istanza]="istanza" 
+                (alertService)="getAlert($event)">
+            </app-istanza-pagamenti>
+        </div>
+    </div>
+</div>
+
+<!-- Operazioni avanzate -->
+<div *ngIf="isAdmin">
+    <span style="float:left" *ngIf="!isOperazioniAvanzateOpen">
+        <a [routerLink]="[]" (click)="toggleOperazioniAvanzate()" ngbTooltip="Apri Operazioni Avanzate">
+            <fa-icon [icon]="faAngleDown" style="color: red;"></fa-icon>
+        </a>
+    </span>
+    <span style="float:left" *ngIf="isOperazioniAvanzateOpen">
+        <a [routerLink]="[]" (click)="toggleOperazioniAvanzate()" ngbTooltip="Chiudi Operazioni Avanzate">
+            <fa-icon [icon]="faAngleUp" style="color: red;"></fa-icon>
+        </a>
+    </span>
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="mb-3">Operazioni Avanzate</h4>
+            <app-istanza-operazioni-avanzate *ngIf="isOperazioniAvanzateOpen"
+                [istanza]="istanza" 
+                [nextWorkflow]="nextWorkflow"
+                (alertService)="getAlert($event)">
+            </app-istanza-operazioni-avanzate>
+        </div>
+    </div>
+</div>
+
+<!-- Modale Schema Processo -->
+<div class="modal fade" id="processo" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 1000px;height: 800px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title custom_align" id="Heading">Schema del flusso di lavorazione</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="fa fa-remove" aria-hidden="true"></span></button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/im/processi/CCDC.png" style="width: 850px; height: auto;" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">chiudi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top:15px;">
+    <a [routerLink]="[]" (click)="tornaIndietro()" style="font-weight:normal;font-size:0.8em">
+        Torna alle istanze <fa-icon [icon]="faBackward"></fa-icon></a>
+</div>
+
+<div *ngIf="msgErroreAzione" class="alert-danger"
+    style="margin-left:auto;margin-right:auto;text-align:center;margin-top:20px;width: fit-content;">
+    {{msgErroreAzione}}
+</div>
+
+<app-moon-spinner></app-moon-spinner>

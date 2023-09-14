@@ -1,0 +1,507 @@
+swagger: '2.0'
+tags:
+  - name: callback
+    description: Api MOON cosmocallback solo per COSMO
+info:
+  title: moon-cosmocallback-coto-01
+  version: 'v1'
+  contact:
+    name: csi
+  description: Api MOON cosmocallback solo per COSMO
+host: 'tst-api-piemonte.ecosis.csi.it'
+basePath: /modulistica/moon-cosmocallback-coto-01/v1
+schemes:
+  - http
+produces:
+  - application/json
+consumes:
+  - application/json
+paths:
+  '/stato-pratica/{idPratica}':
+    put:
+      summary: Invio callback stato pratica
+      tags: [callback]
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Esito'
+        '400':
+          description: Bad Request - i dati inviati non sono formalmente corretti
+        '404':
+          description: Not found - la pratica specificata non e' stata trovata
+        '422':
+          description: Unprocessable entity - i dati inviati non sono corretti
+        '500':
+          description: Internal Server Error
+      operationId: callback-put-stato-pratica
+      description: Invio aggiornamento stato di una pratica tramite l'id della pratica sul sistema fruitore
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/AggiornaStatoPraticaRequest'
+          x-examples:
+            example-1:
+              value:
+                id: string
+                codiceIpaEnte: string
+                tipo:
+                  codice: string
+                  descrizione: string
+                oggetto: string
+                stato:
+                  codice: string
+                  descrizione: string
+                riassunto: string
+                utenteCreazione:
+                  codiceFiscale: string
+                  nome: string
+                  cognome: string
+                dataCreazione: '2019-08-24T14:15:22Z'
+                dataFine: '2019-08-24T14:15:22Z'
+                dataCambioStato: '2019-08-24T14:15:22Z'
+                dataAggiornamento: '2019-08-24T14:15:22Z'
+                metadati:
+                  name: string
+                  value: string
+                attivita:
+                  - nome: string
+                    descrizione: string
+                    dataInizio: '2019-08-24T14:15:22Z'
+                    dataFine: '2019-08-24T14:15:22Z'
+                    assegnazione:
+                      - utente:
+                          codiceFiscale: string
+                          nome: string
+                          cognome: string
+                        gruppo: string
+                    sottotask:
+                      utente:
+                        codiceFiscale: string
+                        nome: string
+                        cognome: string
+                    messaggiCollaboratori:
+                      - utente:
+                          codiceFiscale: string
+                          nome: string
+                          cognome: string
+                        messaggio: string
+                        timestamp: '2019-08-24T14:15:22Z'
+                commentiPratica:
+                  - utente:
+                      codiceFiscale: string
+                      nome: string
+                      cognome: string
+                    messaggio: string
+                    timestamp: '2019-08-24T14:15:22Z'
+                documenti:
+                  - id: string
+                    idPadre: string
+                    titolo: string
+                    descrizione: string
+                    autore: string
+                    mimeType: string
+                    tipo:
+                      codice: ALLEGATO
+                      descrizione: allegato ad un altro documento
+                    stato:
+                      codice: ACQUISITO
+                      descrizione: documento acquisito correttamente
+                    firme:
+                      - data: '2019-08-24T14:15:22Z'
+                        firmatario: string
+                        organizzazione: string
+                    protocollo:
+                      numero: string
+                      data: string
+                      classificazione: string
+                    refURL: string
+    parameters:
+      - type: string
+        name: idPratica
+        in: path
+        required: true
+        description: id della pratica esterna
+definitions:
+  AggiornaStatoPraticaRequest:
+    title: AggiornaStatoPraticaRequest
+    type: object
+    x-examples:
+      example-1:
+        id: string
+        codiceIpaEnte: string
+        tipo:
+          codice: string
+          descrizione: string
+        oggetto: string
+        stato:
+          codice: string
+          descrizione: string
+        riassunto: string
+        utenteCreazione:
+          codiceFiscale: string
+          nome: string
+          cognome: string
+        dataCreazione: '2019-08-24T14:15:22Z'
+        dataFine: '2019-08-24T14:15:22Z'
+        dataCambioStato: '2019-08-24T14:15:22Z'
+        dataAggiornamento: '2019-08-24T14:15:22Z'
+        metadati: string
+        attivita:
+          - nome: string
+            descrizione: string
+            dataInizio: '2019-08-24T14:15:22Z'
+            dataFine: '2019-08-24T14:15:22Z'
+            assegnazione:
+              utente:
+                codiceFiscale: string
+                nome: string
+                cognome: string
+              gruppo: string
+            sottoAttivita:
+              utente:
+                codiceFiscale: string
+                nome: string
+                cognome: string
+            messaggiCollaboratori: null
+        commenti:
+          - utente:
+              codiceFiscale: string
+              nome: string
+              cognome: string
+            messaggio: string
+            timestamp: '2019-08-24T14:15:22Z'
+        documenti:
+          - id: string
+            idPadre: string
+            titolo: string
+            descrizione: string
+            autore: string
+            mimeType: string
+            firme:
+              - data: '2019-08-24T14:15:22Z'
+                firmatario: string
+                organizzazione: string
+            protocollo:
+              numero: string
+              data: string
+              classificazione: string
+            refURL: string
+            tipoDocumento: string
+            tipo:
+              codice: string
+              descrizione: string
+            stato:
+              codice: string
+              descrizione: string
+    description: Tutti i contenuti della pratica aggiornati alla data odierna
+    properties:
+      id:
+        type: string
+      codiceIpaEnte:
+        type: string
+      tipo:
+        $ref: '#/definitions/TipoPraticaFruitore'
+      oggetto:
+        type: string
+      stato:
+        $ref: '#/definitions/StatoPraticaFruitore'
+      riassunto:
+        type: string
+      utenteCreazione:
+        $ref: '#/definitions/UtenteFruitore'
+      dataCreazione:
+        type: string
+        format: date-time
+      dataFine:
+        type: string
+        format: date-time
+      dataCambioStato:
+        type: string
+        format: date-time
+      dataAggiornamento:
+        type: string
+        format: date-time
+      metadati:
+        description: metadati della pratica in formato libero
+        type: object
+      attivita:
+        type: array
+        description: 'array di tutte le attività della pratica in ordine cronologico, le attività concluse hanno dataFine not null'
+        items:
+          $ref: '#/definitions/AttivitaFruitore'
+      commenti:
+        type: array
+        description: array in ordine cronologico dei commenti della pratica
+        items:
+          $ref: '#/definitions/MessaggioFruitore'
+      documenti:
+        type: array
+        description: array dei documenti della pratica
+        items:
+          $ref: '#/definitions/DocumentoFruitore'
+    required:
+      - id
+  RiferimentoFruitore:
+    title: RiferimentoFruitore
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      apiManagerId:
+        type: string
+      nomeApp:
+        type: string
+    required:
+      - apiManagerId
+      - nomeApp
+  TipoPraticaFruitore:
+    title: TipoPraticaFruitore
+    type: object
+    properties:
+      codice:
+        type: string
+      descrizione:
+        type: string
+    required:
+      - codice
+  StatoPraticaFruitore:
+    title: StatoPraticaFruitore
+    type: object
+    properties:
+      codice:
+        type: string
+      descrizione:
+        type: string
+    required:
+      - codice
+  AttivitaFruitore:
+    title: AttivitaFruitore
+    type: object
+    x-examples: {}
+    description: attività assegnate durante la pratica in ordine cronologico
+    properties:
+      nome:
+        type: string
+      descrizione:
+        type: string
+      dataInizio:
+        type: string
+        format: date-time
+      dataFine:
+        type: string
+        format: date-time
+      assegnazione:
+        type: array
+        items:
+          $ref: '#/definitions/AssegnazioneFruitore'
+      sottoAttivita:
+        type: array
+        description: l'oggetto sottotask ha un assegnatario
+        items:
+          $ref: '#/definitions/SottoAttivitaFruitore'
+      messaggiCollaboratori:
+        type: array
+        items:
+          $ref: '#/definitions/MessaggioFruitore'
+    required:
+      - nome
+  SottoAttivitaFruitore:
+    title: SottoAttivitaFruitore
+    type: object
+    x-examples: {}
+    description: attivita di collaborazione
+    properties:
+      nome:
+        type: string
+      descrizione:
+        type: string
+      dataInizio:
+        type: string
+        format: date-time
+      dataFine:
+        type: string
+        format: date-time
+      assegnazione:
+        type: array
+        items:
+          $ref: '#/definitions/AssegnazioneFruitore'
+    required:
+      - nome
+  AssegnazioneFruitore:
+    title: AssegnazioneFruitore
+    description: utente o gruppo assegnatario dell'attività
+    type: object
+    properties:
+      utente:
+        $ref: '#/definitions/UtenteFruitore'
+      gruppo:
+        type: string
+    x-examples: {}
+  MessaggioFruitore:
+    title: messaggioFruitore
+    type: object
+    description: ''
+    properties:
+      utente:
+        $ref: '#/definitions/UtenteFruitore'
+      messaggio:
+        type: string
+      timestamp:
+        type: string
+        format: date-time
+    x-examples: {}
+  UtenteFruitore:
+    title: utente
+    type: object
+    x-examples: {}
+    properties:
+      codiceFiscale:
+        type: string
+      nome:
+        type: string
+      cognome:
+        type: string
+    required:
+      - codiceFiscale
+  DocumentoFruitore:
+    title: DocumentoFruitore
+    type: object
+    x-examples: {}
+    description: ''
+    properties:
+      id:
+        type: string
+      idPadre:
+        type: string
+      titolo:
+        type: string
+      descrizione:
+        type: string
+      autore:
+        type: string
+      mimeType:
+        type: string
+      firme:
+        type: array
+        items:
+          $ref: '#/definitions/FirmaDocumentoFruitore'
+      archiviazione:
+        $ref: '#/definitions/ArchiviazioneDocumentoFruitore'
+      refURL:
+        type: string
+      tipo:
+        $ref: '#/definitions/TipoDocumentoFruitore'
+      stato:
+        $ref: '#/definitions/StatoDocumentoFruitore'
+    required:
+      - id
+      - stato
+  ArchiviazioneDocumentoFruitore:
+    title: ArchiviazioneDocumento
+    type: object
+    properties:
+      protocollo:
+        $ref: '#/definitions/ProtocolloDocumentoFruitore'
+      classificazione:
+        type: string
+  ProtocolloDocumentoFruitore:
+    title: ProtocolloDocumentoFruitore
+    type: object
+    properties:
+      numero:
+        type: string
+      data:
+        type: string
+  StatoDocumentoFruitore:
+    title: StatoDocumentoFruitore
+    type: object
+    properties:
+      codice:
+        type: string
+      descrizione:
+        type: string
+    required:
+      - codice
+  TipoDocumentoFruitore:
+    title: TipoDocumentoFruitore
+    type: object
+    properties:
+      codice:
+        type: string
+      descrizione:
+        type: string
+    required:
+      - codice
+  FirmaDocumentoFruitore:
+    title: FirmaDocumentoFruitore
+    type: object
+    properties:
+      data:
+        type: string
+        format: date-time
+      firmatario:
+        type: string
+      organizzazione:
+        type: string
+  Esito:
+    description: Model che contiene i campi che vengono restituiti in caso di errore da tutte le API
+    properties:
+      code:
+        type: string
+      status:
+        type: integer
+      title:
+        type: string
+    required:
+      - status
+      - code
+    title: Esito
+    type: object
+    x-examples: {}
+  PageInfo:
+    description: Modello che descrive la pagina contenuta in una response
+    properties:
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      totalElements:
+        type: integer
+      totalPages:
+        type: integer
+    title: PageInfo
+    type: object
+  Funzionalita:
+    title: Funzionalita
+    type: object
+    properties:
+      nomeFunzionalita:
+        type: string
+      parametri:
+        type: array
+        items:
+          $ref: '#/definitions/Parametro'
+  Parametro:
+    title: Parametro
+    type: object
+    properties:
+      chiave:
+        type: string
+      valore:
+        type: string
+    required:
+      - chiave
+  Preferenza:
+    title: Preferenza
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      valore:
+        type: string
+      versione:
+        type: string

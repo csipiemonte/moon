@@ -1,0 +1,296 @@
+.cittafacile {
+    // Per il momento il codice che segue non serve, viene gestito nei componenti cittafacile-header e cittafacile-footer
+
+    // .bg-primary,
+    // .it-header-center-wrapper,
+    // .btn-primary,
+    // .it-header-navbar-wrapper {
+    //     background-color: var(--bs-primary);
+    // }
+
+    // .it-header-slim-wrapper {
+    //     background-color: #0059b3;
+    // }
+
+    // .it-footer-main {
+    //     background-color: #036;
+    // }
+
+    // .it-footer-small-prints {
+    //     background-color: #001a33;
+    // }
+
+    /////////////////////
+    //// PAGE LAYOUT ////
+    /////////////////////
+    .wizard-page,
+    .formio-wizard-nav-container {
+        max-width: 768px;
+        margin: auto;
+    }
+
+    /////////////////////
+    /// FORMIO STYLES ///
+    /////////////////////
+
+    .formio-form {
+        // inputs
+        .form-control {
+            box-shadow: none !important;
+            border-left-width: 0 !important;
+            border-right-width: 0 !important;
+            border-top-width: 0 !important;
+            border-bottom-color: #5c6f82 !important;
+        }
+
+        // components
+        .formio-component-panel {
+            background-color: white !important;
+            padding-left: 0px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+
+            .card {
+                border: none !important;
+                background: none;
+
+                .card-body {
+                    padding: 12px 0px;
+                }
+            }
+
+            .card-title {
+                @extend .h2;
+            }
+
+            .card-header {
+                background: transparent !important;
+                border: none !important;
+                margin-bottom: 0;
+                padding-left: 0;
+
+                .text-light,
+                .text-light i {
+                    color: $body-color !important;
+                }
+            }
+        }
+
+        // stepper
+
+        nav ul.pagination {
+            justify-content: flex-start !important;
+            margin-bottom: 32px !important;
+
+            li.page-item {
+                padding: 12px 18px;
+
+                &:hover {
+                    text-decoration: none !important;
+                }
+
+                button {
+                    padding: 0px;
+                }
+
+                &.active button {
+                    color: var(--bs-primary);
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        background: var(--bs-primary);
+                        bottom: -12px;
+                        height: 2px;
+                        width: 100%;
+                    }
+                }
+
+                button {
+                    text-transform: uppercase;
+
+                    &:hover {
+                        color: var(--bs-primary);
+                    }
+
+                    &:before {
+                        content: none;
+                    }
+                }
+            }
+        }
+
+        .btn {
+            border-radius: 5px;
+        }
+
+        ///////////////////
+        /// Navigation ////
+        ///////////////////
+
+        .formio-wizard-nav-container {
+            justify-content: space-between !important;
+            margin-top: 32px;
+
+            > li:first-child {
+                display: none !important;
+            }
+        }
+
+        // Bottone "Salva in bozza"
+        .btn-warning {
+            background: none;
+            box-shadow: inset 0 0 0 2px var(--bs-primary);
+            color: var(--bs-primary);
+            margin: auto;
+            float: none;
+            display: block;
+
+            &:hover,
+            &:focus,
+            &:active {
+                box-shadow: inset 0 0 0 2px var(--bs-primary-hover-border) !important;
+                color: var(--bs-primary-hover) !important;
+                background: none !important;
+            }
+        }
+
+        // Bottone "Successivo"
+        .btn-primary,
+        .btn-wizard-nav-next {
+            background-color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            min-width: 200px;
+
+            &:hover {
+                background-color: var(--bs-primary-hover);
+                border-color: var(--bs-primary-hover);
+            }
+        }
+
+        // Bottone "Precedente"
+        .btn-wizard-nav-previous {
+            background: none;
+            border: none !important;
+            box-shadow: none !important;
+            color: var(--bs-primary) !important;
+            display: flex;
+            min-width: 200px;
+            &::before {
+                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%2306c' id='it-chevron-left'  xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.6 17.2L9 11.6 14.6 6l.8.7-4.9 4.9 4.9 4.9z'/%3E%3C/svg%3E");
+                content: " ";
+                display: inline-block;
+                height: 1.33rem;
+                margin-right: 0.5rem;
+                width: 1.33rem;
+            }
+
+            &:hover {
+                color: var(--bs-primary-hover) !important;
+            }
+        }
+    }
+
+    .form-summary.bg-primary-light {
+        background-color: transparent !important;
+        padding: 0px!important;
+        
+        .formio-form {
+            .formio-component-panel {
+                background-color: #ebeef0!important;
+                border-radius: 5px;
+                padding: 36px!important;
+                margin-bottom: 32px!important;
+                @extend .bg-primary-light;
+
+                .formio-component-panel {
+                    background-color: transparent !important;
+                    padding: 0px!important;
+                    margin:0px!important;
+
+                    .card-title {
+                        @extend .h4;
+                    }
+                    .card-body {
+                        border: none;
+                        padding: 0px !important;
+                    }
+
+                    .formio-component-panel {
+                        background-color: transparent !important;
+                        padding: 0px!important;
+                        margin:0px!important;
+
+                        .card-title {
+                            @extend .h4;
+                        }
+
+                        .card-body {
+                            border: none;
+                            padding: 0px !important;
+                        }
+                    }
+                }
+            }
+
+            .card-header {
+                margin-top: 0px !important;
+            }
+
+            .card-title {
+                @extend .h3;
+            }
+
+            .card-body {
+                background-color: white !important;
+                padding: 24px !important;
+                border-radius: 5px;
+                border: 1px solid #e5e5e5;
+            }
+
+            .form-control:disabled {
+                background-color: transparent!important;
+            }
+        }
+    }
+
+    //////////////////
+    ////// MISC //////
+    //////////////////
+
+    .formio-hidden {
+        display: none;
+    }
+
+    .border {
+        border: 1px solid #e5e5e5 !important;
+    }
+
+    .btn.btn-danger {
+        border-radius: 5px;
+    }
+}
+
+//////////////////
+////// MOBILE //////
+//////////////////
+
+@media screen and (max-width: 576px) {
+    .formio-form .btn-wizard-nav-previous,
+    .formio-form .btn-wizard-nav-next,
+    .formio-form .btn-warning,
+    .formio-form .btn_draft,
+    .btn.btn-danger {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .formio-wizard-nav-container {
+        flex-direction: column;
+    }
+    .btn-wizard-nav-previous {
+        margin-bottom: 24px !important;
+    }
+}

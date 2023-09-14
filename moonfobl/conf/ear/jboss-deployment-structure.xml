@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
+
+	<deployment>
+		<dependencies>
+			<module name="javax.jms.api" export="true" meta-inf="export" />
+			<module name="org.springframework.spring" export="true" meta-inf="export"/>
+			<module name="org.apache.activemq.artemis" export="true" meta-inf="export" />
+		</dependencies>
+	</deployment>
+  
+	<sub-deployment name="appl-be-rest.war">
+		<exclusions>
+			<module name="org.jboss.resteasy.resteasy-jackson-provider" />
+			<module name="org.jboss.resteasy.resteasy-jettison-provider" />
+			<module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
+			<module name="org.eclipse.yasson"/>
+		</exclusions>
+		<dependencies>
+			<module name="org.jboss.resteasy.resteasy-jackson2-provider" services="import"/>
+		</dependencies>
+	</sub-deployment>
+	
+</jboss-deployment-structure>

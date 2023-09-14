@@ -1,0 +1,90 @@
+
+<ng-container [ngSwitch]="template">
+  <ng-template [ngSwitchCase]="'moon'">
+    <div class="root-wrapper d-flex flex-column justify-content-between" style="height:100vh;">
+
+      <div class="">
+        <app-header *ngIf="!isEmbedded"></app-header>
+        <main id="main" class="container-xl py-3 mt-4 py-lg-4">
+          <alert id="alert-moon"></alert>
+          <div class="row">
+            <div class="col-12">
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+          <a role="button" md-raised-button class="back-to-top back-to-top-show" onclick="backToTop()"
+            aria-hidden="true" data-attribute="back-to-top">
+            <svg class="icon icon-light">
+              <use [attr.href]="'./assets/svg/sprite.svg#it-arrow-up'"
+                [attr.xlink:href]="'./assets/svg/sprite.svg#it-arrow-up'">
+              </use>
+            </svg>
+            <span class="visually-hidden">Torna all'inizio della pagina</span>
+          </a>
+        </main>
+      </div>
+      <app-footer *ngIf="!isEmbedded" [version]='version' [year]='year'></app-footer>
+    </div>
+  </ng-template>
+  <ng-template [ngSwitchCase]="'cittafacile'">
+    <div class="root-wrapper d-flex flex-column justify-content-between cittafacile" style="height:100vh;--bs-primary:#06c;
+    --bs-primary-hover: #0053a5;
+    --bs-primary-hover-border: #004d99;">
+
+      <div class="">
+        <app-header *ngIf="!isEmbedded"></app-header>
+        <main id="main" class="container-xl py-3 mt-4 py-lg-4">
+          <alert id="alert-moon"></alert>
+          <div class="row">
+            <div class="col-12">
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+          <a role="button" md-raised-button class="back-to-top back-to-top-show" onclick="backToTop()"
+            aria-hidden="true" data-attribute="back-to-top">
+            <svg class="icon icon-light">
+              <use [attr.href]="'./assets/svg/sprite.svg#it-arrow-up'"
+                [attr.xlink:href]="'./assets/svg/sprite.svg#it-arrow-up'">
+              </use>
+            </svg>
+            <span class="visually-hidden">Torna all'inizio della pagina</span>
+          </a>
+        </main>
+      </div>
+      <app-footer *ngIf="!isEmbedded" [version]='version' [year]='year'></app-footer>
+    </div>
+  </ng-template>
+
+</ng-container>
+
+
+<!-- <div class="root-wrapper d-flex flex-column justify-content-between cittafacile" style="height:100vh;--bs-primary:#06c;
+--bs-primary-hover: #0053a5;
+--bs-primary-hover-border: #004d99;">
+
+      <div class="">
+        <app-header *ngIf="!isEmbedded"></app-header>
+        <main id="main" class="container-xl py-3 mt-4 py-lg-4">
+          <alert id="alert-moon"></alert>
+          <div class="row">
+            <div class="col-12">
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+          <a role="button" md-raised-button class="back-to-top back-to-top-show" onclick="backToTop()"
+            aria-hidden="true" data-attribute="back-to-top">
+            <svg class="icon icon-light">
+              <use [attr.href]="'./assets/svg/sprite.svg#it-arrow-up'"
+                [attr.xlink:href]="'./assets/svg/sprite.svg#it-arrow-up'">
+              </use>
+            </svg>
+            <span class="visually-hidden">Torna all'inizio della pagina</span>
+          </a>
+        </main>
+      </div>
+      <app-footer *ngIf="!isEmbedded" [version]='version' [year]='year'></app-footer>
+    </div> -->
+
+<!--  -->
+<ng-http-loader [entryComponent]="moonSpinnerComponent" [backdropBackgroundColor]="'rgba(51, 51, 51, 0.8)'"
+  opacity="0.9"></ng-http-loader>

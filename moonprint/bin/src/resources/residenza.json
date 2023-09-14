@@ -1,0 +1,385 @@
+{
+  "title": "Richiesta di modifica residenza",
+  "metadata": {
+    "dataPresentazione": "10/01/2020",
+    "qrContent": "www.csi.it",
+    "numeroIstanza": "12345ABCDE",
+    "header": {
+      "left": "%%title%%",
+      "center": "",
+      "right": "Richiesta il: %%dataPresentazione%%"
+    },
+    "footer": {
+      "left": "Istanza n°: %%numeroIstanza%%",
+      "right": "©CSI 2020"
+    }
+  },
+  "sections": [
+    {
+      "title": "Dati del richiedente",
+      "pageBreakBefore": false,
+      "subsections": [
+        {
+          "title": "",
+          "items": [
+            {
+              "label": "Cognome",
+              "value": "ROSSI"
+            },
+            {
+              "label": "Nome",
+              "value": "MARIO"
+            },
+            {
+              "label": "Data di nascita",
+              "value": "12/12/1972"
+            },
+            {
+              "label": "Stato di nascita",
+              "value": "ITALIA"
+            },
+            {
+              "label": "Regione di nascita",
+              "value": "PIEMONTE"
+            },
+            {
+              "label": "Provincia di nascita",
+              "value": "TO"
+            },
+            {
+              "label": "Comune di nascita",
+              "value": "TORINO"
+            },
+            {
+              "label": "Sesso",
+              "value": "M"
+            },
+            {
+              "label": "Cittadinanza",
+              "value": "ITALIANA"
+            },
+            {
+              "label": "Codice fiscale",
+              "value": "RSSMRA72T12L219Q"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Dati indirizzo precedente",
+      "subsections": [
+        {
+          "title": "Indirizzo abitazione precedente",
+          "items": [
+            {
+              "label": "Comune",
+              "value": "Torino"
+            },
+            {
+              "label": "Indirizzo",
+              "value": "MONTESSORI"
+            },
+            {
+              "label": "Civico",
+              "value": "44"
+            },
+            {
+              "label": "Piano, NUI",
+              "value": "2, 6"
+            },
+            {
+              "label": "Altro",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "title": "Dichiarazione ai fini TARI per l'abitazione precedente?",
+          "items": [
+            {
+              "label": "Continuerà ad essere intestatario ai fini TARI per l'abitazione precedente ?",
+              "value": "NO"
+            }
+          ]
+        },
+        {
+          "title": "Box o posto auto demarcati (all'indirizzo precedente)",
+          "items": [
+            {
+              "label": "Il/la richiedente era titolare di Box/posto auto demarcato ?",
+              "value": "SI"
+            },
+            {
+              "label": "Indirizzo",
+              "value": "MONTESSORI"
+            },
+            {
+              "label": "Civico",
+              "value": "44"
+            },
+            {
+              "label": "Piano, NUI",
+              "value": "ST, 121"
+            },
+            {
+              "label": "Altro",
+              "value": "20"
+            },
+            {
+              "label": "Metri Quadri",
+              "value": "20"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Dati nuovo indirizzo",
+      "pageBreakBefore": true,
+      "pageBreakAfter": true,
+      "subsections": [
+        {
+          "title": "Indirizzo nuova abitazione",
+          "items": [
+            {
+              "label": "Comune",
+              "value": "Torino"
+            },
+            {
+              "label": "Indirizzo",
+              "value": "MARCONI"
+            },
+            {
+              "label": "Civico",
+              "value": "20"
+            },
+            {
+              "label": "Piano, NUI",
+              "value": "4, 44"
+            },
+            {
+              "label": "Altro",
+              "value": "Scala A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Nucleo familiare",
+      "pageBreakAfter": true,
+      "subsections": [
+        {
+          "title": "Familiare 1",
+          "subtitle": "",
+          "items": [
+            {
+              "label": "Codice Fiscale",
+              "value": "RSSFRN01R99L219R"
+            },
+            {
+              "label": "Cognome",
+              "value": "ROSSI"
+            },
+            {
+              "label": "Nome",
+              "value": "FRANCO"
+            },
+            {
+              "label": "Possesso patente",
+              "value": "SI"
+            },
+            {
+              "label": "Possesso veicolo",
+              "value": "NO"
+            }
+          ]
+        },
+        {
+          "title": "Familiare 2",
+          "subtitle": "",
+          "items": [
+            {
+              "label": "Codice Fiscale",
+              "value": "RSSGRG45S98L219B"
+            },
+            {
+              "label": "Cognome",
+              "value": "ROSSI"
+            },
+            {
+              "label": "Nome",
+              "value": "GIORGIA"
+            },
+            {
+              "label": "Possesso patente",
+              "value": "SI"
+            },
+            {
+              "label": "Possesso veicolo",
+              "value": "NO"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Minori",
+      "pageBreakBefore": true,
+      "subsections": [
+        {
+          "title": "",
+          "items": [
+            {
+              "label": "Si e' trasferito anche almeno un minore accompagnato da un solo genitore?",
+              "value": "NO"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Recapiti",
+      "subtitle": "Tutte le comunicazioni inerenti la presente dichiarazione dovranno essere inviate ai seguenti recapiti",
+      "subsections": [
+        {
+          "title": "",
+          "items": [
+            {
+              "label": "Comune",
+              "value": "TORINO"
+            },
+            {
+              "label": "Civico",
+              "value": "20"
+            },
+            {
+              "label": "Indirizzo",
+              "value": "Marconi"
+            },
+            {
+              "label": "Piano, NUI",
+              "value": "4, 44"
+            }
+          ]
+        },
+        {
+          "title": "",
+          "items": [
+            {
+              "label": "Celulare",
+              "value": "(+39) 339-1234567"
+            },
+            {
+              "label": "e-Mail",
+              "value": "mariorossi@email.it"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tassa smaltimento rifiuti",
+      "subsections": [
+        {
+          "title": "Abitazione",
+          "items": [
+            {
+              "label": "Indirizzo",
+              "value": "MONTESSORI"
+            },
+            {
+              "label": "Civico",
+              "value": "44"
+            },
+            {
+              "label": "Altro",
+              "value": ""
+            },
+            {
+              "label": "mq",
+              "value": "120"
+            }
+          ]
+        },
+        {
+          "title": "Box o posto auto demarcati",
+          "subtitle": "Se il/la richiedente è titolare di piu di un box/posto auto demarcato deve rivolgersi all'ufficio TARI",
+          "items": [
+            {
+              "label": "Il/la richiedente era titolare di Box/posto auto demarcato ?",
+              "value": "SI"
+            },
+            {
+              "label": "Tipo",
+              "value": "BOX"
+            },
+            {
+              "label": "Indirizzo",
+              "value": "MONTESSORI"
+            },
+            {
+              "label": "Civico",
+              "value": "44"
+            },
+            {
+              "label": "Piano, NUI",
+              "value": "ST, 121"
+            },
+            {
+              "label": "Altro",
+              "value": "20"
+            },
+            {
+              "label": "Metri Quadri",
+              "value": "20"
+            }
+          ]
+        },
+        {
+          "title": "La tassa smaltimento rifiuti e'/verra' pagata da",
+          "subtitle": "",
+          "items": [
+            {
+              "label": "Nome",
+              "value": "MARIO"
+            },
+            {
+              "label": "Cognome",
+              "value": "ROSSI"
+            }
+          ]
+        },
+        {
+          "title": "Dichiarazioni",
+          "subtitle": "",
+          "items": [
+            {
+              "label": "LA SUPERFICIE DICHIARATA NON PUO' ESSERE INFERIORE ALL'80% DELLA SUPERFICIE CATASTALE DETERMINATA AI SENSI DEL D.P.R. 138/98 (ART. 1, COMMA 340 L. 311/2004)",
+              "value": "OK"
+            },
+            {
+              "label": "LA MANCATA O ERRATA INDICAZIONE DEI MQ. E/O DEL TITOLARE DELLA TASSAZIONE (TARI), OBBLIGA IL/LA DENUNCIANTE A CONTATTARE IL SERVIZIO TARI DI CORSO RACCONIGI 49, PER LE CORREZIONI E/O INTEGRAZIONI. DIVERSAMENTE, LA SUPERFICIE TASSATA E IL/LA TITOLARE DELLA TASSAZIONE SARANNO DETERMINATI DAGLI UFFICI. QUALORA LA SUPERFICIE RISULTI INFERIORE (INFEDELE DENINCIA) VERRANNO APPLICATE LE SANZIONI DI LEGGE (ART. 76 D.LGS 507/93).",
+              "value": "OK"
+            },
+            {
+              "label": "LA PRESENTE DENUNCIA HA EFFETTO ANCHE PER GLI ANNI SUCCESSIVI, QUALORA LE CONDIZIONI DI CUI SOPRA NON SIANO VARIATE",
+              "value": "OK"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Informativa Privacy",
+      "pageBreakBefore": true,
+      "subsections": [
+        {
+          "title": "Informativa sul trattamento dei dati personali",
+          "pre": "<meta charset='UTF-8'/><div class='justify'><p style='text-align:justify'><strong>(artt. 13 e 14 Regolamento UE n. 2016/679)</strong></p><p style='text-align: justify'>Ai sensi del Regolamento UE n. 2016/679, artt. 13 e 14, relativi alla protezione delle persone fisiche con riguardo al trattamento dei dati personali e delle disposizioni della normativa nazionale, si informa che:</p><ul> <li>Titolare del trattamento dei dati è il Comune di Torino, Piazza Palazzo di Città, 1, 10121 Torino, che con Decreto Sindacale n. 6637 del 27/12/2018 ha attribuito le funzioni e i compiti in materia di protezione dati personali al Dirigente di Area (email: <a href='mailto:privacy.servizicivici@comune.torino.it'>privacy.servizicivici@comune.torino.it</a>) </li> <li>Responsabile per la protezione dei dati è il Dott. Franco Carcillo (email: <a href='mailto:rpd-privacy@comune.torino.it'>rpd-privacy@comune.torino.it</a>); </li> <li>I dati vengono raccolti e trattati in modo lecito, corretto e trasparente per le seguenti finalità:  Tenuta degli atti e dei registri anagrafici della popolazione residente in Italia e dei cittadini  italiani residenti all’estero compresi: acquisizione manifestazioni di consenso al trapianto di  organi e  rilascio di certificati e documenti di identità personale; </li> <li>La base giuridica del trattamento consiste nell’esecuzione di un compito o di una funzione di  interesse  pubblico ai sensi dei D.L. nn. 1/2012, 5/2012 e 70/2011; DPR nn. 649/1974 e 223/1989; L. 1228/1954; </li> <li>Il trattamento riguarda: dati personali (identificativi, caratteristiche fisiche, famiglia,  istruzione/cultura, lavoro, beni/proprietà/possessi, posizione geografica, volontà post-morte  (trapianti), giudiziari diversi da condanne penali e reati), dati sensibili (origine  razziale/etnica,  vita/orientamento sessuale) e anche categorie particolari di dati personali e/o relativi a condanne  penali, ai sensi di quanto disposto dal DPR n. 223 del 20/3/1967; </li> <li>I dati vengono trattati con modalità manuale e modalità digitale da soggetti autorizzati, attraverso  procedure adeguate a garantirne la sicurezza e la riservatezza; </li> <li>I dati possono essere comunicati ad altri Organi della Pubblica Amministrazione previsti dalle norme  in  vigore, nonché ai soggetti che sono titolari del diritto di accesso. </li> <li>I dati non sono oggetto di diffusione né di trasferimento all’estero;</li> <li>I dati possono essere conosciuti dal responsabile o dagli incaricati dell’Area Servizi Civici e  Decentramento; </li> <li>Il conferimento dei dati ha natura obbligatoria per la gestione del procedimento sopracitato. Non  fornire i dati comporta non osservare obblighi di legge e/o impedire che il Comune di Torino possa  adempiere a quanto richiesto in relazione alla tipologia di procedimento; </li> <li>I dati sono conservati per il periodo strettamente necessario all’esecuzione del compito o della  funzione di interesse pubblico e successivo periodo necessario di tutela, comunque a termini di  legge; </li> <li>I diritti dell’interessato sono:  <ul><li>richiedere la conferma dell’esistenza o meno dei dati che lo riguardano;</li><li>ottenere la loro comunicazione in forma intelligibile;</li><li>richiedere di conoscere l’origine dei dati personali, le finalità e modalità del trattamento, la logica applicata se il trattamento è effettuato con l’ausilio di strumenti elettronici;</li><li>ottenere la rettifica, la cancellazione, la limitazione, la trasformazione in forma anonima o il blocco dei dati trattati in violazione di legge;</li><li>richiedere la portabilità dei dati;</li><li>aggiornare, correggere o integrare i dati che lo riguardano;</li><li>opporsi, per motivi legittimi, al trattamento dei dati;</li><li>proporre reclamo al Garante per la protezione dei dati personali.</li>  </ul> </li> <li>La Città di Torino non utilizza modalità di trattamento basate su processi decisionali automatici. </li></ul><p style='text-align:justify'>Si rinvia, per ogni ulteriore informazione, all’informativa estesa presente sul sito:<br/> <a href='http://www.comune.torino.it/anagrafe/'>http://www.comune.torino.it/anagrafe/</a> à ò è é ù</p></div>"
+        }
+      ]
+    }
+  ]
+}

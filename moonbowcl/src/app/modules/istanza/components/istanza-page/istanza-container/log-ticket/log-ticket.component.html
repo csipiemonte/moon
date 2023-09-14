@@ -1,0 +1,31 @@
+<table id="mytable" class="table table-bordered table-striped" style="font-size:0.8em;">
+    <thead>
+        <th *ngIf="isAdmin">#</th>
+        <th>Codice ticket</th>
+        <th>Data richiesta</th>
+        <th>Nome file</th>
+        <th>Esito</th>
+        <th>Data upd</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of data">
+            <td *ngIf="isAdmin">{{i.idRichiesta}}</td>
+            <td>{{i.uuidTicketingSystem}}</td>
+            <td>{{i.dataRichiesta | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+            <td>{{i.nomeFile}}</td>
+            <td style='text-align:center;'>
+                <ng-container>                     
+                    <span *ngIf="i.id_ticketing_system==2 && i.tipoDoc==1 && (i.codiceEsito==='200' || i.codiceEsito==='201' )" ngbTooltip="Ticket creato"><fa-icon [icon]="faCheck" style="color: green;"></fa-icon></span>
+                    <span *ngIf="i.id_ticketing_system==2 && i.tipoDoc==1 && !(i.codiceEsito==='200' || i.codiceEsito==='201' )" ngbTooltip="Errore creazione ticket"><fa-icon [icon]="faX" style="color: red;"></fa-icon></span>   
+                    <span *ngIf="i.id_ticketing_system==2 && i.codiceEsito==='201'" ngbTooltip="File trasferito"><fa-icon  [icon]="faCheck" style="color: green;"></fa-icon></span>
+                    <span *ngIf="i.id_ticketing_system==2 && i.codiceEsito!=='201'" ngbTooltip="File non trasferito"><fa-icon  [icon]="faX" style="color: red;"></fa-icon></span>
+
+                    <span *ngIf="i.id_ticketing_system!=2 && i.tipoDoc==1 && i.codiceEsito==='200'" ngbTooltip="Ticket creato"><fa-icon [icon]="faCheck" style="color: green;"></fa-icon></span>
+                    <span *ngIf="i.id_ticketing_system!=2 && i.tipoDoc==1 && i.codiceEsito!=='200'" ngbTooltip="Errore creazione ticket"><fa-icon [icon]="faX" style="color: red;"></fa-icon></span>
+                </ng-container>
+            </td>
+            <td>{{i.dataUpd | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+        </tr>
+    </tbody>
+</table>
+

@@ -1,0 +1,60 @@
+<td>
+ <!-- Bottone aggiungi a importanti -->
+ <button *ngIf="rigaIstanza.importanza===0" aria-label="Aggiungi alle istanze importanti"  ngbTooltip="Aggiungi a Importanti"type="button" class="btn btn-xxs btn-icon"
+ (click)="modificaImportanza($event)">
+
+ <span class="visually-hidden">Aggiungi
+   l'istanza n. {{rigaIstanza?.codiceIstanza}} alle istanze importanti</span>
+
+ <svg class="icon icon-sm ">
+   <use [attr.href]="'./assets/svg/sprite.svg#it-star-outline'"
+     [attr.xlink:href]="'./assets/svg/sprite.svg#it-star-outline'"></use>
+ </svg>
+</button>
+
+<!-- Bottone rimuovi da importanti -->
+<button *ngIf="rigaIstanza.importanza===1" aria-label="Rimuovi dalle istanze importanti"  ngbTooltip="Rimuovi da Importanti"type="button" class="btn btn-xxs btn-icon"
+ (click)="modificaImportanza($event)">
+
+
+ <span  class="visually-hidden">Rimuovi l'istanza n. {{rigaIstanza?.codiceIstanza}} dalle istanze importanti</span>
+ 
+ <svg  class="icon icon-sm icon-yellow ">
+   <use [attr.href]="'./assets/svg/sprite.svg#it-star-full'"
+     [attr.xlink:href]="'./assets/svg/sprite.svg#it-star-full'"></use>
+ </svg>
+</button>
+</td>
+
+<td>{{rigaIstanza?.modulo.oggettoModulo}}</td>
+<td>{{rigaIstanza?.codiceIstanza}}</td>
+<td>{{rigaIstanza?.created | date: 'dd/MM/yyyy HH:mm'}}</td>
+<td>{{rigaIstanza?.stato.nome}}</td>
+
+<!-- Operazioni -->
+<td>
+
+  <div class="d-flex">
+
+    <button role="link" aria-label="Esegui integrazione istanza" type="button" class="btn btn-icon btn-xxs"
+      *ngIf="rigaIstanza.stato.idStato > STATI.BOZZA && ( rigaIstanza.stato.idStato === STATI.IN_ATTESA_INTEGRAZIONE || rigaIstanza.stato.idStato === STATI.IN_ATTESA_OSSERVAZIONI )"
+      (click)="lavoraIstanza()" [routerLink]="[]" ngbTooltip="Esegui integrazione" placement="left">
+      <span class="visually-hidden">Esegui integrazione dell'istanza n. {{rigaIstanza?.codiceIstanza}}</span>
+      <svg class="icon icon-sm icon-primary">
+        <use [attr.href]="'./assets/svg/sprite-custom.svg#add-file'"
+          [attr.xlink:href]="'./assets/svg/sprite-custom.svg#add-file'"></use>
+      </svg></button>
+
+    <button (click)="downloadPdf()" *ngIf="rigaIstanza.stato.idStato >= 2 && rigaIstanza.stato.idStato!=10"
+      [routerLink]="[]" aria-label="Scarica il PDF dell'istanza" class="btn btn-icon btn-xxs" ngbTooltip="scarica pdf"
+      placement="left" type="button">
+      <span class="visually-hidden">Scarica il PDF dell'istanza n. {{rigaIstanza?.codiceIstanza}}</span>
+      <svg class="icon icon-primary icon-sm">
+        <use [attr.href]="'./assets/svg/sprite.svg#it-download'"
+          [attr.xlink:href]="'./assets/svg/sprite.svg#it-download'"></use>
+      </svg>
+    </button>
+
+  </div>
+
+</td>

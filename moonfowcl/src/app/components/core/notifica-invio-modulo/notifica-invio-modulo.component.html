@@ -1,0 +1,37 @@
+<div class="col-12 col-lg-10">
+    <h4>{{titoloNotifica}}</h4>
+    <h5 *ngIf="descrizione">{{descrizione}}</h5>
+
+    <ul id="mytable" class="list-unstyled my-3">
+        <li><b>Modulo</b>: {{istanza?.modulo.oggettoModulo}}</li>
+        <li><b>Codice istanza</b>: {{istanza?.codiceIstanza}}</li>
+        <li><b>Data invio</b>: {{istanza?.created | date: 'dd/MM/yyyy HH:mm'}}</li>
+   
+        <li *ngIf="durataProcedimento"><b>Durata procedimento</b>: {{durataProcedimento}}</li>
+        
+       
+    </ul>
+
+    <div class="d-flex mt-5">
+        <a *ngIf="!isConsumer" class="btn btn-outline-primary btn-icon me-3 " (click)="goToNuovaIstanza()" [routerLink]="[]">
+            <svg class="icon icon-primary icon-sm"><use [attr.href]="'./assets/svg/sprite.svg#it-plus'"[attr.xlink:href]="'./assets/svg/sprite.svg#it-plus'"></use></svg>
+            <span>Crea una nuova istanza</span>
+        </a>
+        <a class="btn btn-primary btn-icon" title="scarica PDF" aria-label="scarica PDF" (click)="downloadPdf()" [routerLink]="[]">
+            <svg class="icon icon-white icon-sm"><use [attr.href]="'./assets/svg/sprite.svg#it-download'"[attr.xlink:href]="'./assets/svg/sprite.svg#it-download'"></use></svg>
+            <span>Scarica pdf</span>
+        </a>
+    </div>
+
+    <a *ngIf="!isConsumer" class="mt-5 d-block" (click)="goToIstanze()" [routerLink]="[]">
+        <span>Vai alle tue istanze</span>
+        <svg class="icon icon-primary icon-sm"><use [attr.href]="'./assets/svg/sprite.svg#it-arrow-right'"[attr.xlink:href]="'./assets/svg/sprite.svg#it-arrow-right'"></use></svg>
+    </a>
+    <a *ngIf="isConsumer" class="mt-5 d-block" (click)="goToIstanze()" [routerLink]="[]">
+        <span>Torna indietro</span>
+    </a>
+</div>
+
+<div style="margin: 22px 0px">
+    <app-modal-feedback [istanza]="istanza"></app-modal-feedback>
+</div>

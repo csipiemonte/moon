@@ -1,0 +1,36 @@
+<td>
+    {{ index + 1}} <fa-icon *ngIf="isCompiledByUser" ngbTooltip="Compilata da operatore"  [icon]="faUser"  style="color: #005ca9"></fa-icon>
+</td>
+<td *ngIf="isPagamenti"><i class="fas fa-euro-sign"  [style.color]="isPaidStyle"></i></td>
+<td *ngIf="showColonnaComune">{{rigaIstanza?.metadata}}</td>
+<td *ngIf="showColonnaEnte">{{rigaIstanza?.metadata}}</td>
+<td *ngIf="showFiltroMultiEnte">{{ente?.nomeEnte}}</td>
+<td *ngIf="showFiltroDichiarante">{{rigaIstanza?.codiceFiscaleDichiarante}}</td>
+<td *ngIf="showFiltroDichiarante">{{rigaIstanza?.nomeDichiarante}}</td>
+<td *ngIf="showFiltroDichiarante">{{rigaIstanza?.cognomeDichiarante}}</td>
+<td>{{rigaIstanza?.codiceIstanza}}</td>
+<td>{{rigaIstanza?.created | date: 'dd/MM/yyyy HH:mm'}}</td>
+<!-- <td>
+  <div *ngIf="rigaIstanza.stato.idStato===2" class="col-sm-2">
+    <a [routerLink]="[]" (click)="mostraDettaglioIstanza()">
+      <fa-icon [icon]="faEye"></fa-icon></a>
+  </div>
+</td>
+<td>
+  <div class="col-sm-2">
+    <a [routerLink]="[]" (click)="lavoraIstanza()">
+      <fa-icon [icon]="faCogs"></fa-icon></a>
+  </div>
+</td> -->
+
+<td>
+    <div>
+        <a *ngIf="rigaIstanza.stato.idStato===2" [routerLink]="[]" ngbTooltip="Visualizza Istanza" (click)="mostraDettaglioIstanza()">
+            <fa-icon [icon]="faEye"></fa-icon>
+        </a>
+
+        <a [routerLink]="[]" ngbTooltip="Lavora Istanza" style="margin-left:10px" (click)="lavoraIstanza()">
+            <fa-icon [icon]="faCogs"></fa-icon>
+        </a>
+    </div>
+</td>

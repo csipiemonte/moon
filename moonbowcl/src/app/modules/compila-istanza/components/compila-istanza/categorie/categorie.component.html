@@ -1,0 +1,8 @@
+{{msg}}
+<alert id="alert-compila-istanza-categorie"></alert>
+<div class="container-fluid">
+    <div class="row">
+        <app-categoria *ngFor="let c of categorie|categorieSort" class="col-4" [categoria]="c" [moduli]="moduli|moduliFilterBy:c"></app-categoria>
+    </div>
+</div>
+<app-moon-spinner></app-moon-spinner>

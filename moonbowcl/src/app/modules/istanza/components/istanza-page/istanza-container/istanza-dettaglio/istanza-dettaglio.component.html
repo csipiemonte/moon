@@ -1,0 +1,95 @@
+<h4 class="mb-3">Dettaglio istanza
+    <ng-container *ngIf="istanzaFlagTest">
+    <span *ngIf="i.esito" ngbTooltip="Instanza di TEST">
+        <fa-icon [icon]="faPenRuler"></fa-icon>
+    </span>
+    </ng-container>
+</h4>
+<alert id="alert-istanza-dettaglio"></alert>
+<div class="mb-3">
+    Numero istanza:
+    <a [routerLink]="[]" (click)="mostraDettaglioIstanza()" ngbTooltip="Visualizza istanza">{{istanza?.codiceIstanza}}</a>
+
+    <a [routerLink]="[]" (click)="mostraDettaglioIstanza()" style="margin-left:10px" ngbTooltip="Visualizza istanza">
+        <fa-icon [icon]="faEye"></fa-icon>
+    </a>
+
+    <a [routerLink]="[]" (click)="downloadPdf()" style="margin-left:10px" ngbTooltip="Scarica istanza pdf">
+        <fa-icon [icon]="faFilePdf" style="color: red;"></fa-icon>
+    </a>
+
+    <a [routerLink]="[]" (click)="downloadJson()" style="margin-left:10px" ngbTooltip="Scarica Json dati">
+        <span style="position:relative;top:3px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-code-square"
+                viewBox="0 0 16 16">
+                <path
+                    d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z">
+                </path>
+                <path
+                    d="M6.854 4.646a.5.5 0 0 1 0 .708L4.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0z">
+                </path>
+            </svg>
+        </span>
+    </a>
+
+    <ng-template [ngIf]="isUtenteAbilitatoModifica">
+        <a [routerLink]="[]" (click)="modificaIstanza()" style="margin-left:10px" ngbTooltip="Modifica istanza">
+            <fa-icon [icon]="faEdit"></fa-icon>
+        </a>
+    </ng-template>
+
+</div>
+<div class="mb-3">
+    Stato attuale: {{istanza?.stato?.nome}}
+    <ng-container *ngIf="istanzaFlagEliminata" style="color: red;">
+        <span ngbTooltip="Instanza eliminata">
+            <fa-icon [icon]="faTrash"></fa-icon>
+        </span>
+    </ng-container>
+    <ng-container *ngIf="istanzaFlagArchiviata">
+        <span ngbTooltip="Instanza archiviata" style="color: brown;">
+            <fa-icon [icon]="faBoxArchive"></fa-icon>
+        </span>
+    </ng-container>
+</div>
+<div class="mb-3">
+    Data invio: {{istanza?.created | date: 'dd/MM/yyyy HH:mm'}}
+</div>
+<div class="mb-3">
+    Dichiarante: {{istanza?.codiceFiscaleDichiarante}} {{istanza?.metadata}}
+</div>
+<div *ngIf="istanza?.numeroProtocollo" class="mb-3">
+    Protocollo: {{istanza?.numeroProtocollo}} {{istanza?.dataProtocollo | date: 'dd/MM/yyyy'}}
+</div>
+
+<!-- COSMO -->
+<div *ngIf="logCosmo && logCosmo[0]" class="mb-3">
+    Pratica COSMO: {{logCosmo[0]?.idPratica}} del {{logCosmo[0]?.dataIns | date: 'dd/MM/yyyy
+    HH:mm:ss'}}
+</div>
+<div *ngIf="isLogCosmo" class="mb-3">
+    <i class="fas fa-exclamation-triangle" style="color:red"></i>&nbsp;
+    <a [routerLink]="[]" (click)="creaPraticaEdAvviaProcessoCosmo()" ngbTooltip="Re-invia la pratica COSMO">REINVIA LA PRATICA COSMO</a>
+</div>
+
+<div *ngIf="isLogServizioCosmo" class="mb-3">
+    <i class="fas fa-exclamation-triangle" style="color:red"></i>&nbsp;
+    <a [routerLink]="[]" (click)="reinviaIntegrazioneCosmo()" ngbTooltip="Re-invia l'integrazione a COSMO">REINVIA L'INTEGRAZIONE A COSMO</a>
+</div>
+<!-- NEXTCRM -->
+<div *ngIf="ticketCrmRichiesta && ticketCrmRichiesta.idTicketingSystem==1" class="mb-3">
+    Richiesta CRM: {{ticketCrmRichiesta?.codiceRichiesta}} del {{ticketCrmRichiesta?.dataRichiesta | date: 'dd/MM/yyyy HH:mm:ss'}}
+</div>
+<!-- R2U -->
+<div *ngIf="ticketCrmRichiesta && ticketCrmRichiesta.idTicketingSystem==2" class="mb-3">
+    Richiesta CRM: {{ticketCrmRichiesta?.uuidTicketingSystem}} del {{ticketCrmRichiesta?.dataRichiesta | date: 'dd/MM/yyyy HH:mm:ss'}}
+</div>
+<!-- R2U -->
+<div *ngIf="ticketCrmRichiesta && ticketCrmRichiesta.idTicketingSystem==3" class="mb-3">
+    Richiesta CRM: {{ticketCrmRichiesta?.uuidTicketingSystem}} del {{ticketCrmRichiesta?.dataRichiesta | date: 'dd/MM/yyyy HH:mm:ss'}}
+</div>
+<div *ngIf="isCreaTicketCrmPossibile" class="mb-3">
+    <i class="fas fa-exclamation-triangle" style="color:red"></i>&nbsp;
+    <a [routerLink]="[]" (click)="creaTicketCRM()" ngbTooltip="crea una richiesta di Ticket CRM">Crea Ticket CRM</a>
+</div>
+<p style="margin-top: 52px;"></p>

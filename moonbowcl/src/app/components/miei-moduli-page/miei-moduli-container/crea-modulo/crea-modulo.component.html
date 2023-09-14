@@ -1,0 +1,113 @@
+<h2>
+    {{msg}}
+</h2>
+
+<form class="userform" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="form-group col-md-9" style="margin: 0 auto;">
+
+        <h3 style="text-align:center;">Crea modulo</h3>
+        <div>&nbsp;</div>
+        <label for="categoria">Categoria</label>
+        <select #categoria='ngModel' name="categoria" id="categoria" class="form-control" required
+            [(ngModel)]="moduloMoon?.categoria.idCategoria">
+            <option *ngFor="let c of categorie | sortCategorie" [value]="c.idCategoria">{{ c.descrizione }}</option>
+        </select>
+        <div *ngIf="categoria.dirty && categoria.touched && categoria.invalid">
+            <div class="alert-danger" *ngIf='categoria.errors.required'>
+                Il campo Categoria è obbligatorio
+            </div>
+        </div>
+
+        <label for='codiceModulo'>Codice </label>
+        <input #codiceModulo='ngModel' [(ngModel)]="moduloMoon.codiceModulo" name="codiceModulo" id="codiceModulo"
+            class="form-control" required minlength="3" maxlength="30" pattern="[a-zA-Z0-9\-\_]*" style="text-transform:uppercase">
+        <div *ngIf="codiceModulo.dirty && codiceModulo.touched && codiceModulo.invalid">
+            <div class="alert-danger" *ngIf='codiceModulo.errors.required'>
+                Il campo codice è obbligatorio
+            </div>
+            <div class="alert-danger" *ngIf='codiceModulo.errors.minlength'>
+                Lunghezza minima deve essere {{codiceModulo.errors.minlength.requiredLength}}
+            </div>
+            <div class="alert-danger" *ngIf="codiceModulo.errors.pattern">
+                Formato non corretto (solo alphanumerico - _)
+            </div>
+        </div>
+
+        <label for='oggetto'>Oggetto </label>
+        <input #oggettoModulo='ngModel' [(ngModel)]="moduloMoon.oggettoModulo" name="oggetto" id="oggetto"
+            class="form-control" required minlength="3" maxlength="50" pattern="[a-zA-Z0-9\'\s]*">
+        <div *ngIf="oggettoModulo.dirty && oggettoModulo.touched && oggettoModulo.invalid">
+            <div class="alert-danger" *ngIf='oggettoModulo.errors.required'>
+                Il campo oggetto è obbligatorio
+            </div>
+            <div class="alert-danger" *ngIf='oggettoModulo.errors.minlength'>
+                Lunghezza minima deve essere {{oggettoModulo.errors.minlength.requiredLength}}
+            </div>
+            <div class="alert-danger" *ngIf=' oggettoModulo.errors.pattern'>
+                Caratteri non ammessi
+            </div>
+        </div>
+
+        <label for='versione'>Versione </label>
+        <input #versione='ngModel' [(ngModel)]="moduloMoon.versioneModulo" name="versione" id="versione"
+            class="form-control" required pattern="(?:[\dx]{1,3}\.){0,3}[\dx]{1,3}">
+        <div *ngIf="versione.dirty && versione.touched && versione.invalid">
+
+            <div class="alert-danger" *ngIf='versione.errors.required'>
+                Il campo versione è obbligatorio
+            </div>
+            <div class="alert-danger" *ngIf='versione.errors.pattern'>
+                Formato non valido
+            </div>
+        </div>
+
+        <label for='descrizione'>Descrizione </label>
+        <input #name='ngModel' [(ngModel)]="moduloMoon.descrizioneModulo" name="descrizione" id="descrizione"
+            class="form-control">
+
+        <!-- <label for="tipoStruttura">Tipo Modulo</label>
+        <select name="tipoStruttura" id="tipoStruttura" class="form-control" [(ngModel)]="moduloMoon.tipoStruttura">
+            <option *ngFor="let t of formTypes" [value]="t.tipo">{{ t.descrizione }}</option>
+        </select> -->
+
+
+        <label for="tipoStruttura">Tipo Modulo</label>
+        <select name="tipoStruttura" id="tipoStruttura" class="form-control" [(ngModel)]="moduloFormIO.display"
+            (change)="changeDisplay()">
+            <option *ngFor="let t of formTypes" [value]="t.tipo">{{ t.descrizione }}</option>
+        </select>
+
+        <!-- <label for="processo">Processo assegnato al modulo</label>
+        <select name="processo" id="processo" class="form-control" [(ngModel)]="moduloMoon.processo" [disabled]="!isAdmin">
+            <option *ngFor="let p of elencoProcessi" [ngValue]="p">{{p.codiceProcesso}}-{{p.descProcesso}}</option>
+        </select> -->
+
+        <!-- <ul class="list-inline">
+            <li class="list-inline-item">
+                <button type="button" class="btn btn-primary" style="width: 70px;margin-right:10px" (click)="back()">
+                    <fa-icon style='font-size: 22px' [icon]="['fas', 'home']"></fa-icon>
+                </button>
+
+                <button href="#" type="submit" [disabled]="f.form.invalid" class="btn btn-primary" style="width: 70px;margin-right:10px">
+                    <fa-icon style='font-size: 22px' [icon]="['fas', 'save']"></fa-icon>
+                </button>
+            </li>
+        </ul> -->
+    </div>
+    <div>&nbsp;</div>
+    <div class="form-group col-md-9" style="margin: 0 auto;">
+        <button type="button" class="btn btn-primary" style="width: 70px;float:left" (click)="back()">
+            <fa-icon style='font-size: 22px' [icon]="['fas', 'home']"></fa-icon>
+        </button>
+
+        <button href="#" type="submit" [disabled]="f.form.invalid" class="btn btn-primary"
+            style="width: 70px;float:right">
+            <fa-icon style='font-size: 22px' [icon]="['fas', 'save']"></fa-icon>
+        </button>
+    </div>
+
+</form>
+<br>
+<br>
+
+<app-moon-spinner></app-moon-spinner>

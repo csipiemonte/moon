@@ -1,0 +1,18 @@
+<div *ngIf="msg" class="mt-2">
+  <div class="alert alert-info">
+    <strong>{{msg}}</strong>
+  </div>
+</div>
+
+<h1 class="h2">Nuova istanza</h1>
+<p>Cerca la categoria che ti interessa e seleziona <b>"Vai ai moduli"</b>.<br>
+Seleziona <b>"Elenco moduli pubblicati"</b> per aprire l'elenco dei moduli pubblicati nella categoria relativa.</p>
+
+<div class="my-5 ">
+  <div class="row ">
+    <app-categoria *ngFor="let c of categorie|sortCategorie" class=" col-12 col-md-6 col-lg-4" [categoria]="c" [moduli]="moduli|filterModules:c">
+    </app-categoria>
+  </div>
+</div>
+
+

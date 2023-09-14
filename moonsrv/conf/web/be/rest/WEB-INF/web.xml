@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<context-param>
+	    <param-name>spring.profiles.active</param-name>
+	    <param-value>@spring.profiles.active@</param-value>
+	</context-param>
+
+	<listener>
+	<!--  	per mettere a disposizione della logica di integrazione spring-resteasy il servlet context  -->
+		<listener-class>it.csi.moon.moonsrv.util.AppServletContextListener</listener-class>
+   	</listener>
+   <listener>
+      <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+   </listener>
+   
+	<listener>
+	<!--caricare la configurazione spring contenente i bean di implementazione del servizio (file applicationContext.xml in WEB-INF -->
+      <listener-class>org.jboss.resteasy.plugins.spring.SpringContextLoaderListener</listener-class>
+   </listener>
+
+ <!-- 	<listener>
+    	<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+   	</listener> -->
+
+	
+	<!-- impostazioni di security -->
+	<security-constraint>
+		<!-- A collection of protected resources along with the access mechanism -->
+		<web-resource-collection>
+			<web-resource-name>Restricted to Secure role</web-resource-name>
+			<description>Protezione servizi moonsrv</description>
+			<url-pattern>/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+			<http-method>PUT</http-method>
+			<http-method>DELETE</http-method>
+		</web-resource-collection>
+		<!-- The list of roles that can access the resource. -->
+		<auth-constraint>
+			<role-name>moon</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>applications</realm-name>
+	</login-config>
+	<security-role>
+		<role-name>moon</role-name>
+	</security-role>
+
+</web-app>

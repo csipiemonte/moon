@@ -1,0 +1,32 @@
+<table id="mytable" class="table table-bordered table-striped" style="font-size:0.8em;">
+    <thead>
+        <th>Azione</th>
+        <th>Stato partenza</th>
+        <th>Stato arrivo</th>
+        <th>Autore</th>
+        <th>Data avvio</th>
+        <th>Data fine</th>
+        <th>Contenuto</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let storico of storicoWorkflow">
+            <td>{{storico.nomeAzione}}</td>
+            <td>{{storico.nomeStatoWfPartenza}}</td>
+            <td>{{storico.nomeStatoWfArrivo}}</td>
+            <td>{{storico.attoreUpd}}</td>
+            <td>{{storico.dataInizio | date: 'dd/MM/yyyy H:mm'}}</td>
+            <td>{{storico.dataFine | date: 'dd/MM/yyyy H:mm'}}</td>
+            <td>
+                <a *ngIf="storico.contieneDati" [routerLink]="[]" (click)="mostraDettaglioWorkflow(storico.idStoricoWorkflow)"
+                    ngbTooltip="Visualizza i dati inseriti per questa azione">
+                    <fa-icon [icon]="faInfoCircle" style="font-size:1.5em"></fa-icon>
+                </a>
+                <a *ngIf="storico.idFileRendering" [routerLink]="[]" (click)="downloadRicevuta(storico)" ngbTooltip="Stampa documento"
+                    style="margin-left:15px">
+                    <fa-icon [icon]="faFilePdf" style="color: red;font-size:1.5em"></fa-icon>
+                </a>
+            </td>
+
+        </tr>
+    </tbody>
+</table>

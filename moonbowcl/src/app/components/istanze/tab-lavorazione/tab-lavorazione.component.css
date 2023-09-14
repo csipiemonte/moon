@@ -1,0 +1,12 @@
+.alert-danger{
+    top: 0.5rem
+}
+
+label{
+    margin-right: 0.5em
+}  
+
+.btn-toggle{
+    background-color: #80BCF4 !important; 
+    border-radius: 0 !important
+   }

@@ -1,0 +1,412 @@
+<?xml version="1.0"?>
+<project name="moonsrv-buildCXFClientLibs" basedir=".." default="create-all">
+	
+	<property name="cxf-codegen"          value="build/cxf-codegen" />
+	<property name="cxf-codegen_jarsdist" value="conf/lib-tmp" />
+
+	<path id="classpath">
+		<fileset dir="conf/cxf-codegen/lib">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="lib">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+	
+	<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+	  <classpath>
+	    <fileset dir="conf/cxf-codegen/lib" includes="*.jar" />
+	  </classpath>
+	</taskdef>
+
+	<target name="create-all" depends="create-stardas-client-cxf"
+		description="create ALL libs"/>
+
+	<!-- Metodo interno di creazione delle Classes JAVA sulla base del WSDL FILE sotto conf/wsdl -->
+	<target name="_WSDLToJava">
+		<echo message="Importing WSDL ${WSDLToJava.wsdl}" />
+		<echo message="Package ${WSDLToJava.pck}" />
+		<echo message="Outdir ${WSDLToJava.outdir}" />
+		<echo message="..." />
+		<java classname="org.apache.cxf.tools.wsdlto.WSDLToJava" fork="true">
+			<arg value="-p" />
+			<arg value="${WSDLToJava.pck}" />
+			<arg value="-d" />
+			<arg value="${WSDLToJava.outdir}" />
+			<arg value="conf/wsdl/${WSDLToJava.wsdl}" />
+			<!-- arg value="-autoNameResolution"  -->
+			<classpath>
+				<path refid="classpath" />
+			</classpath>
+		</java>
+	</target>
+	<!-- Metodo interno di creazione delle Classes JAVA sulla base del WSDL URL http -->
+	<target name="_WSDLToJavaByURL">
+		<echo message="Importing WSDL ${WSDLToJava.wsdl}" />
+		<echo message="Package ${WSDLToJava.pck}" />
+		<echo message="Outdir ${WSDLToJava.outdir}" />
+		<echo message="..." />
+		<java classname="org.apache.cxf.tools.wsdlto.WSDLToJava" fork="true">
+			<arg value="-p" />
+			<arg value="${WSDLToJava.pck}" />
+			<arg value="-d" />
+			<arg value="${WSDLToJava.outdir}" />
+			<arg value="${WSDLToJava.wsdl}" /> <!-- URL -->
+			<!-- arg value="-autoNameResolution"  -->
+			<classpath>
+				<path refid="classpath" />
+			</classpath>
+		</java>
+	</target>
+	<!-- Metodo interno di creazione delle Classes JAVA SERVER -->
+	<target name="_WSDLToJavaImplServer">
+		<echo message="Importing XSD ${WSDLToJava.wsdl}" />
+		<echo message="Package ${WSDLToJava.pck}" />
+		<echo message="Outdir ${WSDLToJava.outdir}" />
+		<echo message="..." />
+		<java classname="org.apache.cxf.tools.wsdlto.WSDLToJava" fork="true">
+			<arg value="-p" />
+			<arg value="${WSDLToJava.pck}" />
+			<arg value="-d" />
+			<arg value="${WSDLToJava.outdir}" />
+			<arg value="-autoNameResolution" />
+			<arg value="-impl" />
+			<arg value="-server" />
+			<arg value="conf/wsdl/${WSDLToJava.wsdl}" />
+			<classpath>
+				<path refid="classpath" />
+			</classpath>
+		</java>
+	</target>
+	<!-- Metodo interno di creazione delle Classes JAVA da XSD -->
+	<target name="_WSDLToJavaXSD">
+		<echo message="Importing WSDL ${WSDLToJava.xsd}" />
+		<echo message="Package ${WSDLToJava.pck}" />
+		<echo message="Outdir ${WSDLToJava.outdir}" />
+		<echo message="..." />
+		<!-- <java classname="com.sun.tools.xjc.XJCTask" fork="true"> -->
+		<xjc destdir="${WSDLToJava.outdir}"
+			schema="conf/wsdl/${WSDLToJava.xsd}"
+			package="${WSDLToJava.pck}"
+			removeOldOutput="yes" >
+		</xjc>
+	</target>
+	
+	<!-- GINEVRA -->
+	<target name="create-ginevra-client-cxf">
+		<property name="cxfjarclientname" value="ginevra-client-cxf-2.0.0.jar" />
+		<property name="subdir" value="ginevra-client" />
+		
+		<!-- Init mkdir e delete ${build}/ginevra-client -->
+		<echo message="Init mkdir e delete ${cxf-codegen}/${subdir} ..." />
+    	<delete dir="${cxf-codegen}/${subdir}" />
+		<mkdir dir="${cxf-codegen}/${subdir}" />
+
+		<!-- Genera le Class java dei WSDL di ginevra-client -->
+		<antcall target="_WSDLToJava">
+			<param name="WSDLToJava.pck" value="it.csi.territorio.ginevra.lanci.sedime.cxfclient"/>
+			<param name="WSDLToJava.wsdl" value="ginevra/lanciSedime.wsdl"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/${subdir}/src"/>
+		</antcall>
+		<antcall target="_WSDLToJava">
+			<param name="WSDLToJava.pck" value="it.csi.territorio.ginevra.lanci.via.cxfclient"/>
+			<param name="WSDLToJava.wsdl" value="ginevra/lanciVia.wsdl"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/${subdir}/src"/>
+		</antcall>
+		<antcall target="_WSDLToJava">
+			<param name="WSDLToJava.pck" value="it.csi.territorio.ginevra.lanci.civico.cxfclient"/>
+			<param name="WSDLToJava.wsdl" value="ginevra/lanciCivico.wsdl"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/${subdir}/src"/>
+		</antcall>
+
+		<mkdir dir="${cxf-codegen}/${subdir}/classes" />
+		<javac srcdir="${cxf-codegen}/${subdir}/src" destdir="${cxf-codegen}/${subdir}/classes" optimize="true" debug="true" debuglevel="vars,lines,source" compiler="modern" encoding="windows-1252" fork="false">
+			<classpath refid="classpath" />
+		</javac>
+		<mkdir dir="${cxf-codegen}/${subdir}/archives" />
+		<jar jarfile="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" basedir="${cxf-codegen}/${subdir}/classes" includes="**/*.*" />
+		<copy file="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" todir="${cxf-codegen_jarsdist}" />
+	</target>
+	
+	<!-- SVISTA -->
+	<target name="create-svista-client-cxf">
+		<property name="cxfjarclientname" value="svista-client-cxf-2.0.0.jar" />
+		<property name="subdir" value="svista-client" />
+		
+		<!-- Init mkdir e delete ${build}/svista-client -->
+		<echo message="Init mkdir e delete ${cxf-codegen}/${subdir} ..." />
+    	<delete dir="${cxf-codegen}/${subdir}" />
+		<mkdir dir="${cxf-codegen}/${subdir}" />
+
+		<!-- Genera le Class java dei WSDL di svista-client -->
+		<antcall target="_WSDLToJava">
+			<param name="WSDLToJava.pck" value="it.csi.territorio.svista.limamm.ente.cxfclient"/>
+			<param name="WSDLToJava.wsdl" value="svista/limammEnte.wsdl"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/svista-client/src"/>
+		</antcall>
+	
+		<mkdir dir="${cxf-codegen}/${subdir}/classes" />
+		<javac srcdir="${cxf-codegen}/${subdir}/src" destdir="${cxf-codegen}/${subdir}/classes" optimize="true" debug="true" debuglevel="vars,lines,source" compiler="modern" source="1.8" target="1.8" encoding="windows-1252" fork="false">
+			<classpath refid="classpath" />
+		</javac>
+		<mkdir dir="${cxf-codegen}/${subdir}/archives" />
+		<jar jarfile="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" basedir="${cxf-codegen}/${subdir}/classes" includes="**/*.*" />
+		<copy file="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" todir="${cxf-codegen_jarsdist}" />
+	</target>
+
+	<!-- NAOSRV -->
+	<target name="create-naosrv-client-cxf">
+		<property name="cxfjarclientname" value="naosrv-client-cxf-1.0.0.jar" />
+		<property name="subdir" value="naosrv-client" />
+		
+		<!-- Init mkdir e delete ${build}/naosrv-client -->
+		<echo message="Init mkdir e delete ${cxf-codegen}/${subdir} ..." />
+    	<delete dir="${cxf-codegen}/${subdir}" />
+		<mkdir dir="${cxf-codegen}/${subdir}" />
+
+		<!-- Genera le Class java dei WSDL di naosrv-client -->
+		<antcall target="_WSDLToJava">
+			<param name="WSDLToJava.pck" value="it.csi.demog.naosrv.visura.anagrafica.cxfclient"/>
+			<param name="WSDLToJava.wsdl" value="naosrv/SrvVisuraAnagrafica.wsdl"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/naosrv-client/src"/>
+		</antcall>
+		<antcall target="_WSDLToJava">
+			<param name="WSDLToJava.pck" value="it.csi.demog.naosrv.visura.famiglia.cxfclient"/>
+			<param name="WSDLToJava.wsdl" value="naosrv/SrvVisuraFamiglia.wsdl"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/naosrv-client/src"/>
+		</antcall>
+		<antcall target="_WSDLToJava">
+			<param name="WSDLToJava.pck" value="it.csi.demog.naosrv.ricerca.soggetto.cxfclient"/>
+			<param name="WSDLToJava.wsdl" value="naosrv/SrvRicercaSoggetto.wsdl"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/naosrv-client/src"/>
+		</antcall>
+		<antcall target="_WSDLToJava">
+			<param name="WSDLToJava.pck" value="it.csi.demog.naosrv.ricerca.famiglia.cxfclient"/>
+			<param name="WSDLToJava.wsdl" value="naosrv/SrvRicercaFamiglia.wsdl"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/naosrv-client/src"/>
+		</antcall>
+
+		<mkdir dir="${cxf-codegen}/${subdir}/classes" />
+		<javac srcdir="${cxf-codegen}/${subdir}/src" destdir="${cxf-codegen}/${subdir}/classes" optimize="true" debug="true" debuglevel="vars,lines,source" compiler="modern" encoding="windows-1252" fork="false">
+			<classpath refid="classpath" />
+		</javac>
+		<mkdir dir="${cxf-codegen}/${subdir}/archives" />
+		<jar jarfile="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" basedir="${cxf-codegen}/${subdir}/classes" includes="**/*.*" />
+		<copy file="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" todir="${cxf-codegen_jarsdist}" />
+	</target>
+	
+	<!-- ORCHANPR -->
+	<target name="create-orchanpr-client-cxf">
+		<property name="cxfjarclientname" value="orchanpr-client-cxf-1.0.0.jar" />
+		<property name="subdir" value="orchanpr-client" />
+		
+		<!-- Init mkdir e delete ${build}/orchanpr-client -->
+		<echo message="Init mkdir e delete ${cxf-codegen}/${subdir} ..." />
+    	<delete dir="${cxf-codegen}/${subdir}" />
+		<mkdir dir="${cxf-codegen}/${subdir}" />
+		
+		<!-- Genera le Class java dei WSDL di orchanpr-client -->
+		<antcall target="_WSDLToJava">
+			<param name="WSDLToJava.pck" value="it.csi.demografia.orchanpr.ricercheanpr.cxfclient"/>
+			<param name="WSDLToJava.wsdl" value="orchanpr/RicercheANPRService.wsdl"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/orchanpr-client/src"/>
+		</antcall>
+	
+		<mkdir dir="${cxf-codegen}/${subdir}/classes" />
+		<javac srcdir="${cxf-codegen}/${subdir}/src" destdir="${cxf-codegen}/${subdir}/classes" optimize="true" debug="true" debuglevel="vars,lines,source" compiler="modern" source="1.8" target="1.8" encoding="windows-1252" fork="false">
+			<classpath refid="classpath" />
+		</javac>
+		<mkdir dir="${cxf-codegen}/${subdir}/archives" />
+		<jar jarfile="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" basedir="${cxf-codegen}/${subdir}/classes" includes="**/*.*" />
+		<copy file="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" todir="${cxf-codegen_jarsdist}" />
+	</target>
+
+	<!-- STARDAS CLIENT -->
+	<target name="create-stardas-client-cxf">
+		<property name="cxfjarclientname" value="stardas-client-cxf-1.0.0.jar" />
+		<property name="subdir" value="stardas-client" />
+		
+		<!-- Init mkdir e delete ${build}/stardas-client -->
+		<!-- <echo message="Init mkdir e delete ${cxf-codegen}/${subdir} ..." />
+    	<delete dir="${cxf-codegen}/${subdir}" />
+		<mkdir dir="${cxf-codegen}/${subdir}" /> -->
+		
+		<!-- Genera le Class java dei WSDL di stardas-client  
+		<antcall target="_WSDLToJava">
+			<param name="WSDLToJava.pck" value="it.csi.stardas.cxfclient"/>
+			<param name="WSDLToJava.wsdl" value="stardas/Stardas-v1.wsdl"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/${subdir}/src"/>
+		</antcall>
+		<antcall target="_WSDLToJavaByURL">
+			<param name="WSDLToJava.pck" value="it.csi.stardas.cxfclient"/>
+			<param name="WSDLToJava.wsdl" value="http://tst-srv-stardas.doc.csi.it/wso001/services/StardasServiceProxy?wsdl"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/${subdir}/src"/>
+		</antcall> -->
+		<!-- ADDED toString() Manualy sui ResponseType -->
+		
+		<mkdir dir="${cxf-codegen}/${subdir}/classes" />
+		<javac srcdir="${cxf-codegen}/${subdir}/src" destdir="${cxf-codegen}/${subdir}/classes" optimize="true" debug="true" debuglevel="vars,lines,source" compiler="modern" source="1.8" target="1.8" encoding="windows-1252" fork="false">
+			<classpath refid="classpath" />
+		</javac>
+		<mkdir dir="${cxf-codegen}/${subdir}/archives" />
+		<jar jarfile="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" basedir="${cxf-codegen}/${subdir}/classes" includes="**/*.*" />
+		<copy file="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" todir="${cxf-codegen_jarsdist}" />
+		<copy file="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" todir="lib" />
+	</target>
+	
+	<!-- STARDAS SERVER CALLBACK -->
+	<target name="create-stardas-server-cxf">
+		<property name="subdir" value="stardas-server" />
+		
+		<!-- Init mkdir e delete ${build}/stardas-server --> 
+		<echo message="Init mkdir e delete ${cxf-codegen}/${subdir} ..." />
+    	<delete dir="${cxf-codegen}/${subdir}" />
+		<mkdir dir="${cxf-codegen}/${subdir}" />
+		
+		<!-- Genera le Class java dei WSDL per stardas-server per callback -->
+		<antcall target="_WSDLToJavaImplServer">
+			<param name="WSDLToJava.pck" value="it.csi.moon.moonsrv.business.ws.protocollo.stardas"/>
+			<param name="WSDLToJava.wsdl" value="stardas/StardasCallbackService.wsdl"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/${subdir}/src"/>
+		</antcall>
+		
+		<!-- Copy in java/src   
+		<echo message="Source src/java/it/csi/moon/moonsrv/business/ws  Updated ... !!" />
+		<copy todir="src/java/it/csi/moon/moonsrv/business/ws" overwrite="true" encoding="ISO-8859-1" outputencoding="UTF-8">
+		  <fileset dir="${cxf-codegen}/${subdir}/src/it/csi/moon/moonsrv/business/ws" includes="*.java" />
+		</copy>  -->
+	</target>
+	
+	<!-- DOSIGN CLIENT -->
+	<target name="create-dosign-client-cxf">
+		<property name="cxfjarclientname" value="dosign-client-cxf-1.0.0.jar" />
+		<property name="subdir" value="dosign-client" />
+		
+		<!-- Init mkdir e delete ${build}/dosign-client -->
+		<echo message="Init mkdir e delete ${cxf-codegen}/${subdir} ..." />
+    	<delete dir="${cxf-codegen}/${subdir}" />
+		<mkdir dir="${cxf-codegen}/${subdir}" /> 
+		<mkdir dir="${cxf-codegen}/${subdir}/src" /> 
+		<!-- Genera le Class java dei WSDL di dosign-client -->
+		
+		<antcall target="_WSDLToJavaByURL">
+			<param name="WSDLToJava.pck" value="it.csi.dosign.cxfclient"/>
+			<param name="WSDLToJava.wsdl" value="http://tst-applogic.reteunitaria.piemonte.it/dosignmanager/DosignBusinessManager/DosignBusinessManagerBean?wsdl"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/${subdir}/src"/>
+		</antcall> 
+		
+		<mkdir dir="${cxf-codegen}/${subdir}/classes" />
+		<javac srcdir="${cxf-codegen}/${subdir}/src" destdir="${cxf-codegen}/${subdir}/classes" optimize="true" debug="true" debuglevel="vars,lines,source" compiler="modern" source="1.8" target="1.8" encoding="windows-1252" fork="false">
+			<classpath refid="classpath" />
+		</javac>
+		<mkdir dir="${cxf-codegen}/${subdir}/archives" />
+		<jar jarfile="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" basedir="${cxf-codegen}/${subdir}/classes" includes="**/*.*" />
+		<copy file="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" todir="${cxf-codegen_jarsdist}" />
+		<copy file="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" todir="lib" />
+	</target>
+	
+	<!-- EPAY SERVER CALLBACK -->
+	<target name="create-epay-server-cxf">
+		<property name="subdir" value="epay-server" />
+		
+		<!-- Init mkdir e delete ${build}/epa-server --> 
+		<echo message="Init mkdir e delete ${cxf-codegen}/${subdir} ..." />
+    	<delete dir="${cxf-codegen}/${subdir}" />
+		<mkdir dir="${cxf-codegen}/${subdir}" />
+		
+		<!-- Genera le Class java dei WSDL per stardas-server per callback -->
+		<antcall target="_WSDLToJavaImplServer">
+			<param name="WSDLToJava.pck" value="it.csi.moon.moonsrv.business.ws.epay"/>
+			<param name="WSDLToJava.wsdl" value="epay/EPaywso2EntiService.wsdl"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/${subdir}/src"/>
+		</antcall>
+		
+		<!-- Copy in java/src   -->
+		<echo message="Source src/java/it/csi/moon/moonsrv/business/ws  ..." />
+		<copy todir="src/java/it/csi/moon/moonsrv/business/ws" overwrite="true" encoding="ISO-8859-1" outputencoding="UTF-8">
+		  <fileset dir="${cxf-codegen}/${subdir}/src/it/csi/moon/moonsrv/business/ws" includes="*.java" />
+		</copy>
+	</target>
+	
+	<!-- PAGOPA RicevutaTelematica RT XML -->
+	<target name="create-epay-pagopa-rt-cxf">
+		<property name="subdir" value="epay-pagopa" />
+		
+		<!-- Init mkdir e delete ${build}/epa-server --> 
+		<echo message="Init mkdir e delete ${cxf-codegen}/${subdir} ..." />
+    	<delete dir="${cxf-codegen}/${subdir}" />
+		<mkdir dir="${cxf-codegen}/${subdir}" />
+		
+		<!-- Genera le Class java dei WSDL per stardas-server per callback -->
+		<antcall target="_WSDLToJavaXSD">
+			<param name="WSDLToJava.pck" value="it.csi.moon.moonsrv.business.ws.epay.pagopa.rt"/>
+			<param name="WSDLToJava.xsd" value="epay/pagopa/PagInf_RPT_RT_6_2_0.xsd"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/${subdir}/src"/>
+		</antcall>
+		
+		<!-- Copy in java/src   OR generate jar
+		<echo message="Source src/java/it/csi/moon/moonsrv/business/ws  ..." />
+		<copy todir="src/java/it/csi/moon/moonsrv/business/ws" overwrite="true" encoding="ISO-8859-1" outputencoding="UTF-8">
+		  <fileset dir="${cxf-codegen}/${subdir}/src/it/csi/moon/moonsrv/business/ws" includes="*.java" />
+		</copy>
+		-->
+	</target>
+	
+	<!-- DOQUI INDEX CLIENT -->
+	<target name="create-doqui-index-client-cxf">
+		<property name="cxfjarclientname" value="doqui-index-cxf-1.0.0.jar" />
+		<property name="subdir" value="doqui-index-client" />
+		
+		<!-- Init mkdir e delete ${build}/doqui-index-client -->
+		<echo message="Init mkdir e delete ${cxf-codegen}/${subdir} ..." />
+    	<delete dir="${cxf-codegen}/${subdir}" />
+		<mkdir dir="${cxf-codegen}/${subdir}" /> 
+		<mkdir dir="${cxf-codegen}/${subdir}/src" /> 
+		<!-- Genera le Class java dei WSDL di doqui-index-client -->
+		
+		<antcall target="_WSDLToJavaByURL">
+			<param name="WSDLToJava.pck" value="it.doqui.index.cxfclient"/>
+			<param name="WSDLToJava.wsdl" value="http://tst-applogic.reteunitaria.piemonte.it/ecmenginecxf-exp03/ws/streamingWS?wsdl"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/${subdir}/src"/>
+		</antcall> 
+		
+		<mkdir dir="${cxf-codegen}/${subdir}/classes" />
+		<javac srcdir="${cxf-codegen}/${subdir}/src" destdir="${cxf-codegen}/${subdir}/classes" optimize="true" debug="true" debuglevel="vars,lines,source" compiler="modern" source="1.8" target="1.8" encoding="windows-1252" fork="false">
+			<classpath refid="classpath" />
+		</javac>
+		<mkdir dir="${cxf-codegen}/${subdir}/archives" />
+		<jar jarfile="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" basedir="${cxf-codegen}/${subdir}/classes" includes="**/*.*" />
+		<copy file="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" todir="${cxf-codegen_jarsdist}" />
+		<copy file="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" todir="lib" />
+	</target>
+	
+	
+	<!-- MAGGIOLI PRT CLIENT -->
+	<target name="create-maggioli-prt-soap-client-cxf">
+		<property name="cxfjarclientname" value="maggioli-ptr-soap-client-cxf-1.0.0.jar" />
+		<property name="subdir" value="maggioli-ptr-soap-client" />
+		
+		<!-- Init mkdir e delete ${build}/maggioli-ptr-soap-client -->
+		<echo message="Init mkdir e delete ${cxf-codegen}/${subdir} ..." />
+    	<delete dir="${cxf-codegen}/${subdir}" />
+		<mkdir dir="${cxf-codegen}/${subdir}" /> 
+		<mkdir dir="${cxf-codegen}/${subdir}/src" /> 
+		
+		<!-- Genera le Class java dei WSDL di maggioli-ptr-soap-client -->
+		<antcall target="_WSDLToJava">
+			<param name="WSDLToJava.pck" value="com.maggioli.prt.cxfclient"/>
+			<param name="WSDLToJava.wsdl" value="maggioli/ProtocolloSoap.wsdl"/>
+			<param name="WSDLToJava.outdir" value="${cxf-codegen}/${subdir}/src"/>
+		</antcall>
+		
+		<mkdir dir="${cxf-codegen}/${subdir}/classes" />
+		<javac srcdir="${cxf-codegen}/${subdir}/src" destdir="${cxf-codegen}/${subdir}/classes" optimize="true" debug="true" debuglevel="vars,lines,source" compiler="modern" source="1.8" target="1.8" encoding="windows-1252" fork="false">
+			<classpath refid="classpath" />
+		</javac>
+		<mkdir dir="${cxf-codegen}/${subdir}/archives" />
+		<jar jarfile="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" basedir="${cxf-codegen}/${subdir}/classes" includes="**/*.*" />
+		<copy file="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" todir="${cxf-codegen_jarsdist}" />
+		<copy file="${cxf-codegen}/${subdir}/archives/${cxfjarclientname}" todir="lib" />
+	</target>
+	
+</project>

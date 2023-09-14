@@ -1,0 +1,83 @@
+<div id="mieiModuli" role="tabpanel" aria-labelledby="collapseMobile-01"
+    class="areaTabAccodion tab-pane fade active show">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Elenco Processi</h4>
+                        <br><br>
+                        <input type="text" class="form-control" placeholder="filtra processi"
+                            style="width: 300px; position: absolute; bottom: 0; left: 15px;" [(ngModel)]="filtro" />
+                    </div>
+                    <!-- <div class="col-md-3">
+                        Attivi:
+                        <div class="switch-toggle switch-3 switch-candy-blue">
+                            <input id="attivo-si" name="filtroFlagAttivo" value="SI" type="radio" [checked]="filtroFlagAttivo === 'SI'">
+                            <label  style="color:#000" for="attivo-si" (click)="changeFiltroFlagAttivo('SI');">Si</label>
+                    
+                            <input id="attivo-no" name="filtroFlagAttivo" value="NO" type="radio" [checked]="filtroFlagAttivo === 'NO'">
+                            <label style="color:#000" for="attivo-no" (click)="changeFiltroFlagAttivo('NO');">No</label>
+                    
+                            <input id="attivo-tutti" name="filtroFlagAttivo" value="TUTTI" type="radio" [checked]="filtroFlagAttivo === 'TUTTI'">
+                            <label style="color:#000" for="attivo-tutti" (click)="changeFiltroFlagAttivo('TUTTI');">Tutti</label>
+                            <a></a>
+                        </div>
+                        Abilitati sull'ente:
+                        <div class="switch-toggle switch-3 switch-candy-blue">
+                            <input id="abilitato-si" name="filtroFlagAbilitato" value="SI" type="radio" [checked]="filtroFlagAbilitato === 'SI'">
+                            <label for="abilitato-si" (click)="changeFiltroFlagAbilitato('SI');">Si</label>
+                        
+                            <input id="abilitato-no" name="filtroFlagAbilitato" value="NO" type="radio" [checked]="filtroFlagAbilitato === 'NO'">
+                            <label for="abilitato-no" (click)="changeFiltroFlagAbilitato('NO');">No</label>               
+                            <a></a>
+                        </div>
+                    </div> -->
+                    <div class="col-md-3">
+                    </div>
+
+                    <div class="col-md-3">
+                        <button *ngIf="currentUser?.isTipoADMIN() || currentUser?.hasRuoloOperatorMinADM()" class="btn"
+                            style="float:right; background-color:lightgrey;margin-top: -25px;" (click)="creaProcesso()">
+                            <fa-icon style="margin-right: 5px" [icon]="faPlus"></fa-icon>Nuovo Processo
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-responsive" style="margin-top: 50px !important;">
+                    <table id="mytable" class="table table-bordered table-striped">
+                        <thead>
+                            <th>ID</th>
+                            <th>Codice</th>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                            <th>Attivo</th>
+                            <th>Dt. Agg</th>
+                            <th>Operatore Agg.</th>
+                            <th>Operazione</th>
+                        </thead>
+                        <tbody>
+                            <tr app-processi-riga
+                                *ngFor="let p of elencoProcessiFiltrato | slice: (currPage-1) * pageSize : (currPage-1) * pageSize + pageSize; index as i"
+                                [p]="p" 
+                                [nomeOperatore]="findNomeOperatore(p?.attoreUpd)"
+                                (eventDettaglioRiga)="dettaglioRiga($event)" 
+                                (eventEliminaRiga)="eliminaRiga($event)">
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="clearfix"></div>
+                    <div *ngIf="(elencoProcessiFiltrato?.length > pageSize)">
+                        <ngb-pagination [(page)]="currPage" [pageSize]="pageSize"
+                            [collectionSize]="elencoProcessiFiltrato.length" [maxSize]="20" [rotate]="true"
+                            [ellipses]="false" [boundaryLinks]="true" (pageChange)="pageChanged($event)">
+                        </ngb-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <app-moon-spinner></app-moon-spinner> -->
+
+</div>

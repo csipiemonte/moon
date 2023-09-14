@@ -1,0 +1,37 @@
+.pagination {
+  flex-wrap: wrap;
+  .page-item {
+    // margin-right: $pager-item-margin-right;
+    border: $pager-item-current-border;
+    border-color: transparent;
+      //current page version
+      &.active,
+      &:hover {
+        border: $pager-item-current-border;
+        color: $pager-item-current-color;
+        border-radius: $pager-item-border-radius;
+      }
+
+      &.active {
+        pointer-events: none;
+      }
+
+
+    .page-link {
+
+      span {
+        font-size: 1rem;
+      }
+
+      //hover state
+      &:hover {
+        color: $pager-hover-color;
+        background-color: transparent;
+        // icon
+        .icon {
+          fill: $pager-hover-color;
+        }
+      }
+    }
+  }
+}

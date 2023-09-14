@@ -1,0 +1,140 @@
+<div id="domanda" role="tabpanel" aria-labelledby="collapseMobile-01" class="areaTabAccodion tab-pane fade active show">
+    <!-- <div class="container" *ngIf="righeIstanza.length > 0"> -->
+    <div class="container">        
+        <div class="row">
+            <div class="col-md-12">
+                <!-- <div *ngIf="righeIstanza.length > 0">Istanze pervenute: {{istanzeTotali}} </div> -->
+                <!-- <div *ngIf="isPagamenti">             
+                    <p>
+                    <input type="radio" value="all" name="paid" checked [ngModel]="paid" (change)="changePaid($event)">Tutte
+                    <input type="radio" value="paid" name="paid" [ngModel]="paid" (change)="changePaid($event)">Pagate
+                    <input type="radio" value="unpaid" name="paid" [ngModel]="paid" (change)="changePaid($event)"> Non Pagate
+                    </p>                 
+                 </div> -->
+
+                <!--VERSIONE FUNZIONANTE CON CSS SUL COMPONENTE-->
+                 <!-- <fieldset style="width: 30%">
+                    <div class="switch-toggle" *ngIf="isPagamenti" style="border: solid 0.1em !important;border-radius: 3px !important">
+                         <input type="radio" id="radioall" value="all" name="paid" checked [ngModel]="paid"
+                             (change)="changePaid($event)">
+                         <label for="radioall" style="color:#000">Tutte</label>
+                  
+                         <input type="radio" id="radiopaid" value="paid" name="paid" [ngModel]="paid" (change)="changePaid($event)">
+                         <label for="radiopaid" style="color:#000">Pagate</label>
+                  
+                         <input type="radio" id="radiounp" value="unpaid" name="paid" [ngModel]="paid" (change)="changePaid($event)">
+                         <label for="radiounp" style="color:#000">Non pagate</label>                       
+
+                         <a class="btn btn-primary" style="background-color: #80BCF4 !important;"></a>
+                     </div>
+                </fieldset>  
+                <p></p>  -->
+               
+                <div style="padding-left:0px !important" class="col-12 col-lg-6 col-xl-4">                                        
+                    <div class="switch-toggle alert alert-light" *ngIf="isPagamenti">
+                        <input type="radio" id="radioall" value="all" name="paid" checked [ngModel]="paid"
+                            (change)="changePaid($event)">
+                        <label for="radioall">Tutte</label>
+
+                        <input type="radio" id="radiopaid" value="paid" name="paid" [ngModel]="paid"
+                            (change)="changePaid($event)">
+                        <label for="radiopaid">Pagate</label>
+
+                        <input type="radio" id="radiounp" value="unpaid" name="paid" [ngModel]="paid"
+                            (change)="changePaid($event)">
+                        <label for="radiounp">Non pagate</label>
+
+                        <a class="btn btn-primary btn-toggle"></a>
+                    </div>
+                </div>
+                <p></p>
+                
+                <div>Istanze pervenute: {{istanzeTotali}} </div>
+                <p></p>
+                <div class="table-responsive">
+                    <table id="mytable" class="table table-bordered table-striped">
+                        <thead>
+                            <th>&nbsp;</th>
+                            <th *ngIf="isPagamenti"></th>
+                            <th *ngIf="showColonnaComune">Comune</th>
+                            <th *ngIf="showColonnaEnte">Ente</th>
+                            <th *ngIf="showFiltroMultiEnte">Ente</th>                            
+                            <th *ngIf="showFiltroDichiarante">Dichiarante</th>
+                            <th *ngIf="showFiltroDichiarante">Nome</th>
+                            <th *ngIf="showFiltroDichiarante">Cognome</th>
+                            <th>Numero istanza    
+                            </th>
+                            <th>Data invio
+                                <span style="float:right" *ngIf="sortDataInvio === Sort.DESC">
+                                    <a [routerLink]="[]" (click)="toggleDataInvio()" ngbTooltip="Ordinamento ascendente">
+                                        <fa-icon [icon]="faAngleUp" style="color: #005ca9;"></fa-icon>
+                                    </a>
+                                </span>
+                                <span style="float:right" *ngIf="sortDataInvio === Sort.ASC">
+                                    <a [routerLink]="[]" (click)="toggleDataInvio()" ngbTooltip="Ordinamento discendente">
+                                        <fa-icon [icon]="faAngleDown" style="color: #005ca9;"></fa-icon>
+                                    </a>
+                                </span>  
+                            </th>
+                            <!-- <th>Visualizza</th>
+            <th>Lavora</th> -->
+                            <th>Operazioni</th>
+                        </thead>
+                        <tbody>
+                            <tr riga-istanze-pervenute *ngFor="let rigaIstanza of righeIstanza; index as i" [riga-istanza-data]="rigaIstanza" [i]="i+(currPage-1) * pageSize" [currPage]="currPage" [isPagamenti]="isPagamenti" (onDeleteRiga)="onDeleteRiga($event)">
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="clearfix"></div>
+                    <div *ngIf="istanzeTotali > pageSize">
+                        <ngb-pagination [(page)]="currPage"
+                                        [pageSize]="pageSize"
+                                        [collectionSize]="istanzeTotali"
+                                        [maxSize]="20" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
+                                        (pageChange)="pageChanged($event)">
+                        </ngb-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Per Visualizzare messaggi -->
+    <!-- <div class="mt-2" *ngIf="msg">
+        <div class="alert alert-info">
+            <strong>{{msg}}</strong>
+        </div>
+    </div> -->
+
+
+
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title custom_align" id="Heading">Elimina istanza</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="fa fa-remove"
+                                                                                            aria-hidden="true"></span>
+          </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="alert alert-danger"><span class="fas fa-warning-sign"></span> Sei sicuro di voler eliminare questa istanza?
+                    </div>
+
+                </div>
+                <div class="modal-footer ">
+                    <button type="button" class="btn btn-success"><span class="fas fa-check"></span>Si</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal"><span class="fas fa-times"></span> No</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+</div>
+
+<app-moon-spinner></app-moon-spinner>

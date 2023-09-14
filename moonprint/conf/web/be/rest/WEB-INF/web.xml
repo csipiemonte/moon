@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+
+
+	
+	<listener>
+	<!--  	per mettere a disposizione della logica di integrazione spring-resteasy il servlet context  -->
+		<listener-class>it.csi.moon.moonprint.util.AppServletContextListener</listener-class>
+   	</listener>
+   <listener>
+      <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+   </listener>
+   
+	<listener>
+	<!--caricare la configurazione spring contenente i bean di implementazione del servizio (file applicationContext.xml in WEB-INF -->
+      <listener-class>org.jboss.resteasy.plugins.spring.SpringContextLoaderListener</listener-class>
+   </listener>
+
+ <!-- 	<listener>
+    	<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+   	</listener> -->
+   	
+   <!-- filtro di protezione ad attacchi XSRF -->
+   <filter>
+		<filter-name>XSRFProtectionFilter</filter-name>
+		<filter-class>it.csi.moon.moonprint.filter.XSRFProtectionFilter</filter-class>
+		<init-param>
+    		<param-name>disabled</param-name>
+    		<param-value>@@@XSRFFILTER.DISABLED@@@</param-value>
+  		</init-param>
+   </filter>
+   <filter-mapping>
+		<filter-name>XSRFProtectionFilter</filter-name>
+		<url-pattern>*</url-pattern>
+   </filter-mapping>
+
+
+ 
+	 <filter>
+	    <filter-name>CorsFilter</filter-name>
+	    <filter-class>it.csi.moon.moonprint.filter.CorsFilter</filter-class>
+	    <init-param>
+	   		<param-name>enablecors</param-name>
+	   		<param-value>@@@CORSFILTER.ENABLECORS@@@</param-value>
+	 		</init-param>
+	</filter> 
+	<filter-mapping>
+	    <filter-name>CorsFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
+ 
+  <!-- replica della sessione (pur essendo i servizi stateless, serve per replicare il contesto 
+       di autenticazione e il token xsrf, quindi e' necessario solo nello scenario SPA-REST -->
+  <!--  <distributable />  -->
+
+	<!-- impostazioni di security -->
+	<security-constraint>
+<!--  		A collection of protected resources along with the access mechanism -->
+		<web-resource-collection>
+			<web-resource-name>Restricted to Secure role</web-resource-name>
+			<description>Protezione servizi moonprint</description>
+			<url-pattern>/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+			<http-method>PUT</http-method>
+			<http-method>DELETE</http-method>
+		</web-resource-collection>
+<!--  		The list of roles that can access the resource. -->
+		<auth-constraint>
+			<role-name>moonprint</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>applications</realm-name>
+	</login-config>
+	<security-role>
+		<role-name>moonprint</role-name>
+	</security-role>
+
+</web-app>

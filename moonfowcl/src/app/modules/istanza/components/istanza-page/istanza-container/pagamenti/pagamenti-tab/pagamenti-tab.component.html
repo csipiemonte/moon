@@ -1,0 +1,40 @@
+<table class="table table-bordered table-hover small table-striped" id="pagameti-tab">
+  <thead class="border">
+  <th>Codice avviso/IUV</th>
+  <!-- th>IUV</th -->
+  <th>CF/PIVA Pagatore</th>
+  <th>Importo</th>
+  <th>Stato</th>
+  <th>Prestatore di Servizi di Pagamento</th>
+  <th>Data e ora</th>
+  <th>Importo Pagato</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let p of pagamenti">
+    <td>{{p.codiceAvviso}}
+      <a (click)="copyClipboard(p.codiceAvviso)" *ngIf="isInPagamento(p)" [routerLink]="[]" placement="left" ngbTooltip="Copia Codice Avviso / IUV"
+      class="ms-2">
+      <svg id="copyIcon" class="icon icon-primary icon-sm"><use [attr.href]="'./assets/svg/sprite.svg#it-copy'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-copy'"></use></svg>
+
+      <svg id="feedbackCopyIcon"  class="d-none icon icon-success icon-sm"><use [attr.href]="'./assets/svg/sprite.svg#it-check'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-check'"></use></svg>
+    </a>
+
+    </td>
+<!--
+    <td>{{p.iuv}}
+      <a (click)="copyClipboard(p.iuv)" *ngIf="isInPagamento(p)" [routerLink]="" ngbTooltip="copia codice avviso"
+         class="ms-2">
+        <fa-icon [icon]="faCopy"></fa-icon>
+      </a>
+    </td>
+-->
+    <td>{{cfPivaPagatoreRichiesta(p)}}</td>
+    <td>{{importoRichiesta(p) | currency: 'EUR'}}</td>
+    <td>{{statoPagamento(p)}}</td>
+    <td>{{p.notifica?.ragioneSocialePsp}}</td>
+    <td>{{p.notifica?.dataOraAvvioTransazione | date: 'dd/MM/yyyy HH:mm'}}</td>
+    <td>{{p.notifica?.importoTransato | currency: 'EUR'}}</td>
+  </tr>
+  </tbody>
+</table>
+

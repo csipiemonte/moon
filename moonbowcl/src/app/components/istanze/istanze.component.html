@@ -1,0 +1,124 @@
+<alert id="alert-container-istanze"></alert>
+<div class="input-group">
+    <div class="input-group-prepend" style="padding:5px">
+        <span class="input-group-text" style="margin-right:10px;">Seleziona un modulo</span>
+
+        <select class="browser-default" [(ngModel)]="selectedModulo" (change)="selectModulo($any($event).target.value)">
+            <option value="">...</option>
+            <option *ngFor="let modulo of moduli" value="{{modulo.idModulo}}">{{modulo.oggettoModulo}}
+                ({{modulo.codiceModulo}})</option>
+        </select>
+    </div>
+    <div *ngIf="showFiltroComuneUtente" class="input-group-prepend" style="padding:5px">
+        <span class="input-group-text">Seleziona comune</span>
+        <select class="browser-default" [(ngModel)]="idComune" (change)="selectComune($any($event).target.value)">
+            <option value="">...</option>
+            <option *ngFor="let comun of comuniUtente" value="{{comun.codice}}">{{comun.nome}}</option>
+        </select>
+    </div>
+    <div *ngIf="showFiltroEnteUtente" class="input-group-prepend" style="padding:5px">
+        <span class="input-group-text">Seleziona filtro</span>
+        <select class="browser-default" [(ngModel)]="idEnte" (change)="selectEnte($any($event).target.value)">
+            <option value="">...</option>
+            <option *ngFor="let ente of entiUtente" value="{{ente.codice}}">{{ente.nome}}</option>
+        </select>
+    </div>
+    <div *ngIf="showFiltroComune" class="input-group-prepend" style="padding:5px">
+        <span class="input-group-text">Filtra per comune</span>
+
+        <select class="browser-default" [(ngModel)]="idProvincia" (change)="selectProvincia($any($event).target.value)">
+            <option value="">...</option>
+            <option value="001">Torino</option>
+            <option value="006">Alessandria</option>
+            <option value="005">Asti</option>
+            <option value="096">Biella</option>
+            <option value="004">Cuneo</option>
+            <option value="003">Novara</option>
+            <option value="103">Verbano-Cusio-Ossola</option>
+            <option value="002">Vercelli</option>
+        </select>
+
+        <select class="browser-default" [(ngModel)]="idComune" (change)="selectComune($any($event).target.value)">
+            <option value="">...</option>
+            <option *ngFor="let comun of comuni" value="{{comun.codice}}">{{comun.nome}}</option>
+        </select>
+    </div>
+    <div *ngIf="showFiltroDichiarante" class="input-group-prepend" style="padding:5px">
+        <!-- <span style="margin-left:10px;"></span> -->
+        <!-- <span class="input-group-text" style="margin-right:8px">Filtra per codice fiscale del dichiarante</span> -->
+        <span class="input-group-text">Filtra per codice fiscale del dichiarante</span>
+        <input type="text" style="margin-left: 10px" [(ngModel)]="cfDichiarante" maxlength="16">
+
+        <!-- <span class="input-group-text" style="margin-right:8px">Filtra per nome del dichiarante</span> -->
+        <span class="input-group-text mr-1" style="margin-left: 10px">Filtra per nome del dichiarante</span>
+        <input type="text" style="margin-left: 10px" [(ngModel)]="nomeDichiarante" maxlength="150">
+
+        <!-- <span class="input-group-text" style="margin-right:8px">Filtra per cognome del dichiarante</span> -->
+        <span class="input-group-text mr-1" style="margin-left: 10px">Filtra per cognome del dichiarante</span>
+        <input type="text" style="margin-left: 10px" [(ngModel)]="cognomeDichiarante" maxlength="150">
+    </div>
+
+
+    <!-- <div *ngIf="showFiltroMultiEnte" class="input-group-prepend" style="padding:5px">
+        <span class="input-group-text" style="margin-right:8px">Filtra ente</span>
+        <select class="browser-default" [(ngModel)]="idMultiEnte" (change)="selectMultiEnte($event.target.value)">
+            <option value="">...</option>
+            <option *ngFor="let ente of enti" value="{{ente.idEnte}}">{{ente.nomeEnte}}</option>
+        </select>
+    </div> -->
+</div>
+
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <ng-template [ngIf]="!sharedService.userLogged?.hasRuoloOperatorCOMP()">
+        <li [ngbNavItem]="1">
+            <a ngbNavLink>Pervenute</a>
+            <ng-template ngbNavContent>
+
+                <app-tab-pervenute [tab]="active" [idModulo]="selectedModulo" [idComune]="idComune" [idEnte]="idEnte"
+                    [cfDichiarante]="cfDichiarante" [nomeDichiarante]="nomeDichiarante"
+                    [cognomeDichiarante]="cognomeDichiarante" [idMultiEnte]="idMultiEnte"
+                    (alertService)="getAlert($event)"></app-tab-pervenute>
+            </ng-template>
+        </li>
+    </ng-template>
+    <ng-template [ngIf]="!sharedService.userLogged?.hasRuoloOperatorCOMP()">
+        <li [ngbNavItem]="2">
+            <a ngbNavLink>In bozza</a>
+            <ng-template ngbNavContent>
+                <app-tab-bozze [tab]="active" [idModulo]="selectedModulo" [idComune]="idComune" [idEnte]="idEnte"
+                    [cfDichiarante]="cfDichiarante" [nomeDichiarante]="nomeDichiarante"
+                    [cognomeDichiarante]="cognomeDichiarante" [idMultiEnte]="idMultiEnte"
+                    (alertService)="getAlert($event)"></app-tab-bozze>
+            </ng-template>
+        </li>
+    </ng-template>
+    <ng-template [ngIf]="!sharedService.userLogged?.hasRuoloOperatorCOMP()">
+        <li [ngbNavItem]="3">
+            <a ngbNavLink>In lavorazione</a>
+            <ng-template ngbNavContent>
+                <app-tab-lavorazione [tab]="active" [idModulo]="selectedModulo" [idComune]="idComune" [idEnte]="idEnte"
+                    [cfDichiarante]="cfDichiarante" [nomeDichiarante]="nomeDichiarante"
+                    [cognomeDichiarante]="cognomeDichiarante" [idMultiEnte]="idMultiEnte"
+                    (alertService)="getAlert($event)"></app-tab-lavorazione>
+            </ng-template>
+        </li>
+    </ng-template>
+    <ng-template [ngIf]="sharedService.userLogged?.isTipoADMIN() || sharedService.userLogged?.hasRuoloOperatorCOMP() || sharedService.userLogged?.hasRuoloOperatorADV()">
+        <li [ngbNavItem]="4">
+            <a ngbNavLink>Da completare</a>
+            <ng-template ngbNavContent>
+                <app-tab-da-completare [tab]="active" [idModulo]="selectedModulo" [idComune]="idComune"
+                    [idEnte]="idEnte" [cfDichiarante]="cfDichiarante" [nomeDichiarante]="nomeDichiarante"
+                    [cognomeDichiarante]="cognomeDichiarante" [idMultiEnte]="idMultiEnte"
+                    (alertService)="getAlert($event)" >
+                </app-tab-da-completare>
+            </ng-template>
+        </li>
+    </ng-template>
+</ul>
+
+
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+<app-moon-spinner></app-moon-spinner>

@@ -1,0 +1,22 @@
+<nav class="breadcrumb-container" aria-label="Percorso di navigazione">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a style="cursor:pointer" (click)="backToIstanze()">Le mie istanze</a><span class="separator" aria-hidden="true">/</span></li>
+    <li class="breadcrumb-item"><a style="cursor:pointer" (click)="backToDettaglio()">{{istanza.codiceIstanza}} </a><span class="separator" aria-hidden="true">/</span></li>
+    <li class="breadcrumb-item active" aria-current="page">Azione del {{storicoWorkflow?.dataInizio | date:"dd/MM/yyyy"}} </li>
+  </ol>
+</nav>
+
+<h1 class="h2">Azione del {{storicoWorkflow?.dataInizio | date:"dd/MM/yyyy"}} </h1>
+
+{{msgErr}}
+
+<formio [form]='struttura' [renderOptions]="renderOptions" [submission]='data' [options]="options" [viewOnly]="readOnly" [readOnly]="readOnly" (formLoad)="onFormLoad($event)" (ready)="onFormLoad($event)" (change)="onChange($event)"
+    (nextPage)="onNextPage($event)" (prevPage)="onPrevPage($event)">
+</formio>
+
+<a class="btn btn-danger btn-icon mt-5"  (click)="backToDettaglio()">
+  <svg class="icon icon-white">
+  <use [attr.href]="'./assets/svg/sprite.svg#it-arrow-left'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-arrow-left'"></use>
+      </svg>  
+  <span>Torna all'istanza</span>
+</a>

@@ -1,0 +1,83 @@
+<html>
+<head>
+    <title th:text="${document.title}"></title>
+    <link rel="stylesheet" href="style.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<body>
+
+
+
+<div id="theme">
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_left': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.header.left,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_center': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.header.center,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+    
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_footer_left': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.footer.left,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_footer_right': 'hidden')}" >
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.footer.right,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+
+    <div class="header_separator"></div>
+
+
+    <div class="section" >
+		<img src="img/Immagine.png"/>
+        <page-inside-avoid>
+            <div> 
+				<div class="angrafica-right">
+					<span th:text="${document.anagrafica.nome}"></span>
+					<span th:text="${document.anagrafica.cognome}"></span><br/>
+					<span th:text="${document.anagrafica.indirizzo}"></span><br/>
+					<span th:text="${document.anagrafica.cap}"></span>
+					<span th:text="${document.anagrafica.comune}"></span>
+					<span>(<span th:text="${document.anagrafica.provincia}"/>)</span><br/><br/>
+					<span><i>Torino,&#xA0;<span th:text="${document.richiesta.data}"></span></i></span>
+					
+				</div>
+
+
+                
+            
+				<br/><br/><br/><br/>
+				
+					
+                    <br/><br/><br/>
+					<p>
+						<b>Prot. n:&#xA0;</b><span th:text="${document.datiDiniego.numProtocolloUscita}"/>
+					</p>
+				
+				
+                <p><b>CLASSIFICAZIONE:&#xA0;</b> <span th:text="${document.datiDiniego.classificazioneDOQUI}"/></p>
+                <p><b>CODICE FISCALE/PARTITA IVA:&#xA0;</b><span th:text="${document.anagrafica.codiceFiscale}"/></p><br/>
+				<p><b>OGGETTO:&#xA0;</b>Tasse sulle concessioni regionali: avviso di accertamento di violazione.</p>
+                <p class="dati-modulo">ACCERTAMENTO N:&#xA0;<span th:text="${document.datiDiniego.numeroAccertamento}"/>&#xA0;-&#xA0;<span th:text="${document.datiDiniego.numProtocolloIngresso}"/><br/>
+				ANNO DI RIFERIMENTO:&#xA0;<span th:text="${document.datiDiniego.annoPagamento}"/> <br/>
+				<!--<u>SCADENZA:</u>&#xA0;<span th:text="${document.datiDiniego.dataScadenza}"/><br/><br/>-->
+				</p><br/><br/><br/>
+				<p>Con riferimento a nota mediante la quale si chiede nuovamente di procedere all'annullamento dell'accertamento in oggetto, poich&#233; non sono stati forniti elementi di valutazione diversi da quelli gi&#224; esaminati, si ribadisce quanto gi&#224; comunicato con la precedente nota.</p>
+				<p>Per ulteriori informazioni consultare il sito della Regione Piemonte (<a href="https://www.regione.piemonte.it/web/temi/tributi/tcr">https://www.regione.piemonte.it/web/temi/tributi/tcr</a>).</p>
+				<p> Distinti saluti.</p>
+				<br/><br/>
+               
+                <span class="signature-right">
+                    <span>IL DIRIGENTE DEL SETTORE</span><br/>
+                    <span>Dr. Fabrizio Zanella</span><br/><br/>
+                    <span>FIRMA OMESSA</span><br/>
+					<span style="font-size:9px">Ai sensi dell' art. 3, c. 2, del Decreto Legislativo 12 febbraio 1993, n. 39 la firma prevista per la validit&#225; della presente comunicazione, prodotta mediante sistemi informatici, &#232; sostituita con l' indicazione a stampa del nominativo del soggetto responsabile</span>
+                </span>
+
+
+            </div>
+        </page-inside-avoid>
+    </div>
+</div>
+
+</body>
+</html>

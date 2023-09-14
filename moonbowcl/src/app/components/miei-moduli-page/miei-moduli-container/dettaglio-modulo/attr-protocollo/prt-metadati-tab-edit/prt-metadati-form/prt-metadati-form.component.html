@@ -1,0 +1,51 @@
+<form>
+    <table id="prt-tab-metadati" class="table table-bordered table-striped">
+        <thead>
+            <th>Metadato</th>
+            <th>Valore</th>
+            <th></th>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let m of metadatiFull">
+                <tr *ngIf="isConfigurato(m)">
+                    <td style="width: 30%; vertical-align: middle;">
+<!--                       <label for="{{m.nomeMetadato}}">{{m.nomeMetadato}}</label> -->
+<!--                        <label for="{{m.nomeMetadato}}">{{m.nomeMetadato}}&nbsp;<i class="fa fa-solid fa-circle-plus" ngbTooltip=""></i></label> -->
+                        <label for="{{m.nomeMetadato}}">{{m.nomeMetadato}}&nbsp;<fa-icon *ngIf="isWithIcon(m)" style="margin-left: 20px; color: rgb(255, 255, 0)" [icon]="iconOf(m)"></fa-icon></label>
+                    </td>
+                    <td style="width: 60%;">
+                        <input type="text" class="form-control" name="{{m.nomeMetadato}}"
+                            id="{{m.nomeMetadato}}"
+                            #{{metadatiJsonKV[m.nomeMetadato]}}='ngModel' [(ngModel)]="metadatiJsonKV[m.nomeMetadato]"
+                            (keyup)="onKeyUp($event, m.nomeMetadato)">
+                    </td>
+                    <td style="width: 80px;">
+                        <a [routerLink]="[]" (click)="elimina(m.nomeMetadato)"
+                            ngbTooltip="Elimina configurazione metadato">
+                            <fa-icon style="margin-left: 20px; color: red" [icon]="faTrashAlt"></fa-icon>
+                        </a>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+    <ng-container *ngIf="metadatiNonAssociati && metadatiNonAssociati.length>0">
+    <div class="form-inline">
+        <div class="form-group">
+            <div class="input-group">
+                <label for="newNomeMetadato">Metadato :</label>
+                <select [(ngModel)]="newNomeMetadato" name="newNomeMetadato" id="newNomeMetadato" class="form-control" style="margin: 15px;" required>
+                    <option *ngFor="let m of metadatiNonAssociati" [value]="m.nomeMetadato">{{m.nomeMetadato}}</option>
+                </select>
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-success" (click)="aggiungi();" style="float:right">Aggiungi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </ng-container>
+    <div class="form-group">
+        <!-- <button type="button" class="btn btn-light" (click)="editMode=false;" style="float:left">Annulla</button> -->
+        <button type="button" class="btn btn-success" (click)="salva()" style="float:right">Salva</button>
+    </div>
+</form>

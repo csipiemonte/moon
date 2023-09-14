@@ -1,0 +1,29 @@
+<ul class="flex flex-column p-0 mb-0 mt-2">
+
+  <li class="d-block">Modulo: <b>{{istanza?.modulo.oggettoModulo}}</b></li>
+  <li class="d-block">Numero istanza: <b>{{istanza?.codiceIstanza}}</b></li>
+  <li class="d-block">Stato attuale: <b>{{istanza?.stato?.nome}}</b>
+    <!-- <a *ngIf="((istanza?.stato?.idStato === STATI.NOTIFICATA) || (((istanza?.stato?.idStato === STATI.RESPINTA) || (istanza?.stato?.idStato === STATI.ACCOLTA)) && isDocumentoPresent))" (click)="downloadNotifica()" [routerLink]="[]" placement="left" ngbTooltip="Scarica documento di esito" class="ms-2">
+    <fa-icon [icon]="faFilePdf" class="icon icon-danger text-danger"></fa-icon>
+    <span class="visually-hidden">Scarica documento di esito</span>
+    </a> -->
+  </li>
+
+  <li class="d-block" *ngIf="(istanza?.stato?.idStato != STATI.DA_INVIARE) && (istanza?.stato?.idStato != STATI.BOZZA)" >Data invio: <b>{{istanza?.created | date: 'dd/MM/yyyy HH:mm'}}</b>
+  </li>
+  <li class="d-block" *ngIf="istanza?.codiceAvviso">Codice Avviso / IUV: <b>{{istanza?.codiceAvviso }}</b>
+    <a (click)="copyClipboard(istanza?.codiceAvviso)" [routerLink]="[]" placement="left" ngbTooltip="Copia Codice Avviso / IUV"
+      class="ms-2">
+      <svg id="copyIconDettaglio" class="icon icon-primary icon-sm"><use [attr.href]="'./assets/svg/sprite.svg#it-copy'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-copy'"></use></svg>
+    </a>
+
+    <svg id="feedbackCopyIconDettaglio"  class="d-none icon icon-success icon-sm"><use [attr.href]="'./assets/svg/sprite.svg#it-check'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-check'"></use></svg>
+  </li>
+
+  <li class="d-block" *ngIf="istanza?.numeroProtocollo">Protocollo: <b>{{istanza?.numeroProtocollo}} {{istanza?.dataProtocollo | date: 'dd/MM/yyyy'}}</b></li>
+  <!-- <li class="d-block" *ngIf="isDocumentoPresent && documento?.numeroProtocollo">
+    Protocollo in uscita: <b>{{documento?.numeroProtocollo}} {{documento?.dataProtocollo | date: 'dd/MM/yyyy'}}</b></li>
+  </ul> -->
+
+
+

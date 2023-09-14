@@ -1,0 +1,204 @@
+<div *ngIf="!editModeOtrs">
+    <div>
+        <div class="row" *ngIf="attrCrmConf['titolo']">
+            <div class="col col-md-2">titolo:</div>
+            <div class="col col-md-10">{{attrCrmConf['titolo'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['queue']">
+            <div class="col col-md-2">queue:</div>
+            <div class="col col-md-10">{{attrCrmConf['queue'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['type']">
+            <div class="col col-md-2">type:</div>
+            <div class="col col-md-10">{{attrCrmConf['type'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['state']">
+            <div class="col col-md-2">state:</div>
+            <div class="col col-md-10">{{attrCrmConf['state'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['priority']">
+            <div class="col col-md-2">priority:</div>
+            <div class="col col-md-10">{{attrCrmConf['priority'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['includeAllegati']">
+            <div class="col col-md-2">includi allegati:</div>
+            <div class="col col-md-10">{{attrCrmConf['includeAllegati'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['customerID']">
+            <div class="col col-md-2">customerID:</div>
+            <div class="col col-md-10">{{attrCrmConf['customerID'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['customerUser']">
+            <div class="col col-md-2">customerUser:</div>
+            <div class="col col-md-10">{{attrCrmConf['customerUser'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['communicationChannel']">
+            <div class="col col-md-2">communicationChannel:</div>
+            <div class="col col-md-10">{{attrCrmConf['communicationChannel'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['senderType']">
+            <div class="col col-md-2">senderType:</div>
+            <div class="col col-md-10">{{attrCrmConf['senderType'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['from']">
+            <div class="col col-md-2">from:</div>
+            <div class="col col-md-10">{{attrCrmConf['from'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['subject']">
+            <div class="col col-md-2">subject:</div>
+            <div class="col col-md-10">{{attrCrmConf['subject'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['body']">
+            <div class="col col-md-2">body:</div>
+            <div class="col col-md-10">{{attrCrmConf['body'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['contentType']">
+            <div class="col col-md-2">contentType:</div>
+            <div class="col col-md-10">{{attrCrmConf['contentType'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['campiDinamici']">
+            <div class="col col-md-2">campi dinamici:</div>
+            <div class="col col-md-10">
+                <table>
+                    <thead><tr><th>Chiave</th>&nbsp;<th>Valore</th></tr></thead>
+                    <tbody>
+                    <tr *ngFor="let c of attrCrmConf['campiDinamici'] " >
+                        <td *ngIf="c.chiave.length > 0">{{c.chiave}}</td>&nbsp;
+                        <td *ngIf="c.valore.length > 0">{{c.valore}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+<div *ngIf="editModeOtrs">
+    <alert id="alert-moduli-attr-crm"></alert>
+    <form>
+        <legend>Configurazione OTRS</legend>
+        <div class="form-group">
+            <label for="titolo">titolo:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="titolo del ticket,parametro obbligatorio e deve coincidere con il campo Subject di Article."></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['titolo']" id="titolo" name="titolo" class="form-control" #titolo="ngModel"/>
+        </div>
+        <div class="form-group">
+            <label for="queue">queue:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="e' la coda dove deve atterrare il ticket, deve essere una fra quelle definite in OTRS."></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['queue']" id="queue" name="queue" class="form-control" #queue="ngModel"/>
+        </div>
+        <div class="form-group">
+            <label for="type">type:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Unclassified è l'unico tipo definito (di default) in OTRS"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['type']" id="type" name="type" class="form-control" #type="ngModel" placeholder="Unclassified"/>
+        </div>
+        <div class="form-group">
+            <label for="state">state:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="stato da assegnare al ticket che si sta creando"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['state']" id="state" name="state" class="form-control" #state="ngModel" placeholder="new"/>
+        </div>
+        <div class="form-group">
+            <label for="priority">priority:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="priorità da assegnare al ticket"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['priority']" id="priority" name="priority" class="form-control" #priority="ngModel" placeholder="3 normal"/>
+        </div>
+        <div class="form-group">
+            <label for="customerID">customerID:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="è l'indirizzo email del cliente (il fruitore di OTRS) a cui devono essere spedite le email di risposta automatica"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['customerID']" id="customerID" name="customerID" class="form-control" #customerID="ngModel"/>
+        </div>
+        <div class="form-group">
+            <label for="customerUser">customerUser:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="deve coincidere con CustomerID."></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['customerUser']" id="customerUser" name="customerUser" class="form-control" #customerUser="ngModel"/>
+        </div>
+        <div class="form-group">
+            <label for="includeAllegati">includi allegati:&nbsp;<i class="fa fa-question-circle text-muted" 
+                ngbTooltip="Se abilitato, invia gli allegati dell'istanza alla creazione del ticket."></i></label>
+            &ensp;&ensp;&ensp;
+            <ui-switch [(ngModel)]="attrCrmConfEdit['includeAllegati']"  [ngModelOptions]="{standalone: true}"></ui-switch>
+        </div>
+    <fieldset>
+        <legend>Configurazione Article:</legend>
+        <div class="form-group">
+            <label for="communicationChannel">communicationChannel:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="valori possibili: Email, Internal, Phone."></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['communicationChannel']" id="communicationChannel" name="communicationChannel" class="form-control" #communicationChannel="ngModel"/>
+        </div>
+        <div class="form-group">
+            <label for="senderType">senderType:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="specifica la tipologia di mittente.valori possibili: agent, customer, system"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['senderType']" id="senderType" name="senderType" class="form-control" #senderType="ngModel" placeholder="customer"/>
+        </div>
+        <div class="form-group">
+            <label for="from">from:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="è il mittente della email, deve essere nel seguente formato: Nome Cognome &lt;indirizzo_email&gt;"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['from']" id="from" name="from" class="form-control" #from="ngModel"/>
+        </div>
+        <div class="form-group">
+            <label for="subject">subject:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="oggetto della mail e deve coincidere con il campo Title"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['subject']" id="subject" name="subject" class="form-control" #subject="ngModel"/>
+        </div>
+        <div class="form-group">
+            <label for="body">body:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="corpo della email"></i></label>
+            <textarea [(ngModel)]="attrCrmConfEdit['body']" id="body" name="body" rows="6" cols="50" class="form-control" #body="ngModel"> </textarea>
+        </div>
+        <div class="form-group">
+            <label for="contentType">contentType:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="tipo di contenuto trasmesso"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['contentType']" id="contentType" name="contentType" class="form-control" #contentType="ngModel"/>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Configurazione Campi Dinamici:</legend> 
+            <div class="form-group">    
+                <button type="button" class="btn btn-primary mb-2" (click)="addCampo()">Add Campo</button>&nbsp;(Chiave|Valore)
+            </div>
+            <section class="" *ngFor="let c of attrCrmConfEdit.campiDinamici; let i = index;">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" [(ngModel)]="c.chiave" [ngModelOptions]="{standalone: true}"/>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" [(ngModel)]="c.valore" [ngModelOptions]="{standalone: true}"/>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                    <button type="button" class="btn btn-danger btn-sm" (click)="removeCampo(i)">Remove</button>
+                    </div>
+                </div>
+            </section>
+    </fieldset>    
+
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+   
+    </form>
+</div>
+<div>&nbsp;</div>
+<div>Default conf:&nbsp;
+    <pre>
+"titolo"="subject":"@@CODICE_ISTANZA@@",
+"type": "Unclassified",
+"state": "new",
+"priority": "3 normal",
+"communicationChannel": "Email",
+"senderType": "customer",
+"contentType": "text/plain; charset=utf8",
+"include allegati": "false"
+    </pre>
+</div>

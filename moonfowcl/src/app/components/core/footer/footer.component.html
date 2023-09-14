@@ -1,0 +1,50 @@
+
+<div [ngSwitch]="template">
+  <div *ngSwitchCase="''">
+
+  </div>
+  <div *ngSwitchCase="'moon'">
+    <footer id="footer" class="mt-5"> <!-- footer -->
+      <div class="py-4 px-3 lightgrey-bg-b4 ">
+        <div class="container-xl px-0">
+          <div class="row justify-content-between  align-items-center">
+            <div class="col-10 col-sm-6 col-lg-4 d-flex">
+              <img src="./assets/im/logo_moon.svg" alt="Logo di Moon - modulistica open online" class="w-50 me-3">
+            </div>
+            <nav class="col-12 col-lg-8">
+              <div class="link-list-wrapper d-lg-flex align-items-center justify-content-end  mt-4 mt-lg-0">
+                <h3 class="text-body fw-semibold p-0 mb-0 me-3 mb-2 mb-lg-0">Link utili:</h3>
+                <ul class="link-list d-lg-flex m-0">
+                  <li><a class="list-item px-0 mx-0 px-lg-1 mx-lg-2" routerLink="[]"
+                    (click)="goToAccessibilita()"><span>Dichiarazione di accessibilità</span></a></li>
+                  <li><a class="list-item px-0 mx-0 px-lg-1 mx-lg-2"routerLink="[]"
+                    (click)="goToCookie()"><span>Cookie policy</span></a></li>
+                  <li><a class="list-item px-0 mx-0 px-lg-1 mx-lg-2" routerLink="[]"
+                    (click)="goToPrivacy()"> <span>Privacy Policy</span></a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-dark py-3 px-3 ">
+        <div class="container-xl">
+          <div class="text-center text-white">
+            <p class="m-0 small">© 2022 Moon CSI-Piemonte versione {{version}}</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <div *ngSwitchCase="'cittafacile'">
+    <cittafacile-footer [consumerParams]="consumerParams"></cittafacile-footer>
+  </div>
+  <div *ngSwitchCase="'generic'">
+    <consumer-footer [urlCssFooter]='urlCssFooter' [htmlFooter]='htmlFooter'></consumer-footer>
+  </div>
+
+
+</div>
+
+

@@ -1,0 +1,307 @@
+swagger: '2.0'
+info:
+  description: Message Broker
+  version: 1.0.0
+  title: Message Broker
+basePath: /notify-mb/api/v1
+schemes:
+  - http
+tags:
+  - name: queue
+    description: Enqueue and dequeue messages from a queue
+  - name: topic
+    description: Enqueue messages in a topic
+paths:
+  '/queues/{queue}':
+    post:
+      tags:
+        - queue
+      summary: Enqueue a message to the specified queue
+      parameters:
+        - in: header
+          type: string
+          name: x-authentication
+          description: The authentication token
+        - in: path
+          name: queue
+          type: string
+          required: true
+          description: Queue of message broker you refer
+        - in: body
+          name: message_or_messages
+          required: true
+          description: The message to be enqueued
+          schema:
+            $ref: '#/definitions/MessageOrMessages'
+      description: Enqueue a message to the specified queue
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: Message successfully added
+        '400':
+          description: Invalid input
+        '401':
+          description: Wrong token in x-authentication header
+        '403':
+          description: The token has been blacklisted.
+        '500':
+          description: Internal Server Error
+    get:
+      tags:
+        - queue
+      summary: Dequeue message from a queue
+      description: Dequeue message from a queue
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          type: string
+          name: x-authentication
+          description: The authentication token
+        - in: path
+          name: queue
+          type: string
+          description: Queue of message broker you refer
+          required: true
+      responses:
+        '200':
+          description: Message from queue
+          schema:
+            $ref: "#/definitions/Message"
+        '204':
+          description: Empty queue
+        '401':
+          description: Wrong token in x-authentication header
+        '403':
+          description: The token has been blacklisted.
+        '500':
+          description: Internal Server Error
+  '/topics/{topic}':
+    post:
+      tags:
+        - topic
+      summary: Enqueue a message to the specified topic
+      parameters:
+        - in: header
+          type: string
+          name: x-authentication
+          description: The authentication token
+        - in: path
+          name: topic
+          type: string
+          required: true
+          description: Topic of message broker you refer
+        - in: body
+          name: message_or_messages
+          required: true
+          description: The message to be enqueued
+          schema:
+            $ref: '#/definitions/MessageOrMessages'
+      description: Enqueue a message to the specified topic
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: message added to the queue 'messages'
+        '400':
+          description: Invalid input
+        '401':
+          description: Wrong token in x-authentication header
+        '403':
+          description: The token has been blacklisted.
+        '406':
+          description: the topic or the queue ':wrong_name' does not exist
+        '500':
+          description: Internal Server Error
+definitions:
+  AnyType:
+    description: any type is possible
+  MessageOrMessages:
+    description: one Message or an array of Messages, THE MESSAGES ARRAY MUST BE SMALLER THAN 20MB
+  Notification:
+    type: object
+    properties:
+      id:
+        type: string
+        description: uuid of notification (mandatory)
+      user_id:
+        type: string
+        description: user id of receiver (mandatory)
+      email:
+        type: object
+        description: info about email
+        properties:
+          to:
+            type: string
+            description: email of receiver,ignored if already present in preferences
+          subject:
+            type: string
+            description: subject of email (mandatory)
+          body:
+            type: string
+            description: body of email (mandatory)
+          template_id:
+            type: string
+            description: id of the template (if not specified it will use the default template)
+        required:
+          - subject
+          - body
+      sms:
+        type: object
+        description: info about sms
+        properties:
+          phone:
+            type: string
+            description: phone number of receiver (with international prefix, like 00393472485362),ignored if already present in preferences
+          content:
+            type: string
+            description: |
+              content body of sms is mandatory ,
+              the text must match the regex /^[a-zA-Z0-9àèìòùÀÈÌÒÙáéíóúÁÉÍÓÚ"!\s()=?'+*@$%,.;:#_\->/]*$/g
+              There are some exceptions in the character counting
+              1. the character ":" will be counted two time if it's followed by an another ":" character, or when it's followed by two hexadecimal. i.e.
+              "Ore 16:30" (they are 10 char, not 9)
+              "Colore::rosso Altezza::150cm" (ther are 31 char, not 28)
+              "Sede museo: piazza Carignano" (there are 28 char, the ":" character is counted only one time because it's not followed by another ":" or 2 hexadecimal)
+              2. all stressed character are counted two times
+            maxLength: 160
+        required:
+          - content
+      push:
+        type: object
+        description: info about push
+        properties:
+          token:
+            type: string
+            description: token of the receiver, ignored if already present in preferences
+          title:
+            type: string
+            description: title of push notification (mandatory)
+          body:
+            type: string
+            description: content body of push notification (mandatory)
+          call_to_action:
+            type: string
+            description: call to action for push notification
+        required:
+          - title
+          - body
+      mex:
+        type: object
+        description: info about mex
+        properties:
+          title:
+            type: string
+            description: title of mex (mandatory)
+          body:
+            type: string
+            description: content body of mex (mandatory)
+          call_to_action:
+            type: string
+            description: call to action for mex
+        required:
+          - title
+          - body
+      io:
+        type: object
+        description: io italia message type, see more information https://dev-portal-prod.azurewebsites.net/openapi.html
+        properties:
+          time_to_live:
+            type: number
+            description: time to live
+          content:
+            type: object
+            description: content
+            properties:
+              subject:
+                type: string
+                description: message subject
+              markdown:
+                type: string
+                description: body message in plain text or markdown
+              payment_data:
+                type: object
+                description: Metadata needed to process pagoPA payments
+                properties:
+                  amount: 
+                    type: number
+                    description: amount of payment in euro cents
+                  notice_number:
+                    type: string
+                    description: The field "Numero Avviso" of pagoPa, needed to identify the payment. 
+                required:
+                  - amount
+                  - notice_number
+              due_date:
+                type: string
+                description: A date-time field in ISO-8601 format and UTC timezone, the timezone is not accepted, the default used it UTC. (i.e 2019-05-02T15:00:00)
+          default_addresses:
+            type: object
+            description: Default addresses for notifying the recipient of the message in case no address for the related channel is set in his profile.
+            properties:
+              email:
+                type: string
+                description: email addresses
+        required:
+          - content
+          - subject
+          - markdown
+      memo:
+        type: object
+        description: memo information for a calendar reminder( it will be automatically affected in email)
+        properties:
+          allDay:
+            type: boolean
+            description: if true, the event is for all day set in start paramenter. Do not use end paramenter
+          start: 
+            type: string
+            description: start date time of event in ISO 8601 (i.e 2019-05-02T14:00:00), if it's a allDay event put the Timezone "Z" ahead (i.e. 2019-05-02T00:00:00Z)
+          end:
+            type: string
+            description: end date time of event in ISO 8601
+          summary:  
+            type: string
+            description: a summary for the event
+          description:
+            type: string
+            description: description of the event
+          organizer: 
+            type: string
+            description: organizer of event (i.e. Città di Torino <noreply@torinofacile.it>)            
+          location: 
+            type: string
+            description: location of the event
+      tag:
+        type: string
+        description: list of tags of notification separated by ","
+      correlation_id:
+        type: string
+        description: correlation id of notification group
+      bulk_id:
+        type: string
+        description: uuid of bulk
+    required:
+      - id
+      - user_id
+      - email
+      - sms
+      - push
+      - mex
+  Message:
+    type: object
+    properties:
+      uuid:
+        type: string
+        format: uuid
+      payload:
+        $ref: '#/definitions/AnyType'
+      expire_at:
+        type: string
+        description: date of expire message in iso 8601 format, default value is 5 days after submit date message. (i.e 2019-05-02T14:00:00)

@@ -1,0 +1,23 @@
+<h4>Notifica modifica istanza</h4>
+
+{{msgErr}}
+<formio [form]='struttura'
+        [renderOptions]="renderOptions"
+        [submission]='data'
+        [options]="options"
+        [viewOnly] = "readOnly"
+        [readOnly]= "readOnly"
+        (submit)="onSubmit($event)"
+        (formLoad)="onFormLoad($event)"
+        (ready)="onReady($event)"
+        (change)="onChange($event)"
+        (nextPage)="onNextPage($event)"
+        (prevPage)="onPrevPage($event)"
+>
+</formio>
+
+<button  class="btn"  style="float:right; background-color:lightgrey" (click)="backToIstanza()">
+  <fa-icon [icon]="faHome"></fa-icon>
+</button>
+
+<app-moon-spinner messaggio='Attendere salvataggio ...'></app-moon-spinner>

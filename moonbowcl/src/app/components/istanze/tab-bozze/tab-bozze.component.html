@@ -1,0 +1,84 @@
+<div id="domanda" role="tabpanel" aria-labelledby="collapseMobile-01" class="areaTabAccodion tab-pane fade active show">
+    <!-- <div class="container" *ngIf="righeIstanza.length > 0"> -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- <div *ngIf="righeIstanza.length > 0">Istanze in bozza: {{istanzeTotali}}</div> -->
+                <div>Istanze in bozza: {{istanzeTotali}}</div>
+                <div class="table-responsive">
+                    <table id="mytable" class="table table-bordered table-striped">
+                        <thead>
+                            <th>&nbsp;</th>
+                            <th *ngIf="showColonnaComune">Comune</th>
+                            <th *ngIf="showColonnaEnte">Ente</th>
+                            <th *ngIf="showFiltroMultiEnte">Ente</th>
+                            <th *ngIf="showFiltroDichiarante">Dichiarante</th>
+                            <th *ngIf="showFiltroDichiarante">Nome</th>
+                            <th *ngIf="showFiltroDichiarante">Cognome</th>
+                            <th>Numero istanza</th>
+                            <th>Data ultima modifica</th>
+                            <th>Stato attuale</th>
+                            <!-- <th>Modifica</th> -->
+                            <th>Operazioni</th>
+                        </thead>
+                        <tbody>
+
+                            <tr riga-istanza *ngFor="let rigaIstanza of righeIstanza; index as i" [riga-istanza-data]="rigaIstanza" [i]="i+(currPage-1) * pageSize" [currPage]="currPage" (onDeleteRiga)="onDeleteRiga($event)">
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="clearfix"></div>
+
+                    <div *ngIf="istanzeTotali > pageSize">
+                        <ngb-pagination [(page)]="currPage"
+                                        [pageSize]="pageSize"
+                                        [collectionSize]="istanzeTotali"
+                                        [maxSize]="20" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
+                                        (pageChange)="pageChanged($event)">
+                        </ngb-pagination>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Per Visualizzare messaggi Da capite -->
+    <!-- <div class="mt-2" *ngIf="msg">
+        <div class="alert alert-info">
+            <strong>{{msg}}</strong>
+        </div>
+    </div> -->
+
+
+
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title custom_align" id="Heading">Elimina istanza</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="fa fa-remove"
+                                                                                            aria-hidden="true"></span>
+          </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="alert alert-danger"><span class="fas fa-warning-sign"></span> Sei sicuro di voler eliminare questa istanza?
+                    </div>
+
+                </div>
+                <div class="modal-footer ">
+                    <button type="button" class="btn btn-success"><span class="fas fa-check"></span>Si</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal"><span class="fas fa-times"></span> No</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+</div>
+
+<app-moon-spinner></app-moon-spinner>

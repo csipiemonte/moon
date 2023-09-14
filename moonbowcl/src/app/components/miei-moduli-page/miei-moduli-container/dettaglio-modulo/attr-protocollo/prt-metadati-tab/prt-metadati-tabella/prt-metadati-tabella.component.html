@@ -1,0 +1,12 @@
+<table id="prt-tab-metadati" class="table table-bordered table-striped">
+    <thead>
+        <th>Metadato</th>
+        <th>Valore</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let key of metadatiKeys">
+            <td>{{key}}</td>
+            <td>{{metadati[key]}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,75 @@
+<div id="mieiModuli" role="tabpanel" aria-labelledby="collapseMobile-01" class="areaTabAccodion tab-pane fade active show">
+    <div class="container" *ngIf="mieiModuli?.length >= 0">
+        <div class="row">
+            <div class="col-md-12">
+                <div *ngIf="mieiModuli?.length > 0">
+                    <h4>Elenco</h4>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        Applica filtro per oggetto modulo
+                        <div class="ng-autocomplete">
+                            <ng-autocomplete #auto 
+                                [data]="elencofiltroModuli" 
+                                [initialValue]="filtroElencoModuli" 
+                                (selected)='selectEvent($event)' 
+                                (inputCleared)="clearFilter()" 
+                                [itemTemplate]="itemTemplate" 
+                                [notFoundTemplate]="notFoundTemplate">
+                            </ng-autocomplete>
+                            <ng-template #itemTemplate let-item>
+                                <a [innerHTML]="item"></a>
+                            </ng-template>
+                            <ng-template #notFoundTemplate let-notFound>
+                                <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button *ngIf="currentUser?.isTipoADMIN() || currentUser?.hasRuoloOperatorMinADV()"
+                            class="btn" style="float:right; background-color:lightgrey;margin-top: -25px;" (click)="creaModulo()">
+                            <fa-icon style="margin-right: 5px" [icon]="faPlus"></fa-icon>Nuovo Modulo
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="table-responsive" style="margin-top: 50px !important;">
+                    <table id="mytable" class="table table-bordered table-striped">
+                        <thead>
+                            <th>Modulo</th>
+                            <th>Descrizione</th>
+                            <th>Versione</th>
+                            <th>Stato</th>
+                            <th>Operazioni</th>
+                        </thead>
+                        <tbody>
+                            <tr riga-miei-moduli *ngFor="let modulo of elencoModuliFiltrato | slice: (currPageMieiModuli-1) * pageSizeMieiModuli : (currPageMieiModuli-1) * pageSizeMieiModuli + pageSizeMieiModuli; index as i" 
+                                [data]="modulo" 
+                                (eventModificaRiga)="modificaRiga($event)"
+                                (eventCambiaStato)="cambiaStato($event)" 
+                                (eventNuovaVersione)="nuovaVersione($event)" 
+                                (eventDettaglioModulo)="dettaglioModulo($event)" 
+                                (eventDatiGenerali)="datiGenerali($event)" 
+                                (eventEliminaModulo)="eliminaModulo($event)">
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="clearfix"></div>
+                    <div *ngIf="(elencoModuliFiltrato?.length > pageSizeMieiModuli)">
+                        <ngb-pagination [(page)]="currPageMieiModuli"
+                                        [pageSize]="pageSizeMieiModuli"
+                                        [collectionSize]="elencoModuliFiltrato.length"
+                                        [maxSize]="20" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
+                                        (pageChange)="pageChanged($event)">
+                        </ngb-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-moon-spinner></app-moon-spinner>
+
+</div>

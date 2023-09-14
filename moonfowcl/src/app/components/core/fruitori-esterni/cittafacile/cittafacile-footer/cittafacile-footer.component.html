@@ -1,0 +1,44 @@
+  <footer [style.background-color]="footerBgColor" class="mt-5"> <!-- << COLORE FOOTER -->
+    <div class="py-4 px-3 text-white ">
+      <div class="container-xl text-white">
+        <div class="py-4 row ">
+          <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+            <img [src]="consumerParams.parameters?.link_ue['url']" class="me-4" style="width: 260px;">
+
+            <div class="d-flex align-items-center flex-wrap mt-4 mt-lg-0">
+              <img [src]="consumerParams.parameters?.link_img_comune['url']" style="height:80px" class="me-3">
+              <!-- << LOGO COMUNE -->
+              <span class="h4">{{consumerParams.parameters?.nome_ente['text']}}</span> <!-- << NOME COMUNE -->
+            </div>
+          </div>
+        </div>
+
+        <nav class="py-2  col-12 border-top border-gray">
+          <div class="link-list-wrapper d-lg-flex align-items-center justify-content-between  my-3 mt-lg-0">
+            <ul class="link-list  d-lg-flex mb-3 mb-lg-0">
+              <li><a [href]="consumerParams.parameters?.url_faq['url']" class="list-item px-0 mx-0 mx-lg-1"><span
+                class="text-white">{{consumerParams.parameters?.url_faq['label']}}</span></a></li>
+              <li><a [href]="consumerParams.parameters?.url_prenota['url']"
+                     class="text-white list-item px-0 mx-0 mx-lg-1"><span
+                class="text-white">{{consumerParams.parameters?.url_prenota['label']}}</span></a></li>
+              <li><a [href]="consumerParams.parameters?.url_assistenza['url']"
+                     class="text-white list-item px-0 mx-0 mx-lg-1"><span
+                class="text-white">{{consumerParams.parameters?.url_assistenza['label']}}</span></a></li>
+            </ul>
+
+            <ul class="link-list  d-lg-flex m-0">
+              <li><a [href]="consumerParams.parameters?.url_cookie['url']" class="list-item px-0 mx-0 mx-lg-1"><span
+                class="text-white">{{consumerParams.parameters?.url_cookie['label']}}</span></a></li>
+              <li><a [href]="consumerParams.parameters?.url_privacy['url']"
+                     class="text-white list-item px-0 mx-0 mx-lg-1"><span
+                class="text-white">{{consumerParams.parameters?.url_privacy['label']}}</span></a></li>
+              <li><a [href]="consumerParams.parameters?.url_accessibilita['url']"
+                     class="text-white list-item px-0 mx-0 mx-lg-1"><span
+                class="text-white">{{consumerParams.parameters?.url_accessibilita['label']}}</span></a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="border-top border-gray d-block d-lg-none w-100"></div>
+      </div>
+    </div>
+  </footer>

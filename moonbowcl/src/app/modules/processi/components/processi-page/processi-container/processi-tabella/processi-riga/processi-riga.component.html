@@ -1,0 +1,18 @@
+<td>{{ p.idProcesso }}</td>
+<td>{{ p.codiceProcesso }}</td>
+<td>{{ p.nomeProcesso }}</td>
+<td>{{ p.descProcesso }}</td>
+<td style='text-align:center;'><fa-icon *ngIf="p?.flagAttivo" [icon]="faCheck"></fa-icon></td>
+<td>{{ p?.dataUpd | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+<!-- <td>{{ p.attoreUpd }}</td>-->
+<td>{{ nomeOperatore }}</td>
+<td>
+    <a [routerLink]="[]" ngbTooltip="Dettaglio Processo" style="margin-left:10px; color: darkblue;" (click)="dettaglioRiga($event)">
+        <fa-icon style="margin-left: 15px" [icon]="faEye"></fa-icon>
+    </a>
+    <!--
+    <a [routerLink]="[]" ngbTooltip="Elimina autorizzazione su Area Ruolo" (click)="eliminaRiga($event)" *ngIf="u['entiAreeRuoli']">
+        <fa-icon style="margin-left: 20px; color: red" [icon]="faTrashAlt"></fa-icon>
+    </a>
+-->
+</td>

@@ -1,0 +1,30 @@
+<br>
+<h5 class="mb-3">Log processo avvio pratica</h5>
+<table id="mytable" class="table table-bordered table-striped" style="font-size:0.8em;">
+    <thead>
+        <th *ngIf="isAdmin">#</th>
+        <th>ID Pratica</th>
+        <th>Data Ins</th>
+        <th>Crea Pratica</th>
+        <th>crea Documento</th>
+        <th>Avvia Processo</th>
+        <th>Data Avvio</th>
+        <th>Errore</th>
+        <th>Pratica (callback)</th>
+        <th>Data Upd</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of data">
+            <td *ngIf="isAdmin">{{i.idLogPratica}}</td>
+            <td>{{i.idPratica}}</td>
+            <td>{{i.dataIns | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+            <td><span title="{{i.creaRichiestaObj|json }}" class="badge badge-pill badge-info">Richiesta</span>&nbsp;&nbsp;<span title="{{i.creaRispostaObj|json}}" class="badge badge-pill badge-success">Risposta</span></td>
+            <td><span title="{{i.creaDocumentoRichiestaObj|json}}" class="badge badge-pill badge-info">Richiesta</span>&nbsp;&nbsp;<span title="{{i.creaDocumentoRispostaObj|json}}" class="badge badge-pill badge-success">Risposta</span></td>
+            <td><span title="{{i.avviaProcessoRichiestaObj|json}}" class="badge badge-pill badge-info">Richiesta</span>&nbsp;&nbsp;<span title="{{i.avviaProcessoRispostaObj|json}}" class="badge badge-pill badge-success">Risposta</span></td>
+            <td>{{i.dataAvvio | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+            <td>{{i.errore}}</td>
+            <td><span title="{{i.praticaObj|json}}" class="badge badge-pill badge-primary">Pratica</span></td>
+            <td>{{i.dataUpd | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,215 @@
+<div *ngIf="!editMode">
+    <div *ngIf="isAdmin" style="position:absolute; top: 4.5rem; right: 8px; z-index: 1;">
+        <button type="button" class="btn btn-outline-primary" (click)="editMode=true;">Edit Notificatore</button>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col col-md-2"><span title="{{ titleUpd.get('PSIT_NOTIFY') }}">Notificatore:</span></div>
+            <div class="col col-md-10">{{maNotify['valore']}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-md-2"><span title="{{ titleUpd.get('PSIT_NOTIFY_CONF') }}">Notificatore Conf:</span></div>
+            <div class="col col-md-10"><span title="{{attrNotifyConf|json}}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-code-square"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z">
+                        </path>
+                        <path
+                            d="M6.854 4.646a.5.5 0 0 1 0 .708L4.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0z">
+                        </path>
+                    </svg></span>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="attrNotifyConf['initAzione']">
+            <div class="col col-md-2">initAzione:</div>
+            <div class="col col-md-10">{{attrNotifyConf['initAzione']}}</div>
+        </div>
+        <div class="row" *ngIf="attrNotifyConf['initAzioneRequired']">
+            <div class="col col-md-2">initAzioneRequired:</div>
+            <div class="col col-md-10">{{attrNotifyConf['initAzioneRequired']}}</div>
+        </div>
+        <div class="row" *ngIf="attrNotifyConf['sendAzione']">
+            <div class="col col-md-2">sendAzione:</div>
+            <div class="col col-md-10">{{attrNotifyConf['sendAzione']}}</div>
+        </div>
+        <div class="row" *ngIf="attrNotifyConf['sendAzioneRequired']">
+            <div class="col col-md-2">sendAzioneRequired:</div>
+            <div class="col col-md-10">{{attrNotifyConf['sendAzioneRequired']}}</div>
+        </div>
+        <div class="row" *ngIf="attrNotifyConf['serviceName']">
+            <div class="col col-md-2">serviceName:</div>
+            <div class="col col-md-10">{{attrNotifyConf['serviceName']}}</div>
+        </div>
+        <div class="row" *ngIf="attrNotifyConf['serviceToken']">
+            <div class="col col-md-2">serviceToken:</div>
+            <div class="col col-md-10">{{attrNotifyConf['serviceToken']}}</div>
+        </div>
+<!--conf email-->
+        <div class="row" *ngIf="attrNotifyConf['email'] && attrNotifyConf['email']['send']">
+            <div class="col col-md-2">send email:</div>
+            <div class="col col-md-10">{{attrNotifyConf['email']['send']}}</div>
+        </div>
+        <div class="row" *ngIf="attrNotifyConf['email'] && attrNotifyConf['email']['subject']">
+            <div class="col col-md-2">oggetto email:</div>
+            <div class="col col-md-10">{{attrNotifyConf['email']['subject']}}</div>
+        </div>
+        <div class="row" *ngIf="attrNotifyConf['email'] && attrNotifyConf['email']['body']">
+            <div class="col col-md-2">body email:</div>
+            <div class="col col-md-10">{{attrNotifyConf['email']['body']}}</div>
+        </div>
+        <div class="row" *ngIf="attrNotifyConf['email'] && attrNotifyConf['email']['template_id']">
+            <div class="col col-md-2">template:</div>
+            <div class="col col-md-10">{{attrNotifyConf['email']['template_id']}}</div>
+        </div>
+        <div class="row" *ngIf="attrNotifyConf['email'] && attrNotifyConf['email']['prefRequired']">
+            <div class="col col-md-2">preferenza richiesta email:</div>
+            <div class="col col-md-10">{{attrNotifyConf['email']['prefRequired']}}</div>
+        </div>
+<!--conf sms-->
+        <div class="row" *ngIf="attrNotifyConf['sms'] && attrNotifyConf['sms']['send']">
+            <div class="col col-md-2">send sms:</div>
+            <div class="col col-md-10">{{attrNotifyConf['sms']['send']}}</div>
+        </div>
+        <div class="row" *ngIf="attrNotifyConf['sms'] && attrNotifyConf['sms']['content']">
+            <div class="col col-md-2">contenuto sms:</div>
+            <div class="col col-md-10">{{attrNotifyConf['sms']['content']}}</div>
+        </div>
+        <div class="row" *ngIf="attrNotifyConf['sms'] && attrNotifyConf['sms']['prefRequired']">
+            <div class="col col-md-2">preferenza richiesta sms:</div>
+            <div class="col col-md-10">{{attrNotifyConf['sms']['prefRequired']}}</div>
+        </div>
+<!--conf errori-->
+        <div class="row" *ngIf="attrNotifyConf['errori']">
+            <div class="col col-md-2">mappa errori:</div>
+            <div class="col col-md-10">
+                <table>
+                    <thead><tr><th>Codice</th><th>Descrizione</th></tr></thead>
+                    <tbody>
+                        <tr *ngFor="let e of mappaErroriView | keyvalue" >
+                        <td *ngIf="e.value.length > 0">{{e.key}}</td>
+                        <td *ngIf="e.value.length > 0">{{e.value}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+<div *ngIf="editMode">
+    <alert id="alert-moduli-attr-notificatore"></alert>
+    <form>
+        <div class="form-group">
+            <label for="attrNotifyEdit">Notifica:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Abilitazione all'uso del Notificatore"></i></label>
+            <div>
+                <ui-switch [(ngModel)]="maNotifyEditT" [ngModelOptions]="{standalone: true}"></ui-switch>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="initAzione">initAzione:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Azione svolta in fase di init. Valori possibili: null,CONTATTI"></i></label>
+            <input type="text" [(ngModel)]="attrNotifyConfEdit['initAzione']" id="initAzione" name="initAzione" class="form-control" #initAzione="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="initAzioneRequired">initAzioneRequired:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Azione svolta in fase di init, che puo essere bloccante qualora non siano soddisfatti i requisiti. Valori possibili: null,SERVIZIO,PORTALE"></i></label>
+            <input type="text" [(ngModel)]="attrNotifyConfEdit['initAzioneRequired']" id="initAzioneRequired" name="initAzioneRequired" class="form-control" #initAzioneRequired="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="sendAzione">sendAzione:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Abilita la POST del messaggio"></i></label>
+                <div>
+                    <ui-switch [(ngModel)]="attrNotifyConfEdit['sendAzione']" [ngModelOptions]="{standalone: true}"></ui-switch>
+                </div>
+        </div>
+        <div class="form-group">
+            <label for="sendAzioneRequired">sendAzioneRequired:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Azione svolta in fase di pre-invio istanza, che puo essere bloccante qualora non siano soddisfatti i requisiti. Valori possibili: null,SERVIZIO,PORTALE"></i></label>
+            <input type="text" [(ngModel)]="attrNotifyConfEdit['sendAzioneRequired']" id="sendAzioneRequired" name="sendAzioneRequired" class="form-control" #sendAzioneRequired="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="serviceName">ServiceName:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Nome del servizio"></i></label>
+            <input type="text" [(ngModel)]="attrNotifyConfEdit['serviceName']" id="serviceName" name="serviceName" class="form-control" #serviceName="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="serviceToken">ServiceToken:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Token del servizio usato per la POST del messaggio"></i></label>
+            <input type="text" [(ngModel)]="attrNotifyConfEdit['serviceToken']" id="serviceToken" name="serviceToken" class="form-control" #serviceName="ngModel" />
+        </div>
+        <fieldset>
+            <legend>Configurazione email:</legend>
+            <div class="form-group">
+                <label for="emailSend">Attiva:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Attributo per abilitare o no la costruzione e invio del messaggio via email."></i></label>
+                &ensp;&ensp;&ensp;
+                <ui-switch [(ngModel)]="attrNotifyConfEdit['email']['send']" [ngModelOptions]="{standalone: true}"></ui-switch>
+            </div>
+            <div class="form-group">
+                <label for="emailSubject">oggettoEmail:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="oggetto email"></i></label>
+                <input type="text" [(ngModel)]="attrNotifyConfEdit['email']['subject']" id="emailSubject" name="emailSubject" class="form-control" #emailSubject="ngModel"/>
+            </div>
+            <div class="form-group">
+                <label for="emailBody">bodyEmail:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="emailBody"></i></label>
+                <textarea [(ngModel)]="attrNotifyConfEdit['email']['body']" id="emailBody" name="emailBody" rows="6" cols="50" class="form-control" #emailBody="ngModel"> </textarea>
+            </div>
+            <div class="form-group">
+                <label for="emailTemplateId">template_id:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Nome file.html del template"></i></label>
+                <input type="text" [(ngModel)]="attrNotifyConfEdit['email']['template_id']" id="emailTemplateId" name="emailTemplateId" class="form-control" #emailTemplateId="ngModel" />
+            </div>
+            <div class="form-group">
+                <label for="emailPrefRequired">Abilita come preferenza:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Se attiva, si rende obbligatorio la sottoscrizione al canale email"></i></label>
+                &ensp;&ensp;&ensp;
+                <ui-switch [(ngModel)]="attrNotifyConfEdit['email']['prefRequired']"  [ngModelOptions]="{standalone: true}"></ui-switch>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Configurazione sms:</legend>
+            <div class="form-group">
+                <label for="smsSend">Attiva:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Attributo per abilitare o no la costruzione e invio del messaggio via sms."></i></label>
+                &ensp;&ensp;&ensp;
+                <ui-switch [(ngModel)]="attrNotifyConfEdit['sms']['send']"  [ngModelOptions]="{standalone: true}"></ui-switch>
+            </div>  
+            <div class="form-group">
+                <label for="smsContent">contenuto sms:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Contenuto sms.(Lunghezza max 159 caratteri)"></i></label>
+                <textarea [(ngModel)]="attrNotifyConfEdit['sms']['content']" id="smsContent" name="smsContent" rows="6" cols="20" class="form-control" #smsContent="ngModel" maxlength="159"> </textarea>
+            </div>
+            <div class="form-group">
+                <label for="smsPrefRequired">Abilita come preferenza:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Se attiva, si rende obbligatorio la sottoscrizione al canale sms"></i></label>
+                &ensp;&ensp;&ensp;
+                <ui-switch [(ngModel)]="attrNotifyConfEdit['sms']['prefRequired']"  [ngModelOptions]="{standalone: true}"></ui-switch>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Configurazione errori:</legend>
+            <div class="form-group">
+                <table>
+                    <thead><tr><th>Codice</th><th>Descrizione</th></tr></thead>
+                    <tbody>
+                        <tr *ngFor="let e of mappaErroriEdit | keyvalue">
+                        <td>{{e.key}}</td>
+                        <td class="form-group"><input type="text" [(ngModel)]="e.value" [ngModelOptions]="{standalone: true}" [id]="e.key" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-light" (click)="editMode=false;" style="float:left">Annulla</button>
+            <button type="button" class="btn btn-success" (click)="salva()" style="float:right">Salva</button>
+        </div>
+    </form>
+</div>

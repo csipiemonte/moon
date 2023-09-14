@@ -1,0 +1,470 @@
+/****************************************************/
+/***************** FONTS DEFINITION *****************/
+/****************************************************/
+
+@font-face {
+    font-family: 'roboto';
+    font-weight: normal;
+    src: url(fonts/Roboto-Regular.ttf);
+}
+@font-face {
+    font-family: 'roboto';
+    font-weight: 300;
+    src: url(fonts/Roboto-Light.ttf);
+}
+@font-face {
+    font-family: 'roboto';
+    font-weight: 500;
+    src: url(fonts/Roboto-Medium.ttf);
+}
+@font-face {
+    font-family: 'FontAwesome';
+    font-weight: normal;
+    src: url(fonts/fontawesome-webfont.ttf);
+}
+
+
+/*******************************************************/
+/***************** PDF PAGE PROPERTIES *****************/
+/*******************************************************/
+
+@page {
+
+	/*
+	 * Size can be a length (not a percentage) for width and height
+	 * or a standard page size such as:
+	 * a4, a5, a3, b3, b4, letter, legal, ledger.
+	 * A standard page size can be followed by either 'portrait' or 'landscape'.
+	 *
+	 * In theory, you can use different page sizes in one document, but this renderer
+	 * currently uses the first page width as the width of the body. That means it
+	 * is only practical to use different page heights in the one document.
+	 * See danfickle/openhtmltopdf#176 or #119 for more information.
+	 */
+	/*size: 500px 1000px;*/
+	size: a4 portrait;
+
+	/*
+	 * Margin box for each page. Accepts one-to-four values, similar
+	 * to normal margin property.
+	 */
+    margin: 80px 80px 80px 80px;
+
+	/*
+	 * Boxes to sit in the margin area. Can be one of:
+	 * top-left-corner, top-left, top-center, top-right, top-right-corner
+	 * bottom-left-corner, bottom-left, bottom-center, bottom-right, bottom-right-corner
+	 * left-top, left-middle, left-bottom,
+	 * right-top, right-middle, right-bottom.
+	 *
+	 * Useful for things such as page counters, etc.
+	 */
+    @top-left {
+        content: element(header_left);
+        margin-top: 20px;
+    }
+    @top-center {
+        content: element(header_center);
+        margin-top: 20px;
+    }
+    @top-right {
+        content: element(header_right);
+        margin-top: 20px;
+    }
+
+    @bottom-left {
+      content: element(footer_left);
+      margin-bottom: 40px;
+    }
+    @bottom-center {
+        content:  'Pagina ' counter(page) ' di ' counter(pages);
+        margin-bottom: 40px;
+        font-style: italic;
+        font-family: 'roboto', sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #353231;
+        letter-spacing: 0.072em;
+        font-weight: normal;
+    }
+    @bottom-right {
+        content: element(footer_right);
+        margin-bottom: 40px;
+    }
+
+}
+
+@page:first {
+    @top-left {
+        content: '';
+    }
+    @top-center {
+        content: '';
+    }
+    @top-right {
+        content: '';
+    }
+    @bottom-left {
+        content: '';
+    }
+    @bottom-right {
+        content: '';
+    }
+}
+
+
+/* The body margin is in addition to the page margin,
+ * but the top body margin only applies to the first page and
+ * the bottom margin to the last page. */
+body {
+  margin: 0;
+}
+
+
+page-after {
+  /* Most page elements only work on block or block-like elements. */
+  display: block;
+  /* Create a page break after this element. */
+  page-break-after: always;
+}
+
+page-before {
+  display: block;
+  /* Create a page break before this element. */
+  page-break-before: always;
+}
+
+page-inside-avoid {
+  display:block;
+  height: a4;
+  /* With page-break-inside the renderer will try (if possible) to
+   * avoid page breaks inside an element. */
+  page-break-inside: avoid;
+}
+
+
+running {
+  /* We mark this element as running by using the running function
+   * to specify a named position. The name can be any valid CSS identifier.
+   * See the @page rule above. */
+  position: running(header);
+}
+
+/* The widows property allows us to specify the minimum number of lines
+ * to fall onto the next page, if there is a page break inside our element.
+ * For example, you can use this to avoid a single line falling onto a
+ * new page. The widows property is satisfied by inserting space above
+ * the widows count of lines to make them fall onto a new page.
+ *
+ * Try: Changing widows to 0 and seeing how many lines are left on the new
+ * page. The default initial value of widows is 2.
+ */
+widows {
+  padding: 0 10px;
+  border: 1px solid red;
+  page-break-before: always;
+  display: block;
+  widows: 5;
+  line-height: 20px;
+  font-size: 16px;
+  margin-top: 698px;
+}
+
+spacer {
+  page-break-before: always;
+  display:block;
+  height: 878px;
+}
+
+spacer.four-lines {
+  height: 798px;
+}
+
+/* Orphans property is the pair of widows. It allows the author to specify
+ * the minimum number of lines that should occur on the page before a
+ * page-break. For example, we might want to prevent one line on the first page,
+ * followed by ten lines on the next.
+ * This property is satisfied by adding a new page before the element, if the
+ * orphans constraint is violated.
+ */
+orphans {
+  padding: 0 10px;
+  border: 1px solid green;
+  display: block;
+  widows: 0;
+  orphans: 3;
+  line-height: 20px;
+  font-size: 16px;
+}
+
+
+
+
+/*************************************************************/
+/***************** OTHER (CUSTOM) PROPERTIES *****************/
+/*************************************************************/
+
+#theme  {
+    font-family: 'roboto', sans-serif;
+    /*background-color: #cccccc;*/
+    font-size: 14px;
+    line-height: 1.5;
+    color: #353231;
+    letter-spacing: 0.072em;
+    font-weight: normal;
+}
+
+
+#theme h1 {
+    font-weight: 800;
+    margin: 0;
+    font-size: 2.5rem;
+    line-height: 2rem;
+}
+#theme h2.section_title {
+    font-weight: 800;
+    margin: 0;
+    font-size: 1.85rem;
+    line-height: 1.4rem;
+}
+
+#theme h3 {
+    font-weight: 800;
+    margin: 0;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+    font-style: italic;
+}
+
+#theme h2.section_title span {
+    padding-bottom: 2px;
+    font-style: italic;
+}
+
+.separator {
+    margin: 25px 25% 0px 25%;
+    height: 1px;
+    border: 0;
+    background: #444;
+}
+.underline {
+    border-bottom: 1px solid #444;
+}
+
+#theme .header {
+    /*width: 100vw;*/
+    margin: auto;
+    align: center;
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 40px;
+}
+
+#theme .header img {
+    max-height: 60px;
+    width: auto;
+    margin: auto;
+}
+
+#theme .label {
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+#theme .label::after {
+    content: ":";
+}
+
+#theme .value {
+    font-weight: normal;
+    font-size: 1.0em;
+}
+
+#theme .section {
+    margin: 64px 8px 8px 8px;
+}
+
+#theme .section h3 {
+    margin: 10px;
+}
+
+#theme .spacer {
+    margin-top: 4px;
+}
+
+#theme table {
+    width: 100%;
+    margin-top: 0px;
+}
+#theme table td {
+    padding: 2px;
+}
+
+#theme table td.value {
+    min-width: 80px;
+}
+
+#theme table td.label {
+    padding-left: 4px;
+}
+
+#theme .subsection {
+    margin-left: 20px;
+    border-left: 1px solid #444;
+    margin-bottom: 50px;
+}
+
+#theme .subsection_title_after {
+    margin-bottom: 15px;
+}
+
+#theme .subsection h4 {
+    padding-left: 6px;
+}
+
+
+#theme .subsection h3 {
+    font-size: 1.25rem;
+    margin-top: 20px;
+    background: #E8E8E8;
+    margin-left: 1px;
+    padding-left: 4px;
+    margin-bottom: 0px;
+}
+
+#theme .subsection .pre, #theme .subsection .post {
+    margin: 0px 0px 0px 2px;
+    /*margin-left: 2px;*/
+    /*padding-left: 2px;*/
+}
+
+#theme .justify ul li {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+
+#theme .page-break-after {
+    /* Most page elements only work on block or block-like elements. */
+    /*display: block;*/
+    /* Create a page break after this element. */
+    page-break-after: always;
+}
+
+#theme .page-break-before {
+    page-break-before: always;
+}
+
+#theme div.qr_top {
+    width: calc(100% - 20px);
+    text-align: right;
+    padding: 10px;
+    padding-top: 0px;
+    margin-top: 0px;
+    right: 0;
+}
+
+#theme div.qr_top div {
+    text-align: center;
+    display: inline-block;
+}
+
+#theme div.qr_bottom {
+    width: 100%;
+    text-align: center;
+}
+
+#theme div.qr_top img {
+    width: 96px;
+    height: 96px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#theme div.qr_bottom img {
+    width: 128px;
+    height: 128px;
+}
+
+#theme .page_header_left {
+    position: running(header_left);
+    width: 100%;
+    text-align: left;
+    font-style: italic;
+    font-family: 'roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #353231;
+    letter-spacing: 0.072em;
+    font-weight: normal;
+}
+
+#theme .page_header_center {
+    position: running(header_center);
+    width: 100%;
+    text-align: right;
+    font-style: italic;
+    font-family: 'roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #353231;
+    letter-spacing: 0.072em;
+    font-weight: normal;
+}
+#theme .page_header_right {
+    position: running(header_right);
+    width: 100%;
+    text-align: right;
+    font-style: italic;
+    font-family: 'roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #353231;
+    letter-spacing: 0.072em;
+    font-weight: normal;
+}
+
+#theme .page_footer_left {
+    position: running(footer_left);
+    width: 100%;
+    text-align: left;
+    font-style: italic;
+    font-family: 'roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #353231;
+    letter-spacing: 0.072em;
+    font-weight: normal;
+}
+#theme .page_footer_center {
+    position: running(footer_center);
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    font-family: 'roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #353231;
+    letter-spacing: 0.072em;
+    font-weight: normal;
+}
+#theme .page_footer_right {
+    position: running(footer_right);
+    width: 100%;
+    text-align: right;
+    font-style: italic;
+    font-family: 'roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #353231;
+    letter-spacing: 0.072em;
+    font-weight: normal;
+}
+
+#theme .page_footer_left, #theme .page_header_right {
+    font-style: italic;
+}
+
+.hidden {
+    display: none;
+}

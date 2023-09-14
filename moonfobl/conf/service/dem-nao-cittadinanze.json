@@ -1,0 +1,223 @@
+{"cittadinanze":
+[
+{"id_nazione":150,"desc_cittadinanza_maschile":"HONDUREGNO","flag_ue":"N"}
+,{"id_nazione":151,"desc_cittadinanza_maschile":"TEDESCA","flag_ue":"N"}
+,{"id_nazione":152,"desc_cittadinanza_maschile":"IRACHENO","flag_ue":"N"}
+,{"id_nazione":1,"desc_cittadinanza_maschile":"APOLIDE","flag_ue":"N"}
+,{"id_nazione":3,"desc_cittadinanza_maschile":"SLOVENO","flag_ue":"S"}
+,{"id_nazione":4,"desc_cittadinanza_maschile":"POLACCO","flag_ue":"S"}
+,{"id_nazione":5,"desc_cittadinanza_maschile":"BHUTANESE","flag_ue":"N"}
+,{"id_nazione":7,"desc_cittadinanza_maschile":"MALESE","flag_ue":"N"}
+,{"id_nazione":8,"desc_cittadinanza_maschile":"FIGIANO","flag_ue":"N"}
+,{"id_nazione":9,"desc_cittadinanza_maschile":"TEDESCO","flag_ue":"S"}
+,{"id_nazione":10,"desc_cittadinanza_maschile":"PARAGUAIANO","flag_ue":"N"}
+,{"id_nazione":13,"desc_cittadinanza_maschile":"IRIAN OCC.","flag_ue":"N"}
+,{"id_nazione":14,"desc_cittadinanza_maschile":"TUVALUANO","flag_ue":"N"}
+,{"id_nazione":15,"desc_cittadinanza_maschile":"BELGA","flag_ue":"S"}
+,{"id_nazione":16,"desc_cittadinanza_maschile":"ECUADORIANO","flag_ue":"N"}
+,{"id_nazione":17,"desc_cittadinanza_maschile":"IRANIANO","flag_ue":"N"}
+,{"id_nazione":18,"desc_cittadinanza_maschile":"OLANDESE","flag_ue":"N"}
+,{"id_nazione":19,"desc_cittadinanza_maschile":"BOLIVIANO","flag_ue":"N"}
+,{"id_nazione":20,"desc_cittadinanza_maschile":"LIBANESE","flag_ue":"N"}
+,{"id_nazione":21,"desc_cittadinanza_maschile":"IVORIANO","flag_ue":"N"}
+,{"id_nazione":22,"desc_cittadinanza_maschile":"TAGIKO","flag_ue":"N"}
+,{"id_nazione":23,"desc_cittadinanza_maschile":"BAHAMENSE","flag_ue":"N"}
+,{"id_nazione":24,"desc_cittadinanza_maschile":"STATUNITENSE","flag_ue":"N"}
+,{"id_nazione":25,"desc_cittadinanza_maschile":"AFGHANO","flag_ue":"N"}
+,{"id_nazione":26,"desc_cittadinanza_maschile":"KIRGHISO","flag_ue":"N"}
+,{"id_nazione":27,"desc_cittadinanza_maschile":"ARGENTINO","flag_ue":"N"}
+,{"id_nazione":28,"desc_cittadinanza_maschile":"CECO","flag_ue":"S"}
+,{"id_nazione":29,"desc_cittadinanza_maschile":"ISRAELIANO","flag_ue":"N"}
+,{"id_nazione":30,"desc_cittadinanza_maschile":"SPAGNOLO","flag_ue":"S"}
+,{"id_nazione":31,"desc_cittadinanza_maschile":"NICARAGUENSE","flag_ue":"N"}
+,{"id_nazione":32,"desc_cittadinanza_maschile":"AZERBAIGIANO","flag_ue":"N"}
+,{"id_nazione":33,"desc_cittadinanza_maschile":"RUSSO","flag_ue":"N"}
+,{"id_nazione":34,"desc_cittadinanza_maschile":"ARMENO","flag_ue":"N"}
+,{"id_nazione":35,"desc_cittadinanza_maschile":"CITT.STRANIERA NON DEFINITA","flag_ue":"N"}
+,{"id_nazione":36,"desc_cittadinanza_maschile":"DOMINICENSE","flag_ue":"N"}
+,{"id_nazione":38,"desc_cittadinanza_maschile":"BRUNEIANO","flag_ue":"N"}
+,{"id_nazione":39,"desc_cittadinanza_maschile":"ANGOLANO","flag_ue":"N"}
+,{"id_nazione":41,"desc_cittadinanza_maschile":"STATUNITENSE","flag_ue":"N"}
+,{"id_nazione":42,"desc_cittadinanza_maschile":"FRANCESE","flag_ue":"S"}
+,{"id_nazione":43,"desc_cittadinanza_maschile":"DOMINICANO","flag_ue":"N"}
+,{"id_nazione":44,"desc_cittadinanza_maschile":"MONGOLO","flag_ue":"N"}
+,{"id_nazione":45,"desc_cittadinanza_maschile":"EMIRATENSE","flag_ue":"N"}
+,{"id_nazione":48,"desc_cittadinanza_maschile":"SAINT VINCENT E GRENADINE","flag_ue":"N"}
+,{"id_nazione":49,"desc_cittadinanza_maschile":"GIORDANO","flag_ue":"N"}
+,{"id_nazione":50,"desc_cittadinanza_maschile":"FINLANDESE","flag_ue":"S"}
+,{"id_nazione":51,"desc_cittadinanza_maschile":"BOPHUTHATSWANA","flag_ue":"N"}
+,{"id_nazione":52,"desc_cittadinanza_maschile":"AMERICANO","flag_ue":"N"}
+,{"id_nazione":53,"desc_cittadinanza_maschile":"BRITANNICO","flag_ue":"S"}
+,{"id_nazione":54,"desc_cittadinanza_maschile":"BIRMANO","flag_ue":"N"}
+,{"id_nazione":55,"desc_cittadinanza_maschile":"VATICANO","flag_ue":"N"}
+,{"id_nazione":56,"desc_cittadinanza_maschile":"SUDANESE","flag_ue":"N"}
+,{"id_nazione":58,"desc_cittadinanza_maschile":"EGIZIANO","flag_ue":"N"}
+,{"id_nazione":59,"desc_cittadinanza_maschile":"TUNISINO","flag_ue":"N"}
+,{"id_nazione":60,"desc_cittadinanza_maschile":"CROATO","flag_ue":"S"}
+,{"id_nazione":61,"desc_cittadinanza_maschile":"PORTOGHESE","flag_ue":"S"}
+,{"id_nazione":63,"desc_cittadinanza_maschile":"BURUNDESE","flag_ue":"N"}
+,{"id_nazione":65,"desc_cittadinanza_maschile":"AUSTRIACO","flag_ue":"S"}
+,{"id_nazione":66,"desc_cittadinanza_maschile":"VENDA","flag_ue":"N"}
+,{"id_nazione":67,"desc_cittadinanza_maschile":"BURKINABE","flag_ue":"N"}
+,{"id_nazione":68,"desc_cittadinanza_maschile":"ALGERINO","flag_ue":"N"}
+,{"id_nazione":70,"desc_cittadinanza_maschile":"ALBANESE","flag_ue":"N"}
+,{"id_nazione":72,"desc_cittadinanza_maschile":"MALGASCIO","flag_ue":"N"}
+,{"id_nazione":73,"desc_cittadinanza_maschile":"GUINEA EQUATORIALE","flag_ue":"N"}
+,{"id_nazione":74,"desc_cittadinanza_maschile":"SIRIANO","flag_ue":"N"}
+,{"id_nazione":75,"desc_cittadinanza_maschile":"SERBO MONTENEGRINO","flag_ue":"N"}
+,{"id_nazione":77,"desc_cittadinanza_maschile":"TOGOLESE","flag_ue":"N"}
+,{"id_nazione":78,"desc_cittadinanza_maschile":"CINA NAZIONALISTA","flag_ue":"N"}
+,{"id_nazione":79,"desc_cittadinanza_maschile":"TURKMENO","flag_ue":"N"}
+,{"id_nazione":80,"desc_cittadinanza_maschile":"SOMALO","flag_ue":"N"}
+,{"id_nazione":82,"desc_cittadinanza_maschile":"SINGAPORIANO","flag_ue":"N"}
+,{"id_nazione":83,"desc_cittadinanza_maschile":"CAMERUNESE","flag_ue":"N"}
+,{"id_nazione":84,"desc_cittadinanza_maschile":"SAMMARINESE","flag_ue":"N"}
+,{"id_nazione":85,"desc_cittadinanza_maschile":"CILENO","flag_ue":"N"}
+,{"id_nazione":86,"desc_cittadinanza_maschile":"GRECO","flag_ue":"S"}
+,{"id_nazione":87,"desc_cittadinanza_maschile":"CINESE","flag_ue":"N"}
+,{"id_nazione":89,"desc_cittadinanza_maschile":"NIGERIANO","flag_ue":"N"}
+,{"id_nazione":90,"desc_cittadinanza_maschile":"ANDORRANO","flag_ue":"N"}
+,{"id_nazione":91,"desc_cittadinanza_maschile":"NON APP.REP.ITAL.","flag_ue":"N"}
+,{"id_nazione":92,"desc_cittadinanza_maschile":"GUATEMALTECO","flag_ue":"N"}
+,{"id_nazione":93,"desc_cittadinanza_maschile":"LIBERIANO","flag_ue":"N"}
+,{"id_nazione":94,"desc_cittadinanza_maschile":"CIADIANO","flag_ue":"N"}
+,{"id_nazione":95,"desc_cittadinanza_maschile":"SOVIETICO","flag_ue":"N"}
+,{"id_nazione":96,"desc_cittadinanza_maschile":"ERITREO","flag_ue":"N"}
+,{"id_nazione":97,"desc_cittadinanza_maschile":"SALOMONE","flag_ue":"N"}
+,{"id_nazione":98,"desc_cittadinanza_maschile":"GUYANESE","flag_ue":"N"}
+,{"id_nazione":99,"desc_cittadinanza_maschile":"MALTESE","flag_ue":"S"}
+,{"id_nazione":102,"desc_cittadinanza_maschile":"ISLANDESE","flag_ue":"N"}
+,{"id_nazione":103,"desc_cittadinanza_maschile":"PAKISTANO","flag_ue":"N"}
+,{"id_nazione":104,"desc_cittadinanza_maschile":"GABONESE","flag_ue":"N"}
+,{"id_nazione":105,"desc_cittadinanza_maschile":"GIBUTIANO","flag_ue":"N"}
+,{"id_nazione":106,"desc_cittadinanza_maschile":"URUGUAIANO","flag_ue":"N"}
+,{"id_nazione":107,"desc_cittadinanza_maschile":"PERUVIANO","flag_ue":"N"}
+,{"id_nazione":109,"desc_cittadinanza_maschile":"CIPRIOTA","flag_ue":"S"}
+,{"id_nazione":110,"desc_cittadinanza_maschile":"TANZANIANO","flag_ue":"N"}
+,{"id_nazione":111,"desc_cittadinanza_maschile":"YEMENITA","flag_ue":"N"}
+,{"id_nazione":112,"desc_cittadinanza_maschile":"SAO TOME' E PRINCIPE","flag_ue":"N"}
+,{"id_nazione":113,"desc_cittadinanza_maschile":"ITALIANO","flag_ue":"S"}
+,{"id_nazione":114,"desc_cittadinanza_maschile":"LIBICO","flag_ue":"N"}
+,{"id_nazione":115,"desc_cittadinanza_maschile":"INDONESIANO","flag_ue":"N"}
+,{"id_nazione":117,"desc_cittadinanza_maschile":"UZBEKO","flag_ue":"N"}
+,{"id_nazione":118,"desc_cittadinanza_maschile":"UGANDESE","flag_ue":"N"}
+,{"id_nazione":119,"desc_cittadinanza_maschile":"BELIZIANO","flag_ue":"N"}
+,{"id_nazione":120,"desc_cittadinanza_maschile":"RUANDESE","flag_ue":"N"}
+,{"id_nazione":121,"desc_cittadinanza_maschile":"LETTONE","flag_ue":"S"}
+,{"id_nazione":122,"desc_cittadinanza_maschile":"MACEDONE","flag_ue":"N"}
+,{"id_nazione":124,"desc_cittadinanza_maschile":"MAURIZIANO","flag_ue":"N"}
+,{"id_nazione":125,"desc_cittadinanza_maschile":"VANUATIANO","flag_ue":"N"}
+,{"id_nazione":126,"desc_cittadinanza_maschile":"SVEDESE","flag_ue":"S"}
+,{"id_nazione":128,"desc_cittadinanza_maschile":"NEPALESE","flag_ue":"N"}
+,{"id_nazione":129,"desc_cittadinanza_maschile":"BRITANNICO","flag_ue":"N"}
+,{"id_nazione":131,"desc_cittadinanza_maschile":"ZAMBIANO","flag_ue":"N"}
+,{"id_nazione":132,"desc_cittadinanza_maschile":"CITT.NON DEFINITA","flag_ue":"N"}
+,{"id_nazione":133,"desc_cittadinanza_maschile":"CUBANO","flag_ue":"N"}
+,{"id_nazione":134,"desc_cittadinanza_maschile":"CAMBOGIANO","flag_ue":"N"}
+,{"id_nazione":135,"desc_cittadinanza_maschile":"CECOSLOVACCO","flag_ue":"S"}
+,{"id_nazione":136,"desc_cittadinanza_maschile":"NEOZELANDESE","flag_ue":"N"}
+,{"id_nazione":137,"desc_cittadinanza_maschile":"THAILANDESE","flag_ue":"N"}
+,{"id_nazione":138,"desc_cittadinanza_maschile":"ITALIANO ORA FRANCESE","flag_ue":"S"}
+,{"id_nazione":140,"desc_cittadinanza_maschile":"TRINIDAD-TOBAGO","flag_ue":"N"}
+,{"id_nazione":141,"desc_cittadinanza_maschile":"ARABO","flag_ue":"N"}
+,{"id_nazione":142,"desc_cittadinanza_maschile":"BENINESE","flag_ue":"N"}
+,{"id_nazione":143,"desc_cittadinanza_maschile":"CINESE","flag_ue":"N"}
+,{"id_nazione":144,"desc_cittadinanza_maschile":"LAOTIANO","flag_ue":"N"}
+,{"id_nazione":145,"desc_cittadinanza_maschile":"GRENADINO","flag_ue":"N"}
+,{"id_nazione":146,"desc_cittadinanza_maschile":"PORTORICANO","flag_ue":"N"}
+,{"id_nazione":147,"desc_cittadinanza_maschile":"PAPUANO","flag_ue":"N"}
+,{"id_nazione":148,"desc_cittadinanza_maschile":"SAINT LUCIA","flag_ue":"N"}
+,{"id_nazione":153,"desc_cittadinanza_maschile":"BOSNIACO - ERZEGOVINO","flag_ue":"N"}
+,{"id_nazione":154,"desc_cittadinanza_maschile":"ZAIRESE","flag_ue":"N"}
+,{"id_nazione":155,"desc_cittadinanza_maschile":"GIAPPONESE","flag_ue":"N"}
+,{"id_nazione":156,"desc_cittadinanza_maschile":"BANGLADESE","flag_ue":"N"}
+,{"id_nazione":157,"desc_cittadinanza_maschile":"YEMENITA","flag_ue":"N"}
+,{"id_nazione":158,"desc_cittadinanza_maschile":"GILBERTESE","flag_ue":"N"}
+,{"id_nazione":159,"desc_cittadinanza_maschile":"UNGHERESE","flag_ue":"S"}
+,{"id_nazione":160,"desc_cittadinanza_maschile":"OMANITA","flag_ue":"N"}
+,{"id_nazione":162,"desc_cittadinanza_maschile":"SIERRALEONESE","flag_ue":"N"}
+,{"id_nazione":163,"desc_cittadinanza_maschile":"MALAWIANO","flag_ue":"N"}
+,{"id_nazione":164,"desc_cittadinanza_maschile":"SINGALESE","flag_ue":"N"}
+,{"id_nazione":165,"desc_cittadinanza_maschile":"BULGARO","flag_ue":"S"}
+,{"id_nazione":166,"desc_cittadinanza_maschile":"CANADESE","flag_ue":"N"}
+,{"id_nazione":167,"desc_cittadinanza_maschile":"SWAZILAND","flag_ue":"N"}
+,{"id_nazione":168,"desc_cittadinanza_maschile":"JUGOSLAVO","flag_ue":"N"}
+,{"id_nazione":169,"desc_cittadinanza_maschile":"IN ATTESA DI APOLIDIA.","flag_ue":"N"}
+,{"id_nazione":171,"desc_cittadinanza_maschile":"TONGANO","flag_ue":"N"}
+,{"id_nazione":172,"desc_cittadinanza_maschile":"VENEZUELANO","flag_ue":"N"}
+,{"id_nazione":173,"desc_cittadinanza_maschile":"VIETNAMITA","flag_ue":"N"}
+,{"id_nazione":174,"desc_cittadinanza_maschile":"MONEGASCO","flag_ue":"N"}
+,{"id_nazione":175,"desc_cittadinanza_maschile":"SLOVACCO","flag_ue":"S"}
+,{"id_nazione":176,"desc_cittadinanza_maschile":"NAMIBIANO","flag_ue":"N"}
+,{"id_nazione":177,"desc_cittadinanza_maschile":"COSTARICANO","flag_ue":"N"}
+,{"id_nazione":178,"desc_cittadinanza_maschile":"GUINEA BISSAU","flag_ue":"N"}
+,{"id_nazione":179,"desc_cittadinanza_maschile":"SVIZZERO","flag_ue":"N"}
+,{"id_nazione":180,"desc_cittadinanza_maschile":"INDIANO","flag_ue":"N"}
+,{"id_nazione":181,"desc_cittadinanza_maschile":"NIGERINO","flag_ue":"N"}
+,{"id_nazione":182,"desc_cittadinanza_maschile":"TURCO","flag_ue":"N"}
+,{"id_nazione":184,"desc_cittadinanza_maschile":"COMORIANO","flag_ue":"N"}
+,{"id_nazione":186,"desc_cittadinanza_maschile":"SEYCHELLESE","flag_ue":"N"}
+,{"id_nazione":187,"desc_cittadinanza_maschile":"LIECHTENSTEINIANO","flag_ue":"N"}
+,{"id_nazione":188,"desc_cittadinanza_maschile":"OLANDESE","flag_ue":"S"}
+,{"id_nazione":189,"desc_cittadinanza_maschile":"AUSTRALIANO","flag_ue":"N"}
+,{"id_nazione":190,"desc_cittadinanza_maschile":"NORD COREANO","flag_ue":"N"}
+,{"id_nazione":191,"desc_cittadinanza_maschile":"LESOTHO","flag_ue":"N"}
+,{"id_nazione":193,"desc_cittadinanza_maschile":"ESTONE","flag_ue":"S"}
+,{"id_nazione":194,"desc_cittadinanza_maschile":"NORVEGESE","flag_ue":"N"}
+,{"id_nazione":195,"desc_cittadinanza_maschile":"COLOMBIANO","flag_ue":"N"}
+,{"id_nazione":196,"desc_cittadinanza_maschile":"SAINT KITTS E NEVIS","flag_ue":"N"}
+,{"id_nazione":197,"desc_cittadinanza_maschile":"MESSICANO","flag_ue":"N"}
+,{"id_nazione":198,"desc_cittadinanza_maschile":"MOLDAVO","flag_ue":"S"}
+,{"id_nazione":199,"desc_cittadinanza_maschile":"SALVADOREGNO","flag_ue":"N"}
+,{"id_nazione":201,"desc_cittadinanza_maschile":"ISOLE VERGINI","flag_ue":"N"}
+,{"id_nazione":202,"desc_cittadinanza_maschile":"DANESE","flag_ue":"S"}
+,{"id_nazione":203,"desc_cittadinanza_maschile":"BOTSWANO","flag_ue":"N"}
+,{"id_nazione":204,"desc_cittadinanza_maschile":"CAPO VERDIANO","flag_ue":"N"}
+,{"id_nazione":205,"desc_cittadinanza_maschile":"BRASILIANO","flag_ue":"N"}
+,{"id_nazione":206,"desc_cittadinanza_maschile":"FILIPPINO","flag_ue":"N"}
+,{"id_nazione":208,"desc_cittadinanza_maschile":"GIAMAICANO","flag_ue":"N"}
+,{"id_nazione":209,"desc_cittadinanza_maschile":"SENEGALESE","flag_ue":"N"}
+,{"id_nazione":210,"desc_cittadinanza_maschile":"KAZAKO","flag_ue":"N"}
+,{"id_nazione":212,"desc_cittadinanza_maschile":"NAURUANO","flag_ue":"N"}
+,{"id_nazione":213,"desc_cittadinanza_maschile":"CISKEY","flag_ue":"N"}
+,{"id_nazione":214,"desc_cittadinanza_maschile":"PANAMENSE","flag_ue":"N"}
+,{"id_nazione":215,"desc_cittadinanza_maschile":"SUD COREANO","flag_ue":"N"}
+,{"id_nazione":216,"desc_cittadinanza_maschile":"GEORGIANO","flag_ue":"N"}
+,{"id_nazione":217,"desc_cittadinanza_maschile":"SUDAFRICANO","flag_ue":"N"}
+,{"id_nazione":218,"desc_cittadinanza_maschile":"UCRAINO","flag_ue":"N"}
+,{"id_nazione":219,"desc_cittadinanza_maschile":"TRANSKEY","flag_ue":"N"}
+,{"id_nazione":220,"desc_cittadinanza_maschile":"QATARIOTA","flag_ue":"N"}
+,{"id_nazione":221,"desc_cittadinanza_maschile":"ETIOPE","flag_ue":"N"}
+,{"id_nazione":223,"desc_cittadinanza_maschile":"ANTIGUO - BARBUDANO","flag_ue":"N"}
+,{"id_nazione":224,"desc_cittadinanza_maschile":"GHANESE","flag_ue":"N"}
+,{"id_nazione":225,"desc_cittadinanza_maschile":"CENTRAFRICANO","flag_ue":"N"}
+,{"id_nazione":226,"desc_cittadinanza_maschile":"KENIANO","flag_ue":"N"}
+,{"id_nazione":227,"desc_cittadinanza_maschile":"BIRMANO","flag_ue":"N"}
+,{"id_nazione":228,"desc_cittadinanza_maschile":"CONGOLESE","flag_ue":"N"}
+,{"id_nazione":229,"desc_cittadinanza_maschile":"SAMOANO","flag_ue":"N"}
+,{"id_nazione":230,"desc_cittadinanza_maschile":"KUWAITIANO","flag_ue":"N"}
+,{"id_nazione":231,"desc_cittadinanza_maschile":"BARBADIANO","flag_ue":"N"}
+,{"id_nazione":232,"desc_cittadinanza_maschile":"LITUANO","flag_ue":"S"}
+,{"id_nazione":233,"desc_cittadinanza_maschile":"ZIMBABWESE","flag_ue":"N"}
+,{"id_nazione":234,"desc_cittadinanza_maschile":"BIELORUSSO","flag_ue":"N"}
+,{"id_nazione":236,"desc_cittadinanza_maschile":"GUINEANO","flag_ue":"N"}
+,{"id_nazione":237,"desc_cittadinanza_maschile":"HAITIANO","flag_ue":"N"}
+,{"id_nazione":238,"desc_cittadinanza_maschile":"IRLANDESE","flag_ue":"S"}
+,{"id_nazione":239,"desc_cittadinanza_maschile":"MALIANO","flag_ue":"N"}
+,{"id_nazione":61451,"desc_cittadinanza_maschile":"MONTENEGRINO","flag_ue":"N"}
+,{"id_nazione":61453,"desc_cittadinanza_maschile":"SERBO","flag_ue":"N"}
+,{"id_nazione":63969,"desc_cittadinanza_maschile":"KOSOVARO","flag_ue":"N"}
+,{"id_nazione":76,"desc_cittadinanza_maschile":"TAIWANESE","flag_ue":"N"}
+,{"id_nazione":139,"desc_cittadinanza_maschile":"CONGOLESE","flag_ue":"N"}
+,{"id_nazione":70190,"desc_cittadinanza_maschile":"SUDSUDANESE","flag_ue":"N"}
+,{"id_nazione":71413,"desc_cittadinanza_maschile":"TIMOR ORIENTALE","flag_ue":"N"}
+,{"id_nazione":235,"desc_cittadinanza_maschile":"LUSSEMBURGHESE","flag_ue":"S"}
+,{"id_nazione":149,"desc_cittadinanza_maschile":"MAROCCHINO","flag_ue":"N"}
+,{"id_nazione":11,"desc_cittadinanza_maschile":"SURINAME","flag_ue":"N"}
+,{"id_nazione":88,"desc_cittadinanza_maschile":"ROMENO","flag_ue":"S"}
+,{"id_nazione":192,"desc_cittadinanza_maschile":"GAMBIANO","flag_ue":"N"}
+,{"id_nazione":222,"desc_cittadinanza_maschile":"BAHREINITA","flag_ue":"N"}
+,{"id_nazione":170,"desc_cittadinanza_maschile":"MALDIVIANO","flag_ue":"N"}
+,{"id_nazione":161,"desc_cittadinanza_maschile":"MAURITANO","flag_ue":"N"}
+,{"id_nazione":37,"desc_cittadinanza_maschile":"MOZAMBICANO","flag_ue":"N"}
+]}

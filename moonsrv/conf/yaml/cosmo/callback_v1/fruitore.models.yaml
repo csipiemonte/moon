@@ -1,0 +1,348 @@
+swagger: '2.0'
+info:
+  contact:
+    name: EII
+  description: API per i modelli comuni a tutte le API
+  title: fruitori models
+  version: '1.0'
+host: 'localhost:8080'
+basePath: /cosmo/api
+schemes:
+  - http
+paths: {}
+definitions:
+  Fruitore:
+    title: Fruitore
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      apiManagerId:
+        type: string
+      url:
+        type: string
+      nomeApp:
+        type: string
+      enti:
+        type: array
+        items:
+          $ref: '#/definitions/AssociazioneFruitoreEnte'
+      autorizzazioni:
+        type: array
+        items:
+          $ref: '#/definitions/AutorizzazioneFruitore'
+      endpoints:
+        type: array
+        items:
+          $ref: '#/definitions/EndpointFruitore'
+      schemiAutenticazione:
+        type: array
+        items:
+          $ref: '#/definitions/SchemaAutenticazioneFruitore'
+    required:
+      - apiManagerId
+  RiferimentoFruitore:
+    title: RiferimentoFruitore
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      apiManagerId:
+        type: string
+      nomeApp:
+        type: string
+    required:
+      - apiManagerId
+      - nomeApp
+  AssociazioneFruitoreEnte:
+    title: AssociazioneFruitoreEnte
+    type: object
+    properties:
+      ente:
+        $ref: './ente.models.yaml#/definitions/RiferimentoEnte'
+  AutorizzazioneFruitore:
+    title: AutorizzazioneFruitore
+    type: object
+    properties:
+      codice:
+        type: string
+      descrizione:
+        type: string
+    required:
+      - codice
+  TipoPraticaFruitore:
+    title: TipoPraticaFruitore
+    type: object
+    properties:
+      codice:
+        type: string
+      descrizione:
+        type: string
+    required:
+      - codice
+  StatoPraticaFruitore:
+    title: StatoPraticaFruitore
+    type: object
+    properties:
+      codice:
+        type: string
+      descrizione:
+        type: string
+    required:
+      - codice
+  AttivitaFruitore:
+    title: AttivitaFruitore
+    type: object
+    x-examples: {}
+    description: attività assegnate durante la pratica in ordine cronologico
+    properties:
+      nome:
+        type: string
+      descrizione:
+        type: string
+      dataInizio:
+        type: string
+        format: date-time
+      dataFine:
+        type: string
+        format: date-time
+      assegnazione:
+        type: array
+        items:
+          $ref: '#/definitions/AssegnazioneFruitore'
+      sottoAttivita:
+        type: array
+        description: l'oggetto sottotask ha un assegnatario
+        items:
+          $ref: '#/definitions/SottoAttivitaFruitore'
+      messaggiCollaboratori:
+        type: array
+        items:
+          $ref: '#/definitions/MessaggioFruitore'
+    required:
+      - nome
+  SottoAttivitaFruitore:
+    title: SottoAttivitaFruitore
+    type: object
+    x-examples: {}
+    description: attivita di collaborazione
+    properties:
+      nome:
+        type: string
+      descrizione:
+        type: string
+      dataInizio:
+        type: string
+        format: date-time
+      dataFine:
+        type: string
+        format: date-time
+      assegnazione:
+        type: array
+        items:
+          $ref: '#/definitions/AssegnazioneFruitore'
+    required:
+      - nome
+  AssegnazioneFruitore:
+    title: AssegnazioneFruitore
+    description: utente o gruppo assegnatario dell'attività
+    type: object
+    properties:
+      utente:
+        $ref: '#/definitions/UtenteFruitore'
+      gruppo:
+        type: string
+    x-examples: {}
+  MessaggioFruitore:
+    title: messaggioFruitore
+    type: object
+    description: ''
+    properties:
+      utente:
+        $ref: '#/definitions/UtenteFruitore'
+      messaggio:
+        type: string
+      timestamp:
+        type: string
+        format: date-time
+    x-examples: {}
+  UtenteFruitore:
+    title: utente
+    type: object
+    x-examples: {}
+    properties:
+      codiceFiscale:
+        type: string
+      nome:
+        type: string
+      cognome:
+        type: string
+    required:
+      - codiceFiscale
+  DocumentoFruitore:
+    title: DocumentoFruitore
+    type: object
+    x-examples: {}
+    description: ''
+    properties:
+      id:
+        type: string
+      idPadre:
+        type: string
+      titolo:
+        type: string
+      descrizione:
+        type: string
+      autore:
+        type: string
+      mimeType:
+        type: string
+      firme:
+        type: array
+        items:
+          $ref: '#/definitions/FirmaDocumentoFruitore'
+      archiviazione:
+        $ref: '#/definitions/ArchiviazioneDocumentoFruitore'
+      refURL:
+        type: string
+      tipo:
+        $ref: '#/definitions/TipoDocumentoFruitore'
+      stato:
+        $ref: '#/definitions/StatoDocumentoFruitore'
+    required:
+      - id
+      - stato
+  ArchiviazioneDocumentoFruitore:
+    title: ArchiviazioneDocumento
+    type: object
+    properties:
+      protocollo:
+        $ref: '#/definitions/ProtocolloDocumentoFruitore'
+      classificazione:
+        type: string
+  ProtocolloDocumentoFruitore:
+    title: ProtocolloDocumentoFruitore
+    type: object
+    properties:
+      numero:
+        type: string
+      data:
+        type: string
+  StatoDocumentoFruitore:
+    title: StatoDocumentoFruitore
+    type: object
+    properties:
+      codice:
+        type: string
+      descrizione:
+        type: string
+    required:
+      - codice
+  TipoDocumentoFruitore:
+    title: TipoDocumentoFruitore
+    type: object
+    properties:
+      codice:
+        type: string
+      descrizione:
+        type: string
+    required:
+      - codice
+  FirmaDocumentoFruitore:
+    title: FirmaDocumentoFruitore
+    type: object
+    properties:
+      data:
+        type: string
+        format: date-time
+      firmatario:
+        type: string
+      organizzazione:
+        type: string
+  TipoSchemaAutenticazioneFruitore:
+    title: TipoSchemaAutenticazioneFruitore
+    type: object
+    properties:
+      codice:
+        type: string
+      descrizione:
+        type: string
+    required:
+      - codice
+  SchemaAutenticazioneFruitore:
+    title: SchemaAutenticazioneFruitore
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      tipo:
+        $ref: '#/definitions/TipoSchemaAutenticazioneFruitore'
+      credenziali:
+        $ref: '#/definitions/CredenzialiAutenticazioneFruitore'
+    required:
+      - id
+      - tipo
+  RiferimentoSchemaAutenticazioneFruitore:
+    title: RiferimentoSchemaAutenticazioneFruitore
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+    required:
+      - id
+      - tipo
+  OperazioneFruitore:
+    title: OperazioneFruitore
+    type: object
+    properties:
+      codice:
+        type: string
+      descrizione:
+        type: string
+    required:
+      - codice
+  CredenzialiAutenticazioneFruitore:
+    title: CredenzialiAutenticazioneFruitore
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      username:
+        type: string
+      password:
+        type: string
+      clientId:
+        type: string
+      clientSecret:
+        type: string
+    required:
+      - id
+  EndpointFruitore:
+    title: EndpointFruitore
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      schemaAutenticazione:
+        $ref: '#/definitions/SchemaAutenticazioneFruitore'
+      operazione:
+        $ref: '#/definitions/OperazioneFruitore'
+      codiceTipoEndpoint:
+        type: string
+      endpoint:
+        type: string
+      metodoHttp:
+        type: string
+    required:
+      - id
+      - operazione
+      - codiceTipoEndpoint
+      - endpoint
+    x-examples: {}
+x-components: {}

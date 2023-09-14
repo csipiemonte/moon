@@ -1,0 +1,35 @@
+<alert id="alert-compila-istanza-nuova-istanza"></alert>
+<div class="card-container">
+    <div class="mt-2" *ngIf="msg">
+        <div class="alert alert-info">
+            <strong>{{msg}}</strong>
+        </div>
+    </div>
+
+    <div>
+        <div *ngFor="let modulo of moduli">
+            <div class="card border-primary mb-6">
+                <div class="card-header">{{modulo?.oggettoModulo}}</div>
+                <div class="card-body text-primary">
+                    <p class="card-text">{{modulo?.descrizioneModulo}}</p>
+                    <div *ngIf="modulo?.stato.dataFineValidita">
+                        <p class="card-text">
+                            {{modulo?.codiceModulo}}&nbsp;ver.{{modulo?.versioneModulo}}&nbsp;(pubblicato fino al
+                            {{modulo?.stato.dataFineValidita}})</p>
+                    </div>
+                    <div *ngIf="!modulo?.stato.dataFineValidita">
+                        <p class="card-text">{{modulo?.codiceModulo}}&nbsp;ver.{{modulo?.versioneModulo}}</p>
+                    </div>
+                    <div>
+                        <a [routerLink]="[]" class="btn btn-primary link-modulo" (click)="initCompilazioneOperatore(modulo)" >COMPILA
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" style="float:left" (click)="back()">
+            Torna alle categorie
+        </button>
+    </div>
+    <app-moon-spinner></app-moon-spinner>
+</div>

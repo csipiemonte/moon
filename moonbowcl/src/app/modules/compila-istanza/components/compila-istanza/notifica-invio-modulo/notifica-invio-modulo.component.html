@@ -1,0 +1,42 @@
+<div style="width: 90%; margin-left:100px;margin-top:40px ">
+    <h4 style="text-align:center">{{titoloNotifica}}</h4>
+    <h5 *ngIf="descrizione" style="text-align:center">{{descrizione}}</h5>
+
+    <div class="table-responsive">
+        <table id="mytable" class="table table-bordered table-striped">
+            <thead>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bold">Modulo</td>
+                    <td>{{istanza?.modulo.oggettoModulo}}</td>
+                </tr>
+                <tr>
+                    <td class="bold">Codice istanza</td>
+                    <td>{{istanza?.codiceIstanza}}</td>
+                </tr>
+                <tr>
+                    <td class="bold">Data invio</td>
+                    <td>{{istanza?.created | date: 'dd/MM/yyyy HH:mm'}}</td>
+                </tr>
+                <tr>
+                    <td class="bold">Stampa</td>
+                    <td>
+                        <a [routerLink]="[]" (click)="downloadPdf()">
+                            <i class="fas fa-file-pdf"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-template [ngIf]="caller === Caller.COMPILA">
+            <a [routerLink]="[]" (click)="nuovaCompilazione()"> Inizia nuova compilazione
+            </a>
+        </ng-template>
+        <ng-template [ngIf]="caller === Caller.DA_INVIARE">
+            <a [routerLink]="[]" (click)="istanze()"> Vai alle tue istanze
+            </a>
+        </ng-template>
+    </div>
+</div>
+<app-moon-spinner messaggio='Scaricamento riepilogo ...'></app-moon-spinner>

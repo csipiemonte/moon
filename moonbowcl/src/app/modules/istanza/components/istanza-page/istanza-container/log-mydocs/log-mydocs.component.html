@@ -1,0 +1,46 @@
+<br>
+<h5 class="mb-3">Log Richieste di pubblicazione verso MyDocs</h5>
+<table id="mytable" class="table table-bordered table-striped" style="font-size:0.8em;">
+    <thead>
+        <th *ngIf="isAdmin">ID Richiesta</th>
+        <th>Data Richiesta</th>
+        <th>Tipo Documento</th>
+        <!-- <th>Nome File</th> -->
+        <th *ngIf="isAdmin">Id Storico Workflow</th>
+        <th *ngIf="isAdmin">Id File</th>
+        <th>Esito</th>
+        <th>Data Upd</th>
+        <th>Reinvia file</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of data">
+            <td *ngIf="isAdmin">{{i.idRichiesta}}</td>
+            <td>{{i.dataRichiesta | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+            <td>{{getDescTipoDoc(i)}}</td>
+            <!-- <td>{{i.nomeFile}}</td> -->
+            <td *ngIf="isAdmin">{{i.idStoricoWorkflow}}</td>
+            <td *ngIf="isAdmin">{{i.idFile}}</td>
+            <td>{{i.descEsito}}</td>
+            <td>{{i.dataUpd | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+            <td style="text-align:center">
+                <span *ngIf="isAdmin && i.codiceEsito === 'ERR'" class="badge badge-primary badge-pill">
+
+                    <ng-template [ngIf]="i.tipoDoc === TIPO_DOC.ISTANZA">
+                        <a [routerLink]="[]" (click)="reinviaIstanza(i.idIstanza, i.idRichiesta)"
+                            style="background-color: Transparent; border: none; color: #fff;">
+                            <fa-icon [icon]="faArrowRight"></fa-icon>
+                        </a>
+                    </ng-template>
+
+                    <ng-template [ngIf]="i.tipoDoc === TIPO_DOC.DOCUMENTO_PA">
+                        <a [routerLink]="[]" (click)="reinviaFile(i.idFile, i.idRichiesta)"
+                            style="background-color: Transparent; border: none; color: #fff;">
+                            <fa-icon [icon]="faArrowRight"></fa-icon>
+                        </a>
+                    </ng-template>
+
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>

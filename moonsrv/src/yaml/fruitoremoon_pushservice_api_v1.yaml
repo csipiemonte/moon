@@ -1,0 +1,265 @@
+swagger: '2.0'
+info:
+  description: | 
+    ## API per la ricezione delle istanze da un Fruitore moon
+    ---
+      API per la ricezione delle istanze da un Fruitore moon 
+      Il servizio viene esposto da un Fruitore MOOn
+      Il servizio viene invocato da MOOn
+    
+    MOOn deve invocare un endpoint a scelta (tra comunicare solo il codice-istanza o l'istanza completa) :
+    
+    ### Acquisisce un istanza completa pervenute su MOOn
+      POST /istanza
+    
+    ### Acquisisce solo il codice istanza pervenute su MOOn (il fruitore puo interrogare gli servizi MOOn API per avere il dettaglio in un secondo tempo)
+      POST /codice-istanza
+
+  version: "v1"
+  title: "API per l'acquisizione delle istanze di un Fruitore MOOn"
+host: "__da_sostituire_host-fruitore__.csi.it"
+schemes:
+  - http
+basePath: /__da_sostituire_secondo_ambiente_del_fruitore__/__da_sostituire_con_nomeProtto_componente_fruitore__/moon-push-api/v1
+produces:
+  - application/json     
+paths:
+  /istanza:
+    post:
+      summary: >-
+        Acquisisce un istanza completa pervenute su MOOn
+      description: "Acquisisce un istanza completa pervenute su MOOn"  
+      operationId: acquisisceIstanza
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      tags:
+        - acquisisceIstanza        
+      parameters:
+        - name: client-profile
+          in: header
+          type: string
+          required: false
+          description: "Possibile Token in formato jwt utilizzato per l'accesso al servizio, puo permettere di identificazione di MOOn (se richiesto)"
+        - name: user-profile
+          in: header
+          type: string
+          required: false
+          description: "Possibile Token in formato jwt utilizzato per permettere la propagazione dell'identita dell'utente (se richiesto e se Auth SPID)"
+        - name: X-Request-Id
+          in: header
+          type: string
+          required: true
+          description: "Contiene un id univoco che consente il tracciamento del ciclo di vita della richiesta" 
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/istanza'
+          description: "Oggetto istanza Completo"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: '#/definitions/acquisizionePushResponse'
+        400:
+            $ref: '#/responses/BadRequest'
+        401:
+            $ref: '#/responses/UnauthorizedError'           
+        500:
+          $ref: '#/responses/InternalServerError' 
+  /codice-istanza/{codice-istanza}:
+    post:
+      summary: >-
+        Acquisisce solo il codice istanza pervenute su MOOn
+      description: "Acquisisce solo il codice istanza pervenute su MOOn (il fruitore puo interrogare gli servizi MOOn API per avere il dettaglio in un secondo tempo)"  
+      operationId: acquisisceCodiceIstanza
+      produces:
+        - application/json
+      tags:
+        - acquisisceIstanza        
+      parameters:
+        - name: client-profile
+          in: header
+          type: string
+          required: false
+          description: "Possibile Token in formato jwt utilizzato per l'accesso al servizio, puo permettere di identificazione di MOOn (se richiesto)"
+        - name: user-profile
+          in: header
+          type: string
+          required: false
+          description: "Possibile Token in formato jwt utilizzato per permettere la propagazione dell'identita dell'utente (se richiesto e se Auth SPID)"
+        - name: X-Request-Id
+          in: header
+          type: string
+          required: true
+          description: "Contiene un id univoco che consente il tracciamento del ciclo di vita della richiesta" 
+        - in: path
+          name: codice-istanza
+          type: string
+          required: true
+          description: "Codice istanza"  
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: '#/definitions/acquisizionePushResponse'
+        400:
+            $ref: '#/responses/BadRequest'
+        401:
+            $ref: '#/responses/UnauthorizedError'
+        500:
+          $ref: '#/responses/InternalServerError' 
+responses:
+    BadRequest:
+      description: "La richiesta effettuata dal client è errata"
+    UnauthorizedError:
+      description: "Access token mancante o non valido"
+    NotFound:
+      description: "La risorsa specificata non è stata trovata"
+    UnprocessableEntityError:
+      description: "Parametro mancante o non valido"
+    InternalServerError:
+      description: "Si è verificato un'errore interno del server"
+definitions: 
+  istanza:
+      title: "Istanza"
+      description: "Dati di dettaglio dell'istanza"
+      type: object
+      properties:
+        codice:
+          type: string
+          description: "Codice univoco dell'istanza"
+        codiceFiscaleDichiarante:
+          type: string
+          description: "Codice fiscale del dichiarante"   
+        dataCreazione:
+          type: string
+          format: date-time 
+          description: "Data di creazione dell'istanza"  
+        dataProtocollo:
+          type: string
+          format: date-time 
+          description: "Data di protocollo dell'istanza"   
+        numeroProtocollo:
+          type: string
+          description: "Numero di protocollo dell'istanza"                             
+        data:
+          type: string 
+          description: "Stringa contenente il json dei dati compilati"
+        modulo: 
+          $ref: '#/definitions/modulo'
+        ente: 
+          $ref: '#/definitions/ente' 
+        allegati:
+          type: array
+          items:
+            $ref: '#/definitions/allegato'      
+  allegato:
+      title: "Allegato"
+      description: "Dati di dettaglio dell'allegato"
+      type: object
+      properties:
+        formioNameFile:
+          type: string
+          description: "Nome allegato univoco nel sistema ( composto dal nome file originale e un uuid )"
+          example: "some_imagename-a6abce43-6cb5-4942-9458-5b94f0c896ac.jpg"
+        codiceFile:
+          type: string
+          description: "UUID univoco dell'allegato"
+          example: "c0d1acc2-731a-420a-ad60-2fe13263b56d"
+        nomeFile:
+          type: string
+          description: "Nome file originale fornito dal dichiarante"
+          example: "some_imagename.jpg"
+        lunghezza:
+          type: integer
+          description: "Lunghezza del file in bytes"
+          example: 102117
+        contentType:
+          type: string
+          description: "Content type dell'allegato ( es. application/pdf, image/png )"   
+          example: "image/jpeg"
+        mediaType:
+          type: string 
+          description: "Media type dell'allegato ( es. application, image )"
+          example: "image"
+        subMediaType:
+          type: string
+          description: "Sub media type dell'allegato"
+        estensione:
+          type: string 
+          description: "Estensione del file ( es. pdf, png, jpeg, jpg )"
+          example: "jpg"
+        uuidIndex:
+          type: string 
+          description: "UUID DoQui Index se archiviato in Index"
+  modulo:
+      title: "Modulo"
+      description: "Dati del modulo"
+      type: object
+      properties: 
+        codice: 
+          type: string
+          description: "Codice modulo"
+          example: "CONTATTI"
+        versione:
+          type: string
+          description: "Versione modulo"
+          example: "1.0.0"
+  ente:
+      title: "Ente"
+      description: "Dati dell'ente"
+      type: object
+      properties: 
+        codice: 
+          type: string
+          description: "Codice ente"
+          example: "001272"
+        nome:
+          type: string
+          description: "Nome ente"
+          example: "COMUNE DI TORINO"
+        entePadre:
+          $ref: '#/definitions/ente'
+  acquisizionePushResponse:
+      title: "Acquisizione"
+      description: "Dati relativi alla risposta del fruitore verso MOOn su l'aquisizione e il cambio di stato di un istanza"
+      type: object
+      required:
+      - codiceAzione
+      - codice
+      - descrizione
+      properties:
+        codiceAzione:
+          type: string
+          description: "Codice azione del workflow MOOn" 
+          example: "INTEGRAZIONE_FRUITORE_OK"  
+        codice:
+          type: string  
+          description: "Codice dell'esito ( es: IMPOK IMPKO IMPOKW )"
+          example: "IMPOKW"
+        descrizione:
+          type: string
+          description: "Descrizione dell'esito"  
+          example: "Importazione OK con warning"
+        identificativo:
+          type: string
+          description: "Identificativo gestione back office ( es. numero pratica )"
+          example: "B20200000452"
+        data:
+          type: string
+          format: date-time
+          description: "Data gestione back office ( es. data pratica )"
+        numeroProtocollo:
+          type: string
+          description: "Numero protocollo assegnato all'istanza "
+          example: "B20200000452"
+        dataProtocollo:
+          type: string
+          format: date-time
+          description: "Data protocollo "
+        codiceFiscaleOperatore:
+          type: string
+          description: "Codice fiscale dell'operatore responsabile della gestione back office"

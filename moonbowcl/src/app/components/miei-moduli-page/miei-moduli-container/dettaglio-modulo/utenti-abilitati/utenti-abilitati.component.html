@@ -1,0 +1,26 @@
+<div>
+    <div class="table-responsive" style="margin-top: 50px !important;">
+        <table id="mytable" class="table table-bordered table-striped">
+            <thead>
+                <th>Utente</th>
+                <th>Tipo</th>
+                <th>Dt. Agg</th>
+                <th>Operatore Agg.</th>
+                <th *ngIf="isOpMinADM">Operazione</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let u of utentiAbilitati">
+                    <td>{{ u | formatUtente: 'NC' }}</td>
+                    <td><span title="{{u.tipoUtente?.descrizione}}">{{u.tipoUtente?.codice}}</span></td>
+                    <td>{{ u?.dataUpdAbilitazione | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                    <td>{{ mapOperatori.get(u?.attoreUpdAbilitazione) ? (mapOperatori.get(u?.attoreUpdAbilitazione) | formatUtente: 'NC') : u?.attoreUpdAbilitazione }}</td>
+                    <td *ngIf="isOpMinADM">
+                        <a [routerLink]="[]" ngbTooltip="Elimina Abilitazione" (click)="eliminaUtenteAbilitato(u.idUtente)">
+                            <fa-icon style="margin-left: 20px; color: red" [icon]="faTrashAlt"></fa-icon>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

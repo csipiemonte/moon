@@ -1,0 +1,42 @@
+<td>
+    {{ index + 1}}
+</td>
+<td *ngIf="showColonnaComune">{{rigaIstanza?.metadata}}</td>
+<td *ngIf="showColonnaEnte">{{rigaIstanza?.metadata}}</td>
+<td *ngIf="showFiltroMultiEnte">{{ente?.nomeEnte}}</td>
+<td *ngIf="showFiltroDichiarante">{{rigaIstanza?.codiceFiscaleDichiarante}}</td>
+<td *ngIf="showFiltroDichiarante">{{rigaIstanza?.nomeDichiarante}}</td>
+<td *ngIf="showFiltroDichiarante">{{rigaIstanza?.cognomeDichiarante}}</td>
+<td>{{rigaIstanza?.codiceIstanza}}</td>
+<td>{{rigaIstanza?.created | date: 'dd/MM/yyyy HH:mm'}}</td>
+<td>{{rigaIstanza?.stato.nome}}</td>
+
+<td>
+    <!--Da mostrare con test su stato istanza
+  Stato 1 => Bozza
+  Stato 2 => Inviato
+  -->
+    <!-- <div *ngIf="rigaIstanza.stato.idStato===2" class="col-sm-2">
+    <a [routerLink]="[]" (click)="mostraDettaglioIstanza()">
+      <fa-icon [icon]="faEye"></fa-icon></a>
+  </div>
+  <div *ngIf="rigaIstanza.stato.idStato===1" class="col-sm-2">
+    <a [routerLink]="[]" (click)="modificaIstanza()">
+      <fa-icon [icon]="faEdit"></fa-icon></a>
+  </div> -->
+
+    <div>
+        <a *ngIf="rigaIstanza.stato.idStato===2" [routerLink]="[]" ngbTooltip="Visualizza Istanza" (click)="mostraDettaglioIstanza()">
+            <fa-icon [icon]="faEye"></fa-icon>
+        </a>
+
+        <ng-template [ngIf]="isUtenteAbilitatoModifica">
+            <a *ngIf="rigaIstanza.stato.idStato===1" [routerLink]="[]" ngbTooltip="Modifica Istanza" style="margin-left:10px" (click)="modificaIstanza()">
+                <fa-icon [icon]="faEdit"></fa-icon>
+            </a>
+        </ng-template>
+
+
+    </div>
+
+</td>

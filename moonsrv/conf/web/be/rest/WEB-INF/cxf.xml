@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:cxf="http://cxf.apache.org/core"
+       xmlns:jaxws="http://cxf.apache.org/jaxws" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+                           http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+                           http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+   
+	<bean id="abstractLoggingInterceptor" abstract="true">
+	    <property name="prettyLogging" value="false"/>
+		<property name="limit" value="10240" />
+	</bean>
+	<bean id="loggingInInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor" parent="abstractLoggingInterceptor"/>
+	<bean id="loggingOutInterceptor" class="org.apache.cxf.interceptor.LoggingOutInterceptor" parent="abstractLoggingInterceptor"/>
+<!-- 
+	<bean id="inSAAJ" class="org.apache.cxf.binding.soap.saaj.SAAJInInterceptor" />
+	<bean id="inWSS4J" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor" />
+	<bean id="outSAAJ" class="org.apache.cxf.binding.soap.saaj.SAAJOutInterceptor" />
+	<bean id="outWSS4J" class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor" />
+ -->
+	<cxf:bus>
+	    <cxf:inInterceptors>
+	        <ref bean="loggingInInterceptor"/>
+	    </cxf:inInterceptors>
+	    <cxf:outInterceptors>
+	        <ref bean="loggingOutInterceptor"/>
+	    </cxf:outInterceptors>
+	    <cxf:outFaultInterceptors>
+	        <ref bean="loggingOutInterceptor"/>
+	    </cxf:outFaultInterceptors>
+	    <cxf:inFaultInterceptors>
+	        <ref bean="loggingInInterceptor"/>
+	    </cxf:inFaultInterceptors>
+	</cxf:bus>
+<!-- 
+	<bean id="epayPwdCallback" class="it.csi.moon.moonsrv.business.ws.handlers.Epaywso2PasswordCallback"/>
+	<bean id="wSS4JInInterceptor" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+		<constructor-arg>
+			<map>
+				<entry key="action" value="UsernameToken" />
+				<entry key="passwordType" value="PasswordText" />
+				<entry key="passwordCallbackRef">
+					<ref bean="epayPwdCallback" />
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<jaxws:endpoint xmlns:tns="http://www.csi.it/epay/epaywso/epaywso2entisrv" id="epaywso2entiservice"
+		implementor="it.csi.moon.moonsrv.business.ws.epay.EPaywso2EntiServiceSOAPImpl"
+		wsdlLocation="WEB-INF/classes/wsdl/epay/EPaywso2EntiService.wsdl" endpointName="EPaywso2EntiServiceSOAP"
+		serviceName="EPaywso2EntiService" address="/EPaywso2EntiServiceSOAP">
+		<jaxws:properties>
+			<entry key="action" value="UsernameToken Timestamp"></entry>
+			<entry key="passwordCallbackRef" value-ref="epayPwdCallback"></entry>
+			<entry key="passwordType" value="PasswordText"></entry>
+		</jaxws:properties>
+		<jaxws:inInterceptors>
+			<ref bean="wSS4JInInterceptor"/>
+		</jaxws:inInterceptors>
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
+ -->
+</beans>

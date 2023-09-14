@@ -1,0 +1,94 @@
+<h1 class="mb-4 h2">Le mie istanze</h1>
+<!-- <ng-template [ngIf]="selected" [ngIfThen]="thenBlock2" [ngIfElse]="elseBlock2"></ng-template> -->
+
+<div class="accordion" id="ricerca">
+  <div class="accordion-item">
+    <h2 class="accordion-header " id="heading-ricerca">
+
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-ricerca"
+        aria-expanded="false" aria-controls="collapse-ricerca" (click)="toggleIstanze()">
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+               viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </span>
+        <span class="ms-4">Ricerca avanzata</span>
+
+      </button>
+    </h2>
+    <div #divRicerca aria-labelledby="heading-ricerca" class="accordion-collapse collapse" id="collapse-ricerca"
+         role="region">
+      <div class="accordion-body">
+        <app-cerca-istanza (eseguoRicerca)="risultatoRicerca($event)" > </app-cerca-istanza>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template [ngIf]="!isRicercaAvanzata">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs nav-tabs-icon-text my-5"
+      (activeIdChange)="onActiveIdChange($event)">
+
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>
+        <svg class="icon">
+          <use [attr.href]="'./assets/svg/sprite.svg#it-pencil'"
+               [attr.xlink:href]="'./assets/svg/sprite.svg#it-pencil'">
+          </use>
+        </svg>
+        In lavorazione</a>
+      <ng-template ngbNavContent>
+        <app-tab-bozze  [tab]="active">
+        </app-tab-bozze>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink><svg class="icon ">
+          <use [attr.href]="'./assets/svg/sprite-custom.svg#icon-send'"
+            [attr.xlink:href]="'./assets/svg/sprite-custom.svg#icon-send'"></use>
+        </svg>Inviate</a>
+      <ng-template ngbNavContent>
+        <app-tab-inviate [tab]="active"></app-tab-inviate>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="3" *ngIf="righeIstanzaRichiestaIntegrazione?.length > 0">
+      <a ngbNavLink>
+        <span class="animation--shockwave me-3">
+          <svg class="icon m-0">
+            <use [attr.href]="'./assets/svg/sprite.svg#it-warning-circle'"
+              [attr.xlink:href]="'./assets/svg/sprite.svg#it-warning-circle'"></use>
+          </svg>
+        </span>In attesa di integrazione</a>
+      <ng-template ngbNavContent>
+        <app-tab-integrazione [tab]="active">
+        </app-tab-integrazione>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="5" *ngIf="righeIstanzaAttesaPagamento?.length > 0">
+      <a ngbNavLink>
+        <span class="animation--shockwave me-3">
+          <svg class="icon m-0">
+            <use [attr.href]="'./assets/svg/sprite-custom.svg#euro'"
+              [attr.xlink:href]="'./assets/svg/sprite-custom.svg#euro'"></use>
+          </svg>
+        </span>In attesa di pagamento</a>
+      <ng-template ngbNavContent>
+        <app-tab-pagamenti [tab]="active">
+        </app-tab-pagamenti>
+      </ng-template>
+    </li>    
+    <li [ngbNavItem]="4">
+      <a ngbNavLink><svg class="icon">
+          <use [attr.href]="'./assets/svg/sprite.svg#it-star-full'"
+            [attr.xlink:href]="'./assets/svg/sprite.svg#it-star-full'"></use>
+        </svg>Importanti</a>
+      <ng-template ngbNavContent>
+        <app-tab-importanti [tab]="active"></app-tab-importanti>
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</ng-template>

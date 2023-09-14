@@ -1,0 +1,57 @@
+<form class="processoForm" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="form-group col-md-9" style="margin: 0 auto;">
+
+        <h3 style="text-align:center;">Crea Processo</h3>
+        <alert id="alert-processi-crea"></alert>
+        <div>&nbsp;</div>
+        <label for="codiceProcesso">Codice Processo</label>
+        <input #codiceProcesso='ngModel' [(ngModel)]="processo.codiceProcesso" name="codiceProcesso"
+            id="codiceProcesso" class="form-control" required minlength="5" maxlength="30" pattern="[a-zA-Z0-9\-\_]*" style="text-transform:uppercase">
+        <div *ngIf="codiceProcesso.dirty && codiceProcesso.touched && codiceProcesso.invalid">
+            <div class="alert-danger" *ngIf='codiceProcesso.errors.required'>
+                Il campo codice è obbligatorio
+            </div>
+            <div class="alert-danger" *ngIf='codiceProcesso.errors.minlength'>
+                Lunghezza minima deve essere {{codiceProcesso.errors.minlength.requiredLength}}
+            </div>
+        </div>
+
+        <label for="nomeProcesso">Nome Processo</label>
+        <input #nomeProcesso='ngModel' [(ngModel)]="processo.nomeProcesso" name="nomeProcesso" id="nomeProcesso" class="form-control" required
+            minlength="1" maxlength="50">
+        <div *ngIf="nomeProcesso.dirty && nomeProcesso.touched && nomeProcesso.invalid">
+            <div class="alert-danger" *ngIf='nomeProcesso.errors.required'>
+                Il campo nomeProcesso è obbligatorio
+            </div>
+            <div class="alert-danger" *ngIf='nomeProcesso.errors.minlength'>
+                Lunghezza minima deve essere {{nomeProcesso.errors.minlength.requiredLength}}
+            </div>
+        </div>
+
+        <label for="descProcesso">Desc Processo</label>
+        <input #descProcesso='ngModel' [(ngModel)]="processo.descProcesso" name="descProcesso" id="descProcesso" class="form-control" minlength="1"
+            maxlength="400">
+        <div *ngIf="descProcesso.dirty && descProcesso.touched && descProcesso.invalid">
+            <div class="alert-danger" *ngIf='descProcesso.errors.minlength'>
+                Lunghezza minima deve essere {{descProcesso.errors.minlength.requiredLength}}
+            </div>
+        </div>
+
+    </div>
+
+    <div>&nbsp;</div>
+    <div class="form-group col-md-9" style="margin: 0 auto;">
+        <button type="button" class="btn btn-primary" style="width: 70px;float:left; color: green" (click)="back()">
+            <fa-icon style='font-size: 22px' [icon]="['fas', 'home']"></fa-icon>
+        </button>
+
+        <button href="#" type="submit" [disabled]="f.form.invalid" class="btn btn-primary"
+            style="width: 70px;float:right">
+            <fa-icon style='font-size: 22px' [icon]="['fas', 'save']"></fa-icon>
+        </button>
+    </div>
+
+</form>
+<br>
+
+<!-- <app-moon-spinner></app-moon-spinner> -->

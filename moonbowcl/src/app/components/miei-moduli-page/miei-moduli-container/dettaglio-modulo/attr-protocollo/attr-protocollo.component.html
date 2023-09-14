@@ -1,0 +1,261 @@
+<div *ngIf="!editMode">
+    <div *ngIf="isAdmin" style="position:absolute; top: 4.5rem; right: 8px; z-index: 1;">
+        <button type="button" class="btn btn-outline-primary" (click)="editMode=true;">Edit Protocollo</button>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col col-md-3"><span title="{{ titleUpd.get('PSIT_PROTOCOLLO') }}">Protocollo FO:</span></div>
+            <div class="col col-md-7">{{maProtocollo['valore']}}</div>
+        </div>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col col-md-3">Protocolla BO:</div>
+            <div class="col col-md-7">{{hasProtocolloBO}}</div>
+        </div>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col col-md-3"><span title="{{ titleUpd.get('PSIT_PROTOCOLLO_INTEGRAZIONE') }}">Protocollo Integrazione:</span></div>
+            <div class="col col-md-7">{{maProtocolloIntegrazione['valore']}}</div>
+        </div>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col col-md-3"><span title="Nome Class di gestione del protocollo nella Factory">Protocollo
+                    Manager Name:</span></div>
+            <div class="col col-md-7">{{protocolloManagerName}}</div>
+        </div>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col col-md-3"><span title="Nome Class di gestione del protocollo nel DB in ModuloClass (sovrascrive quello della Factory)">Protocollo
+                    Manager Name DB:</span></div>
+            <div class="col col-md-7">{{protocolloModuloClassName}}</div>
+        </div>
+    </div>
+    <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Attributi Generali di Protocollazione <span style="float:right">
+            <a href="#prt-conf-gen" class="btn" data-toggle="collapse" role="button"
+                aria-expanded="true" aria-controls="prt-conf-gen" style="line-height: 0.5;">
+                <fa-icon [icon]="faAngleDown" style="color: white;"></fa-icon>
+            </a></span>
+        </div>
+        <div class="panel-body" id="prt-conf-gen">
+            <app-miei-moduli-dettaglio-attr-protocollo-parametri-tab
+                [prtParametri]="prtParametri" >
+            </app-miei-moduli-dettaglio-attr-protocollo-parametri-tab>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Metadati specifici di Protocollazione <span style="float:right">
+            <a href="#prt-metadati" class="btn" data-toggle="collapse" role="button"
+                aria-expanded="true" aria-controls="prt-metadati" style="line-height: 0.5;">
+                <fa-icon [icon]="faAngleDown" style="color: white;"></fa-icon>
+            </a></span>
+        </div>
+        <div class="panel-body" id="prt-metadati">
+            <app-miei-moduli-dettaglio-attr-protocollo-metadati-tab
+                [maMetadati]="maPrtMetadati" >
+            </app-miei-moduli-dettaglio-attr-protocollo-metadati-tab>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Email callback Protocollazione <span style="float:right">
+            <a href="#prt-email" class="btn" data-toggle="collapse" role="button"
+                aria-expanded="true" aria-controls="prt-email" style="line-height: 0.5;">
+                <fa-icon [icon]="faAngleDown" style="color: white;"></fa-icon>
+            </a></span>
+        </div>
+        <div class="panel-body" id="prt-email">
+            <app-miei-moduli-dettaglio-attr-protocollo-email
+                [maPrtInEmail]="maPrtInEmail"
+                [attrPrtInEmailConf]="attrPrtInEmailConf"
+                [titleUpd]="titleUpd" >
+            </app-miei-moduli-dettaglio-attr-protocollo-email>
+        </div>
+    </div>
+    <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+</div>
+<div *ngIf="editMode">
+    <alert id="alert-moduli-attr-protocollo"></alert>
+    <form>
+        <div class="form-group" style="padding-bottom: 40px;">
+            <div class="form-group">
+                <label for="attrProtocolloEdit">Protocollo FO:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Abilitazione alla protocollazione, in seguito all'invio di un istanza [S|N]"></i></label>
+                <div>
+                    <ui-switch [(ngModel)]="bProtocolloEdit" [ngModelOptions]="{standalone: true}">
+                    </ui-switch>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="attrProtocolloEdit">Protocollo BO:&nbsp;<i class="fa fa-question-circle text-muted"
+                        ngbTooltip="Presenza di un Azione 'PROTOCOLLA' nel Workflow del modulo"></i></label>
+                <div>
+                    <ui-switch [(ngModel)]="bHasProtocolloBOEdit" [ngModelOptions]="{standalone: true}" disabled>
+                    </ui-switch>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="attrProtocolloIntegrazioneEdit">Protocollo Integrazione:&nbsp;<i class="fa fa-question-circle text-muted"
+                        ngbTooltip="Abilitazione alla protocollazione delle integrazione [S|N]"></i></label>
+                <div>
+                    <ui-switch [(ngModel)]="bProtocolloIntegrazioneEdit" [ngModelOptions]="{standalone: true}">
+                    </ui-switch>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-light" (click)="editMode=false;" style="float:left">Annulla</button>
+                <button type="button" class="btn btn-success" (click)="salva()" style="float:right">Salva</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>Protocollo Manager Name:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Class di gestione del protocollo nella Factory (nel codice, non modificabile ma sovrascrivibile)"></i>
+            </div>
+            <div>{{protocolloManagerName}}</div>
+        </div>
+        <div class="form-group">
+            <label for="filePrintMapper">Protocollo Manager Name DB:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Class di gestione del protocollo nel DB in ModuloClass (sovrascrive quello della Factory)"></i></label>
+            <div *ngIf="protocolloModuloClassName">
+                {{protocolloModuloClassName.replace('it.csi.moon.moonsrv.business.service.impl.protocollo','..')}}
+                <button type="button" class="btn btn-danger" (click)="deleteProtocolloManager()" style="float:right">Delete
+                    File</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <input type="file" id="fileProtocolloManager" (change)="handleFileProtocolloManagerInput($event.target.files)">
+                <button type="button" class="btn btn-success" (click)="uploadFileToServer()" style="float:right">Upload
+                    File</button>
+            </div>
+        </div>
+        <div class="panel panel-primary" style="padding-bottom: 40px;">
+            <div class="panel-heading">Metadati specifici di Protocollazione <span style="float:right">
+                <a href="#prt-metadati" class="btn" data-toggle="collapse" role="button"
+                    aria-expanded="true" aria-controls="prt-metadati" style="line-height: 0.5;">
+                    <fa-icon [icon]="faAngleDown" style="color: white;"></fa-icon>
+                </a></span></div>
+            <div class="panel-body" id="prt-metadati">
+                <app-miei-moduli-dettaglio-attr-protocollo-metadati-tab-edit [modulo]="moduloSelezionato" [maMetadati]="maPrtMetadati">
+                </app-miei-moduli-dettaglio-attr-protocollo-metadati-tab-edit>
+            </div>
+        </div>
+        <div class="panel panel-primary" style="padding-bottom: 40px;">
+            <div class="panel-heading">Email callback Protocollazione <span style="float:right">
+                <a href="#prt-email" class="btn" data-toggle="collapse" role="button"
+                    aria-expanded="true" aria-controls="prt-email" style="line-height: 0.5;">
+                    <fa-icon [icon]="faAngleDown" style="color: white;"></fa-icon>
+                </a></span></div>
+            <div class="panel-body" id="prt-email" style="">
+                <div class="form-group">
+                    <label for="attrEmailEdit">Email:&nbsp;<i class="fa fa-question-circle text-muted"
+                            ngbTooltip="Abilitazione all'invio Email, in seguito all'invio di un istanza [S|N]"></i></label>
+                    <div>
+                        <ui-switch [(ngModel)]="bPrtInEmailEdit" [ngModelOptions]="{standalone: true}">
+                        </ui-switch>
+                    </div>
+                </div>
+                <div style="position:relative; float:right;">
+                    <button type="button" class="btn btn-light btn-sm" (click)="showCc=true;" *ngIf="!showCc">CC</button>
+                    <button type="button" class="btn btn-light btn-sm" (click)="showBcc=true;" *ngIf="!showBcc">BCC</button>
+                </div>
+                <div class="form-group">
+                    <label for="to">To:&nbsp;<i class="fa fa-question-circle text-muted"
+                            ngbTooltip="Email del destinatario fisso (fisso per ogni istanza, in combinazione con gli altri destinatari)"></i></label>
+                    <input type="text" [(ngModel)]="attrPrtInEmailConfEdit['to']" id="to" name="to" class="form-control" #to="ngModel" />
+                </div>
+                <div class="form-group">
+                    <label for="toIstanzaDataKey">To Istanza Data Key:&nbsp;<i class="fa fa-question-circle text-muted"
+                            ngbTooltip="Nome del campo nel form dove ricavare l'email del destinatario (dinamico per ogni istanza)"></i></label>
+                    <input type="text" [(ngModel)]="attrPrtInEmailConfEdit['to_istanza_data_key']" id="toIstanzaDataKey"
+                        name="toIstanzaDataKey" class="form-control" #toIstanzaDataKey="ngModel" />
+                </div>
+                <div *ngIf="showCc">
+                    <div class="form-group">
+                        <label for="cc">Cc:&nbsp;<i class="fa fa-question-circle text-muted"
+                                ngbTooltip="Email del destinatario in copia (CC) fisso (fisso per ogni istanza, in combinazione con gli altri destinatari)"></i></label>
+                        <input type="text" [(ngModel)]="attrPrtInEmailConfEdit['cc']" id="cc" name="cc" class="form-control" #cc="ngModel" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ccIstanzaDataKey">Cc Istanza Data Key:&nbsp;<i class="fa fa-question-circle text-muted"
+                                ngbTooltip="Nome del campo nel form dove ricavare l'email del destinatario in copia (CC) (dinamico per ogni istanza)"></i></label>
+                        <input type="text" [(ngModel)]="attrPrtInEmailConfEdit['cc_istanza_data_key']" id="ccIstanzaDataKey"
+                            name="ccIstanzaDataKey" class="form-control" #ccIstanzaDataKey="ngModel" />
+                    </div>
+                </div>
+                <div *ngIf="showBcc">
+                    <div class="form-group">
+                        <label for="bcc">Bcc:&nbsp;<i class="fa fa-question-circle text-muted"
+                                ngbTooltip="Email del destinatario in copia nascosta (BCC) fisso (fisso per ogni istanza, in combinazione con gli altri destinatari)"></i></label>
+                        <input type="text" [(ngModel)]="attrPrtInEmailConfEdit['bcc']" id="bcc" name="bcc" class="form-control"
+                            #bcc="ngModel" />
+                    </div>
+                    <div class="form-group">
+                        <label for="bccIstanzaDataKey">Bcc Istanza Data Key:&nbsp;<i class="fa fa-question-circle text-muted"
+                                ngbTooltip="Nome del campo nel form dove ricavare l'email del destinatario in copia nascosta (BCC) (dinamico per ogni istanza)"></i></label>
+                        <input type="text" [(ngModel)]="attrPrtInEmailConfEdit['bcc_istanza_data_key']" id="bccIstanzaDataKey"
+                            name="bccIstanzaDataKey" class="form-control" #bccIstanzaDataKey="ngModel" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject:&nbsp;<i class="fa fa-question-circle text-muted"
+                            ngbTooltip="Soggetto dell'email (replace dinamici sulla base delle chiave previste in 'Info Replace')"></i></label>
+                    <input type="text" [(ngModel)]="attrPrtInEmailConfEdit['subject']" id="subject" name="subject" class="form-control"
+                        #subject="ngModel" />
+                </div>
+                <div class="form-group">
+                    <label for="text">Text:&nbsp;<i class="fa fa-question-circle text-muted"
+                            ngbTooltip="Contenuto testuale dell'email (replace dinamici sulla base delle chiave previste in 'Info Replace')"></i></label>
+                    <textarea [(ngModel)]="attrPrtInEmailConfEdit['text']" id="text" name="text" rows="6" cols="50" class="form-control"
+                        #text="ngModel"> </textarea>
+                </div>
+                <div class="form-group" style="display: none;">
+                    <label for="html">HTML:&nbsp;<i class="fa fa-question-circle text-muted"
+                            ngbTooltip="Contenuto HTML (replace dinamici sulla base delle chiave previste in 'Info Replace')"></i></label>
+                    <input type="text" [(ngModel)]="attrPrtInEmailConfEdit['html']" id="html" name="html" class="form-control"
+                        #html="ngModel" />
+                </div>
+                <div class="form-group">
+                    <label for="attachIstanza">Attach Istanza:&nbsp;<i class="fa fa-question-circle text-muted"
+                            ngbTooltip="Abilitazione all'invio del PDF dell'istanza come allegato dell'email [true|false]"></i></label>
+                    <div>
+                        <ui-switch [(ngModel)]="attrPrtInEmailConfEdit['attach_istanza']" [ngModelOptions]="{standalone: true}"></ui-switch>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="attachAllegati">Attach Allegati:&nbsp;<i class="fa fa-question-circle text-muted"
+                            ngbTooltip="Abilitazione all'invio degli allegati dell'istanza come allegato dell'email [true|false]"></i></label>
+                    <div>
+                        <ui-switch [(ngModel)]="attrPrtInEmailConfEdit['attach_allegati']" [ngModelOptions]="{standalone: true}"></ui-switch>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-success" (click)="salva()" style="float:right">Salva</button>
+                </div>
+            </div>
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+<!--
+        <div class="form-group">
+            <button type="button" class="btn btn-light" (click)="editMode=false;" style="float:left">Annulla</button>
+            <button type="button" class="btn btn-success" (click)="salva()" style="float:right">Salva</button>
+        </div>
+-->
+    </form>
+</div>

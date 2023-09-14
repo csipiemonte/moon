@@ -1,0 +1,68 @@
+<p>Qui trovi le istanze che hai lasciato in uno stato di bozza, ossia ancora in lavorazione.<br>Per aggiungere un'istanza al gruppo <b>Importanti</b>, clicca
+    sulla stellina <svg class="icon icon-sm align-top ">
+        <use [attr.href]="'./assets/svg/sprite.svg#it-star-outline'"
+            [attr.xlink:href]="'./assets/svg/sprite.svg#it-star-outline'"></use>
+    </svg> in corrispondenza della riga.</p>
+
+<div id="domanda" role="tabpanel" aria-label="Istanze in lavorazione"
+    class="areaTabAccodion tab-pane fade active show mt-5">
+    <div *ngIf="righeIstanzaBozza?.length > 0">
+        <div>
+            <table id="mytable" class="table table-sm  table-hover small">
+                <thead>
+                    <th><span class="visually-hidden">Aggiungi/rimuovi alle istanze importanti</span></th>
+                    <th>Modulo</th>
+                    <th>Numero istanza</th>
+                    <th>Data di creazione</th>
+                    <th>Stato attuale</th>
+                    <th>Operazioni</th>
+                </thead>
+                <tbody>
+                    <tr (onDeleteRiga)="onDeleteRiga($event)" *ngFor="let rigaIstanza of righeIstanzaBozza"
+                        [currPage]="currPageBozza" [riga-istanza-data]="rigaIstanza" riga-istanza
+                        (onCambiaImportanza)="onCambiaImportanza($event)">
+                    </tr>
+                </tbody>
+            </table>
+
+            <div *ngIf="istanzeTotali > getLimit" class="d-flex justify-content-center mt-5">    
+                <ngb-pagination [(page)]="currPageBozza" [pageSize]="pageSizeBozza" [collectionSize]="istanzeTotali"
+                [maxSize]="5" [rotate]="true" [ellipses]="true" [boundaryLinks]="true" [directionLinks]="false"
+                (pageChange)="pageChanged($event)">
+                <ng-template ngbPaginationFirst>Prima</ng-template>
+                <ng-template ngbPaginationLast>Ultima</ng-template>    
+                <ng-template ngbPaginationEllipsis>...</ng-template>
+            </ngb-pagination>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title custom_align" id="Heading">Elimina istanza</h4>
+                    <button aria-label="elimina istanza" type="button" class="btn-close" aria-label="Chiudi avviso" data-dismiss="modal"
+                        aria-hidden="true">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger"><span class="fas fa-warning-sign"></span> Sei sicuro di voler
+                        eliminare questa istanza?
+                    </div>
+                </div>
+                <div class="modal-footer ">
+                    <button aria-label="Conferma eliminazione" type="button" class="btn btn-success"><span
+                            class="fas fa-check"></span>Si</button>
+                    <button aria-label="Non confermare eliminazione" type="button" class="btn btn-info"
+                        data-dismiss="modal"><span class="fas fa-times"></span> No</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+</div>
+

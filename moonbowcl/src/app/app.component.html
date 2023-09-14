@@ -1,0 +1,135 @@
+<main>
+
+    <div id="app" class="">
+        <div id="spinner" style="display: none;"></div>
+        <nav class="navbar-pc">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="brand-area col">
+                        <span class="navbar-brand"><img src="{{urlLogoEnte}}" alt="Logo" class="d-inline-block align-top"></span>
+                        <span style="font-size:24px; vertical-align:bottom;">MOOn Gestione istanze</span>
+                    </div>
+                    <div class="user-info col">
+                        <a href="" role="button" target="_new" class="help">
+                            <fa-icon [icon]="faQuestionCircle"></fa-icon> <span> Aiuto</span></a>
+
+                        <div>
+                            <div class="dropdown user-dropdown show" [ngStyle]="isMultiEnte && {'top': '10px'}">
+                                <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">
+                                    <fa-icon [icon]="faUser"></fa-icon> <span class="txt"> {{currentUser?.nome}} {{currentUser?.cognome}}</span></a>
+                                <div aria-labelledby="dropdownMenuLink" class="dropdown-menu dropdown-menu-right">
+                                    <span class="titoli-dropdown user">{{currentUser?.nome}} {{currentUser?.cognome}}</span>
+                                    <div class="user-line dropdown-divider"></div>
+                                    <div class="col-menu">
+                                        <a [routerLink]="[]" (click)="showProfilo()" class="dropdown-item">il tuo profilo</a>
+                                    </div>
+                                    <div *ngIf="isMultiEnte" class="dropdown-divider"></div>
+                                    <div *ngIf="isMultiEnte" class="col-menu">
+                                        <a [routerLink]="[]" (click)="scegliEnte()" class="dropdown-item">cambia ente</a>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="footer-dropdown">
+                                        <a [routerLink]="[]" (click)="logout()" class="dropdown-item"><i class="icon-out"></i> esci </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="isMultiEnte" style="padding:0.2rem 1rem;margin-top:10px">{{nomeEnte}}</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="content-page">
+            <div style="height: auto;"></div>
+            <div data-toggle="affix" class="header">
+                <div class="container">
+
+                </div>
+            </div>
+            <!-- -->
+            <div>
+                <div class="nav-box">
+                    <div class="container">
+                        <ul id="pills-tab" role="tablist" class="row nav nav-pills mb-3">
+                            <li *ngIf="isScegliEnte" class="nav-item"><a id="pills-domanda-tab" data-toggle="pill" role="tab" aria-controls="pills-domanda" aria-selected="true" class="nav-link show " [ngClass]="{active:true}" style="cursor: pointer;">Scegli ente</a></li>
+                            <li *ngIf="isProfilo" class="nav-item">
+                                <a id="pills-domanda-tab" data-toggle="pill" role="tab" aria-controls="pills-domanda" aria-selected="true" class="nav-link show " style="cursor: pointer;"></a>
+                            </li>
+                            <li *ngIf="showNavMenu" class="nav-item"><a id="pills-domanda-tab" data-toggle="pill" (click)="istanze()" role="tab" aria-controls="pills-domanda" aria-selected="true" class="nav-link show " [ngClass]="{active:isIstanze}" style="cursor: pointer;">Istanze</a></li>
+                            <ng-template [ngIf]="currentUser?.isTipoADMIN() || currentUser?.hasRuoloOperatorCOMP() || currentUser?.hasRuoloOperatorADV()">
+                            <!-- <ng-template [ngIf]="currentUser?.hasRuoloOperatorCOMP()">                                 -->
+                                <li *ngIf="showNavMenu" class="nav-item"><a id="pills-documenti-tab" data-toggle="pill" (click)="nuovaIstanza()" role="tab" aria-controls="pills-documenti" aria-selected="true" class="nav-link show" [ngClass]="{active:isNuovaIstanza}" style="cursor: pointer;">Compila</a></li>
+                            </ng-template>
+<!--
+                            <ng-template [ngIf]="currentUser?.isTipoADMIN() || currentUser?.hasRuoloOperatorMinSIMP()">
+                                <li *ngIf="showNavMenu" class="nav-item"><a id="pills-documenti-tab" data-toggle="pill" (click)="notifiche()" role="tab" aria-controls="pills-documenti" aria-selected="true" class="nav-link show" [ngClass]="{active:isNotifiche}" style="cursor: pointer;">Messaggi</a></li>
+                            </ng-template>
+-->
+                            <!-- <ng-template [ngIf]="currentUser?.isTipoADMIN() || currentUser?.hasRuoloOperatorMinCON() || currentUser?.hasRuoloOperatorCOMP()"> -->
+                            <ng-template [ngIf]="currentUser?.isTipoADMIN() || currentUser?.hasRuoloOperatorMinCON()">                                
+                                <li *ngIf="showNavMenu" class="nav-item"><a id="pills-domanda-tab" data-toggle="pill" (click)="cercaIstanza()" role="tab" aria-controls="pills-domanda" aria-selected="true" class="nav-link show" [ngClass]="{active:isCercaIstanza}" style="cursor: pointer;">Cerca</a></li>
+                            </ng-template>
+                            <ng-template [ngIf]="currentUser?.isTipoADMIN() || currentUser?.hasRuoloOperatorMinCON()">
+                                <li *ngIf="showNavMenu" class="nav-item"><a id="pills-domanda-tab" data-toggle="pill" (click)="exportIstanze()" role="tab" aria-controls="pills-domanda" aria-selected="true" class="nav-link show" [ngClass]="{active:isExportIstanze}" style="cursor: pointer;">Esporta</a></li>
+                            </ng-template>
+                            <ng-template [ngIf]="currentUser?.isTipoADMIN() || currentUser?.hasRuoloOperatorMinADV()">
+                                <li *ngIf="showNavMenu" class="nav-item"><a id="pills-moduli-tab" data-toggle="pill" (click)="moduli()" role="tab" aria-controls="pills-domanda" aria-selected="true" class="nav-link show" [ngClass]="{active:isModuli}" style="cursor: pointer;">Moduli</a></li>
+                            </ng-template>
+<!--
+                            <ng-template [ngIf]="currentUser?.isTipoADMIN() || currentUser?.hasRuoloOperatorMinADV()">
+                                <li *ngIf="showNavMenu" class="nav-item"><a id="pills-domanda-tab" data-toggle="pill" (click)="report()" role="tab" aria-controls="pills-domanda" aria-selected="true" class="nav-link show" [ngClass]="{active:isReport}" style="cursor: pointer;">Statistiche</a></li>
+                            </ng-template>
+-->
+                            <ng-template [ngIf]="currentUser?.isTipoADMIN() || currentUser?.hasRuoloRESP() || currentUser?.hasRuoloOperatorADM()">
+                                <li *ngIf="showNavMenu" class="nav-item"><a id="pills-domanda-tab" data-toggle="pill" (click)="utenti()" role="tab" aria-controls="pills-domanda" aria-selected="true" class="nav-link show" [ngClass]="{active:isUtenti}" style="cursor: pointer;">Utenti</a></li>
+                            </ng-template>
+                            <ng-template [ngIf]="currentUser?.isTipoADMIN() || currentUser?.hasRuoloOperatorADM()">
+                                <li *ngIf="showNavMenu" class="nav-item"><a id="pills-domanda-tab" data-toggle="pill" (click)="processi()" role="tab" aria-controls="pills-domanda" aria-selected="true" class="nav-link show" [ngClass]="{active:isProcessi}" style="cursor: pointer;">Processi</a></li>
+                            </ng-template>
+                        </ul>
+                    </div>
+                </div>
+                <div class="user-info-all-detail">
+                    <div class="container">
+                        <div class="row">
+                            <div id="pills-tabContent" class="tab-content col">
+                                <app-error-component></app-error-component>
+                                <router-outlet></router-outlet>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="blank"></div>
+
+    <footer class="Footer">
+        <div class="container">
+            <div class="row">
+                <div class="Footer-info col-sm-6 col-md-6 col-lg-6">
+                    <!--
+        <p>
+          <img class="" src="./local/numverde.png" alt="Numero Verde 800 450 900"> </p>
+        <p> Attivo da lunedì a venerdì
+          <br> dalle ore 8.30 alle 17.30
+          <br>
+          <a href="mailto:info@torinofacile.it">info@torinofacile.it</a>
+        </p>
+      -->
+                </div>
+                <div class="Footer-loghi col-sm-6 col-md-6 col-lg-6">
+                    <div class="Grid">
+
+                    </div>
+                </div>
+            </div>
+            <!--//row-->
+        </div>
+        <!--//container-->
+    </footer>
+
+    <div></div>
+</main>

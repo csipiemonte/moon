@@ -1,0 +1,78 @@
+<html>
+<head>
+    <title th:text="${document.title}"></title>
+    <link rel="stylesheet" href="style.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<body>
+
+<div id="theme">
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_left': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.metadata.header.left,'%%title%%',document.title),'%%dataPresentazione%%',document.metadata.dataPresentazione),'%%numeroIstanza%%',document.metadata.numeroIstanza)}"/>
+    </div>
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_center': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.metadata.header.center,'%%title%%',document.title),'%%dataPresentazione%%',document.metadata.dataPresentazione),'%%numeroIstanza%%',document.metadata.numeroIstanza)}"/>
+    </div>
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_right': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.metadata.header.right,'%%title%%',document.title),'%%dataPresentazione%%',document.metadata.dataPresentazione),'%%numeroIstanza%%',document.metadata.numeroIstanza)}"/>
+    </div>
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_footer_left': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.metadata.footer.left,'%%title%%',document.title),'%%dataPresentazione%%',document.metadata.dataPresentazione),'%%numeroIstanza%%',document.metadata.numeroIstanza)}"/>
+    </div>
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_footer_right': 'hidden')}" >
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.metadata.footer.right,'%%title%%',document.title),'%%dataPresentazione%%',document.metadata.dataPresentazione),'%%numeroIstanza%%',document.metadata.numeroIstanza)}"/>
+    </div>
+
+    <div class="qr_top">
+        <div>
+            <!--<p>Inquadra il QR code con lo smartphone</p>-->
+            <img th:attrappend="src=${'data:image/png;base64,' + qrb64}"/>
+        </div>
+    </div>
+    <div class="header">
+        <h1 class="document_title"><span th:text="${document.title}"/></h1>
+        <h3>Presentata in data <span th:text="${document.metadata.dataPresentazione}"/></h3>
+    </div>
+
+
+    <div class="section page-after" th:each="section : ${document.sections}">
+        <page-inside-avoid>
+            <div th:classappend="${(section.pageBreakBefore ? ' page-break-before': '') + (section.pageBreakAfter ? ' page-break-after': '')}">
+                <h2 class="section_title underline"><span th:text="${section.title}"></span></h2>
+                <h4 class="section_subtitle" th:if="${not #strings.isEmpty(section.subtitle)}"><span
+                        th:text="${section.subtitle}"></span></h4>
+                <div class="subsection" th:each="subsection : ${section.subsections}">
+                    <h3 class="subsection_title"><span th:text="${subsection.title}"></span></h3>
+                    <div class="subsection_title_after" th:if="${not #strings.isEmpty(subsection.title)}"></div>
+                    <h4 class="subsection_subtitle" th:if="${not #strings.isEmpty(subsection.subtitle)}"><span
+                            th:text="${subsection.subtitle}"></span></h4>
+                    <p class="pre" th:if="${not #strings.isEmpty(subsection.pre)}" th:utext="${subsection.pre}"></p>
+                    <table class="item">
+                        <tr class="item" th:each="item : ${subsection.items}">
+                            <td class="label" th:text="${item.label}"></td>
+                            <td class="value" th:text="${item.value}"></td>
+                        </tr>
+                    </table>
+                    <p class="post" th:if="${not #strings.isEmpty(subsection.post)}" th:utext="${subsection.post}"></p>
+                    <!--<span class="post" th:text="${subsection.post}"/>-->
+                </div>
+            </div>
+        </page-inside-avoid>
+    </div>
+
+	<div class="footer">
+       
+    </div>
+
+    <!-- Informativa privacy -->
+    <page-before>
+
+    </page-before>
+
+</div>
+<div style="clear:both;"></div>
+
+
+</body>
+</html>

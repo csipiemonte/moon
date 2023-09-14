@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="urn:SrvRicercaFamiglia" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="urn:SrvRicercaFamiglia" xmlns:intf="urn:SrvRicercaFamiglia" xmlns:tns1="http://wrapper.csi.csi.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Nov 13, 2013 (09:13:21 GMT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="urn:SrvRicercaFamiglia" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://wrapper.csi.csi.it"/>
+   <element name="ricercaFamigliePerCivico">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="impl:CriterioRicercaFamiglie"/>
+      <element minOccurs="0" name="in1" type="impl:DatiProfilati"/>
+      <element minOccurs="0" name="in2" type="impl:UtenteServizio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_int">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="CriterioRicercaFamiglie">
+    <sequence>
+     <element name="flagFamiglieCessate" type="xsd:boolean"/>
+     <element name="idCivici" nillable="true" type="impl:ArrayOf_xsd_int"/>
+     <element name="idUiu" nillable="true" type="impl:ArrayOf_xsd_int"/>
+     <element name="tipoRicerca" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="DatiProfilati">
+    <sequence>
+     <element name="flgPaternitaMaternita" type="xsd:boolean"/>
+     <element name="flgProtocolliRiservatiE" type="xsd:boolean"/>
+     <element name="flgProtocolliRiservatiQ" type="xsd:boolean"/>
+     <element name="flgRettificheGeneralita" type="xsd:boolean"/>
+     <element name="flgSoggettiCancellati" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="Identita">
+    <sequence>
+     <element name="codFiscale" nillable="true" type="xsd:string"/>
+     <element name="cognome" nillable="true" type="xsd:string"/>
+     <element name="idProvider" nillable="true" type="xsd:string"/>
+     <element name="livelloAutenticazione" type="xsd:int"/>
+     <element name="mac" nillable="true" type="xsd:string"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="rappresentazioneInterna" nillable="true" type="xsd:string"/>
+     <element name="timestamp" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="UtenteServizio">
+    <sequence>
+     <element name="codiceUtente" nillable="true" type="xsd:string"/>
+     <element name="identita" nillable="true" type="impl:Identita"/>
+    </sequence>
+   </complexType>
+   <element name="ricercaFamigliePerCivicoResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="ricercaFamigliePerCivicoReturn" type="impl:FamigliePerCivico"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="DatiMinimiFamiglia">
+    <sequence>
+     <element name="famigliaCessata" type="xsd:boolean"/>
+     <element name="idFamiglia" type="xsd:int"/>
+     <element name="numeroFamiglia" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfDatiMinimiFamiglia">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:DatiMinimiFamiglia"/>
+    </sequence>
+   </complexType>
+   <complexType name="FamigliePerCivico">
+    <sequence>
+     <element name="famiglie" nillable="true" type="impl:ArrayOfDatiMinimiFamiglia"/>
+     <element name="numResidentiViviF" type="xsd:int"/>
+     <element name="numResidentiViviM" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="ServiceException">
+    <complexContent>
+     <extension base="tns1:UserException">
+      <sequence>
+       <element name="message" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="FormalException">
+    <complexContent>
+     <extension base="impl:ServiceException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault" type="impl:FormalException"/>
+   <element name="fault1" type="impl:ServiceException"/>
+   <complexType name="SystemException">
+    <complexContent>
+     <extension base="tns1:SystemException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault2" type="impl:SystemException"/>
+   <complexType name="UnauthorizedException">
+    <complexContent>
+     <extension base="impl:ServiceException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault3" type="impl:UnauthorizedException"/>
+   <element name="ricercaChiaviFamigliePerIndirizzo">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="impl:CriterioIndirizzo"/>
+      <element minOccurs="0" name="in1" type="impl:DatiProfilati"/>
+      <element minOccurs="0" name="in2" type="impl:UtenteServizio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="CriterioIndirizzo">
+    <sequence>
+     <element name="codiceVia" type="xsd:int"/>
+     <element name="denominazioneIndirizzo" nillable="true" type="xsd:string"/>
+     <element name="idCivici" nillable="true" type="impl:ArrayOf_xsd_int"/>
+     <element name="idUIU" nillable="true" type="impl:ArrayOf_xsd_int"/>
+     <element name="numeroPrimarioIndirizzo" nillable="true" type="xsd:int"/>
+     <element name="sedimeIndirizzo" nillable="true" type="xsd:string"/>
+     <element name="tipoRicerca" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <element name="ricercaChiaviFamigliePerIndirizzoResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="ricercaChiaviFamigliePerIndirizzoReturn" nillable="true" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://wrapper.csi.csi.it" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="urn:SrvRicercaFamiglia"/>
+   <complexType name="CSIException">
+    <sequence>
+     <element name="nestedExcClassName" nillable="true" type="xsd:string"/>
+     <element name="nestedExcMsg" nillable="true" type="xsd:string"/>
+     <element name="stackTraceMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="UserException">
+    <complexContent>
+     <extension base="tns1:CSIException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="SystemException">
+    <complexContent>
+     <extension base="tns1:CSIException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="ServiceException">
+
+      <wsdl:part element="impl:fault1" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ricercaFamigliePerCivicoResponse">
+
+      <wsdl:part element="impl:ricercaFamigliePerCivicoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ricercaFamigliePerCivicoRequest">
+
+      <wsdl:part element="impl:ricercaFamigliePerCivico" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="UnauthorizedException">
+
+      <wsdl:part element="impl:fault3" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ricercaChiaviFamigliePerIndirizzoRequest">
+
+      <wsdl:part element="impl:ricercaChiaviFamigliePerIndirizzo" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="FormalException">
+
+      <wsdl:part element="impl:fault" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ricercaChiaviFamigliePerIndirizzoResponse">
+
+      <wsdl:part element="impl:ricercaChiaviFamigliePerIndirizzoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="SystemException">
+
+      <wsdl:part element="impl:fault2" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="JavaServiceDesc">
+
+      <wsdl:operation name="ricercaFamigliePerCivico">
+
+         <wsdl:input message="impl:ricercaFamigliePerCivicoRequest" name="ricercaFamigliePerCivicoRequest"/>
+
+         <wsdl:output message="impl:ricercaFamigliePerCivicoResponse" name="ricercaFamigliePerCivicoResponse"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:UnauthorizedException" name="UnauthorizedException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+         <wsdl:fault message="impl:FormalException" name="FormalException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ricercaChiaviFamigliePerIndirizzo">
+
+         <wsdl:input message="impl:ricercaChiaviFamigliePerIndirizzoRequest" name="ricercaChiaviFamigliePerIndirizzoRequest"/>
+
+         <wsdl:output message="impl:ricercaChiaviFamigliePerIndirizzoResponse" name="ricercaChiaviFamigliePerIndirizzoResponse"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:UnauthorizedException" name="UnauthorizedException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+         <wsdl:fault message="impl:FormalException" name="FormalException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SrvRicercaFamigliaSoapBinding" type="impl:JavaServiceDesc">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="ricercaFamigliePerCivico">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ricercaFamigliePerCivicoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ricercaFamigliePerCivicoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UnauthorizedException">
+
+            <wsdlsoap:fault name="UnauthorizedException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FormalException">
+
+            <wsdlsoap:fault name="FormalException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ricercaChiaviFamigliePerIndirizzo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ricercaChiaviFamigliePerIndirizzoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ricercaChiaviFamigliePerIndirizzoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UnauthorizedException">
+
+            <wsdlsoap:fault name="UnauthorizedException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="FormalException">
+
+            <wsdlsoap:fault name="FormalException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="JavaServiceDescService">
+
+      <wsdl:port binding="impl:SrvRicercaFamigliaSoapBinding" name="SrvRicercaFamiglia">
+
+         <wsdlsoap:address location="https://tst-applogic.comune.torino.it:1444/wsfad_naosrv_wsicompliant/services/SrvRicercaFamiglia"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

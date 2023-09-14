@@ -1,0 +1,13 @@
+
+.flex-wrapper {
+  display: flex;
+  min-height: 80vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+// html, body { height: 100%;}
+// body > footer {
+//   position: sticky;
+//   top: 100vh;
+// }

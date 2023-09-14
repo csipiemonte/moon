@@ -1,0 +1,47 @@
+<!-- Altre operazioni -->
+
+<h3 class="mt-5 mb-3">Altre operazioni</h3>
+<div class="d-flex  flex-column flex-md-row my-3">
+  <button (click)="mostraDettaglioIstanza()" [routerLink]="[]" ngbTooltip="Visualizza i dati dell'istanza"
+    class="me-2 mb-2 btn btn-sm btn-icon rounded-0 btn-outline-primary justify-content-center">
+
+    <svg class="icon icon-primary icon-sm">
+      <use [attr.href]="'./assets/svg/sprite.svg#it-password-visible'"
+        [attr.xlink:href]="'./assets/svg/sprite.svg#it-password-visible'"></use>
+    </svg>
+    <span>Visualizza</span>
+  </button>
+
+  <ng-template
+    [ngIf]="istanza?.stato?.idStato !== STATI.BOZZA && istanza?.stato?.idStato !== STATI.DA_INVIARE && istanza?.stato?.idStato !== STATI.DA_PAGARE && istanza?.stato?.idStato !== STATI.ELIMINATA && istanza?.modulo?.stato?.codice === 'PUB'">
+    <button (click)="duplicaIstanza()" ngbTooltip="duplica istanza"
+      class="me-2 mb-2 btn btn-sm btn-icon rounded-0 btn-outline-primary justify-content-center">
+      <svg class="icon icon-primary icon-sm">
+        <use [attr.href]="'./assets/svg/sprite.svg#it-copy'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-copy'">
+        </use>
+      </svg>
+      <span>Duplica</span>
+    </button>
+  </ng-template>
+
+  <button (click)="downloadPdf()" *ngIf="istanza?.stato?.idStato > STATI.BOZZA" [routerLink]="[]"
+    ngbTooltip="Scarica PDF" class="me-2 mb-2 btn btn-sm btn-icon rounded-0 btn-outline-primary justify-content-center">
+    <svg class="icon icon-primary icon-sm">
+      <use [attr.href]="'./assets/svg/sprite.svg#it-download'"
+        [attr.xlink:href]="'./assets/svg/sprite.svg#it-download'"></use>
+    </svg>
+    <span>Scarica PDF</span>
+  </button>
+
+  <ng-template [ngIf]="istanza?.stato?.idStato === STATI.BOZZA && istanza?.modulo?.stato?.codice === 'PUB'">
+    <button (click)="modificaIstanza()" [routerLink]="[]" ngbTooltip="Modifica istanza"
+      class="me-2 mb-2 btn btn-sm btn-icon rounded-0 btn-outline-primary justify-content-center">
+      <svg class="icon icon-primary icon-sm">
+        <use [attr.href]="'./assets/svg/sprite.svg#it-pencil'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-pencil'">
+        </use>
+      </svg>
+      <span>Modifica</span>
+    </button>
+  </ng-template>
+
+</div>

@@ -1,0 +1,2864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="ente" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="ente" xmlns:intf="ente" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Nov 13, 2013 (09:13:21 GMT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="ente" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="cercaProvinciaPerCodiceIstat">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaProvinciaPerCodiceIstatResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaProvinciaPerCodiceIstatReturn" type="impl:Provincia"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Provincia">
+    <sequence>
+     <element name="codIstat" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:long"/>
+     <element name="idRegione" nillable="true" type="xsd:long"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="sigla" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="CSIException">
+    <sequence>
+     <element name="nestedExcClassName" nillable="true" type="xsd:string"/>
+     <element name="nestedExcMsg" nillable="true" type="xsd:string"/>
+     <element name="stackTraceMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="fault" type="impl:CSIException"/>
+   <complexType name="SystemException">
+    <complexContent>
+     <extension base="impl:CSIException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault1" type="impl:SystemException"/>
+   <complexType name="UnrecoverableException">
+    <complexContent>
+     <extension base="impl:CSIException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault2" type="impl:UnrecoverableException"/>
+   <complexType name="UserException">
+    <complexContent>
+     <extension base="impl:CSIException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="OutputException">
+    <complexContent>
+     <extension base="impl:UserException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault3" type="impl:OutputException"/>
+   <complexType name="ParInputObblMancantiException">
+    <complexContent>
+     <extension base="impl:UserException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault4" type="impl:ParInputObblMancantiException"/>
+   <complexType name="ParInputValNonCorrettoException">
+    <complexContent>
+     <extension base="impl:UserException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="fault5" type="impl:ParInputValNonCorrettoException"/>
+   <element name="cercaProvinciaPerIdProvincia">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaProvinciaPerIdProvinciaResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaProvinciaPerIdProvinciaReturn" type="impl:Provincia"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaProvincePerNome">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+      <element minOccurs="0" name="in1" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaProvincePerNomeResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaProvincePerNomeReturn" type="impl:Provincia"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaTutteLeRegioni">
+    <complexType/>
+   </element>
+   <element name="cercaTutteLeRegioniResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaTutteLeRegioniReturn" type="impl:Regione"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Regione">
+    <sequence>
+     <element name="codIstat" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:long"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="sigla" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="cercaRegionePerIdRegione">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaRegionePerIdRegioneResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaRegionePerIdRegioneReturn" type="impl:Regione"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaRegionePerCodIstat">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaRegionePerCodIstatResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaRegionePerCodIstatReturn" type="impl:Regione"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaRegioniPerNome">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+      <element name="in1" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaRegioniPerNomeResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaRegioniPerNomeReturn" type="impl:Regione"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaLocalitaPerIdComune">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaLocalitaPerIdComuneResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaLocalitaPerIdComuneReturn" type="impl:Localita"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Localita">
+    <sequence>
+     <element name="id" type="xsd:long"/>
+     <element name="idComune" nillable="true" type="xsd:long"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="cercaLocalitaPerIdLocalita">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaLocalitaPerIdLocalitaResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaLocalitaPerIdLocalitaReturn" type="impl:Localita"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaLocalitaPerNome">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+      <element name="in1" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaLocalitaPerNomeResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaLocalitaPerNomeReturn" type="impl:Localita"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaEstensioneComune">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaEstensioneComuneResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaEstensioneComuneReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaGeometriaComune">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaGeometriaComuneResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaGeometriaComuneReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaEstensioneRegione">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaEstensioneRegioneResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaEstensioneRegioneReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaGeometriaRegione">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaGeometriaRegioneResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaGeometriaRegioneReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaEstensioneProvincia">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaEstensioneProvinciaResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaEstensioneProvinciaReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaGeometriaProvincia">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaGeometriaProvinciaResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaGeometriaProvinciaReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaTuttiIComuni">
+    <complexType/>
+   </element>
+   <element name="cercaTuttiIComuniResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaTuttiIComuniReturn" type="impl:Comune"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Asl">
+    <sequence>
+     <element name="codAsl" nillable="true" type="xsd:string"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="nomeBreve" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfAsl">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:Asl"/>
+    </sequence>
+   </complexType>
+   <complexType name="Comune">
+    <sequence>
+     <element name="aslDiRiferimento" nillable="true" type="impl:ArrayOfAsl"/>
+     <element name="cap" nillable="true" type="xsd:string"/>
+     <element name="codCatasto" nillable="true" type="xsd:string"/>
+     <element name="codIstat" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:long"/>
+     <element name="idProvincia" type="xsd:long"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="cercaComunePerCodiceIstat">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaComunePerCodiceIstatResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaComunePerCodiceIstatReturn" type="impl:Comune"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaComuniPerIdProvincia">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaComuniPerIdProvinciaResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaComuniPerIdProvinciaReturn" type="impl:Comune"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaComuniPerCap">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaComuniPerCapResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaComuniPerCapReturn" type="impl:Comune"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaComunePerCodiceBelfiore">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaComunePerCodiceBelfioreResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaComunePerCodiceBelfioreReturn" type="impl:Comune"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaComunePerIdComune">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaComunePerIdComuneResponse">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="cercaComunePerIdComuneReturn" type="impl:Comune"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaComuniPerNome">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+      <element name="in1" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaComuniPerNomeResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaComuniPerNomeReturn" type="impl:Comune"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaComuniPerNomeECodIstatProvincia">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+      <element name="in1" type="xsd:int"/>
+      <element minOccurs="0" name="in2" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaComuniPerNomeECodIstatProvinciaResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaComuniPerNomeECodIstatProvinciaReturn" type="impl:Comune"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaComuniPerNomeEIdProvincia">
+    <complexType>
+     <sequence>
+      <element minOccurs="0" name="in0" type="xsd:string"/>
+      <element name="in1" type="xsd:int"/>
+      <element name="in2" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaComuniPerNomeEIdProvinciaResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaComuniPerNomeEIdProvinciaReturn" type="impl:Comune"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaTutteLeProvince">
+    <complexType/>
+   </element>
+   <element name="cercaTutteLeProvinceResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaTutteLeProvinceReturn" type="impl:Provincia"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaProvincePerIdRegione">
+    <complexType>
+     <sequence>
+      <element name="in0" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cercaProvincePerIdRegioneResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="cercaProvincePerIdRegioneReturn" type="impl:Provincia"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="cercaRegionePerIdRegioneResponse">
+
+      <wsdl:part element="impl:cercaRegionePerIdRegioneResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaRegioniPerNomeRequest">
+
+      <wsdl:part element="impl:cercaRegioniPerNome" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaProvincePerNomeResponse">
+
+      <wsdl:part element="impl:cercaProvincePerNomeResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaLocalitaPerIdLocalitaRequest">
+
+      <wsdl:part element="impl:cercaLocalitaPerIdLocalita" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaComuniPerNomeECodIstatProvinciaResponse">
+
+      <wsdl:part element="impl:cercaComuniPerNomeECodIstatProvinciaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ParInputObblMancantiException">
+
+      <wsdl:part element="impl:fault4" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaLocalitaPerIdComuneRequest">
+
+      <wsdl:part element="impl:cercaLocalitaPerIdComune" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaProvincePerNomeRequest">
+
+      <wsdl:part element="impl:cercaProvincePerNome" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaComuniPerCapRequest">
+
+      <wsdl:part element="impl:cercaComuniPerCap" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaGeometriaRegioneResponse">
+
+      <wsdl:part element="impl:cercaGeometriaRegioneResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaGeometriaProvinciaRequest">
+
+      <wsdl:part element="impl:cercaGeometriaProvincia" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaTutteLeProvinceResponse">
+
+      <wsdl:part element="impl:cercaTutteLeProvinceResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaGeometriaProvinciaResponse">
+
+      <wsdl:part element="impl:cercaGeometriaProvinciaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaProvinciaPerIdProvinciaRequest">
+
+      <wsdl:part element="impl:cercaProvinciaPerIdProvincia" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaTutteLeProvinceRequest">
+
+      <wsdl:part element="impl:cercaTutteLeProvince" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaRegionePerCodIstatResponse">
+
+      <wsdl:part element="impl:cercaRegionePerCodIstatResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaEstensioneProvinciaResponse">
+
+      <wsdl:part element="impl:cercaEstensioneProvinciaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaComunePerCodiceBelfioreResponse">
+
+      <wsdl:part element="impl:cercaComunePerCodiceBelfioreResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaEstensioneRegioneRequest">
+
+      <wsdl:part element="impl:cercaEstensioneRegione" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaRegionePerIdRegioneRequest">
+
+      <wsdl:part element="impl:cercaRegionePerIdRegione" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaTuttiIComuniResponse">
+
+      <wsdl:part element="impl:cercaTuttiIComuniResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaLocalitaPerNomeResponse">
+
+      <wsdl:part element="impl:cercaLocalitaPerNomeResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaProvincePerIdRegioneResponse">
+
+      <wsdl:part element="impl:cercaProvincePerIdRegioneResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="SystemException">
+
+      <wsdl:part element="impl:fault1" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaProvinciaPerIdProvinciaResponse">
+
+      <wsdl:part element="impl:cercaProvinciaPerIdProvinciaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaEstensioneProvinciaRequest">
+
+      <wsdl:part element="impl:cercaEstensioneProvincia" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaLocalitaPerIdComuneResponse">
+
+      <wsdl:part element="impl:cercaLocalitaPerIdComuneResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaComuniPerCapResponse">
+
+      <wsdl:part element="impl:cercaComuniPerCapResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaEstensioneComuneRequest">
+
+      <wsdl:part element="impl:cercaEstensioneComune" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaEstensioneRegioneResponse">
+
+      <wsdl:part element="impl:cercaEstensioneRegioneResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaGeometriaRegioneRequest">
+
+      <wsdl:part element="impl:cercaGeometriaRegione" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaComunePerCodiceIstatResponse">
+
+      <wsdl:part element="impl:cercaComunePerCodiceIstatResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaProvincePerIdRegioneRequest">
+
+      <wsdl:part element="impl:cercaProvincePerIdRegione" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaComunePerCodiceBelfioreRequest">
+
+      <wsdl:part element="impl:cercaComunePerCodiceBelfiore" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaComuniPerNomeResponse">
+
+      <wsdl:part element="impl:cercaComuniPerNomeResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaEstensioneComuneResponse">
+
+      <wsdl:part element="impl:cercaEstensioneComuneResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaComuniPerNomeECodIstatProvinciaRequest">
+
+      <wsdl:part element="impl:cercaComuniPerNomeECodIstatProvincia" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaComunePerIdComuneRequest">
+
+      <wsdl:part element="impl:cercaComunePerIdComune" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ParInputValNonCorrettoException">
+
+      <wsdl:part element="impl:fault5" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaComuniPerIdProvinciaResponse">
+
+      <wsdl:part element="impl:cercaComuniPerIdProvinciaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CSIException">
+
+      <wsdl:part element="impl:fault" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaGeometriaComuneRequest">
+
+      <wsdl:part element="impl:cercaGeometriaComune" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaTutteLeRegioniRequest">
+
+      <wsdl:part element="impl:cercaTutteLeRegioni" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaLocalitaPerIdLocalitaResponse">
+
+      <wsdl:part element="impl:cercaLocalitaPerIdLocalitaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaProvinciaPerCodiceIstatRequest">
+
+      <wsdl:part element="impl:cercaProvinciaPerCodiceIstat" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaTutteLeRegioniResponse">
+
+      <wsdl:part element="impl:cercaTutteLeRegioniResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaProvinciaPerCodiceIstatResponse">
+
+      <wsdl:part element="impl:cercaProvinciaPerCodiceIstatResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaComunePerCodiceIstatRequest">
+
+      <wsdl:part element="impl:cercaComunePerCodiceIstat" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="OutputException">
+
+      <wsdl:part element="impl:fault3" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaComuniPerNomeEIdProvinciaRequest">
+
+      <wsdl:part element="impl:cercaComuniPerNomeEIdProvincia" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaTuttiIComuniRequest">
+
+      <wsdl:part element="impl:cercaTuttiIComuni" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaLocalitaPerNomeRequest">
+
+      <wsdl:part element="impl:cercaLocalitaPerNome" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaGeometriaComuneResponse">
+
+      <wsdl:part element="impl:cercaGeometriaComuneResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaComuniPerNomeEIdProvinciaResponse">
+
+      <wsdl:part element="impl:cercaComuniPerNomeEIdProvinciaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaComunePerIdComuneResponse">
+
+      <wsdl:part element="impl:cercaComunePerIdComuneResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaRegionePerCodIstatRequest">
+
+      <wsdl:part element="impl:cercaRegionePerCodIstat" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaRegioniPerNomeResponse">
+
+      <wsdl:part element="impl:cercaRegioniPerNomeResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaComuniPerIdProvinciaRequest">
+
+      <wsdl:part element="impl:cercaComuniPerIdProvincia" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="UnrecoverableException">
+
+      <wsdl:part element="impl:fault2" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cercaComuniPerNomeRequest">
+
+      <wsdl:part element="impl:cercaComuniPerNome" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="limammEnte">
+
+      <wsdl:operation name="cercaProvinciaPerCodiceIstat">
+
+         <wsdl:input message="impl:cercaProvinciaPerCodiceIstatRequest" name="cercaProvinciaPerCodiceIstatRequest"/>
+
+         <wsdl:output message="impl:cercaProvinciaPerCodiceIstatResponse" name="cercaProvinciaPerCodiceIstatResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaProvinciaPerIdProvincia">
+
+         <wsdl:input message="impl:cercaProvinciaPerIdProvinciaRequest" name="cercaProvinciaPerIdProvinciaRequest"/>
+
+         <wsdl:output message="impl:cercaProvinciaPerIdProvinciaResponse" name="cercaProvinciaPerIdProvinciaResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaProvincePerNome">
+
+         <wsdl:input message="impl:cercaProvincePerNomeRequest" name="cercaProvincePerNomeRequest"/>
+
+         <wsdl:output message="impl:cercaProvincePerNomeResponse" name="cercaProvincePerNomeResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaTutteLeRegioni">
+
+         <wsdl:input message="impl:cercaTutteLeRegioniRequest" name="cercaTutteLeRegioniRequest"/>
+
+         <wsdl:output message="impl:cercaTutteLeRegioniResponse" name="cercaTutteLeRegioniResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaRegionePerIdRegione">
+
+         <wsdl:input message="impl:cercaRegionePerIdRegioneRequest" name="cercaRegionePerIdRegioneRequest"/>
+
+         <wsdl:output message="impl:cercaRegionePerIdRegioneResponse" name="cercaRegionePerIdRegioneResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaRegionePerCodIstat">
+
+         <wsdl:input message="impl:cercaRegionePerCodIstatRequest" name="cercaRegionePerCodIstatRequest"/>
+
+         <wsdl:output message="impl:cercaRegionePerCodIstatResponse" name="cercaRegionePerCodIstatResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaRegioniPerNome">
+
+         <wsdl:input message="impl:cercaRegioniPerNomeRequest" name="cercaRegioniPerNomeRequest"/>
+
+         <wsdl:output message="impl:cercaRegioniPerNomeResponse" name="cercaRegioniPerNomeResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaLocalitaPerIdComune">
+
+         <wsdl:input message="impl:cercaLocalitaPerIdComuneRequest" name="cercaLocalitaPerIdComuneRequest"/>
+
+         <wsdl:output message="impl:cercaLocalitaPerIdComuneResponse" name="cercaLocalitaPerIdComuneResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaLocalitaPerIdLocalita">
+
+         <wsdl:input message="impl:cercaLocalitaPerIdLocalitaRequest" name="cercaLocalitaPerIdLocalitaRequest"/>
+
+         <wsdl:output message="impl:cercaLocalitaPerIdLocalitaResponse" name="cercaLocalitaPerIdLocalitaResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaLocalitaPerNome">
+
+         <wsdl:input message="impl:cercaLocalitaPerNomeRequest" name="cercaLocalitaPerNomeRequest"/>
+
+         <wsdl:output message="impl:cercaLocalitaPerNomeResponse" name="cercaLocalitaPerNomeResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaEstensioneComune">
+
+         <wsdl:input message="impl:cercaEstensioneComuneRequest" name="cercaEstensioneComuneRequest"/>
+
+         <wsdl:output message="impl:cercaEstensioneComuneResponse" name="cercaEstensioneComuneResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaGeometriaComune">
+
+         <wsdl:input message="impl:cercaGeometriaComuneRequest" name="cercaGeometriaComuneRequest"/>
+
+         <wsdl:output message="impl:cercaGeometriaComuneResponse" name="cercaGeometriaComuneResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaEstensioneRegione">
+
+         <wsdl:input message="impl:cercaEstensioneRegioneRequest" name="cercaEstensioneRegioneRequest"/>
+
+         <wsdl:output message="impl:cercaEstensioneRegioneResponse" name="cercaEstensioneRegioneResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaGeometriaRegione">
+
+         <wsdl:input message="impl:cercaGeometriaRegioneRequest" name="cercaGeometriaRegioneRequest"/>
+
+         <wsdl:output message="impl:cercaGeometriaRegioneResponse" name="cercaGeometriaRegioneResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaEstensioneProvincia">
+
+         <wsdl:input message="impl:cercaEstensioneProvinciaRequest" name="cercaEstensioneProvinciaRequest"/>
+
+         <wsdl:output message="impl:cercaEstensioneProvinciaResponse" name="cercaEstensioneProvinciaResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaGeometriaProvincia">
+
+         <wsdl:input message="impl:cercaGeometriaProvinciaRequest" name="cercaGeometriaProvinciaRequest"/>
+
+         <wsdl:output message="impl:cercaGeometriaProvinciaResponse" name="cercaGeometriaProvinciaResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaTuttiIComuni">
+
+         <wsdl:input message="impl:cercaTuttiIComuniRequest" name="cercaTuttiIComuniRequest"/>
+
+         <wsdl:output message="impl:cercaTuttiIComuniResponse" name="cercaTuttiIComuniResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaComunePerCodiceIstat">
+
+         <wsdl:input message="impl:cercaComunePerCodiceIstatRequest" name="cercaComunePerCodiceIstatRequest"/>
+
+         <wsdl:output message="impl:cercaComunePerCodiceIstatResponse" name="cercaComunePerCodiceIstatResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaComuniPerIdProvincia">
+
+         <wsdl:input message="impl:cercaComuniPerIdProvinciaRequest" name="cercaComuniPerIdProvinciaRequest"/>
+
+         <wsdl:output message="impl:cercaComuniPerIdProvinciaResponse" name="cercaComuniPerIdProvinciaResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaComuniPerCap">
+
+         <wsdl:input message="impl:cercaComuniPerCapRequest" name="cercaComuniPerCapRequest"/>
+
+         <wsdl:output message="impl:cercaComuniPerCapResponse" name="cercaComuniPerCapResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaComunePerCodiceBelfiore">
+
+         <wsdl:input message="impl:cercaComunePerCodiceBelfioreRequest" name="cercaComunePerCodiceBelfioreRequest"/>
+
+         <wsdl:output message="impl:cercaComunePerCodiceBelfioreResponse" name="cercaComunePerCodiceBelfioreResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaComunePerIdComune">
+
+         <wsdl:input message="impl:cercaComunePerIdComuneRequest" name="cercaComunePerIdComuneRequest"/>
+
+         <wsdl:output message="impl:cercaComunePerIdComuneResponse" name="cercaComunePerIdComuneResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaComuniPerNome">
+
+         <wsdl:input message="impl:cercaComuniPerNomeRequest" name="cercaComuniPerNomeRequest"/>
+
+         <wsdl:output message="impl:cercaComuniPerNomeResponse" name="cercaComuniPerNomeResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaComuniPerNomeECodIstatProvincia">
+
+         <wsdl:input message="impl:cercaComuniPerNomeECodIstatProvinciaRequest" name="cercaComuniPerNomeECodIstatProvinciaRequest"/>
+
+         <wsdl:output message="impl:cercaComuniPerNomeECodIstatProvinciaResponse" name="cercaComuniPerNomeECodIstatProvinciaResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaComuniPerNomeEIdProvincia">
+
+         <wsdl:input message="impl:cercaComuniPerNomeEIdProvinciaRequest" name="cercaComuniPerNomeEIdProvinciaRequest"/>
+
+         <wsdl:output message="impl:cercaComuniPerNomeEIdProvinciaResponse" name="cercaComuniPerNomeEIdProvinciaResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaTutteLeProvince">
+
+         <wsdl:input message="impl:cercaTutteLeProvinceRequest" name="cercaTutteLeProvinceRequest"/>
+
+         <wsdl:output message="impl:cercaTutteLeProvinceResponse" name="cercaTutteLeProvinceResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaProvincePerIdRegione">
+
+         <wsdl:input message="impl:cercaProvincePerIdRegioneRequest" name="cercaProvincePerIdRegioneRequest"/>
+
+         <wsdl:output message="impl:cercaProvincePerIdRegioneResponse" name="cercaProvincePerIdRegioneResponse"/>
+
+         <wsdl:fault message="impl:UnrecoverableException" name="UnrecoverableException"/>
+
+         <wsdl:fault message="impl:CSIException" name="CSIException"/>
+
+         <wsdl:fault message="impl:SystemException" name="SystemException"/>
+
+         <wsdl:fault message="impl:ParInputValNonCorrettoException" name="ParInputValNonCorrettoException"/>
+
+         <wsdl:fault message="impl:OutputException" name="OutputException"/>
+
+         <wsdl:fault message="impl:ParInputObblMancantiException" name="ParInputObblMancantiException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="limammEnteSoapBinding" type="impl:limammEnte">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="cercaProvinciaPerCodiceIstat">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaProvinciaPerCodiceIstatRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaProvinciaPerCodiceIstatResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaProvinciaPerIdProvincia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaProvinciaPerIdProvinciaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaProvinciaPerIdProvinciaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaProvincePerNome">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaProvincePerNomeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaProvincePerNomeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaTutteLeRegioni">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaTutteLeRegioniRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaTutteLeRegioniResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaRegionePerIdRegione">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaRegionePerIdRegioneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaRegionePerIdRegioneResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaRegionePerCodIstat">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaRegionePerCodIstatRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaRegionePerCodIstatResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaRegioniPerNome">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaRegioniPerNomeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaRegioniPerNomeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaLocalitaPerIdComune">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaLocalitaPerIdComuneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaLocalitaPerIdComuneResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaLocalitaPerIdLocalita">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaLocalitaPerIdLocalitaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaLocalitaPerIdLocalitaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaLocalitaPerNome">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaLocalitaPerNomeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaLocalitaPerNomeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaEstensioneComune">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaEstensioneComuneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaEstensioneComuneResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaGeometriaComune">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaGeometriaComuneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaGeometriaComuneResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaEstensioneRegione">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaEstensioneRegioneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaEstensioneRegioneResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaGeometriaRegione">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaGeometriaRegioneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaGeometriaRegioneResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaEstensioneProvincia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaEstensioneProvinciaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaEstensioneProvinciaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaGeometriaProvincia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaGeometriaProvinciaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaGeometriaProvinciaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaTuttiIComuni">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaTuttiIComuniRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaTuttiIComuniResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaComunePerCodiceIstat">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaComunePerCodiceIstatRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaComunePerCodiceIstatResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaComuniPerIdProvincia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaComuniPerIdProvinciaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaComuniPerIdProvinciaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaComuniPerCap">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaComuniPerCapRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaComuniPerCapResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaComunePerCodiceBelfiore">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaComunePerCodiceBelfioreRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaComunePerCodiceBelfioreResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaComunePerIdComune">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaComunePerIdComuneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaComunePerIdComuneResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaComuniPerNome">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaComuniPerNomeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaComuniPerNomeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaComuniPerNomeECodIstatProvincia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaComuniPerNomeECodIstatProvinciaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaComuniPerNomeECodIstatProvinciaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaComuniPerNomeEIdProvincia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaComuniPerNomeEIdProvinciaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaComuniPerNomeEIdProvinciaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaTutteLeProvince">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaTutteLeProvinceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaTutteLeProvinceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cercaProvincePerIdRegione">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cercaProvincePerIdRegioneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cercaProvincePerIdRegioneResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnrecoverableException">
+
+            <wsdlsoap:fault name="UnrecoverableException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="CSIException">
+
+            <wsdlsoap:fault name="CSIException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SystemException">
+
+            <wsdlsoap:fault name="SystemException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputValNonCorrettoException">
+
+            <wsdlsoap:fault name="ParInputValNonCorrettoException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="OutputException">
+
+            <wsdlsoap:fault name="OutputException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParInputObblMancantiException">
+
+            <wsdlsoap:fault name="ParInputObblMancantiException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="limammEnteService">
+
+      <wsdl:port binding="impl:limammEnteSoapBinding" name="limammEnte">
+
+         <wsdlsoap:address location="http://tst-applogic.reteunitaria.piemonte.it/limammApplEnteWsfad/services/limammEnte"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

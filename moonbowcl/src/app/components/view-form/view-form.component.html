@@ -1,0 +1,35 @@
+<div style="width: 100%; margin-top:40px ">
+  {{msgErr}}
+  <h4 style="text-align:center">{{titolo}}</h4>
+  <h5 style="text-align:center">{{descrizioneModulo}}</h5>
+    <br>
+    <!-- <formio [form]='struttura' [renderOptions]="{breadcrumbSettings:{clickable: true}, language: 'it'}" [submission]='data' [options]="options" [viewOnly]="readOnly" [readOnly]="readOnly" (submit)="onSubmit($event)" (formLoad)="onFormLoad($event)" (ready)="onFormLoad($event)"
+    (change)="onChange($event)" (nextPage)="onNextPage($event)" (prevPage)="onPrevPage($event)">
+</formio> -->
+
+    <formio #Form [form]='struttura' [success]="successEmitter" [renderOptions]="renderOptions" [submission]='data' [options]="options" [viewOnly]="readOnly" [readOnly]="readOnly" (submit)="onSubmit($event)" (ready)="onReady($event)"
+        (render)="onFormLoad(Form)" (change)="onChange($event) " (nextPage)="onNextPage($event) " (prevPage)="onPrevPage($event) ">
+    </formio>
+
+    <!-- <button  class="btn"  style="float:right; background-color:lightgrey" (click)="back()">
+  <fa-icon [icon]="faHome"></fa-icon>
+</button> -->
+
+    <!-- <button class="btn btn-primary" style="width: 70px;float:left" (click)="back()">
+  <fa-icon [icon]="faHome"></fa-icon>
+</button> -->
+
+    <button id="esci" class="btn position-top btn-width" style="color: #fff;background-color: #dc3545;text-align: center" (click)="back()">
+  Esci dal modulo
+ </button>
+
+ <ng-template [ngIf]="!loadingForm">
+    <app-moon-spinner messaggio='Salvataggio delle modifiche in corso ...'></app-moon-spinner>
+ </ng-template>  
+ 
+ <ng-template [ngIf]="loadingForm">
+  <app-moon-spinner messaggio='Caricamento modulo ...'></app-moon-spinner>
+</ng-template>    
+
+
+</div>

@@ -1,0 +1,38 @@
+<div class="card shadow mb-5">
+  <div class="d-flex justify-content-end px-2">
+    <span class="me-3 etichetta">{{categoria.nomeAmbito}}</span>
+    <div class="flag-icon" style="background-color: {{categoria.color}};"></div>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{categoria.descrizione}}</h5>
+    <!-- Elenco modulli -->
+    <button aria-label="Mostra elenco moduli" class="btn btn-link collapse__button w-100 d-flex justify-content-between px-0 align-items-center" (click)="collapsed()" [attr.aria-expanded]="!isCollapsed" aria-controls="elencoModuli"
+        type="button">
+      <span>Elenco moduli pubblicati <span class="visually-hidden">nella categoria {{categoria.descrizione}}</span>: {{moduli.length}}</span>
+      <svg class="icon icon-primary ">
+        <use [attr.href]="'./assets/svg/sprite.svg#it-collapse'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-collapse'"></use>
+    </svg>
+
+    </button>
+
+
+    <div #collapse="ngbCollapse" [ngbCollapse]="isCollapsed" class="collapse collapse__content">
+      <ul class="list-unstyled p-0 mx-0 mt-2">
+        <li *ngFor="let m of moduli" class="d-block pe-3 small list-item px-0 mx-0"
+            ngbTooltip="{{m.descrizioneModulo | lowercase}} " tooltipClass="tooltip-small"
+            placement="right">
+          {{m.oggettoModulo}}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Link -->
+    <a role="link" title="Vai ai moduli della categoria '{{categoria.descrizione}}'" (click)="viewModuliList()" class="read-more text-right" title="Vai ai moduli della categoria {{categoria.descrizione}}" routerLink="">
+      <span class="text">Vai ai moduli</span>
+      <svg class="icon">
+          <use [attr.href]="'./assets/svg/sprite.svg#it-arrow-right'"  [attr.xlink:href]="'./assets/svg/sprite.svg#it-arrow-right'"></use>
+      </svg>
+    </a>
+</div>
+
+<!-- https://www.w3schools.com/bootstrap4/bootstrap_cards.asp -->

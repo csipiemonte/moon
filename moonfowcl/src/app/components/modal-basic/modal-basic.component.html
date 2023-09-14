@@ -1,0 +1,15 @@
+
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{modal_titolo}}</h4>
+    <button type="button" class="btn-close" aria-label="Chiudi avviso" (click)="activeModal.dismiss('Cross click')">
+    </button>
+  </div>
+  <div class="modal-body">
+    <span [innerHtml]="modal_contenuto"></span>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" (click)="activeModal.dismiss('Annulla')">Annulla</button>
+    <button type="button" class="btn btn-primary" (click)="activeModal.close('Conferma')">Conferma</button>
+  </div>
+
+

@@ -1,0 +1,923 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ##################################################### -->
+<!-- # build.xml file per compilazione e generazione     # -->
+<!-- # del pacchetto per il rilascio dell'applicazione.  # -->
+<!-- #                                                   # -->
+<!-- # Per una lista completa dei tasks eseguibili usare # -->
+<!-- # l'argomento di ant -projecthelp quando si         # -->
+<!-- # richiama questo build.xml.                        # -->
+<!-- ##################################################### -->
+
+<project basedir=".."
+         default="default"
+         name="moonsrv-buildRESTClientLibs"
+         xmlns:ivy="antlib:fr.jayasoft.ivy.ant" >
+
+	<description>Build file per il progetto: [moonsrv]</description>
+
+	<!-- -->
+	<echo message="Loading build properties..." />
+	<property file="buildfiles/build.properties" />
+	<property file="buildfiles/build.locale.properties" />
+	<property file="buildfiles/${target}.properties" />
+
+	<!-- -->
+	<path id="library.ref">
+		<fileset dir="${lib}">
+			<include name="**/*.jar" />
+			<include name="**/*.zip" />
+		</fileset>
+	</path>
+	
+	<taskdef resource="net/sf/antcontrib/antlib.xml"/>
+
+	<!-- -->
+	<!-- ############################################################# -->
+	<!-- # Target: default                                           # -->
+	<!-- ############################################################# -->
+	<!-- -->
+	<target name="default">
+		<antcall target="echotime" />
+	</target>
+	
+	<!--PROTECTED REGION ID(R1519293945) ENABLED START-->
+	<target name="echotime">
+	    <tstamp>
+	      <format property="TODAY_IT" pattern="yyyy-MM-dd HH:mm:ss:sss zzz" locale="it,IT"/>
+	    </tstamp>
+	    <echo>Current system date/time is ${TODAY_IT}</echo>
+	</target>
+	<!--PROTECTED REGION END-->
+
+	
+    <target name="_generate-class-swagger-apimint-demografia"
+		description="Genera le Class java del YAML di demografia">
+
+		<!-- Init mkdir e delete ${build}/swagger-codegen/demografia -->
+		<echo message="Init mkdir e delete ${build}/swagger-codegen/demografia ..." />
+    	<delete dir="${build}/swagger-codegen/demografia" />
+		<mkdir dir="${build}/swagger-codegen/demografia/src/java" />
+    	
+    	<!-- Genera le Class java del YAML di demografia -->
+    	<echo message="Genera le Class java del YAML di demografia" />
+        <java classname="io.swagger.codegen.SwaggerCodegen" 
+        		fork="true" >
+            <classpath>
+                <path location="${conf}/swagger-codegen/lib/swagger-codegen-cli.jar"/>
+            	<path location="${conf}/swagger-codegen/lib/csi-java-swagger-codegen-1.0.0.jar"/>
+            </classpath>
+        	<arg value="generate" />
+        	<arg line="-i ${conf}/yaml/apimint_demografia_v1.yaml" />
+        	<arg line="-l jaxrs-resteasy-eap-csi" />
+        	<arg line="-o ${build}/swagger-codegen/demografia" />
+        	<arg line="--config ${conf}/swagger-codegen/swagger_config_java_demografia.json" />
+        </java>
+    </target>
+	
+	<target name="generate-apimint-demografia-jar" depends=""
+		description="Crea il jar con classe del stub client Demografia esposto su APIMINT sulla base del file yaml">
+		
+		<antcall target="_generate-class-swagger-apimint-demografia" />
+		
+		<!-- Init mkdir ${build}/swagger-codegen/demografia -->
+		<echo message="Init mkdir ${build}/swagger-codegen/demografia ..." />
+		<mkdir dir="${build}/swagger-codegen/demografia/classes" />
+		<mkdir dir="${build}/swagger-codegen/demografia/archives" />
+
+		<!-- Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO -->
+		<echo message="Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO ..." />
+		<delete dir="${build}/swagger-codegen/demografia/src/java/it/csi/apimint/demografia/v1/business"/>
+		
+		<!-- compilazione dei sorgenti generati da swagger -->
+		<echo message="Compilazione dei sorgenti generati da swagger ..." />
+		<javac srcdir="${build}/swagger-codegen/demografia/src/java" destdir="${build}/swagger-codegen/demografia/classes"
+		       optimize="on" deprecation="on"
+		       compiler="modern"
+		       debug="on" debuglevel="lines,vars,source">
+			<classpath refid="library.ref" />
+		</javac>
+		
+		<!-- Package jar delle classes -->
+		<echo message="Package jar delle classes ..." />
+		<jar destfile="${build}/swagger-codegen/demografia/archives/apimint-demografia-v1.jar"
+			     basedir="${build}/swagger-codegen/demografia/classes"
+			     includes="it/csi/apimint/demografia/v1/dto/**">										
+		</jar>
+	
+		<!-- Copia la librieria apimint-demografia.jar nel progetto corrente -->
+		<echo message="Copia la librieria apimint-demografia.jar nel progetto corrente ..." />
+		<copy file="${build}/swagger-codegen/demografia/archives/apimint-demografia-v1.jar"
+			todir="${conf}/lib-tmp" overwrite="true"/>
+		<copy file="${build}/swagger-codegen/demografia/archives/apimint-demografia-v1.jar"
+			todir="${lib}" overwrite="true"/>
+	</target>
+
+	
+	
+    <target name="_generate-class-swagger-apimint-toponomastica"
+		description="Genera le Class java del YAML di toponomastica COTO">
+
+		<!-- Init mkdir e delete ${build}/swagger-codegen/toponomastica -->
+		<echo message="Init mkdir e delete ${build}/swagger-codegen/toponomastica ..." />
+    	<delete dir="${build}/swagger-codegen/toponomastica" />
+		<mkdir dir="${build}/swagger-codegen/toponomastica" />
+    	
+    	<!-- Genera le Class java del YAML di toponomastica -->
+    	<echo message="Genera le Class java del YAML di toponomastica" />
+        <java classname="io.swagger.codegen.SwaggerCodegen" 
+        		fork="true" >
+            <classpath>
+                <path location="${conf}/swagger-codegen/lib/swagger-codegen-cli.jar"/>
+            	<path location="${conf}/swagger-codegen/lib/csi-java-swagger-codegen-1.0.0.jar"/>
+            </classpath>
+        	<arg value="generate" />
+        	<arg line="-i ${conf}/yaml/apimint_toponomastica_v1.yaml" />
+        	<arg line="-l jaxrs-resteasy-eap-csi" />
+        	<arg line="-o ${build}/swagger-codegen/toponomastica" />
+        	<arg line="--config ${conf}/swagger-codegen/swagger_config_java_toponomastica.json" />
+        </java>
+    </target>
+	
+	<target name="generate-apimint-toponomastica-jar" depends=""
+		description="Crea il jar con classe del stub client Toponomastica esposto su APIMINT sulla base del file yaml">
+		
+		<antcall target="_generate-class-swagger-apimint-toponomastica" />
+		
+		<!-- Init mkdir ${build}/swagger-codegen/toponomastica -->
+		<echo message="Init mkdir ${build}/swagger-codegen/toponomastica ..." />
+		<mkdir dir="${build}/swagger-codegen/toponomastica/classes" />
+		<mkdir dir="${build}/swagger-codegen/toponomastica/archives" />
+
+		<!-- Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO -->
+		<echo message="Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO ..." />
+		<delete dir="${build}/swagger-codegen/toponomastica/src/java/it/csi/apimint/toponomastica/v1/business"/>
+		
+		<!-- compilazione dei sorgenti generati da swagger -->
+		<echo message="Compilazione dei sorgenti generati da swagger ..." />
+		<javac srcdir="${build}/swagger-codegen/toponomastica/src/java" destdir="${build}/swagger-codegen/toponomastica/classes"
+		       optimize="on" deprecation="on"
+		       compiler="modern"
+		       debug="on" debuglevel="lines,vars,source">
+			<classpath refid="library.ref" />
+		</javac>
+		
+		<!-- Package jar delle classes -->
+		<echo message="Package jar delle classes ..." />
+		<jar destfile="${build}/swagger-codegen/toponomastica/archives/apimint-toponomastica-v1.jar"
+			     basedir="${build}/swagger-codegen/toponomastica/classes"
+			     includes="it/csi/apimint/toponomastica/v1/dto/**">										
+		</jar>
+	
+		<!-- Copia la librieria apimint-toponomastica.jar nel progetto corrente -->
+		<echo message="Copia la librieria apimint-toponomastica.jar nel progetto corrente ..." />
+		<copy file="${build}/swagger-codegen/toponomastica/archives/apimint-toponomastica-v1.jar"
+			todir="${conf}/lib-tmp" overwrite="true"/>
+		<copy file="${build}/swagger-codegen/toponomastica/archives/apimint-toponomastica-v1.jar"
+			todir="${lib}" overwrite="true"/>
+	</target>
+
+	
+	
+    <target name="_generate-class-swagger-apirest-notify-mb"
+		description="Genera le Class java del YAML di Notifier Message Broker">
+
+		<!-- Init mkdir e delete ${build}/swagger-codegen/notify-mb -->
+		<echo message="Init mkdir e delete ${build}/swagger-codegen/notify-mb ..." />
+    	<delete dir="${build}/swagger-codegen/notify-mb" />
+		<mkdir dir="${build}/swagger-codegen/notify-mb" />
+    	
+    	<!-- Genera le Class java del YAML di notify-mb -->
+    	<echo message="Genera le Class java del YAML di notify-mb" />
+        <java classname="io.swagger.codegen.SwaggerCodegen" 
+        		fork="true" >
+            <classpath>
+                <path location="${conf}/swagger-codegen/lib/swagger-codegen-cli.jar"/>
+            	<path location="${conf}/swagger-codegen/lib/csi-java-swagger-codegen-1.0.0.jar"/>
+            </classpath>
+        	<arg value="generate" />
+        	<arg line="-i ${conf}/yaml/apirest_notify-message-broker_v1.yaml" />
+        	<arg line="-l jaxrs-resteasy-eap-csi" />
+        	<arg line="-o ${build}/swagger-codegen/notify-mb" />
+        	<arg line="--config ${conf}/swagger-codegen/swagger_config_java_notify-mb.json" />
+        </java>
+    </target>
+	
+	<target name="generate-apirest-notify-mb-jar" depends="_generate-class-swagger-apirest-notify-mb"
+		description="Crea il jar con classe del stub client Notifier Message Broker esposto su API Manager sulla base del file yaml">
+		
+		<!-- antcall target="_generate-class-swagger-apirest-notify-mb" / -->
+		
+		<!-- Init mkdir ${build}/swagger-codegen/notify-mb -->
+		<echo message="Init mkdir ${build}/swagger-codegen/notify-mb ..." />
+		<mkdir dir="${build}/swagger-codegen/notify-mb/classes" />
+		<mkdir dir="${build}/swagger-codegen/notify-mb/archives" />
+
+		<!-- Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO -->
+		<echo message="Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO ..." />
+		<delete dir="${build}/swagger-codegen/notify-mb/src/java/it/csi/apirest/notify/mb/v1/business"/>
+		
+		<!-- compilazione dei sorgenti generati da swagger -->
+		<echo message="Compilazione dei sorgenti generati da swagger ..." />
+		<javac srcdir="${build}/swagger-codegen/notify-mb/src/java" destdir="${build}/swagger-codegen/notify-mb/classes"
+		       optimize="on" deprecation="on"
+		       compiler="modern"
+		       debug="on" debuglevel="lines,vars,source">
+			<classpath refid="library.ref" />
+		</javac>
+		
+		<!-- Package jar delle classes -->
+		<echo message="Package jar delle classes ..." />
+		<jar destfile="${build}/swagger-codegen/notify-mb/archives/apirest-notify-mb-v1.jar"
+			     basedir="${build}/swagger-codegen/notify-mb/classes"
+			     includes="it/csi/apirest/notify/mb/v1/dto/**">										
+		</jar>
+	
+		<!-- Copia la librieria apirest-notify-mb.jar nel progetto corrente -->
+		<echo message="Copia la librieria apirest-notify-mb-v1.jar nel progetto corrente ..." />
+		<copy file="${build}/swagger-codegen/notify-mb/archives/apirest-notify-mb-v1.jar"
+			todir="${conf}/lib-tmp" overwrite="true"/>
+		<copy file="${build}/swagger-codegen/notify-mb/archives/apirest-notify-mb-v1.jar"
+			todir="${lib}" overwrite="true"/>
+		
+		<!-- Copia la librieria apirest-notify-mb.jar nel progetto MOOnFo -->
+		<!--
+		<echo message="Copia la librieria apirest-notify-mb-v1.jar nel progetto MOOnFo ..." />
+		<copy file="${build}/swagger-codegen/notify-mb/archives/apirest-notify-mb-v1.jar"
+			todir="${moonfobl.base.dir}/conf/lib-tmp" overwrite="true"/>
+		<copy file="${build}/swagger-codegen/notify-mb/archives/apirest-notify-mb-v1.jar"
+			todir="${moonfobl.base.dir}/lib" overwrite="true"/>
+			-->
+	</target>
+
+    <target name="_generate-class-swagger-apirest-notify-preferences"
+		description="Genera le Class java del YAML di Notifier Preferences">
+
+		<!-- Init mkdir e delete ${build}/swagger-codegen/notify-preferences -->
+		<echo message="Init mkdir e delete ${build}/swagger-codegen/notify-preferences ..." />
+    	<delete dir="${build}/swagger-codegen/notify-preferences" />
+		<mkdir dir="${build}/swagger-codegen/notify-preferences" />
+    	
+    	<!-- Genera le Class java del YAML di notify-preferences -->
+    	<echo message="Genera le Class java del YAML di notify-preferences" />
+        <java classname="io.swagger.codegen.SwaggerCodegen" 
+        		fork="true" >
+            <classpath>
+                <path location="${conf}/swagger-codegen/lib/swagger-codegen-cli.jar"/>
+            	<path location="${conf}/swagger-codegen/lib/csi-java-swagger-codegen-1.0.0.jar"/>
+            </classpath>
+        	<arg value="generate" />
+        	<arg line="-i ${conf}/yaml/apirest_notify-preferences_v1.yaml" />
+        	<arg line="-l jaxrs-resteasy-eap-csi" />
+        	<arg line="-o ${build}/swagger-codegen/notify-preferences" />
+        	<arg line="--config ${conf}/swagger-codegen/swagger_config_java_notify-preferences.json" />
+        </java>
+    </target>
+	
+	<target name="generate-apirest-notify-preferences-jar" depends="_generate-class-swagger-apirest-notify-preferences"
+		description="Crea il jar con classe del stub client Notifier Preferences esposto su API Manager sulla base del file yaml">
+		
+		<!-- antcall target="_generate-class-swagger-apirest-notify-preferences" / -->
+		
+		<!-- Init mkdir ${build}/swagger-codegen/notify-preferences -->
+		<echo message="Init mkdir ${build}/swagger-codegen/notify-preferences ..." />
+		<mkdir dir="${build}/swagger-codegen/notify-preferences/classes" />
+		<mkdir dir="${build}/swagger-codegen/notify-preferences/archives" />
+
+		<!-- Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO -->
+		<echo message="Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO ..." />
+		<delete dir="${build}/swagger-codegen/notify-preferences/src/java/it/csi/apirest/notify/preferences/v1/business"/>
+		
+		<!-- compilazione dei sorgenti generati da swagger -->
+		<echo message="Compilazione dei sorgenti generati da swagger ..." />
+		<javac srcdir="${build}/swagger-codegen/notify-preferences/src/java" destdir="${build}/swagger-codegen/notify-preferences/classes"
+		       optimize="on" deprecation="on"
+		       compiler="modern"
+		       debug="on" debuglevel="lines,vars,source">
+			<classpath refid="library.ref" />
+		</javac>
+		
+		<!-- Package jar delle classes -->
+		<echo message="Package jar delle classes ..." />
+		<jar destfile="${build}/swagger-codegen/notify-preferences/archives/apirest-notify-preferences-v1.jar"
+			     basedir="${build}/swagger-codegen/notify-preferences/classes"
+			     includes="it/csi/apirest/notify/preferences/v1/dto/**">										
+		</jar>
+	
+		<!-- Copia la librieria apirest-notify-preferences.jar nel progetto corrente -->
+		<echo message="Copia la librieria apirest-notify-preferences-v1.jar nel progetto corrente ..." />
+		<copy file="${build}/swagger-codegen/notify-preferences/archives/apirest-notify-preferences-v1.jar"
+			todir="${conf}/lib-tmp" overwrite="true"/>
+		<copy file="${build}/swagger-codegen/notify-preferences/archives/apirest-notify-preferences-v1.jar"
+			todir="${lib}" overwrite="true"/>
+		
+		<!-- Copia la librieria apirest-notify-preferences.jar nel progetto MOOnFo -->
+		<!--
+		<echo message="Copia la librieria apirest-notify-preferences-v1.jar nel progetto MOOnFo ..." />
+		<copy file="${build}/swagger-codegen/notify-preferences/archives/apirest-notify-preferences-v1.jar"
+			todir="${moonfobl.base.dir}/conf/lib-tmp" overwrite="true"/>
+		<copy file="${build}/swagger-codegen/notify-preferences/archives/apirest-notify-preferences-v1.jar"
+			todir="${moonfobl.base.dir}/lib" overwrite="true"/>
+			-->
+	</target>
+	
+	
+	  <target name="_generate-class-swagger-apirest-notify-status"
+			description="Genera le Class java del YAML di Notifier Messges Status">
+
+			<!-- Init mkdir e delete ${build}/swagger-codegen/notify-status -->
+			<echo message="Init mkdir e delete ${build}/swagger-codegen/notify-status ..." />
+	    	<delete dir="${build}/swagger-codegen/notify-status" />
+			<mkdir dir="${build}/swagger-codegen/notify-status" />
+	    	
+	    	<!-- Genera le Class java del YAML di notify-status -->
+	    	<echo message="Genera le Class java del YAML dinotify-status" />
+	        <java classname="io.swagger.codegen.SwaggerCodegen" 
+	        		fork="true" >
+	            <classpath>
+	                <path location="${conf}/swagger-codegen/lib/swagger-codegen-cli.jar"/>
+	            	<path location="${conf}/swagger-codegen/lib/csi-java-swagger-codegen-1.0.0.jar"/>
+	            </classpath>
+	        	<arg value="generate" />
+	        	<arg line="-i ${conf}/yaml/apirest_notify-messages-status_v1.yaml" />
+	        	<arg line="-l jaxrs-resteasy-eap-csi" />
+	        	<arg line="-o ${build}/swagger-codegen/notify-status" />
+	        	<arg line="--config ${conf}/swagger-codegen/swagger_config_java_notify-status.json" />
+	        </java>
+	    </target>
+		
+		<target name="generate-apirest-notify-status-jar" depends="_generate-class-swagger-apirest-notify-status"
+			description="Crea il jar con classe del stub client Notifier Messages Status esposto su API Manager sulla base del file yaml">
+			
+			<!-- antcall target="_generate-class-swagger-apirest-notify-status" / -->
+			
+			<!-- Init mkdir ${build}/swagger-codegen/notify-status -->
+			<echo message="Init mkdir ${build}/swagger-codegen/notify-status ..." />
+			<mkdir dir="${build}/swagger-codegen/notify-status/classes" />
+			<mkdir dir="${build}/swagger-codegen/notify-status/archives" />
+
+			<!-- Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO -->
+			<echo message="Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO ..." />
+			<delete dir="${build}/swagger-codegen/notify-status/src/java/it/csi/apirest/notify/status/v1/business"/>
+			
+			<!-- compilazione dei sorgenti generati da swagger -->
+			<echo message="Compilazione dei sorgenti generati da swagger ..." />
+			<javac srcdir="${build}/swagger-codegen/notify-status/src/java" destdir="${build}/swagger-codegen/notify-status/classes"
+			       optimize="on" deprecation="on"
+			       compiler="modern"
+			       debug="on" debuglevel="lines,vars,source">
+				<classpath refid="library.ref" />
+			</javac>
+			
+			<!-- Package jar delle classes -->
+			<echo message="Package jar delle classes ..." />
+			<jar destfile="${build}/swagger-codegen/notify-status/archives/apirest-notify-status-v1.jar"
+				     basedir="${build}/swagger-codegen/notify-status/classes"
+				     includes="it/csi/apirest/notify/status/v1/dto/**">										
+			</jar>
+		
+			<!-- Copia la librieria apirest-notify-status.jar nel progetto corrente -->
+			<echo message="Copia la librieria apirest-notify-status-v1.jar nel progetto corrente ..." />
+			<copy file="${build}/swagger-codegen/notify-status/archives/apirest-notify-status-v1.jar"
+				todir="${conf}/lib-tmp" overwrite="true"/>
+			<copy file="${build}/swagger-codegen/notify-status/archives/apirest-notify-status-v1.jar"
+				todir="${lib}" overwrite="true"/>
+			
+			<!-- Copia la librieria apirest-notify-status.jar nel progetto MOOnFo -->
+			<!--
+			<echo message="Copia la librieria apirest-notify-status-v1.jar nel progetto MOOnFo ..." />
+			<copy file="${build}/swagger-codegen/notify-status/archives/apirest-notify-status-v1.jar"
+				todir="${moonfobl.base.dir}/conf/lib-tmp" overwrite="true"/>
+			<copy file="${build}/swagger-codegen/notify-status/archives/apirest-notify-status-v1.jar"
+				todir="${moonfobl.base.dir}/lib" overwrite="true"/>
+				-->
+		</target>	
+	
+	
+    <target name="_generate-class-swagger-apirest-moonsrv-api"
+		description="Genera le Class java del YAML delle API MOOnSrv Fruitori">
+
+		<!-- Init mkdir e delete ${build}/swagger-codegen/notify-mb -->
+		<echo message="Init mkdir e delete ${build}/swagger-codegen/moonsrv-api ..." />
+    	<delete dir="${build}/swagger-codegen/moonsrv-api" />
+		<mkdir dir="${build}/swagger-codegen/moonsrv-api" />
+    	
+    	<!-- Genera le Class java del JSON Openapi 3.0  di MOOn API -->
+    	<echo message="Genera le Class java del JSON Openapi 3.0  di MOOn API" />
+        <java classname="org.openapitools.codegen.OpenAPIGenerator" 
+        		fork="true" >
+            <classpath>
+                <path location="${conf}/swagger-codegen/lib/openapi-generator-cli-5.2.1.jar"/>
+            	<!-- path location="${conf}/swagger-codegen/lib/csi-java-swagger-codegen-1.0.0.jar" -->
+            </classpath>
+        	<arg value="generate" />
+        	<arg line="-i ${src}/yaml/patrim/moon_moonsrv_api_v1.yaml" />
+        	<arg line="-g jaxrs-resteasy-eap" />
+        	<arg line="--skip-validate-spec" />
+        	<arg line="-o ${build}/swagger-codegen/moonsrv-api" />
+        	<arg line="--config ${conf}/swagger-codegen/swagger_config_java_moonsrv-api.json" />
+        </java>
+    </target>
+	
+	<target name="generate-apirest-moonsrv-api-jar" depends=""
+		description="Crea il jar con classe del stub client di Prova dei nostri servizi fruitori esposto su API Manager sulla base del file yaml">
+		
+		<antcall target="_generate-class-swagger-apirest-moonsrv-api" />
+		
+		<!-- Init mkdir ${build}/swagger-codegen/moonsrv-api -->
+		<echo message="Init mkdir ${build}/swagger-codegen/moonsrv-api ..." />
+		<mkdir dir="${build}/swagger-codegen/moonsrv-api/classes" />
+		<mkdir dir="${build}/swagger-codegen/moonsrv-api/archives" />
+
+		<!-- Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO -->
+		<echo message="Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO ..." />
+		<delete dir="${build}/swagger-codegen/moonsrv-api/src/java/it/csi/apirest/moonsrv/api/v1/business"/>
+		
+		<!-- compilazione dei sorgenti generati da swagger -->
+		<echo message="Compilazione dei sorgenti generati da swagger ..." />
+		<javac srcdir="${build}/swagger-codegen/moonsrv-api/src/java" destdir="${build}/swagger-codegen/moonsrv-api/classes"
+		       optimize="on" deprecation="on"
+		       compiler="modern"
+		       debug="on" debuglevel="lines,vars,source">
+			<classpath refid="library.ref" />
+		</javac>
+		
+		<!-- Package jar delle classes -->
+		<echo message="Package jar delle classes ..." />
+		<jar destfile="${build}/swagger-codegen/moonsrv-api/archives/apirest-moonsrv-api-v1.jar"
+			     basedir="${build}/swagger-codegen/moonsrv-api/classes"
+			     includes="it/csi/apirest/moonsrv/api/v1/dto/**">										
+		</jar>
+	
+		<!-- Copia la librieria apirest-moonsrv-api.jar nel progetto corrente -->
+<!--		<echo message="Copia la librieria apirest-moonsrv-api-v1.jar nel progetto corrente ..." />
+		<copy file="${build}/swagger-codegen/notify-mb/archives/apirest-notify-mb-v1.jar"
+			todir="${conf}/lib-tmp" overwrite="true"/>
+		<copy file="${build}/swagger-codegen/notify-mb/archives/apirest-notify-mb-v1.jar"
+			todir="${lib}" overwrite="true"/>  -->
+	</target>
+	
+	
+    <target name="_generate-class-swagger-apimint-cosmo"
+		description="Genera le Class java del YAML di COSMO">
+
+		<!-- Init mkdir e delete ${build}/swagger-codegen/cosmo -->
+		<echo message="Init mkdir e delete ${build}/swagger-codegen/cosmo ..." />
+    	<delete dir="${build}/swagger-codegen/cosmo" />
+		<mkdir dir="${build}/swagger-codegen/cosmo/src/java" />
+    	
+    	<!-- Genera le Class java del YAML di cosmo -->
+    	<echo message="Genera le Class java del YAML di cosmo" />
+        <java classname="io.swagger.codegen.SwaggerCodegen" 
+        		fork="true" >
+            <classpath>
+                <path location="${conf}/swagger-codegen/lib/swagger-codegen-cli.jar"/>
+            	<path location="${conf}/swagger-codegen/lib/csi-java-swagger-codegen-1.0.0.jar"/>
+            </classpath>
+        	<arg value="generate" />
+        	<arg line="-i ${conf}/yaml/apimint_cosmo-servizi-fruitori-xp_v1.yaml" />
+        	<arg line="-l jaxrs-resteasy-eap-csi" />
+        	<arg line="-o ${build}/swagger-codegen/cosmo" />
+        	<arg line="--config ${conf}/swagger-codegen/swagger_config_java_cosmo.json" />
+        </java>
+    </target>
+	
+	<target name="generate-apimint-cosmo-jar" depends=""
+		description="Crea il jar con classe del stub client Demografia esposto su APIMINT sulla base del file yaml">
+		
+		<!-- <antcall target="_generate-class-swagger-apimint-cosmo" /> -->
+		
+		<!-- Init mkdir ${build}/swagger-codegen/cosmo -->
+		<echo message="Init mkdir ${build}/swagger-codegen/cosmo ..." />
+		<mkdir dir="${build}/swagger-codegen/cosmo/classes" />
+		<mkdir dir="${build}/swagger-codegen/cosmo/archives" />
+
+		<!-- Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO -->
+		<echo message="Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO ..." />
+		<delete dir="${build}/swagger-codegen/cosmo/src/java/it/csi/apimint/cosmo/v1/business"/>
+		
+		<!-- compilazione dei sorgenti generati da swagger -->
+		<echo message="Compilazione dei sorgenti generati da swagger ..." />
+		<javac srcdir="${build}/swagger-codegen/cosmo/src/java" destdir="${build}/swagger-codegen/cosmo/classes"
+		       optimize="on" deprecation="on"
+		       compiler="modern"
+		       debug="on" debuglevel="lines,vars,source">
+			<classpath refid="library.ref" />
+		</javac>
+		
+		<!-- Package jar delle classes -->
+		<echo message="Package jar delle classes ..." />
+		<jar destfile="${build}/swagger-codegen/cosmo/archives/apimint-cosmo-v1.jar"
+			basedir="${build}/swagger-codegen/cosmo/classes"
+			includes="it/csi/apimint/cosmo/v1/dto/**">										
+		</jar>
+	
+		<!-- Copia la librieria apimint-cosmo.jar nel progetto corrente -->
+		<echo message="Copia la librieria apimint-cosmo.jar nel progetto corrente ..." />
+		<copy file="${build}/swagger-codegen/cosmo/archives/apimint-cosmo-v1.jar"
+			todir="${conf}/lib-tmp" overwrite="true"/>
+		<copy file="${build}/swagger-codegen/cosmo/archives/apimint-cosmo-v1.jar"
+			todir="${lib}" overwrite="true"/>
+	</target>
+
+
+    <target name="_generate-class-swagger-apimint-cosmo-callback"
+		description="Genera le Class java del YAML di COSMO CALLBACK">
+
+		<!-- Init mkdir e delete ${build}/swagger-codegen/cosmo-callback -->
+		<echo message="Init mkdir e delete ${build}/swagger-codegen/cosmo-callback ..." />
+    	<delete dir="${build}/swagger-codegen/cosmo-callback" />
+		<mkdir dir="${build}/swagger-codegen/cosmo-callback/src/java" />
+    	
+    	<!-- Genera le Class java del YAML di cosmo-callback -->
+    	<echo message="Genera le Class java del YAML di cosmo-callback" />
+        <java classname="io.swagger.codegen.SwaggerCodegen" 
+        		fork="true" >
+            <classpath>
+                <path location="${conf}/swagger-codegen/lib/swagger-codegen-cli.jar"/>
+            	<path location="${conf}/swagger-codegen/lib/csi-java-swagger-codegen-1.0.0.jar"/>
+            </classpath>
+        	<arg value="generate" />
+        	<arg line="-i ${conf}/yaml/cosmo/callback_v1/cosmobusiness-callback.v1.yaml" />
+        	<arg line="-l jaxrs-resteasy-eap-csi" />
+        	<arg line="-o ${build}/swagger-codegen/cosmo-callback" />
+        	<arg line="--config ${conf}/swagger-codegen/swagger_config_java_cosmo-callback.json" />
+        </java>
+    </target>
+	
+	<target name="generate-apimint-cosmo-callback-jar" depends=""
+		description="Crea il jar con classe del server COSMO CALLBACK esposto da MOON su APIMINT sulla base del file yaml fornito da COSMO">
+		
+		<antcall target="_generate-class-swagger-apimint-cosmo-callback" />
+		
+		<!-- Init mkdir ${build}/swagger-codegen/cosmo -->
+		<echo message="Init mkdir ${build}/swagger-codegen/cosmo-callback ..." />
+		<mkdir dir="${build}/swagger-codegen/cosmo-callback/classes" />
+		<mkdir dir="${build}/swagger-codegen/cosmo-callback/archives" />
+
+		<!-- Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO -->
+		<echo message="Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO ..." />
+		<delete dir="${build}/swagger-codegen/cosmo-callback/src/java/it/csi/moon"/> 
+		
+		<!-- compilazione dei sorgenti generati da swagger -->
+		<echo message="Compilazione dei sorgenti generati da swagger ..." />
+		<javac srcdir="${build}/swagger-codegen/cosmo-callback/src/java" destdir="${build}/swagger-codegen/cosmo-callback/classes"
+		       optimize="on" deprecation="on"
+		       compiler="modern"
+		       debug="on" debuglevel="lines,vars,source">
+			<classpath refid="library.ref" />
+			<!--<exclude name="${build}/swagger-codegen/cosmo-callback/src/java/it/csi/moon/moonsrv/business/be/extra/wf/impl/StatoPraticaApiServiceImpl.java"/>-->
+		</javac>
+		
+		<!-- Package jar delle classes -->
+		<echo message="Package jar delle classes ..." />
+		<jar destfile="${build}/swagger-codegen/cosmo-callback/archives/apimint-cosmo-callback-v1.jar"
+			basedir="${build}/swagger-codegen/cosmo-callback/classes"
+			includes="it/csi/**">										
+		</jar>
+	
+		<!-- Copia la librieria apimint-cosmo.jar nel progetto corrente -->
+		<echo message="Copia la librieria apimint-cosmo-callback.jar nel progetto corrente ..." />
+		<copy file="${build}/swagger-codegen/cosmo-callback/archives/apimint-cosmo-callback-v1.jar"
+			todir="${conf}/lib-tmp" overwrite="true"/>
+		<copy file="${build}/swagger-codegen/cosmo-callback/archives/apimint-cosmo-callback-v1.jar"
+			todir="${lib}" overwrite="true"/>
+	</target>
+
+
+	
+	
+    <target name="_generate-class-swagger-apimint-troubleticketing"
+		description="Genera le Class java del YAML di troubleticketing">
+
+		<!-- Init mkdir e delete ${build}/swagger-codegen/troubleticketing -->
+		<echo message="Init mkdir e delete ${build}/swagger-codegen/troubleticketing ..." />
+    	<delete dir="${build}/swagger-codegen/troubleticketing" />
+		<mkdir dir="${build}/swagger-codegen/troubleticketing" />
+    	
+    	<!-- Genera le Class java del YAML di troubleticketing -->
+    	<echo message="Genera le Class java del YAML di troubleticketing" />
+        <java classname="io.swagger.codegen.SwaggerCodegen" 
+        		fork="true" >
+            <classpath>
+                <path location="${conf}/swagger-codegen/lib/swagger-codegen-cli.jar"/>
+            	<path location="${conf}/swagger-codegen/lib/csi-java-swagger-codegen-1.0.0.jar"/>
+            </classpath>
+        	<arg value="generate" />
+        	<arg line="-i ${conf}/yaml/apimint_troubleticketing_v1.yaml" />
+        	<arg line="-l jaxrs-resteasy-eap-csi" />
+        	<arg line="-o ${build}/swagger-codegen/troubleticketing" />
+        	<arg line="--config ${conf}/swagger-codegen/swagger_config_java_troubleticketing.json" />
+        </java>
+    </target>
+	
+	<target name="generate-apimint-troubleticketing-jar" depends=""
+		description="Crea il jar con classe del stub client Remedy esposto su APIMINT sulla base del file yaml">
+		
+		<!-- Modificato CategoriaOperativaBaseModel
+		<antcall target="_generate-class-swagger-apimint-troubleticketing" />
+		-->
+		
+		<!-- Init mkdir ${build}/swagger-codegen/troubleticketing -->
+		<echo message="Init mkdir ${build}/swagger-codegen/troubleticketing ..." />
+		<mkdir dir="${build}/swagger-codegen/troubleticketing/classes" />
+		<mkdir dir="${build}/swagger-codegen/troubleticketing/archives" />
+
+		<!-- Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO -->
+		<echo message="Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO ..." />
+		<delete dir="${build}/swagger-codegen/troubleticketing/src/java/it/csi/apimint/troubleticketing/v1/business"/>
+		
+		<!-- compilazione dei sorgenti generati da swagger -->
+		<echo message="Compilazione dei sorgenti generati da swagger ..." />
+		<javac srcdir="${build}/swagger-codegen/troubleticketing/src/java" destdir="${build}/swagger-codegen/troubleticketing/classes"
+		       optimize="on" deprecation="on"
+		       compiler="modern"
+		       debug="on" debuglevel="lines,vars,source">
+			<classpath refid="library.ref" />
+		</javac>
+		
+		<!-- Package jar delle classes -->
+		<echo message="Package jar delle classes ..." />
+		<jar destfile="${build}/swagger-codegen/troubleticketing/archives/apimint-troubleticketing-v1.jar"
+			     basedir="${build}/swagger-codegen/troubleticketing/classes"
+			     includes="it/csi/apimint/troubleticketing/v1/dto/**">										
+		</jar>
+	
+		<!-- Copia la librieria apimint-troubleticketing.jar nel progetto corrente -->
+		<echo message="Copia la librieria apimint-troubleticketing-v1.jar nel progetto corrente ..." />
+		<copy file="${build}/swagger-codegen/troubleticketing/archives/apimint-troubleticketing-v1.jar"
+			todir="${conf}/lib-tmp" overwrite="true"/>
+		<copy file="${build}/swagger-codegen/troubleticketing/archives/apimint-troubleticketing-v1.jar"
+			todir="${lib}" overwrite="true"/>
+	</target>
+
+
+	
+    <target name="_generate-class-swagger-apimint-nextcrm"
+		description="Genera le Class java del JSON Openapi 3.0 di nextcrm">
+
+		<!-- Init mkdir e delete ${build}/swagger-codegen/nextcrm -->
+		<echo message="Init mkdir e delete ${build}/swagger-codegen/nextcrm ..." />
+    	<delete dir="${build}/swagger-codegen/nextcrm" />
+		<mkdir dir="${build}/swagger-codegen/nextcrm" />
+    	
+    	<!-- Genera le Class java del JSON Openapi 3.0  di nextcrm -->
+    	<echo message="Genera le Class java del JSON Openapi 3.0  di nextcrm" />
+        <java classname="org.openapitools.codegen.OpenAPIGenerator" 
+        		fork="true" >
+            <classpath>
+                <path location="${conf}/swagger-codegen/lib/openapi-generator-cli-5.2.1.jar"/>
+            	<path location="${conf}/swagger-codegen/lib/csi-java-swagger-codegen-1.0.0.jar"/>
+            </classpath>
+        	<arg value="generate" />
+        	<arg line="-i ${conf}/yaml/apimint_nextcrm_v1.yaml" />
+        	<arg line="-g jaxrs-resteasy-eap" />
+        	<arg line="--skip-validate-spec" />
+        	<arg line="-o ${build}/swagger-codegen/nextcrm" />
+        	<arg line="--config ${conf}/swagger-codegen/swagger_config_java_nextcrm.json" />
+        </java>
+    </target>
+	
+	<target name="generate-apimint-nextcrm-jar" depends=""
+		description="Crea il jar con classe del stub client Remedy esposto su APIMINT sulla base del file yaml">
+		
+		<!-- Modificato tutti DTO : commentato //@javax.annotation.Generated(...)
+		<antcall target="_generate-class-swagger-apimint-nextcrm" />
+		-->
+		
+		<!-- Init mkdir ${build}/swagger-codegen/nextcrm -->
+		<echo message="Init mkdir ${build}/swagger-codegen/nextcrm ..." />
+		<mkdir dir="${build}/swagger-codegen/nextcrm/classes" />
+		<mkdir dir="${build}/swagger-codegen/nextcrm/archives" />
+
+		<!-- Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO -->
+		<echo message="Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO ..." />
+		<delete dir="${build}/swagger-codegen/nextcrm/src/java/it/csi/apimint/nextcrm/v1/business"/>
+		
+		<!-- compilazione dei sorgenti generati da swagger -->
+		<echo message="Compilazione dei sorgenti generati da swagger ..." />
+		<javac srcdir="${build}/swagger-codegen/nextcrm/src/java" destdir="${build}/swagger-codegen/nextcrm/classes"
+		       optimize="on" deprecation="on"
+		       compiler="modern"
+		       debug="on" debuglevel="lines,vars,source">
+			<classpath refid="library.ref" />
+		</javac>
+		
+		<!-- Package jar delle classes -->
+		<echo message="Package jar delle classes ..." />
+		<jar destfile="${build}/swagger-codegen/nextcrm/archives/apimint-nextcrm-v1.jar"
+			     basedir="${build}/swagger-codegen/nextcrm/classes"
+			     includes="it/csi/apimint/nextcrm/v1/dto/**">										
+		</jar>
+	
+		<!-- Copia la librieria apimint-nextcrm.jar nel progetto corrente -->
+		<echo message="Copia la librieria apimint-nextcrm-v1.jar nel progetto corrente ..." />
+		<copy file="${build}/swagger-codegen/nextcrm/archives/apimint-nextcrm-v1.jar"
+			todir="${conf}/lib-tmp" overwrite="true"/>
+		<copy file="${build}/swagger-codegen/nextcrm/archives/apimint-nextcrm-v1.jar"
+			todir="${lib}" overwrite="true"/>
+	</target>
+
+	
+    <target name="_generate-class-swagger-apimint-mydocs-backend"
+		description="Genera le Class java del YAML di MYDOCS Backend">
+
+		<!-- Init mkdir e delete ${build}/swagger-codegen/mydocs-backend -->
+		<echo message="Init mkdir e delete ${build}/swagger-codegen/mydocs-backend ..." />
+    	<delete dir="${build}/swagger-codegen/mydocs-backend" />
+		<mkdir dir="${build}/swagger-codegen/mydocs-backend" />
+    	
+    	<!-- Genera le Class java del YAML di docmeapi -->
+    	<echo message="Genera le Class java del YAML di MYDOCS Backend" />
+        <java classname="io.swagger.codegen.SwaggerCodegen" 
+        		fork="true" >
+            <classpath>
+                <path location="${conf}/swagger-codegen/lib/swagger-codegen-cli.jar"/>
+            	<path location="${conf}/swagger-codegen/lib/csi-java-swagger-codegen-1.0.0.jar"/>
+            </classpath>
+        	<arg value="generate" />
+        	<arg line="-i ${conf}/yaml/apimint_mydocs-backend_v1.yaml" />
+        	<arg line="-l jaxrs-resteasy-eap-csi" />
+        	<arg line="-o ${build}/swagger-codegen/mydocs-backend" />
+        	<arg line="--config ${conf}/swagger-codegen/swagger_config_java_mydocs-backend.json" />
+        </java>
+    </target>
+	
+	<target name="generate-apimint-mydocs-backend-jar" depends="_generate-class-swagger-apimint-mydocs-backend"
+		description="Crea il jar con classe del stub client MYDOCS Backend API esposto su APIMINT sulla base del file yaml">
+		
+		<antcall target="_generate-class-swagger-apimint-mydocs-backend" />
+		
+		<!-- Init mkdir ${build}/swagger-codegen/mydocs-backend -->
+		<echo message="Init mkdir ${build}/swagger-codegen/mydocs-backend ..." />
+		<mkdir dir="${build}/swagger-codegen/mydocs-backend/classes" />
+		<mkdir dir="${build}/swagger-codegen/mydocs-backend/archives" />
+
+		<!-- Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO -->
+		<echo message="Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO ..." />
+		<delete dir="${build}/swagger-codegen/mydocs-backend/src/java/it/csi/apimint/mydocs/be/v1/business"/>
+		
+		<!-- compilazione dei sorgenti generati da swagger -->
+		<echo message="Compilazione dei sorgenti generati da swagger ..." />
+		<javac srcdir="${build}/swagger-codegen/mydocs-backend/src/java" destdir="${build}/swagger-codegen/mydocs-backend/classes"
+		       optimize="on" deprecation="on"
+		       compiler="modern"
+		       debug="on" debuglevel="lines,vars,source">
+			<classpath refid="library.ref" />
+		</javac>
+		
+		<!-- Package jar delle classes -->
+		<echo message="Package jar delle classes ..." />
+		<jar destfile="${build}/swagger-codegen/mydocs-backend/archives/apimint-mydocs-backend-v1.jar"
+			     basedir="${build}/swagger-codegen/mydocs-backend/classes"
+			     includes="it/csi/apimint/mydocs/be/v1/dto/**">										
+		</jar>
+	
+		<!-- Copia la librieria apimint-mydocs-backend-v1.jar nel progetto corrente -->
+		<echo message="Copia la librieria apimint-mydocs-backend-v1.jar nel progetto corrente ..." />
+		<copy file="${build}/swagger-codegen/mydocs-backend/archives/apimint-mydocs-backend-v1.jar"
+			todir="${conf}/lib-tmp" overwrite="true"/>
+		<copy file="${build}/swagger-codegen/mydocs-backend/archives/apimint-mydocs-backend-v1.jar"
+			todir="${lib}" overwrite="true"/>
+	</target>
+	
+	<target name="_generate-class-swagger-apirest-otrs"
+				description="Genera le Class java del YAML di OTRS">
+
+				<!-- Init mkdir e delete ${build}/swagger-codegen/otrs -->
+				<echo message="Init mkdir e delete ${build}/swagger-codegen/otrs ..." />
+		    	<delete dir="${build}/swagger-codegen/otrs" />
+				<mkdir dir="${build}/swagger-codegen/otrs" />
+		    	
+		    	<!-- Genera le Class java del YAML di otrs -->
+		    	<echo message="Genera le Class java del YAML otrs" />
+		        <java classname="io.swagger.codegen.SwaggerCodegen" 
+		        		fork="true" >
+		            <classpath>
+		                <path location="${conf}/swagger-codegen/lib/swagger-codegen-cli.jar"/>
+		            	<path location="${conf}/swagger-codegen/lib/csi-java-swagger-codegen-1.0.0.jar"/>
+		            </classpath>
+		        	<arg value="generate" />
+		        	<arg line="-i ${conf}/yaml/apirest_otrs.yaml" />
+		        	<arg line="-l jaxrs-resteasy-eap-csi" />
+		        	<arg line="-o ${build}/swagger-codegen/otrs" />
+		        	<arg line="--config ${conf}/swagger-codegen/swagger_config_java_otrs.json" />
+		        </java>
+		    </target>
+			
+			<target name="generate-apirest-otrs-jar" 
+				description="Crea il jar con classe del stub client OTRS sulla base del file yaml">
+				
+				
+				<!-- 
+				<antcall target="_generate-class-swagger-apirest-otrs" /> 
+				 -->
+				
+				<!-- Init mkdir ${build}/swagger-codegen/otrs -->
+				<echo message="Init mkdir ${build}/swagger-codegen/otrs ..." />
+				<mkdir dir="${build}/swagger-codegen/otrs/classes" />
+				<mkdir dir="${build}/swagger-codegen/otrs/archives" />
+
+				<!-- Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO -->
+				<echo message="Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO ..." />
+				<delete dir="${build}/swagger-codegen/otrs/src/java/it/csi/apirest/otrs/v1/business"/>
+				
+				<!-- compilazione dei sorgenti generati da swagger -->
+				<echo message="Compilazione dei sorgenti generati da swagger ..." />
+				<javac srcdir="${build}/swagger-codegen/otrs/src/java" destdir="${build}/swagger-codegen/otrs/classes"
+				       optimize="on" deprecation="on"
+				       compiler="modern"
+				       debug="on" debuglevel="lines,vars,source">
+					<classpath refid="library.ref" />
+				</javac>
+				
+				<!-- Package jar delle classes -->
+				<echo message="Package jar delle classes ..." />
+				<jar destfile="${build}/swagger-codegen/otrs/archives/apirest-otrs-v1.jar"
+					     basedir="${build}/swagger-codegen/otrs/classes"
+					     includes="it/csi/apirest/otrs/v1/dto/**">										
+				</jar>
+			
+				<!-- Copia la librieria apirest-otrs-v1.jar nel progetto corrente -->
+				<echo message="Copia la librieria apirest-otrs-v1.jar nel progetto corrente ..." />
+				<copy file="${build}/swagger-codegen/otrs/archives/apirest-otrs-v1.jar"
+					todir="${conf}/lib-tmp" overwrite="true"/>
+				<copy file="${build}/swagger-codegen/otrs/archives/apirest-otrs-v1.jar"
+					todir="${lib}" overwrite="true"/>
+				
+				<!-- Copia la librieria apirest-otrs.jar nel progetto MOOnFo -->
+				<!--
+				<echo message="Copia la librieria apirest-otrs-v1.jar nel progetto MOOnFo ..." />
+				<copy file="${build}/swagger-codegen/otrs/archives/apirest-otrs-v1.jar"
+					todir="${moonfobl.base.dir}/conf/lib-tmp" overwrite="true"/>
+				<copy file="${build}/swagger-codegen/otrs/archives/apirest-otrs-v1.jar"
+					todir="${moonfobl.base.dir}/lib" overwrite="true"/>
+					-->
+			</target>	
+		
+
+
+
+    <target name="_generate-class-swagger-apirest-epay"
+		description="Genera le Class java del YAML di EPAY API">
+
+		<!-- Init mkdir e delete ${build}/swagger-codegen/epay -->
+		<echo message="Init mkdir e delete ${build}/swagger-codegen/epay ..." />
+    	<delete dir="${build}/swagger-codegen/epay" />
+		<mkdir dir="${build}/swagger-codegen/epay" />
+    	
+    	<!-- Genera le Class java del JSON Openapi 3.0  di MOOn API -->
+    	<echo message="Genera le Class java del JSON Openapi 3.0  di MOOn API" />
+        <java classname="org.openapitools.codegen.OpenAPIGenerator" 
+        		fork="true" >
+            <classpath>
+                <path location="${conf}/swagger-codegen/lib/openapi-generator-cli-6.6.0.jar"/>
+            	<!-- path location="${conf}/swagger-codegen/lib/csi-java-swagger-codegen-1.0.0.jar" -->
+            </classpath>
+        	<arg value="generate" />
+        	<arg line="-i ${conf}/yaml/apirest_epayapi_v1.yaml" />
+        	<arg line="-g jaxrs-resteasy-eap" />
+        	<arg line="--skip-validate-spec" />
+        	<arg line="-o ${build}/swagger-codegen/epay" />
+        	<arg line="--config ${conf}/swagger-codegen/swagger_config_java_epay.json" />
+        </java>
+    </target>
+	
+	<target name="generate-apirest-epay-jar" depends="_generate-class-swagger-apirest-epay"
+		description="Crea il jar con classe del stub client EPAY API sulla base del file yaml">
+		
+		<antcall target="_generate-class-swagger-apirest-epay" />
+		
+		<!-- Init mkdir ${build}/swagger-codegen/epay -->
+		<echo message="Init mkdir ${build}/swagger-codegen/epay ..." />
+		<mkdir dir="${build}/swagger-codegen/epay/classes" />
+		<mkdir dir="${build}/swagger-codegen/epay/archives" />
+
+		<!-- Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO -->
+		<echo message="Rimuvo API generata da swagger perche non servono ma sopratutto non compilanno, mantengo solo i DTO ..." />
+		<delete dir="${build}/swagger-codegen/epay/src/java/it/csi/apirest/epay/be/v1/business"/>
+		
+		<!-- compilazione dei sorgenti generati da swagger -->
+		<echo message="Compilazione dei sorgenti generati da swagger ..." />
+		<javac srcdir="${build}/swagger-codegen/epay/src/java" destdir="${build}/swagger-codegen/epay/classes"
+		       optimize="on" deprecation="on"
+		       compiler="modern"
+		       debug="on" debuglevel="lines,vars,source">
+			<classpath refid="library.ref" />
+		</javac>
+		
+		<!-- Package jar delle classes -->
+		<echo message="Package jar delle classes ..." />
+		<jar destfile="${build}/swagger-codegen/epay/archives/apirest-epay-v1.jar"
+			     basedir="${build}/swagger-codegen/epay/classes"
+			     includes="it/csi/apirest/epay/v1/dto/**">										
+		</jar>
+	
+		<!-- Copia la librieria apirest-epay-v1.jar nel progetto corrente -->
+		<echo message="Copia la librieria apirest-epay-v1.jar nel progetto corrente ..." />
+		<copy file="${build}/swagger-codegen/epay/archives/apirest-epay-v1.jar"
+			todir="${conf}/lib-tmp" overwrite="true"/>
+		<copy file="${build}/swagger-codegen/epay/archives/apirest-epay-v1.jar"
+			todir="${lib}" overwrite="true"/>
+	</target>
+</project>

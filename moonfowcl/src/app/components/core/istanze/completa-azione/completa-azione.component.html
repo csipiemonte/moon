@@ -1,0 +1,33 @@
+<nav class="breadcrumb-container" aria-label="Percorso di navigazione">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a style="cursor:pointer" (click)="backToIstanze()">Le mie istanze</a><span class="separator" aria-hidden="true">/</span></li>
+    <li class="breadcrumb-item"><a style="cursor:pointer" (click)="backToDettaglio()">{{ istanza?.codiceIstanza}}</a><span class="separator" aria-hidden="true">/</span></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ datiWorkflow?.nomeAzione}}</li>
+  </ol>
+</nav>
+
+<h1 class="h2">{{ datiWorkflow?.nomeAzione}}</h1>
+
+{{msgErr}}
+<formio [form]='struttura'
+        [renderOptions]="{breadcrumbSettings:{clickable: false},language: 'it', fileService: FileService}"
+        [submission]='data'
+        [options]="options"
+        [viewOnly] = "readOnly"
+        [readOnly]= "readOnly"
+        (submit)="onSubmit($event)"
+        (formLoad)="onFormLoad($event)"
+        (ready)="onFormLoad($event)"
+        (change)="onChange($event)"
+        (nextPage)="onNextPage($event)"
+        (prevPage)="onPrevPage($event)"
+>
+</formio>
+
+<button class="btn btn-danger btn-icon mt-5" (click)="backToDettaglio()">
+  <svg class="icon icon-white">
+  <use [attr.href]="'./assets/svg/sprite.svg#it-arrow-left'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-arrow-left'"></use>
+      </svg>  
+  <span>Torna all'istanza</span>
+</button>
+

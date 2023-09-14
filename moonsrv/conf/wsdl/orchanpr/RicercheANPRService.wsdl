@@ -1,0 +1,761 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://it/csi/nao/orchanpr/business/naoricercheanpr/ricercheanpr" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="RicercheANPRService" targetNamespace="http://it/csi/nao/orchanpr/business/naoricercheanpr/ricercheanpr">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://it/csi/nao/orchanpr/business/naoricercheanpr/ricercheanpr" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://it/csi/nao/orchanpr/business/naoricercheanpr/ricercheanpr">
+  <xs:element name="famigliaANPR" type="tns:famigliaANPR"/>
+  <xs:complexType name="callerApplicativo">
+    <xs:complexContent>
+      <xs:extension base="tns:caller">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="identificativoApplicativo" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="caller">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idPostazione" type="xs:string"/>
+      <xs:element minOccurs="0" name="idPostazioneFirmato" type="xs:string"/>
+      <xs:element minOccurs="0" name="identificativoUtente" type="xs:string"/>
+      <xs:element minOccurs="0" name="ufficioUtente" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ricercaSoggettiANPRFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="annoNascita" type="xs:int"/>
+      <xs:element minOccurs="0" name="cartaIdentita" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceComuneIstatRicerca" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceFiscale" type="xs:string"/>
+      <xs:element minOccurs="0" name="cognome" type="xs:string"/>
+      <xs:element minOccurs="0" name="comuneRilascioCartaIdentita" type="tns:ricercaSoggettiANPRComuneFilter"/>
+      <xs:element minOccurs="0" name="consolatoRilascioCartaIdentita" type="xs:string"/>
+      <xs:element minOccurs="0" name="flgPopolaXml" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="flgSenzaCognome" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="flgSenzaNome" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="giornoNascita" type="xs:int"/>
+      <xs:element minOccurs="0" name="idSoggettoAnpr" type="xs:string"/>
+      <xs:element minOccurs="0" name="luogoNascita" type="tns:ricercaSoggettiANPRLuogoFilter"/>
+      <xs:element minOccurs="0" name="meseNascita" type="xs:int"/>
+      <xs:element minOccurs="0" name="nome" type="xs:string"/>
+      <xs:element minOccurs="0" name="nomeComuneIstatRicerca" type="xs:string"/>
+      <xs:element minOccurs="0" name="numeroIndividuale" type="xs:string"/>
+      <xs:element minOccurs="0" name="permessoSoggiorno" type="tns:ricercaSoggettiANPRPermessoSoggiornoFilter"/>
+      <xs:element name="ricercaNazionale" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="sesso" type="xs:string"/>
+      <xs:element minOccurs="0" name="sezioni" type="xs:string"/>
+      <xs:element minOccurs="0" name="siglaProvinciaIstatRicerca" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ricercaSoggettiANPRComuneFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codiceIstat" type="xs:string"/>
+      <xs:element minOccurs="0" name="nomeComune" type="xs:string"/>
+      <xs:element minOccurs="0" name="siglaProvinciaIstat" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ricercaSoggettiANPRLuogoFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="comune" type="tns:ricercaSoggettiANPRComuneNascitaFilter"/>
+      <xs:element minOccurs="0" name="localita" type="tns:ricercaSoggettiANPRLocalitaFilter"/>
+      <xs:element minOccurs="0" name="luogoEccezionale" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ricercaSoggettiANPRComuneNascitaFilter">
+    <xs:complexContent>
+      <xs:extension base="tns:ricercaSoggettiANPRComuneFilter">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="descrizioneLocalita" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ricercaSoggettiANPRLocalitaFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codiceStato" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizioneLocalita" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizioneStato" type="xs:string"/>
+      <xs:element minOccurs="0" name="provinciaContea" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ricercaSoggettiANPRPermessoSoggiornoFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="numeroPassaporto" type="xs:string"/>
+      <xs:element minOccurs="0" name="numeroPermesso" type="xs:string"/>
+      <xs:element minOccurs="0" name="questuraRilascio" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="opzioniReperimentoFamiglia">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="profiloOutput" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="famigliaANPR">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="allineamentoFamiglia" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="esitoServizio" type="xs:string"/>
+      <xs:element minOccurs="0" name="messaggioErrore" type="xs:string"/>
+      <xs:element minOccurs="0" name="soggetti" type="tns:soggettiANPR"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="soggettiANPR">
+    <xs:sequence>
+      <xs:element name="esito" type="xs:int"/>
+      <xs:element minOccurs="0" name="messaggio" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="soggetti" nillable="true" type="tns:soggettoANPR"/>
+      <xs:element minOccurs="0" name="xmlRisposta" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="soggettoANPR">
+    <xs:complexContent>
+      <xs:extension base="tns:tipoDatiRispostaEstrazioneSoggetti">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="idSoggetto" type="xs:int"/>
+          <xs:element minOccurs="0" name="xmlRisposta" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="tipoDatiRispostaEstrazioneSoggetti">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="altraLingua" nillable="true" type="tns:tipoAltraLingua"/>
+      <xs:element minOccurs="0" name="altriDati" type="tns:tipoAltriDati"/>
+      <xs:element minOccurs="0" name="annullamentoMatrimonio" type="tns:tipoAnnullamentoMatrimonio"/>
+      <xs:element minOccurs="0" name="attoNascita" type="tns:tipoAtto"/>
+      <xs:element minOccurs="0" name="attributiSoggetto" type="tns:tipoAttributiSoggetto"/>
+      <xs:element minOccurs="0" name="autoveicoli" type="tns:tipoAutoveicoli"/>
+      <xs:element minOccurs="0" name="cartaIdentita" type="tns:tipoCartaIdentita"/>
+      <xs:element minOccurs="0" name="censimento" type="tns:tipoCensimento"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="cittadinanza" nillable="true" type="tns:tipoCittadinanza"/>
+      <xs:element minOccurs="0" name="coniugeExtra" type="xs:string"/>
+      <xs:element minOccurs="0" name="convivenzaDiFatto" type="tns:tipoConvivenzaDiFatto"/>
+      <xs:element minOccurs="0" name="datiCancellazione" type="tns:tipoDatiCancellazione"/>
+      <xs:element minOccurs="0" name="datiDecesso" type="tns:tipoDatiEvento"/>
+      <xs:element minOccurs="0" name="datiIscrizione" type="tns:tipoDatiIscrizione"/>
+      <xs:element minOccurs="0" name="datiTraslitterati" type="tns:tipoDatiTranslitterati"/>
+      <xs:element minOccurs="0" name="destinazione" type="tns:tipoProvenienzaDestinazione"/>
+      <xs:element minOccurs="0" name="domicilioDigitale" type="tns:tipoDomicilioDigitale"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="erroriAnomalie" nillable="true" type="tns:tipoErroriAnomalia"/>
+      <xs:element minOccurs="0" name="famigliaConvivenza" type="tns:tipoFamigliaConvivenzaRisposta"/>
+      <xs:element minOccurs="0" name="generalita" type="tns:tipoGeneralita"/>
+      <xs:element minOccurs="0" name="legameSoggetto" type="tns:tipoLegameSoggettoCompleto"/>
+      <xs:element minOccurs="0" name="listaElettorale" type="tns:tipoListaElettorale"/>
+      <xs:element minOccurs="0" name="listaLeva" type="tns:tipoListaLeva"/>
+      <xs:element minOccurs="0" name="madreExtra" type="xs:string"/>
+      <xs:element minOccurs="0" name="maternita" type="tns:tipoGenitore"/>
+      <xs:element minOccurs="0" name="matrimonio" type="tns:tipoMatrimonio"/>
+      <xs:element minOccurs="0" name="padreExtra" type="xs:string"/>
+      <xs:element minOccurs="0" name="paternita" type="tns:tipoGenitore"/>
+      <xs:element minOccurs="0" name="permessoSoggiorno" type="tns:tipoPermessoSoggiorno"/>
+      <xs:element minOccurs="0" name="provenienza" type="tns:tipoProvenienzaDestinazione"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="residenza" nillable="true" type="tns:tipoResidenza"/>
+      <xs:element minOccurs="0" name="statoCivile" type="tns:tipoStatoCivile"/>
+      <xs:element minOccurs="0" name="tutoreExtra" type="xs:string"/>
+      <xs:element minOccurs="0" name="tutoreIntestatario" type="tns:tipoTutoreIntestatario"/>
+      <xs:element minOccurs="0" name="unioneCivile" type="tns:tipoUnioneCivile"/>
+      <xs:element minOccurs="0" name="vedovanza" type="tns:tipoVedovanza"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoAltraLingua">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="denominazioneToponimo" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizioneLocalita" type="xs:string"/>
+      <xs:element minOccurs="0" name="frazione" type="xs:string"/>
+      <xs:element minOccurs="0" name="idLingua" type="xs:string"/>
+      <xs:element minOccurs="0" name="noteIndirizzo" type="xs:string"/>
+      <xs:element minOccurs="0" name="presso" type="xs:string"/>
+      <xs:element minOccurs="0" name="specie" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoAltriDati">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="condizioneNonProfessionale" type="xs:string"/>
+      <xs:element minOccurs="0" name="condizioneNonProfessionaleNao" type="xs:string"/>
+      <xs:element minOccurs="0" name="posizioneProfessionale" type="xs:string"/>
+      <xs:element minOccurs="0" name="posizioneProfessionaleNao" type="xs:string"/>
+      <xs:element minOccurs="0" name="titoloStudio" type="xs:string"/>
+      <xs:element minOccurs="0" name="titoloStudioNao" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoAnnullamentoMatrimonio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="attoAnnullamentoMatrimonio" type="tns:tipoAtto"/>
+      <xs:element minOccurs="0" name="sentenza" type="tns:tipoSentenza"/>
+      <xs:element minOccurs="0" name="tipoCessazione" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoAtto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="anno" type="xs:string"/>
+      <xs:element minOccurs="0" name="comuneRegistrazione" type="tns:tipoComune"/>
+      <xs:element minOccurs="0" name="dataFormazioneAtto" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="evento" type="tns:tipoDatiEvento"/>
+      <xs:element minOccurs="0" name="idComune" type="xs:int"/>
+      <xs:element minOccurs="0" name="numeroAtto" type="xs:string"/>
+      <xs:element minOccurs="0" name="parte" type="xs:string"/>
+      <xs:element minOccurs="0" name="serie" type="xs:string"/>
+      <xs:element minOccurs="0" name="trascritto" type="xs:string"/>
+      <xs:element minOccurs="0" name="ufficioMunicipio" type="xs:string"/>
+      <xs:element minOccurs="0" name="volume" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoComune">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codiceIstat" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizioneLocalita" type="xs:string"/>
+      <xs:element minOccurs="0" name="nomeComune" type="xs:string"/>
+      <xs:element minOccurs="0" name="siglaProvinciaIstat" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoDatiEvento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="attoEvento" type="tns:tipoAtto"/>
+      <xs:element minOccurs="0" name="dataEvento" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="dataRegistrazione" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="idEventoNao" type="xs:int"/>
+      <xs:element minOccurs="0" name="idLuogoNao" type="xs:int"/>
+      <xs:element minOccurs="0" name="luogoEvento" type="tns:tipoLuogoEvento"/>
+      <xs:element minOccurs="0" name="senzaGiorno" type="xs:string"/>
+      <xs:element minOccurs="0" name="senzaGiornoMese" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoLuogoEvento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="comune" type="tns:tipoComune"/>
+      <xs:element minOccurs="0" name="localita" type="tns:tipoLocalita"/>
+      <xs:element minOccurs="0" name="luogoEccezionale" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoLocalita">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codiceStato" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizioneLocalita" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizioneStato" type="xs:string"/>
+      <xs:element minOccurs="0" name="provinciaContea" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoSentenza">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="autorita" type="xs:string"/>
+      <xs:element minOccurs="0" name="data" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="dataValidita" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="numero" type="xs:string"/>
+      <xs:element minOccurs="0" name="tipoTribunale" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoAttributiSoggetto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="senzaFissaDimora" type="xs:string"/>
+      <xs:element minOccurs="0" name="soggettoCertificabile" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoAutoveicoli">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="possessoAutoveicoli" type="xs:string"/>
+      <xs:element minOccurs="0" name="possessoPatente" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoCartaIdentita">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cartaceaElettronica" type="xs:string"/>
+      <xs:element minOccurs="0" name="comuneRilascio" type="tns:tipoComune"/>
+      <xs:element minOccurs="0" name="consolatoRilascio" type="tns:tipoConsolato"/>
+      <xs:element minOccurs="0" name="dataAnnullamento" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="dataRilascio" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="dataScadenza" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="interdizioneEspatrio" type="xs:string"/>
+      <xs:element minOccurs="0" name="numero" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoConsolato">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codiceConsolato" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceConsolatoNao" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizioneConsolato" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizioneConsolatoNao" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoCensimento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="annoCensimento" type="xs:string"/>
+      <xs:element minOccurs="0" name="dataRegolarizzazione" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="foglioCensimento" type="xs:string"/>
+      <xs:element minOccurs="0" name="motivoCompilazione" type="xs:string"/>
+      <xs:element minOccurs="0" name="sezioneCensimento" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoCittadinanza">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codiceStato" type="xs:string"/>
+      <xs:element minOccurs="0" name="dataValidita" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="descrizioneStato" type="xs:string"/>
+      <xs:element minOccurs="0" name="noteStato" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoConvivenzaDiFatto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cittadinanza" type="tns:tipoCittadinanza"/>
+      <xs:element minOccurs="0" name="contrattoRisoluzione" type="tns:tipoRisoluzioneConvivenza"/>
+      <xs:element minOccurs="0" name="contrattoStipula" type="tns:tipoDocumentoProtocollato"/>
+      <xs:element minOccurs="0" name="convivente" type="tns:tipoGeneralita"/>
+      <xs:element minOccurs="0" name="ordineConvivenza" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoRisoluzioneConvivenza">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="contratto" type="tns:tipoDocumentoProtocollato"/>
+      <xs:element minOccurs="0" name="motivoRisoluzione" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoDocumentoProtocollato">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="comuneRegistrazione" type="tns:tipoComune"/>
+      <xs:element minOccurs="0" name="data" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="dataDocumento" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="dataNotifica" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="documento" type="xs:base64Binary"/>
+      <xs:element minOccurs="0" name="estensione" type="xs:string"/>
+      <xs:element minOccurs="0" name="luogoEvento" type="tns:tipoLuogoEvento"/>
+      <xs:element minOccurs="0" name="professionista" type="xs:string"/>
+      <xs:element minOccurs="0" name="protocollo" type="xs:string"/>
+      <xs:element minOccurs="0" name="stato" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoGeneralita">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="annoEspatrio" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceFiscale" type="tns:tipoCodiceFiscale"/>
+      <xs:element minOccurs="0" name="cognome" type="xs:string"/>
+      <xs:element minOccurs="0" name="dataNascita" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="idLuogoNascitaNao" type="xs:int"/>
+      <xs:element minOccurs="0" name="idSchedaSoggettoANPR" type="xs:string"/>
+      <xs:element minOccurs="0" name="idSchedaSoggettoComune" type="tns:tipoIdSchedaSoggettoComune"/>
+      <xs:element minOccurs="0" name="idSoggettoNao" type="xs:int"/>
+      <xs:element minOccurs="0" name="idStatoSoggettoNao" type="xs:int"/>
+      <xs:element minOccurs="0" name="luogoNascita" type="tns:tipoLuogoEvento"/>
+      <xs:element minOccurs="0" name="nome" type="xs:string"/>
+      <xs:element minOccurs="0" name="note" type="xs:string"/>
+      <xs:element minOccurs="0" name="numeroIndividualeAIREFormattatoNao" type="xs:string"/>
+      <xs:element minOccurs="0" name="numeroIndividualeAIRENao" type="xs:string"/>
+      <xs:element minOccurs="0" name="numeroIndividualeNao" type="xs:string"/>
+      <xs:element minOccurs="0" name="senzaCognome" type="xs:string"/>
+      <xs:element minOccurs="0" name="senzaGiorno" type="xs:string"/>
+      <xs:element minOccurs="0" name="senzaGiornoMese" type="xs:string"/>
+      <xs:element minOccurs="0" name="senzaNome" type="xs:string"/>
+      <xs:element minOccurs="0" name="sesso" type="xs:string"/>
+      <xs:element minOccurs="0" name="soggettoAIRE" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoCodiceFiscale">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codFiscale" type="xs:string"/>
+      <xs:element minOccurs="0" name="dataAttribuzioneValidita" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="validitaCF" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoIdSchedaSoggettoComune">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idSchedaSoggetto" type="xs:string"/>
+      <xs:element minOccurs="0" name="idSchedaSoggettoComuneIstat" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoDatiCancellazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dataDecorrenzaCancellazione" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="datiSentenza" type="tns:tipoSentenza"/>
+      <xs:element minOccurs="0" name="motivoCancellazione" type="xs:string"/>
+      <xs:element minOccurs="0" name="notecancellazione" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoDatiIscrizione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datiIscrizioneComune" type="tns:tipoDatiIscrizioneComune"/>
+      <xs:element minOccurs="0" name="iscrizioneResidente" type="tns:tipoIscrizioneResidente"/>
+      <xs:element minOccurs="0" name="sentenza" type="tns:tipoSentenza"/>
+      <xs:element minOccurs="0" name="tipoIscrizioneAIRE" type="tns:tipoIscrizioneAIRE"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoDatiIscrizioneComune">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="comune" type="tns:tipoComune"/>
+      <xs:element minOccurs="0" name="dataDefinizionePratica" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="dataIscrizione" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="idOperazioneANPR" type="xs:string"/>
+      <xs:element minOccurs="0" name="idOperazioneComune" type="xs:string"/>
+      <xs:element minOccurs="0" name="protocolloComune" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoIscrizioneResidente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="descrizioneMotivoIscrizione" type="xs:string"/>
+      <xs:element minOccurs="0" name="motivoIscrizione" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoIscrizioneAIRE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dataArrivoConsolato" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="individuazioneComuneIscrizione" type="xs:string"/>
+      <xs:element minOccurs="0" name="iniziativaIscrizione" type="xs:string"/>
+      <xs:element minOccurs="0" name="motivoIscrizione" type="xs:string"/>
+      <xs:element minOccurs="0" name="noteIndividuazioneComuneIscrizione" type="xs:string"/>
+      <xs:element minOccurs="0" name="noteIniziativaIscrizione" type="xs:string"/>
+      <xs:element minOccurs="0" name="noteMotivoIscrizione" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoDatiTranslitterati">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cognomeTranslitterato" type="xs:string"/>
+      <xs:element minOccurs="0" name="denominazioneComuneTranslitterato" type="xs:string"/>
+      <xs:element minOccurs="0" name="denominazioneLocEsteraTranslitterata" type="xs:string"/>
+      <xs:element minOccurs="0" name="denominazioneToponimoTranslitterato" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizioneConsolatoTranslitterato" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizioneLocalitaTranslitterata" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizioneStatoCittadinanzaTranslitterato" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizioneStatoNascitaTranslitterato" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizioneStatoResidenzaTranslitterato" type="xs:string"/>
+      <xs:element minOccurs="0" name="nomeTranslitterato" type="xs:string"/>
+      <xs:element minOccurs="0" name="specieTranslitterata" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoProvenienzaDestinazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="comune" type="tns:tipoComune"/>
+      <xs:element minOccurs="0" name="localita" type="tns:tipoLocalita"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoDomicilioDigitale">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dataInizioValidita" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="enteErogatore" type="xs:string"/>
+      <xs:element minOccurs="0" name="indirizzoDigitale" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoErroriAnomalia">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="campoErroreAnomalia" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceErroreAnomalia" type="xs:string"/>
+      <xs:element minOccurs="0" name="oggettoErroreAnomalia" type="xs:string"/>
+      <xs:element minOccurs="0" name="testoErroreAnomalia" type="xs:string"/>
+      <xs:element minOccurs="0" name="tipoErroreAnomalia" type="xs:string"/>
+      <xs:element minOccurs="0" name="valoreErroreAnomalia" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoFamigliaConvivenzaRisposta">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dataOrigineFamigliaConvivenza" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="denominazioneConvivenza" type="xs:string"/>
+      <xs:element minOccurs="0" name="famigliaAire" type="xs:string"/>
+      <xs:element minOccurs="0" name="idConvivenzaNao" type="xs:int"/>
+      <xs:element minOccurs="0" name="idFamigliaConvivenzaANPR" type="xs:string"/>
+      <xs:element minOccurs="0" name="idFamigliaConvivenzaComune" type="tns:tipoIdFamigliaConvivenzaComune"/>
+      <xs:element minOccurs="0" name="idFamigliaNao" type="xs:int"/>
+      <xs:element minOccurs="0" name="motivoCostituzione" type="xs:string"/>
+      <xs:element minOccurs="0" name="numeroFamigliaAIREFormattatoNao" type="xs:string"/>
+      <xs:element minOccurs="0" name="numeroIndividualeNao" type="xs:string"/>
+      <xs:element minOccurs="0" name="presenzaFamigliaCoabitante" type="xs:string"/>
+      <xs:element minOccurs="0" name="specieConvivenza" type="xs:string"/>
+      <xs:element minOccurs="0" name="tipoMovimentazione" type="xs:string"/>
+      <xs:element minOccurs="0" name="tipoScheda" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoIdFamigliaConvivenzaComune">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idFamigliaConvivenza" type="xs:string"/>
+      <xs:element minOccurs="0" name="idFamigliaConvivenzaComuneIstat" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoLegameSoggettoCompleto">
+    <xs:complexContent>
+      <xs:extension base="tns:tipoLegameSoggetto">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dataDecorrenzaLegame" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="tipoLegameSoggetto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codiceLegame" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceLegameNao" type="xs:string"/>
+      <xs:element minOccurs="0" name="dataDecorrenza" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="progressivoComponente" type="xs:string"/>
+      <xs:element minOccurs="0" name="tipoLegame" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoListaElettorale">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="comune" type="tns:tipoComune"/>
+      <xs:element minOccurs="0" name="elettore" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoListaLeva">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="comune" type="tns:tipoComune"/>
+      <xs:element minOccurs="0" name="iscritto" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoGenitore">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="altriDati" type="tns:tipoAltriDati"/>
+      <xs:element minOccurs="0" name="cittadinanza" type="tns:tipoCittadinanza"/>
+      <xs:element minOccurs="0" name="generalita" type="tns:tipoGeneralita"/>
+      <xs:element minOccurs="0" name="numeroFamigliaNao" type="xs:string"/>
+      <xs:element minOccurs="0" name="statoCivile" type="tns:tipoStatoCivile"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoStatoCivile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idStatoCivileNao" type="xs:int"/>
+      <xs:element minOccurs="0" name="noteStatoCivile" type="xs:string"/>
+      <xs:element minOccurs="0" name="statoCivile" type="xs:string"/>
+      <xs:element minOccurs="0" name="statoCivileND" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoMatrimonio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cittadinanza" type="tns:tipoCittadinanza"/>
+      <xs:element minOccurs="0" name="coniuge" type="tns:tipoGeneralita"/>
+      <xs:element minOccurs="0" name="datiMatrimonio" type="tns:tipoDatiEvento"/>
+      <xs:element minOccurs="0" name="idConiugeNao" type="xs:int"/>
+      <xs:element minOccurs="0" name="idEventoNao" type="xs:int"/>
+      <xs:element minOccurs="0" name="ordineMatrimonio" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoPermessoSoggiorno">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="comune" type="tns:tipoComune"/>
+      <xs:element minOccurs="0" name="dataRilascio" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="dataScadenza" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="noteSoggiorno" type="xs:string"/>
+      <xs:element minOccurs="0" name="numeroPassaporto" type="xs:string"/>
+      <xs:element minOccurs="0" name="numeroSoggiorno" type="xs:string"/>
+      <xs:element minOccurs="0" name="questuraRilascioSoggiorno" type="xs:string"/>
+      <xs:element minOccurs="0" name="tipoSoggiorno" type="xs:string"/>
+      <xs:element minOccurs="0" name="tipoSoggiornoNao" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoResidenza">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dataDecorrenzaResidenza" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="indirizzo" type="tns:tipoIndirizzo"/>
+      <xs:element minOccurs="0" name="localitaEstera" type="tns:tipoLocalitaEstera"/>
+      <xs:element minOccurs="0" name="noteIndirizzo" type="xs:string"/>
+      <xs:element minOccurs="0" name="presso" type="xs:string"/>
+      <xs:element minOccurs="0" name="tipoIndirizzo" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoIndirizzo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cap" type="xs:string"/>
+      <xs:element minOccurs="0" name="comune" type="tns:tipoComune"/>
+      <xs:element minOccurs="0" name="frazione" type="xs:string"/>
+      <xs:element minOccurs="0" name="numeroCivico" type="tns:tipoNumeroCivico"/>
+      <xs:element minOccurs="0" name="toponimo" type="tns:tipoToponimo"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoNumeroCivico">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="civicoFonte" type="xs:string"/>
+      <xs:element minOccurs="0" name="civicoInterno" type="tns:tipoCivicoInterno"/>
+      <xs:element minOccurs="0" name="codiceCivico" type="xs:string"/>
+      <xs:element minOccurs="0" name="colore" type="xs:string"/>
+      <xs:element minOccurs="0" name="esponente1" type="xs:string"/>
+      <xs:element minOccurs="0" name="lettera" type="xs:string"/>
+      <xs:element minOccurs="0" name="metrico" type="xs:string"/>
+      <xs:element minOccurs="0" name="numero" type="xs:string"/>
+      <xs:element minOccurs="0" name="progSNC" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoCivicoInterno">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="corte" type="xs:string"/>
+      <xs:element minOccurs="0" name="espInterno1" type="xs:string"/>
+      <xs:element minOccurs="0" name="espInterno2" type="xs:string"/>
+      <xs:element minOccurs="0" name="idUIUNao" type="xs:long"/>
+      <xs:element minOccurs="0" name="interno1" type="xs:string"/>
+      <xs:element minOccurs="0" name="interno2" type="xs:string"/>
+      <xs:element minOccurs="0" name="isolato" type="xs:string"/>
+      <xs:element minOccurs="0" name="nui" type="xs:string"/>
+      <xs:element minOccurs="0" name="piano" type="xs:string"/>
+      <xs:element minOccurs="0" name="scala" type="xs:string"/>
+      <xs:element minOccurs="0" name="scalaEsterna" type="xs:string"/>
+      <xs:element minOccurs="0" name="secondario" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoToponimo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codSpecie" type="xs:string"/>
+      <xs:element minOccurs="0" name="codToponimo" type="xs:string"/>
+      <xs:element minOccurs="0" name="denominazioneToponimo" type="xs:string"/>
+      <xs:element minOccurs="0" name="specie" type="xs:string"/>
+      <xs:element minOccurs="0" name="specieFonte" type="xs:string"/>
+      <xs:element minOccurs="0" name="toponimoFonte" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoLocalitaEstera">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="consolato" type="tns:tipoConsolato"/>
+      <xs:element minOccurs="0" name="indirizzoEstero" type="tns:tipoIndirizzoEstero"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoIndirizzoEstero">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cap" type="xs:string"/>
+      <xs:element minOccurs="0" name="localita" type="tns:tipoDatoLocalitaEstera"/>
+      <xs:element minOccurs="0" name="toponimo" type="tns:tipoToponimoEstero"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoDatoLocalitaEstera">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codiceStato" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizioneLocalita" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizioneStato" type="xs:string"/>
+      <xs:element minOccurs="0" name="provinciaContea" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoToponimoEstero">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="denominazione" type="xs:string"/>
+      <xs:element minOccurs="0" name="numeroCivico" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoTutoreIntestatario">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="comuneResidenza" type="tns:tipoComune"/>
+      <xs:element minOccurs="0" name="dataIntestarioConvivenza" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="generalita" type="tns:tipoGeneralita"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoUnioneCivile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="attoUnione" type="tns:tipoDatiEvento"/>
+      <xs:element minOccurs="0" name="cittadinanza" type="tns:tipoCittadinanza"/>
+      <xs:element minOccurs="0" name="ordineUnione" type="xs:string"/>
+      <xs:element minOccurs="0" name="scioglimentoUnione" type="tns:tipoScioglimentoUnione"/>
+      <xs:element minOccurs="0" name="unitoCivilmente" type="tns:tipoGeneralita"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoScioglimentoUnione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datiEvento" type="tns:tipoDatiEvento"/>
+      <xs:element minOccurs="0" name="motivoScioglimento" type="xs:string"/>
+      <xs:element minOccurs="0" name="sentenza" type="tns:tipoSentenza"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tipoVedovanza">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datiMorteconiuge" type="tns:tipoDatiEvento"/>
+      <xs:element minOccurs="0" name="idConiugeNao" type="xs:int"/>
+      <xs:element minOccurs="0" name="ordineMatrimonioPrecedente" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Exception" type="tns:Exception"/>
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getFamigliaANPRResponse">
+    <wsdl:part name="return" type="tns:famigliaANPR">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getFamigliaANPR">
+    <wsdl:part name="arg0" type="tns:callerApplicativo">
+    </wsdl:part>
+    <wsdl:part name="arg1" type="tns:ricercaSoggettiANPRFilter">
+    </wsdl:part>
+    <wsdl:part name="arg2" type="tns:opzioniReperimentoFamiglia">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testAcquisizioneCambioIndirizzoResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="Exception">
+    <wsdl:part element="tns:Exception" name="Exception">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testSalvaCambioIndirizzo">
+    <wsdl:part name="arg0" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testSalvaCambioIndirizzoResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testAcquisizioneCambioIndirizzo">
+    <wsdl:part name="arg0" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="RicercheANPRWS">
+    <wsdl:operation name="testSalvaCambioIndirizzo">
+      <wsdl:input message="tns:testSalvaCambioIndirizzo" name="testSalvaCambioIndirizzo">
+    </wsdl:input>
+      <wsdl:output message="tns:testSalvaCambioIndirizzoResponse" name="testSalvaCambioIndirizzoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getFamigliaANPR">
+      <wsdl:input message="tns:getFamigliaANPR" name="getFamigliaANPR">
+    </wsdl:input>
+      <wsdl:output message="tns:getFamigliaANPRResponse" name="getFamigliaANPRResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="testAcquisizioneCambioIndirizzo">
+      <wsdl:input message="tns:testAcquisizioneCambioIndirizzo" name="testAcquisizioneCambioIndirizzo">
+    </wsdl:input>
+      <wsdl:output message="tns:testAcquisizioneCambioIndirizzoResponse" name="testAcquisizioneCambioIndirizzoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RicercheANPRServiceSoapBinding" type="tns:RicercheANPRWS">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="testSalvaCambioIndirizzo">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="testSalvaCambioIndirizzo">
+        <soap:body namespace="http://it/csi/nao/orchanpr/business/naoricercheanpr/ricercheanpr" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="testSalvaCambioIndirizzoResponse">
+        <soap:body namespace="http://it/csi/nao/orchanpr/business/naoricercheanpr/ricercheanpr" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getFamigliaANPR">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getFamigliaANPR">
+        <soap:body namespace="http://it/csi/nao/orchanpr/business/naoricercheanpr/ricercheanpr" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getFamigliaANPRResponse">
+        <soap:body namespace="http://it/csi/nao/orchanpr/business/naoricercheanpr/ricercheanpr" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="testAcquisizioneCambioIndirizzo">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="testAcquisizioneCambioIndirizzo">
+        <soap:body namespace="http://it/csi/nao/orchanpr/business/naoricercheanpr/ricercheanpr" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="testAcquisizioneCambioIndirizzoResponse">
+        <soap:body namespace="http://it/csi/nao/orchanpr/business/naoricercheanpr/ricercheanpr" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RicercheANPRService">
+    <wsdl:port binding="tns:RicercheANPRServiceSoapBinding" name="RicercheANPRWSPort">
+      <soap:address location="http://10.102.42.209:19010/orchanpr/RicercheANPRService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

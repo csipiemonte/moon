@@ -1,0 +1,28 @@
+<table id="mytable" class="table table-sm  table-hover small">
+    <thead>
+      <th>nome file</th>
+      <th>numero protocollo</th>
+      <!-- <th>estensione</th> -->
+      <th>data protocollo</th>
+      <th>contenuto</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let documento of documenti">
+        <td>{{documento.descrizione ? documento.descrizione: documento.nomeFile }}</td>
+        <td>{{documento.numeroProtocollo}}</td>
+        <!-- <td>{{allegato.estensione}}</td> -->
+        <td>{{documento.dataProtocollo | date: 'dd/MM/yyyy'}}</td>
+
+        <td >
+          <div class="d-flex">
+            <!-- <span *ngIf="documento.formioNameFile"> -->
+              <button class="btn btn-icon btn-xxs" type="button" *ngIf="documento.idFile" (click)="downloadDocumento(documento)" [routerLink]="[]" ngbTooltip="Scarica documento">
+                <span class="visually-hidden">Scarica il documento n. {{documento.numeroProtocollo}}</span>
+                <svg class="icon icon-primary icon-sm"><use [attr.href]="'./assets/svg/sprite.svg#it-download'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-download'"></use></svg>
+              </button>
+          </div>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>

@@ -1,0 +1,120 @@
+swagger: '2.0'
+info:
+  description: With this API you can get the status of the messages(if the message was correctly sent in channels such as email,sms etc..) by a bulk_id or a message id.
+  version: 1.0.0
+  title: Messages Status
+basePath: /notify-status/api/v1
+schemes:
+  - http
+tags:
+  - name: status
+    description: status
+paths:
+  '/status/messages':
+    get:
+      tags:
+        - status
+      parameters:
+        - in: header
+          name: x-authentication
+          type: string
+          required: true
+          description: JWT token
+        - in: header
+          name: X-Request-ID
+          type: string
+          required: false
+          description: request id
+        - in: query
+          name: bulk_id
+          type: string
+          required: true
+          description: |
+            string that represent the bulk_id.
+      description: Get list of messages status by bulk_id
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Status'
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+        '403':
+          description: The token has been blacklisted.
+        '500':
+          description: Internal Server Error
+  '/status/messages/{message_id}':
+    get:
+      tags:
+        - status
+      summary: Get status of a message
+      parameters:
+        - in: path
+          name: message_id
+          type: string
+          required: true
+          description: The message id
+        - in: header
+          name: x-authentication
+          type: string
+          required: true
+          description: JWT token
+      description: Get status of a message
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Status'
+        '400':
+          description: Invalid input
+        '404':
+          description: User not found
+        '401':
+          description: Unauthorized
+        '403':
+          description: The token has been blacklisted.
+        '500':
+          description: Internal Server Error
+definitions:
+  Status:
+    type: object
+    properties:
+      message_id:
+        type: string
+        description: uuid of the message
+      email_result:
+        type: string
+        description: status result of email (1 means it's sent)
+      sms_result:
+        type: string
+        description: status result of sms (1 means it's sent)
+      push_result:
+        type: string
+        description: status result of push (1 means it's sent)
+      io_result:
+        type: string
+        description: status result of IO italia (1 means it's sent)
+      mex_result:
+        type: string
+        description: status result of the mex (1 means it's sent)
+    example:  {
+                "message_id": "a8efa209-9120-4e66-9be4-4450bedcf83d",
+                "email_result": 1,
+                "push_result": 1,
+                "sms_result": 1,
+                "io_result": 0,
+                "mex_result": 1,
+                "send_date": "2019-06-14T10:32:16.000Z"
+            }

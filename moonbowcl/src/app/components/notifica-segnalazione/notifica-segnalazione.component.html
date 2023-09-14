@@ -1,0 +1,12 @@
+<div style="width: 90%; margin-left:100px;margin-top:40px ">
+    <h2 style="text-align:center">
+        <div [innerHTML]="titoloErrore"></div>
+    </h2>
+    <br>
+    <h4 style="text-align:center">
+        <div [innerHTML]="descrizione"></div>
+    </h4>
+    <br>
+    <h5 *ngIf="showBack" style="text-align:center"><a [routerLink]="[]" (click)="goToIstanze()"> Torna alle istanze
+        </a></h5>
+</div>

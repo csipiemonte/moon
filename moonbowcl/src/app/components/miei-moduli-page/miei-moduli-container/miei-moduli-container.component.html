@@ -1,0 +1,82 @@
+
+<alert id="alert-miei-moduli-container"></alert>  
+<div [ngSwitch]="currentView" style="margin: 0 auto">
+  <div *ngSwitchCase="'elenco-moduli'">
+      <div class="row">
+          <!-- <div class="col-md-12" style="margin-top: -50px;"> -->
+          <div class="col-md-12">
+              <app-miei-moduli-tabella 
+                [mieiModuli]="elencoModuli" 
+                (eventModificaModulo)="modificaModulo($event)" 
+                (eventCambiaStato)="cambiaStato($event)" 
+                (eventDettaglioModulo)="dettaglioModulo($event)" 
+                (eventDatiGenerali)="datiGenerali($event)" 
+                (eventEliminaModulo)="eliminaModulo($event)" 
+                (eventNuovaVersione)="nuovaVersione($event)"
+                (eventCreaModulo)="creaModulo($event)">
+              </app-miei-moduli-tabella>
+          </div>
+      </div>
+  </div>
+
+  <div *ngSwitchCase="'crea-modulo'">
+    <app-miei-moduli-crea 
+                [elencoProcessi]="elencoProcessi" 
+                (backEvent)="setVistaModuli($event)"
+                (alertService)="getAlert($event)">
+    </app-miei-moduli-crea>
+  </div>
+
+  <div *ngSwitchCase="'cambia-stato'">
+    <app-miei-moduli-cambia-stato 
+                [moduloInLavorazione]="moduloInLavorazione" 
+                (backEvent)="setVistaModuli($event)"
+                (alertService)="getAlert($event)">
+    </app-miei-moduli-cambia-stato>
+  </div>
+
+  <div *ngSwitchCase="'nuova-versione'">
+    <app-miei-moduli-nuova-versione 
+                [modulo]="moduloInLavorazione" 
+                (backEvent)="setVistaModuli($event)"
+                (alertService)="getAlert($event)">
+    </app-miei-moduli-nuova-versione>
+  </div>
+
+  <div *ngSwitchCase="'dettaglio-modulo'">
+    <app-miei-moduli-dettaglio 
+                [moduloSelezionato]="moduloInLavorazione"
+                [elencoCategorie]="elencoCategorie" 
+                [elencoProcessi]="elencoProcessi" 
+                [elencoPortali]="elencoPortali"
+                [elencoTipoCodiceIstanza]="elencoTipoCodiceIstanza"
+                (eventModificaModulo)="modificaModulo($event)" 
+                (eventCambiaStato)="cambiaStato($event)" 
+                (eventNuovaVersione)="nuovaVersione($event)"
+                (eventDuplicaModulo)="duplicaModulo($event)"
+                (eventEliminaModulo)="eliminaModulo($event)" 
+                (backEvent)="setVistaModuli($event)">
+    </app-miei-moduli-dettaglio>
+  </div>
+
+  <div *ngSwitchCase="'dati-generali'">   
+    <app-dati-generali-modulo 
+                [moduloInLavorazione]="moduloInLavorazione" 
+                [elencoCategorie]="elencoCategorie" 
+                [elencoProcessi]="elencoProcessi" 
+                (backEvent)="setVistaModuli($event)"
+                (alertService)="getAlert($event)"
+                >
+    </app-dati-generali-modulo>
+  </div>
+
+  <div *ngSwitchCase="'modifica-modulo'">
+    <app-formio-editor [modulo]="selectedModulo"
+                        [isUserAdmin]="user.isTipoADMIN()"                       
+                        (backEvent)="backFromFormIOEditor()"
+                        (alertService)="getAlert($event)">
+    </app-formio-editor>
+  </div>
+</div>
+
+<app-moon-spinner></app-moon-spinner>

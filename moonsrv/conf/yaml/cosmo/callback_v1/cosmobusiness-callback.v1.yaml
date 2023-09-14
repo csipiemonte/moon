@@ -1,0 +1,238 @@
+swagger: '2.0'
+tags:
+  - name: callback
+    description: gestione dei callback verso i fruitori
+info:
+  title: cosmobusiness Fruitori
+  version: '1.0'
+  contact:
+    name: csi
+  description: Api per i fruitori esterni
+host: 'localhost:8080'
+basePath: /cosmobusiness
+schemes:
+  - http
+produces:
+  - application/json
+consumes:
+  - application/json
+paths:
+  '/stato-pratica/{idPratica}':
+    put:
+      summary: Invio callback stato pratica
+      tags: [callback]
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: ./common.models.yaml#/definitions/Esito
+      operationId: callback-put-stato-pratica
+      description: Invio aggiornamento stato di una pratica tramite l'id della pratica sul sistema fruitore
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/AggiornaStatoPraticaRequest'
+          x-examples:
+            example-1:
+              value:
+                id: string
+                codiceIpaEnte: string
+                tipo:
+                  codice: string
+                  descrizione: string
+                oggetto: string
+                stato:
+                  codice: string
+                  descrizione: string
+                riassunto: string
+                utenteCreazione:
+                  codiceFiscale: string
+                  nome: string
+                  cognome: string
+                dataCreazione: '2019-08-24T14:15:22Z'
+                dataFine: '2019-08-24T14:15:22Z'
+                dataCambioStato: '2019-08-24T14:15:22Z'
+                dataAggiornamento: '2019-08-24T14:15:22Z'
+                metadati:
+                  name: string
+                  value: string
+                attivita:
+                  - nome: string
+                    descrizione: string
+                    dataInizio: '2019-08-24T14:15:22Z'
+                    dataFine: '2019-08-24T14:15:22Z'
+                    assegnazione:
+                      - utente:
+                          codiceFiscale: string
+                          nome: string
+                          cognome: string
+                        gruppo: string
+                    sottotask:
+                      utente:
+                        codiceFiscale: string
+                        nome: string
+                        cognome: string
+                    messaggiCollaboratori:
+                      - utente:
+                          codiceFiscale: string
+                          nome: string
+                          cognome: string
+                        messaggio: string
+                        timestamp: '2019-08-24T14:15:22Z'
+                commentiPratica:
+                  - utente:
+                      codiceFiscale: string
+                      nome: string
+                      cognome: string
+                    messaggio: string
+                    timestamp: '2019-08-24T14:15:22Z'
+                documenti:
+                  - id: string
+                    idPadre: string
+                    titolo: string
+                    descrizione: string
+                    autore: string
+                    mimeType: string
+                    tipo:
+                      codice: ALLEGATO
+                      descrizione: allegato ad un altro documento
+                    stato:
+                      codice: ACQUISITO
+                      descrizione: documento acquisito correttamente
+                    firme:
+                      - data: '2019-08-24T14:15:22Z'
+                        firmatario: string
+                        organizzazione: string
+                    protocollo:
+                      numero: string
+                      data: string
+                      classificazione: string
+                    refURL: string
+    parameters:
+      - type: string
+        name: idPratica
+        in: path
+        required: true
+        description: id della pratica esterna
+definitions:
+  AggiornaStatoPraticaRequest:
+    title: AggiornaStatoPraticaRequest
+    type: object
+    x-examples:
+      example-1:
+        id: string
+        codiceIpaEnte: string
+        tipo:
+          codice: string
+          descrizione: string
+        oggetto: string
+        stato:
+          codice: string
+          descrizione: string
+        riassunto: string
+        utenteCreazione:
+          codiceFiscale: string
+          nome: string
+          cognome: string
+        dataCreazione: '2019-08-24T14:15:22Z'
+        dataFine: '2019-08-24T14:15:22Z'
+        dataCambioStato: '2019-08-24T14:15:22Z'
+        dataAggiornamento: '2019-08-24T14:15:22Z'
+        metadati: string
+        attivita:
+          - nome: string
+            descrizione: string
+            dataInizio: '2019-08-24T14:15:22Z'
+            dataFine: '2019-08-24T14:15:22Z'
+            assegnazione:
+              utente:
+                codiceFiscale: string
+                nome: string
+                cognome: string
+              gruppo: string
+            sottoAttivita:
+              utente:
+                codiceFiscale: string
+                nome: string
+                cognome: string
+            messaggiCollaboratori: null
+        commenti:
+          - utente:
+              codiceFiscale: string
+              nome: string
+              cognome: string
+            messaggio: string
+            timestamp: '2019-08-24T14:15:22Z'
+        documenti:
+          - id: string
+            idPadre: string
+            titolo: string
+            descrizione: string
+            autore: string
+            mimeType: string
+            firme:
+              - data: '2019-08-24T14:15:22Z'
+                firmatario: string
+                organizzazione: string
+            protocollo:
+              numero: string
+              data: string
+              classificazione: string
+            refURL: string
+            tipoDocumento: string
+            tipo:
+              codice: string
+              descrizione: string
+            stato:
+              codice: string
+              descrizione: string
+    description: Tutti i contenuti della pratica aggiornati alla data odierna
+    properties:
+      id:
+        type: string
+      codiceIpaEnte:
+        type: string
+      tipo:
+        $ref: './fruitore.models.yaml#/definitions/TipoPraticaFruitore'
+      oggetto:
+        type: string
+      stato:
+        $ref: './fruitore.models.yaml#/definitions/StatoPraticaFruitore'
+      riassunto:
+        type: string
+      utenteCreazione:
+        $ref: './fruitore.models.yaml#/definitions/UtenteFruitore'
+      dataCreazione:
+        type: string
+        format: date-time
+      dataFine:
+        type: string
+        format: date-time
+      dataCambioStato:
+        type: string
+        format: date-time
+      dataAggiornamento:
+        type: string
+        format: date-time
+      metadati:
+        description: metadati della pratica in formato libero
+        type: object
+      attivita:
+        type: array
+        description: 'array di tutte le attività della pratica in ordine cronologico, le attività concluse hanno dataFine not null'
+        items:
+          $ref: './fruitore.models.yaml#/definitions/AttivitaFruitore'
+      commenti:
+        type: array
+        description: array in ordine cronologico dei commenti della pratica
+        items:
+          $ref: './fruitore.models.yaml#/definitions/MessaggioFruitore'
+      documenti:
+        type: array
+        description: array dei documenti della pratica
+        items:
+          $ref: './fruitore.models.yaml#/definitions/DocumentoFruitore'
+    required:
+      - id
+  

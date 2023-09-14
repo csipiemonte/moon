@@ -1,0 +1,310 @@
+<nav *ngIf="!isUrlEmbeddedTornaIstanze" class="breadcrumb-container" aria-label="Percorso di navigazione">
+  <ol class="breadcrumb">
+    <!-- <li class="breadcrumb-item" ><a style="cursor:pointer" (click)="backToIstanze()">Le mie istanze</a><span class="separator" aria-hidden="true">/</span></li> -->
+    <li class="breadcrumb-item"><a style="cursor:pointer" (click)="tornaIndietro()">{{breadcrumbBackTitle}}</a><span
+        class="separator" aria-hidden="true">/</span></li>
+    <li class="breadcrumb-item active" aria-current="page"> {{istanza?.codiceIstanza}}</li>
+  </ol>
+</nav>
+
+<div *ngIf="isInAttesaDiPagamento  && (istanza.stato.idStato === STATI.IN_PAGAMENTO)" class="alert alert-warning">
+  <span><b>In attesa di pagamento.</b><br />La conferma del pagamento può richiedere diversi minuti.</span>
+</div>
+<div *ngIf="isPagatoMaNonInviato" class="alert alert-success">
+  <span><b>Pagamento eseguito con successo.</b> Puoi proseguire con l'<b>Invio</b> dell'istanza.</span>
+</div>
+
+<!-- <h1 class="h2">Dettaglio istanza</h1> -->
+<h1 class="h2">{{istanza?.codiceIstanza}}</h1>
+
+<div class="row mt-4">
+  <!-- <div *ngIf="istanza?.stato?.idStato > 1 &&  istanza?.modulo?.stato?.codice === 'PUB' && nextWorkflow.length > 0 "
+       class="col-md-6 order-md-2 mb-4"> -->
+
+  <!-- Prossimo passo -->
+  <div class="col-md-5 order-2 mb-4" *ngIf="istanza?.stato?.idStato >= STATI.INVIATA && nextWorkflow.length > 0 ">
+    <h2 class="h3">Prossimo passo</h2>
+    <!-- <span class="badge badge-primary badge-pill">{{ numOpzioni }}</span> -->
+    <div class="d-flex flex-column">
+      <span *ngFor="let nextAction of nextWorkflow">
+
+        <div [ngSwitch]="nextAction.codiceAzione">
+          <div *ngSwitchCase="DecodificaAzione['PAGA_ONLINE'].codice">
+            <button aria-label="{{nextAction.nomeAzione}}" class="btn btn-primary w-100 btn-icon btn-lg mb-3"
+              (click)="confermaAzione(nextAction)" [routerLink]="[]" ngbTooltip="Pagamento online, con carta di credito, carta di debito, carta prepagata">
+              <span>{{ nextAction.nomeAzione }}</span>
+              <svg class="icon icon-white icon-sm">
+                <use [attr.href]="'./assets/svg/sprite.svg#it-arrow-right'"
+                  [attr.xlink:href]="'./assets/svg/sprite.svg#it-arrow-right'"></use>
+              </svg>
+            </button>
+          </div>
+
+          <div *ngSwitchCase="DecodificaAzione['PAGA_SPORTELLO'].codice">
+            <button aria-label="{{nextAction.nomeAzione}}" class="btn btn-primary w-100 btn-icon btn-lg mb-3"
+              (click)="confermaAzione(nextAction)" [routerLink]="[]" ngbTooltip="Paga presso un esercente convenzionato (banca, posta,ricevitoria, bar, tabaccheria ...)">
+              <span>{{ nextAction.nomeAzione }}</span>
+              <svg class="icon icon-white icon-sm">
+                <use [attr.href]="'./assets/svg/sprite.svg#it-arrow-right'"
+                  [attr.xlink:href]="'./assets/svg/sprite.svg#it-arrow-right'"></use>
+              </svg>
+            </button>
+          </div>
+
+          <div *ngSwitchDefault>
+            <button *ngIf="!nextAction?.isAzioneConDati" aria-label="{{nextAction.nomeAzione}}"
+              class="btn btn-primary w-100 btn-icon btn-lg mb-3" (click)="confermaAzione(nextAction)" [routerLink]="[]">
+              <span>{{ nextAction.nomeAzione }}</span>
+              <svg class="icon icon-white icon-sm">
+                <use [attr.href]="'./assets/svg/sprite.svg#it-arrow-right'"
+                  [attr.xlink:href]="'./assets/svg/sprite.svg#it-arrow-right'"></use>
+              </svg>
+            </button>
+
+            <button *ngIf="nextAction?.isAzioneConDati" aria-label="{{nextAction.nomeAzione}}"
+              class="btn btn-primary w-100 btn-icon btn-lg mb-3"
+              (click)="completaAzione(nextAction.idWorkflow,nextAction.idAzione)" [routerLink]="[]">
+              <span>{{ nextAction.nomeAzione }}</span>
+              <svg class="icon icon-white icon-sm">
+                <use [attr.href]="'./assets/svg/sprite.svg#it-arrow-right'"
+                  [attr.xlink:href]="'./assets/svg/sprite.svg#it-arrow-right'"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+      </span>
+      <div *ngIf="prevAction?.isAnnullabile">
+        <!-- <h3 class="my-0">Annulla passo precedente</h3> -->
+        <button aria-label="Annulla passo precedente" (click)="confermaAnnulla(prevAction.idWorkflow)" [routerLink]="[]"
+          class="btn btn-outline-primary w-100 btn-icon btn-lg mb-3">
+          <span>Annulla passo precedente</span>
+          <svg class="icon icon-primary icon-sm">
+            <use [attr.href]="'./assets/svg/sprite.svg#it-restore'"
+              [attr.xlink:href]="'./assets/svg/sprite.svg#it-restore'"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dettaglio Istanza-->
+  <app-istanza-dettaglio [istanza]="istanza" class="mb-3 col-md-7 order-md-1">
+  </app-istanza-dettaglio>
+
+  <!-- Questo div serve-->
+</div>
+
+<!-- Pagamenti -->
+<div *ngIf="isConPagamenti">
+
+  <div *ngIf="!isPagatoMaNonInviato">
+    <!-- Istruzioni di pagamento -->
+    <h3 class="mb-3 mt-3 h5">Istruzioni di pagamento</h3>
+
+    <div class="accordion mb-5 col-12 col-md-10 col-lg-9 col-xl-8" id="collapseIstruzioniPagamento">
+      <div class="accordion-item small">
+        <h2 class="accordion-header " id="pagaOnline">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pagaOnlineText"
+            aria-expanded="true" aria-controls="pagaOnlineText">
+            Pagamento online (carta di credito, carta prepagata...)
+          </button>
+        </h2>
+        <div id="pagaOnlineText" class="accordion-collapse collapse" role="region" aria-labelledby="pagaOnline">
+          <div class="accordion-body">
+
+            <p>Per effettuare il pagamento online, segui queste istruzioni:</p>
+
+            <ol>
+              <li>clicca sul bottone “Pagamento online”;</li>
+              <li>Clicca su “Sì, procedi” per confermare la modalità di pagamento. Il sistema ti reindirizzerà al sito
+                <b>PagoPA</b> in una nuova finestra;
+              </li>
+              <li><b>su PagoPa</b>: effettua l’accesso con SPID o con indirizzo email;</li>
+              <li><b>su PagoPa</b>: Accetta l’informativa e clicca “continua”;</li>
+              <li><b>su PagoPa</b>: Seleziona il metodo di pagamento, inserisci i dati richiesti e clicca su “continua”;
+              </li>
+              <li><b>su PagoPa</b>: Verifica i dati del riepilogo e, se sono corretti, clicca su “Conferma Pagamento”;
+              </li>
+              <li><b>su PagoPa</b>: Se il pagamento è andato a buon fine, il sito PagoPa ti mostrerà un messaggio di
+                successo e ti reindirizzerà al sito <b>PiemontePay</b>. Riceverai una <b>email di conferma</b>
+                all’indirizzo di posta con cui hai effettuato l’accesso, con la ricevuta allegata;</li>
+              <li><b>su PagoPa</b>: Se il pagamento NON è andato a buon fine, il sito PagoPa ti mostrerà un messaggio che
+                dice “Operazione rifiutata” e ti reindirizzerà al sito <b>PiemontePay</b>;</li>
+              <li><b>su PiemontePay</b>: chiudi la finestra di PiemontePay per tornare in questa pagina; </li>
+              <li>se il pagamento non è andato a buon fine, segui le istruzioni della sezione <b>“Problemi con il
+                  pagamento?“</b>;</li>
+              <li>il pagamento verrà registrato entro pochi minuti e lo “Stato pagamento” riporterà “Pagamento
+                effettuato”;</li>
+              <li>può capitare che la registrazione del pagamento richieda più tempo. Se dopo 24 ore il pagamento non
+                risulta ancora effettuato, contatta l’Ente a cui stai indirizzando la tua istanza.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item small">
+        <h2 class="accordion-header " id="pagaTerritorio">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pagaTerritorioText"
+            aria-expanded="false" aria-controls="pagaTerritorioText">
+            In banca, ufficio postale o esercenti convenzionati con avviso di pagamento
+          </button>
+        </h2>
+        <div id="pagaTerritorioText" class="accordion-collapse collapse" role="region" aria-labelledby="pagaTerritorio">
+          <div class="accordion-body">
+            <p>Il pagamento può essere effettuato sul territorio presso:</p>
+
+            <ul>
+              <li>filiale bancaria aderente;</li>
+              <li>ufficio postale;</li>
+              <li>punti di posta privata;</li>
+              <li><b>esercenti convenzionati PagoPA</b> come bar, edicole, farmacie, ricevitorie, supermercati,
+                tabaccherie.</li>
+            </ul>
+
+            <p>Per effettuare il pagamento sul territorio, segui queste istruzioni:</p>
+
+            <ol>
+              <li>copia il codice IUV <b>{{istanza?.codiceAvviso }}</b> cliccando sull'icona <svg class="icon icon-sm icon-primary">
+                <use [attr.href]="'./assets/svg/sprite.svg#it-copy'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-copy'">
+                </use>
+              </svg> e tienilo a portata di mano;</li>
+              <li>clicca sul bottone <b>“Stampa avviso di pagamento”</b>, quindi su “Sì, procedi” per confermare la modalità di pagamento. Il sistema ti reindirizzerà al sito <b>PiemontePay</b> in una nuova finestra;</li>
+              <li>clicca sul bottone <b>“Paga con piemontepay con IUV”</b>;</li>
+              <li>inserisci il codice IUV e clicca su <b>“Prosegui”</b>;</li>
+              <li>inserisci il codice fiscale relativo allo IUV (lo trovi nella colonna "CF/PIVA Pagatore" della tabella "Pagamenti" in questa pagina);</li>
+              <li>clicca sul bottone <b>“Stampa”</b> in basso a destra;</li>
+              <li>a questo punto avrai scaricato l’avviso di pagamento. Stampalo e recati presso l’esercente convenzionato
+                per pagare l’avviso;</li>
+              <li><b>conserva la ricevuta</b>, potrà essere richiesta per procedere all’invio dell’istanza.</li>
+              <li>attendi qualche giorno, riceverai una email di conferma di avvenuta ricezione del tuo pagamento.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="mb-4">Pagamenti</h3>
+  <app-istanza-pagamenti [istanza]="istanza" [nextWorkflow]="nextWorkflow" (onAnnullaPagamento)="annullaConfermaPagamento()">
+  </app-istanza-pagamenti>
+
+  <div *ngIf="(istanza.stato.idStato === STATI.IN_PAGAMENTO  ||  istanza.stato.idStato === STATI.ATTESA_RICEVUTA_PAGAMENTO  ||  istanza.stato.idStato === STATI.IN_PAGAMENTO_ONLINE  || istanza.stato.idStato === STATI.ATTESA_PAGAMENTO) && !isPagatoMaNonInviato">
+    <div class="small accordion mb-5 mt-5 col-12 col-md-10 col-lg-9 col-xl-8" id="collapseProblemiPagamento">
+      <div class="accordion-item">
+        <h2 class="accordion-header " id="problemiPagamento">
+          <button class="accordion-button collapsed small" type="button" data-bs-toggle="collapse" data-bs-target="#problemiPagamentoText"
+            aria-expanded="true" aria-controls="problemiPagamentoText">
+            Problemi con il pagamento?
+          </button>
+        </h2>
+        <div id="problemiPagamentoText" class="accordion-collapse collapse" role="region" aria-labelledby="problemiPagamento">
+          <div class="accordion-body">
+
+            <p>Se la procedura di pagamento non è andata a buon fine (o hai ricevuto un email con esito “Pagamento non eseguito”), <b>è necessario generare un nuovo codice IUV ed effettuare un nuovo pagamento</b>.</p>
+            <p>Segui dunque le seguenti istruzioni:</p>
+
+            <ol>
+              <li>clicca su <b>“Genera nuovo IUV”</b>. Questo annullerà il codice avviso IUV attuale e ne genererà uno nuovo;</li>
+              <li>procedi con il pagamento online o sul territorio seguendo le istruzioni della sezione “Istruzioni di pagamento”.</li>
+            </ol>
+            <p><b>Attenzione: questo NON ANNULLA un eventuale pagamento in corso.</b></p>
+            <a role="button" (click)="annullaConfermaPagamento()" [routerLink]="[]">
+              <svg class="icon icon-sm icon-primary me-2">
+                <use [attr.href]="'./assets/svg/sprite.svg#it-restore'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-restore'"></use>
+              </svg>Genera nuovo IUV</a>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header " id="ristampa">
+          <button class="accordion-button collapsed small" type="button" data-bs-toggle="collapse" data-bs-target="#ristampaTesto"
+            aria-expanded="false" aria-controls="ristampaTesto">
+            Devi ristampare l'avviso di pagamento (paga sul territorio)?
+          </button>
+        </h2>
+        <div id="ristampaTesto" class="accordion-collapse collapse" role="region" aria-labelledby="ristampa">
+          <div class="accordion-body">
+            <p>Se hai smarrito il bollettino per il pagamento sul territorio e hai bisogno di ristamparlo, segui queste istruzioni:</p>
+            <ol>
+              <li>copia il codice IUV <b>{{istanza?.codiceAvviso }}</b> e tienilo a portata di mano;
+                <li>collegati al sito <a target="_blank" href="https://pay.sistemapiemonte.it/epayweb/" title="Sito web PiemontePay">PiemontePay</a>;</li>
+                <li>clicca sul bottone <b>“Paga con piemontepay con IUV”</b>;</li>
+                <li>inserisci il codice IUV e clicca su <b>“Prosegui”</b>;</li>
+                <li>inserisci il codice fiscale relativo allo IUV (lo trovi nella colonna "CF/PIVA Pagatore" della tabella "Pagamenti" in questa pagina);</li>
+                <li>clicca sul bottone <b>“Stampa”</b> in basso a destra;</li>
+                <li>a questo punto avrai scaricato l’avviso di pagamento.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header " id="pagamentoEffettuato">
+          <button class="accordion-button collapsed small" type="button" data-bs-toggle="collapse" data-bs-target="#pagamentoEffettuatoText"
+            aria-expanded="false" aria-controls="pagamentoEffettuatoText">
+            Hai già effettuato il pagamento?
+          </button>
+        </h2>
+        <div id="pagamentoEffettuatoText" class="accordion-collapse collapse" role="region" aria-labelledby="pagamentoEffettuato">
+          <div class="accordion-body">
+            <p>Prima che il tuo pagamento risulti confermato in questa pagina possono passare alcuni giorni, a seconda
+              del Prestatore Servizi di Pagamento (ufficio postale, banca, esercente convenzionato...).</p>
+
+            <p>Se hai effettuato il pagamento con successo ma l'istanza risulta ancora in stato "IN PAGAMENTO", contatta
+              l’Ente a cui stai inoltrando la tua istanza.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- END Problemi con il pagamento? -->
+</div> <!-- END Pagamenti -->
+
+<!-- Altre operazioni -->
+<app-istanza-altre-operazioni [istanza]="istanza" class="mb-3 col-md-7 order-md-1">
+</app-istanza-altre-operazioni>
+
+<!-- Tabs dettagli -->
+<ul class="nav nav-tabs nav-tabs-icon-text my-5" id="tabIstanza">
+  <li class="nav-item"><a class="nav-link active" id="tab1-tab" data-bs-toggle="tab" href="#tab1" role="tab"
+      aria-controls="tab1" aria-selected="true">
+      <svg class="icon icon-sm">
+        <use [attr.href]="'./assets/svg/sprite.svg#it-clock'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-clock'">
+        </use>
+      </svg>
+      Storico lavorazione</a></li>
+
+  <li class="nav-item"><a class="nav-link" id="tab2-tab" data-bs-toggle="tab" href="#tab2" role="tab"
+      aria-controls="tab2" aria-selected="false">
+      <svg class="icon icon-sm">
+        <use [attr.href]="'./assets/svg/sprite.svg#it-clip'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-clip'">
+        </use>
+      </svg>Allegati all'istanza</a></li>
+
+  <li class="nav-item"><a class="nav-link" id="tab3-tab" data-bs-toggle="tab" href="#tab3" role="tab"
+      aria-controls="tab3" aria-selected="false"> <svg class="icon icon-sm">
+        <use [attr.href]="'./assets/svg/sprite.svg#it-pa'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-pa'"></use>
+      </svg>Atti emessi dall'ufficio competente</a></li>
+</ul>
+
+<div class="tab-content" id="myTabContent" role="tablist">
+  <div class="tab-pane fade active show" id="tab1" role="tabpanel" aria-label="Storico lavorazione dell'istanza">
+    <app-istanza-storico [storicoWorkflow]="storicoWorkflow" [istanza]="istanza" (initStorico)="getStoricoWorkflow()">
+    </app-istanza-storico>
+  </div>
+
+  <div class="tab-pane fade" id="tab2" role="tabpanel" aria-label="Allegati all'istanza">
+    <app-istanza-allegati [allegati]="allegati" (initAllegati)="getAllegati()"></app-istanza-allegati>
+  </div>
+  <div class="tab-pane fade" id="tab3" role="tabpanel" aria-label="Atti emessi dall'ufficio competente">
+    <app-istanza-documenti (initDocumenti)="getDocumentiEmessiDaUfficio()" [documenti]="documenti"></app-istanza-documenti>
+  </div>
+</div>
+
+
+<!-- <div *ngIf="!isUrlEmbeddedTornaIstanze">
+  <div style="margin-top:15px;">
+    <a [routerLink]="" (click)="tornaIndietro()" style="font-weight:normal;font-size:0.8em">
+      Torna alle istanze
+      <fa-icon [icon]="faBackward"></fa-icon>
+    </a>
+  </div>
+</div> -->

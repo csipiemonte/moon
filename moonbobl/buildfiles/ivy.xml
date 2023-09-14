@@ -1,0 +1,110 @@
+ <ivy-module version="1.0">
+	<info organisation="csipiemonte" module="moonfobl" />
+	<dependencies>
+
+		<dependency org="apache" name="commons-codec" rev="1.3"/>
+<!-- 		<dependency org="apache" name="commons-io" rev="2.5"/> -->
+		<dependency org="apache" name="commons-lang" rev="2.6"/>
+		<dependency org="apache" name="commons-logging" rev="1.1.3"/>
+		<dependency org="apache" name="commons-fileupload" rev="1.3.3"/>
+		<dependency org="apache" name="log4j" rev="2.16.0">
+			<artifact name="log4j-1.2-api-2.16.0" type="jar" />
+		</dependency>
+<!--
+		<dependency org="apache" name="cxf" rev="2.7.7"/>
+		<dependency org="apache" name="xmlschema-core" rev="2.1.0"/>
+		<dependency org="apache" name="neethi" rev="3.0.3"/>
+		<dependency org="apache" name="geronimo-javamail" rev="1.4">
+			<artifact name="geronimo-javamail_1.4_spec-1.7.1" type="jar" />
+		</dependency>
+-->
+	  	<dependency org="others" name="aopalliance" rev="1.0.0" >
+			<artifact name="aopalliance-1.0.0" type="jar" />
+		</dependency>
+		
+    	<dependency org="others" name="asm" rev="3.3.1"  transitive="false"/>
+    	
+    	<dependency org="others" name="cglib" rev="2.2.2">
+			<artifact name="cglib-2.2.2" type="jar"/>
+		</dependency>
+		
+		<!-- ############################################################## -->
+    	<!-- # SPRING                                                     # -->
+    	<!-- ############################################################## -->
+    	<!--  -->
+		<dependency org="others" name="spring" rev="4.3.24.RELEASE" transitive="false" >
+	      <artifact name="spring-aop-4.3.24.RELEASE" type="jar" />
+	      <artifact name="spring-instrument-4.3.24.RELEASE" type="jar" />
+	      <artifact name="spring-beans-4.3.24.RELEASE" type="jar" />
+	      <artifact name="spring-context-4.3.24.RELEASE" type="jar" />
+	      <artifact name="spring-core-4.3.24.RELEASE" type="jar" />
+	      <artifact name="spring-expression-4.3.24.RELEASE" type="jar" />
+	      <artifact name="spring-jdbc-4.3.24.RELEASE" type="jar" />
+	      <artifact name="spring-tx-4.3.24.RELEASE" type="jar" />
+	      <artifact name="spring-web-4.3.24.RELEASE" type="jar" />
+	      <artifact name="spring-test-4.3.24.RELEASE" type="jar" />
+	    </dependency>
+	    
+	    <!-- librerie per JAX-RS -->
+	    <dependency org="others" name="jettison" rev="1.3.1">
+			<artifact name="jettison-1.3.1" type="jar"/>
+		</dependency>
+
+<!--		<dependency org="sun" name="servlet-api" rev="2.5"/> -->
+		<dependency org="sun" name="javax.servlet-api" rev="3.0.1"/>
+
+		<!-- Cooperative Systems Infrastructure -->
+<!--		<dependency org="csipiemonte" name="csi" rev="1.4.6">
+			<artifact name="csi-core-1.4.6" type="jar"/>
+			<artifact name="csi-rmi-1.4.6" type="jar"/>
+			<artifact name="csi-ejb-1.4.6" type="jar"/>
+			<artifact name="csi-apachesoap-1.4.6" type="jar"/>
+			<artifact name="csi-stadapter-1.4.6" type="jar"/>
+		</dependency>  -->
+		
+		<!-- Iride2 PEP -->
+<!--		<dependency org="csipiemonte" name="iridev2" rev="2.0.0"/> -->
+
+		<!-- Inserire qui le dipendenze aggiuntive -->
+		<dependency org="redhat" name="resteasy-jaxrs" rev="3.7.0.Final">
+			<artifact name="resteasy-jaxrs-3.7.0.Final" type="jar" />
+		</dependency>
+		
+		<!-- per upload -->
+		<dependency org="redhat" name="resteasy-multipart-provider" rev="3.7.0.Final">
+            <artifact name="resteasy-multipart-provider-3.7.0.Final" type="jar" />
+        </dependency>
+		
+		<dependency org="codehaus" name="jackson-mapper-asl" rev="1.9.13">
+			<artifact name="jackson-mapper-asl-1.9.13" type="jar" />
+		</dependency>
+		<dependency org="codehaus" name="jackson-core-asl" rev="1.9.13">
+			<artifact name="jackson-core-asl-1.9.13" type="jar" />
+		</dependency>
+		
+		<dependency org="redhat" name="validation-api" rev="1.0.0.GA-redhat-3">
+			<artifact name="validation-api-1.0.0.GA-redhat-3" type="jar" />
+		</dependency>
+<!-- 		<dependency org="redhat" name="jboss-jaxrs-api_2.1_spec" rev="1.0.2.Final"> -->
+<!-- 			<artifact name="jboss-jaxrs-api_2.1_spec-1.0.2.Final" type="jar"/> -->
+<!-- 		</dependency> -->
+		
+		<dependency org="others" name="swagger-annotations" rev="1.5.18">
+			<artifact name="swagger-annotations-1.5.18" type="jar" />
+		</dependency>
+		
+		<dependency org="others" name="swagger-jaxrs" rev="1.5.18">
+			<artifact name="swagger-jaxrs-1.5.18" type="jar" />
+		</dependency>
+		
+		<dependency org="google" name="gson" rev="2.2.4"/>
+
+		<!-- FOR TEST -->
+		<dependency org="postgresql" name="postgresql-jdbc" rev="42.2.6"/>
+		<dependency org="others" name="junit" rev="4.12"/>
+		<dependency org="others" name="mockito" rev="1.9.0"/>
+		
+	</dependencies>
+
+</ivy-module>
+

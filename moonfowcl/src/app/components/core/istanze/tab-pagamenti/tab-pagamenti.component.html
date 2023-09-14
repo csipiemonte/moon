@@ -1,0 +1,66 @@
+<p>Qui trovi le istanze in attesa di pagamento.<br>Per aggiungere un'istanza al gruppo <b>Importanti</b>, clicca
+    sulla stellina <svg class="icon icon-sm align-top ">
+        <use [attr.href]="'./assets/svg/sprite.svg#it-star-outline'"
+            [attr.xlink:href]="'./assets/svg/sprite.svg#it-star-outline'"></use>
+    </svg> in corrispondenza della riga.</p>
+  
+  <div id="domanda" role="tabpanel" aria-label="Istanze da integrare"
+    class="areaTabAccodion tab-pane fade active show mt-5">
+    <div *ngIf="righeIstanzaInAttesaPagamento?.length > 0">
+      <div>
+        <table id="mytable" class="table table-sm  table-hover small">
+          <thead>
+            <th><span class="visually-hidden">Aggiungi/rimuovi alle istanze importanti</span></th>
+            <th>Modulo</th>
+            <th>Numero istanza</th>
+            <th>Data di creazione</th>
+            <th>Stato attuale</th>
+            <th>Operazioni</th>
+          </thead>
+          <tbody>
+            <tr riga-istanza-pagamenti 
+              (onCambiaImportanza)="onCambiaImportanza($event)" (onDeleteRiga)="onDeleteRiga($event)"
+              *ngFor="let rigaIstanza of righeIstanzaInAttesaPagamento" [currPage]="currPageInAttesaPagamento"
+                [riga-istanza-data]="rigaIstanza">
+            </tr>
+          </tbody>
+        </table>
+  
+        <div *ngIf="istanzeTotali > getLimit" class="d-flex justify-content-center mt-5">
+          <ngb-pagination [(page)]="currPageInAttesaPagamento" [pageSize]="pageSizeInAttesaPagamento"
+            [collectionSize]="istanzeTotali" [maxSize]="5" [rotate]="true" [ellipses]="true" [boundaryLinks]="true"
+            [directionLinks]="false" (pageChange)="pageChanged($event)">
+            <ng-template ngbPaginationFirst>Prima</ng-template>
+            <ng-template ngbPaginationLast>Ultima</ng-template>
+            <ng-template ngbPaginationEllipsis>...</ng-template>
+          </ngb-pagination>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div aria-hidden="true" class="modal fade" id="delete" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title custom_align" id="Heading">Elimina istanza</h4>
+          <button aria-hidden="true" class="btn-close" aria-label="chiudi avviso" data-dismiss="modal" type="button">
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-danger"><span class="fas fa-warning-sign"></span> Sei sicuro di voler eliminare questa
+            istanza?
+          </div>
+        </div>
+        <div class="modal-footer ">
+          <button class="btn btn-success" type="button"><span class="fas fa-check"></span>Si</button>
+          <button class="btn btn-info" data-dismiss="modal" type="button"><span class="fas fa-times"></span> No</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  
+  

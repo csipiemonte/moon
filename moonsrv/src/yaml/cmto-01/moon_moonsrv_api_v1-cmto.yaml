@@ -1,0 +1,1038 @@
+openapi: 3.0.0
+info:
+  description: API del sistema MOON che consentono di consultare le istanze dei moduli resi
+    disponibili ai fruitori/gestionali di business (sia json di dati che
+    documento in formato pdf), insieme ai loro allegati. L'API permette di
+    gestire l'avanzamento nel workflow stabilito delle istanze.
+  version: v1
+  title: moon-api-cmto
+paths:
+  /istanze:
+    get:
+      operationId: elencoIstanze
+      summary: servizio di recupero dei codici istanza
+      description: Restituisce un elenco di codici delle istanze inoltrate di uno specifico
+        modulo e in uno specifico stato
+      tags:
+        - elencoIstanze
+      parameters:
+        - name: client-profile
+          in: header
+          required: true
+          description: Token in formato jwt utilizzato per la profilazione della risorsa
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - name: codice_modulo
+          in: query
+          required: true
+          description: Filtro per codice modulo
+          schema:
+            type: string
+        - name: stato
+          in: query
+          required: true
+          description: Filtro per stato istanze
+          schema:
+            type: string
+        - name: versione_modulo
+          in: query
+          required: false
+          description: Filtro per versione modulo di appartenenza
+          schema:
+            type: string
+        - name: codice_ente
+          in: query
+          required: false
+          description: Filtro per codice ente di appartenenza
+          schema:
+            type: string
+        - name: identificativo_utente
+          in: query
+          required: false
+          description: Filtro per identificativo utente (codiceFiscale)
+          schema:
+            type: string
+        - name: data_da
+          in: query
+          required: false
+          description: Filtro per data iniziale
+          example: 2022-01-01
+          schema:
+            type: string
+            format: date
+        - name: data_a
+          in: query
+          required: false
+          description: Filtro per data finale
+          example: 2022-02-01
+          schema:
+            type: string
+            format: date
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /istanze-ordinate:
+    get:
+      operationId: elencoIstanzeOrdinate
+      summary: servizio di recupero delle istanze con ordinamento per data di invio
+      description: Restituisce un elenco di istanze inoltrate di uno specifico
+        modulo e in uno specifico stato
+      tags:
+        - elencoIstanzeOrdinate
+      parameters:
+        - name: client-profile
+          in: header
+          required: true
+          description: Token in formato jwt utilizzato per la profilazione della risorsa
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - name: codice_modulo
+          in: query
+          required: true
+          description: Filtro per codice modulo
+          schema:
+            type: string
+        - name: stato
+          in: query
+          required: true
+          description: Filtro per stato istanze
+          schema:
+            type: string
+        - name: versione_modulo
+          in: query
+          required: false
+          description: Filtro per versione modulo di appartenenza
+          schema:
+            type: string
+        - name: codice_ente
+          in: query
+          required: false
+          description: Filtro per codice ente di appartenenza
+          schema:
+            type: string
+        - name: identificativo_utente
+          in: query
+          required: false
+          description: Filtro per identificativo utente (codiceFiscale)
+          schema:
+            type: string
+        - name: data_da
+          in: query
+          required: false
+          description: Filtro per data iniziale
+          example: 2022-01-01
+          schema:
+            type: string
+            format: date
+        - name: data_a
+          in: query
+          required: false
+          description: Filtro per data finale
+          example: 2022-02-01
+          schema:
+            type: string
+            format: date
+        - name: ordinamento
+          in: query
+          required: false
+          description: Filtro per ottenere l'ordinamento delle istanze per data di invio
+          example: ASC / DESC
+          schema:
+            type: string            
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Istanza'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'          
+  /istanze-paginate:
+    get:
+      operationId: elencoIstanzePaginate
+      summary: servizio di recupero dei codici istanza
+      description: Restituisce un elenco di codici con paginazione delle istanze inoltrate
+        di uno specifico modulo e in uno specifico stato
+      tags:
+        - elencoIstanze
+      parameters:
+        - name: client-profile
+          in: header
+          required: true
+          description: Token in formato jwt utilizzato per la profilazione della risorsa
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - name: codice_modulo
+          in: query
+          required: true
+          description: Filtro per codice modulo
+          schema:
+            type: string
+        - name: stato
+          in: query
+          required: true
+          description: Filtro per stato istanze
+          schema:
+            type: string
+        - name: versione_modulo
+          in: query
+          required: false
+          description: Filtro per versione modulo di appartenenza
+          schema:
+            type: string
+        - name: codice_ente
+          in: query
+          required: false
+          description: Filtro per codice ente di appartenenza
+          schema:
+            type: string
+        - name: identificativo_utente
+          in: query
+          required: false
+          description: Filtro per identificativo utente (codiceFiscale)
+          schema:
+            type: string
+        - name: data_da
+          in: query
+          required: false
+          description: Filtro per data iniziale
+          example: 2022-01-01
+          schema:
+            type: string
+            format: date
+        - name: data_a
+          in: query
+          required: false
+          description: Filtro per data finale
+          example: 2022-01-01
+          schema:
+            type: string
+            format: date
+        - name: limit
+          in: query
+          required: true
+          description: Limit per paginazione
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          required: true
+          description: Offset per paginazione (multiplo del limit es. per limit=20, offset
+            deve essere valorizzato con 0,20,40,60,...)
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IstanzePaginate'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /istanze/{codice-istanza}:
+    get:
+      operationId: cercaDettaglioIstanza
+      summary: servizio di ricerca della istanze per codice istanza
+      description: Restituisce il dettaglio di una istanza
+      tags:
+        - cercaDettaglioIstanza
+      parameters:
+        - name: client-profile
+          in: header
+          required: true
+          description: Token in formato jwt utilizzato per la profilazione della risorsa
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - in: path
+          name: codice-istanza
+          required: true
+          description: Codice istanza
+          schema:
+            type: string
+      responses:
+        200:
+          description: Oggetto istanza
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IstanzaDettagliata'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          $ref: '#/components/responses/NotFound'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /istanze/{codice-istanza}/azione/{codice-azione}:
+    post:
+      summary: servizio di aggiornamento del cambio di stato di una istanza
+      description: Esegue un azione su una specifica istanza secondo il worflow definito
+        sul modulo, per cambiare lo stato dell' istanza
+      operationId: cambioDiStato
+      tags:
+        - cambioDiStato
+      parameters:
+        - name: client-profile
+          in: header
+          required: true
+          description: Token in formato jwt utilizzato per la profilazione della risorsa
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - in: path
+          name: codice-istanza
+          required: true
+          description: Codice istanza
+          schema:
+            type: string
+        - in: path
+          name: codice-azione
+          required: true
+          description: Codice azione
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Acquisizione'
+        required: true
+      responses:
+        200:
+          description: OK
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          $ref: '#/components/responses/NotFound'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /istanze/{codice-istanza}/notifica:
+    post:
+      summary: servizio di notifica su una istanza
+      description: Aggiungi informazioni di notifica (dati e/o allegati) su una specifica istanza
+      operationId: notifica
+      tags:
+        - notifica
+      parameters:
+        - name: client-profile
+          in: header
+          required: true
+          description: Token in formato jwt utilizzato per la profilazione della risorsa
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - in: path
+          name: codice-istanza
+          required: true
+          description: Codice istanza
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Acquisizione'
+        required: true
+      responses:
+        200:
+          description: OK
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          $ref: '#/components/responses/NotFound'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /istanze/{codice-istanza}/allegati:
+    get:
+      summary: servizio di recupero di un singolo allegato
+      description: Restituisce un singolo allegato di una specifica istanza identificato
+        per codice_file oppure formio_nome_file. E possibile recuperare l'XML di
+        resoconto con codice_file DISTINTA_DI_PRESENTAZIONE'
+      operationId: cercaAllegato
+      tags:
+        - cercaAllegato
+      parameters:
+        - name: client-profile
+          in: header
+          required: true
+          description: Token in formato jwt utilizzato per la profilazione della risorsa
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - name: codice-istanza
+          in: path
+          required: true
+          description: Codice istanza
+          schema:
+            type: string
+        - name: codice_file
+          in: query
+          required: false
+          description: Codice file univoco in alternativa a formioNomeFile
+          schema:
+            type: string
+        - name: formio_nome_file
+          in: query
+          required: false
+          description: Nome file formio univoco in alternativa al codice file
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          $ref: '#/components/responses/NotFound'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /istanze/{codice-istanza}/pdf:
+    get:
+      summary: servizio di recupero del documento PDF della singola istanza
+      description: Restituisce il documento PDF di una specifica istanza
+      operationId: getIstanzaPDF
+      tags:
+        - cercaDettaglioIstanza
+      parameters:
+        - name: client-profile
+          in: header
+          required: true
+          description: Token in formato jwt utilizzato per la profilazione della risorsa
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - name: codice-istanza
+          in: path
+          required: true
+          description: Codice istanza
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content: 
+            application/pdf: {}
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          $ref: '#/components/responses/NotFound'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /moduli/{codice-modulo}/report:
+    get:
+      summary: servizio di recupero di un tipo di report per modulo 
+      description: Restituisce un tipo di report per modulo selezionato
+      operationId: getReport
+      tags:
+        - report
+      parameters:
+        - name: client-profile
+          in: header
+          required: true
+          description: Token in formato jwt utilizzato per la profilazione della risorsa
+          schema:
+            type: string
+        - name: X-Request-Id
+          in: header
+          required: true
+          description: Contiene un id univoco che consente il tracciamento del ciclo di
+            vita della richiesta
+          schema:
+            type: string
+        - name: codice-modulo
+          in: path
+          required: true
+          description: Codice modulo
+          schema:
+            type: string
+        - name: codice_estrazione
+          in: query
+          required: true
+          description: Codice specifico del report che identifica un tipo di estrazione
+          schema:
+            type: string
+            enum:
+            - TARI_ARERA
+        - name: data_da
+          in: query
+          required: false
+          description: Filtro per data iniziale
+          example: 2022-01-01
+          schema:
+            type: string
+            format: date
+        - name: data_a
+          in: query
+          required: false
+          description: Filtro per data finale
+          example: 2022-01-01
+          schema:
+            type: string
+            format: date            
+      responses:
+        200:
+          description: report file
+          content: 
+            text/csv: {}
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        404:
+          $ref: '#/components/responses/NotFound'
+        422:
+          $ref: '#/components/responses/UnprocessableEntityError'
+        500:
+          $ref: '#/components/responses/InternalServerError'          
+servers:
+  - url: http://tst-api-piemonte.ecosis.csi.it/modulistica/moon-api-int/v1
+  - url: http://api-piemonte.ecosis.csi.it/modulistica/moon-api-cmto/v1
+components:
+  responses:
+    BadRequest:
+      description: La richiesta effettuata dal client è errata
+    UnauthorizedError:
+      description: Access token mancante o non valido
+    NotFound:
+      description: La risorsa specificata non è stata trovata
+    UnprocessableEntityError:
+      description: Parametro mancante o non valido
+    InternalServerError:
+      description: Si è verificato un'errore interno del server
+  schemas:
+    Istanza:
+      title: Istanza
+      description: Dati di dettaglio dell'istanza
+      type: object
+      properties:
+        codice:
+          type: string
+          description: Codice univoco dell'istanza
+        nomeDichiarante:
+          type: string
+          description: Nome SPID del dichiarante (da considerare solo quando attoreIns ==
+            codiceFiscaleDichiarante ; non nel caso di conto terzi)           
+        cognomeDichiarante:
+          type: string
+          description: Cognome SPID del dichiarante (da considerare solo quando attoreIns
+            == codiceFiscaleDichiarante ; non nel caso di conto terzi)
+        codiceFiscaleDichiarante:
+          type: string
+          description: Codice fiscale del dichiarante
+        dataCreazione:
+          type: string
+          format: date-time
+          description: Data di creazione dell'istanza
+          example: 2022-01-18T14:45:59.153Z
+        stato:
+          $ref: '#/components/schemas/Stato'
+    IstanzaDettagliata:
+      allOf:     
+        - $ref: '#/components/schemas/Istanza'
+      title: Istanza dettagliata
+      description: Dati di dettaglio dell'istanza
+      type: object
+      properties:
+        dataProtocollo:
+          type: string
+          format: date-time
+          description: Data di protocollo dell'istanza
+          example: 2022-01-18T14:45:59.153Z
+        numeroProtocollo:
+          type: string
+          description: Numero di protocollo dell'istanza
+        jsonString:
+          type: string
+          description: Stringa contenente il JSON dei dati compilati
+        modulo:
+          $ref: '#/components/schemas/Modulo'
+        ente:
+          $ref: '#/components/schemas/Ente'
+        allegati:
+          type: array
+          items:
+            $ref: '#/components/schemas/Allegato'
+        attoreIns:
+          type: string
+          description: Identificatore utente che ha effettuato l'inserimento dell'istanza,
+            nel caso classico corrisponde con il codiceFiscaleDichiarante
+            altrimenti e' una compilazione conto terzi
+        pagamento:
+          $ref: '#/components/schemas/Pagamento'            
+    IstanzePaginate:
+      title: Istanze con paginazione
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: string
+            description: Array delle istanze paginate
+        page:
+          type: integer
+          description: Numero della pagina corrente ( 0 based ) 
+        pageSize:
+          type: integer
+          description: Dimensione massima della pagina ( limit della richiesta )
+        totalElements:
+          type: integer
+          description: Numero totale di istanze secondo i filtri impostati eccetto quelli
+            di paginazione
+        totalPages:
+          type: integer
+          description: Numero totale delle pagine
+    Stato:
+      title: Stato
+      description: Stato istanza
+      type: object
+      properties:
+        codice:
+          type: string
+          description: Codice stato
+          example: 001272
+        descrizione:
+          type: string
+          description: descrizione dello stato istanza
+          example: IN_ISTRUTTORIA          
+    Acquisizione:
+      title: Acquisizione
+      description: Dati relativi alla comunicazione del cambio di stato ( obbligatori
+        codice e descrizione dell'esito dell'azione )
+      type: object
+      required:
+        - codice
+        - descrizione
+      properties:
+        codice:
+          type: string
+          description: Codice dell'esito
+          example: IMPOK IMPKO
+        descrizione:
+          type: string
+          description: Descrizione dell'esito
+          example: Importazione OK con warning
+        identificativo:
+          type: string
+          description: Identificativo gestione back office ( es. numero pratica )
+          example: B20200000452
+        data:
+          type: string
+          format: date-time
+          description: Data gestione back office ( es. data pratica )
+        numeroProtocollo:
+          type: string
+          description: Numero protocollo assegnato all'istanza
+          example: B20200000452
+        dataProtocollo:
+          type: string
+          format: date-time
+        codiceFiscaleOperatore:
+          type: string
+          description: Codice fiscale dell'operatore responsabile della gestione back office
+        protocolliDocumento: 
+          type: array
+          items:
+            $ref: '#/components/schemas/ProtocolloDocumento'          
+        datiAzione:
+          type: string
+          description: Dati associati all'azione di business convertito in un campo string
+        allegatiAzione:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllegatoAzione'
+        postAzioni:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostAzione'
+    Allegato:
+      title: Allegato
+      description: Dati di dettaglio dell'allegato
+      type: object
+      properties:
+        formioNameFile:
+          type: string
+          description: Nome allegato univoco nel sistema ( composto dal nome file originale
+            e un uuid )
+          example: some_imagename-a6abce43-6cb5-4942-9458-5b94f0c896ac.jpg
+        codiceFile:
+          type: string
+          description: UUID univoco dell'allegato
+          example: c0d1acc2-731a-420a-ad60-2fe13263b56d
+        nomeFile:
+          type: string
+          description: Nome file originale fornito dal dichiarante
+          example: some_imagename.jpg
+        lunghezza:
+          type: integer
+          description: Dimensione del file in bytes
+          example: 102117
+        contentType:
+          type: string
+          description: Content type dell'allegato ( es. application/pdf, image/png )
+          example: image/jpeg
+        mediaType:
+          type: string
+          description: Media type dell'allegato ( es. application, image )
+          example: image
+        subMediaType:
+          type: string
+          description: Sub media type dell'allegato
+        estensione:
+          type: string
+          description: Estensione del file ( es. pdf, png, jpeg, jpg )
+          example: jpg
+        uuidIndex:
+          type: string
+          description: UUID DoQui Index se archiviato in Index
+    Modulo:
+      title: Modulo
+      description: Dati del modulo
+      type: object
+      properties:
+        codice:
+          type: string
+          description: Codice modulo
+          example: CONTATTI
+        versione:
+          type: string
+          description: Versione modulo
+          example: 1.0.0
+    Ente:
+      title: Ente
+      description: Dati dell'ente
+      type: object
+      properties:
+        codice:
+          type: string
+          description: Codice ente
+          example: 001272
+        nome:
+          type: string
+          description: Nome ente
+          example: COMUNE DI TORINO
+        entePadre:
+          $ref: '#/components/schemas/Ente'
+    ProtocolloDocumento:
+      title: ProtocolloDocumento
+      description: Protocollo in ingresso legato ad un documento
+      type: object
+      required:
+      - idDocumento
+      - numeroProtocollo
+      - dataProtocollo
+      properties:
+        idDocumento:
+          type: string
+          description: Identificativo univoco del documento
+          example: RIC_PATR.2022.0000243-6988eb49-3eb8-480a-9acc-efd66550f324
+        numeroProtocollo:
+          type: string
+          description: Numero di protocollo del documento
+        dataProtocollo:
+          type: string
+          format: date-time
+          description: Data di protocollo dell'istanza (2022-10-29 00:00:00)
+          example: 2022-01-18T14:45:59.153Z   
+    Pagamento:
+      title: Pagamento
+      description: Pagamento
+      type: object
+      required:
+      - iuv
+      - codiceVersamento
+      - dataRicevutaPagamento
+      - importo
+      properties:
+        iuv:
+          type: string
+          description: Identificativo univoco di versamento
+          example: 20213371148238678
+        codiceAvviso:
+          type: string
+          description: Codice avviso di pagamento
+          example: 320213371148238678          
+        codiceVersamento:
+          type: string
+          description: Codice del versamento,
+          example: LD00
+        importo:
+          type: number
+          format: decimal 
+          description: Importo del pagamento 
+          example: 0.99
+        dataRicevutaPagamento:
+          type: string
+          format: date-time
+          description: Data di ricevuta del pagamento
+          example: 2022-01-18T14:45:59.153Z 
+        identificativoPagamento:
+          type: string
+          description: Identificativo univoco del pagamento
+          example: 452da4e4-e729-4a1c-a525-d39f66ebdb59
+        descrizioneEsito:
+          type: string
+          description: Descrizione esito del pagamento
+          example: Operazione completata con successo
+        codiceFiscaleEnte:
+          type: string
+          description: Codice Fiscale Ente 
+          example: 00514490010
+        causale:
+          type: string
+          description: Causale del pagamento
+          example: Pagamento modulo Comune Torino PAGO_PA.1.0.0.2021.0000040
+        nome:
+          type: string
+          description: Nome
+          example: Laurent
+        cognome:
+          type: string
+          description: Cognome
+          example: Pissard
+        ragioneSociale:
+          type: string
+          description: Ragione sociale
+        email:
+          type: string
+          description: Email
+        codiceFiscalePartitaIVAPagatore:
+          type: string
+          description: Codice fiscale / Partita iva del pagatore
+        dettaglioImporti: 
+          type: array
+          items:
+            $ref: '#/components/schemas/DettaglioImporto'
+    DettaglioImporto:
+      title: Dettaglio pagamento
+      description: Dettaglio importo del Pagamento
+      type: object
+      required:
+      - numeroAccertamento
+      - importo
+      properties: 
+        numeroAccertamento:
+          type: string
+          description: Numero di accertamento
+        codiceTipoVersamento:
+          type: string
+          description: Codice della tipologia di onere
+          example: SANZ_AMM 
+        importo:
+          type: number
+          format: decimal 
+          description: Importo del pagamento 
+          example: 0.99      
+    AllegatoAzione:
+      title: AllegatoAzione
+      description: Allegato fornito dal fruitore associato ad una azione.
+      type: object
+      required:
+      - nomeFile
+      - contentType
+      properties:
+        nomeFile:
+          type: string
+          description: Nome del file allegato
+          example: NuovoModulo.pdf
+        contentType:
+          type: string
+          description: Content type del file allegato
+          example: application/pdf
+        contenuto:
+          type: string
+          description: Contenuto binario del file allegato base64 encoded - campo obbligatorio in alternativa a refUrl
+          example: c0d1acc2-731a-420a-ad60-2fe13263b56d
+        refUrl:
+          type: string
+          description: Url reference di download dell'allegato - campo obbligatorio in alternativa a contenuto
+          example: http://esempio.csi.it/doc/allegato123.pdf
+        descrizione:
+          type: string
+          description: Descrizione breve del file allegato
+          example: Notifica di integrazione 
+        lunghezza:
+          type: integer
+          description: Dimensione allegato in bytes
+          example: 102117          
+        docFirmato:
+          type: boolean
+          description: Indica se il file è firmato
+          example: false
+        idTipologia:
+          type: integer
+          description: Identificativo MOOn di classificazione del file allegato.
+          example: 2          
+        data:
+          type: string
+          format: date-time
+          description: Data inserimento allegato
+          example: 2022-01-18T14:45:59.153Z
+        tipo:
+          type: string
+          description: Identificativo di classificazione del file allegato del sistema fruitore
+          example: ALLEGATO_RICHIESTA_INTEGRAZIONE  
+        numeroProtocollo:
+          type: string
+          description: Numero di protocollo in uscita del file allegato
+        dataProtocollo:
+          type: string
+          format: date-time
+          description: Data di protocollo in uscita del file allegato
+          example: 2022-01-18T14:45:59.153Z           
+    PostAzione:
+      title: PostAzione
+      description: PostAzione da eseguire in seguito alla ricezione di un cambio di stato o di una notifica
+      type: object
+      required:
+        - postAzioneType
+      properties:
+        postAzioneType:
+          type: string
+          enum: [SEND_MAIL]
+      discriminator:
+        propertyName: postAzioneType
+        mapping:
+          'SEND_MAIL': '#/components/schemas/postAzioneSendMail'
+    PostAzioneSendMail: # PostAzioneSendMail is a value for the postAzioneType property (the discriminator value)
+      title: PostAzioneSendMail
+      description: PostAzione di invio mail da eseguire in seguito alla ricezione di un cambio di stato
+      allOf: # Combines the main `PostAzione` schema with `postAzioneSendMail`-specific properties 
+        - $ref: '#/components/schemas/PostAzione'
+        - type: object
+          # all other properties specific to a `postAzioneSendMail`
+          properties:
+            to:
+              type: string
+              description: Indirizzo email del destinatario dell'email
+              example: nome.cognome@csi.it
+            cc:
+              type: string
+              description: Indirizzo email del destinatario in copia dell'email
+              example: nome.cognome@csi.it
+            bcc:
+              type: string
+              description: Indirizzo email del destinatario in copia nascosta dell'email'
+              example: nome.cognome@csi.it
+            subject:
+              type: string
+              description: Subject dell'email
+              example: Richiesta di completamento della sua pratica
+            text:
+              type: string
+              description: Indirizzo email del destinatario dell'email
+              example: Si richiede di compilare il modulo per completare la sua pratica legati all'istanza da lei presentata. Si allegata sia il Nuovo Modulo da compilare che la Notice di compilazione.
+            attachments:
+              type: object
+              description: Tipologie dei file da allegare nella email
+              properties:
+                istanza:
+                  type: boolean
+                  description: Indica la necessita di allegare il PDF dell'istanza MOOn alla email
+                allegati:
+                  type: boolean
+                  description: Indica la necessita di allegare gli allegati dell'istanza MOOn alla email
+                allegatiAzione:
+                  type: boolean
+                  description: Indica la necessita di allegare gli allegati dell'attuale azione di workflow alla email
+              example: { allegatiAzione: true }

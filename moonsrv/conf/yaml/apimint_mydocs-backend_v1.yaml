@@ -1,0 +1,592 @@
+swagger: "2.0"
+info:
+  description: |
+    Api della componente di backend, rivolte alla definizione e alla gestione della documentazione di Città Facile.
+    ## 1. Breve descrizione del servizio
+    ---
+    Il sistema MYDOCS consente agli Enti Locali di gestire e pubblicare la documentazione per il **cittadino**. Ogni Ente è configurato in modo da poter definire il proprio tenant documentale e poterlo gestire in autonomia.
+    * Il servizio presenta una profilazione applicativa legata al singolo Ente fruitore, viene assegnato un **codice ente** in fase di sottoscrizione della API.
+    * ad ogni Ente corrisponde un modello dati specifico che è un sottoinsieme del modello dati complessivo.
+    * è necessario profilare fruitori distinti, identificabili con i diversi Settori o Aree Organizzative dell'Ente di appartenenza, ognuno dei quali è responsabile della propria configurazione e gestione documentale. Deve essere assegnato un **codice fruitore** in fase di abilitazione.
+    * i documenti sono orientati al singolo cittadino, per cui esiste un legame univoco tra documento e cittadino.
+    * ogni documento appartiene ad un ambito (es. Anagrafe, Edilizia Residenziale, ecc.) ed ha una tipologia definita che ne descrive formato, dimensione massima, durata di pubblicazione, contesto (es. Certificato di Residenza:PDF).
+    * è compito di ogni fruitore definire e gestire gli Ambiti e le Tipologie di documenti, mediante le opportune Api, nonchè inserire e gestire i documenti a sistema.
+    ## 2. Dati di profilazione
+    ---
+    Ogni chiamata deve contenere nell'header della Request la codifica dell'Ente e del fruitore.
+    * nell'header di ogni singola Request deve essere inserita la chiave **ente** ed il valore assegnato in fase di abilitazione al sistema (es. **COTO_01**)
+    * nell'header di ogni singola Request deve essere inserita la chiave **consumer** ed il valore assegnato in fase di abilitazione al sistema (es. **CERTIFICATO_COTO_01**)
+
+    Esempio di header:
+    Accept:application/json
+    Content-Type:application/json
+    ente:COTO-01
+    consumer:CERTIFICATO-COTO-01
+  version: "1.0"
+  title: mydocs_test_backend
+host: tst-api-piemonte.ecosis.csi.it
+basePath: /mydocsbeApplApiRest/1.0
+schemes:
+- http
+paths:
+  /ambiti:
+    get:
+      summary: Restituisce l'elenco degli ambiti definiti
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: lista risultati
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ambitoResponse'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /ambiti/{id}:
+    get:
+      summary: Restituisce le informazioni di un ambito dato il suo id
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: id dell'ambito
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ambito selezionato
+          schema:
+            $ref: '#/definitions/ambitoResponse'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /documenti:
+    post:
+      summary: Il servizio inserisce un nuovo documento per il cittadino
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: documento
+        description: Request Body
+        required: true
+        schema:
+          $ref: '#/definitions/documento'
+      responses:
+        "200":
+          description: restituisce l'uuid del documento
+          schema:
+            type: string
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /documenti/{uuid}*:
+    get:
+      summary: Restituisce un documento
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: uuid
+        in: path
+        description: uuid del documento
+        required: true
+        type: string
+      - name: preview
+        in: query
+        description: estrarre nel content l'anteprima (true/false)
+        required: false
+        type: boolean
+      - name: print
+        in: query
+        description: estrarre nel content la stampa con foglio di stile (true/false)
+        required: false
+        type: string
+      - name: download
+        in: query
+        description: estrarre nel content il documento (true/false)
+        required: false
+        type: string
+      responses:
+        "200":
+          description: dati del documento
+          schema:
+            $ref: '#/definitions/documentoResponse'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+    put:
+      summary: Aggiorna un documento
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: uuid
+        in: path
+        description: uuid del documento
+        required: true
+        type: string
+      - in: body
+        name: documento
+        description: dati del documento
+        required: true
+        schema:
+          $ref: '#/definitions/documento'
+      responses:
+        "200":
+          description: aggiornamento effettuato
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+    delete:
+      summary: Elimina un documento
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: uuid
+        in: path
+        description: uuid del documento
+        required: true
+        type: string
+      responses:
+        "200":
+          description: eliminato documento
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /documenti/paginati/list*:
+    post:
+      summary: Restituisce un elenco di documenti in base al fitro di ricerca impostato, permette di gestire la paginazione
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: filtroDocumento
+        description: filtro di ricerca
+        required: false
+        schema:
+          $ref: '#/definitions/filtroDocumento'
+      - name: limit
+        in: query
+        description: definisce il numero elementi restituiti per pagina
+        required: false
+        type: integer
+        format: int64
+        description: offset query
+      - name: offset
+        in: query
+        description: offset numero elementi, necessario per il salto pagina
+        required: false
+        type: integer
+        format: int64
+      - name: preview
+        in: query
+        description: estrare una pagina di anteprima del documento e la inserisce nel dato content
+        required: false
+        type: boolean
+      - name: sort
+        in: query
+        description: campo su cui si deve effettuare l'ordinamento (cittadino, ambito, descrizione, tipologia, dataInizio, dataFine)
+        required: false
+        type: string
+      - name: order
+        in: query
+        description: inserire il tipo di ordinamento (asc/desc)
+        required: false
+        type: string
+      responses:
+        "200":
+          description: documenti individuati
+          schema:
+            $ref: '#/definitions/documentiResponse'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /tipologie:
+    get:
+      summary: Restituisce l'elenco delle tipologie definite
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: lista risultati
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/tipologiaResponse'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+    post:
+      summary: Inserisce una nuova tipologia di documento
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Payload
+        description: dati della tipologia
+        required: true
+        schema:
+          $ref: '#/definitions/tipologia'
+      responses:
+        "200":
+          description: id tipologia
+          schema:
+            type: integer
+            format: int64
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /tipologie/{id}*:
+    get:
+      summary: Restituisce una tipologia dato il suo id
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: id della tipologia
+        required: true
+        type: string
+      - name: download
+        in: query
+        description: (true/false) se true, estrae anche il foglio di stile
+        required: false
+        type: string
+      responses:
+        "200":
+          description: tipologia individuata
+          schema:
+            $ref: '#/definitions/tipologiaStileResponse'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+    put:
+      summary: Aggiorna una tipologia di documento
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: id della tipologia
+        required: true
+        type: string
+      - in: body
+        name: tipologia
+        description: dati della tipologia
+        required: true
+        schema:
+          $ref: '#/definitions/tipologia'
+      responses:
+        "200":
+          description: tipologia aggiornata
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /ping:
+    get:
+      summary: effettua un ping del servizio
+      produces:
+      - plain/text
+      parameters: []
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+definitions:
+  documentiResponse:
+    type: object
+    properties:
+      content:
+        type: string
+        format: byte
+        description: base64 byte array
+        pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+      limit:
+        type: integer
+        format: int64
+        description: offset query
+      documenti:
+        type: array
+        description: elenco documenti
+        items:
+          $ref: '#/definitions/documentoResponse'
+      sort:
+        type: string
+        description: colonna ordinamento documenti
+      preview:
+        type: boolean
+        description: anteprima documento - (true/false)
+      order:
+        type: string
+        description: tipo ordinamento documenti
+      totalElements:
+        type: integer
+        format: int64
+        description: elementi estratti
+      offset:
+        type: integer
+        format: int64
+        description: offset query
+  tipologia:
+    type: object
+    properties:
+      content:
+        type: string
+        format: byte
+        description: base64 byte array
+        pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+      id:
+        type: integer
+        format: int64
+        description: id tipologia
+        readOnly: true
+      mimetype:
+        type: string
+        description: mimetype documento
+      descrizione:
+        type: string
+        description: denominazione tipologia
+      idEstensione:
+        type: integer
+        format: int64
+        description: id estensione documento
+      descrFoglioStile:
+        type: string
+        description: descrizione documento
+      idFoglioStile:
+        type: integer
+        format: int64
+        description: id stylesheet
+        readOnly: true
+      dimensioneMassima:
+        type: integer
+        description: dimensione massima consentita in upload in mb
+      giorniVita:
+        type: integer
+        description: durata in giorni della validità del documento, allo scadere dei quali il documento viene cancellato
+  ambitoResponse:
+    type: object
+    properties:
+      idAmbito:
+        type: integer
+        format: int64
+        description: id ambito
+        readOnly: true
+      denominazione:
+        type: string
+        description: denominazione ambito
+  foglioStileResponse:
+    type: object
+    properties:
+      content:
+        type: string
+        format: byte
+        description: base64 byte array
+        pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+      descrizione:
+        type: string
+        description: descrizione documento
+      idFoglioStile:
+        type: integer
+        format: int64
+        description: id stylesheet
+        readOnly: true
+  tipologiaStileResponse:
+    type: object
+    properties:
+      mimetype:
+        type: string
+        description: mimetype documento
+      descrizione:
+        type: string
+        description: denominazione tipologia
+      foglioStile:
+        $ref: '#/definitions/foglioStileResponse'
+      idEstensione:
+        type: integer
+        format: int64
+        description: id estensione
+      idFruitore:
+        type: integer
+        format: int64
+        description: id fruitore
+      idTipologia:
+        type: integer
+        format: int64
+        description: id tipologia
+        readOnly: true
+      estensione:
+        type: string
+        description: estensione documento
+      dimensioneMassima:
+        type: integer
+        description: dimensione massima consentita in upload in mb
+      giorniVita:
+        type: integer
+        description: durata in giorni della validità del documento, allo scadere dei quali il documento viene cancellato
+  documento:
+    type: object
+    properties:
+      content:
+        type: string
+        format: byte
+        description: base64 byte array
+        pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+      descrizione:
+        type: string
+        description: nome file
+      dataFine:
+        type: string
+        description: data fine pubblicazione
+      dataInizio:
+        type: string
+        description: data inizio pubblicazione
+      uuidPadre:
+        type: string
+        description: uuid documento di riferimento
+        readOnly: true
+      filename:
+        type: string
+        description: nome file
+      cfCittadino:
+        type: string
+        description: codice fiscale cittadino
+      idTipologia:
+        type: integer
+        format: int64
+        description: id tipologia
+      uuid:
+        type: string
+        description: uuid documento
+        readOnly: true
+      idAmbito:
+        type: integer
+        format: int64
+        description: id ambito
+        readOnly: true
+      dataCreazione:
+        type: string
+        description: data fine pubblicazione
+  tipologiaResponse:
+    type: object
+    properties:
+      mimetype:
+        type: string
+        description: mimetype documento
+      descrizione:
+        type: string
+        description: denominazione tipologia
+      idFruitore:
+        type: integer
+        format: int64
+        description: id fruitore
+      idTipologia:
+        type: integer
+        format: int64
+        description: id tipologia
+        readOnly: true
+      estensione:
+        type: string
+        description: estensione documento
+      dimensioneMassima:
+        type: integer
+        description: dimensione massima consentita in upload in mb
+      giorniVita:
+        type: integer
+        description: durata in giorni della validità del documento, allo scadere dei quali il documento viene cancellato
+  documentoResponse:
+    type: object
+    properties:
+      content:
+        type: string
+        format: byte
+        description: base64 byte array
+        pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+      tipologia:
+        $ref: '#/definitions/tipologiaResponse'
+      elencoUuidFigli:
+        type: array
+        description: elenco uuid figli
+        items:
+          type: string
+      descrizione:
+        type: string
+        description: nome file
+      fruitore:
+        $ref: '#/definitions/fruitoreResponse'
+      dataFine:
+        type: string
+        description: data fine pubblicazione
+      dataInizio:
+        type: string
+        description: data inizio pubblicazione
+      uuidPadre:
+        type: string
+        description: uuid documento di riferimento
+      filename:
+        type: string
+        description: nome file
+      cfCittadino:
+        type: string
+        description: codice fiscale cittadino
+      uuid:
+        type: string
+        description: uuid documento
+        readOnly: true
+      dataCreazione:
+        type: string
+        description: data fine pubblicazione
+      ambito:
+        $ref: '#/definitions/ambitoResponse'
+  filtroDocumento:
+    type: object
+    properties:
+      descrizione:
+        type: string
+        description: descrizione documento
+      filename:
+        type: string
+        description: nome file documento
+      idTipologia:
+        type: integer
+        format: int64
+        description: id tipologia
+      idAmbito:
+        type: integer
+        format: int64
+        description: id ambito
+      dtCreazioneDa:
+        type: string
+        description: data inizio creazione
+      dtCreazioneA:
+        type: string
+        description: data fine creazione
+  fruitoreResponse:
+    type: object
+    properties:
+      idFruitore:
+        type: integer
+        format: int64
+        description: id fruitore
+        readOnly: true
+      denominazione:
+        type: string
+        description: codice fruitore

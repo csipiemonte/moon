@@ -1,0 +1,26 @@
+<div class="row" style="margin-top: 45px;">
+  <!--
+    <div class="col-md-6 offset-md-3">
+        <h3>
+            Autenticati con
+        </h3>
+         -- <button (click)="loginWithGoogle()" mat-raised-button class="google-login-btn"> --
+        <button (click)="socialSignIn('GOOGLE')" mat-raised-button class="google-login-btn">
+            Google
+        </button>
+    </div>
+  -->
+
+    <div class="col-md-6 offset-md-3">
+
+      <div class="mt-1">
+        <a href="#" target="_self" class="">
+        <img src="{{ urlAccediGoogle }}" width="203" height="44" alt="Accedi con Google" (click)="socialSignIn('GOOGLE')"></a>
+      </div>
+      <p style="margin-top: 15px">Questa modalit&agrave; di accesso &egrave; disponibile solo utilizzando i seguenti
+        browser: Chrome, Safari, Edge</p>
+  </div>
+
+</div>
+
+

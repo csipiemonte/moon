@@ -1,0 +1,85 @@
+<html>
+<head>
+    <title th:text="${document.title}"></title>
+    <link rel="stylesheet" href="style.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<body>
+
+<div id="theme">
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_left': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.header.left,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_center': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.header.center,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+    <!--<div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_right': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(#strings.replace(document.header.right,'%%module%%',document.accettazione.modulo),'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>-->
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_footer_left': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.footer.left,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_footer_right': 'hidden')}" >
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.footer.right,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+
+    <div class="header_separator"></div>
+	
+    <div class="section" > <!-- page-after-->
+			  <img src="img/Immagine.png"/>
+		<page-inside-avoid>
+		<div class="angrafica-right">
+			<span th:text="${document.anagrafica.nome}"/>
+			<span th:text="${document.anagrafica.cognome}"/><br/>
+			<span th:text="${document.anagrafica.indirizzo}"/><br/>
+			<span th:text="${document.anagrafica.cap}"/>
+			<span th:text="${document.anagrafica.comune}"/>
+			<span>(<span th:text="${document.anagrafica.provincia}"/>)</span><br/><br/>
+			<span><i>Torino,&#xA0;<span th:text="${document.richiesta.data}"/></i></span>
+		</div><br/><br/>
+		<br/><br/><br/>
+				
+
+		<p><b>Prot. n:&#xA0;</b><span th:text="${document.datiAccoglimento.numProtocolloUscita}"/></p> 
+				
+		<p><b>CLASSIFICAZIONE:&#xA0;</b><span th:text="${document.datiAccoglimento.classificazioneDOQUI}"/></p>
+		<p><b>CODICE FISCALE/PARTITA IVA:</b>&#xA0;<span th:text="${document.anagrafica.codiceFiscale}"></span></p>
+		<br/>
+		<p><b>OGGETTO:&#xA0;</b>	Domanda di restituzione: accoglimento.</p>
+
+		<p class="dati-modulo">
+			ANNO DI RIFERIMENTO:&#xA0;<span th:text="${document.datiAccoglimento.annoPagamento}"></span><br/>
+			NUMERO PROTOCOLLO DOMANDA DI RESTITUZIONE:&#xA0;<span th:text="${document.datiAccoglimento.numProtocolloIngresso}"/><br/>
+			
+		</p>
+		<br/><br/><br/>
+
+
+		<p>Con riferimento alla domanda in oggetto, mediante la quale e' stata richiesta la restituzione della tassa si rende noto che questo 
+		settore ha accolto la domanda per l'anno di pagamento sopra indicato.</p>
+		<p>I dati relativi all'ordine di pagamento sono:</p>
+		<ul>
+				<li>N. determina: <span th:text="${document.datiAccoglimento.numeroDetermina}"></span></li>
+				<li>Data determina: <span th:text="${document.datiAccoglimento.dataDetermina}"></span></li>
+				<li>N. impegno: <span th:text="${document.datiAccoglimento.numeroImpegno}"></span></li>
+		</ul>
+
+		<p><span th:text="${document.datiAccoglimento.testoLibero}"></span></p>
+		<p>Distinti saluti.</p><br/><br/>
+        <span class="signature-right">
+                    <span>IL DIRIGENTE DEL SETTORE</span><br/>
+                    <span>Dr. Fabrizio Zanella</span><br/><br/>
+                    <span>FIRMA OMESSA</span><br/>
+					<span style="font-size:9px">Ai sensi dell' art. 3, c. 2, del Decreto Legislativo 12 febbraio 1993, n. 39 la firma prevista per la validit&#225; della presente comunicazione, prodotta mediante sistemi informatici, &#232; sostituita con l' indicazione a stampa del nominativo del soggetto responsabile</span>
+
+                </span>
+        </page-inside-avoid>
+    </div>
+</div>
+
+<div style="clear:both;"></div>
+
+
+</body>
+</html>

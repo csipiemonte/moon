@@ -1,0 +1,29 @@
+<table id="mytable" class="table table-bordered table-striped" style="font-size:0.8em;">
+    <thead>
+        <th *ngIf="isAdmin">#</th>
+        <th>Data Email</th>
+        <th>Tipologia</th>
+        <th>Destinatario</th>
+        <th>Esito</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of data">
+            <td *ngIf="isAdmin">{{i.idLogEmail}}</td>
+            <td>{{i.dataLogEmail | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+            <td>{{i.tipologia.descrizione}}</td>
+            <td>{{i.emailDestinatario}}</td>
+            <td style='text-align:center;'>
+            <!--    <i class="fa fa-question-circle text-muted" ngbTooltip="{{i.esito}}">-->
+                <ng-container *ngIf="i.esito">
+                    <span ngbTooltip="{{i.esito}}">
+                        <fa-icon *ngIf="i.esito.substring(0,2)==='OK'" [icon]="faCheck" style="color: green;"></fa-icon>
+                        <fa-icon *ngIf="i.esito.substring(0,2)!=='OK'" [icon]="faExclamation" style="color: red;" ></fa-icon>
+                        <fa-icon *ngIf="i.esito.length===5 && i.esito.substring(3,5)==='OK'" [icon]="faCheck" style="color: green;"></fa-icon>
+                        <fa-icon *ngIf="i.esito.length===5 && i.esito.substring(3,5)!=='OK'" [icon]="faExclamation" style="color: red;"></fa-icon>
+                    </span>
+                </ng-container>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

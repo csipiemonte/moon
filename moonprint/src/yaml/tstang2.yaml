@@ -1,0 +1,153 @@
+# ROL
+# API spec in YAML
+swagger: '2.0'
+info:
+  title: Tour Of Heroes API
+  description:  API per il backend del tutorial Tour Of Heroes di angular.
+  version: "1.0.0"
+host: mydevpc.csi.it:80
+# array of all schemes that your API supports
+schemes:
+  - http
+# will be prefixed to all paths
+basePath: /restfacade/be
+produces:
+  - application/json
+paths:
+  /ping:
+    get:
+      operationId: ping
+      summary: servizio di ping del backend
+      description: Restituisce una stringa per confermare la disponibilità del backend
+      produces:
+        - plain/text
+      tags:
+        - TOH
+      responses:
+        200:
+          description: stringa di conferma funzionamento
+          schema:
+            type: string
+        default:
+          description: Unexpected error
+          schema:
+            type: string
+  /currentUser:
+    get:
+      operationId: getCurrentUser
+      summary: get current user
+      description: restituisce l'utente corrente
+      produces: 
+        - application/json
+      tags: 
+        - TOH
+      responses:
+        200:
+          description: l'utente corrente
+          schema:
+            $ref: '#/definitions/UserInfo'
+        default:
+          description: Unexpected error
+          schema:
+            type: string
+  /heroes:
+    get:
+      operationId: getHeroes
+      summary: restituisce la lista di eroi
+      description: restituisce la lista di eroi
+      produces:
+        - application/json
+      tags: 
+        - TOH
+      responses:
+        200:
+          description: la lista di eroi presente nel DB
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Hero'
+        default:
+          description: Unexpected error
+          schema:
+            type: string
+  /hero/{id}:
+    get:
+      operationId: getHero
+      summary: get hero by id
+      description: restituisce l'eroe identificato da ID
+      parameters: 
+        - name: id
+          type: number
+          in: path
+          required: true
+      produces:
+        - application/json
+      responses:
+        200:
+          description: l'eroe trovato
+          schema:
+            $ref: '#/definitions/Hero'
+        default:
+          description: Unexpected error
+          schema:
+            type: string    
+  /localLogout:
+    get:
+      operationId: localLogout
+      summary: local logout
+      description: effettua il logout locale
+      responses:
+        200:
+          description: logout effettuato
+          schema:
+            type: string
+        default:
+          description: Unexpected error
+          schema:
+            type: string    
+definitions:
+  Hero:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: id numerico dell'eroe
+      name:
+        type: string
+        description: nome dell'eroe
+  UserInfo:
+    type: object
+    properties:
+      nome:
+        type: string
+        description: nome dell'utente
+      cognome:
+        type: string
+        description: cognome dell'utente
+      codFisc:
+        type: string
+        description: codice fiscale dell'utente
+      ente:
+        type: string
+        description: nome dell'ente
+      ruolo:
+        type: string
+        description: nome del ruolo dell'utente
+      codRuolo:
+        type: string
+        description: codice del ruolo dell'utente
+      idIride:
+        type: string
+        description: ID iride dell'utente
+  Error:
+    type: object
+    properties:
+      code:
+        type: string
+      messaggioCittadino:
+        type: string
+      errorMessage:
+        type: string
+      fields:
+        type: string
+        x-nullable: true

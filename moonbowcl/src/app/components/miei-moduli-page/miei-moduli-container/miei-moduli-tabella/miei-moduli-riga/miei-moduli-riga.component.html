@@ -1,0 +1,28 @@
+<td>
+    {{rigaModulo?.oggettoModulo}}</td>
+<td>{{rigaModulo?.descrizioneModulo}}</td>
+<td>{{rigaModulo?.versioneModulo}}</td>
+<td>{{rigaModulo?.stato?.codice}}</td>
+
+<td style="white-space: nowrap">
+    <a *ngIf="isOpAdmin" [routerLink]="[]" ngbTooltip="Cambia Stato" (click)="cambiaStato($event)">
+        <fa-icon style="margin-left: 5px" [icon]="faSync"></fa-icon>
+    </a>
+    <a [routerLink]="[]" ngbTooltip="Nuova versione" (click)="nuovaVersione($event)">
+        <fa-icon style="margin-left: 15px;" [icon]="faPlus"></fa-icon>
+    </a>
+    <a [routerLink]="[]" ngbTooltip="Dettaglio Modulo" (click)="dettaglioModulo($event)">
+        <fa-icon style="margin-left: 15px" [icon]="faEye"></fa-icon>
+    </a>
+<!--
+    <a *ngIf="isAdmin" [routerLink]="[]" ngbTooltip="Dati Generali" (click)="datiGenerali($event)">
+        <fa-icon style="margin-left: 15px" [icon]="faInfo"></fa-icon>
+    </a>
+-->
+    <a *ngIf="isModificabile" [routerLink]="[]" ngbTooltip="Modifica Modulo" (click)="modificaModulo($event)">
+        <fa-icon style="margin-left: 15px" [icon]="faEdit"></fa-icon>
+    </a>
+    <a *ngIf="rigaModulo.stato.codice==='INIT'" [routerLink]="[]" ngbTooltip="Elimina Modulo" (click)="eliminaModulo($event)">
+        <fa-icon style="margin-left: 20px; color: red" [icon]="faTrashAlt"></fa-icon>
+    </a>
+</td>

@@ -1,0 +1,1672 @@
+swagger: '2.0'
+info:
+  title: troubleticketing
+  description: "Le API consentono interoperabilità con il sistema di Trouble Ticketing
+    (creazione ticket, anagrafiche clienti ed info lavoro) ed interrogazione informazioni
+    (stato ticket, elenco ticket il cui stato è stato variato, elenco company cliente,
+    elenco categorizzazioni operative, catalogo applicativo, configuration items,
+    anagrafiche clienti)."
+  version: v1
+host: tst-api-piemonte.ecosis.csi.it
+basePath: "/tecno/troubleticketing/v1"
+schemes:
+- https
+- http
+securityDefinitions:
+  basicAuth:
+    type: basic
+  default:
+    type: oauth2
+    authorizationUrl: https://tst-api-piemonte.ecosis.csi.it/authorize
+    flow: implicit
+    scopes: {}
+security:
+- basicAuth: []
+paths:
+  "/tickets":
+    post:
+      tags:
+      - ticket
+      summary: crea un ticket e ritorna il suo ID
+      operationId: createTicket
+      description: Permette di inserire un ticket a sistema e ne restituisce l'identificativo
+        per successive consultazioni e aggiornamenti
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - in: header
+        name: X-Request-ID
+        type: string
+        description: identificativo della request (formato *uuid v4* preferibile).
+          Utile per il tracciamento delle richieste
+        required: true
+      - in: header
+        name: X-Forwarded-For
+        type: string
+        description: lista degli IP richiedenti
+        required: true
+      - name: ticket
+        in: body
+        required: true
+        description: il ticket da creare
+        schema:
+          "$ref": "#/definitions/Ticket"
+      responses:
+        '200':
+          description: Creato
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            "$ref": "#/definitions/Ticket"
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '415':
+          "$ref": "#/responses/UnsupportedMediaType"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '502':
+          "$ref": "#/responses/BadGateway"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/tickets/{ticketId}/users":
+    get:
+      tags:
+      - ticket
+      - richiedente
+      summary: ritorna l'anagrafica del richiedente della service request
+      operationId: getUserTicket
+      description: Ritorna il richiedente della service request
+      produces:
+      - application/json
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - in: path
+        name: ticketId
+        type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            "$ref": "#/definitions/RichiedenteTicket"
+        '204':
+          description: No Content. Nessun richiedente associato al ticket trovato
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/tickets/{ticketId}/stato":
+    get:
+      tags:
+      - ticket
+      - lavorazione
+      summary: ritorna le informazioni sulla lavorazione della service request
+      operationId: getWorkinfoTicket
+      description: Ritorna le info lavorazione della service request
+      produces:
+      - application/json
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - in: path
+        name: ticketId
+        type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            "$ref": "#/definitions/LavorazioneTicket"
+        '204':
+          description: No Content. Nessuna lavorazione associata al ticket trovata
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/tickets/{ticketId}/stato/info-dettagli":
+    get:
+      tags:
+      - ticket
+      - lavorazione
+      summary: consulta le informazioni allegate alla service request
+      operationId: getWorklogsTicket
+      description: Consultazione delle informazioni allegate dal richiedente per la
+        lavorazione della service request
+      produces:
+      - application/json
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - in: path
+        name: ticketId
+        type: string
+        required: true
+      - name: filter
+        in: query
+        type: string
+        description: "criteri disponibili eq (equals), neq (not equals), c(contains),
+          ci(contains case insensitive), lt (less than), lte (less than or equals),
+          gt (greater than), gte (greater than or equals), ad esempio: \n\n  * tutti
+          i worklog relativi al ticket aventi data di inserimento maggiore o uguale
+          a:`{\n  \"dataLog\": {\"gte\":\"2020-12-03T11:56:18Z\"} }`\n  \n  * tutti
+          i worklog relativi al ticket aventi data di inserimento minore o uguale
+          a:`{\n  \"dataLog\": {\"lte\":\"2020-12-03T14:25:18Z\"} }`\n  \n  * tutti
+          i worklog relativi al ticket aventi data di inserimento compresa fra:`{\n
+          \ \"dataLog\": {\"gte\":\"2020-12-03T11:56:18Z\", \"lte\":\"2020-12-03T14:25:18Z\"}
+          }`\n"
+        default: "{}"
+      - in: query
+        name: sort
+        required: false
+        description: |
+          esempi di criteri di ordinamento:
+          * id crescente: `+logId`
+          * id decrescente: `-logId`
+        type: string
+        default: "-logId"
+      - in: query
+        name: offset
+        required: false
+        type: integer
+        default: 0
+        description: Numero di elementi da cui partire
+      - in: query
+        name: limit
+        required: false
+        type: integer
+        default: 10
+        description: Massimo numero di elementi ritornati
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/InfoNotaAttachments"
+        '204':
+          description: No Content. Nessun informazione associata al ticket
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+    put:
+      tags:
+      - ticket
+      - lavorazione
+      summary: aggiorna le informazioni allegate alla service request
+      operationId: addWorkinfoTicket
+      description: Aggioramento delle informazioni richieste al richiedente per la
+        lavorazione della service request
+      produces:
+      - application/json
+      consumes:
+      - multipart/form-data
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - in: path
+        name: ticketId
+        type: string
+        required: true
+      - in: formData
+        name: riepilogo
+        type: string
+        required: true
+        description: informazioni sul worklog utente
+      - in: formData
+        name: tipologia
+        type: string
+        required: true
+        description: tipologia di informazioni tra quelle disponibili
+        enum:
+        - Customer Inbound
+        - Customer Communication
+        - Customer Follow Up
+        - Customer Status Update
+        - Customer Outbound
+        - Closure Follow Up
+        - Detail Clarification
+        - General Information
+        - Resolution Communications
+        - Satisfaction Survey
+        - Status Update
+        - General
+        - Incident Task or Action
+        - Problem Script
+        - Working Log
+        - Email System
+        - Paging System
+        - BMC Impact Manager Update
+        - Chat
+        - Pending
+        - Resolved
+      - in: formData
+        name: note
+        type: string
+        required: false
+        description: dettagli sul worklog dell'utente
+      - in: formData
+        name: nomeAllegato1
+        type: string
+        required: false
+        description: chiave custom del primo allegato (es. il nome del file)
+      - in: formData
+        name: custom-key
+        type: file
+        required: false
+        description: file allegato, la chiave dev'essere il valore indicato al parametro
+          *nomeAllegato1*
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            "$ref": "#/definitions/InfoNotaWLog"
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '415':
+          "$ref": "#/responses/UnsupportedMediaType"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '502':
+          "$ref": "#/responses/BadGateway"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/tickets/{ticketId}/stato/info-dettagli/{logId}":
+    get:
+      tags:
+      - ticket
+      - lavorazione
+      summary: consulta una specifica info nota allegata alla service request
+      operationId: getWorklogTicket
+      description: Consultazione delle informazioni allegate dal richiedente per la
+        lavorazione della service request
+      produces:
+      - application/json
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - in: path
+        name: ticketId
+        type: string
+        required: true
+      - in: path
+        name: logId
+        description: id dell\'info nota in formato `WLGxxxxxxxxxxxx`
+        type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            "$ref": "#/definitions/InfoNotaAttachments"
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '404':
+          "$ref": "#/responses/NotFound"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/tickets/{ticketId}/stato/info-dettagli/{logId}/allegati/{attachId}":
+    get:
+      tags:
+      - ticket
+      - lavorazione
+      summary: restituisce un allegato associato alla info nota di una service request
+      operationId: getAttachment
+      description: Consultazione delle informazioni allegate dal richiedente per la
+        lavorazione della service request
+      produces:
+      - application/octet-stream
+      - application/json
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - in: path
+        name: ticketId
+        type: string
+        required: true
+      - in: path
+        name: logId
+        type: string
+        description: id dell\'info nota in formato `WLGxxxxxxxxxxxx`
+        required: true
+      - in: path
+        name: attachId
+        description: indice dell\'allegato da 1 a 3
+        type: integer
+        required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            type: file
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '404':
+          "$ref": "#/responses/NotFound"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/tickets/monitoraggio":
+    get:
+      tags:
+      - ticket
+      - lavorazione
+      summary: ritorna gli ultimi ticket modificati
+      operationId: getLastUpdated
+      description: Ritorna le service request che siano state modificate entro x ore
+        dall'ultimo controllo
+      produces:
+      - application/json
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - name: filter
+        in: query
+        type: string
+        description: "criteri disponibili eq (equals), neq (not equals), c(contains),
+          ci(contains case insensitive), lt (less than), lte (less than or equals),
+          gt (greater than), gte (greater than or equals), ad esempio: \n\n  * tutti
+          gli ultimi ticket aggiornati aventi data di inserimento maggiore o uguale
+          a:`{\n  \"submitDate\": {\"gte\":\"2020-12-03T11:56:18Z\"} }`\n  \n  * tutti
+          gli ultimi ticket aggiornati aventi data di inserimento minore o uguale
+          a:`{\n  \"submitDate\": {\"lte\":\"2020-12-03T14:25:18Z\"} }`\n  \n  * tutti
+          gli ultimi ticket aggiornati aventi data di inserimento compresa fra:`{\n
+          \ \"submitDate\": {\"gte\":\"2020-12-03T11:56:18Z\", \"lte\":\"2020-12-03T14:25:18Z\"}
+          }`\n"
+        default: "{}"
+      - in: query
+        name: sort
+        required: false
+        description: |
+          esempi di criteri di ordinamento:
+          * id crescente: `+ticketId`
+          * id decrescente: `-ticketId`
+        type: string
+        default: "-ticketId"
+      - in: query
+        name: offset
+        required: false
+        type: integer
+        default: 0
+        description: Numero di elementi da cui partire
+      - in: query
+        name: limit
+        required: false
+        type: integer
+        default: 10
+        description: Massimo numero di elementi ritornati
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/TicketSnapshot"
+        '204':
+          description: No Content.
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/tickets/esposizione":
+    get:
+      tags:
+      - ticket
+      - lavorazione
+      summary: ritorna gli ultimi ticket registrati a sistema con categorizzazione
+        '1L -' da qualsiasi fonte
+      operationId: getLastRegistered
+      description: ritorna i ticket registrati negli ultimi 10 gg a sistema con categorizzazione
+        '1L -' da qualsiasi fonte
+      produces:
+      - application/json
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - name: filter
+        in: query
+        type: string
+        description: "criteri disponibili eq (equals), neq (not equals), c(contains),
+          ci(contains case insensitive), lt (less than), lte (less than or equals),
+          gt (greater than), gte (greater than or equals), ad esempio: \n\n  * tutti
+          gli ultimi ticket registrati aventi data di inserimento maggiore di:`{\n
+          \ \"submitDate\": {\"gt\": \"2020-12-03T11:56:18Z\"} }`\n  \n  * tutti gli
+          ultimi ticket registrati aventi data di inserimento minore di:`{\n  \"submitDate\":
+          {\"lt\":\"2020-12-03T14:25:18Z\"} }`\n  \n  * tutti gli ultimi ticket registrati
+          aventi data di inserimento compresa fra:`{\n  \"submitDate\": {\"gte\":\"2020-12-03T11:56:18Z\",
+          \"lte\":\"2020-12-03T14:25:18Z\"} }`\n  \n"
+        default: "{}"
+      - in: query
+        name: sort
+        required: false
+        description: |
+          esempi di criteri di ordinamento:
+          * id crescente: `+ticketId`
+          * id decrescente: `-ticketId`
+        type: string
+        default: "-ticketId"
+      - in: query
+        name: offset
+        required: false
+        type: integer
+        default: 0
+        description: Numero di elementi da cui partire
+      - in: query
+        name: limit
+        required: false
+        type: integer
+        default: 10
+        description: Massimo numero di elementi ritornati
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/TicketExpo"
+        '204':
+          description: No Content.
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/categorie-operative":
+    get:
+      tags:
+      - categoria
+      summary: ritorna una lista di categorie in base ai filtri specificati
+      operationId: getOpCategoriesList
+      description: Ritorna una lista di categorie operative filtrate secondo i criteri
+        richiesti
+      produces:
+      - application/json
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - name: filter
+        in: query
+        type: string
+        description: "criteri disponibili eq (equals), neq (not equals), c(contains),
+          ci(contains case insensitive), lt (less than), lte (less than or equals),
+          gt (greater than), gte (greater than or equals), ad esempio: \n* tutte le
+          categorie aventi ente uguale a: `{\n  \"ente\": {\"eq\": \"ente\"} }`\n\n*
+          tutte le categorie aventi prima gerarchia uguale a: `{\n  \"livello1\":
+          {\"eq\": \"livello1\"} }`\n\n* tutte le categorie aventi prima gerarchia
+          uguale a: `{\n  \"livello2\": {\"eq\": \"livello2\"} }`\n\n* tutte le categorie
+          aventi prima gerarchia uguale a: `{\n  \"livello3\": {\"eq\": \"livello3\"}
+          }`\n  \n"
+        default: '{"ente": {"eq": "COMUNE DI TORINO"} }'
+      - in: query
+        name: sort
+        required: false
+        description: |
+          esempi di criteri di ordinamento:
+          * id crescente: `+livello1`
+          * id decrescente: `-livello1`
+        type: string
+        default: "+livello1"
+      - in: query
+        name: offset
+        required: false
+        type: integer
+        default: 0
+        description: Numero di elementi da cui partire
+      - in: query
+        name: limit
+        required: false
+        type: integer
+        default: 10
+        description: Massimo numero di elementi ritornati
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/CategoriaOperativaTicket"
+        '204':
+          description: No Content. Nessuna categorizzazione risponde ai criteri applicati.
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/categorie-applicative":
+    get:
+      tags:
+      - categoria
+      summary: ritorna una lista di categorie in base ai filtri specificati
+      operationId: getAppCategoriesList
+      description: Ritorna una lista di categorie applicative filtrate secondo i criteri
+        richiesti
+      produces:
+      - application/json
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - name: filter
+        in: query
+        type: string
+        description: "criteri disponibili eq (equals), neq (not equals), c(contains),
+          ci(contains case insensitive), lt (less than), lte (less than or equals),
+          gt (greater than), gte (greater than or equals), ad esempio: \n* tutte le
+          categorie aventi ente uguale a: `{\n  \"ente\": {\"eq\": \"ente\"} }`\n\n*
+          tutte le categorie aventi applicativo uguale a: `{\n  \"applicativo\": {\"eq\":
+          \"applicativo\"} }`\n\n* tutte le categorie aventi componente uguale a:
+          `{\n  \"componente\": {\"eq\": \"componente\"} }`\n\n* tutte le categorie
+          aventi aggregazione logico omogenea uguale a: `{\n  \"alo\": {\"eq\": \"alo\"}
+          }`\n\n* tutte le categorie aventi soluzione applicativa uguale a: `{\n  \"sa\":
+          {\"eq\": \"sa\"} }`\n  \n"
+        default: '{"ente": {"eq": "COMUNE DI TORINO"} }'
+      - in: query
+        name: sort
+        required: false
+        description: |
+          esempi di criteri di ordinamento:
+          * id crescente: `+componente`
+          * id decrescente: `-componente`
+        type: string
+        default: "+componente"
+      - in: query
+        name: offset
+        required: false
+        type: integer
+        default: 0
+        description: Numero di elementi da cui partire
+      - in: query
+        name: limit
+        required: false
+        type: integer
+        default: 10
+        description: Massimo numero di elementi ritornati
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/CategoriaApplicativa"
+        '204':
+          description: No Content. Nessuna categorizzazione risponde ai criteri applicati.
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/users":
+    get:
+      tags:
+      - richiedente
+      summary: ritorna una lista di utenti del servizio di ticketing in base ai filtri
+        specificati
+      operationId: getUserList
+      description: Ritorna le informazioni anagrafiche dell'utente del servizio di
+        ticketing filtrati secondo i criteri richiesti
+      produces:
+      - application/json
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - name: filter
+        in: query
+        type: string
+        description: "criteri disponibili eq (equals), neq (not equals), c(contains),
+          ci(contains case insensitive), lt (less than), lte (less than or equals),
+          gt (greater than), gte (greater than or equals), ad esempio: \n* tutti gli
+          utenti aventi nome uguale a: `{\n  \"nome\": {\"eq\": \"nome\"} }`\n\n*
+          tutti gli utenti aventi cognome uguale a: `{\n  \"cognome\": {\"eq\": \"cognome\"}
+          }`\n\n* tutti gli utenti aventi mail uguale a: `{\n  \"email\": {\"eq\":
+          \"email\"} }`\n  \n"
+        default: '{"personId": {"eq": "PPL000000018476"} }'
+      - in: query
+        name: sort
+        required: false
+        description: |
+          esempi di criteri di ordinamento:
+          * id crescente: `+personId`
+          * id decrescente: `-personId`
+        type: string
+        default: "-personId"
+      - in: query
+        name: offset
+        required: false
+        type: integer
+        default: 0
+        description: Numero di elementi da cui partire
+      - in: query
+        name: limit
+        required: false
+        type: integer
+        default: 10
+        description: Massimo numero di elementi ritornati
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/RichiedenteDaAnagrafica"
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '404':
+          "$ref": "#/responses/NotFound"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+    post:
+      tags:
+      - richiedente
+      summary: inserisce un richiedente in anagrafica
+      operationId: addUser
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - name: richiedente
+        in: body
+        required: true
+        description: l'utente da creare
+        schema:
+          "$ref": "#/definitions/RichiedentePerAnagrafica"
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/RichiedenteDaAnagrafica"
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '404':
+          "$ref": "#/responses/NotFound"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/users/{personId}":
+    get:
+      tags:
+      - richiedente
+      summary: ritorna i dettagli di un utente del servizio di ticketing
+      operationId: getUser
+      description: Ritorna le informazioni anagrafiche dell'utente del servizio di
+        ticketing
+      produces:
+      - application/json
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - in: path
+        name: personId
+        type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            "$ref": "#/definitions/RichiedenteDaAnagrafica"
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '404':
+          "$ref": "#/responses/NotFound"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/users/{personId}/company":
+    get:
+      tags:
+      - richiedente
+      - ente
+      summary: ritorna l'ente associato ad un utente del servizio di ticketing
+      operationId: getCompanyByUserId
+      description: Ritorna l'ente associato ad un utente del servizio di ticketing,
+        nota l\'associazione usa l\'id utente che è diverso per ciascun abbinamento
+        richiedente-company, quindi anche se un utente reale può avere molte company
+        associate, ogni personId ritorna una sola company
+      produces:
+      - application/json
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - in: path
+        name: personId
+        type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            "$ref": "#/definitions/Ente"
+        '204':
+          description: No Content. Nessun ente associato all'utente
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '404':
+          "$ref": "#/responses/NotFound"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/users/{personId}/configuration-items":
+    get:
+      tags:
+      - richiedente
+      - asset
+      summary: ritorna gli asset associati ad un utente del servizio di ticketing
+      operationId: getConfigItemListByUserId
+      description: Per richiedere gli asset associati all'utente si possono specificare
+        dei filtri sull\'ente o sul nome dell\'asset
+      produces:
+      - application/json
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - in: path
+        name: personId
+        type: string
+        required: true
+      - name: filter
+        in: query
+        type: string
+        description: "criteri disponibili eq (equals), neq (not equals), c(contains),
+          ci(contains case insensitive), lt (less than), lte (less than or equals),
+          gt (greater than), gte (greater than or equals), ad esempio: \n* tutti gli
+          utenti aventi nome uguale a: `{\n  \"companyName\": {\"eq\": \"nome\"} }`\n
+          \ \n"
+      - in: query
+        name: sort
+        required: false
+        description: |
+          esempi di criteri di ordinamento:
+          * id crescente: `+assetId`
+          * id decrescente: `-assetId`
+        type: string
+        default: "-assetId"
+      - in: query
+        name: offset
+        required: false
+        type: integer
+        default: 0
+        description: Numero di elementi da cui partire
+      - in: query
+        name: limit
+        required: false
+        type: integer
+        default: 10
+        description: Massimo numero di elementi ritornati
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/ConfigurationItem"
+        '204':
+          description: No Content. Nessun asset associato all'utente
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '404':
+          "$ref": "#/responses/NotFound"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/enti":
+    get:
+      tags:
+      - ente
+      summary: ritorna una lista di enti censiti nel servizio di ticketing in base
+        ai filtri specificati
+      operationId: getCompanyOldList
+      description: Ritorna le informazioni anagrafiche degli enti censiti nel servizio
+        di ticketing filtrati secondo i criteri richiesti
+      produces:
+      - application/json
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - name: filter
+        in: query
+        type: string
+        description: "criteri disponibili eq (equals), neq (not equals), c(contains),
+          ci(contains case insensitive), lt (less than), lte (less than or equals),
+          gt (greater than), gte (greater than or equals), ad esempio: \n* tutti gli
+          enti aventi nome Remedy uguale a: `{\n  \"companyName\": {\"eq\": \"nome\"}
+          }`\n\n* tutti gli enti aventi tipologia uguale a: `{\n  \"tipologia\": {\"eq\":
+          \"tipo\"} }`\n\n* tutti gli enti il cui nominativo contiene: `{\n  \"anagraficaName\":
+          {\"c\": \"nome\"} }`\n  \n"
+        default: '{"companyName": {"c": "CSI PIEMONTE"} }`}'
+      - in: query
+        name: sort
+        required: false
+        description: |
+          esempi di criteri di ordinamento:
+          * id crescente: `+companyName`
+          * id decrescente: `-companyName`
+        type: string
+        default: "-companyName"
+      - in: query
+        name: offset
+        required: false
+        type: integer
+        default: 0
+        description: Numero di elementi da cui partire
+      - in: query
+        name: limit
+        required: false
+        type: integer
+        default: 10
+        description: Massimo numero di elementi ritornati
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            "$ref": "#/definitions/Ente"
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  "/companies":
+    get:
+      tags:
+      - ente
+      summary: ritorna una lista di enti censiti nel servizio di ticketing in base
+        ai filtri specificati
+      operationId: getCompanyList
+      description: Ritorna le informazioni anagrafiche degli enti censiti nel servizio
+        di ticketing filtrati secondo i criteri richiesti
+      produces:
+      - application/json
+      parameters:
+      - "$ref": "#/parameters/header_x_request_id"
+      - "$ref": "#/parameters/header_x_forwarded_for"
+      - name: filter
+        in: query
+        type: string
+        description: "criteri disponibili eq (equals), neq (not equals), c(contains),
+          ci(contains case insensitive), lt (less than), lte (less than or equals),
+          gt (greater than), gte (greater than or equals), ad esempio: \n* tutti gli
+          enti aventi nome Remedy uguale a: `{\n  \"companyName\": {\"eq\": \"nome\"}
+          }`\n\n* tutti gli enti aventi tipologia uguale a: `{\n  \"tipologia\": {\"eq\":
+          \"tipo\"} }`\n\n* tutti gli enti il cui nominativo contiene: `{\n  \"anagraficaName\":
+          {\"c\": \"nome\"} }`\n  \n"
+        default: '{"companyName": {"c": "CSI PIEMONTE"} }`}'
+      - in: query
+        name: sort
+        required: false
+        description: |
+          esempi di criteri di ordinamento:
+          * id crescente: `+companyName`
+          * id decrescente: `-companyName`
+        type: string
+        default: "-companyName"
+      - in: query
+        name: offset
+        required: false
+        type: integer
+        default: 0
+        description: Numero di elementi da cui partire
+      - in: query
+        name: limit
+        required: false
+        type: integer
+        default: 10
+        description: Massimo numero di elementi ritornati
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Request-ID:
+              type: string
+              description: UUID header utilizzato nella richiesta
+          schema:
+            "$ref": "#/definitions/Ente"
+        '400':
+          "$ref": "#/responses/BadRequest"
+        '401':
+          "$ref": "#/responses/UnauthorizedError"
+        '500':
+          "$ref": "#/responses/InternalServerError"
+        '503':
+          "$ref": "#/responses/ServiceUnavaible"
+        default:
+          description: Unexpected error
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+parameters:
+  header_x_request_id:
+    in: header
+    name: X-Request-ID
+    type: string
+    description: identificativo della request (formato *uuid v4* preferibile). Utile
+      per il tracciamento delle richieste
+    required: true
+  header_x_forwarded_for:
+    in: header
+    name: X-Forwarded-For
+    type: string
+    description: lista degli IP richiedenti
+    required: true
+responses:
+  NoContent:
+    description: Nessun dato soddisfa i criteri di ricerca o non sono presenti dati
+      nella collezione
+  BadRequest:
+    description: Richiesta utente errata
+  UnauthorizedError:
+    description: Autorizzazione mancante o non valida
+  NotFound:
+    description: Elemento richiesto errato o risorsa inesistente
+  UnsupportedMediaType:
+    description: Non è stato specificato l'header Content-Type corretto
+  InternalServerError:
+    description: Internal server error.
+  ServiceUnavaible:
+    description: Servizio API non disponibile
+  BadGateway:
+    description: Comunicazione con altro servizio fallita
+definitions:
+  LavorazioneTicket:
+    allOf:
+    - "$ref": "#/definitions/LavorazioneBaseModel"
+    - type: object
+    properties:
+      email:
+        type: string
+      updateDate:
+        type: string
+        format: date-time
+        description: data di aggiornamento della request
+      closeDate:
+        type: string
+        format: date-time
+        description: data di chiusura della request
+      operatorId:
+        type: string
+        description: identificativo dell'operatore o del gruppo
+      commento:
+        type: string
+        description: dettaglio sulla lavorazione
+      noteUtente:
+        type: array
+        items:
+          "$ref": "#/definitions/InfoNotaBaseModel"
+  LavorazioneTicketExpo:
+    allOf:
+    - "$ref": "#/definitions/LavorazioneBaseModel"
+    - type: object
+    - required:
+      - submitDate
+      - assegnatario
+  LavorazioneBaseModel:
+    type: object
+    required:
+    - stato
+    properties:
+      stato:
+        type: string
+        description: stato della service request
+        enum:
+        - Assegnato
+        - In corso
+        - Pendente
+        - Risolto
+        - Chiuso
+        - Annullato
+      motivoStato:
+        type: string
+        description: comunicazioni sulla lavorazione
+        enum:
+        - Creazione modifica infrastrutturale
+        - Approvazione Richiesta
+        - Richiesta Informazioni
+        - Attesa parti HW
+        - Altre azioni non necessarie
+        - Risoluz. automatica riportata
+        - Non più CI causale
+        - Appuntamento Contatto
+        - Assenza/indis. utente
+        - Intervento non riuscito
+        - Non Approvato
+        - Inoltrato
+      risoluzione:
+        type: string
+        description: commento di chiusura della request
+      assegnatario:
+        type: string
+        description: alias del gruppo o nominativo operatore
+  ConfigurationItem:
+    type: object
+    required:
+    - assetId
+    properties:
+      assetId:
+        type: string
+        description: identificativo dell'asset
+      name:
+        type: string
+        description: denominazione dell'asset
+      companyName:
+        type: string
+        description: company associata all'asset, corrispondente allo stesso campo
+          su Ente
+      updateDate:
+        type: string
+        format: date-time
+        description: data di aggiornamento dell'asset
+  InfoNotaWLog:
+    allOf:
+    - "$ref": "#/definitions/InfoNotaBaseModel"
+    - type: object
+    required:
+    - logId
+    - dataLog
+    properties:
+      riepilogo:
+        type: string
+        description: riepilogo informazioni inserite
+  InfoNotaAttachments:
+    allOf:
+    - "$ref": "#/definitions/InfoNotaBaseModel"
+    - type: object
+    required:
+    - logId
+    - dataLog
+    - numeroAllegati
+    - visualizzazione
+    - bloccato
+    properties:
+      visualizzazione:
+        type: string
+        description: visibilità del worklog (pubblica o privata)
+      numeroAllegati:
+        type: integer
+        description: numero di allegati collegati
+      idAllegati:
+        type: array
+        minItems: 0
+        items:
+          type: string
+          description: progressivo degli allegati da utilizzare come identificativo
+            per estrarli
+      bloccato:
+        type: string
+        description: securizzazione del worklog
+  InfoNotaBaseModel:
+    type: object
+    required:
+    - tipologia
+    - note
+    properties:
+      logId:
+        type: string
+        description: identificativo delle informazioni inserite in formato `WLGxxxxxxxxxxxx`
+      dataLog:
+        type: string
+        format: date-time
+        description: data di inserimento note
+      tipologia:
+        type: string
+        description: tipologia di informazioni inserite
+        enum:
+        - Customer Inbound
+        - Customer Communication
+        - Customer Follow Up
+        - Customer Status Update
+        - Customer Outbound
+        - Closure Follow Up
+        - Detail Clarification
+        - General Information
+        - Resolution Communications
+        - Satisfaction Survey
+        - Status Update
+        - General
+        - Incident Task or Action
+        - Problem Script
+        - Working Log
+        - Email System
+        - Paging System
+        - BMC Impact Manager Update
+        - Chat
+        - Pending
+        - Resolved
+      note:
+        type: string
+        description: dettaglio informazioni inserite
+      allegati:
+        type: array
+        minItems: 0
+        items:
+          type: string
+          description: identificativi degli allegati
+  CategorizzazioneTicket:
+    allOf:
+    - "$ref": "#/definitions/CategorizzazioneBaseModel"
+    - type: object
+    - required:
+      - categoriaOperativa
+    properties:
+      categoriaOperativa:
+        "$ref": "#/definitions/CategoriaOperativaTicket"
+      categoriaApplicativa:
+        "$ref": "#/definitions/CategoriaApplicativa"
+  CategorizzazioneExpo:
+    allOf:
+    - "$ref": "#/definitions/CategorizzazioneBaseModel"
+    - type: object
+    properties:
+      categoriaOperativa:
+        "$ref": "#/definitions/CategoriaOperativaExpo"
+  CategorizzazioneBaseModel:
+    type: object
+    required:
+    - categoriaOperativa
+    properties:
+      categoriaOperativa:
+        "$ref": "#/definitions/CategoriaOperativaBaseModel"
+  CategoriaOperativaTicket:
+    allOf:
+    - "$ref": "#/definitions/CategoriaOperativaBaseModel"
+    - type: object
+    - required:
+      - livello1
+      - livello2
+      - livello3
+  CategoriaOperativaExpo:
+    allOf:
+    - "$ref": "#/definitions/CategoriaOperativaBaseModel"
+    - type: object
+    - required:
+      - livello1
+  CategoriaOperativaBaseModel:
+    type: object
+    properties:
+      ente:
+        type: string
+        description: company di riferimento
+      livello1:
+        type: string
+        description: primo livello dell'organizzazione operativa del sistema di ticketing
+      livello2:
+        type: string
+        description: secondo livello dell'organizzazione operativa del sistema di
+          ticketing
+      livello3:
+        type: string
+        description: terzo livello dell'organizzazione operativa del sistema di ticketing
+      tipologia:
+        type: string
+        description: tipologia di ticket
+        enum:
+        - Ripristino di servizio utente
+        - Ripristino di servizio infrastrutturale
+        - Richiesta utente
+        - Evento infrastrutturale
+  CategoriaApplicativa:
+    type: object
+    required:
+    - componente
+    properties:
+      ente:
+        type: string
+        description: company di riferimento
+      alo:
+        type: string
+      sa:
+        type: string
+        description: Soluzione Applicativa
+      applicativo:
+        type: string
+      componente:
+        type: string
+        description: componente funzionale
+      codiceCfi:
+        type: string
+        description: codice componente funzionale istanziata
+  TicketExpo:
+    allOf:
+    - "$ref": "#/definitions/TicketBaseSnapshot"
+    - type: object
+    - required:
+      - ticketId
+      - riepilogo
+      - lavorazione
+    properties:
+      riepilogo:
+        type: string
+        description: descrizione breve della service request
+      dettaglio:
+        type: string
+        description: descrizione estesa della service request
+      lavorazione:
+        "$ref": "#/definitions/LavorazioneTicketExpo"
+      categorizzazione:
+        "$ref": "#/definitions/CategorizzazioneExpo"
+  TicketSnapshot:
+    allOf:
+    - "$ref": "#/definitions/TicketBaseSnapshot"
+    - type: object
+    - required:
+      - ticketId
+      - statoAttuale
+    properties:
+      statoPrecedente:
+        type: string
+        description: stato precedente della service request
+        enum:
+        - Assegnato
+        - In corso
+        - Pendente
+        - Risolto
+        - Chiuso
+        - Annullato
+      statoAttuale:
+        type: string
+        description: stato attuale della service request
+        enum:
+        - Assegnato
+        - In corso
+        - Pendente
+        - Risolto
+        - Chiuso
+        - Annullato
+  TicketBaseSnapshot:
+    type: object
+    properties:
+      ticketId:
+        type: string
+        description: identificativo della service request in formato `INCxxxxxxxxxxxx`
+      submitDate:
+        type: string
+        format: date-time
+        description: data di inserimento della service request
+      richiedente:
+        "$ref": "#/definitions/RichiedenteSnapshot"
+  Ticket:
+    allOf:
+    - "$ref": "#/definitions/TicketBaseModel"
+    - type: object
+    - required:
+      - riepilogo
+      - impatto
+      - urgenza
+      - tipologia
+      - richiedente
+      - categorizzazione
+  TicketBaseModel:
+    type: object
+    properties:
+      ticketId:
+        type: string
+        description: identificativo della service request in formato `INCxxxxxxxxxxxx`
+      insertDate:
+        type: string
+        format: date-time
+        description: data di inserimento della service request
+      riepilogo:
+        type: string
+        description: descrizione breve della service request
+      dettaglio:
+        type: string
+        description: descrizione estesa della service request
+      impatto:
+        type: string
+        description: grado di influenza della service request sui sistemi
+        enum:
+        - Vasto/Diffuso
+        - Significativo/Grande
+        - Moderato/Limitato
+        - Minimo/Localizzato
+      urgenza:
+        type: string
+        description: grado di necessità dell'intervento di risposta
+        enum:
+        - Critica
+        - Alta
+        - Media
+        - Bassa
+      tipologia:
+        type: string
+        description: tipologia di ticket
+        enum:
+        - Ripristino di servizio utente
+        - Ripristino di servizio infrastrutturale
+        - Richiesta utente
+        - Evento infrastrutturale
+      richiedente:
+        "$ref": "#/definitions/RichiedenteTicket"
+      categorizzazione:
+        "$ref": "#/definitions/CategorizzazioneTicket"
+      lavorazione:
+        "$ref": "#/definitions/LavorazioneTicket"
+  RichiedenteTicket:
+    allOf:
+    - "$ref": "#/definitions/RichiedenteBaseModel"
+    - type: object
+    - required:
+      - personId
+  RichiedenteDaAnagrafica:
+    allOf:
+    - "$ref": "#/definitions/RichiedenteBaseModel"
+    - type: object
+    - required:
+      - personId
+      - email
+      - nome
+      - cognome
+      - company
+  RichiedentePerAnagrafica:
+    allOf:
+    - "$ref": "#/definitions/RichiedenteBaseModel"
+    - type: object
+    - required:
+      - email
+      - nome
+      - cognome
+      - company
+      - telefono
+  RichiedenteSnapshot:
+    allOf:
+    - "$ref": "#/definitions/RichiedenteBaseModel"
+    - type: object
+    - required:
+      - email
+      - nome
+      - cognome
+  RichiedenteBaseModel:
+    properties:
+      personId:
+        type: string
+        description: identificativo del richiedente anagrafato in formato `PPLxxxxxxxxxxxx`
+      nome:
+        type: string
+      cognome:
+        type: string
+      email:
+        type: string
+      telefono:
+        type: string
+      telefonoMobile:
+        type: string
+      fax:
+        type: string
+      company:
+        "$ref": "#/definitions/EnteUser"
+      asset:
+        type: array
+        items:
+          "$ref": "#/definitions/ConfigurationItem"
+  EnteUser:
+    allOf:
+    - "$ref": "#/definitions/EnteBaseModel"
+    - type: object
+    - required:
+      - companyName
+  Ente:
+    allOf:
+    - "$ref": "#/definitions/EnteBaseModel"
+    - type: object
+    - required:
+      - companyId
+      - companyName
+      - anagraficaName
+      - anagraficaId
+  EnteBaseModel:
+    type: object
+    properties:
+      companyId:
+        type: string
+        description: identificativo della company in formato `CPYxxxxxxxxxxxx`
+      tipologia:
+        type: string
+        description: tipo di company
+        enum:
+        - Cliente
+        - Fornitore
+        - Rivenditore
+        - Company Operativa
+      companyName:
+        type: string
+        description: company name utilizzata su remedy
+      stato:
+        type: string
+        description: stato dell'anagrafica
+      anagraficaName:
+        type: string
+        description: company name da anagrafica enti
+      anagraficaId:
+        type: integer
+        description: company id da anagrafica enti
+      organizzazione:
+        type: string
+      dipartimento:
+        type: string

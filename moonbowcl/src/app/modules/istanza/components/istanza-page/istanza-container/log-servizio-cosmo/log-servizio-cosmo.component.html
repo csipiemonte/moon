@@ -1,0 +1,26 @@
+<br>
+<h5 class="mb-3">Log integrazione documenti</h5>
+<table id="mytable" class="table table-bordered table-striped" style="font-size:0.8em;">
+    <thead>
+        <th *ngIf="isAdmin">#</th>
+        <th>ID Pratica</th>
+        <th>Data Ins</th>
+        <th>Richiesta</th>
+        <th>Risposta</th>
+        <th>Servizio</th>
+        <th>Errore</th>
+        <th>Data Upd</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of data">
+            <td *ngIf="isAdmin">{{i.idLogServizio}}</td>
+            <td>{{i.idPratica}}</td>
+            <td>{{i.dataIns | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+            <td><span title="{{i.richiestaObj|json}}" class="badge badge-pill badge-info">Richiesta</span></td>
+            <td><span title="{{i.rispostaObj|json}}" class="badge badge-pill badge-success">Risposta</span></td>
+            <td>{{i.servizio}}</td>
+            <td>{{i.errore}}</td>
+            <td>{{i.dataUpd | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+        </tr>
+    </tbody>
+</table>

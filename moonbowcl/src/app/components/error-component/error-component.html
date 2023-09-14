@@ -1,0 +1,17 @@
+<div *ngIf="showErr">
+<p><b>{{errorMessage}}</b></p>
+<p><b>Ambito: {{scope}}</b></p>
+    <button type="button" class="btn btn-outline-danger" color="info" (click)="showTech=!showTech">
+        Mostra Dettagli
+    </button>
+    <button type="button" class="btn btn-outline-info" color="info" (click)="showErr=!showErr">
+        Chiudi messaggio
+    </button>
+
+<div *ngIf="showTech" style="margin-top: 10px">
+    <p>Codice errore: {{codiceErrore}}<br>
+    Messaggio tecnico: {{messaggioTecnico}}<br>
+    Url: {{url}}
+    </p>
+</div>
+</div>

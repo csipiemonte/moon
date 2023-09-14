@@ -1,0 +1,23 @@
+<td>{{ u.identificativoUtente | uppercase }}</td>
+<td>{{ u.cognome | uppercase }}</td>
+<td>{{ u.nome | uppercase }}</td>
+<td>{{ u.email | lowercase }}</td>
+<td><span title="{{u.tipoUtente?.descrizione}}">{{u.tipoUtente?.codice}}</span></td>
+<td *ngIf="u['entiAreeRuoli']"><span title="{{ u['entiAreeRuoli'][0]['areeRuoli'][0]['nomeArea'] }}">{{
+        u['entiAreeRuoli'][0]['areeRuoli'][0]['codiceArea'] }}</span></td>
+<td *ngIf="u['entiAreeRuoli']"><span title="{{ u['entiAreeRuoli'][0]['areeRuoli'][0]['nomeRuolo'] }}">{{
+        u['entiAreeRuoli'][0]['areeRuoli'][0]['codiceRuolo'] }}</span></td>
+<td style='text-align:center;'><fa-icon *ngIf="u?.flagAttivo" [icon]="faCheck"></fa-icon></td>
+<td>{{ u?.dataUpd | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+<!-- <td>{{ u.attoreUpd }}</td>-->
+<td>{{ nomeOperatore }}</td>
+<td>
+    <a [routerLink]="[]" ngbTooltip="Dettaglio Utente" (click)="dettaglioRiga($event)">
+        <fa-icon style="margin-left: 15px" [icon]="faEye"></fa-icon>
+    </a>
+<!--
+    <a [routerLink]="[]" ngbTooltip="Elimina autorizzazione su Area Ruolo" (click)="eliminaRiga($event)" *ngIf="u['entiAreeRuoli']">
+        <fa-icon style="margin-left: 20px; color: red" [icon]="faTrashAlt"></fa-icon>
+    </a>
+-->
+</td>

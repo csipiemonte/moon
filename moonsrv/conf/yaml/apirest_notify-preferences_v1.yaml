@@ -1,0 +1,719 @@
+swagger: '2.0'
+info:
+  description: Preferences
+  version: 1.0.0
+  title: Preferences
+basePath: /notify-preferences/api/v1
+schemes:
+  - http
+tags:
+  - name: user
+    description: user
+  - name: preferences
+    description: preferences of users
+  - name: services
+    description: services
+paths:
+  '/services':
+    get:
+      tags:
+        - services
+      parameters:
+        - in: header
+          name: x-authentication
+          type: string
+          required: true
+          description: JWT token
+        - in: header
+          name: X-Request-ID
+          type: string
+          required: false
+          description: request id
+        - in: header
+          name: Shib-Iride-IdentitaDigitale
+          type: string
+          required: true
+          description: user_id of the user you are trying to access
+        - in: query
+          name: filter
+          type: string
+          required: false
+          description: |
+            * all services with a tag: `{ "tags": { "ci": "sanita" } }`
+            * all services with more tags: `{ "tags": { "match": "+sanita +referti" } }`
+            * all services that has one tag but not the other tag: `{ "tags": { "match": "+sanita -deleted" } }`
+            * all services that doesn't have a tag: `{ "tags": { "not_match": "deleted" } }`
+            * all services that have tag1 or tag2, but not tag3: `{ "tags": { "match": "tag1 tag2 -tag3" } }`
+          default: "{}"
+      description: Get list of services
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Service'
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+        '403':
+          description: The token has been blacklisted.
+        '500':
+          description: Internal Server Error
+  '/users/{user_id}/contacts':
+    get:
+      tags:
+        - user
+      summary: Get contacts of user
+      parameters:
+        - in: path
+          name: user_id
+          type: string
+          required: true
+          description: The user id
+        - in: header
+          name: x-authentication
+          type: string
+          required: true
+          description: JWT token
+        - in: header
+          name: Shib-Iride-IdentitaDigitale
+          type: string
+          required: true
+          description: user_id of the user you are trying to access
+      description: Get all contacts of the user
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/User'
+        '400':
+          description: Invalid input
+        '404':
+          description: User not found
+        '401':
+          description: Unauthorized
+        '403':
+          description: The token has been blacklisted.
+        '500':
+          description: Internal Server Error
+    put:
+      tags:
+        - user
+      summary: Save user contacts
+      description: Save user contacts
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: user_id
+          type: string
+          required: true
+          description: The user id
+        - in: header
+          name: x-authentication
+          type: string
+          required: true
+          description: JWT token
+        - in: header
+          name: X-Request-ID
+          type: string
+          required: false
+          description: request id
+        - in: header
+          name: Shib-Iride-IdentitaDigitale
+          type: string
+          required: true
+          description: user_id of the user you are trying to access
+        - in: body
+          name: contacts
+          description: Object that contains the user contacts. N.B. sms needs country code, identified by 00 + country code. Ex. italian mobile number (00393472485362)
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: User successfully created/updated
+          schema:
+            $ref: '#/definitions/User'
+        '400':
+          description: Invalid input
+        '412':
+          description: The user terms of service must be setted before the user contacts
+        '401':
+          description: Unauthorized
+        '403':
+          description: The token has been blacklisted.
+        '500':
+          description: Internal Server Error
+  '/users/{user_id}/preferences/{service_name}':
+    get:
+      tags:
+        - preferences
+      parameters:
+        - in: path
+          name: user_id
+          type: string
+          required: true
+          description: The user id
+        - in: path
+          name: service_name
+          type: string
+          required: true
+          description: The service name
+        - in: header
+          name: x-authentication
+          type: string
+          required: true
+          description: JWT token
+        - in: header
+          name: X-Request-ID
+          type: string
+          required: false
+          description: request id
+        - in: header
+          name: Shib-Iride-IdentitaDigitale
+          type: string
+          required: true
+          description: user_id of the user you are trying to access
+      description: Get preferences of the user for the specified service
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/UserPreferencesService'
+        '400':
+          description: Invalid input
+        '404':
+          description: User not found
+        '401':
+          description: Unauthorized
+        '403':
+          description: The token has been blacklisted.
+        '500':
+          description: Internal Server Error
+    put:
+      tags:
+        - preferences
+      description: Save user preferences for the specified service
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: user_id
+          type: string
+          required: true
+          description: The user id
+        - in: path
+          name: service_name
+          type: string
+          required: true
+          description: The service name
+        - in: header
+          name: x-authentication
+          type: string
+          required: true
+          description: JWT token
+        - in: header
+          name: X-Request-ID
+          type: string
+          required: false
+          description: request id
+        - in: header
+          name: Shib-Iride-IdentitaDigitale
+          type: string
+          required: true
+          description: user_id of the user you are trying to access
+        - in: body
+          name: contacts
+          description: Object that contains the user contacts
+          schema:
+            $ref: '#/definitions/UserPreferencesService'
+      responses:
+        '200':
+          description: User successfully created/updated
+          schema:
+            $ref: '#/definitions/UserPreferencesService'
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+        '403':
+          description: The token has been blacklisted.
+        '500':
+          description: Internal Server Error
+  '/users/{user_id}/preferences':
+    get:
+      tags:
+        - preferences
+      parameters:
+        - in: path
+          name: user_id
+          type: string
+          required: true
+          description: The user id
+        - in: header
+          name: x-authentication
+          type: string
+          required: true
+          description: JWT token
+        - in: header
+          name: X-Request-ID
+          type: string
+          required: false
+          description: request id
+        - in: header
+          name: Shib-Iride-IdentitaDigitale
+          type: string
+          required: true
+          description: user_id of the user you are trying to access
+      description: Get preferences of the user for all services
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/UserPreferencesService'
+        '400':
+          description: Invalid input
+        '404':
+          description: User not found
+        '401':
+          description: Unauthorized
+        '403':
+          description: The token has been blacklisted.
+        '500':
+          description: Internal Server Error
+    put:
+      tags:
+        - preferences
+      description: Save user preferences for multiple services
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: user_id
+          type: string
+          required: true
+          description: The user id
+        - in: header
+          name: x-authentication
+          type: string
+          required: true
+          description: JWT token
+        - in: header
+          name: X-Request-ID
+          type: string
+          required: false
+          description: request id
+        - in: header
+          name: Shib-Iride-IdentitaDigitale
+          type: string
+          required: true
+          description: user_id of the user you are trying to access
+        - in: body
+          name: contacts
+          description: Object that contains the user contacts
+          schema:
+            $ref: '#/definitions/UserPreferences'
+      responses:
+        '200':
+          description: User successfully created/updated
+          schema:
+            $ref: '#/definitions/UserPreferences'
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+        '403':
+          description: The token has been blacklisted.
+        '500':
+          description: Internal Server Error
+  '/users/{user_id}/contacts/{service_name}':
+    get:
+      tags:
+        - preferences
+      parameters:
+        - in: path
+          name: user_id
+          type: string
+          required: true
+          description: The user id
+        - in: path
+          name: service_name
+          type: string
+          required: true
+          description: The user id
+        - in: header
+          name: x-authentication
+          type: string
+          required: true
+          description: JWT token
+        - in: header
+          name: X-Request-ID
+          type: string
+          required: false
+          description: request id
+        - in: header
+          name: Shib-Iride-IdentitaDigitale
+          type: string
+          required: true
+          description: user_id of the user you are trying to access
+      description: get user's contacts for the specified service.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/ContactPreference'
+        '400':
+          description: Invalid input
+        '404':
+          description: User not found
+        '401':
+          description: Unauthorized
+        '403':
+          description: The token has been blacklisted.
+        '500':
+          description: Internal Server Error
+  '/users/{user_id}':
+    delete:
+      tags:
+        - user
+      parameters:
+        - in: path
+          name: user_id
+          type: string
+          required: true
+          description: The user id
+        - in: header
+          name: x-authentication
+          type: string
+          required: true
+          description: JWT token
+        - in: header
+          name: X-Request-ID
+          type: string
+          required: false
+          description: request id
+        - in: header
+          name: Shib-Iride-IdentitaDigitale
+          type: string
+          required: true
+          description: user_id of the user you are trying to access
+      description: delete the user with the specified user_id and his preferences
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Invalid input
+        '404':
+          description: User not found
+        '401':
+          description: Unauthorized
+        '403':
+          description: The token has been blacklisted.
+        '500':
+          description: Internal Server Error
+  '/terms':
+    get:
+      tags:
+        - terms
+      parameters:
+        - in: header
+          name: x-authentication
+          type: string
+          required: true
+          description: JWT token
+        - in: header
+          name: X-Request-ID
+          type: string
+          required: false
+          description: request id
+      description: get the last version of updated terms of service
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: string
+            description: terms of service in plain text
+        '500':
+          description: Internal Server Error
+  '/users/{user_id}/terms':
+    put:
+      tags:
+        - terms
+      parameters:
+        - in: path
+          name: user_id
+          type: string
+          required: true
+          description: The user id
+        - in: header
+          name: x-authentication
+          type: string
+          required: true
+          description: JWT token
+        - in: header
+          name: X-Request-ID
+          type: string
+          required: false
+          description: request id
+        - in: header
+          name: Shib-Iride-IdentitaDigitale
+          type: string
+          required: true
+          description: user_id of the user you are trying to access
+        - in: body
+          name: document_hash
+          description: Object that contains a property hash that represent the MD5 hash value of the terms of service
+          schema:
+            type: object
+            required:
+              - hash
+            properties:
+              hash:
+                type: string
+      description: accepted terms of the user
+      consumes:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Terms'
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+        '403':
+          description: The token has been blacklisted.
+        '500':
+          description: Internal Server Error
+    get:
+      tags:
+        - terms
+      parameters:
+        - in: path
+          name: user_id
+          type: string
+          required: true
+          description: The user id
+        - in: header
+          name: x-authentication
+          type: string
+          required: true
+          description: JWT token
+        - in: header
+          name: X-Request-ID
+          type: string
+          required: false
+          description: request id
+        - in: header
+          name: Shib-Iride-IdentitaDigitale
+          type: string
+          required: true
+          description: user_id of the user you are trying to access
+      description: get accepted terms by user
+      consumes:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Terms'
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+        '403':
+          description: The token has been blacklisted.
+        '404':
+          description: User not found
+        '500':
+          description: Internal Server Error
+definitions:
+  Service:
+    type: object
+    properties:
+      uuid:
+        type: string
+        description: service unique identifier
+      name:
+        type: string
+        description: service name
+      channels:
+        type: string
+        description: available channels of service
+      tags:
+        type: string
+        description: tags of service
+      tags_csv:
+        type: string
+        description: tags of service
+    example:  {
+                "uuid": "54f11506-e147-4ea7-b61f-d5fd2acef853",
+                "name": "rol_nuovo_referto",
+                "tags": "sanita",
+                "channels": "push,email,sms"
+            }
+  User:
+    type: object
+    properties:
+      user_id:
+        type: string
+        description: user_id
+      sms:
+        type: string
+        description: sms number. N.B. sms needs country code, identified by 00 + country code. Ex. italian mobile number (00393472485362)
+      phone:
+        type: string
+        description: phone number
+      email:
+        type: string
+        description: email address
+      push:
+        type: object
+        description: A hashmap with dynamics keys. The key is the service name and the value is an array of push token
+      language:
+        type: string
+        description: language
+      interests:
+        type: string
+        description: interests of user
+      terms:
+        type: object
+        description: terms of service
+        properties:
+          accepted_at:
+            type: string
+            description: when terms were accepted 
+          hashed_terms:
+            type: string
+            description: hash MD5 of accepted terms
+    example: {
+        "user_id": "DGNDRN",
+        "sms": "00393377658456",
+        "phone": "",
+        "email": "prova@consulenti.csi.it",
+        "push": {
+              "prof_citt":
+                  ["dkMBmrbsNZg:APA91bHfP22izgJnhfjjmfIW8qa8Fe0BRekZ-W9i4ztiNdmYHQhc4K9htgRQu8PZSI7JiM5RnV4QGxuZLSUsxeJWhKqj77guPwhgnQJM2QKMutO9RgUxucpXBsfthAh4QrLX2X5yNRnb",
+                  "dkMBmrbsNZg:APA91bHfP22izgJnhfjjmfIW8qa8Fe0BRekZ-W9i4ztiNdmYHQhc4K9htgRQu8PZSI7JiM5RnV4QGxuZLSUsxeJWhKqj77guPwhgnQJM2QKMutO9RgUxucpXBsfthAh4QrLX2X5yN333"
+                  ]
+        } ,
+        "language": "it_IT",
+        "interests":""
+    }
+  ContactPreference:
+    type: object
+    properties:
+      user_id:
+        type: string
+        description: user id
+      sms:
+        type: string
+        description: sms number. N.B. sms needs country code, identified by 00 + country code. Ex. italian mobile numberitaly (00393472485362)
+      email:
+        type: string
+        description: email address
+      push:
+        type: object
+        description: push token
+      language:
+        type: string
+        description: language     
+      terms:
+        type: object
+        description: terms of service
+        properties:
+          accepted_at:
+            type: string
+            description: when terms were accepted 
+          hashed_terms:
+            type: string
+            description: hash MD5 of accepted terms     
+    example: {
+              "push": {
+                        ["dkMBmrbsNZg:APA91bHfP22izgJnhfjjmfIW8qa8Fe0BRekZ-W9i4ztiNdmYHQhc4K9htgRQu8PZSI7JiM5RnV4QGxuZLSUsxeJWhKqj77guPwhgnQJM2QKMutO9RgUxucpXBsfthAh4QrLX2X5yNRnb",
+                        "dkMBmrbsNZg:APA91bHfP22izgJnhfjjmfIW8qa8Fe0BRekZ-W9i4ztiNdmYHQhc4K9htgRQu8PZSI7JiM5RnV4QGxuZLSUsxeJWhKqj77guPwhgnQJM2QKMutO9RgUxucpXBsfthAh4QrLX2X5yNRnb"
+                        ]
+                    },
+              "email": "prova@consulenti.csi.it",
+              "sms": "00393399604732"
+          }
+  UserPreferencesService:
+    type: object
+    properties:
+      uuid:
+        type: string
+        description: the service uuid
+      user_id:
+        type: string
+        description: the user id
+      service_name:
+        type: string
+        description: service name
+      channels:
+        type: string
+        description: list of channels separated by comma
+    example: {
+              "channels": "sms,push"
+          }
+  UserPreferences:
+    type: object
+    description: A hashmap with dynamics keys, name of the service ':' channels as value
+    properties:
+      service_name: 
+        type: string
+        description: name of service ':' list of channels
+    example: {
+              "rol_nuovo_referto": "sms,push",
+              "bollo_auto": "email,push"
+          }
+  Terms:
+    type: object
+    description: Contains information about the date of accepted terms and the hashed value of terms
+    properties:
+      accepted_at:
+        type: string
+        description: (type date) whene user accepted them
+      hashed_terms:
+        type: string
+        description: md5 value of the accepted terms
+    example: {
+          "accepted_at": "2018-12-05T14:37:48.000Z",
+          "hashed_terms": "c9e70f9f25e2cbe163df42fd772139ba"
+      }

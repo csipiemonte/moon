@@ -1,0 +1,77 @@
+<html>
+<head>
+    <title th:text="${document.title}"></title>
+    <link rel="stylesheet" href="style.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<body>
+
+<div id="theme">
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_left': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.header.left,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_center': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.header.center,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+    <!--<div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_header_right': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(#strings.replace(document.header.right,'%%module%%',document.accettazione.modulo),'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>-->
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_footer_left': 'hidden')}">
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.footer.left,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+    <div th:classappend="${(outputFormat == 'pdf' or outputFormat == 'PDF' ? ' page_footer_right': 'hidden')}" >
+        <span th:text="${#strings.replace(#strings.replace(#strings.replace(document.footer.right,'%%title%%',document.title),'%%dataPresentazione%%',document.richiesta.data),'%%numeroIstanza%%',document.richiesta.numeroIstanza)}"/>
+    </div>
+
+    <div class="header_separator"></div>
+	
+    <div class="section" > <!-- page-after-->
+			  <img src="img/Immagine.png"/>
+		<page-inside-avoid>
+		<div class="angrafica-right">
+			<span th:text="${document.anagrafica.nome}"/>
+			<span th:text="${document.anagrafica.cognome}"/><br/>
+			<span th:text="${document.anagrafica.indirizzo}"/><br/>
+			<span th:text="${document.anagrafica.cap}"/>
+			<span th:text="${document.anagrafica.comune}"/>
+			<span>(<span th:text="${document.anagrafica.provincia}"/>)</span>
+		</div><br/><br/>
+				
+		<span class="data-protocollazione"><i>Torino,&#xA0;<span th:text="${document.richiesta.data}"/></i></span>
+        <br/><br/><br/>
+		<p><b>Prot. n:</b><span th:text="${document.datiAccoglimento.numProtocolloUscita}"/></p>
+				
+		<p><b>CLASSIFICAZIONE:&#xA0;</b><span th:text="${document.datiAccoglimento.classificazioneDOQUI}"/></p>
+		<p><b>CODICE FISCALE/PARTITA IVA:</b>&#xA0;<span th:text="${document.anagrafica.codiceFiscale}"></span></p>
+		<br/>
+		<p><b>OGGETTO:</b>	Domanda di discarico di ingiunzione di pagamento.</p>
+
+		<p class="dati-modulo">
+			INGIUNZIONE N:&#xA0;<span th:text="${document.datiAccoglimento.numeroAccertamento}"/> - <span th:text="${document.datiAccoglimento.numProtocolloIngresso}"/><br/>
+			ANNO DI RIFERIMENTO:&#xA0;<span th:text="${document.datiAccoglimento.annoPagamento}"></span><br/>
+		</p>
+		<br/><br/><br/>
+
+
+		<p>Con riferimento a nota mediante la quale si chiede di procedere al discarico dell'ingiunzione in oggetto, si conferma che la domanda, ricorrendone i presupposti, &#232; stata accolta, e che pertanto la medesima &#232; stata definitivamente annullata.</p>
+		<p>Pertanto, per effetto di quanto sopra, in relazione alla predetta ingiunzione, nulla &#232; dovuto e, di conseguenza, non c'&#232; nulla da pagare.</p>
+		<p>Il provvedimento &#232; gi&#224; stato comunicato in via telematica al concessionario che ha in carico le liste ed ha notificato l'ingiunzione, che ne &#232; quindi informato e che provveder&#224; ai successivi adempimenti</p>
+		<p>Per ulteriori informazioni consultare il sito della Regione Piemonte (<a href="https://www.regione.piemonte.it/web/temi/tributi/tcr">https://www.regione.piemonte.it/web/temi/tributi/tcr</a>).</p>
+		<p>Distinti saluti.</p><br/><br/>
+        <span class="signature-right">
+                    <span>IL DIRIGENTE DEL SETTORE</span><br/>
+                    <span>Dr. Fabrizio Zanella</span><br/><br/>
+                    <span>FIRMA OMESSA</span><br/>
+					<span style="font-size:9px">Ai sensi dell' art. 3, c. 2, del Decreto Legislativo 12 febbraio 1993, n. 39 la firma prevista per la validit&#225; della presente comunicazione, prodotta mediante sistemi informatici, &#232; sostituita con l' indicazione a stampa del nominativo del soggetto responsabile</span>
+
+                </span>
+        </page-inside-avoid>
+    </div>
+</div>
+
+<div style="clear:both;"></div>
+
+
+</body>
+</html>

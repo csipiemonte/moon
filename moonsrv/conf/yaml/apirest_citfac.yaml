@@ -1,0 +1,974 @@
+openapi: 3.0.3
+info:
+  title: Città Facile
+  description: Insieme di API esposte dal BFF di Città Facile (nativamente o attraverso proxy di API esistenti)
+  contact:
+    email: maurizio.peisino@csi.it
+  version: 1.0.0
+servers:
+  - url: 'https://ts-servizi-{nome-comune}.portali.csi.it'
+    description: Test environment
+    variables:
+      nome-comune:
+        default: novara
+        enum:
+          - novara
+          - pavia
+          - pinerolo
+  - url: 'https://servizi.{dominio-comune}'
+    description: Production environment
+    variables:
+      dominio-comune:
+        default: comune.pinerolo.to.it
+        enum:
+          - comune.pinerolo.to.it
+tags:
+  - name: Public | Feedback
+  - name: Authenticated | Current user
+  - name: Administration | Tenants
+  - name: Administration | Services
+  - name: Administration | Services details
+  - name: Administration | Menu
+  - name: Administration | Credentials
+  - name: Administration | Assets
+  - name: Administration | Regions
+paths:
+  /api-public/feedback:
+    post:
+      operationId: addFeedback
+      summary: Add new feedback
+      description: Add new user feedback
+      tags:
+        - Public | Feedback
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+      responses:
+        '200':
+          description: Feedback NOT recorded (honeypot in action)
+        '201':
+          description: Feedback recorded
+  /api/users/me:
+    get:
+      operationId: getCurrentUser
+      summary: Get current user
+      description: Get user details based on data provided by shibboleth
+      tags:
+        - Authenticated | Current user
+      responses:
+        '200':
+          description: List of services details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Utente'
+  /api-admin/tenants:
+    get:
+      operationId: getTenants
+      summary: Get all tenants
+      description: Get all tenants configurations
+      tags:
+        - Administration | Tenants
+      responses:
+        '200':
+          description: List of tenants configurations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comune'
+  /api-admin/tenant:
+    post:
+      operationId: addTenant
+      summary: Add tenant
+      description: Add new tenant configuration
+      tags:
+        - Administration | Tenants
+      responses:
+        '201':
+          description: Create tenant configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comune'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '422':
+          $ref: '#/components/responses/422'
+  '/api-admin/tenant/{tenant-id}':
+    parameters:
+      - $ref: '#/components/parameters/idComune'
+    get:
+      operationId: getTenant
+      summary: Get tenant
+      description: Get single tenant configuration
+      tags:
+        - Administration | Tenants
+      responses:
+        '200':
+          description: Tenant configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comune'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    put:
+      operationId: putTenant
+      summary: Update tenant
+      description: Update single tenant configuration
+      tags:
+        - Administration | Tenants
+      responses:
+        '200':
+          description: Updated tenant configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comune'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+    patch:
+      operationId: patchTenant
+      summary: Update tenant partially
+      description: Update single tenant configuration passing modified fields only
+      tags:
+        - Administration | Tenants
+      responses:
+        '200':
+          description: Updated tenant configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comune'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+  '/api-admin/tenant/{tenant-id}/services':
+    parameters:
+      - $ref: '#/components/parameters/idComune'
+    get:
+      operationId: getServices
+      summary: Get all services
+      description: Get all services for single tenant
+      tags:
+        - Administration | Services
+      responses:
+        '200':
+          description: List of services
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Servizio'
+    delete:
+      operationId: deleteServices
+      summary: Delete all services
+      description: Delete all services for single tenant
+      tags:
+        - Administration | Services
+      responses:
+        '200':
+          description: Services list is deleted
+        '404':
+          $ref: '#/components/responses/404'
+  '/api-admin/tenant/{tenant-id}/service':
+    parameters:
+      - $ref: '#/components/parameters/idComune'
+    post:
+      operationId: addService
+      summary: Add service
+      description: Add new service for single tenant
+      tags:
+        - Administration | Services
+      responses:
+        '201':
+          description: Create tenant service
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Servizio'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  '/api-admin/tenant/{tenant-id}/service/{service-id}':
+    parameters:
+      - $ref: '#/components/parameters/idComune'
+      - $ref: '#/components/parameters/idServizio'
+    get:
+      operationId: getService
+      summary: Get service
+      description: Get single service for single tenant
+      tags:
+        - Administration | Services
+      responses:
+        '200':
+          description: Tenant service
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Servizio'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    put:
+      operationId: putService
+      summary: Update service
+      description: Update single service for single tenant
+      tags:
+        - Administration | Services
+      responses:
+        '200':
+          description: Updated tenant service
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Servizio'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+    delete:
+      operationId: deleteService
+      summary: Delete service
+      description: Delete single service for single tenant
+      tags:
+        - Administration | Services
+      responses:
+        '200':
+          description: Service is deleted
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  '/api-admin/tenant/{tenant-id}/details':
+    parameters:
+      - $ref: '#/components/parameters/idComune'
+    get:
+      operationId: getDetails
+      summary: Get all details
+      description: Get all services details for single tenant
+      tags:
+        - Administration | Services details
+      responses:
+        '200':
+          description: List of services details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DettaglioServizio'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  '/api-admin/tenant/{tenant-id}/detail':
+    parameters:
+      - $ref: '#/components/parameters/idComune'
+    post:
+      operationId: addDetail
+      summary: Add detail
+      description: Add new service detail for single tenant
+      tags:
+        - Administration | Services details
+      responses:
+        '201':
+          description: Create tenant service detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DettaglioServizio'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+  '/api-admin/tenant/{tenant-id}/detail/{detail-id}':
+    parameters:
+      - $ref: '#/components/parameters/idComune'
+      - $ref: '#/components/parameters/idDettaglioServizio'
+    get:
+      operationId: getDetail
+      summary: Get detail
+      description: Get single service detail for single tenant
+      tags:
+        - Administration | Services details
+      responses:
+        '200':
+          description: Tenant service detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DettaglioServizio'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    put:
+      operationId: putDetail
+      summary: Update detail
+      description: Update single service detail for single tenant
+      tags:
+        - Administration | Services details
+      responses:
+        '200':
+          description: Updated tenant service detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DettaglioServizio'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+    delete:
+      operationId: deleteDetail
+      summary: Delete detail
+      description: Delete single service detail for single tenant
+      tags:
+        - Administration | Services details
+      responses:
+        '200':
+          description: Service detail is deleted
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  '/api-admin/tenant/{tenant-id}/menu':
+    parameters:
+      - $ref: '#/components/parameters/idComune'
+    get:
+      operationId: getMenu
+      summary: Get menu
+      description: Get menu for single tenant
+      tags:
+        - Administration | Menu
+      responses:
+        '200':
+          description: Tenant menu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+        '404':
+          $ref: '#/components/responses/404'
+    post:
+      operationId: addMenu
+      summary: Add menu
+      description: Add new menu for single tenant
+      tags:
+        - Administration | Menu
+      responses:
+        '201':
+          description: Create tenant menu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    put:
+      operationId: putMenu
+      summary: Update menu
+      description: Update menu for single tenant
+      tags:
+        - Administration | Menu
+      responses:
+        '200':
+          description: Updated tenante menu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    delete:
+      operationId: deleteMenu
+      summary: Delete menu
+      description: Delete menu for single tenant
+      tags:
+        - Administration | Menu
+      responses:
+        '200':
+          description: Menu is deleted
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  '/api-admin/tenant/{tenant-id}/credentials':
+    parameters:
+      - $ref: '#/components/parameters/idComune'
+    get:
+      operationId: getCredentials
+      summary: Get all credentials
+      description: Get all credentials for single tenant
+      tags:
+        - Administration | Credentials
+      responses:
+        '200':
+          description: List of credentials
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Credenziale'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  '/api-admin/tenant/{tenant-id}/credential':
+    parameters:
+      - $ref: '#/components/parameters/idComune'
+    post:
+      operationId: addCredential
+      summary: Add credential
+      description: Add new credential for single api in single tenant
+      tags:
+        - Administration | Credentials
+      responses:
+        '201':
+          description: Create credential
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credenziale'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+  '/api-admin/tenant/{tenant-id}/credential/{credential-api}':
+    parameters:
+      - $ref: '#/components/parameters/idComune'
+      - $ref: '#/components/parameters/apiCredenziale'
+    get:
+      operationId: getCredential
+      summary: Get credential
+      description: Get single credential for single api in single tenant
+      tags:
+        - Administration | Credentials
+      responses:
+        '200':
+          description: Credential
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credenziale'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    put:
+      operationId: putCredential
+      summary: Update credential
+      description: Update single credential for single api in single tenent
+      tags:
+        - Administration | Credentials
+      responses:
+        '200':
+          description: Updated credential
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credenziale'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+    delete:
+      operationId: deleteCredential
+      summary: Delete credential
+      description: Delete single credential for single api in single tenant
+      tags:
+        - Administration | Credentials
+      responses:
+        '200':
+          description: Credential is deleted
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /api-admin/assets:
+    get:
+      operationId: getAssets
+      summary: Get all assets
+      description: Get all available assets
+      tags:
+        - Administration | Assets
+      responses:
+        '200':
+          description: List of assets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Asset'
+  /api-admin/asset:
+    post:
+      operationId: addAsset
+      summary: Add asset
+      description: Add new asset
+      tags:
+        - Administration | Assets
+      responses:
+        '201':
+          description: Create asset
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+  '/api-admin/asset/{asset-id}':
+    parameters:
+      - $ref: '#/components/parameters/idAsset'
+    get:
+      operationId: getAsset
+      summary: Get asset
+      description: Get single asset
+      tags:
+        - Administration | Assets
+      responses:
+        '200':
+          description: Asset
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    put:
+      operationId: putAsset
+      summary: Update asset
+      description: Update single asset
+      tags:
+        - Administration | Assets
+      responses:
+        '200':
+          description: Updated asset
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+  /api-admin/regions:
+    get:
+      operationId: getRegions
+      summary: Get all regions
+      description: Get all available regions
+      tags:
+        - Administration | Regions
+      responses:
+        '200':
+          description: List of regions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Asset'
+components:
+  parameters:
+    idComune:
+      name: tenant-id
+      in: path
+      required: true
+      schema:
+        type: integer
+        default: 0
+    idServizio:
+      name: service-id
+      in: path
+      required: true
+      schema:
+        type: integer
+    idDettaglioServizio:
+      name: detail-id
+      in: path
+      required: true
+      schema:
+        type: integer
+    apiCredenziale:
+      name: credential-api
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+          - PPAY
+    idAsset:
+      name: asset-id
+      in: path
+      required: true
+      schema:
+        type: integer
+  responses:
+    '400':
+      description: Bad Request Request body or parameters validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errore'
+    '403':
+      description: Forbidden. User have no access to resourc or tentnt is not corresponding
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errore'
+    '404':
+      description: Not Found Cannot find entity key or tenant id related to the entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errore'
+    '422':
+      description: Unprocessable Entity Duplication of unique fields or other integrity constrain violation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errore'
+  schemas:
+    Errore:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        title:
+          type: string
+          example: Messaggio di errore
+        detail:
+          type: array
+          nullable: true
+          items:
+            type: string
+            example: 'Nome campo: Dettaglio messaggio di errore'
+    Utente:
+      type: object
+      properties:
+        nome:
+          type: string
+        cognome:
+          type: string
+        codFisc:
+          type: string
+          format: codice-fiscale
+        contatti:
+          type: object
+          properties:
+            sms:
+              type: string
+              format: phone
+              example: 00393807129011
+            email:
+              type: string
+              format: email
+    Comune:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        nome:
+          type: string
+          example: Novara
+        templateNotificatore:
+          type: string
+          description: nome del file html passato al notificatore per l'invio delle mail di notifica (da deprecare?)
+          example: CITFACFRTPAV-template.html
+        codiceImmagine:
+          type: string
+          description: codice per comporre il path dell'immagine (da deprecare)
+          example: PAVIA_01
+        codiceComune:
+          type: string
+          description: codice IPA del comune
+          example: c_g388
+        regione:
+          $ref: '#/components/schemas/Regione'
+        logoutUri:
+          type: string
+          description: path relativo per il logout (mantenuto per eventuale retrocompatibilità)
+          example: ts-ser-no_443sliv1spid_g…_443sliv1spid_gasp4cifa
+        cf:
+          type: string
+          format: codice-fiscale
+          description: codice fiscale del comune (utilizzato da PPAY)
+          example: 00125680033
+        apiManagerKey:
+          type: string
+          description: chiave per API manager
+        apiManagerSecret:
+          type: string
+          description: chiave per API manager
+        urlCms:
+          type: string
+          format: uri
+          description: link al portale del comune
+        urlServizi:
+          type: string
+          format: uri
+          nullable: true
+          description: eventuale url di esposizione dell'elenco dei servizi nel caso in cui sia null i servizi vengono gestiti internamente
+        urlMenu:
+          type: string
+          format: uri
+          nullable: true
+          description: eventuale url di esposizione del menu di navigazione
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+        codiceMoon:
+          type: string
+          description: 'codice comune per sevizi mOOn (mantenuto per retrocompatibilità, identico a codice comune, da deprecare)'
+    Regione:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        nome:
+          type: string
+          example: Piemonte
+        link:
+          type: string
+          format: uri
+          description: link al portale regionale
+          example: 'https://www.regione.piemonte.it/'
+    Servizio:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        nome:
+          type: string
+          example: Nome servizio
+        descrizione:
+          type: string
+          example: Descrizione servizio
+        categoriaServizio:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            nome:
+              type: string
+              example: Categoria servizio
+        linkScheda:
+          type: string
+          format: uri
+          description: link alla scheda descrittiva del servizio
+        linkServizio:
+          type: string
+          format: uri
+          description: link del servizio
+        servizioCittaFacile:
+          type: boolean
+          description: indica se il servizio viene lanciato da città facile
+          example: true
+        servizioAttivo:
+          type: boolean
+          description: indica se il servizio è attivo oppure in manutenzione
+          example: true
+        messaggioManutenzione:
+          type: string
+          nullable: true
+          description: messaggio da mostrare all'utente quando il servizio risulta non attivo
+          example: Il servizio non è disponibile per attività di manutenzione straordinaria
+    DettaglioServizio:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        titolo:
+          type: string
+        idServizio:
+          type: integer
+          description: l'id della servizio proveniente da CMS
+          example: 1
+        moduloMoon:
+          type: string
+        codiceNotifiche:
+          type: string
+          description: il tag con cui recuperare le notifiche relative al servizio (quando è notificabile)
+        codiceAssistenza:
+          type: string
+          description: il codice da utilizzare nel form di assistenza
+        idFaq:
+          type: integer
+          description: l'id della catagoria delle FAQ da CRM
+          example: 1
+        idBot:
+          type: integer
+          example: 1
+    Asset:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        codice:
+          type: string
+          example: PPAY
+        nome:
+          type: string
+          example: PiemontePay
+        descrizione:
+          type: string
+          example: Gestione dei pagamenti per comuni del piemonte
+    Menu:
+      type: object
+      properties:
+        main:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                description: label della voce di menù
+                example: Amministrazione
+              url:
+                type: string
+                format: uri
+                description: link della voce di menù
+                example: 'https://ts-servizi-novara.portali.csi.it/amministrazione'
+              attributes:
+                type: object
+                properties:
+                  data-element:
+                    type: string
+                    example: management
+        menu-argomenti:
+          $ref: '#/components/schemas/Menu/properties/main'
+        menu-footer:
+          $ref: '#/components/schemas/Menu/properties/main'
+    Credenziale:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        type:
+          type: string
+          enum:
+            - Basic
+        api:
+          type: string
+          enum:
+            - PPAY
+    Feedback:
+      type: object
+      properties:
+        pagePath:
+          type: string
+          format: uri
+          description: Page url referred by feedback form
+          example: 'https://dev-www-comune-pinerolo-to.portali.csi.it/servizi/iscrizione-servizi-scolastici'
+        pageTitle:
+          type: string
+          nullable: true
+          description: Page title referred by feedback form (will be showed in administation pages)
+          example: Iscrizione ai servizi scolastici
+        serviceID:
+          type: integer
+          nullable: true
+          description: Service ID referred by feedback form (if any)
+          example: 1
+        rating:
+          type: integer
+          description: numero di rating
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+          example: 4
+        option:
+          type: string
+          description: Feedback option according to AgID definitions (codified)
+          enum:
+            - positivo1
+            - positivo2
+            - positivo3
+            - positivo4
+            - negativo1
+            - negativo2
+            - negativo3
+            - negativo4
+            - altro
+        details:
+          type: string
+          description: Feedback details given by user in a textarea
+        bind:
+          type: string
+          nullable: true
+          description: 'Should be null or empty, any different value avoid feedback registration. this field can be used as honeypot for bots'
+          example: sono un bot

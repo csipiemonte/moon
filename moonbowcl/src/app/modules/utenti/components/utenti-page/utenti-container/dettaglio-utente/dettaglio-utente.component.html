@@ -1,0 +1,57 @@
+<div style="margin: 0 auto;">
+    <div style="margin: 0 auto;">
+        <h3 style="text-align:center;">Utente {{utenteSelezionato.identificativoUtente}}&nbsp;
+            <div style="position: relative;  float: right;">
+                <!--
+                <a *ngIf="isModificabile" [routerLink]="[]" ngbTooltip="Modifica Modulo" (click)="modificaModulo($event)">
+                    <fa-icon style="margin-left: 15px" [icon]="faEdit"></fa-icon>
+                </a>
+                <a *ngIf="isAdmin" [routerLink]="[]" ngbTooltip="Duplica" (click)="duplicaModulo($event)">
+                    <fa-icon style="margin-left: 15px" [icon]="faClone"></fa-icon>
+                </a>
+                <a *ngIf="modulo.stato?.codice==='INIT'" [routerLink]="[]" ngbTooltip="Elimina Modulo" (click)="eliminaModulo($event)">
+                    <fa-icon style="margin-left: 20px; color: red" [icon]="faTrashAlt"></fa-icon>
+                </a>
+-->
+            </div>
+        </h3>
+        <div>&nbsp;</div>
+    </div>
+    <div class="d-flex">
+        <ul ngbNav #navVert="ngbNav" [(activeId)]="navVertActive" class="nav-pills justify-content-start" orientation="vertical">
+            <li ngbNavItem="dati-generali">
+                <a ngbNavLink>Dati Generali</a>
+                <ng-template ngbNavContent>
+                    <app-utenti-dettaglio-dati-generali 
+                        [utenteSelezionato]="utenteSelezionato"
+                        (eventModifica)="modifica($event)">
+                    </app-utenti-dettaglio-dati-generali>
+                </ng-template>
+            </li>
+            <li ngbNavItem="aree-ruolo">
+                <a ngbNavLink>Aree Ruolo</a>
+                <ng-template ngbNavContent>
+                    <app-utenti-dettaglio-aree-ruolo 
+                        [utenteSelezionato]="utenteSelezionato"
+                        (eventModifica)="modifica($event)" >
+                    </app-utenti-dettaglio-aree-ruolo>
+                </ng-template>
+            </li>
+            <li ngbNavItem="moduli">
+                <a ngbNavLink>Moduli</a>
+                <ng-template ngbNavContent>
+                    <app-utenti-dettaglio-moduli [utenteSelezionato]="utenteSelezionato">
+                    </app-utenti-dettaglio-moduli>
+                </ng-template>
+            </li>
+        </ul>
+        <div [ngbNavOutlet]="navVert" class="ml-4"></div>
+    </div>
+    <!-- <pre>Debug Active navVertActive: {{ navVertActive }}</pre> -->
+    <div>&nbsp;</div>
+    <div style="margin: 0 auto;">
+        <button type="button" class="btn btn-primary" style="width: 70px;float:left" (click)="back()">
+            <fa-icon style='font-size: 22px' [icon]="faHome"></fa-icon>
+        </button>
+    </div>
+</div>

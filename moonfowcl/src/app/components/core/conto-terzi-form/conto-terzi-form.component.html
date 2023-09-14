@@ -1,0 +1,38 @@
+
+<div class="modal-header">
+  <h4 class="modal-title"><strong>Dati identificativi</strong></h4>
+  <button type="button" class="btn-close" aria-label="Chiudi avviso" (click)="activeModal.dismiss('Cross click')">
+  </button>
+</div>
+<form [formGroup]="contoTerziForm" (ngSubmit)="submitForm()">
+  <div class="modal-body" [ngSwitch]="form">
+    <div *ngSwitchCase="'CONTO_TERZI_CF'" >
+      <div class="form-group">
+        <label for="cf_pIva">Codice fiscale del cittadino dichiarante</label>
+        <input type="text" class="form-control" name="cf_pIva" id="cf_pIva"  formControlName="cf_pIva" >
+      </div>
+      <span [hidden]="contoTerziForm.controls.cf_pIva.valid || contoTerziForm.controls.cf_pIva.pristine" class="error">Inserire un Codice Fiscale corretto</span>
+    </div>
+    <div *ngSwitchCase="'CONTO_TERZI_CF_PIVA'" >
+      <div class="form-group">
+        <label for="cf_pIva">Codice fiscale / partita IVA del concessionario</label>
+        <input type="text" class="form-control" name="cf_pIva" id="cf_pIva"  formControlName="cf_pIva" >
+      </div>
+
+      <span [hidden]="contoTerziForm.controls.cf_pIva.valid || contoTerziForm.controls.cf_pIva.pristine" class="error">Inserire un Codice Fiscale o una Partita IVA corretti</span>
+    </div>
+    <div *ngSwitchCase="'CONTO_TERZI_CF_PIVA-IN_PROPRIO'" >
+      <div class="form-group">
+        <label for="cf_pIva">partita IVA del concessionario</label>
+        <input type="text" class="form-control" name="cf_pIva" id="cf_pIva"  formControlName="cf_pIva" >
+      </div>
+
+      <span [hidden]="contoTerziForm.controls.cf_pIva.valid || contoTerziForm.controls.cf_pIva.pristine" class="error">Inserire una Partita IVA corretta</span>
+    </div>
+</div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="reset()">Reset</button>
+    <button type="button" class="btn btn-primary" [disabled]="!contoTerziForm.valid" (click)="activeModal.close(contoTerziForm)">OK</button>
+
+ </div>
+</form>

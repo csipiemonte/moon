@@ -1,0 +1,10 @@
+<td>{{ p.idParametro }}</td>
+<td>{{ p.ente.codiceEnte }}</td>
+<td>{{ p.area?.codiceArea }}</td>
+<td style='text-align:center;'>
+    <fa-icon *ngIf="p.idModulo !== null" [icon]="faCheck"></fa-icon>
+</td>
+<td>{{ p.nomeAttributo }}</td>
+<td>{{ p.valore }}</td>
+<td>{{ p?.dataUpd | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+<!--<td>{{ nomeOperatore }}</td>-->

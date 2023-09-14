@@ -1,0 +1,252 @@
+{"nazioni":
+[
+{"id_nazione":150,"denominazione":"HONDURAS","flag_ue":"N","id_stato_estero":79}
+,{"id_nazione":151,"denominazione":"GERMANIA ORIENTALE","flag_ue":"N","id_stato_estero":65}
+,{"id_nazione":152,"denominazione":"IRAQ","flag_ue":"N","id_stato_estero":83}
+,{"id_nazione":1,"denominazione":"INESISTENTE","flag_ue":"N","id_stato_estero":198}
+,{"id_nazione":3,"denominazione":"SLOVENIA","flag_ue":"S","id_stato_estero":162}
+,{"id_nazione":4,"denominazione":"POLONIA","flag_ue":"S","id_stato_estero":139}
+,{"id_nazione":5,"denominazione":"BHUTAN","flag_ue":"N","id_stato_estero":20}
+,{"id_nazione":6,"denominazione":"DOMINIO DI GIBILTERRA","flag_ue":"S","id_stato_estero":206}
+,{"id_nazione":7,"denominazione":"MALAYSIA","flag_ue":"N","id_stato_estero":109}
+,{"id_nazione":8,"denominazione":"FIGI","flag_ue":"N","id_stato_estero":58}
+,{"id_nazione":9,"denominazione":"GERMANIA","flag_ue":"S","id_stato_estero":65}
+,{"id_nazione":10,"denominazione":"PARAGUAY","flag_ue":"N","id_stato_estero":137}
+,{"id_nazione":13,"denominazione":"IRIAN OCC.","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":14,"denominazione":"TUVALU","flag_ue":"N","id_stato_estero":185}
+,{"id_nazione":15,"denominazione":"BELGIO","flag_ue":"S","id_stato_estero":17}
+,{"id_nazione":16,"denominazione":"ECUADOR","flag_ue":"N","id_stato_estero":50}
+,{"id_nazione":17,"denominazione":"IRAN","flag_ue":"N","id_stato_estero":82}
+,{"id_nazione":18,"denominazione":"ANTILLE OLANDESI CENTROAMERICANE","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":19,"denominazione":"BOLIVIA","flag_ue":"N","id_stato_estero":22}
+,{"id_nazione":20,"denominazione":"LIBANO","flag_ue":"N","id_stato_estero":100}
+,{"id_nazione":21,"denominazione":"COSTA D'AVORIO","flag_ue":"N","id_stato_estero":44}
+,{"id_nazione":22,"denominazione":"TAGIKISTAN","flag_ue":"N","id_stato_estero":175}
+,{"id_nazione":23,"denominazione":"BAHAMAS","flag_ue":"N","id_stato_estero":13}
+,{"id_nazione":24,"denominazione":"GUAM","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":25,"denominazione":"AFGHANISTAN","flag_ue":"N","id_stato_estero":1}
+,{"id_nazione":26,"denominazione":"KIRGHIZISTAN","flag_ue":"N","id_stato_estero":93}
+,{"id_nazione":27,"denominazione":"ARGENTINA","flag_ue":"N","id_stato_estero":8}
+,{"id_nazione":28,"denominazione":"REPUBBLICA CECA","flag_ue":"S","id_stato_estero":143}
+,{"id_nazione":29,"denominazione":"ISRAELE","flag_ue":"N","id_stato_estero":89}
+,{"id_nazione":30,"denominazione":"SPAGNA","flag_ue":"S","id_stato_estero":164}
+,{"id_nazione":31,"denominazione":"NICARAGUA","flag_ue":"N","id_stato_estero":126}
+,{"id_nazione":32,"denominazione":"AZERBAIGIAN","flag_ue":"N","id_stato_estero":12}
+,{"id_nazione":33,"denominazione":"FEDERAZIONE RUSSA","flag_ue":"N","id_stato_estero":57}
+,{"id_nazione":34,"denominazione":"ARMENIA","flag_ue":"N","id_stato_estero":9}
+,{"id_nazione":35,"denominazione":"CITT.STRANIERA NON DEFINITA","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":36,"denominazione":"DOMINICA","flag_ue":"N","id_stato_estero":49}
+,{"id_nazione":38,"denominazione":"BRUNEI","flag_ue":"N","id_stato_estero":26}
+,{"id_nazione":39,"denominazione":"ANGOLA","flag_ue":"N","id_stato_estero":5}
+,{"id_nazione":40,"denominazione":"ISOLA DELLA MARTINICA","flag_ue":"N","id_stato_estero":211}
+,{"id_nazione":41,"denominazione":"STATI UNITI D'AMERICA","flag_ue":"N","id_stato_estero":167}
+,{"id_nazione":42,"denominazione":"FRANCIA","flag_ue":"S","id_stato_estero":61}
+,{"id_nazione":43,"denominazione":"REPUBBLICA DOMINICANA","flag_ue":"N","id_stato_estero":146}
+,{"id_nazione":44,"denominazione":"MONGOLIA","flag_ue":"N","id_stato_estero":119}
+,{"id_nazione":45,"denominazione":"EMIRATI ARABI UNITI","flag_ue":"N","id_stato_estero":53}
+,{"id_nazione":47,"denominazione":"ISOLA DI MONTSERRAT","flag_ue":"N","id_stato_estero":217}
+,{"id_nazione":48,"denominazione":"SAINT VINCENT E GRENADINE","flag_ue":"N","id_stato_estero":152}
+,{"id_nazione":49,"denominazione":"GIORDANIA","flag_ue":"N","id_stato_estero":70}
+,{"id_nazione":50,"denominazione":"FINLANDIA","flag_ue":"S","id_stato_estero":60}
+,{"id_nazione":51,"denominazione":"BOPHUTHATSWANA","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":52,"denominazione":"AMERICA","flag_ue":"N","id_stato_estero":8}
+,{"id_nazione":53,"denominazione":"REGNO UNITO","flag_ue":"S","id_stato_estero":142}
+,{"id_nazione":54,"denominazione":"MYANMAR","flag_ue":"N","id_stato_estero":122}
+,{"id_nazione":55,"denominazione":"STATO DELLA CITTA' DEL VATICANO","flag_ue":"N","id_stato_estero":38}
+,{"id_nazione":56,"denominazione":"SUDAN","flag_ue":"N","id_stato_estero":170}
+,{"id_nazione":58,"denominazione":"EGITTO","flag_ue":"N","id_stato_estero":51}
+,{"id_nazione":59,"denominazione":"TUNISIA","flag_ue":"N","id_stato_estero":182}
+,{"id_nazione":60,"denominazione":"CROAZIA","flag_ue":"S","id_stato_estero":46}
+,{"id_nazione":61,"denominazione":"PORTOGALLO","flag_ue":"S","id_stato_estero":140}
+,{"id_nazione":62,"denominazione":"ISOLE CAYMAN","flag_ue":"N","id_stato_estero":220}
+,{"id_nazione":63,"denominazione":"BURUNDI","flag_ue":"N","id_stato_estero":29}
+,{"id_nazione":65,"denominazione":"AUSTRIA","flag_ue":"S","id_stato_estero":11}
+,{"id_nazione":66,"denominazione":"VENDA","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":67,"denominazione":"BURKINA FASO","flag_ue":"N","id_stato_estero":28}
+,{"id_nazione":68,"denominazione":"ALGERIA","flag_ue":"N","id_stato_estero":3}
+,{"id_nazione":70,"denominazione":"ALBANIA","flag_ue":"N","id_stato_estero":2}
+,{"id_nazione":71,"denominazione":"TERRITORI DELLA AUTONOMIA PALESTINESE","flag_ue":"N","id_stato_estero":239}
+,{"id_nazione":72,"denominazione":"MADAGASCAR","flag_ue":"N","id_stato_estero":107}
+,{"id_nazione":73,"denominazione":"GUINEA EQUATORIALE","flag_ue":"N","id_stato_estero":76}
+,{"id_nazione":74,"denominazione":"SIRIA","flag_ue":"N","id_stato_estero":160}
+,{"id_nazione":75,"denominazione":"SERBIA E MONTENEGRO","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":77,"denominazione":"TOGO","flag_ue":"N","id_stato_estero":179}
+,{"id_nazione":78,"denominazione":"CINA NAZIONALISTA","flag_ue":"N","id_stato_estero":238}
+,{"id_nazione":79,"denominazione":"TURKMENISTAN","flag_ue":"N","id_stato_estero":184}
+,{"id_nazione":80,"denominazione":"SOMALIA","flag_ue":"N","id_stato_estero":163}
+,{"id_nazione":81,"denominazione":"ISOLA DELLA RIUNIONE","flag_ue":"N","id_stato_estero":212}
+,{"id_nazione":82,"denominazione":"SINGAPORE","flag_ue":"N","id_stato_estero":159}
+,{"id_nazione":83,"denominazione":"CAMERUN","flag_ue":"N","id_stato_estero":31}
+,{"id_nazione":84,"denominazione":"SAN MARINO","flag_ue":"N","id_stato_estero":154}
+,{"id_nazione":85,"denominazione":"CILE","flag_ue":"N","id_stato_estero":35}
+,{"id_nazione":86,"denominazione":"GRECIA","flag_ue":"S","id_stato_estero":71}
+,{"id_nazione":87,"denominazione":"MACAO","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":89,"denominazione":"NIGERIA","flag_ue":"N","id_stato_estero":128}
+,{"id_nazione":90,"denominazione":"ANDORRA","flag_ue":"N","id_stato_estero":4}
+,{"id_nazione":91,"denominazione":"NON APP.REP.ITAL.","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":92,"denominazione":"GUATEMALA","flag_ue":"N","id_stato_estero":73}
+,{"id_nazione":93,"denominazione":"LIBERIA","flag_ue":"N","id_stato_estero":101}
+,{"id_nazione":94,"denominazione":"CIAD","flag_ue":"N","id_stato_estero":34}
+,{"id_nazione":95,"denominazione":"URSS","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":96,"denominazione":"ERITREA","flag_ue":"N","id_stato_estero":54}
+,{"id_nazione":97,"denominazione":"ISOLE SALOMONE","flag_ue":"N","id_stato_estero":88}
+,{"id_nazione":98,"denominazione":"GUYANA","flag_ue":"N","id_stato_estero":77}
+,{"id_nazione":99,"denominazione":"MALTA","flag_ue":"S","id_stato_estero":112}
+,{"id_nazione":100,"denominazione":"ISOLA DI ARUBA","flag_ue":"N","id_stato_estero":214}
+,{"id_nazione":102,"denominazione":"ISLANDA","flag_ue":"N","id_stato_estero":85}
+,{"id_nazione":103,"denominazione":"PAKISTAN","flag_ue":"N","id_stato_estero":133}
+,{"id_nazione":104,"denominazione":"GABON","flag_ue":"N","id_stato_estero":62}
+,{"id_nazione":105,"denominazione":"GIBUTI","flag_ue":"N","id_stato_estero":69}
+,{"id_nazione":106,"denominazione":"URUGUAY","flag_ue":"N","id_stato_estero":189}
+,{"id_nazione":107,"denominazione":"PERU'","flag_ue":"N","id_stato_estero":138}
+,{"id_nazione":108,"denominazione":"ISOLE BERMUDE","flag_ue":"N","id_stato_estero":219}
+,{"id_nazione":109,"denominazione":"CIPRO","flag_ue":"S","id_stato_estero":37}
+,{"id_nazione":110,"denominazione":"TANZANIA","flag_ue":"N","id_stato_estero":176}
+,{"id_nazione":111,"denominazione":"YEMEN","flag_ue":"N","id_stato_estero":194}
+,{"id_nazione":112,"denominazione":"SAO TOME' E PRINCIPE","flag_ue":"N","id_stato_estero":155}
+,{"id_nazione":113,"denominazione":"ITALIA","flag_ue":"S","id_stato_estero":90}
+,{"id_nazione":114,"denominazione":"LIBIA","flag_ue":"N","id_stato_estero":102}
+,{"id_nazione":115,"denominazione":"INDONESIA","flag_ue":"N","id_stato_estero":81}
+,{"id_nazione":117,"denominazione":"UZBEKISTAN","flag_ue":"N","id_stato_estero":190}
+,{"id_nazione":118,"denominazione":"UGANDA","flag_ue":"N","id_stato_estero":187}
+,{"id_nazione":119,"denominazione":"BELIZE","flag_ue":"N","id_stato_estero":18}
+,{"id_nazione":120,"denominazione":"RUANDA","flag_ue":"N","id_stato_estero":149}
+,{"id_nazione":121,"denominazione":"LETTONIA","flag_ue":"S","id_stato_estero":99}
+,{"id_nazione":122,"denominazione":"REPUBBLICA DI MACEDONIA","flag_ue":"N","id_stato_estero":106}
+,{"id_nazione":123,"denominazione":"ISOLA DI ANGUILLA","flag_ue":"N","id_stato_estero":213}
+,{"id_nazione":124,"denominazione":"MAURITIUS","flag_ue":"N","id_stato_estero":115}
+,{"id_nazione":125,"denominazione":"VANUATU","flag_ue":"N","id_stato_estero":191}
+,{"id_nazione":126,"denominazione":"SVEZIA","flag_ue":"S","id_stato_estero":172}
+,{"id_nazione":128,"denominazione":"NEPAL","flag_ue":"N","id_stato_estero":125}
+,{"id_nazione":129,"denominazione":"ISOLE NORMANNE","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":131,"denominazione":"ZAMBIA","flag_ue":"N","id_stato_estero":195}
+,{"id_nazione":132,"denominazione":"CITT.NON DEFINITA","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":133,"denominazione":"CUBA","flag_ue":"N","id_stato_estero":47}
+,{"id_nazione":134,"denominazione":"CAMBOGIA","flag_ue":"N","id_stato_estero":30}
+,{"id_nazione":135,"denominazione":"CECOSLOVACCHIA","flag_ue":"S","id_stato_estero":200}
+,{"id_nazione":136,"denominazione":"NUOVA ZELANDA","flag_ue":"N","id_stato_estero":130}
+,{"id_nazione":137,"denominazione":"THAILANDIA","flag_ue":"N","id_stato_estero":177}
+,{"id_nazione":138,"denominazione":"ITALIA ORA FRANCIA","flag_ue":"S","id_stato_estero":61}
+,{"id_nazione":140,"denominazione":"TRINIDAD E TOBAGO","flag_ue":"N","id_stato_estero":181}
+,{"id_nazione":141,"denominazione":"ARABIA SAUDITA","flag_ue":"N","id_stato_estero":7}
+,{"id_nazione":142,"denominazione":"BENIN","flag_ue":"N","id_stato_estero":19}
+,{"id_nazione":143,"denominazione":"REPUBBLICA POPOLARE CINESE","flag_ue":"N","id_stato_estero":36}
+,{"id_nazione":144,"denominazione":"LAOS","flag_ue":"N","id_stato_estero":97}
+,{"id_nazione":145,"denominazione":"GRENADA","flag_ue":"N","id_stato_estero":72}
+,{"id_nazione":146,"denominazione":"STATO LIBERO ASSOCIATO DI PORTORICO","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":147,"denominazione":"PAPUA NUOVA GUINEA","flag_ue":"N","id_stato_estero":136}
+,{"id_nazione":148,"denominazione":"SAINT LUCIA","flag_ue":"N","id_stato_estero":151}
+,{"id_nazione":153,"denominazione":"BOSNIA-ERZEGOVINA","flag_ue":"N","id_stato_estero":23}
+,{"id_nazione":154,"denominazione":"ZAIRE","flag_ue":"N","id_stato_estero":42}
+,{"id_nazione":155,"denominazione":"GIAPPONE","flag_ue":"N","id_stato_estero":68}
+,{"id_nazione":156,"denominazione":"BANGLADESH","flag_ue":"N","id_stato_estero":15}
+,{"id_nazione":157,"denominazione":"YEMEN REP.DEM.POP.","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":158,"denominazione":"KIRIBATI","flag_ue":"N","id_stato_estero":94}
+,{"id_nazione":159,"denominazione":"UNGHERIA","flag_ue":"S","id_stato_estero":188}
+,{"id_nazione":160,"denominazione":"OMAN","flag_ue":"N","id_stato_estero":131}
+,{"id_nazione":162,"denominazione":"SIERRA LEONE","flag_ue":"N","id_stato_estero":158}
+,{"id_nazione":163,"denominazione":"MALAWI","flag_ue":"N","id_stato_estero":108}
+,{"id_nazione":164,"denominazione":"SRI LANKA","flag_ue":"N","id_stato_estero":165}
+,{"id_nazione":165,"denominazione":"BULGARIA","flag_ue":"S","id_stato_estero":27}
+,{"id_nazione":166,"denominazione":"CANADA","flag_ue":"N","id_stato_estero":32}
+,{"id_nazione":167,"denominazione":"SWAZILAND","flag_ue":"N","id_stato_estero":174}
+,{"id_nazione":168,"denominazione":"JUGOSLAVIA","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":169,"denominazione":"IN ATTESA DI APOLIDIA","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":171,"denominazione":"TONGA","flag_ue":"N","id_stato_estero":180}
+,{"id_nazione":172,"denominazione":"VENEZUELA","flag_ue":"N","id_stato_estero":192}
+,{"id_nazione":173,"denominazione":"VIETNAM","flag_ue":"N","id_stato_estero":193}
+,{"id_nazione":174,"denominazione":"MONACO","flag_ue":"N","id_stato_estero":118}
+,{"id_nazione":175,"denominazione":"SLOVACCHIA","flag_ue":"S","id_stato_estero":161}
+,{"id_nazione":176,"denominazione":"NAMIBIA","flag_ue":"N","id_stato_estero":123}
+,{"id_nazione":177,"denominazione":"COSTARICA","flag_ue":"N","id_stato_estero":45}
+,{"id_nazione":178,"denominazione":"GUINEA BISSAU","flag_ue":"N","id_stato_estero":75}
+,{"id_nazione":179,"denominazione":"SVIZZERA","flag_ue":"N","id_stato_estero":173}
+,{"id_nazione":180,"denominazione":"INDIA","flag_ue":"N","id_stato_estero":80}
+,{"id_nazione":181,"denominazione":"NIGER","flag_ue":"N","id_stato_estero":127}
+,{"id_nazione":182,"denominazione":"TURCHIA","flag_ue":"N","id_stato_estero":183}
+,{"id_nazione":183,"denominazione":"ISOLA DI GUADALUPA","flag_ue":"N","id_stato_estero":215}
+,{"id_nazione":184,"denominazione":"COMORE","flag_ue":"N","id_stato_estero":40}
+,{"id_nazione":186,"denominazione":"SEYCHELLES","flag_ue":"N","id_stato_estero":157}
+,{"id_nazione":187,"denominazione":"LIECHTENSTEIN","flag_ue":"N","id_stato_estero":103}
+,{"id_nazione":188,"denominazione":"PAESI BASSI","flag_ue":"S","id_stato_estero":132}
+,{"id_nazione":189,"denominazione":"AUSTRALIA","flag_ue":"N","id_stato_estero":10}
+,{"id_nazione":190,"denominazione":"REP.POPOL.DEMOC.DI COREA","flag_ue":"N","id_stato_estero":147}
+,{"id_nazione":191,"denominazione":"LESOTHO","flag_ue":"N","id_stato_estero":98}
+,{"id_nazione":193,"denominazione":"ESTONIA","flag_ue":"S","id_stato_estero":55}
+,{"id_nazione":194,"denominazione":"NORVEGIA","flag_ue":"N","id_stato_estero":129}
+,{"id_nazione":195,"denominazione":"COLOMBIA","flag_ue":"N","id_stato_estero":39}
+,{"id_nazione":196,"denominazione":"SAINT KITTS E NEVIS","flag_ue":"N","id_stato_estero":150}
+,{"id_nazione":197,"denominazione":"MESSICO","flag_ue":"N","id_stato_estero":116}
+,{"id_nazione":198,"denominazione":"MOLDOVA","flag_ue":"S","id_stato_estero":117}
+,{"id_nazione":199,"denominazione":"EL SALVADOR","flag_ue":"N","id_stato_estero":52}
+,{"id_nazione":200,"denominazione":"GUYANA FRANCESE","flag_ue":"N","id_stato_estero":210}
+,{"id_nazione":201,"denominazione":"ISOLE VERGINI AMERICANE","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":202,"denominazione":"DANIMARCA","flag_ue":"S","id_stato_estero":48}
+,{"id_nazione":203,"denominazione":"BOTSWANA","flag_ue":"N","id_stato_estero":24}
+,{"id_nazione":204,"denominazione":"CAPO VERDE","flag_ue":"N","id_stato_estero":33}
+,{"id_nazione":205,"denominazione":"BRASILE","flag_ue":"N","id_stato_estero":25}
+,{"id_nazione":206,"denominazione":"FILIPPINE","flag_ue":"N","id_stato_estero":59}
+,{"id_nazione":207,"denominazione":"ISOLE FALKLAND","flag_ue":"N","id_stato_estero":223}
+,{"id_nazione":208,"denominazione":"GIAMAICA","flag_ue":"N","id_stato_estero":67}
+,{"id_nazione":209,"denominazione":"SENEGAL","flag_ue":"N","id_stato_estero":156}
+,{"id_nazione":210,"denominazione":"KAZAKISTAN","flag_ue":"N","id_stato_estero":91}
+,{"id_nazione":211,"denominazione":"GROENLANDIA","flag_ue":"N","id_stato_estero":208}
+,{"id_nazione":212,"denominazione":"NAURU","flag_ue":"N","id_stato_estero":124}
+,{"id_nazione":213,"denominazione":"CISKEY","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":214,"denominazione":"PANAMA","flag_ue":"N","id_stato_estero":135}
+,{"id_nazione":215,"denominazione":"REPUBBLICA DI COREA","flag_ue":"N","id_stato_estero":144}
+,{"id_nazione":216,"denominazione":"GEORGIA","flag_ue":"N","id_stato_estero":64}
+,{"id_nazione":217,"denominazione":"SUD AFRICA","flag_ue":"N","id_stato_estero":168}
+,{"id_nazione":218,"denominazione":"UCRAINA","flag_ue":"N","id_stato_estero":186}
+,{"id_nazione":219,"denominazione":"TRANSKEY","flag_ue":"N","id_stato_estero":200}
+,{"id_nazione":220,"denominazione":"QATAR","flag_ue":"N","id_stato_estero":141}
+,{"id_nazione":221,"denominazione":"ETIOPIA","flag_ue":"N","id_stato_estero":56}
+,{"id_nazione":223,"denominazione":"ANTIGUA E BARBUDA","flag_ue":"N","id_stato_estero":6}
+,{"id_nazione":224,"denominazione":"GHANA","flag_ue":"N","id_stato_estero":66}
+,{"id_nazione":225,"denominazione":"REPUBBLICA CENTRAFRICANA","flag_ue":"N","id_stato_estero":201}
+,{"id_nazione":226,"denominazione":"KENYA","flag_ue":"N","id_stato_estero":92}
+,{"id_nazione":227,"denominazione":"BIRMANIA","flag_ue":"N","id_stato_estero":122}
+,{"id_nazione":228,"denominazione":"CONGO","flag_ue":"N","id_stato_estero":41}
+,{"id_nazione":229,"denominazione":"SAMOA","flag_ue":"N","id_stato_estero":153}
+,{"id_nazione":230,"denominazione":"KUWAIT","flag_ue":"N","id_stato_estero":96}
+,{"id_nazione":231,"denominazione":"BARBADOS","flag_ue":"N","id_stato_estero":16}
+,{"id_nazione":232,"denominazione":"LITUANIA","flag_ue":"S","id_stato_estero":104}
+,{"id_nazione":233,"denominazione":"ZIMBABWE","flag_ue":"N","id_stato_estero":196}
+,{"id_nazione":234,"denominazione":"BIELORUSSIA","flag_ue":"N","id_stato_estero":21}
+,{"id_nazione":236,"denominazione":"GUINEA","flag_ue":"N","id_stato_estero":74}
+,{"id_nazione":237,"denominazione":"HAITI","flag_ue":"N","id_stato_estero":78}
+,{"id_nazione":238,"denominazione":"IRLANDA","flag_ue":"S","id_stato_estero":84}
+,{"id_nazione":239,"denominazione":"MALI","flag_ue":"N","id_stato_estero":111}
+,{"id_nazione":240,"denominazione":"ISOLA DI MAN","flag_ue":"N","id_stato_estero":216}
+,{"id_nazione":56754,"denominazione":"GERUSALEMME","flag_ue":"N","id_stato_estero":237}
+,{"id_nazione":57606,"denominazione":"ISOLE COOK","flag_ue":"N","id_stato_estero":86}
+,{"id_nazione":61446,"denominazione":"CIRCOSCRIZIONE AUTONOMA","flag_ue":"N","id_stato_estero":237}
+,{"id_nazione":61451,"denominazione":"MONTENEGRO","flag_ue":"N","id_stato_estero":120}
+,{"id_nazione":61453,"denominazione":"REPUBBLICA DI SERBIA","flag_ue":"N","id_stato_estero":145}
+,{"id_nazione":63969,"denominazione":"KOSOVO","flag_ue":"N","id_stato_estero":95}
+,{"id_nazione":116,"denominazione":"ISOLE DELLA NUOVA CALEDONIA","flag_ue":"N","id_stato_estero":221}
+,{"id_nazione":64,"denominazione":"POLINESIA FRANCESE","flag_ue":"S","id_stato_estero":229}
+,{"id_nazione":12,"denominazione":"SANT'ELENA","flag_ue":"N","id_stato_estero":233}
+,{"id_nazione":76,"denominazione":"TAIWAN","flag_ue":"N","id_stato_estero":238}
+,{"id_nazione":101,"denominazione":"ISOLE TURKS E CAICOS","flag_ue":"N","id_stato_estero":224}
+,{"id_nazione":69,"denominazione":"ISOLE WALLIS E FUTUNA","flag_ue":"N","id_stato_estero":226}
+,{"id_nazione":139,"denominazione":"REPUBBLICA DEMOCRATICA DEL CONGO","flag_ue":"N","id_stato_estero":42}
+,{"id_nazione":70190,"denominazione":"REPUBBLICA DEL SUD SUDAN","flag_ue":"N","id_stato_estero":169}
+,{"id_nazione":71413,"denominazione":"TIMOR ORIENTALE","flag_ue":"N","id_stato_estero":178}
+,{"id_nazione":74260,"denominazione":"CURACAO","flag_ue":"N","id_stato_estero":205}
+,{"id_nazione":74261,"denominazione":"SINT MAARTEN","flag_ue":"N","id_stato_estero":234}
+,{"id_nazione":74263,"denominazione":"JERSEY","flag_ue":"N","id_stato_estero":227}
+,{"id_nazione":74264,"denominazione":"GUERNSEY","flag_ue":"N","id_stato_estero":209}
+,{"id_nazione":74265,"denominazione":"SAINT BARTHELEMY","flag_ue":"N","id_stato_estero":230}
+,{"id_nazione":74266,"denominazione":"SAINT MARTIN","flag_ue":"N","id_stato_estero":231}
+,{"id_nazione":74738,"denominazione":"BONAIRE - SINT ESTATIUS - SABA","flag_ue":"N","id_stato_estero":204}
+,{"id_nazione":235,"denominazione":"LUSSEMBURGO","flag_ue":"S","id_stato_estero":105}
+,{"id_nazione":149,"denominazione":"MAROCCO","flag_ue":"N","id_stato_estero":113}
+,{"id_nazione":11,"denominazione":"SURINAME","flag_ue":"N","id_stato_estero":171}
+,{"id_nazione":88,"denominazione":"ROMANIA","flag_ue":"S","id_stato_estero":148}
+,{"id_nazione":192,"denominazione":"GAMBIA","flag_ue":"N","id_stato_estero":63}
+,{"id_nazione":222,"denominazione":"BAHREIN","flag_ue":"N","id_stato_estero":14}
+,{"id_nazione":170,"denominazione":"MALDIVE","flag_ue":"N","id_stato_estero":110}
+,{"id_nazione":161,"denominazione":"MAURITANIA","flag_ue":"N","id_stato_estero":114}
+,{"id_nazione":37,"denominazione":"MOZAMBICO","flag_ue":"N","id_stato_estero":121}
+]}

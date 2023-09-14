@@ -1,0 +1,577 @@
+swagger: "2.0"
+info:
+  description: "Api della componente di frontend, rivolte alla pubblicazione al **cittadino** della documentazione di Città Facile.\n## 1. Breve descrizione del servizio\n---\nIl sistema MYDOCS consente agli Enti Locali di gestire e pubblicare la documentazione per il **cittadino**.  Ogni Ente è configurato in modo da poter definire il proprio tenant documentale e poterlo gestire in autonomia. \n* Il servizio presenta una profilazione applicativa legata al singolo Ente fruitore, viene assegnato un codice **ente** in fase di sottoscrizione della API.\n* ad ogni Ente corrisponde un modello dati specifico che è un sottoinsieme del modello dati complessivo.\n    \n* i documenti gestiti sono associati al singolo cittadino, per cui esiste un legame univoco tra documento (uuid) e cittadino (codice fiscale).\n* ogni documento appartiene ad un ambito (es. Anagrafe, Edilizia Residenziale, ecc.) ed ha una tipologia definita che ne descrive formato, dimensione massima, durata di pubblicazione, contesto (es. Certificato di Residenza PDF).\n* sono fornite le opportune Api per ottenere le informazioni necessarie a popolare un eventuale frontend rivolto al cittadino. E' possibile scaricare l'elenco degli ambiti definiti, l'elenco dei documenti del singolo cittadino, con gestione della paginazione e dei filtri di ricerca. Sono presenti inoltre le Api per creare l'associazione di tag o eliminare logicamente i documenti dalla pubblicazione.            \n## 2. Dati di profilazione\n---\nOgni chiamata deve contenere nell'header della Request la codifica dell'Ente.\n* nell'header di ogni singola Request deve essere inserita la chiave **ente** ed il valore assegnato in fase di abilitazione al sistema (es. **COTO_01**)\n\nEsempio di header:\nAccept:application/json\nContent-Type:application/json\nente:COTO-01\n"
+  version: "1.0"
+  title: mydocs_test_frontend
+host: tst-api-piemonte.ecosis.csi.it
+basePath: /mydocsfeApplApiRest/1.0
+schemes:
+- http
+paths:
+  /ambiti:
+    get:
+      summary: restituisce gli ambiti definiti
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: lista risultati
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ambitoResponse'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /ambiti/cittadino/{cf}:
+    get:
+      summary: restituisce l'elenco degli ambiti in cui sono presenti documenti per il cittadino specificato
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: cf
+        in: path
+        description: codice fiscale del cittadino
+        required: true
+        type: string
+      responses:
+        "200":
+          description: lista risultati
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ambitoResponse'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /tipologie/{id}*:
+    get:
+      summary: restituisce la tipologia richiesta
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: id della tipologia
+        required: true
+        type: string
+      - name: download
+        in: query
+        description: richiede estrazione nel content del foglio di stile (true/false)
+        required: false
+        type: string
+      responses:
+        "200":
+          description: tipologia selezionata
+          schema:
+            $ref: '#/definitions/tipologiaStileResponse'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /tipologie/cittadino/{cf}:
+    get:
+      summary: restituisce le tipologie di documento del cittadino
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: cf
+        in: path
+        description: codice fiscale del cittadino
+        required: true
+        type: string
+      responses:
+        "200":
+          description: lista risultati
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/tipologieResponse'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /documenti/cittadino/{cf}*:
+    post:
+      summary: restituisce un elenco di documenti del cittadino, in base al fitro di ricerca impostato, permette di gestire la paginazione
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: cf
+        in: path
+        description: codice fiscale del cittadino
+        required: true
+        type: string
+      - in: body
+        name: filtroDocumento
+        description: filtro da applicare per la ricerca dei documenti
+        required: true
+        schema:
+          $ref: '#/definitions/filtroDocumento'
+      - name: limit
+        in: query
+        description: definisce il numero elementi restituiti per pagina
+        required: false
+        type: integer
+        format: int64
+      - name: offset
+        in: query
+        description: offset numero elementi, necessario per il salto pagina
+        required: false
+        type: integer
+        format: int64
+      - name: preview
+        in: query
+        description: estrae una pagina di anteprima del documento e la inserisce nel dato content (true/false)
+        required: false
+        type: boolean
+      - name: sort
+        in: query
+        description: campo su cui effettuare l'ordinamento (tag, ambito, descrizione, tipologia, dataCreazione, dataInizio, dataFine)
+        required: false
+        type: string
+        enum:
+        - tag
+        - ambito
+        - descrizione
+        - tipologia
+        - dataCreazione
+        - dataInizio
+        - dataFine
+      - name: order
+        in: query
+        description: inserire il tipo di ordinamento (asc/desc)
+        required: false
+        type: string
+        enum:
+        - asc
+        - desc
+      responses:
+        "200":
+          description: lista risultati
+          schema:
+            $ref: '#/definitions/documentiResponse'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /documenti/{uuid}/cittadino/{cf}*:
+    get:
+      summary: restituisce il documento del cittadino, specificato dall'uuid
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: uuid
+        in: path
+        description: uuid del documento
+        required: true
+        type: string
+      - name: cf
+        in: path
+        description: codice fiscale del cittadino
+        required: true
+        type: string
+      - name: preview
+        in: query
+        description: estrae nel content l'anteprima (true/false)
+        required: false
+        type: boolean
+      - name: print
+        in: query
+        description: estrae nel content la stampa con foglio di stile (true/false)
+        required: false
+        type: string
+      - name: download
+        in: query
+        description: estrae nel content il documento (true/false)
+        required: false
+        type: string
+      responses:
+        "200":
+          description: documento estratto
+          schema:
+            $ref: '#/definitions/documentoResponse'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /documenti/{uuid}/visibile:
+    put:
+      summary: imposta la visibilità al cittadino, del documento specificato dall'uuid
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: uuid
+        in: path
+        description: uuid del documento
+        required: true
+        type: string
+      - in: body
+        name: visibilita
+        description: oggetto contenente la visibilità da impostare (true/false)
+        required: true
+        schema:
+          $ref: '#/definitions/visibilita'
+      responses:
+        "200":
+          description: visibilità documento cambiata
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /tags/{idtag}:
+    delete:
+      summary: elimina un tag da tutti i documenti a cui è riferito
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: idtag
+        in: path
+        description: id tag da eliminare
+        required: true
+        type: string
+      responses:
+        "200":
+          description: tag eliminato
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /tags/documento/{uuid}:
+    post:
+      summary: associa l'elenco dei tag specificato al documento specificato
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: uuid
+        in: path
+        description: uuid del documento
+        required: true
+        type: string
+      - in: body
+        name: elencoTag
+        description: array contenente l'elenco degli id dei tag da associare al documento
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: tag aggiunto al documento
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /tags/cittadino/{cf}:
+    get:
+      summary: restituisce l'elenco dei tag definiti dal cittadino specificato
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: cf
+        in: path
+        description: codice fiscale del cittadino
+        required: true
+        type: string
+      responses:
+        "200":
+          description: lista tags del cittadino
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/tagResponse'
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+    post:
+      summary: inserisce un tag definito dal cittadino
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: cf
+        in: path
+        description: codice fiscale del cittadino
+        required: true
+        type: string
+      - in: body
+        name: strtag
+        description: stringa contenente il tag, lunghezza massima 40 caratteri
+        required: true
+        schema:
+          $ref: '#/definitions/strtag'
+      responses:
+        "200":
+          description: id tag
+          schema:
+            type: integer
+            format: int64
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /tags/documento/{uuid}/tag/{idtag}:
+    delete:
+      summary: elimina il tag associati al documento specificato
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: uuid
+        in: path
+        description: uuid del documento
+        required: true
+        type: string
+      - name: idtag
+        in: path
+        description: id del tag da eliminare
+        required: true
+        type: string
+      responses:
+        "200":
+          description: tag eliminato dal documento
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+  /ping:
+    get:
+      summary: effettua un ping del servizio
+      produces:
+      - plain/text
+      parameters: []
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      x-auth-type: Application & Application User
+      x-throttling-tier: Unlimited
+definitions:
+  visibilita:
+    type: object
+    properties:
+      visibile:
+        type: boolean
+        description: visibilità da impostare (true/false)
+  documentiResponse:
+    type: object
+    properties:
+      limit:
+        type: integer
+        format: int64
+        description: numero elementi per pagina
+      content:
+        type: string
+        format: byte
+        description: base64 byte array
+        pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+      documenti:
+        type: array
+        description: elenco documenti
+        items:
+          $ref: '#/definitions/documentoResponse'
+      sort:
+        type: string
+        description: colonna ordinamento documenti
+      order:
+        type: string
+        description: tipo ordinamento documenti
+      preview:
+        type: boolean
+        description: anteprima documento - (true/false)
+      totalElements:
+        type: integer
+        format: int64
+        description: numero elementi complessivi
+      offset:
+        type: integer
+        format: int64
+        description: numero elementi saltati
+  strtag:
+    type: object
+    properties:
+      strtag:
+        type: string
+        description: denominazione tag
+  ambitoResponse:
+    type: object
+    properties:
+      idAmbito:
+        type: integer
+        format: int64
+        description: id ambito
+        readOnly: true
+      denominazione:
+        type: string
+        description: denominazione ambito
+  foglioStileResponse:
+    type: object
+    properties:
+      content:
+        type: string
+        format: byte
+        description: base64 byte array
+        pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+      descrizione:
+        type: string
+        description: descrizione documento
+      idFoglioStile:
+        type: integer
+        format: int64
+        description: id stylesheet
+        readOnly: true
+  tipologieResponse:
+    type: object
+    properties:
+      tipologie:
+        type: array
+        description: elenco documenti
+        items:
+          $ref: '#/definitions/tipologiaResponse'
+  tipologiaStileResponse:
+    type: object
+    properties:
+      descrizione:
+        type: string
+        description: denominazione tipologia
+      mimetype:
+        type: string
+        description: mimetype documento
+      idEstensione:
+        type: integer
+        format: int64
+        description: id estensione
+      foglioStile:
+        $ref: '#/definitions/foglioStileResponse'
+      idTipologia:
+        type: integer
+        format: int64
+        description: id tipologia
+        readOnly: true
+      estensione:
+        type: string
+        description: estensione documento
+      dimensioneMassima:
+        type: integer
+        description: dimensione massima consentita in upload in mb
+  tagResponse:
+    type: object
+    properties:
+      tag:
+        type: string
+        description: denominazione tag
+      idTag:
+        type: integer
+        format: int64
+        description: id tag
+        readOnly: true
+  tipologiaResponse:
+    type: object
+    properties:
+      descrizione:
+        type: string
+        description: denominazione tipologia
+      mimetype:
+        type: string
+        description: mimetype documento
+      idTipologia:
+        type: integer
+        format: int64
+        description: id tipologia
+        readOnly: true
+      estensione:
+        type: string
+        description: estensione documento
+      dimensioneMassima:
+        type: integer
+        description: dimensione massima consentita in upload in mb
+  documentoResponse:
+    type: object
+    properties:
+      dataFine:
+        type: string
+        description: data fine pubblicazione
+      uuidPadre:
+        type: string
+        description: uuid documento di riferimento
+      ambito:
+        $ref: '#/definitions/ambitoResponse'
+      dataCreazione:
+        type: string
+        description: data fine pubblicazione
+      content:
+        type: string
+        format: byte
+        description: base64 byte array
+        pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+      tipologia:
+        $ref: '#/definitions/tipologiaResponse'
+      fruitore:
+        $ref: '#/definitions/fruitoreResponse'
+      descrizione:
+        type: string
+        description: nome file
+      elencoUuidFigli:
+        type: array
+        description: elenco uuid figli
+        items:
+          type: string
+      dataInizio:
+        type: string
+        description: data inizio pubblicazione
+      cfCittadino:
+        type: string
+        description: codice fiscale cittadino
+      filename:
+        type: string
+        description: nome file
+      uuid:
+        type: string
+        description: uuid documento
+        readOnly: true
+  filtroDocumento:
+    type: object
+    properties:
+      visibile:
+        type: boolean
+        description: visibile/nascosto  - (true/false)
+      descrizione:
+        type: string
+        description: descrizione documento
+      idTipologia:
+        type: integer
+        format: int64
+        description: id tipologia
+      idAmbito:
+        type: integer
+        format: int64
+        description: id documento
+      idTag:
+        type: integer
+        format: int64
+        description: id tag
+      validita:
+        type: boolean
+        description: valido/scaduto - (true/false)
+      dtCreazioneDa:
+        type: string
+        description: data inizio creazione
+      dtCreazioneA:
+        type: string
+        description: data fine creazione
+  fruitoreResponse:
+    type: object
+    properties:
+      idFruitore:
+        type: integer
+        format: int64
+        description: id fruitore
+        readOnly: true
+      denominazione:
+        type: string
+        description: codice fruitore

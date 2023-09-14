@@ -1,0 +1,15 @@
+
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect class="spinner-animation-rect spinner-animation-rect-1" x="60.166" width="79.6173" height="22.0219" rx="11.0109"/>
+  <rect class="spinner-animation-rect spinner-animation-rect-11" x="21.6514" y="29.709" width="73.4363" height="22.0219" rx="11.0109"/>
+  <rect class="spinner-animation-rect spinner-animation-rect-5" x="99.6494" y="29.709" width="76.9683" height="22.0219" rx="11.0109"/>
+  <rect class="spinner-animation-rect spinner-animation-rect-4" x="4.13477" y="59.4189" width="115.526" height="21.877" rx="10.9385"/>
+  <rect class="spinner-animation-rect spinner-animation-rect-2" x="123.929" y="59.4189" width="69.1685" height="21.877" rx="10.9385"/>
+  <rect class="spinner-animation-rect spinner-animation-rect-6" x="94.04" y="88.9131" width="105.96" height="22.0219" rx="11.0109"/>
+  <rect class="spinner-animation-rect spinner-animation-rect-9" y="88.9131" width="89.4775" height="22.0219" rx="11.0109"/>
+  <rect class="spinner-animation-rect spinner-animation-rect-12" x="75.2354" y="140.645" width="69.9043" height="22.0219" rx="11.0109" transform="rotate(-180 75.2354 140.645)"/>
+  <rect class="spinner-animation-rect spinner-animation-rect-10" x="194.588" y="140.645" width="115.085" height="22.0219" rx="11.0109" transform="rotate(-180 194.588 140.645)"/>
+  <rect class="spinner-animation-rect spinner-animation-rect-3" x="106.413" y="170.354" width="84.3267" height="22.0219" rx="11.0109" transform="rotate(-180 106.413 170.354)"/>
+  <rect class="spinner-animation-rect spinner-animation-rect-8" x="176.17" y="170.354" width="65.0478" height="22.0219" rx="11.0109" transform="rotate(-180 176.17 170.354)"/>
+  <rect class="spinner-animation-rect spinner-animation-rect-7" width="79.6173" height="22.0219" rx="11.0109" transform="matrix(1 0 0 -1 60.166 200)"/>
+  </svg>

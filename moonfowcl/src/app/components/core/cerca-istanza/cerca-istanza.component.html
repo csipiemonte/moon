@@ -1,0 +1,164 @@
+
+
+<div class="row" *ngIf="msg && msg !== null">
+    <div class="col-12 mt-2">
+        <div class="alert alert-info">
+            <strong>{{msg}}</strong>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="msgValidazione">
+    <div class="col-12 mt-2">
+        <div class="alert alert-danger">
+            {{msgValidazione}}
+        </div>
+    </div>
+</div>
+
+<div *ngIf="righeIstanza.length == 0">
+    <div class="row" *ngIf="!initFrm && !msgValidazione">
+        <div class="col-12 mt-2">
+            <div class="alert alert-info">
+                <strong>Non sono presenti istanze in base ai filtri di ricerca impostati</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <h1 class="h2">Cerca istanza</h1> -->
+
+<form class="formio-form form-group container-fluid px-0" #frmSearch="ngForm">
+    <!--Body-->
+    <div class="row">
+        <div class="form-group col-12 col-sm-6">
+            <label for="codiceIstanza">Numero istanza</label>
+            <input #codiceIstanza='ngModel' [(ngModel)]="criterioRicerca.codiceIstanza" aria-label="numero istanza"
+                name="codiceIstanza" id="codiceIstanza" class="form-control" maxlength="50">
+        </div>
+
+        <div class="form-group col-12 col-sm-6 ">
+          <label for="codiceModulo">Codice modulo</label>
+          <ng-select [(ngModel)]="criterioRicerca.idModulo" id="codiceModulo" name="codiceModulo">
+            <ng-option *ngFor="let m of moduli" [value]="m.idModulo">{{m.oggettoModulo}} ({{ m.codiceModulo }})
+            </ng-option>
+          </ng-select>
+        </div>
+
+        <div class="form-group select-wrapper col-12 col-sm-6 ">
+            <label for="statoModulo">Stato istanza</label>
+            <ng-select name="statoModulo" id="statoModulo" [(ngModel)]="criterioRicerca.stato">
+                <ng-option *ngFor="let t of statiForm" [value]=t.idStato>{{ t.nome | uppercase }}</ng-option>
+            </ng-select>
+        </div>
+
+        <div class="form-group col-12 col-sm-6 col-lg-3">
+            <label for="codiceIstanza">A partire dal</label>
+            <div class="input-group">
+                <input class="form-control" placeholder="gg/mm/aaaa" name="dp1" [(ngModel)]="criterioRicerca.dataDa"
+                    ngbDatepicker #d1="ngbDatepicker">
+                <button class="btn btn-icon btn-xxs btn-primary calendar" (click)="d1.toggle()" type="button">
+                    <svg class="icon icon-white icon-sm">
+                        <use [attr.href]="'./assets/svg/sprite.svg#it-calendar'"
+                            [attr.xlink:href]="'./assets/svg/sprite.svg#it-calendar'">
+                        </use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="form-group col-12 col-sm-6 col-lg-3">
+            <label for="codiceIstanza">Fino al</label>
+            <div class="input-group">
+                <input class="form-control" placeholder="gg/mm/aaaa" name="dp2" [(ngModel)]="criterioRicerca.dataA"
+                    ngbDatepicker #d2="ngbDatepicker">
+                <button class="btn btn-icon btn-xxs btn-primary calendar" (click)="d2.toggle()" type="button">
+                    <svg class="icon icon-white icon-sm">
+                        <use [attr.href]="'./assets/svg/sprite.svg#it-calendar'"
+                            [attr.xlink:href]="'./assets/svg/sprite.svg#it-calendar'">
+                        </use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- <div *ngIf="isOperatore"> -->
+            <div *ngIf="isOperatore" class="form-group col-12 col-sm-6">                
+                <label for="nome">Nome</label>                      
+                <input #nome='ngModel' [(ngModel)]="criterioRicerca.nome" aria-label="Nome" name="nome"
+                            id="nome" class="form-control">
+                            
+            </div>
+            <div *ngIf="isOperatore" class="form-group col-12 col-sm-6">
+                <label for="cognome">Cognome</label>
+                <input #cognome='ngModel' [(ngModel)]="criterioRicerca.cognome" aria-label="Cognome"
+                            name="cognome" id="cognome" class="form-control">                    
+            </div>
+            <div *ngIf="isOperatore" class="form-group col-12 col-sm-6">
+                <label for="codiceFiscale">Codice fiscale</label>
+                <input #codiceFiscale='ngModel' [(ngModel)]="criterioRicerca.codiceFiscale"
+                            aria-label="Codice fiscale" name="codiceFiscale" id="codiceFiscale" class="form-control"
+                            maxlength="16">
+            </div>
+        <!-- </div> -->
+        <div class="col-12">
+            <button type="reset" (click)="clear()"
+                class="btn me-2 mb-2 btn btn-icon rounded-0 btn-outline-primary justify-content-center">
+
+                <svg class="icon icon-primary icon-sm">
+                    <use [attr.href]="'./assets/svg/sprite.svg#it-restore'"
+                        [attr.xlink:href]="'./assets/svg/sprite.svg#it-restore'">
+                    </use>
+                </svg>
+                <span>Pulisci</span>
+            </button>
+            <button (click)="cerca()" type="submit"
+                class="btn btn-primary me-2 mb-2 btn btn-icon rounded-0 justify-content-center">
+
+                <svg class="icon icon-light icon-sm">
+                    <use [attr.href]="'./assets/svg/sprite.svg#it-search'"
+                        [attr.xlink:href]="'./assets/svg/sprite.svg#it-search'">
+                    </use>
+                </svg>
+                <span>Ricerca</span>
+            </button>
+        </div>
+    </div>
+</form>
+<!--Form with header-->
+
+<div class="mt-5" *ngIf="righeIstanza.length > 0">
+    <!-- <div *ngIf="righeIstanza.length > 0; else noRecordsFound"> -->
+    <h4 class="mb-4" *ngIf="righeIstanza.length > 0">Istanze trovate: {{istanzeTotali}} </h4>
+
+    <table id="mytable" class="table table-sm  table-hover small">
+        <thead>
+            <th>Modulo</th>
+            <th>Numero istanza</th>
+            <th>Data di creazione</th>
+            <th>Stato attuale</th>
+            <th *ngIf="isOperatore">Nome</th>
+            <th *ngIf="isOperatore">Cognome</th>
+            <th *ngIf="isOperatore">Codice fiscale</th>
+            <!-- <th>Azioni possibili</th> -->
+            <th>Operazioni</th>
+        </thead>
+        <!-- | slice: (currPage-1) * pageSize : (currPage-1) * pageSize + pageSize -->
+        <tbody>
+            <tr riga-istanza-cerca *ngFor="let rigaIstanza of righeIstanza" [riga-istanza-data]="rigaIstanza" [is-operatore]="isOperatore"
+                [criterioRicerca]="criterioRicerca" [currPage]="currPage" (onDeleteRiga)="onDeleteRiga($event)">
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center mt-5" *ngIf="istanzeTotali > pageSize">
+        <ngb-pagination [(page)]="currPage" [pageSize]="pageSize" [collectionSize]="istanzeTotali" [maxSize]="5"
+            [rotate]="true" [ellipses]="true" [boundaryLinks]="true" [directionLinks]="false"
+            (pageChange)="pageChanged($event)">
+            <ng-template ngbPaginationFirst>Prima</ng-template>
+            <ng-template ngbPaginationLast>Ultima</ng-template>
+            <ng-template ngbPaginationEllipsis>...</ng-template>
+        </ngb-pagination>
+    </div>
+</div>
+
+

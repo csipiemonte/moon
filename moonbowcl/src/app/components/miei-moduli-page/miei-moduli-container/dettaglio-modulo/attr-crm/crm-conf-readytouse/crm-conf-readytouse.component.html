@@ -1,0 +1,274 @@
+<div *ngIf="!editModeR2U">
+    <div>
+        <div class="row" *ngIf="attrCrmConf['riepilogo']">
+            <div class="col col-md-2">riepilogo:</div>
+            <div class="col col-md-10">{{attrCrmConf['riepilogo'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['dettaglio']">
+            <div class="col col-md-2">dettaglio:</div>
+            <div class="col col-md-10">{{attrCrmConf['dettaglio'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['tipologia']">
+            <div class="col col-md-2">tipologia:</div>
+            <div class="col col-md-10">{{attrCrmConf['tipologia'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['urgenza']">
+            <div class="col col-md-2">urgenza:</div>
+            <div class="col col-md-10">{{attrCrmConf['urgenza'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['impatto']">
+            <div class="col col-md-2">impatto:</div>
+            <div class="col col-md-10">{{attrCrmConf['impatto'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['include_allegati']">
+            <div class="col col-md-2">includi allegati:</div>
+            <div class="col col-md-10">{{attrCrmConf['include_allegati'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['assegnatario']">
+            <div class="col col-md-2">assegnatario:</div>
+            <div class="col col-md-10">{{attrCrmConf['assegnatario'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['emailForFailure']">
+            <div class="col col-md-2">emailForFailure:</div>
+            <div class="col col-md-10">{{attrCrmConf['emailForFailure'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['oggettoEmail']">
+            <div class="col col-md-2">oggettoEmail:</div>
+            <div class="col col-md-10">{{attrCrmConf['oggettoEmail'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['bodyEmail']">
+            <div class="col col-md-2">bodyEmail:</div>
+            <div class="col col-md-10">{{attrCrmConf['bodyEmail'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['nome']">
+            <div class="col col-md-2">Nome:</div>
+            <div class="col col-md-10">{{attrCrmConf['nome'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['cognome']">
+            <div class="col col-md-2">Cognome:</div>
+            <div class="col col-md-10">{{attrCrmConf['cognome'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['email']">
+            <div class="col col-md-2">email:</div>
+            <div class="col col-md-10">{{attrCrmConf['email'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['phone']">
+            <div class="col col-md-2">phone:</div>
+            <div class="col col-md-10">{{attrCrmConf['phone'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['mobile']">
+            <div class="col col-md-2">mobile:</div>
+            <div class="col col-md-10">{{attrCrmConf['mobile'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['companyName']">
+            <div class="col col-md-2">companyName:</div>
+            <div class="col col-md-10">{{attrCrmConf['companyName'] }}</div>
+        </div>
+<!--       <div class="row" *ngIf="attrCrmConf['companyId']">
+            <div class="col col-md-2">companyId:</div>
+            <div class="col col-md-10">{{attrCrmConf['companyId'] }}</div>
+        </div>
+-->
+        <div class="row" *ngIf="attrCrmConf['cfi']">
+            <div class="col col-md-2">cfi:</div>
+            <div class="col col-md-10">{{attrCrmConf['cfi'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['mexNewUser']">
+            <div class="col col-md-2">Messeggio per nuovo utente:</div>
+            <div class="col col-md-10">{{attrCrmConf['mexNewUser'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['livello1']">
+            <div class="col col-md-2">livello1:</div>
+            <div class="col col-md-10">{{attrCrmConf['livello1'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['livello2']">
+            <div class="col col-md-2">livello2:</div>
+            <div class="col col-md-10">{{attrCrmConf['livello2'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrCrmConf['livello3']">
+            <div class="col col-md-2">livello3:</div>
+            <div class="col col-md-10">{{attrCrmConf['livello3'] }}</div>
+        </div>
+
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+<div *ngIf="editModeR2U">
+    <alert id="alert-moduli-attr-crm"></alert>
+    <form>
+        <legend>Configurazione R2U</legend>
+        <div class="form-group">
+            <label for="riepilogo">riepilogo:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="riepilogo del Ticket"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['riepilogo']" id="riepilogo" name="riepilogo" class="form-control" #riepilogo="ngModel" placeholder="##riepilogo##"/>
+        </div>
+    <!--   
+        <div class="form-group">
+            <label for="dettaglio">dettaglio:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="dettaglio del Ticket"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['dettaglio']" id="dettaglio" name="dettaglio" class="form-control" #dettaglio="ngModel" placeholder="##dettaglio##"/>
+        </div>
+    -->
+        <div class="form-group">
+            <label for="dettaglio">dettaglio:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="dettaglio del Ticket"></i></label>
+            <textarea [(ngModel)]="attrCrmConfEdit['dettaglio']" id="dettaglio" name="dettaglio" rows="6" cols="50" class="form-control" #dettaglio="ngModel"> </textarea>
+        </div>
+        <div class="form-group">
+            <label for="tipologia">tipologia:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="valori possibili: Ripristino di servizio utente, Ripristino di servizio infrastrutturale, Richiesta utente, Evento infrastrutturale"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['tipologia']" id="tipologia" name="tipologia" class="form-control" #tipologia="ngModel" placeholder="##tipologia##"/>
+        </div>
+        <div class="form-group">
+            <label for="urgenza">urgenza:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="valori possibili: Critica, Alta, Media, Bassa"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['urgenza']" id="urgenza" name="urgenza" class="form-control" #urgenza="ngModel" placeholder="##urgenza##"/>
+        </div>
+        <div class="form-group">
+            <label for="impatto">impatto:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="valori possibili: Vasto/Diffuso, Significativo/Grande, Moderato/Limitato, Minimo/Localizzato"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['impatto']" id="impatto" name="impatto" class="form-control" #impatto="ngModel" placeholder="##impatto##"/>
+        </div>
+        <div class="form-group">
+            <label for="include_allegati">includi allegati:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Se abilitato, invia gli allegati dell'istanza dopo la creazione del ticket."></i></label>
+            &ensp;&ensp;&ensp;
+            <ui-switch [(ngModel)]="attrCrmConfEdit['include_allegati']"  [ngModelOptions]="{standalone: true}"></ui-switch>
+        </div>
+        <div class="form-group">
+            <label for="assegnatario">assegnatario:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="alias del gruppo o nominativo operatore"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['assegnatario']" id="assegnatario" name="assegnatario" class="form-control" #assegnatario="ngModel"/>
+        </div>
+    <fieldset>
+        <legend>Invio email in caso di errore:</legend>
+        <div class="form-group">
+            <label for="emailForFailure">emailForFailure:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="email destinatario in caso di fallimento creazione ticket"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['emailForFailure']" id="emailForFailure" name="emailForFailure" class="form-control" #emailForFailure="ngModel"/>
+        </div>
+        <div class="form-group">
+            <label for="oggettoEmail">oggettoEmail:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="oggetto email"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['oggettoEmail']" id="oggettoEmail" name="oggettoEmail" class="form-control" #oggettoEmail="ngModel"/>
+        </div>
+        <div class="form-group">
+            <label for="bodyEmail">bodyEmail:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="body email"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['bodyEmail']" id="bodyEmail" name="bodyEmail" class="form-control" #bodyEmail="ngModel"/>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Richiedente:</legend>
+         <div class="form-group">
+            <label for="nome">Nome:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Nome del CUSTOMER"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['nome']" id="nome" name="nome"
+                class="form-control" #nome="ngModel"/>
+        </div>
+        <div class="form-group">
+            <label for="cognome">Cognome:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="Cognome del CUSTOMER"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['cognome']" id="cognome" name="cognome"
+                class="form-control" #cognome="ngModel"/>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Nome del campo nel form dove ricavare l'email del destinatario (dinamico per ogni istanza)"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['email']" id="email" name="email" class="form-control"
+                #email="ngModel" placeholder="##email##"/>
+        </div>
+        <div class="form-group">
+            <label for="phone">Telefono:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Nome del campo nel form dove ricavare il numero di telephono del destinatario (dinamico per ogni istanza)"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['phone']" id="phone" name="phone" class="form-control"
+                #phone="ngModel" placeholder="##phone##"/>
+        </div>
+        <div class="form-group">
+            <label for="mobile">Cellulare:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Nome del campo nel form dove ricavare il numero di cellulare del destinatario (dinamico per ogni istanza)"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['mobile']" id="mobile" name="mobile" class="form-control"
+                #mobile="ngModel" placeholder="##mobile##"/>
+        </div>
+        <div class="form-group">
+            <label for="companyName">companyName:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Nome del campo nel form dove ricavare il companyName del destinatario (dinamico per ogni istanza)"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['companyName']" id="companyName" name="companyName" class="form-control"
+                #companyName="ngModel" placeholder="##companyName##"/>
+        </div>
+<!--
+        <div class="form-group">
+            <label for="companyId">companyId:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Nome del campo nel form dove ricavare il companyId del destinatario (dinamico per ogni istanza)"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['companyId']" id="companyId" name="companyId" class="form-control"
+                #companyId="ngModel" placeholder="##companyId##"/>
+        </div>
+-->
+        <div class="form-group">
+            <label for="cfi">cfi:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Codice per filtrare le company."></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['cfi']" id="cfi" name="cfi" class="form-control"
+                #cfi="ngModel" placeholder=""/>
+        </div>
+        <div class="form-group">
+            <label for="mexNewUser">Messaggio per nuovo utente:&nbsp;<i class="fa fa-question-circle text-muted" ngbTooltip="Il seguente messaggio verra aggiunto in fondo al dettaglio solo in caso di nuovo utente."></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['mexNewUser']" id="mexNewUser" name="mexNewUser" class="form-control"
+                #mexNewUser="ngModel" placeholder=""/>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Categoria Operativa:</legend>
+         <div class="form-group">
+            <label for="livello1">livello1:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="livello1"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['livello1']" id="livello1" name="livello1"
+                class="form-control" #livello1="ngModel" placeholder="##livello1##"/>
+        </div>
+        <div class="form-group">
+            <label for="livello2">livello2:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="livello2"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['livello2']" id="livello2" name="livello2"
+                class="form-control" #livello2="ngModel" placeholder="##livello2##"/>
+        </div>
+        <div class="form-group">
+            <label for="livello3">livello3:&nbsp;<i class="fa fa-question-circle text-muted"
+                    ngbTooltip="livello3"></i></label>
+            <input type="text" [(ngModel)]="attrCrmConfEdit['livello3']" id="livello3" name="livello3"
+                class="form-control" #livello3="ngModel" placeholder="##livello3##"/>
+        </div>
+    </fieldset>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+      <!--  <div class="form-group">
+            <button type="button" class="btn btn-light" (click)="editMode=false;" style="float:left">Annulla</button>
+            <button type="button" class="btn btn-success" (click)="salva()" style="float:right">Salva</button>
+        </div>-->
+    </form>
+</div>
+<div>&nbsp;</div>
+<div>Default conf:&nbsp;
+    <pre>
+"riepilogo":"##riepilogo##",
+"dettaglio":"##dettaglio##",
+"tipologia'": "Richiesta utente",
+"urgenza": "Bassa",
+"impatto: "Minimo/Localizzato",
+"include allegati": "false",
+"assegnatario": "null",
+"emailForFailure": "null",
+"oggettoEmail": "null",
+"bodyEmail": "null",
+"nome": "##nome##",
+"cognome": "##cognome##",
+"email": "##email##",
+"telefono": "##telefono##",
+"cellulare": "##mobile##",
+"companyName": "##companyName##",
+"cfi": "null", 
+"mexNewUser": "ATTENZIONE - ANAGRAFICA DA VALIDARE",
+"livello1": "##livello1##",
+"livello2": "##livello2##",
+"livello3": "##livello3##"
+    </pre>
+</div>

@@ -1,0 +1,7 @@
+<a *ngIf="isAdmin && !row_data.dataFineValidita" [routerLink]="[]" ngbTooltip="Cambia Stato" (click)="cambiaStato()">
+    <fa-icon style="margin-left: 5px" [icon]="faSync"></fa-icon>
+</a>
+&nbsp;
+<a *ngIf="isModificabile" [routerLink]="[]" ngbTooltip="Modifica Modulo" (click)="editFormIo()">
+    <fa-icon [icon]="faEdit"></fa-icon>
+</a>

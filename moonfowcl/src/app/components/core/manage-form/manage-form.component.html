@@ -1,0 +1,85 @@
+<div>
+
+  <h1 class="h1">{{titolo}}</h1>
+  <p>{{descrizioneModulo}}</p>
+
+  <ng-template [ngIf]="moduloLoaded && consumerParams?.consumer=='cittafacile'">
+    <div *ngIf="consumerParams?.faq || consumerParams?.assistenza">
+      <p>Hai bisogno di aiuto ?&nbsp;
+        <span *ngIf="consumerParams!.faq" id="faq">
+          Consulta le <a class="text-decoration-none fw-semibold" style="color:var(--bs-primary)"
+            href="/faq/{{consumerParams?.faq}}/dettagli">faq</a>
+          <span *ngIf="consumerParams?.assistenza">
+            &nbsp;o&nbsp;
+          </span>
+        </span>
+        <a *ngIf="consumerParams?.assistenza" class="text-decoration-none fw-semibold" style="color:var(--bs-primary)"
+          href="/nuova-richiesta?servizio={{consumerParams?.assistenza}}">Richiedi assistenza</a>&nbsp;
+      </p>
+    </div>
+  </ng-template>
+  <h2 *ngIf="isSummary" class="col-12 col-lg-9 m-auto mt-5">Riepilogo</h2>
+
+  <ng-template [ngIf]="!isNotificaErrore" [ngIfElse]="elseNotificaErrore">
+    <div
+      [className]="((isSummary || isReadOnly)? 'form-summary col-12 col-lg-9 m-auto bg-primary-light p-3 p-lg-5 pt-2 mt-4' : '')">
+      <formio (formLoad)="onFormLoad($event)" (submit)="onSubmit($event)" [form]='struttura' [options]="options"
+        (change)="onChange($event)" (nextPage)="onNextPage($event)" (prevPage)="onPrevPage($event)"
+        (ready)="onReady($event)" [readOnly]="readOnly" [renderOptions]="renderOptions" [submission]='data'
+        [viewOnly]="readOnly" class="mt-5">
+      </formio>
+    </div>
+
+    <div *ngIf="!isUrlEmbeddedEsciModulo">
+      <ng-template [ngIf]="isSummary" [ngIfElse]="elseButton">
+        <div class="d-flex justify-content-center mt-5">
+          <button class="btn btn-outline-primary btn-icon btn-me" (click)="modificaIstanza()">
+            <svg class="icon icon-primary">
+              <use [attr.href]="'./assets/svg/sprite.svg#it-pencil'"
+                [attr.xlink:href]="'./assets/svg/sprite.svg#it-pencil'"></use>
+            </svg>
+            <span>Modifica</span>
+          </button>
+          <button class="btn btn-primary btn-icon" (click)="goToDettaglioIstanza()">
+            <svg class="icon icon-white">
+              <use [attr.href]="'./assets/svg/sprite.svg#it-arrow-right'"
+                [attr.xlink:href]="'./assets/svg/sprite.svg#it-arrow-right'"></use>
+            </svg>
+            <span>Prosegui</span>
+          </button>
+        </div>
+      </ng-template>
+
+      <ng-template #elseButton>
+        <button class="btn btn-danger btn-icon mt-5" (click)="backToListForm()">
+          <svg class="icon icon-white">
+            <use [attr.href]="'./assets/svg/sprite.svg#it-arrow-left'"
+              [attr.xlink:href]="'./assets/svg/sprite.svg#it-arrow-left'"></use>
+          </svg>
+          <span>Esci dalla compilazione</span>
+        </button>
+      </ng-template>
+
+    </div>
+  </ng-template>
+
+  <ng-template #elseNotificaErrore>
+    <div style="width: 90%; margin-left:100px;margin-top:40px ">
+      <h2 style="text-align:center">
+        <div [innerHTML]="titoloNotificaErrore"></div>
+      </h2>
+      <br>
+      <h4 style="text-align:center">
+        <div [innerHTML]="messaggioNotificaErrore"></div>
+      </h4>
+    </div>
+    <button class="btn btn-danger btn-icon mt-5" (click)="backToListForm()">
+      <svg class="icon icon-white">
+        <use [attr.href]="'./assets/svg/sprite.svg#it-arrow-left'"
+          [attr.xlink:href]="'./assets/svg/sprite.svg#it-arrow-left'"></use>
+      </svg>
+      <span>Torna indietro</span>
+    </button>
+  </ng-template>
+
+</div>

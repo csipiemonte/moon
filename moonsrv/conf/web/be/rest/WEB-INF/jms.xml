@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans profile="jms"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:jee="http://www.springframework.org/schema/jee"   
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       					   http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-4.3.xsd
+						   http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+                           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
+  
+   <bean name="jmsTemplate" class="org.springframework.jms.core.JmsTemplate" lazy-init="true">
+        <property name="sessionTransacted" value="true" />
+	    <property name="connectionFactory">
+	        <ref bean="jbmCachingConnectionFactory"/>
+	    </property>
+	    <property name="pubSubDomain">
+	        <value>true</value>
+	    </property>
+	    <property name="receiveTimeout">
+	        <value>1000</value>
+	    </property>
+	</bean>
+	
+	<bean id="jbmCachingConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+	     <property name="targetConnectionFactory" ref="jbmConnectionFactory" />
+	</bean>
+	
+	<bean id="jmsListenerContainerFactory" class="org.springframework.jms.config.DefaultJmsListenerContainerFactory">
+	     <property name="concurrency">
+	     	<value>1-1</value>
+	     </property>
+	     <property name="pubSubDomain">
+	        <value>true</value>
+	    </property>
+	     <property name="connectionFactory" ref="jbmConnectionFactory" />
+	</bean>
+	
+	<jee:jndi-lookup id="jbmConnectionFactory" jndi-name="java:/ConnectionFactory"
+	        resource-ref="true" lookup-on-startup="false" proxy-interface="javax.jms.ConnectionFactory"
+	        cache="false">	   
+	</jee:jndi-lookup>
+	
+</beans>

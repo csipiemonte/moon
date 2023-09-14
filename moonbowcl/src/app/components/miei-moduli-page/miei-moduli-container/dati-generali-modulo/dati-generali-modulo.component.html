@@ -1,0 +1,87 @@
+<h3 style="text-align:center;">Dati generali</h3>
+<div>&nbsp;</div>
+<div class="form-group col-md-9" style="margin: 0 auto;">
+    <ngb-accordion activeIds="generali">
+        <ngb-panel title="Dati generali modulo" id="generali">
+            <ng-template ngbPanelContent>
+                <form [formGroup]="frmDatiGenerali">
+                    <div class="form-group">
+                        <label for="categoria">Categoria</label>
+                        <select name="categoria" id="categoria" formControlName="categoria" class="form-control">
+                            <option *ngFor="let c of elencoCategorie" [ngValue]="c.idCategoria">{{ c.descrizione }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="codiceModulo"> Codice modulo:</label>
+                        <input name="codiceModulo" id="codiceModulo" formControlName="codiceModulo" class="form-control" readonly value="{{moduloInLavorazione.codiceModulo}}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="versioneModulo"> Versione modulo:</label>
+                        <input name="versioneModulo" id="versioneModulo" formControlName="versioneModulo" class="form-control" readonly value="{{moduloInLavorazione.versioneModulo}}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="oggetto"> Oggetto:</label>
+                        <input name="oggetto" id="oggetto" type="text" size="50" formControlName="oggetto" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descrizione"> Descrizione:</label>
+                        <textarea name="descrizione" id="descrizione" rows="4" cols="25" formControlName="descrizione" class="form-control"> </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipoStruttura">Tipo Modulo</label>
+                        <select name="tipoStruttura" id="tipoStruttura" formControlName="tipoStruttura" class="form-control">
+                            <option *ngFor="let t of formTypes" [ngValue]="t.tipo">{{t.descrizione}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="processo">Processo assegnato al modulo</label>
+                        <select name="processo" id="processo" formControlName="processo" class="form-control">
+                            <option *ngFor="let p of elencoProcessi" [ngValue]="p.idProcesso" >
+                                {{p.codiceProcesso}}-{{p.descProcesso}}</option>
+                        </select>
+                    </div>
+
+                </form>
+            </ng-template>
+        </ngb-panel>
+
+        <ngb-panel title="Portali" id="portali" *ngIf="isAdmin">
+            <ng-template ngbPanelContent>
+                <form [formGroup]="frmPortali">
+                    <ng-multiselect-dropdown class="container" name="multi-select" [settings]="dropdownSettings" [placeholder]="'Assegna i portali al modulo'" [data]="elencoPortali" formControlName="portaliModulo" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                    </ng-multiselect-dropdown>
+                </form>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+
+    <div>&nbsp;</div>
+
+    <!-- <ul class="list-inline">
+    <li class="list-inline-item">
+
+        <button class="btn btn-primary" style="width: 70px;margin-right: 10px" (click)="back()">
+            <fa-icon style='font-size: 18px' [icon]="faHome"></fa-icon>
+        </button>
+
+        <button class="btn btn-primary" style="width: 70px;margin-right: 10px" (click)="salva()">
+            <fa-icon style='font-size: 18px' [icon]="faSave"></fa-icon>
+        </button>
+
+    </li>
+</ul> -->
+</div>
+<div class="form-group col-md-9" style="margin: 0 auto;">
+    <button class="btn btn-primary" style="width: 70px;float:left" (click)="back()">
+            <fa-icon style='font-size: 18px' [icon]="faHome"></fa-icon>
+        </button>
+    <button class="btn btn-primary" style="width: 70px;float:right" (click)="salva()">
+            <fa-icon style='font-size: 18px' [icon]="faSave"></fa-icon>
+        </button>
+</div>

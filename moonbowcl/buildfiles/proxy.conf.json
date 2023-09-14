@@ -1,0 +1,7 @@
+{
+    "/moonbobl/restfacade/*": {
+      "target": "http://.....",
+      "secure": false,
+      "changeOrigin": true
+    }
+}

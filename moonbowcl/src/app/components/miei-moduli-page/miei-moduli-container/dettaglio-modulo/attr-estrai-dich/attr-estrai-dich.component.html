@@ -1,0 +1,68 @@
+<div *ngIf="!editMode">
+    <div *ngIf="isAdmin" style="position:absolute; top: 4.5rem; right: 8px; z-index: 1;">
+        <button type="button" class="btn btn-outline-primary" (click)="editMode=true;">Edit Estrai Dich</button>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col col-md-3"><span title="{{ titleUpd.get('PSIT_ESTRAI_DICHIARANTE') }}">Attivazione:</span></div>
+            <div class="col col-md-9">{{maEstraiDich['valore']}}</div>
+        </div>
+        <div class="row" *ngIf="attrEstraiDichConf['codice_fiscale_dichiarante_data_key']">
+            <div class="col col-md-3">codice_fiscale_dichiarante_data_key:</div>
+            <div class="col col-md-9">{{attrEstraiDichConf['codice_fiscale_dichiarante_data_key'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrEstraiDichConf['cognome_dichiarante_data_key']">
+            <div class="col col-md-3">cognome_dichiarante_data_key:</div>
+            <div class="col col-md-9">{{attrEstraiDichConf['cognome_dichiarante_data_key'] }}</div>
+        </div>
+        <div class="row" *ngIf="attrEstraiDichConf['nome_dichiarante_data_key']">
+            <div class="col col-md-3">nome_dichiarante_data_key:</div>
+            <div class="col col-md-9">{{attrEstraiDichConf['nome_dichiarante_data_key'] }}</div>
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+<div *ngIf="editMode">
+    <alert id="alert-moduli-attr-estrai-dich"></alert>
+    <form>
+        <div class="form-group">
+            <label for="attrEstraiDichEdit">Attivazione:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Abilitazione all'estrazione di dati del dichiarante, in seguito all'invio di un istanza. Questo è necessario solo in particolari casi di compilazione da conto terzi (es.CAF) [S|N]"></i></label>
+            <input type="text" [(ngModel)]="maEstraiDichEdit['valore']" id="attrEstraiDichEdit" name="attrEstraiDichEdit" size="1" maxlength="1" class="form-control" #attrEstraiDichEdit="ngModel" />
+            <!-- <div>
+                <ui-switch [(ngModel)]="maEstraiDichEditT" [ngModelOptions]="{standalone: true}">
+                </ui-switch>
+            </div> -->
+        </div>
+        <div class="form-group">
+            <label for="codice_fiscale_dichiarante_data_key">codice_fiscale_dichiarante_data_key:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Nome del campo del modulo per recuperare il CodiceFiscale del dichiarante. [true|false]"></i></label>
+            <input type="text" [(ngModel)]="attrEstraiDichConfEdit['codice_fiscale_dichiarante_data_key']" id="codice_fiscale_dichiarante_data_key" name="codice_fiscale_dichiarante_data_key" class="form-control" #codice_fiscale_dichiarante_data_key="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="cognome_dichiarante_data_key">cognome_dichiarante_data_key:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Nome del campo del modulo per recuperare il Cognome del dichiarante. [true|false]"></i></label>
+            <input type="text" [(ngModel)]="attrEstraiDichConfEdit['cognome_dichiarante_data_key']" id="cognome_dichiarante_data_key" name="cognome_dichiarante_data_key" class="form-control" #cognome_dichiarante_data_key="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="nome_dichiarante_data_key">nome_dichiarante_data_key:&nbsp;<i class="fa fa-question-circle text-muted"
+                ngbTooltip="Nome del campo del modulo per recuperare il Nome del dichiarante."></i></label>
+            <input type="text" [(ngModel)]="attrEstraiDichConfEdit['nome_dichiarante_data_key']" id="nome_dichiarante_data_key" name="nome_dichiarante_data_key" class="form-control" #nome_dichiarante_data_key="ngModel" />
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-light" (click)="editMode=false;" style="float:left">Annulla</button>
+            <button type="button" class="btn btn-success" (click)="salva()" style="float:right">Salva</button>
+        </div>
+    </form>
+</div>

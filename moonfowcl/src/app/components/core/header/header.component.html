@@ -1,0 +1,223 @@
+<div [ngSwitch]="template">
+    <div *ngSwitchCase="''">
+    </div>
+    <div *ngSwitchCase="'moon'">
+      <header>
+        <div class="skiplinks visually-hidden">
+          <button role="link" class="visually-hidden visually-hidden-focusable" (click)="scrollTo('main')">Vai al contenuto
+            principale</button>
+          <button role="link" class="visually-hidden sr-nly-focusable" (click)="scrollTo('footer') ">Vai al footer</button>
+        </div>
+
+        <div class="it-header-slim-wrapper bg-primary px-0 px-lg-1">
+          <!-------------------------
+          ------ start topbar -------
+          -------------------------->
+          <div class="container-xl">
+            <div class="row">
+
+              <div class="col-12 px-lg-0">
+                <div class="it-header-slim-wrapper-content px-0 px-lg-1">
+                  <div class="d-flex align-items-baseline navbar-brand h-100 py-lg-2" style="line-height:1">
+                    <img src="./assets/im/logo_moon_white.svg" alt="logo di MOOn - modulistica open online in versione bianca"
+                      style="max-height:25px" class="me-3 h-100">
+                    <span class="d-none d-md-block fw-semibold">Modulistica Open Online</span>
+                  </div>
+                  <div class="d-flex ">
+                    <a class="nav-link px-3 d-flex align-items-center text-secondary__custom fw-semibold" routerLink="[]"
+                     (click)="goToAiuto()">
+                      <span class="visually-hidden">Aiuto</span>
+                      <span>Aiuto</span>
+                      <svg class="icon icon-secondary__custom ms-1" style="width:24px;height:24px">
+                        <use [attr.href]="'./assets/svg/sprite.svg#it-info-circle'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-info-circle'"></use>
+                      </svg>
+                    </a>
+
+
+                    <button *ngIf="currentUser?.isAuthenticated" aria-label="Apri menu utente" href="#"
+                      class="dropdown-toggle btn btn-white btn-icon bg-white btn-full" data-bs-toggle="dropdown" aria-expanded="false">
+                      <span class="rounded-icon">
+                        <svg class="icon icon-primary">
+                          <use [attr.href]="'./assets/svg/sprite.svg#it-user'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-user'"></use>
+                        </svg>
+                      </span>
+                      <span class="d-none d-md-block">{{currentUser?.nome}} {{currentUser?.cognome}}</span>
+                    </button>
+
+
+                    <div class="dropdown-menu mt-3 bg-primary">
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="link-list-wrapper">
+                            <ul class="link-list ms-3" *ngIf="mostraMenuMioFacile">
+                              <li>
+                                <a class="list-item icon-left "
+                                  (click)="localLogout('https://servizi.torinofacile.it/cgi-bin/accesso/base/index.cgi')"
+                                  routerLink="/"></a>
+                              </li>
+                              <li>
+                                <a class="list-item icon-left"
+                                  (click)="localLogout('https://servizi.torinofacile.it/cgi-bin/accesso/base/index.cgi?task=bacheca')"
+                                  routerLink="">Bacheca</a>
+                              </li>
+                              <li>
+                                <a class="list-item icon-left"
+                                  (click)="localLogout('https://servizi.torinofacile.it/cgi-bin/accesso/base/index.cgi?task=servizi')"
+                                  routerLink="">Servizi</a>
+                              </li>
+                              <li>
+                                <a class="list-item icon-left"
+                                  (click)="localLogout('https://servizi.torinofacile.it/cgi-bin/accesso/base/index.cgi?task=comunicazioni')"
+                                  routerLink="">Comunicazioni</a>
+                              </li>
+                              <li>
+                                <a class="list-item icon-left"
+                                  (click)="localLogout('https://servizi.torinofacile.it/cgi-bin/accesso/base/index.cgi?task=impostazioni')"
+                                  routerLink="">Impostazioni</a>
+                              </li>
+                              <li>
+                                <a class="list-item icon-left" (click)="localLogout('https://servizi.torinofacile.it')"
+                                  [routerLink]="[]">Torna a TorinoFacile </a>
+                              </li>
+                              <!-- <li *ngIf="isMultiEnte"> <a class="list-item icon-left" (click)="scegliEnte()"
+                                  [routerLink]="[]">Cambia ente</a>
+                              </li> -->
+                              <li>
+                                <a (click)="ssoLogout()" [routerLink]="[]"
+                                  class="list-item icon-left d-flex align-items-center">
+                                  <svg class="icon icon-white user-menu-icon icon-left m-0">
+                                    <use [attr.href]="'./assets/svg/sprite.svg#it-upload'" [attr.xlink:href]="'./assets/svg/sprite.svg#it-upload'"></use>
+                                  </svg>
+                                  <span class="text-white m-0 ms-2">Esci</span></a>
+                              </li>
+                            </ul>
+
+                            <ul class="link-list ms-3" *ngIf="!mostraMenuMioFacile">
+                              <!-- <li *ngIf="isMultiEnte">
+                                <a (click)="scegliEnte()" [routerLink]="[]" class="list-item icon-left">Cambia ente </a>
+                              </li> -->
+                              <li>
+                                <a class="list-item icon-left ms-3 d-flex align-items-center" (click)="ssoLogout()"
+                                  [routerLink]="[]">
+                                  <svg class="icon icon-white user-menu-icon icon-left m-0">
+                                    <use [attr.href]="'./assets/svg/sprite.svg#it-upload'"  [attr.xlink:href]="'./assets/svg/sprite.svg#it-upload'"></use>
+                                  </svg>
+                                  <span class="text-white m-0 ms-2">Esci</span></a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--------------------------
+          ------- end topbar -------
+        --------------------------->
+
+        <div class="it-nav-wrapper">
+          <!-- start nav -->
+          <div class="it-header-center-wrapper px-0 py-2 theme-light align-items-start align-items-sm-center">
+            <div class="container-xl">
+              <div class="row">
+                <div class="it-header-center-content-wrapper px-1">
+                  <div class="it-brand-wrapper">
+                    <a *ngIf="!isMultiEnte" class="align-items-center" routerLink="home/bacheca">
+                      <span class="visually-hidden">Vai alla home</span>
+                      <img *ngIf="!isMultiEnte" src="{{ urlLogo }}" alt="Logo di MOOn - Modulistica open online"
+                           class="me-3" style="max-width:160px;">
+                      <div class="it-brand-text text-dark visually-hidden">
+                        <h1 class="it-brand-title">MOOn</h1>
+                        <div class="it-brand-tagline">{{ sottotitolo }}<span class="fw-semibold text-capitalize">
+                            {{currentUser?.descrizioneAmbito}}</span></div>
+                      </div>
+                    </a>
+
+                    <a *ngIf="isMultiEnte" routerLink="home/bacheca" class="align-items-center">
+                      <span class="visually-hidden">Vai alla home</span>
+                      <img *ngIf="isMultiEnte" src="{{ urlLogoEnte }}" alt="Logo di {{nomeEnte}}" style="max-width:160px;"
+                        class="me-3">
+                      <div class="it-brand-text text-dark d-none d-sm-block">
+                        <div class="it-brand-title">{{nomeEnte}}</div>
+                        <div class="it-brand-tagline">Modulistica online<span *ngIf="currentUser?.descrizioneAmbito"
+                            class="fw-semibold text-capitalize"> - {{currentUser?.descrizioneAmbito}}</span></div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="it-header-navbar-wrapper ">
+                    <div class="it-header-navbar-wrapper theme-light-desk shadow-none">
+                      <!--start nav-->
+                      <nav role="navigation" class="navbar navbar-expand-lg p-0" aria-label="Navigazione principale">
+                        <button aria-label="Apri il menu di navigazione pricipale"
+                                aria-controls="menuPrincipale"
+                                aria-expanded="false"
+                                aria-label="Toggle navigation"
+                                class="navbar-toggler third-button btn btn-xxs"
+                                data-bs-toggle="collapse"
+                                data-focus-mouse="false"
+                                data-target="#menuPrincipale"
+                                href="#menuPrincipale"
+                                role="button"
+                                type="button">
+                          <div class="animated-icon3">
+                            <svg class="icon icon-primary">
+                              <use [attr.href]="'./assets/svg/sprite.svg#it-burger'"
+                                   [attr.xlink:href]="'./assets/svg/sprite.svg#it-burger'">
+                              </use>
+                            </svg>
+                          </div>
+                        </button>
+
+                        <!-- Collapsible content -->
+                        <div class="collapse navbar-collapse" id="menuPrincipale">
+                          <ul [(activeId)]="activeId" class="navbar-nav" ngbNav>
+                            <li *ngIf="!isNavNotVisible && currentUser?.isAuthenticated" [ngbNavItem]="get('BACHECA')">
+                              <a class="{{disabled}}" ngbNavLink onclick="closeNav(menuPrincipale)"
+                                 routerLink="home/bacheca">Bacheca</a>
+                            </li>
+                            <li *ngIf="!isNavNotVisible && currentUser?.isAuthenticated" [ngbNavItem]="get('ISTANZE')">
+                              <a class="{{disabled}}" ngbNavLink onclick="closeNav(menuPrincipale)"
+                                 routerLink="home/istanze">Le mie istanze</a>
+                            </li>
+                            <li *ngIf="!isNavNotVisible && currentUser?.isAuthenticated" [ngbNavItem]="get('NUOVA_ISTANZA')">
+                              <a class="{{disabled}}" ngbNavLink onclick="closeNav(menuPrincipale)"
+                                 routerLink="home/categorie">Nuova istanza</a>
+                            </li>
+                            <!-- <li *ngIf="!isNavNotVisible" [ngbNavItem]="get('CERCA_ISTANZA')">
+                              <a ngbNavLink routerLink="home/cerca-istanza" onclick="closeNav(menuPrincipale)" class="{{disabled}}">Cerca istanza</a>
+                            </li> -->
+                            <!-- <li *ngIf="!isNavNotVisible" [ngbNavItem]="get('COMUNICAZIONI')">
+                              <a class="{{disabled}}" ngbNavLink onclick="closeNav(menuPrincipale)"
+                                 routerLink="home/comunicazioni">Comunicazioni</a>
+                            </li> -->
+                          </ul>
+                          <!-- Links -->
+                        </div>
+
+
+                      </nav>
+                    </div>
+                  </div><!-- end right nav zone -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+    </div>
+  <div *ngSwitchCase="'cittafacile'">
+    <cittafacile-header  [currentUser]="currentUser" [consumerParams]="consumerParams"></cittafacile-header>
+  </div>
+  <div *ngSwitchCase="'generic'">
+    <consumer-header></consumer-header>
+  </div>
+</div>
+
+
+

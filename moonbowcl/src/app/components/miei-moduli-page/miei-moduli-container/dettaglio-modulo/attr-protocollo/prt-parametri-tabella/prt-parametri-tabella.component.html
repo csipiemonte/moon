@@ -1,0 +1,19 @@
+<table id="mytable" class="table table-bordered table-striped">
+    <thead>
+        <th>ID</th>
+        <th>Ente</th>
+        <th>Area</th>
+        <th>Modulo</th>
+        <th>Nome</th>
+        <th>Valore</th>
+        <th>Dt. Agg</th>
+        <!-- th>Operatore Agg.</th> -->
+    </thead>
+    <tbody>
+        <tr app-miei-moduli-dettaglio-attr-protocollo-parametri-riga
+            *ngFor="let pp of prtParametri"
+            [p]="pp" 
+            [nomeOperatore]="findNomeOperatore(u?.attoreUpd)">
+        </tr>
+    </tbody>
+</table>

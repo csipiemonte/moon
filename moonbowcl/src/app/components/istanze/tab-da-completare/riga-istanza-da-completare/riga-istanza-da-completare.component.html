@@ -1,0 +1,41 @@
+<td>
+    {{ index + 1}}
+</td>
+<td *ngIf="showColonnaComune">{{rigaIstanza?.metadata}}</td>
+<td *ngIf="showColonnaEnte">{{rigaIstanza?.metadata}}</td>
+<td *ngIf="showFiltroMultiEnte">{{ente?.nomeEnte}}</td>
+<td *ngIf="showFiltroDichiarante">{{rigaIstanza?.codiceFiscaleDichiarante}}</td>
+<td *ngIf="showFiltroDichiarante">{{rigaIstanza?.nomeDichiarante}}</td>
+<td *ngIf="showFiltroDichiarante">{{rigaIstanza?.cognomeDichiarante}}</td>
+<td>{{rigaIstanza?.codiceIstanza}}</td>
+<td>{{rigaIstanza?.created | date: 'dd/MM/yyyy HH:mm'}}</td>
+<td>{{rigaIstanza?.stato.nome}}</td>
+<td>{{rigaIstanza?.operatore}}</td>
+<td>
+    <div>
+        <a *ngIf="rigaIstanza.stato.idStato===2" [routerLink]="[]" ngbTooltip="Visualizza Istanza"
+            (click)="mostraDettaglioIstanza()">
+            <fa-icon [icon]="faEye"></fa-icon>
+        </a>
+        <ng-template [ngIf]="isUtenteAbilitatoModifica">
+            <a [routerLink]="[]" ngbTooltip="Modifica Istanza" style="margin-left:10px" (click)="modificaIstanza()">
+                <fa-icon [icon]="faEdit"></fa-icon>
+            </a>
+        </ng-template>
+
+        <ng-template [ngIf]="isUtenteAbilitatoWorkflow">
+            <a [routerLink]="[]" ngbTooltip="Lavora Istanza" style="margin-left:10px" (click)="lavoraIstanza()">
+                <fa-icon [icon]="faCogs"></fa-icon>
+            </a>
+        </ng-template>
+
+        <ng-template [ngIf]="rigaIstanza.stato.idStato===1">
+            <a [routerLink]="[]" ngbTooltip="Elimina Istanza" (click)="cancellaIstanza()">
+                <fa-icon [icon]="faTrash" style="color:red; margin-left:10px"></fa-icon>
+            </a>
+        </ng-template>
+   
+
+    </div>
+
+</td>

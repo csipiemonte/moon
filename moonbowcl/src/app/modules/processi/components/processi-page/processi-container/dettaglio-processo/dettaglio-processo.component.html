@@ -1,0 +1,133 @@
+<alert id="alert-processi-dettaglio_processo"></alert>
+<div style="margin: 0 auto;">
+    <div style="margin: 0 auto;">
+        <h3 style="text-align:center;">{{processoSelezionato.nomeProcesso}}&nbsp;({{processoSelezionato.codiceProcesso}})
+                &nbsp;<span *ngIf="isAdmin">[{{processoSelezionato.idProcesso}}]</span>
+                &nbsp;<a href="" data-toggle="modal" data-target="#image-processo" title="visualizza lo schema del processo"
+                    (click)="caricaImageProcesso()">
+                    <fa-icon [icon]="faSearchPlus"></fa-icon>
+                </a>
+            <!--
+            <div style="position: relative;  float: right;">
+                <a *ngIf="isModificabile" [routerLink]="[]" ngbTooltip="Modifica Modulo" (click)="modificaModulo($event)">
+                    <fa-icon style="margin-left: 15px" [icon]="faEdit"></fa-icon>
+                </a>
+                <a *ngIf="isAdmin" [routerLink]="[]" ngbTooltip="Duplica" (click)="duplicaModulo($event)">
+                    <fa-icon style="margin-left: 15px" [icon]="faClone"></fa-icon>
+                </a>
+                <a *ngIf="modulo.stato?.codice==='INIT'" [routerLink]="[]" ngbTooltip="Elimina Modulo" (click)="eliminaModulo($event)">
+                    <fa-icon style="margin-left: 20px; color: red" [icon]="faTrashAlt"></fa-icon>
+                </a>
+            </div>
+            -->
+        </h3>
+        <div>&nbsp;</div>
+    </div>
+    <div>
+        <div class="d-flex">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Stato Partenza</th>
+                    <th>Stato Arrivo</th>
+                    <th>Azione</th>
+                    <th>Operazione</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let recordWf of entriesWf; let i = index">
+                        <td>
+                            {{recordWf.idWorkflow}}
+                        </td>
+                        <td>
+                            <select [(ngModel)]="recordWf.idStatoWfPartenza">
+                                <option value="">Seleziona Stato Partenza</option>
+                                <option *ngFor="let s of elencoStatiWf" [ngValue]="s.idStato">{{s.nome}}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select [(ngModel)]="recordWf.idStatoWfArrivo">
+                                <option value="">Seleziona Stato Arrivo</option>
+                                <option *ngFor="let s of elencoStatiWf" [ngValue]="s.idStato">{{s.nome}}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select [(ngModel)]="recordWf.idAzione">
+                                <option value="">Seleziona Azione</option>
+                                <option *ngFor="let a of elencoAzioniWf" [ngValue]="a.idAzione">{{a.nomeAzione}}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <a *ngIf="recordWf.isModified()" routerLink="[]" ngbTooltip="Salva Workflow" style="margin-left:10px; color: green;" (click)="patchRigaWf(i, recordWf)">
+                                <fa-icon [icon]="faSave"></fa-icon>
+                            </a>
+                            <a routerLink="[]" ngbTooltip="Dettaglio Workflow" style="margin-left:10px; color: darkblue;" (click)="dettaglioRigaWf(recordWf)">
+                                <fa-icon [icon]="faEye"></fa-icon>
+                            </a>
+                            <a routerLink="[]" ngbTooltip="Elimina Workflow" style="margin-left:10px; color: red;" (click)="eliminaRigaWf(i, recordWf)">
+                                <fa-icon [icon]="faTrash"></fa-icon>
+                            </a>
+                        </td>
+                    </tr>
+                    <!-- riga per aggiunta -->
+                    <tr>
+                        <td></td>
+                        <td>
+                            <select [(ngModel)]="newWorkflow.idStatoWfPartenza">
+                                <option value="">Seleziona Stato Partenza</option>
+                                <option *ngFor="let s of elencoStatiWf" [ngValue]="s.idStato">{{s.nome}}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select [(ngModel)]="newWorkflow.idStatoWfArrivo">
+                                <option value="">Seleziona Stato Arrivo</option>
+                                <option *ngFor="let s of elencoStatiWf" [ngValue]="s.idStato">{{s.nome}}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select [(ngModel)]="newWorkflow.idAzione">
+                                <option value="">Seleziona Azione</option>
+                                <option *ngFor="let a of elencoAzioniWf" [ngValue]="a.idAzione">{{a.nomeAzione}}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <a routerLink="[]" ngbTooltip="Nuova riga workflow" (click)="aggiungiRigaWf()">
+                                <fa-icon style="margin-left: 15px;" [icon]="faPlus"></fa-icon>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- <pre>Debug Active navVertActive: {{ navVertActive }}</pre> -->
+    
+    <div>&nbsp;</div>
+    <div>
+        <button type="button" class="btn btn-primary" style="width: 70px;float:left" (click)="back()">
+            <fa-icon style='font-size: 22px' [icon]="faHome"></fa-icon>
+        </button>
+    </div>
+</div>
+
+
+<!-- Modale Image Processo -->
+<div class="modal fade" id="image-processo" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 1000px;height: 1000px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title custom_align" id="Heading">Schema del processo</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="fa fa-remove" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img [src]="thumbnailProcesso" style="width: 100%; height: auto;" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">chiudi</button>
+            </div>
+        </div>
+    </div>
+</div>
