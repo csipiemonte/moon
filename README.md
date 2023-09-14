@@ -7,13 +7,13 @@ Poichè l'accesso ai servizi avviene tramite internet, MOOn minimizza l'accesso 
 L'obiettivo del progetto è quello di consentire alle pubbliche amministrazione di digitalizzare i servizi rivolti ai cittadini elevando il livello di trasparenza verso questi ultimi.
 
 Il prodotto è composto dalle componenti:
-- **moonfowcl** ([Directory sorgenti](https://github.com/csipiemonte/moon/tree/main/moonfowcl)): componente frontend che realizza l'interfaccia utilizzata dai cittadini per accedere ai servizi messi a disposizione dalla P.A. Realizzata come SAP (Single Page Application) mediante il framework Angular,
-- **moonfobl** ([Directory sorgenti](https://github.com/csipiemonte/moon/tree/main/moonfobl)):  contiene i servizi che realizzano la logica di business utilizzati dalla componente frontend dei cittadini ,
-- **moonbowcl** ([Directory sorgenti](https://github.com/csipiemonte/moon/tree/main/moonbowcl)): componente frontend che realizza l'interfaccia utilizzata dalla pubblica amministrazione per gestire le richieste pervenute. Realizzata come SAP (Single Page Application) mediante il framework Angular,
-- **moonbobl**: ([Directory sorgenti](https://github.com/csipiemonte/moon/tree/main/moonbobl)): contiene i servizi che realizzano la logica di business utilizzati dalla componente frontend della pubblica amministrazione,
-- **moonsrv**: ([Directory sorgenti](https://github.com/csipiemonte/moon/tree/main/moonsrv)): realizza i servizi comuni alle componenti relative ai cittadini ed alla pubblica amministrazione,
-- **moonprint**: ([Directory sorgenti](https://github.com/csipiemonte/moon/tree/main/moonprint)): componente per la stampa delle istanze,
-- **moondb**: ([Directory sorgenti](https://github.com/csipiemonte/moon/tree/main/moondb)): script per la creazione del database utilizzato dalla piattaforma
+- **moonfowcl** ([Directory sorgenti](https://github.com/csipiemonte/moon/tree/master/moonfowcl)): componente frontend che realizza l'interfaccia utilizzata dai cittadini per accedere ai servizi messi a disposizione dalla P.A. Realizzata come SAP (Single Page Application) mediante il framework Angular,
+- **moonfobl** ([Directory sorgenti](https://github.com/csipiemonte/moon/tree/master/moonfobl)):  contiene i servizi che realizzano la logica di business utilizzati dalla componente frontend dei cittadini ,
+- **moonbowcl** ([Directory sorgenti](https://github.com/csipiemonte/moon/tree/master/moonbowcl)): componente frontend che realizza l'interfaccia utilizzata dalla pubblica amministrazione per gestire le richieste pervenute. Realizzata come SAP (Single Page Application) mediante il framework Angular,
+- **moonbobl**: ([Directory sorgenti](https://github.com/csipiemonte/moon/tree/master/moonbobl)): contiene i servizi che realizzano la logica di business utilizzati dalla componente frontend della pubblica amministrazione,
+- **moonsrv**: ([Directory sorgenti](https://github.com/csipiemonte/moon/tree/master/moonsrv)): realizza i servizi comuni alle componenti relative ai cittadini ed alla pubblica amministrazione,
+- **moonprint**: ([Directory sorgenti](https://github.com/csipiemonte/moon/tree/master/moonprint)): componente per la stampa delle istanze,
+- **moondb**: ([Directory sorgenti](https://github.com/csipiemonte/moon/tree/master/moondb)): script per la creazione del database utilizzato dalla piattaforma
 
 # Prerequisiti di sistema 
 Java version : OpenJDK 11  
