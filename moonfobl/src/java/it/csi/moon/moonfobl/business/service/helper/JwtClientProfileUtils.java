@@ -54,7 +54,7 @@ public class JwtClientProfileUtils implements Serializable {
     private static final String AUDIENCE_TABLET = "tablet";
 	private static final String ISSUER = "it.csi.moon.moonsrv";
     
-    private String secret = "CSI-MOOn-SRV!2020";
+    private String secret = "secretPassword";
 
 //    private Long expiration = 60*30L;   // 30min in seconds
 //    private Long expiration = 3600*10L; // 10ore in seconds

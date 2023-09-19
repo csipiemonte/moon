@@ -92,7 +92,7 @@ public class JwtIdentitaUtil implements Serializable {
     
     static final String CLAIM_KEY_DATI_AGGIUNTIVI = "da";
 
-    private static final String SECRET = "CSI-MOOn-Monfobl!2020";
+    private static final String SECRET = "secretPassword";
 	private static final String ISSUER = "it.csi.moon."+Constants.COMPONENT_NAME;
 	private static final SignatureAlgorithm ALG = SignatureAlgorithm.HS256;
 

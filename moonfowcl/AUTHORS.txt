@@ -1,13 +1,13 @@
 # Autori progetto MOOn
-Angela Carzedda\
-Alberto Deiro\
-Sonia Casciano\
-Lara Terlizzi\
-Danilo Mosca\
-Salvatore Cavalli\
-Laurent Pissard\
-Moinuddin Ahmad\
-Valeria Malacasa\
-Irene Zablotna\
-Paolo Lombardo\
+Angela Carzedda
+Alberto Deiro
+Sonia Casciano
+Lara Terlizzi
+Danilo Mosca
+Salvatore Cavalli
+Laurent Pissard
+Moinuddin Ahmad
+Valeria Malacasa
+Irene Zablotna
+Paolo Lombardo
 Francesco Zucaro

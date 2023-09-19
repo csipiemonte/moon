@@ -93,7 +93,7 @@ public class JwtIdentitaUtil implements Serializable {
     // Specifico BO
     static final String CLAIM_KEY_CODICE_TIPO_UTENTE = "ctu"; // codiceTipoUtente
     
-    private static final String SECRET = "CSI-MOOn-Monbobl!2022";
+    private static final String SECRET = "secretPassword";
    	private static final String ISSUER = "it.csi.moon."+Constants.COMPONENT_NAME;
    	private static final SignatureAlgorithm ALG = SignatureAlgorithm.HS256;
    	
